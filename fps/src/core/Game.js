@@ -12,6 +12,7 @@ import { AudioSystem } from './Audio.js';
 import { AutoTest } from './AutoTest.js';
 import { RESPAWN_DELAY, TEAM_BLUE, TEAM_COLORS, PLAYER_COLOR, QUALITY_PRESETS, isTeamMode } from './constants.js';
 import { Modes } from './Modes.js';
+import { freezePool } from '../weapons/Loadout.js';
 import { clamp, damp, nextFrame } from './utils.js';
 
 import { World } from '../world/World.js';
@@ -312,7 +313,8 @@ export class Game {
 
   /**
    * Start a match. Must be called from a user gesture (so pointer lock can be requested).
-   * @param {object} options { mapId, mode:'ffa'|'tdm', botCount, difficulty, scoreLimit, timeLimit (minutes, 0 = none), arsenal ({weaponId: 'off'|'rare'|'normal'|'common'}) }
+   * @param {object} options { mapId, mode:'ffa'|'tdm', botCount, difficulty, scoreLimit, timeLimit (minutes, 0 = none), arsenal ({weaponId: 'off'|'rare'|'normal'|'common'}),
+   *                         pool ({weapons, slots, ammo, grenades}: the spawn weapon pool, weapons/Loadout.js) }
    *                         missing values come from settings.
    */
   async startMatch(options = {}) {
@@ -336,6 +338,7 @@ export class Game {
       scoreLimit: Math.max(0, Math.round(options.scoreLimit ?? s.get('scoreLimit'))),
       timeLimit: Math.max(0, options.timeLimit ?? s.get('timeLimit')),
       arsenal: options.arsenal ?? s.get('botArsenal'),   // bot spawn weapons, normalised by the AI (BotConfig.resolveArsenal)
+      pool: freezePool(options.pool ?? s.get('loadoutPool')),   // spawn weapon pool (match rule): sanitised, frozen, plain JSON
     };
     this.lastMatchConfig = { ...cfg };
 

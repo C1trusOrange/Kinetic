@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { ARSENAL_PRESETS, resolveArsenal } from '../ai/BotConfig.js';
+import { sanitizePick } from '../weapons/Loadout.js';
 
 /** ?arsenal= value: a preset id (balanced|norockets|classic|chaos) or `weapon:level,...` (missing weapons keep the default). */
 function parseArsenalParam(v) {
@@ -24,6 +25,10 @@ function parseArsenalParam(v) {
  *   map=<id>  bots=<n>  mode=ffa|tdm|escalation|koth  diff=<difficulty>  duration=<seconds, default 20>
  *   score=<score limit, default 0 = none (Escalation / koth: ladder / points)>  time=<time limit in minutes, default 0 = none>
  *   arsenal=<balanced|norockets|classic|chaos | rocket:off,rifle:common,...>  (bot spawn weapons; default = saved setting)
+ *   pool=<all | id,id,...>[;slots=N][;ammo=standard|full][;grenades=standard|frag|none]  (spawn weapon pool = match rule,
+ *        e.g. pool=all;slots=9 or pool=rifle,sniper,smg;slots=2;ammo=full; default = saved setting)
+ *   loadout=<id,id,...[:primary]>  (the player's own pick from the pool, e.g. loadout=pistol,sniper,smg:sniper; default =
+ *        saved setting; set as game.player.loadoutPick). Both are reported as report.pool / report.loadout {pick, resolved}.
  *   god=1 (player invulnerable)  script=full|idle  spectate=1 (chase-cam a bot, no player)
  *   cam=x,y,z,yaw,pitch (fixed camera)  quality=low|medium|high
  *   mapfile=<path.js> (custom test map module, default export = map definition)
@@ -91,6 +96,7 @@ export class AutoTest {
       this.scenario = await import('/' + p.get('scenario').replace(/^\/+/, ''));
     }
 
+    if (p.get('loadout')) g.player.loadoutPick = sanitizePick(p.get('loadout'));
     await g.startMatch({
       mapId,
       mode: p.get('mode') || 'ffa',
@@ -99,8 +105,11 @@ export class AutoTest {
       scoreLimit: parseInt(p.get('score') ?? '0', 10) || 0,
       timeLimit: parseFloat(p.get('time') ?? '0') || 0,
       arsenal: parseArsenalParam(p.get('arsenal')),
+      pool: p.get('pool') || undefined,   // sanitised + frozen by Game (weapons/Loadout.js sanitizePool parses the string)
     });
     r.arsenal = resolveArsenal(g);
+    r.pool = g.match ? g.match.pool : null;
+    r.loadout = { pick: sanitizePick(g.player.loadoutPick ?? g.settings.get('playerLoadout')), resolved: g.weapons.loadout };
     if (p.has('god')) g.player.god = true;
     r.map = g.world.mapId;
     if (this.scenario && this.scenario.setup) await this.scenario.setup(g, r);

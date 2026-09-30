@@ -787,3 +787,90 @@ kbd {
 .seg button:disabled { opacity: 0.4; cursor: default; pointer-events: none; }
 .seg.locked { opacity: 0.6; }
 .hud-hill.done { display: none; }
+
+/* ==========================================================================================
+   Spawn loadouts (weapons/Loadout.js, ui/LoadoutScreen.js): the Bot arsenal + Loadouts card pair on Match Setup,
+   the Loadouts screen (weapon pool = match rules | your loadout) and the pause-menu entry
+   ========================================================================================== */
+/* two half-width cards: together they are shorter than the old full-width Bot arsenal card (720p fit) */
+.opt-pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0.7em; }
+.opt-pair .opt { min-width: 0; }
+.opt-pair .opt-h { gap: 0.5em; letter-spacing: 0.2em; white-space: nowrap; }
+.opt-pair .opt-h output { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.opt-pair .ars-card { height: 4.1em; padding: 0.5em 0.45em 0.45em 0.75em; gap: 0.4em; }
+.opt-pair .ars-body { gap: 0.42em; }
+.opt-pair .mix { height: 1.35em; }
+.opt-pair .mix-key { display: none; }
+.opt-pair .ars-go { font-size: 0.55em; }
+.opt-pair .ars-go span { display: none; }
+.ars-top, .lo-cardtxt { display: none; }
+.opt-pair .ars-top, .opt-pair .lo-cardtxt { display: block; font: 700 0.72em/1.1 var(--k-cond); letter-spacing: 0.05em; text-transform: uppercase; color: #9fc4dc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lo-icons { display: flex; align-items: center; gap: 0.3em; height: 1.35em; min-width: 0; }
+.lo-icons i { --wc: var(--k-cyan); flex: 0 1 2.7em; min-width: 0; height: 100%; display: flex; align-items: center; color: var(--wc); opacity: 0.6; }
+.lo-icons i .ico { width: 100%; height: 100%; }
+.lo-icons i.pri { opacity: 1; filter: drop-shadow(0 0 0.25em var(--wc)); }
+.lo-card.locked { opacity: 0.5; cursor: default; }
+.lo-card.locked .ars-go { visibility: hidden; }
+.opt-pair .lo-card.locked .lo-cardtxt { color: var(--k-orange); }
+
+/* screen */
+.k-menu[data-screen="loadout"] .k-scrim { background: radial-gradient(ellipse at 50% 30%, rgba(6, 14, 26, 0.84), rgba(3, 7, 14, 0.94)); backdrop-filter: blur(5px); }
+.s-loadout { align-items: center; }
+.s-loadout .k-head, .s-loadout .k-foot { align-self: stretch; }
+.lo-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.6em; width: min(84em, 100%); align-items: stretch; }
+.lo-panel { --cut: 1em; --fill: rgba(6, 12, 22, 0.78); min-width: 0; padding: 1.2em 1.5em 1.2em; box-sizing: border-box; display: flex; flex-direction: column; gap: 0.95em; }
+.lo-panel .k-sec { margin: 0; }
+.lo-panel .k-sec::after { order: 2; }
+.lo-panel .k-sec output { order: 3; font: 600 1.15em var(--k-font); letter-spacing: 0.06em; color: #fff; text-transform: none; white-space: nowrap; }
+.lo-panel .k-sec output.full { color: var(--k-cyan); }
+.lo-tag { order: 1; padding: 0.2em 0.6em; font: 700 0.8em/1 var(--k-font); letter-spacing: 0.2em; color: #03141f; background: var(--k-orange); clip-path: polygon(0.3em 0, 100% 0, calc(100% - 0.3em) 100%, 0 100%); }
+.lo-tag.lo-you { background: var(--k-cyan); }
+.s-loadout.ro .lo-pool .lo-tag { background: #6d7f91; color: #fff; }
+.lo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.4em; }
+.lo-tile { --wc: var(--k-cyan); appearance: none; position: relative; display: flex; align-items: center; gap: 0.55em; min-width: 0; height: 3.3em; padding: 0 1.6em 0 0.65em; border: 0; box-sizing: border-box; cursor: pointer; text-align: left; color: #e4f7ff; background: rgba(255, 255, 255, 0.05); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07); clip-path: polygon(0.5em 0, 100% 0, 100% calc(100% - 0.5em), calc(100% - 0.5em) 100%, 0 100%, 0 0.5em); transition: background 0.15s, opacity 0.15s, box-shadow 0.15s; }
+.lo-tile:hover, .lo-tile:focus-visible { background: rgba(61, 224, 255, 0.16); outline: none; }
+.lo-tile:disabled { cursor: default; }
+.lo-ico { flex: none; width: 2.6em; display: flex; color: var(--wc); }
+.lo-ico .ico { width: 100%; height: 1.1em; }
+.lo-n { display: flex; flex-direction: column; gap: 0.22em; min-width: 0; }
+.lo-n b { font: 700 0.95em/1 var(--k-cond); letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lo-n small { font: 600 0.6em/1 var(--k-font); letter-spacing: 0.14em; text-transform: uppercase; color: var(--k-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lo-tile kbd { position: absolute; right: 0.5em; bottom: 0.35em; min-width: 0; padding: 0 0.35em; font-size: 0.56em; line-height: 1.35; color: rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.06); border-width: 1px; }
+.lo-badge { position: absolute; right: 0.45em; top: 0.35em; min-width: 1.15em; height: 1.15em; display: grid; place-items: center; font: 700 0.72em/1 var(--k-cond); font-style: normal; color: #03141f; }
+.lo-badge:empty { display: none; }
+.lo-badge .ico { width: 1.15em; height: 1.15em; }
+/* pool tiles: allowed / not allowed */
+.lo-pool .lo-tile.on { background: color-mix(in srgb, var(--wc) 11%, rgba(255, 255, 255, 0.03)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wc) 55%, transparent); }
+.lo-pool .lo-tile.on .lo-badge { color: var(--wc); }
+.lo-pool .lo-tile.off { opacity: 0.42; }
+.lo-pool .lo-tile.off .lo-ico { filter: grayscale(1); }
+.lo-pool .lo-tile.off .lo-n b { text-decoration: line-through; text-decoration-thickness: 0.08em; }
+/* your tiles: picked (badge = your order), spawn weapon, not in the pool, loadout full */
+.lo-mine .lo-tile.on { background: color-mix(in srgb, var(--wc) 13%, rgba(255, 255, 255, 0.03)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wc) 60%, transparent); }
+.lo-mine .lo-tile.on .lo-badge { background: var(--wc); clip-path: polygon(0.2em 0, 100% 0, calc(100% - 0.2em) 100%, 0 100%); }
+.lo-mine .lo-tile.primary { box-shadow: inset 0 0 0 1px var(--wc), inset 0 -0.2em 0 var(--wc); }
+.lo-mine .lo-tile.primary small { color: var(--wc); }
+.lo-mine .lo-tile.blocked { opacity: 0.32; cursor: not-allowed; }
+.lo-mine .lo-tile.blocked .lo-ico { filter: grayscale(1); }
+.lo-mine .lo-tile.blocked .lo-badge { color: #c9d6e2; }
+.lo-mine .lo-tile.full { opacity: 0.55; }
+/* options */
+.lo-row2 { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 0.9em; }
+.lo-panel .opt-h { margin-bottom: 0.45em; }
+.lo-seg2 button { display: flex; flex-direction: column; gap: 0.25em; padding: 0.55em 0.3em; text-align: center; }
+.lo-seg2 small { font: 500 0.72em/1.2 var(--k-font); letter-spacing: 0.01em; text-transform: none; opacity: 0.75; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.s-loadout .seg button:disabled { opacity: 0.35; }
+.s-loadout .seg button.on:disabled { opacity: 1; }
+.s-loadout .seg.locked { opacity: 0.85; }
+.lo-draw { flex-wrap: wrap; row-gap: 0.28em; }
+.lo-draw button { --wc: var(--k-cyan); flex: 1 1 0; }
+.lo-draw.many button { flex: 1 0 17%; }
+.lo-draw button.on { background: var(--wc); color: #03141f; }
+.lo-ammo { display: flex; flex-wrap: wrap; gap: 0.35em 0.45em; }
+.lo-am { --wc: var(--k-cyan); display: inline-flex; align-items: center; gap: 0.4em; padding: 0.3em 0.65em 0.3em 0.5em; background: rgba(255, 255, 255, 0.05); border-left: 0.18em solid var(--wc); }
+.lo-am i { width: 2.1em; display: flex; color: var(--wc); }
+.lo-am i .ico { width: 100%; height: 0.8em; }
+.lo-am b { font: 700 1em/1 var(--k-cond); letter-spacing: 0.03em; }
+.lo-am small { font: 600 0.8em/1 var(--k-cond); letter-spacing: 0.03em; color: var(--k-dim); }
+.lo-note { margin-top: auto; min-height: 2.5em; font-size: 0.76em; line-height: 1.4; transition: color 0.15s; }
+.lo-note.hint { color: var(--k-orange); }
