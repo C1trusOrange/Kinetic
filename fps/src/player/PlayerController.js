@@ -22,6 +22,11 @@ const _chest = new THREE.Vector3();
 
 /** Safety net cadence: the capsule-inside-a-solid check runs every NET_EVERY-th physics step (120 Hz / 2 = 60 Hz). */
 const NET_EVERY = 2;
+/**
+ * A crouch tap whose press and release both landed in one frame window (a hitch, or a tap shorter than a frame)
+ * is held for this long (s), like a short key press: it crouches / starts a slide instead of vanishing.
+ */
+const CROUCH_TAP_HOLD = 0.1;
 /** Heights above the ledge top at which the mantle path (player column -> landing spot) must be free. */
 const MANTLE_CLEAR_H = [0.1, 0.5, 0.9, 1.3, 1.7];
 
@@ -65,10 +70,13 @@ export class PlayerController {
     this.rescueCount = 0;
     /** The last few rescues: {t, reason, from:[x,y,z], to:[x,y,z]} (debugging / tests). */
     this.rescueLog = [];
-    /** Per-frame input snapshot, filled by Player.update. */
+    /**
+     * Per-frame input snapshot, filled by Player.update. jumpFresh / crouchFresh are press edges latched until a
+     * physics step consumes them; jumpPressT = input-clock time (s) of the latched jump press.
+     */
     this.in = {
       wishX: 0, wishZ: 0, wishLen: 0, fwd: 0, strafe: 0,
-      forwardHeld: false, jumpHeld: false, jumpFresh: false,
+      forwardHeld: false, jumpHeld: false, jumpFresh: false, jumpPressT: 0,
       crouchHeld: false, crouchFresh: false, sprintHeld: false,
     };
     this.reset();
@@ -81,6 +89,11 @@ export class PlayerController {
     this.airTime = 0;
     this.coyote = 0;
     this.jumpBuffer = 0;
+    /** Input-clock time (s) of the jump press behind jumpBuffer. */
+    this.jumpPressT = 0;
+    /** Effective crouch input of the current step: held, or a same-frame tap still inside CROUCH_TAP_HOLD. */
+    this.crouchIn = false;
+    this.crouchTapUntil = -99;
     this.airJumps = 1;
     this.wallJumps = 0;
     this.wallRunsThisAir = 0;
@@ -238,11 +251,16 @@ export class PlayerController {
     const P = this.p, inp = this.in;
     this.t += dt;
     this.mantleCooldown -= dt;
-    if (inp.jumpFresh) this.jumpBuffer = M.JUMP_BUFFER;
-    else if (this.jumpBuffer > 0) this.jumpBuffer = Math.max(0, this.jumpBuffer - dt);
+    if (inp.jumpFresh) {
+      this.jumpBuffer = M.JUMP_BUFFER;
+      this.jumpPressT = inp.jumpPressT;
+    } else if (this.jumpBuffer > 0) this.jumpBuffer = Math.max(0, this.jumpBuffer - dt);
     // crouch press: the input edge, or the held state turning on (virtual / latched inputs can lag an edge)
     if (inp.crouchFresh || (inp.crouchHeld && !this._crouchWas)) this.crouchPressedAt = this.t;
     this._crouchWas = inp.crouchHeld;
+    // a tap that was already released when its frame ran counts as a short hold
+    if (inp.crouchFresh && !inp.crouchHeld) this.crouchTapUntil = this.t + CROUCH_TAP_HOLD;
+    this.crouchIn = inp.crouchHeld || this.t <= this.crouchTapUntil;
     this.coyote = this.grounded ? M.COYOTE : Math.max(0, this.coyote - dt);
     if (this.wallCoyote > 0) this.wallCoyote = Math.max(0, this.wallCoyote - dt);
 
@@ -388,7 +406,7 @@ export class PlayerController {
   // ================================================================== state updates
 
   _updateCrouch() {
-    const want = this.in.crouchHeld || this.sliding;
+    const want = this.crouchIn || this.sliding;
     if (want && !this.crouched) {
       this.crouched = true;
       this._setHeight(CROUCH_H);
@@ -435,14 +453,14 @@ export class PlayerController {
   }
 
   _updateSlide(dt) {
-    const inp = this.in, v = this.p.velocity;
+    const v = this.p.velocity;
     const hs = Math.hypot(v.x, v.z);
     if (this.sliding) {
       this.slideTime += dt;
       if (!this.grounded) this._endSlide();
-      else if (!inp.crouchHeld) this._endSlide();
+      else if (!this.crouchIn) this._endSlide();
       else if (hs < M.SLIDE_END_SPEED && this.slideTime > 0.12) this._endSlide();
-    } else if (this.grounded && inp.crouchHeld && hs >= M.SLIDE_MIN_START && !this.wallRunning && !this.p.grapple.attached) {
+    } else if (this.grounded && this.crouchIn && hs >= M.SLIDE_MIN_START && !this.wallRunning && !this.p.grapple.attached) {
       const pressed = this.t - this.crouchPressedAt <= M.SLIDE_PRESS_WINDOW;
       const landed = this.t - this.lastLandT <= 0.12;
       if (pressed || landed) this._startSlide(hs);
@@ -504,11 +522,21 @@ export class PlayerController {
     this.refreshUsed = false;
   }
 
+  /**
+   * Resolve the jump buffer. A FRESH press (the first physics step after it) can do anything: ground / coyote jump,
+   * mantle, wall-jump, grapple release + boost, double jump. A BUFFERED press (still inside JUMP_BUFFER after its
+   * fresh step did nothing) only ever becomes a ground jump on landing (or right after a mantle): it never releases
+   * a grapple that attached after the press, and never wall-jumps off a wall-run that started after the press or
+   * off the wall-coyote of one that ended - the situation it was made in is gone.
+   */
   _handleJump() {
     if (this.jumpBuffer <= 0) return;
     const P = this.p, inp = this.in, gr = P.grapple;
+    const fresh = inp.jumpFresh;
 
     if (gr.attached) {
+      // pressed before the hook attached (same frame window included): keep the new swing
+      if (!(this.jumpPressT >= gr.attachedAt)) return;
       gr.release('jump');
       if (this.grounded || this.coyote > 0) {
         this._groundJump();
@@ -521,7 +549,7 @@ export class PlayerController {
       return;
     }
     if (this.wallRunning) {
-      this._wallJump(this.wallN, this.wallPlaneD);
+      if (fresh) this._wallJump(this.wallN, this.wallPlaneD);
       return;
     }
     if (this.grounded || this.coyote > 0) {
@@ -532,21 +560,20 @@ export class PlayerController {
       this._groundJump();
       return;
     }
-    // airborne
+    // airborne: only the fresh press acts; a buffered one waits for the landing
+    if (!fresh) return;
     if (this.wallCoyote > 0 && this.wallJumps < M.WALLJUMP_MAX_PER_AIR) {
       this._wallJump(this.lastWallN, this.lockD);
       return;
     }
-    if (inp.jumpFresh) {
-      if (this._groundClose()) return; // stays buffered: becomes a ground jump on landing
-      if (this.wallJumps < M.WALLJUMP_MAX_PER_AIR
-          && this._scanWalls(this._scan, R + 0.4, WALLJUMP_ANGLES, false) && !this._isLocked(this._scan)) {
-        _v1.set(this._scan.nx, 0, this._scan.nz);
-        this._wallJump(_v1, this._scan.d);
-        return;
-      }
-      if (this.airJumps > 0) this._doubleJump();
+    if (this._groundClose()) return; // stays buffered: becomes a ground jump on landing
+    if (this.wallJumps < M.WALLJUMP_MAX_PER_AIR
+        && this._scanWalls(this._scan, R + 0.4, WALLJUMP_ANGLES, false) && !this._isLocked(this._scan)) {
+      _v1.set(this._scan.nx, 0, this._scan.nz);
+      this._wallJump(_v1, this._scan.d);
+      return;
     }
+    if (this.airJumps > 0) this._doubleJump();
   }
 
   /** True when a scanned wall is the one we just left (re-run / re-jump lock). */
@@ -886,7 +913,7 @@ export class PlayerController {
     this.wallCoyote = 0;
     this.lastLandT = this.t;
     if (!silent && this.t >= this.landSuppressUntil) {
-      if (impact > M.LAND_PENALTY_START && !this.in.crouchHeld) {
+      if (impact > M.LAND_PENALTY_START && !this.crouchIn) {
         const f = 1 - M.LAND_PENALTY_MAX * saturate((impact - M.LAND_PENALTY_START) / 12);
         v.x *= f;
         v.z *= f;
@@ -946,7 +973,7 @@ export class PlayerController {
 
   _checkWallRunStart() {
     const P = this.p, v = P.velocity, inp = this.in;
-    if (!inp.forwardHeld || inp.crouchHeld || this.airTime < 0.06) return;
+    if (!inp.forwardHeld || this.crouchIn || this.airTime < 0.06) return;
     if (this.wallRunsThisAir >= M.WALLRUN_MAX_PER_AIR) return;
     this.scanTick ^= 1;
     if (this.scanTick) return; // scan at 60 Hz
@@ -1005,7 +1032,7 @@ export class PlayerController {
     // ---- exit conditions from input / time
     if (inp.forwardHeld) this.noFwd = 0; else this.noFwd += dt;
     if (this.noFwd > 0.12) return this._endWallRun('release');
-    if (inp.crouchHeld) return this._endWallRun('crouch');
+    if (this.crouchIn) return this._endWallRun('crouch');
     if (T >= M.WALLRUN_TIME) return this._endWallRun('timeout');
     if (gr.attached) return this._endWallRun('grapple');
     if (inp.wishLen > 0) {

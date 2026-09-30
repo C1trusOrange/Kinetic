@@ -46,6 +46,11 @@ export class Grapple {
     this.flightDir = new THREE.Vector3();
     this.flightTime = 0;
     this.willHit = false;
+    /**
+     * Input-clock time (s, Input.time of the frame) the rope attached: a jump pressed before it (still sitting in
+     * the jump buffer) must not release the new swing (PlayerController._handleJump).
+     */
+    this.attachedAt = 0;
     this.ropeLength = 0;
     this.time = 0;
     this.retractT = 0;
@@ -319,6 +324,7 @@ export class Grapple {
   _attach() {
     const P = this.player, g = this.game;
     this.state = 'attached';
+    this.attachedAt = g.input ? g.input.time : 0;
     this.anchor.copy(this.target);
     this.hook.copy(this.anchor);
     this.time = 0;
