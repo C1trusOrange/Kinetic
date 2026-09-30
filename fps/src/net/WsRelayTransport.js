@@ -91,6 +91,7 @@ export class WsRelayTransport extends Transport {
     this._keepalive = 0;
     this._pingSentAt = 0;
     this._roomClosedReason = '';
+    this._entering = false;      // host() / join() in flight
   }
 
   /** ws:// or wss:// URL of the relay on the server that served this page. */
@@ -121,36 +122,44 @@ export class WsRelayTransport extends Transport {
   }
 
   async host(opts = {}) {
-    if (this.role !== 'none') throw netError('already-in-room');
-    await this.connect();
-    const msg = { t: 'host', v: this.version, name: opts.name ?? 'KINETIC', max: opts.max ?? 8, public: opts.public !== false };
-    if (opts.code) msg.code = normalizeCode(opts.code);
-    if (opts.meta) msg.meta = opts.meta;
-    const reply = await this._request(msg);
-    this.role = 'host';
-    this.peerId = HOST_PEER;
-    this.code = reply.code;
-    this.token = '';
-    this._setState('in-room');
-    return { code: reply.code, peer: HOST_PEER, max: reply.max };
+    this._beginEnter();
+    try {
+      await this.connect();
+      const msg = { t: 'host', v: this.version, name: opts.name ?? 'KINETIC', max: opts.max ?? 8, public: opts.public !== false };
+      if (opts.code) msg.code = normalizeCode(opts.code);
+      if (opts.meta) msg.meta = opts.meta;
+      const reply = await this._request(msg);
+      this.role = 'host';
+      this.peerId = HOST_PEER;
+      this.code = reply.code;
+      this.token = '';
+      this._setState('in-room');
+      return { code: reply.code, peer: HOST_PEER, max: reply.max };
+    } finally {
+      this._entering = false;
+    }
   }
 
   async join(code, name = 'Player', token) {
-    if (this.role !== 'none') throw netError('already-in-room');
-    const room = normalizeCode(code);
-    await this.connect();
-    const tok = token === undefined ? loadToken(room) : token;
-    const msg = { t: 'join', v: this.version, code: room, name };
-    if (tok) msg.token = tok;
-    const reply = await this._request(msg);
-    this.role = 'client';
-    this.peerId = reply.peer;
-    this.code = reply.code;
-    this.name = name;
-    this.token = reply.token;
-    saveToken(reply.code, reply.token);
-    this._setState('in-room', { rejoin: reply.rejoin });
-    return reply;
+    this._beginEnter();
+    try {
+      const room = normalizeCode(code);
+      await this.connect();
+      const tok = token === undefined ? loadToken(room) : token;
+      const msg = { t: 'join', v: this.version, code: room, name };
+      if (tok) msg.token = tok;
+      const reply = await this._request(msg);
+      this.role = 'client';
+      this.peerId = reply.peer;
+      this.code = reply.code;
+      this.name = name;
+      this.token = reply.token;
+      saveToken(reply.code, reply.token);
+      this._setState('in-room', { rejoin: reply.rejoin });
+      return reply;
+    } finally {
+      this._entering = false;
+    }
   }
 
   async leave() {
@@ -223,6 +232,9 @@ export class WsRelayTransport extends Transport {
     if (this.state === 'closed' || this.state === 'idle') return;
     this._closing = true;
     this._cancelRetry();
+    // WebSocket.close() only accepts 1000 or 3000-4999 (anything else throws) and a reason <= 123 bytes
+    if (code !== CLOSE.NORMAL && !(code >= 3000 && code <= 4999)) code = CLOSE.NORMAL;
+    reason = String(reason).slice(0, 40);
     const ws = this.ws;
     if (ws && ws.readyState === WebSocket.OPEN) {
       if (this.role !== 'none') {
@@ -245,6 +257,12 @@ export class WsRelayTransport extends Transport {
 
   _requireHost() {
     if (this.role !== 'host' || !this.connected) throw netError('not-host');
+  }
+
+  /** host()/join() are exclusive: a second call while one is in flight (double click) is refused. */
+  _beginEnter() {
+    if (this.role !== 'none' || this._entering) throw netError('already-in-room');
+    this._entering = true;
   }
 
   _sendBinary(u8) {

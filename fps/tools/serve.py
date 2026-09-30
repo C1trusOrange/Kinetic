@@ -28,7 +28,6 @@ import socketserver
 import subprocess
 import sys
 import threading
-import time
 import urllib.request
 import webbrowser
 from urllib.parse import urlsplit
@@ -65,10 +64,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         pass
 
     def do_GET(self):
-        path = urlsplit(self.path).path
-        relay = getattr(self.server, 'relay', None)
-        if relay is not None and (path == netserver.WS_PATH or path.startswith('/api/')):
-            relay.handle_http(self, path)
+        if self._relay_request():
             return
         if not self._may_serve():
             self.send_error(404)
@@ -76,18 +72,34 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         super().do_GET()
 
     def do_HEAD(self):
+        if self._relay_request():
+            return
         if not self._may_serve():
             self.send_error(404)
             return
         super().do_HEAD()
 
+    def _relay_request(self):
+        """Hand /ws and /api/* to the multiplayer relay. True if it answered the request."""
+        path = urlsplit(self.path).path
+        relay = getattr(self.server, 'relay', None)
+        if relay is None or not (path == netserver.WS_PATH or path.startswith('/api/')):
+            return False
+        relay.handle_http(self, path, trusted=self._trusted())
+        return True
+
+    def _trusted(self):
+        """This PC (loopback), or a server that only listens on loopback anyway."""
+        server = self.server
+        return not getattr(server, 'restrict_remote', False) or server.is_trusted(self.client_address[0])
+
     def _may_serve(self):
         """In --lan mode other machines only get the game itself: no docs, tools, screenshots or listings."""
-        server = self.server
-        if not getattr(server, 'restrict_remote', False) or server.is_trusted(self.client_address[0]):
+        if self._trusted():
             return True
         if self.path.split('?', 1)[0].split('#', 1)[0] == '/':
-            return True                                  # serves index.html
+            # '/' serves index.html; without one it would be a directory listing
+            return public_path_allowed(os.path.join(self.directory, 'index.html'), self.directory)
         return public_path_allowed(self.translate_path(self.path), self.directory)
 
 
@@ -141,6 +153,12 @@ class ExclusiveServer(ThreadingServer):
     def is_trusted(ip):
         return netserver.is_loopback(ip)
 
+    def handle_error(self, request, client_address):
+        # a browser that drops a connection mid-response (reload, closed tab) is normal, not a server error
+        if isinstance(sys.exc_info()[1], (ConnectionError, TimeoutError)):
+            return
+        super().handle_error(request, client_address)
+
     def shutdown_request(self, request):
         if request in self.handed_off:
             self.handed_off.discard(request)
@@ -158,12 +176,13 @@ class ExclusiveServer(ThreadingServer):
             self.relay.stop()
 
 
-def make_server(port=0, root=ROOT, *, bind=None, lan=False, log=None, relay_options=None):
-    """HTTP server + relay, not started. Binds 127.0.0.1 unless `lan` (0.0.0.0) or `bind` says otherwise.
+def make_server(port=0, root=ROOT, *, bind=None, lan=False, log=None, error_log=None, relay_options=None):
+    """HTTP server + relay, not started. Binds 127.0.0.1 unless `lan` (0.0.0.0) or `bind` says otherwise;
+    `lan` also restricts what other machines may fetch. `log` / `error_log`: see netserver.Relay.
     Raises OSError when the port is taken."""
     handler = functools.partial(Handler, directory=root)
     srv = ExclusiveServer((bind or ('0.0.0.0' if lan else '127.0.0.1'), port), handler, restrict_remote=lan)
-    srv.relay = netserver.Relay(log=log, **(relay_options or {}))
+    srv.relay = netserver.Relay(log=log, error_log=error_log, **(relay_options or {}))
     return srv
 
 
@@ -179,15 +198,16 @@ def serve_in_background(port=0, root=ROOT, **kw):
 
 def probe_running(port):
     """What already listens on 127.0.0.1:port: /api/lan info for a KINETIC server, {} for an older KINETIC, None otherwise."""
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))   # never ask a system proxy about loopback
     try:
-        with urllib.request.urlopen(f'http://127.0.0.1:{port}/api/lan', timeout=2) as r:
+        with opener.open(f'http://127.0.0.1:{port}/api/lan', timeout=2) as r:
             info = json.load(r)
         if isinstance(info, dict) and info.get('app') == 'kinetic':
             return info
     except Exception:  # noqa: BLE001 - anything else on that port is simply not us
         pass
     try:
-        with urllib.request.urlopen(f'http://127.0.0.1:{port}/', timeout=2) as r:
+        with opener.open(f'http://127.0.0.1:{port}/', timeout=2) as r:
             if b'<title>KINETIC</title>' in r.read(4096):
                 return {}
     except Exception:  # noqa: BLE001
@@ -233,10 +253,6 @@ def _network_profile_warning():
               '    (or Ethernet) > your network > Network profile type > Private network.', flush=True)
 
 
-def _log(text):
-    print(time.strftime('[%H:%M:%S] ') + text, flush=True)
-
-
 def main(argv=None):
     ap = argparse.ArgumentParser(description='KINETIC static server + multiplayer relay')
     ap.add_argument('port', nargs='?', type=int, default=8000)
@@ -249,7 +265,11 @@ def main(argv=None):
     open_path = '/' + (args.open or '').lstrip('/')
 
     try:
-        srv = make_server(args.port, bind=args.bind, lan=args.lan, log=None if args.quiet else _log)
+        # console output from the relay goes through its own thread: a console window with selected text
+        # (QuickEdit) blocks writes, and the relay loop must never wait for that
+        srv = make_server(args.port, bind=args.bind, lan=args.lan,
+                          log=None if args.quiet else netserver.ConsoleLog(prefix_time=True),
+                          error_log=netserver.ConsoleLog(sys.stderr, prefix_time=True))
     except OSError as err:
         info = probe_running(args.port)
         url = f'http://localhost:{args.port}{open_path}'

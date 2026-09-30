@@ -6,7 +6,7 @@ tools/serve.py mounts it on the same port as the static game files:
     GET /ws          WebSocket upgrade (the page's Origin must match the Host header, else 403)
     GET /api/lan     {app, relay, hostname, port, lan, bind, ips, urls, hostUrl}  LAN addresses for invites
     GET /api/rooms   {rooms: [{code, name, players, max, locked, meta, v}]}       open public rooms
-    GET /api/stats   relay counters (no names, no tokens)
+    GET /api/stats   relay counters, every room and queue state (no names, no tokens); this PC only
 
 Threads: the HTTP handler thread validates the upgrade request and sends the 101 response, then
 hands the socket to the relay's ONE selectors-loop thread (Relay.adopt). That thread owns every
@@ -35,7 +35,9 @@ Wire contract (browser side: src/net/protocol.js, src/net/WsRelayTransport.js)
             (1..254). The host addresses one client (1..254) or all clients (255); forwarded unchanged.
     byte1 = packet type. Types >= 0x80 are latest-wins: while a receiver's socket is backed up, an
             unsent packet of the same (sender, type) is replaced by the newer one (snapshots never
-            queue up). Latest-wins packets may overtake reliable ones only while a socket is backed up.
+            queue up). While backed up, queued reliable packets go out first and the newest latest-wins
+            packets follow once the socket drains, so a reliable packet can overtake an older
+            latest-wins one (never the reverse). Otherwise everything arrives in send order.
   Close codes: 1000 normal, 1001 idle timeout / server stopping, 1002 protocol error, 1007 invalid
   UTF-8, 1009 message > 1 MiB, 1011 relay error, 1013 slow consumer (> 2 MiB queued),
   4000 room closed (host left), 4001 kicked, 4002 replaced by a rejoin with the same token.
@@ -53,6 +55,7 @@ import hashlib
 import ipaddress
 import itertools
 import json
+import queue
 import secrets
 import selectors
 import socket
@@ -205,6 +208,32 @@ def _request_id(msg):
 
 def _json_frame(obj):
     return encode_frame(OP_TEXT, json.dumps(obj, separators=(',', ':'), ensure_ascii=False).encode('utf-8'))
+
+
+class ConsoleLog:
+    """Callable that prints lines from its own thread, so the relay loop never waits for the console.
+
+    A Windows console in QuickEdit mode blocks every write while the user has text selected (say, to copy
+    the Friends address). A relay loop printing a join message then stalls, and so does every match on it."""
+
+    def __init__(self, stream=None, prefix_time=False):
+        self._stream = stream
+        self._prefix_time = prefix_time
+        self._q = queue.SimpleQueue()
+        threading.Thread(target=self._run, name='kinetic-console', daemon=True).start()
+
+    def __call__(self, text):
+        if self._prefix_time:
+            text = time.strftime('[%H:%M:%S] ') + text
+        self._q.put(text)
+
+    def _run(self):
+        while True:
+            text = self._q.get()
+            try:
+                print(text, file=self._stream or sys.stdout, flush=True)
+            except (OSError, ValueError):
+                pass                                     # console gone (window closed): nothing to report to
 
 
 # ------------------------------------------------------------------------------------------------ LAN info
@@ -367,14 +396,19 @@ class _Conn:
 # ------------------------------------------------------------------------------------------------ relay
 
 class Relay:
-    """WebSocket hub + room registry. All connection state lives on one loop thread."""
+    """WebSocket hub + room registry. All connection state lives on one loop thread.
 
-    def __init__(self, log=None, **config):
+    `log(text)` receives room events (None = silent) and `error_log(text)` internal errors (default:
+    stderr). Both are called on the loop thread, so they must not block: wrap console output in ConsoleLog.
+    Options (seconds / bytes / counts): see DEFAULTS."""
+
+    def __init__(self, log=None, error_log=None, **config):
         for k, v in DEFAULTS.items():
             setattr(self, k, config.pop(k, v))
         if config:
             raise TypeError('unknown relay option(s): ' + ', '.join(sorted(config)))
         self.log = log                               # callable(str) for room events, or None
+        self.error_log = error_log                   # callable(str) for internal errors, or None = stderr
         self.lock = threading.Lock()                 # guards rooms/slots structure + conns for other threads
         self.rooms = {}
         self.conns = set()
@@ -398,16 +432,19 @@ class Relay:
 
     # ---------------------------------------------------------------- public (any thread)
 
-    def handle_http(self, h, path):
-        """Serve GET /ws and /api/* for tools/serve.py's request handler `h`."""
+    def handle_http(self, h, path, trusted=True):
+        """Serve /ws (GET) and /api/* (GET, HEAD) for tools/serve.py's request handler `h`. `trusted` = the
+        request comes from this PC (or the server only listens on loopback): /api/stats lists private rooms."""
         if path == WS_PATH:
+            if h.command != 'GET':
+                return _http_reject(h, 405, {'Allow': 'GET'})
             return self._upgrade(h)
         if path == '/api/lan':
             host, port = h.server.server_address[:2]
             return _http_json(h, lan_info(host, port))
         if path == '/api/rooms':
             return _http_json(h, {'relay': RELAY_VERSION, 'rooms': self.public_rooms()})
-        if path == '/api/stats':
+        if path == '/api/stats' and trusted:
             return _http_json(h, self.stats())
         return _http_json(h, {'error': 'not-found'}, 404)
 
@@ -538,14 +575,23 @@ class Relay:
                 self._flush_dirty()
             except Exception:  # noqa: BLE001
                 self.counters['internal_errors'] += 1
-                traceback.print_exc()
+                self._report_error('[relay] internal error in the loop:\n' + traceback.format_exc())
                 time.sleep(0.01)
         self._shutdown_all()
 
+    def _report_error(self, text):
+        sink = self.error_log
+        if sink is not None:
+            try:
+                sink(text.rstrip())
+                return
+            except Exception:  # noqa: BLE001 - fall back to stderr below
+                pass
+        print(text.rstrip(), file=sys.stderr, flush=True)
+
     def _internal_error(self, c):
         self.counters['internal_errors'] += 1
-        print('[relay] internal error (connection dropped):', file=sys.stderr)
-        traceback.print_exc()
+        self._report_error('[relay] internal error (connection dropped):\n' + traceback.format_exc())
         try:
             self._close(c, CLOSE_INTERNAL_ERROR, 'relay error', 'error')
         except Exception:  # noqa: BLE001

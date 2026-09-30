@@ -16,8 +16,12 @@ Examples
   # transport test: 1 host + 3 client pages through the relay (RTT, routing, rejoin, lock, kick, close)
   python tools/run_mp.py --nettest
 
-  # two game pages at once (each page's autotest report)
+  # two game pages at once (each page's autotest report, merged summary at the end)
   python tools/run_mp.py --pages 2 --url "index.html?autotest=1&map=foundry&bots=2&duration=15&quality=low" --report
+
+  # the game as a LAN friend gets it: insecure origin + only the files `serve.py --lan` gives other machines
+  python tools/run_mp.py --pages 2 --url "index.html?autotest=1&map=skyline&bots=2&duration=10&quality=low" --report \\
+      --origin lan.test --remote
 
   # host page first, clients once it is ready
   python tools/run_mp.py --page "tools/nettest.html?role=host&room={room}&clients=1" \\
@@ -87,7 +91,8 @@ class Page:
             return False
 
     def value(self, expr):
-        return self.cdp.evaluate(f'(() => {{ const v = ({expr}); return v === undefined ? null : '
+        """`expr` as JSON (a Promise is awaited first)."""
+        return self.cdp.evaluate(f'(async () => {{ const v = await ({expr}); return v === undefined ? null : '
                                  f'JSON.parse(JSON.stringify(v)); }})()', timeout=30)
 
     def screenshot(self, path):
@@ -158,6 +163,9 @@ def main():
     ap.add_argument('--size', default='960x540', help='viewport of every page (default 960x540)')
     ap.add_argument('--origin', default='127.0.0.1', help='host name of page 0 (and of all pages without --client-origin)')
     ap.add_argument('--client-origin', help='host name of pages 1..n-1, e.g. lan.test: an insecure origin like a LAN IP')
+    ap.add_argument('--remote', action='store_true',
+                    help='serve every page the way `serve.py --lan` serves another machine: only index.html, style.css, '
+                         'src/, vendor/, /api/* and /ws (game pages only: tools/ pages and scenario= files are refused)')
     ap.add_argument('--room', help='room code for {room} (default: a fresh random code)')
     ap.add_argument('--shots', help='comma separated seconds (after the first navigation) for screenshots of every page')
     ap.add_argument('--shot', help='screenshot of every page at the end (PATH gets a _pN suffix)')
@@ -196,7 +204,9 @@ def main():
     names = sorted({o for o in origins if o not in ('localhost',) and not _is_ip(o)})
     extra = [f'--host-resolver-rules={",".join(f"MAP {o} 127.0.0.1" for o in names)}'] if names else []
 
-    server, port = serve_in_background(0)
+    server, port = serve_in_background(0, lan=args.remote, bind='127.0.0.1')   # never 0.0.0.0
+    if args.remote:
+        server.is_trusted = lambda ip: False                 # treat the loopback pages as other machines
     proc = profile = None
     pages = []
     ok_wait = [False] * n
@@ -277,6 +287,8 @@ def main():
                             'consoleErrors': list(p.log.errors), 'warnings': p.log.warnings, 'result': val})
         if args.nettest and results and isinstance(results[0]['result'], dict):
             _print_nettest(results)
+        elif args.report:
+            _print_reports(results)
         errors = [len(p.log.errors) for p in pages]
         code = 0 if all(ok_wait) and not any(errors) else 1
         print(f'[run_mp] done: pages={n} wait={",".join("ok" if w else "TIMEOUT" for w in ok_wait)} '
@@ -305,6 +317,24 @@ def _is_ip(host):
         return True
     except ValueError:
         return False
+
+
+def _print_reports(results):
+    """One merged line per page for --report (autotest reports)."""
+    print('[run_mp] merged autotest reports:')
+    for r in results:
+        rep = r['result']
+        if not isinstance(rep, dict):
+            print(f"  p{r['page']}: no report ({rep!r})")
+            continue
+        fps = rep.get('fps') or {}
+        pl = rep.get('player') or {}
+        print(f"  p{r['page']}: ok={rep.get('ok')} map={rep.get('map')} t={rep.get('t')} s fps avg={fps.get('avg')} "
+              f"min={fps.get('min')} page_errors={rep.get('errorCount', len(rep.get('errors') or []))} "
+              f"console_errors={len(r['consoleErrors'])} player k/d={pl.get('kills')}/{pl.get('deaths')} "
+              f"bots={len(rep.get('bots') or [])} done_at={r['doneAt']} s")
+    oks = [isinstance(r['result'], dict) and r['result'].get('ok') is True for r in results]
+    print(f"[run_mp] reports ok: {sum(oks)}/{len(oks)}")
 
 
 def _print_nettest(results):

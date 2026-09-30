@@ -8,8 +8,10 @@
  *           Transports fill this byte in (sendToHost / sendTo / broadcast).
  *   byte 1  packet type (PKT). Types >= LATEST_WINS are latest-wins: while a receiver's socket is backed
  *           up, the relay keeps only the newest unsent packet per (sender, type), so snapshots never
- *           queue up behind each other. Never use them for data that must arrive. Latest-wins packets can
- *           overtake reliable ones only while a socket is backed up.
+ *           queue up behind each other. Never use them for data that must arrive. While backed up, queued
+ *           reliable packets go out first, so a reliable packet can overtake an older latest-wins one
+ *           (never the reverse); otherwise packets arrive in send order. The sender side also drops
+ *           latest-wins packets while its own socket is congested (WsRelayTransport maxBuffered).
  * Multi-byte fields are little-endian. The relay routes packets blindly; everything after byte 1 is
  * defined by the game.
  */

@@ -245,10 +245,14 @@ class Reader(threading.Thread):
             self.end = ('eof', str(e))
 
 
-def http_get(port, path, timeout=5.0):
-    """(status, body bytes) of a GET on the test server."""
+_OPENER = urllib.request.build_opener(urllib.request.ProxyHandler({}))   # loopback only, never via a proxy
+
+
+def http_get(port, path, timeout=5.0, method='GET'):
+    """(status, body bytes) of a GET (or HEAD) on the test server."""
+    req = urllib.request.Request(f'http://127.0.0.1:{port}{path}', method=method)
     try:
-        with urllib.request.urlopen(f'http://127.0.0.1:{port}{path}', timeout=timeout) as r:
+        with _OPENER.open(req, timeout=timeout) as r:
             return r.status, r.read()
     except urllib.error.HTTPError as e:
         with e:
@@ -269,11 +273,12 @@ class RelayCase(unittest.TestCase):
     """One in-process server (127.0.0.1, random port) per test class."""
     relay_options = {}
     restrict = False
+    server_kw = {}
 
     @classmethod
     def setUpClass(cls):
         cls.srv, cls.port = serve.serve_in_background(0, relay_options=cls.relay_options, lan=cls.restrict,
-                                                      bind='127.0.0.1')
+                                                      bind='127.0.0.1', **cls.server_kw)
         assert cls.srv.server_address[0] == '127.0.0.1'
         cls.relay = cls.srv.relay
 
@@ -918,6 +923,8 @@ class ApiTests(RelayCase):
         self.assertEqual(http_get(self.port, '/api/nope')[0], 404)
         self.assertEqual(http_get(self.port, '/index.html')[0], 200)
         self.assertEqual(http_get(self.port, '/tools/serve.py')[0], 200)   # loopback: full access
+        self.assertEqual(http_get(self.port, '/api/lan', method='HEAD'), (200, b''))
+        self.assertEqual(http_get(self.port, '/ws', method='HEAD')[0], 405)   # the upgrade is GET only
 
     def test_rank_ipv4s(self):
         self.assertEqual(netserver.rank_ipv4s(['127.0.0.1', '100.101.1.2', '172.20.5.157', '169.254.3.4', '0.0.0.0',
@@ -945,13 +952,16 @@ class LanPolicyTests(RelayCase):
         super().tearDown()
 
     def test_remote_clients_only_get_the_game(self):
-        for path in ('/', '/index.html', '/style.css', '/src/main.js', '/src/net/protocol.js',
+        for path in ('/', '/?join=BCDF', '/index.html', '/style.css', '/src/main.js', '/src/net/protocol.js',
                      '/vendor/three/build/three.module.js', '/api/lan', '/api/rooms'):
             self.assertEqual(http_get(self.port, path)[0], 200, path)
+        self.assertEqual(http_get(self.port, '/src/main.js', method='HEAD')[0], 200)
         for path in ('/src/', '/src', '/vendor/', '/tools/', '/tools/serve.py', '/ARCHITECTURE.md', '/play.bat',
                      '/src/../tools/serve.py', '/src/%2e%2e/tools/serve.py', '/%2e%2e/%2e%2e/Windows/win.ini',
-                     '/src/..%5c..%5ctools%5cserve.py', '/src%5c..%5ctools%5cserve.py', '/tools/out/', '/nope.js'):
+                     '/src/..%5c..%5ctools%5cserve.py', '/src%5c..%5ctools%5cserve.py', '/tools/out/', '/nope.js',
+                     '/api/stats', '/tools/nettest.html'):
             self.assertEqual(http_get(self.port, path)[0], 404, path)
+        self.assertEqual(http_get(self.port, '/tools/serve.py', method='HEAD')[0], 404)
         ws = self.ws()                                           # the relay stays reachable
         ws.send_json({'t': 'ping', 'c': 1})
         ws.expect('pong')
@@ -961,6 +971,7 @@ class LanPolicyTests(RelayCase):
         try:
             self.assertEqual(http_get(self.port, '/tools/serve.py')[0], 200)
             self.assertEqual(http_get(self.port, '/src/')[0], 200)
+            self.assertEqual(http_get(self.port, '/api/stats')[0], 200)   # lists private rooms: this PC only
         finally:
             self.srv.is_trusted = lambda ip: False
 
@@ -977,9 +988,48 @@ class LanPolicyTests(RelayCase):
         self.assertFalse(serve.public_path_allowed(j(root, 'src', '..', 'play.bat'), root))
 
 
+class ConsoleLogTests(unittest.TestCase):
+    def test_blocked_console_never_stalls_the_relay(self):
+        """A Windows console with selected text (QuickEdit) blocks writes: room events must not stall routing."""
+        release = threading.Event()
+
+        class BlockedConsole(io.StringIO):
+            def write(self, s):
+                release.wait(30)
+                return super().write(s)
+        console = BlockedConsole()
+        srv, port = serve.serve_in_background(0, log=netserver.ConsoleLog(console))
+        clients = []
+        try:
+            h = WS(port)
+            clients.append(h)
+            h.send_json({'t': 'host', 'name': 'blocked console'})
+            code = h.expect('hosted')['code']                    # logged: 'room ... opened'
+            for i in range(3):
+                c = WS(port)
+                clients.append(c)
+                c.send_json({'t': 'join', 'code': code, 'name': f'P{i}'})
+                peer = c.expect('joined')['peer']                # logged: '... joined as peer ...'
+                self.assertEqual(h.expect('peer-join')['peer'], peer)
+                c.send_bin(bytes([0, 0x01]) + b'input')
+                self.assertEqual(h.recv_bin(), bytes([peer, 0x01]) + b'input')
+                h.send_bin(bytes([peer, 0x10]) + b'reply')
+                self.assertEqual(c.recv_bin(timeout=2), bytes([peer, 0x10]) + b'reply')
+            self.assertEqual(console.getvalue(), '')             # nothing could be written yet
+            release.set()
+            self.assertTrue(wait_until(lambda: console.getvalue().count('joined as peer') == 3, timeout=5),
+                            console.getvalue())
+        finally:
+            release.set()
+            for c in clients:
+                c.close()
+            srv.shutdown()
+            srv.server_close()
+
+
 class ServerTests(unittest.TestCase):
-    def run_serve(self, *args, timeout=20):
-        env = dict(os.environ, PYTHONDONTWRITEBYTECODE='1')
+    def run_serve(self, *args, timeout=20, env=None):
+        env = dict(env or os.environ, PYTHONDONTWRITEBYTECODE='1')
         return subprocess.run([sys.executable, os.path.join(TOOLS, 'serve.py'), *args], capture_output=True, text=True,
                               timeout=timeout, env=env, stdin=subprocess.DEVNULL)
 
@@ -995,7 +1045,10 @@ class ServerTests(unittest.TestCase):
     def test_second_instance_reports_already_running(self):
         srv, port = serve.serve_in_background(0)
         try:
-            r = self.run_serve(str(port))
+            # a system proxy must not hide the running server from the loopback probe
+            env = {k: v for k, v in os.environ.items() if k.lower() not in ('no_proxy', 'http_proxy', 'all_proxy')}
+            env['HTTP_PROXY'] = 'http://127.0.0.1:9'
+            r = self.run_serve(str(port), env=env)
             self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
             self.assertIn('KINETIC is already running', r.stdout)
             r = self.run_serve(str(port), '--lan', '--bind', '127.0.0.1')
@@ -1023,9 +1076,9 @@ class ServerTests(unittest.TestCase):
         real = serve.webbrowser.open
 
         def fake(url, *a, **kw):
-            opened.append(url)
             if on_open:
-                on_open(url)
+                on_open(url)                                     # before `opened` changes: tests poll `opened`
+            opened.append(url)
             return True
         serve.webbrowser.open = fake
         self.addCleanup(setattr, serve.webbrowser, 'open', real)

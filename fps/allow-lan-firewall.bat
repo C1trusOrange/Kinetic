@@ -5,16 +5,23 @@ rem connect. Windows asks for administrator rights (UAC). Undo with:
 rem   netsh advfirewall firewall delete rule name="KINETIC LAN (TCP 8000)"
 title KINETIC - allow LAN play through the firewall
 fltmc >nul 2>&1
-if errorlevel 1 (
-  if "%~1"=="--elevated" (
-    echo   Could not get administrator rights, so nothing was changed.
-    pause
-    exit /b 1
-  )
-  echo   Asking Windows for administrator rights...
-  powershell -NoProfile -ExecutionPolicy Bypass -Command "Start-Process -FilePath '%~f0' -ArgumentList '--elevated' -Verb RunAs"
-  exit /b
-)
+if not errorlevel 1 goto admin
+if "%~1"=="--elevated" goto noadmin
+echo   Asking Windows for administrator rights...
+rem Run this file again as administrator. The path goes into a PowerShell single-quoted string, where an
+rem apostrophe (a folder like "Sam's PC") must be doubled.
+set "SELF=%~f0"
+set "SELF=%SELF:'=''%"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "try { Start-Process -FilePath '%SELF%' -ArgumentList '--elevated' -Verb RunAs -ErrorAction Stop } catch { exit 1 }"
+if errorlevel 1 goto noadmin
+exit /b 0
+
+:noadmin
+echo   Could not get administrator rights, so nothing was changed.
+pause
+exit /b 1
+
+:admin
 echo.
 echo   Adding the firewall rule "KINETIC LAN (TCP 8000)" for Private networks...
 netsh advfirewall firewall delete rule name="KINETIC LAN (TCP 8000)" >nul 2>&1
