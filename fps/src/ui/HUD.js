@@ -398,7 +398,14 @@ export class HUD {
         }
         break;
       }
-      case 'weapon': cls = 'weapon'; icon = weaponIcon(pk.weapon); html = `<b>${esc(weaponName(pk.weapon)).toUpperCase()}</b>`; break;
+      case 'weapon': {
+        cls = 'weapon'; icon = weaponIcon(pk.weapon);
+        const name = esc(weaponName(pk.weapon)).toUpperCase();
+        // A pad of a weapon you already carry only refills its reserve (common with spawn loadouts). _slotOwned is the
+        // owned list of the last HUD frame: pickups resolve in world.update, before hud.update, so it predates this pickup.
+        html = this._slotOwned.indexOf(pk.weapon) >= 0 ? `<b>+AMMO</b> ${name}` : `<b>${name}</b>`;
+        break;
+      }
       default: break;
     }
     const t = document.createElement('div');
