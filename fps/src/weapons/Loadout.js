@@ -77,18 +77,20 @@ function toSlots(v, fallback) {
 }
 
 /**
- * Parse a pool string: `all` | `default` | `id,id,...`, optionally followed by `;slots=N;ammo=standard|full;
- * grenades=standard|frag|none` (`|` or `;` separate the parts). Example: `rifle,sniper,smg;slots=2;ammo=full`.
+ * Parse a pool string: `all` | `default` | `id,id,...` and/or options `slots=N`, `ammo=standard|full`,
+ * `grenades=standard|frag|none` (`|` or `;` separate the parts, `=` or `:` the option values; a missing weapon list
+ * allows every weapon). Examples: `rifle,sniper,smg;slots=2;ammo=full`, `slots=9`.
  */
 function parsePoolString(str) {
   const out = {};
-  const parts = str.split(/[;|]/);
-  const head = lower(parts[0] || '');
-  if (head && head !== 'all' && head !== 'default' && head !== 'standard') out.weapons = head;
-  for (const part of parts.slice(1)) {
+  for (const part of str.split(/[;|]/)) {
     const [k, v] = part.split(/[=:]/);
     const key = lower(k || '');
-    if (key === 'slots' || key === 'ammo' || key === 'grenades') out[key] = v;
+    if (v !== undefined) {
+      if (key === 'slots' || key === 'ammo' || key === 'grenades') out[key] = v;
+    } else if (key && key !== 'all' && key !== 'default' && key !== 'standard' && out.weapons === undefined) {
+      out.weapons = key;
+    }
   }
   return out;
 }

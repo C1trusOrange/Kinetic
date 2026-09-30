@@ -149,8 +149,12 @@ export class LoadoutScreen {
     return sanitizePick(this.game.settings.get('playerLoadout'));
   }
 
-  _escalation() {
-    if (this.readOnly) return !!(this.game.match && this.game.match.mode === 'escalation');
+  /**
+   * Escalation fixes the spawn weapons (the ladder): the running match's mode from the pause menu, else the set-up mode.
+   * @param {'setup'|'pause'} [from]
+   */
+  _escalation(from = this.from) {
+    if (from === 'pause') return !!(this.game.match && this.game.match.mode === 'escalation');
     return !!(this.menu._cfg && this.menu._cfg.mode === 'escalation');
   }
 
@@ -194,7 +198,8 @@ export class LoadoutScreen {
   onClick(t) {
     const d = t.dataset;
     if (d.act === 'loadout') {
-      if (this.menu.screen === 'pause') { if (!this._escalation()) this.open('pause'); } else if (!this._escalation()) this.open('setup');
+      const from = this.menu.screen === 'pause' ? 'pause' : 'setup';
+      if (!this._escalation(from)) this.open(from);   // Escalation: the card / pause entry are disabled anyway
       return true;
     }
     if (!this.el || !this.el.contains(t)) return false;
