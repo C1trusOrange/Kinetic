@@ -3,10 +3,15 @@ import { BOT_NAMES, BOT_COLORS, TEAM_COLORS, TEAM_BLUE, TEAM_RED } from '../core
 import { DIFFICULTIES, isTeamMode } from '../core/constants.js';
 import { Bot } from './Bot.js';
 import { asPos } from './BotConfig.js';
+import { pullFromEdges } from './BotNav.js';
 
 const _o = new THREE.Vector3();
 const SEPARATION_RADIUS = 0.95;
-const PATH_BUDGET_MS = 2.5; // per frame, shared by all bots
+/**
+ * Path-finding milliseconds per frame, shared by all bots. Enforced inside the searches (see servicePaths), so a
+ * frame's path work stays below this plus one bounded unit of work (~0.3 ms).
+ */
+const PATH_BUDGET_MS = 2.0;
 const RAY_DIRS = [];
 for (let i = 0; i < 8; i++) {
   const a = (i / 8) * Math.PI * 2;
@@ -29,9 +34,16 @@ export class BotManager {
     this._bots = [];
     /** Map-specific tactical spots: { cover: [{pos}], snipe: [{pos}] }. */
     this.spots = { cover: [], snipe: [] };
-    this._pathBudgetMs = 0;
-    /** Path-finding statistics (requests, total / worst milliseconds) for diagnostics. */
-    this.pathStats = { count: 0, totalMs: 0, maxMs: 0 };
+    /** Path requests (BotNav) waiting for / holding the path budget, served first in first out. */
+    this._pathQueue = [];
+    /** Path work done in the current frame (ms). */
+    this._pathFrameMs = 0;
+    /**
+     * Path-finding statistics for diagnostics: count = finished requests, totalMs = all path work, maxMs = the most
+     * path work in one frame (= maxFrameMs), maxJobMs = the most work one request needed (spread over frames),
+     * maxQueue = the longest queue seen.
+     */
+    this.pathStats = { count: 0, totalMs: 0, maxMs: 0, maxFrameMs: 0, maxJobMs: 0, maxQueue: 0 };
     this._rot = 0;
     this.frameCount = 0;
     /** Camera position / forward direction, refreshed each update (animation LOD). */
@@ -110,6 +122,27 @@ export class BotManager {
     }
     scored.sort((a, b) => b.score - a.score);
     spots.snipe = scored.slice(0, 24);
+    this._warmPaths(world);
+  }
+
+  /**
+   * JIT warm-up of the path finder during loading: a few complete requests between random nodes of the main area,
+   * so the first requests of the match run optimised code (interpreted, one string-pulling line test alone can take
+   * milliseconds, which made the first path frame of a match the slowest one).
+   */
+  _warmPaths(world) {
+    const nav = world && world.nav;
+    if (!nav || typeof nav.createPathJob !== 'function' || !nav.nodes || nav.nodes.length < 2) return;
+    const t0 = performance.now();
+    let job;
+    for (let i = 0; i < 16 && performance.now() - t0 < 80; i++) {
+      const a = nav.randomNode(), b = nav.randomNode();
+      if (!a || !b) break;
+      job = nav.createPathJob(a.position, b.position, job, { connect: true });
+      nav.stepPath(job, Infinity);
+      if (job.result && world.collision) pullFromEdges(world.collision, job.result);
+      nav.isConnected(a.position, b.position);
+    }
   }
 
   /**
@@ -150,6 +183,7 @@ export class BotManager {
 
   /** Remove every bot (models leave the scene, entities are unregistered). */
   clear() {
+    this._pathQueue.length = 0;
     for (const bot of this._bots) {
       this.game.removeEntity(bot);
       bot.dispose();
@@ -157,29 +191,82 @@ export class BotManager {
     this._bots.length = 0;
   }
 
+  // ------------------------------------------------------------------ path budget
+
   /**
-   * Path-finding budget shared by all bots: true while this frame still has time left for a request
-   * (a request may overshoot; the next ones then wait for the next frame). Keeps A* spikes flat.
+   * Queue a bot's path request (BotNav) and serve the queue right away while this frame's path budget lasts, so a
+   * cheap request still completes in the frame it was made. The rest continues in the next frames' budgets.
+   * @param {import('./BotNav.js').BotNav} nav
    */
-  consumePathBudget() {
-    return this._pathBudgetMs > 0;
+  queuePath(nav) {
+    const q = this._pathQueue;
+    if (q.indexOf(nav) < 0) q.push(nav);
+    if (q.length > this.pathStats.maxQueue) this.pathStats.maxQueue = q.length;
+    this.servicePaths();
   }
 
-  /** Bots report how long a path request took so the frame budget can be charged. @param {number} ms */
-  reportPathTime(ms) {
-    this._pathBudgetMs -= ms;
+  /** Remove a request from the queue (the bot cleared its goal / died). @param {import('./BotNav.js').BotNav} nav */
+  cancelPath(nav) {
+    const i = this._pathQueue.indexOf(nav);
+    if (i >= 0) this._pathQueue.splice(i, 1);
+  }
+
+  /**
+   * Advance the queued path requests, first in first out, until the queue is empty or this frame's budget
+   * (PATH_BUDGET_MS) is spent. The deadline is checked inside the A* expansion loop, between the string-pulling line
+   * tests and between waypoints of the ledge pull, so no single request can stall a frame.
+   */
+  servicePaths() {
+    const q = this._pathQueue;
+    if (q.length === 0 || this._pathFrameMs >= PATH_BUDGET_MS) return;
     const s = this.pathStats;
-    s.count++;
+    const t0 = performance.now();
+    const deadline = t0 + (PATH_BUDGET_MS - this._pathFrameMs);
+    let t = t0;
+    while (q.length > 0) {
+      const nav = q[0];
+      let done = true;
+      try {
+        done = nav.stepPath(deadline);
+      } catch (err) {
+        console.error('[bots] path request failed', err);
+        nav._dropRequest();
+      }
+      const now = performance.now();
+      nav.reqWorkMs += now - t;
+      t = now;
+      if (!done) break;
+      if (q[0] === nav) q.shift();
+      s.count++;
+      if (nav.reqWorkMs > s.maxJobMs) s.maxJobMs = nav.reqWorkMs;
+      if (now >= deadline) break;
+    }
+    const ms = t - t0;
+    this._pathFrameMs += ms;
     s.totalMs += ms;
-    if (ms > s.maxMs) s.maxMs = ms;
+    if (this._pathFrameMs > s.maxFrameMs) s.maxFrameMs = s.maxMs = this._pathFrameMs;
+  }
+
+  /** True while this frame still has path budget left (legacy helper; requests go through queuePath). */
+  consumePathBudget() {
+    return this._pathFrameMs < PATH_BUDGET_MS;
+  }
+
+  /** Charge path work done outside servicePaths to this frame's budget (legacy helper). @param {number} ms */
+  reportPathTime(ms) {
+    this._pathFrameMs += ms;
+    const s = this.pathStats;
+    s.totalMs += ms;
+    if (this._pathFrameMs > s.maxFrameMs) s.maxFrameMs = s.maxMs = this._pathFrameMs;
   }
 
   /** @param {number} dt seconds */
   update(dt) {
     const bots = this._bots;
     const n = bots.length;
+    this._pathFrameMs = 0;
     if (n === 0) return;
-    this._pathBudgetMs = PATH_BUDGET_MS;
+    this.servicePaths();   // requests still running from the previous frames first
     this.frameCount++;
     // camera reference for animation level-of-detail (bots far away / behind the camera animate at a lower rate)
     const cam = this.game.camera;
