@@ -113,7 +113,7 @@ export class Game {
     renderer.info.autoReset = false;
     renderer.domElement.tabIndex = 0;
     this.gameRoot.appendChild(renderer.domElement);
-    /** 'Low latency mode' (settings.lowLatency): at most one frame in flight on the GPU, see FrameLimiter. */
+    /** 'Low latency mode' (settings.lowLatency): caps the frames in flight on the GPU (maxFrames, 2), see FrameLimiter. */
     this.frameLimiter = new FrameLimiter(renderer.getContext());
     this.frameLimiter.setEnabled(this.settings.get('lowLatency') !== false);
 
@@ -699,7 +699,7 @@ export class Game {
       gpu: this.gpu.name, gpuKind: this.gpu.kind, renderer: this.gpu.renderer,
       quality: this.quality.name, auto: !QUALITY_PRESETS[this.settings.get('quality')],
       width: gl.drawingBufferWidth, height: gl.drawingBufferHeight,
-      nativeWidth: Math.round(window.innerWidth * dpr), nativeHeight: Math.round(window.innerHeight * dpr),
+      nativeWidth: Math.floor(window.innerWidth * dpr), nativeHeight: Math.floor(window.innerHeight * dpr),   // like the canvas
       msaa: this.quality.msaa, lowLatency: this.frameLimiter.enabled,
     };
   }
@@ -754,9 +754,9 @@ export class Game {
 
   _loop(nowMs) {
     requestAnimationFrame(this._loop);
-    // Low latency mode (while playing): if the previous frame is still on the GPU this rAF does nothing at all (no
-    // input edges consumed, no time advanced); the next frame that runs simulates the skipped time with fresh input.
-    // Menus, loading and pause never skip (warmup() relies on the next rAF drawing a frame).
+    // Low latency mode (while playing): if frameLimiter.maxFrames earlier frames are still unfinished on the GPU, this
+    // rAF does nothing at all (no input edges consumed, no time advanced); the next frame that runs simulates the
+    // skipped time with fresh input. Menus, loading and pause never skip (warmup() relies on the next rAF drawing).
     if (this.state === 'playing' && this.frameLimiter.shouldSkip()) return;
     const now = nowMs / 1000;
     let raw = this._lastFrameTime ? now - this._lastFrameTime : 1 / 60;
