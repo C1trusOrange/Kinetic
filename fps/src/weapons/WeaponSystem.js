@@ -1798,6 +1798,25 @@ export class WeaponSystem {
     ry += sp.kry.x;
     rz += sp.krz.x;
 
+    // ---- accurate sights: when the HUD crosshair hides at ADS (Crosshair setting xhAds[id] === 'hide') the gun's sight
+    // is the only aim reference, so it is held on the true aim point (the camera axis): the aim offsets above (breathing,
+    // bob, look sway, tilts, landing and recoil kick) move the gun about its sight instead of the grip. They stay visible
+    // as rotation around the sight, the push-back along the view axis and the camera recoil. Weight = the crosshair's
+    // hide curve (_sightLock), so the sight is exact by the time the crosshair is gone. The action poses below (equip,
+    // reload, grenade, melee) are added afterwards, so they still move the whole gun.
+    const lock = this._sightLock();
+    if (lock > 0) {
+      // sight point in root space (adsPos puts it on the camera axis at adsDistance), rotated by the pose (Euler YXZ)
+      const ox = -ap.x, oy = -ap.y, oz = -ap.z - vm.adsDistance;
+      const c1 = Math.cos(rz), s1 = Math.sin(rz), c2 = Math.cos(rx), s2 = Math.sin(rx), c3 = Math.cos(ry), s3 = Math.sin(ry);
+      const x1 = c1 * ox - s1 * oy, y1 = s1 * ox + c1 * oy;
+      const y2 = c2 * y1 - s2 * oz, z2 = s2 * y1 + c2 * oz;
+      const x3 = c3 * x1 + s3 * z2;
+      // remove the sight's displacement from its unperturbed place (hip -> ADS base position + sight)
+      px -= lock * (px + x3 - lerp(hip.x, ap.x, adsE) - ox);
+      py -= lock * (py + y2 - lerp(hip.y, ap.y, adsE) - oy);
+    }
+
     // ---- equip / unequip dip
     py += -0.34 * eq * heavy;
     px += 0.06 * eq;
@@ -1828,24 +1847,6 @@ export class WeaponSystem {
       else mixPose(this._poseA, MELEE_HIT, ZERO6, sm((mt - 0.24) / (MELEE_TIME - 0.24)));
       px += this._poseA[0]; py += this._poseA[1]; pz += this._poseA[2];
       rx += this._poseA[3]; ry += this._poseA[4]; rz += this._poseA[5];
-    }
-
-    // ---- accurate sights: when the HUD crosshair hides at ADS (Crosshair setting xhAds[id] === 'hide') the gun's sight
-    // is the only aim reference, so it is held on the true aim point (the camera axis): the pose's offsets move the gun
-    // about its sight instead of the grip. Kick / sway / bob / tilt stay visible as rotation around the sight, the
-    // push-back along the view axis and the camera recoil. Weight = the crosshair's hide curve (_sightLock), so the
-    // sight is exact by the time the crosshair is gone.
-    const lock = this._sightLock();
-    if (lock > 0) {
-      // sight point in root space (adsPos puts it on the camera axis at adsDistance), rotated by the pose (Euler YXZ)
-      const ox = -ap.x, oy = -ap.y, oz = -ap.z - vm.adsDistance;
-      const c1 = Math.cos(rz), s1 = Math.sin(rz), c2 = Math.cos(rx), s2 = Math.sin(rx), c3 = Math.cos(ry), s3 = Math.sin(ry);
-      const x1 = c1 * ox - s1 * oy, y1 = s1 * ox + c1 * oy;
-      const y2 = c2 * y1 - s2 * oz, z2 = s2 * y1 + c2 * oz;
-      const x3 = c3 * x1 + s3 * z2;
-      // remove the sight's displacement from its unperturbed place (hip -> ADS base position + sight)
-      px -= lock * (px + x3 - lerp(hip.x, ap.x, adsE) - ox);
-      py -= lock * (py + y2 - lerp(hip.y, ap.y, adsE) - oy);
     }
 
     vm.root.position.set(px, py, pz);

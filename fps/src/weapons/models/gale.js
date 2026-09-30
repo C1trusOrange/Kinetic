@@ -21,8 +21,10 @@ const BAR_Y = 0.0;
 export const GALE = {
   id: 'gale',
   hip: [0.16, -0.215, -0.46],
-  adsDistance: 0.19,
-  sight: [0, 0.2, -0.05],
+  // Aim point = the top of the front blade, on the sight line y = 0.2 (level with the rear notch post tops); the marker
+  // sits on it, 0.365 m from the eye at ADS (same eye position as the rear notch at 0.19 m).
+  adsDistance: 0.365,
+  sight: [0, 0.2, -0.225],
   muzzle: [0, AX, -0.5],
   ejectPort: null,
 };
@@ -102,14 +104,15 @@ export function buildGale(b, view) {
   b.part('dial', [0, AX + BODY_R + 0.0132, 0.03], null);
   b.box('glowCyan', [0.0034, 0.0016, 0.02], [0, AX + BODY_R + 0.0132, 0.03 - 0.009], { bevel: 0 });
   b.use('body');
-  // rear notch posts + front blade (the sight line at y = 0.2 clears the dial and the funnel)
+  // rear notch posts + front blade (the sight line at y = 0.2 clears the dial and the funnel): all three tops sit on
+  // the sight line, each with a thin glowing tip seated on it (the front tip marks the aim point)
   for (const sx of [-1, 1]) {
     b.box('steelBlack', [0.004, 0.028, 0.008], [sx * 0.0125, 0.186, -0.05], { bevel: 0.0008 });
-    b.cube('glowCyan', [0.004, 0.0035, 0.004], [sx * 0.0125, 0.2035, -0.05]);
+    b.cube('glowCyan', [0.004, 0.0014, 0.004], [sx * 0.0125, 0.2007, -0.05]);
   }
   b.box('steelBlack', [0.024, 0.024, 0.03], [0, 0.166, -0.05], { bevel: 0.002 });
-  b.box('steelBlack', [0.008, 0.05, 0.012], [0, 0.178, -0.225], { bevel: 0.0012 });
-  b.cube('glowCyan', [0.004, 0.004, 0.004], [0, 0.2045, -0.225]);
+  b.box('steelBlack', [0.008, 0.05, 0.012], [0, 0.175, -0.225], { bevel: 0.0012 });
+  b.cube('glowCyan', [0.004, 0.0014, 0.004], [0, 0.2007, -0.225]);
   if (hi) {
     for (let i = 0; i < 4; i++) b.cube('void', [0.02, 0.0012, 0.008], [0, AX + BODY_R + 0.0006, -0.09 - i * 0.02 + 0.0]);
     screws(b, [[-BODY_R + 0.001, AX + 0.03, 0.0], [-BODY_R + 0.001, AX - 0.03, 0.0]], -1);
