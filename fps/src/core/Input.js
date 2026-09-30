@@ -281,29 +281,30 @@ export class Input {
 
   /**
    * Resolve one log entry into this frame's edge state. The stale-press policy is applied here, to real input only
-   * (virtual presses are scripted: a test's first frame after loading may well start late).
+   * (virtual presses are scripted: a test's first frame after loading may well start late). A stale press still
+   * counts as the key's newest physical press for pressTime() - it says since when a held key is down.
    */
   _consume(e) {
-    if (e.down && !e.virtual && this.time * 1000 - e.t > STALE_PRESS_MS) {
-      e.stale = true;
-      this.staleDrops++;
-      return;
-    }
-    if (e.code === WHEEL && !e.virtual) { this._consumeWheel(e); return; }
     const code = e.code;
     if (!e.down) {
       if (e.virtual) this._virtualReleased.add(code);
       else this.released.add(code);
       return;
     }
+    const L = e.virtual ? this._vLastT : this._lastT;
+    if (!(L.get(code) >= e.t)) L.set(code, e.t);
+    if (!e.virtual && this.time * 1000 - e.t > STALE_PRESS_MS) {
+      e.stale = true;
+      this.staleDrops++;
+      return;
+    }
+    if (code === WHEEL && !e.virtual) { this._consumeWheel(e); return; }
     const N = e.virtual ? this._vFrameN : this._frameN;
     const T = e.virtual ? this._vFrameT : this._frameT;
-    const L = e.virtual ? this._vLastT : this._lastT;
     if (e.virtual) this._virtualPressed.add(code);
     else this.pressed.add(code);
     N.set(code, (N.get(code) || 0) + 1);
     if (!(T.get(code) >= e.t)) T.set(code, e.t);
-    if (!(L.get(code) >= e.t)) L.set(code, e.t);
   }
 
   _consumeWheel(e) {
@@ -453,8 +454,10 @@ export class Input {
   }
 
   /**
-   * DOM timestamp (seconds, same clock as `time`) of the newest accepted press of the action - this frame's when
-   * it was pressed this frame - or -Infinity if it was never pressed.
+   * DOM timestamp (seconds, same clock as `time`) of the action's newest physical press - this frame's when it was
+   * pressed this frame - or -Infinity if it was never pressed. A press dropped by the stale-press policy counts
+   * here (it tells since when a held key is down); accepted presses are always newer than stale ones, so while
+   * actionPressed() is true this is the time of that press.
    */
   pressTime(name) {
     let t = -Infinity;
@@ -470,7 +473,7 @@ export class Input {
     return t / 1000;
   }
 
-  /** Seconds between the action's newest accepted press and this frame's start (>= 0; Infinity if never pressed). */
+  /** Seconds between the action's newest press (see pressTime) and this frame's start (>= 0; Infinity if never pressed). */
   pressAge(name) {
     const t = this.pressTime(name);
     return t === -Infinity ? Infinity : Math.max(0, this.time - t);

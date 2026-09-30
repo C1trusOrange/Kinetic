@@ -33,7 +33,10 @@ const FIRE_BUFFER = 0.12;
 const KEY_MEMORY = 0.3;
 /** A pickup's auto-switch that had to wait for a grenade expires after this. */
 const QUEUED_SWITCH_TTL = 0.35;
-/** R pressed while the weapon is busy (switch / equip / grenade / melee), or G / V during a switch-out, waits this long. */
+/**
+ * R / G / V pressed while they cannot act (switch-out / equip, grenade, melee swing or cooldown...) wait this long for
+ * it and act the moment they can; after that they are dropped (e.g. an R in the last moments of an equip reloads).
+ */
 const ACTION_LATCH = 0.15;
 /** Weapon selection keys (number keys by slot, Q) and the weapon behind each number key. */
 const SWITCH_KEYS = ['weapon1', 'weapon2', 'weapon3', 'weapon4', 'weapon5', 'weapon6', 'weapon7', 'weapon8', 'weapon9', 'lastWeapon'];
@@ -246,8 +249,8 @@ export class WeaponSystem {
     this._keyMem = null;         // weapon id of a key waiting for the grenade to leave the hand / the melee hit
     this._keyMemT = 0;
     this._reloadLatchUntil = 0;  // an R waiting for the weapon to become ready
-    this._gLatchUntil = 0;       // a G waiting for the switch-out
-    this._vLatchUntil = 0;       // a V waiting for the switch-out
+    this._gLatchUntil = 0;       // a G waiting until a grenade can be pulled
+    this._vLatchUntil = 0;       // a V waiting until a melee can start
     this._switchReqAt = 0;       // when the current switch was asked for (Javelin: a trigger held since then must be released)
     this._meleeRate = 1;         // > 1 while a melee tail plays back under a switch-out
     this._gRate = 1;             // > 1 while a grenade follow-through / recovery plays back under a switch-out
@@ -873,9 +876,12 @@ export class WeaponSystem {
     const inv = this.inv[this.currentId];
     this.momentum = def.speedBonus ? momentumOf(def, p.speed) : 0;
 
-    // ---- sprint interaction: a trigger pull or ADS - held, or a click made and released inside this frame's
-    //      window - cancels the sprint (a semi-auto click then fires from the buffer once the sprint-out is done)
-    if (p.isSprinting && (input.actionActive('fire') || input.actionActive('ads'))) p.cancelSprint();
+    // ---- sprint interaction: a trigger pull (held, or a click made and released inside this frame's window) or an
+    //      ADS press cancels the sprint, and so does ADS held while aiming is possible (e.g. a button still held after
+    //      a reload, or pressed during a hitch); otherwise a held ADS keeps the sprint off through adsAmount
+    //      (PlayerController._updateSprint). A semi-auto click then fires from the buffer once the sprint-out is done.
+    const adsIn = input.actionPressed('ads') || (input.action('ads') && this._canAct() && !this.reloading && !p.isShocked());
+    if (p.isSprinting && (input.actionActive('fire') || adsIn)) p.cancelSprint();
     this.sprintBlend = approach(this.sprintBlend, p.isSprinting ? 1 : 0, dt * (p.isSprinting ? 7 : 10));
 
     // ---- switching
@@ -890,7 +896,8 @@ export class WeaponSystem {
     // ---- grenade, melee, weapon selection (number keys / Q / wheel), reload key - in this order, which is the
     //      same-frame priority rule: G / V go first and a weapon key of the same frame is then handled like a key
     //      pressed during that action (see _handleSwitchInput), so it never drops the G / V; R comes last and an R
-    //      with a weapon key in the same frame reloads the NEW weapon once it is up. Nothing is dropped silently.
+    //      with a weapon key in the same frame reloads the NEW weapon once it is up. A press that cannot act at once
+    //      is latched briefly (ACTION_LATCH / KEY_MEMORY, real time from the press) and then dropped, never replayed.
     this._updateGrenadeState(dt, now);
     this._updateMelee(dt, now);
     const switched = this._handleSwitchInput();
@@ -1181,7 +1188,8 @@ export class WeaponSystem {
    * Trigger logic. Automatic weapons fire while held AND for a click that went down and up inside one frame (at
    * least one shot). A click is buffered for FIRE_BUFFER s of real time counted from the click itself, but only
    * across the fire-rate cooldown and the sprint-out; a reload, switch / equip, grenade, melee or shock drops it,
-   * so a click never fires once one of those has ended.
+   * so a click never fires once one of those has ended. Two clicks in one frame window are two shots (the second
+   * one from the buffer). A click older than the input stale window never reaches here (core/Input.js).
    */
   _updateFire(now, inv, def, dt = 0) {
     if (def.charge) { updateCharge(this, dt, now, inv, def); return; }
@@ -1216,7 +1224,8 @@ export class WeaponSystem {
       return;
     }
     this._fire(def, inv, now);
-    this._fireBufferUntil = 0;
+    // two clicks inside one frame window (a hitch) are two trigger pulls: the newer one waits in the buffer
+    this._fireBufferUntil = press && input.pressCount('fire') > 1 ? input.pressTime('fire') + FIRE_BUFFER : 0;
   }
 
   _fire(def, inv, now, opts = null) {
@@ -1620,15 +1629,17 @@ export class WeaponSystem {
     const held = input.action('grenade');
     const GT = GRENADE_TYPES[this._throwType];
     const cookMax = GT.cookable ? GT.fuse : Infinity;
+    // X selects the type of the NEXT throw at any time (a grenade already in the hand keeps its own _throwType)
+    if (input.actionPressed('grenadeNext')) this.cycleGrenadeType();
+    // G pulls the pin now or, while it cannot (switch-out, melee, the previous grenade still in its sequence, rail
+    // charge, shock), is latched for ACTION_LATCH s of real time and pulls the moment it can; later it is dropped
+    const press = input.actionPressed('grenade');
+    if (press) this._gLatchUntil = input.pressTime('grenade') + ACTION_LATCH;
     switch (this.gState) {
       case G_IDLE: {
-        if (input.actionPressed('grenadeNext') && this.meleeT < 0) this.cycleGrenadeType();
-        const press = input.actionPressed('grenade');
-        if (press && this.grenades <= 0) this._autoSelectGrenade();
-        // a G during a switch-out (the weapon still going down) waits for it: ACTION_LATCH s of real time
-        if (press) this._gLatchUntil = this.switchState === S_OUT ? input.pressTime('grenade') + ACTION_LATCH : 0;
-        const latched = this._gLatchUntil > 0 && input.time <= this._gLatchUntil;
-        if ((press || latched) && this.grenades > 0 && this.meleeT < 0 && !this.charging
+        const want = press || (this._gLatchUntil > 0 && input.time <= this._gLatchUntil);
+        if (want && this.grenades <= 0) this._autoSelectGrenade();
+        if (want && this.grenades > 0 && this.meleeT < 0 && !this.charging
           && this.switchState !== S_OUT && !game.player.isShocked()) {
           this._pullPin();
         }
@@ -1775,16 +1786,13 @@ export class WeaponSystem {
   _updateMelee(dt, now) {
     const game = this.game;
     const input = game.input;
+    // V swings now or, while it cannot (the swing and its cooldown, switch-out, grenade, rail charge), is latched for
+    // ACTION_LATCH s of real time and swings the moment it can; later it is dropped (it never swings much later)
+    const press = input.actionPressed('melee');
+    if (press) this._vLatchUntil = input.pressTime('melee') + ACTION_LATCH;
     if (this.meleeT < 0) {
-      const press = input.actionPressed('melee');
-      // a V during a switch-out (the weapon still going down) or in the last moments of the melee cooldown waits
-      // for it: ACTION_LATCH s of real time (an earlier one is dropped, it never swings much later)
-      if (press) {
-        this._vLatchUntil = this.switchState === S_OUT || now < this.nextMeleeAt
-          ? input.pressTime('melee') + ACTION_LATCH : 0;
-      }
-      const latched = this._vLatchUntil > 0 && input.time <= this._vLatchUntil;
-      if ((press || latched) && now >= this.nextMeleeAt && this.gState === G_IDLE && !this.charging
+      const want = press || (this._vLatchUntil > 0 && input.time <= this._vLatchUntil);
+      if (want && now >= this.nextMeleeAt && this.gState === G_IDLE && !this.charging
         && this.switchState !== S_OUT) {
         this.meleeT = 0;
         this._meleeRate = 1;
