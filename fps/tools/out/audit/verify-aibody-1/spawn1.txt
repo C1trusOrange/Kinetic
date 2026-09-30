@@ -1,0 +1,323 @@
+[run] http://127.0.0.1:63163/index.html?autotest=1&map=sandbox&bots=4&god=1&script=idle&scenario=tools/out/audit/verify-aibody-1/spawn1.js&duration=8
+[log] [autotest] finished {"ok":true,"errors":0,"fps":34.2}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.2,
+ "frames": 269,
+ "fps": {
+  "avg": 34.2,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 9.1,
+   "pos": [
+    -7,
+    4.5,
+    -27
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 55.6,
+   "pos": [
+    11.1,
+    0,
+    4.4
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 33.2,
+   "pos": [
+    18.5,
+    0,
+    -4
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 37.9,
+   "pos": [
+    13.3,
+    0,
+    -21.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 1,
+  "spawn": 6,
+  "pickup": 1,
+  "fire": 26
+ },
+ "renderer": {
+  "calls": 310,
+  "triangles": 58832,
+  "geometries": 171,
+  "textures": 127,
+  "programs": 99
+ },
+ "custom": {
+  "phase": 3,
+  "t0": 4.296499999999972,
+  "samples": [
+   {
+    "dt": 0.05,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 1,
+    "land": 0,
+    "airT": 0.32,
+    "hipY": 0.891
+   },
+   {
+    "dt": 0.08,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 1,
+    "land": 0,
+    "airT": 0.37,
+    "hipY": 0.891
+   },
+   {
+    "dt": 0.13,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 1,
+    "land": 0,
+    "airT": 0.4,
+    "hipY": 0.891
+   },
+   {
+    "dt": 0.18,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 1,
+    "land": 0,
+    "airT": 0.45,
+    "hipY": 0.89
+   },
+   {
+    "dt": 0.23,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 1,
+    "land": 0,
+    "airT": 0.5,
+    "hipY": 0.89
+   },
+   {
+    "dt": 0.278,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.58,
+    "land": 0.057,
+    "airT": 0,
+    "hipY": 0.858
+   },
+   {
+    "dt": 0.328,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.34,
+    "land": 0.039,
+    "airT": 0,
+    "hipY": 0.89
+   },
+   {
+    "dt": 0.358,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.2,
+    "land": 0.026,
+    "airT": 0,
+    "hipY": 0.911
+   },
+   {
+    "dt": 0.376,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.14,
+    "land": 0.021,
+    "airT": 0,
+    "hipY": 0.92
+   },
+   {
+    "dt": 0.407,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.12,
+    "land": 0.018,
+    "airT": 0,
+    "hipY": 0.924
+   },
+   {
+    "dt": 0.431,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.08,
+    "land": 0.014,
+    "airT": 0,
+    "hipY": 0.93
+   },
+   {
+    "dt": 0.455,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.06,
+    "land": 0.012,
+    "airT": 0,
+    "hipY": 0.933
+   },
+   {
+    "dt": 0.473,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.05,
+    "land": 0.009,
+    "airT": 0,
+    "hipY": 0.936
+   },
+   {
+    "dt": 0.497,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.04,
+    "land": 0.008,
+    "airT": 0,
+    "hipY": 0.937
+   },
+   {
+    "dt": 0.522,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.03,
+    "land": 0.007,
+    "airT": 0,
+    "hipY": 0.939
+   },
+   {
+    "dt": 0.546,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.02,
+    "land": 0.006,
+    "airT": 0,
+    "hipY": 0.941
+   },
+   {
+    "dt": 0.596,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.02,
+    "land": 0.005,
+    "airT": 0,
+    "hipY": 0.942
+   },
+   {
+    "dt": 0.62,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.01,
+    "land": 0.003,
+    "airT": 0,
+    "hipY": 0.944
+   },
+   {
+    "dt": 0.65,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.01,
+    "land": 0.003,
+    "airT": 0,
+    "hipY": 0.944
+   },
+   {
+    "dt": 0.693,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.01,
+    "land": 0.002,
+    "airT": 0,
+    "hipY": 0.945
+   }
+  ],
+  "stale": [],
+  "preKillAirT": 0.273100000000003,
+  "preKillWasGround": false,
+  "preKillAir": 0.9552023680850705,
+  "afterSpawn": {
+   "airT": 0.273100000000003,
+   "wasGround": false,
+   "ready": false
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

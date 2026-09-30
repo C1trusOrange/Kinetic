@@ -1,0 +1,474 @@
+[run] http://127.0.0.1:62294/index.html?autotest=1&map=foundry&bots=2&duration=1000&god=1&n=3&lim=20&jit=1&starts=%5B%5B16.6%2C0%2C-11.4%2C5.5%2C0%2C-11.5%5D%2C%5B16.9%2C1.1%2C-11.4%2C5.5%2C0%2C-11.5%5D%2C%5B-16.9%2C1.1%2C-2.6%2C-5.5%2C0%2C-2.5%5D%2C%5B16.9%2C0%2C-8.6%2C5.5%2C0%2C-8.5%5D%5D&scenario=tools/out/audit/verify-aibrain-2/ws.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 246.12,
+ "frames": 91,
+ "fps": {
+  "avg": 0,
+  "min": 14.144271570013704,
+  "max": 119.0476190475944
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 830.9,
+   "pos": [
+    16.6,
+    0,
+    -0.5
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    46,
+    0,
+    26
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 197,
+  "triangles": 109366,
+  "geometries": 147,
+  "textures": 120,
+  "programs": 101
+ },
+ "custom": {
+  "trials": [
+   {
+    "a": [
+     16.6,
+     0,
+     -11.4
+    ],
+    "g": [
+     5.5,
+     0,
+     -11.5
+    ],
+    "nearest": [
+     18.51,
+     0,
+     -11.49,
+     1.92
+    ],
+    "first": [
+     18.51,
+     0,
+     -11.49,
+     "walk"
+    ],
+    "los": {
+     "hit": 0.4,
+     "of": 1.92
+    },
+    "ok": false,
+    "t": 20,
+    "leftAt": 12.89,
+    "maxStage": 8,
+    "teleAt": 12.89,
+    "mode": "idle"
+   },
+   {
+    "a": [
+     16.6,
+     0,
+     -11.4
+    ],
+    "g": [
+     5.5,
+     0,
+     -11.5
+    ],
+    "nearest": [
+     18.51,
+     0,
+     -11.49,
+     1.92
+    ],
+    "first": [
+     18.51,
+     0,
+     -11.49,
+     "walk"
+    ],
+    "ok": false,
+    "t": 20,
+    "leftAt": null,
+    "maxStage": 7,
+    "teleAt": null,
+    "mode": "path"
+   },
+   {
+    "a": [
+     16.6,
+     0,
+     -11.4
+    ],
+    "g": [
+     5.5,
+     0,
+     -11.5
+    ],
+    "nearest": [
+     18.51,
+     0,
+     -11.49,
+     1.92
+    ],
+    "first": [
+     18.51,
+     0,
+     -11.49,
+     "walk"
+    ],
+    "ok": false,
+    "t": 20.01,
+    "leftAt": 13.42,
+    "maxStage": 8,
+    "teleAt": 13.42,
+    "mode": "idle"
+   },
+   {
+    "a": [
+     16.9,
+     1.1,
+     -11.4
+    ],
+    "g": [
+     5.5,
+     0,
+     -11.5
+    ],
+    "nearest": [
+     18.51,
+     0,
+     -11.49,
+     1.95
+    ],
+    "first": [
+     18.51,
+     0,
+     -11.49,
+     "walk"
+    ],
+    "los": {
+     "hit": 0.12,
+     "of": 1.95
+    },
+    "ok": false,
+    "t": 20.03,
+    "leftAt": 16.51,
+    "maxStage": 8,
+    "teleAt": 16.51,
+    "mode": "idle"
+   },
+   {
+    "a": [
+     16.9,
+     1.1,
+     -11.4
+    ],
+    "g": [
+     5.5,
+     0,
+     -11.5
+    ],
+    "nearest": [
+     18.51,
+     0,
+     -11.49,
+     1.95
+    ],
+    "first": [
+     18.51,
+     0,
+     -11.49,
+     "walk"
+    ],
+    "ok": false,
+    "t": 20.01,
+    "leftAt": 19.55,
+    "maxStage": 8,
+    "teleAt": 19.55,
+    "mode": "idle"
+   },
+   {
+    "a": [
+     16.9,
+     1.1,
+     -11.4
+    ],
+    "g": [
+     5.5,
+     0,
+     -11.5
+    ],
+    "nearest": [
+     18.51,
+     0,
+     -11.49,
+     1.95
+    ],
+    "first": [
+     18.51,
+     0,
+     -11.49,
+     "walk"
+    ],
+    "ok": false,
+    "t": 20,
+    "leftAt": null,
+    "maxStage": 6,
+    "teleAt": null,
+    "mode": "path"
+   },
+   {
+    "a": [
+     -16.9,
+     1.1,
+     -2.6
+    ],
+    "g": [
+     -5.5,
+     0,
+     -2.5
+    ],
+    "nearest": [
+     -18.49,
+     0,
+     -2.49,
+     1.93
+    ],
+    "first": [
+     -18.49,
+     0,
+     -2.49,
+     "walk"
+    ],
+    "los": {
+     "hit": 0.12,
+     "of": 1.93
+    },
+    "ok": false,
+    "t": 20.01,
+    "leftAt": 16.88,
+    "maxStage": 2,
+    "teleAt": null,
+    "mode": "path"
+   },
+   {
+    "a": [
+     -16.9,
+     1.1,
+     -2.6
+    ],
+    "g": [
+     -5.5,
+     0,
+     -2.5
+    ],
+    "nearest": [
+     -18.49,
+     0,
+     -2.49,
+     1.93
+    ],
+    "first": [
+     -18.49,
+     0,
+     -2.49,
+     "walk"
+    ],
+    "ok": false,
+    "t": 20.01,
+    "leftAt": 2.72,
+    "maxStage": 8,
+    "teleAt": 17.97,
+    "mode": "idle"
+   },
+   {
+    "a": [
+     -16.9,
+     1.1,
+     -2.6
+    ],
+    "g": [
+     -5.5,
+     0,
+     -2.5
+    ],
+    "nearest": [
+     -18.49,
+     0,
+     -2.49,
+     1.93
+    ],
+    "first": [
+     -18.49,
+     0,
+     -2.49,
+     "walk"
+    ],
+    "ok": false,
+    "t": 20.02,
+    "leftAt": 6.76,
+    "maxStage": 2,
+    "teleAt": null,
+    "mode": "path"
+   },
+   {
+    "a": [
+     16.9,
+     0,
+     -8.6
+    ],
+    "g": [
+     5.5,
+     0,
+     -8.5
+    ],
+    "nearest": [
+     18.51,
+     0,
+     -8.49,
+     1.62
+    ],
+    "first": [
+     18.51,
+     0,
+     -8.49,
+     "walk"
+    ],
+    "los": {
+     "hit": 0.1,
+     "of": 1.62
+    },
+    "ok": false,
+    "t": 20.02,
+    "leftAt": 2.75,
+    "maxStage": 6,
+    "teleAt": null,
+    "mode": "path"
+   },
+   {
+    "a": [
+     16.9,
+     0,
+     -8.6
+    ],
+    "g": [
+     5.5,
+     0,
+     -8.5
+    ],
+    "nearest": [
+     18.51,
+     0,
+     -8.49,
+     1.62
+    ],
+    "first": [
+     18.51,
+     0,
+     -8.49,
+     "walk"
+    ],
+    "ok": false,
+    "t": 20.01,
+    "leftAt": 2.73,
+    "maxStage": 8,
+    "teleAt": null,
+    "mode": "path"
+   },
+   {
+    "a": [
+     16.9,
+     0,
+     -8.6
+    ],
+    "g": [
+     5.5,
+     0,
+     -8.5
+    ],
+    "nearest": [
+     18.51,
+     0,
+     -8.49,
+     1.62
+    ],
+    "first": [
+     18.51,
+     0,
+     -8.49,
+     "walk"
+    ],
+    "ok": false,
+    "t": 20.02,
+    "leftAt": 16.25,
+    "maxStage": 6,
+    "teleAt": null,
+    "mode": "path"
+   }
+  ],
+  "summary": [
+   "16.6,0,-11.4 FAIL t20 left12.89 stage8 tele12.89",
+   "16.6,0,-11.4 FAIL t20 leftnull stage7 telenull",
+   "16.6,0,-11.4 FAIL t20.01 left13.42 stage8 tele13.42",
+   "16.9,1.1,-11.4 FAIL t20.03 left16.51 stage8 tele16.51",
+   "16.9,1.1,-11.4 FAIL t20.01 left19.55 stage8 tele19.55",
+   "16.9,1.1,-11.4 FAIL t20 leftnull stage6 telenull",
+   "-16.9,1.1,-2.6 FAIL t20.01 left16.88 stage2 telenull",
+   "-16.9,1.1,-2.6 FAIL t20.01 left2.72 stage8 tele17.97",
+   "-16.9,1.1,-2.6 FAIL t20.02 left6.76 stage2 telenull",
+   "16.9,0,-8.6 FAIL t20.02 left2.75 stage6 telenull",
+   "16.9,0,-8.6 FAIL t20.01 left2.73 stage8 telenull",
+   "16.9,0,-8.6 FAIL t20.02 left16.25 stage6 telenull"
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

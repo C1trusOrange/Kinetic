@@ -1,0 +1,29 @@
+[run] http://127.0.0.1:57876/index.html?autotest=1&map=foundry&bots=2&duration=2&script=idle
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":16.3}
+[result] {
+ "map": "foundry",
+ "cover": 102,
+ "snipe": 24,
+ "snipeHigh": 24,
+ "snipeY": [
+  25.3,
+  12.4,
+  12.4,
+  13.5,
+  12.4,
+  13
+ ],
+ "nodes": 10303,
+ "coverNear": [
+  4,
+  3,
+  3,
+  4,
+  3
+ ],
+ "errorCount": 0,
+ "errors": []
+}
+[run] done: wait=ok console_errors=0 warnings=1

@@ -1,0 +1,64 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>flow v2</title>
+<link rel="stylesheet" href="/style.css">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body>
+<div id="game"></div><div id="ui"></div>
+<script type="module">
+// Real user flow (no autotest): boot -> menu backdrop -> Play -> playing. fix=none|rt|async applies a monkeypatched warm-up.
+const Q = new URLSearchParams(location.search);
+const R = window.__RES__ = { errors: [], marks: [], frames: [] };
+const t00 = performance.now();
+const mark = (n, extra) => R.marks.push([n, +(performance.now() - t00).toFixed(0), extra]);
+const origErr = console.error.bind(console);
+console.error = (...a) => { R.errors.push(a.map(String).join(' ').slice(0, 300)); origErr(...a); };
+window.addEventListener('error', e => R.errors.push(String(e.message)));
+window.addEventListener('unhandledrejection', e => R.errors.push('rej ' + String(e.reason && e.reason.stack || e.reason)));
+try {
+  const { Game } = await import('/tools/out/audit/verify-perf-2/GameFix.js');
+  const game = new Game(document.getElementById('game'), document.getElementById('ui'), new URLSearchParams(Q.get('quality') ? 'quality=' + Q.get('quality') : ''));
+  window.__GAME__ = game;
+  const ou = game.update.bind(game), orr = game.render.bind(game);
+  let cu = 0, cr = 0;
+  game.update = function (dt) { const t = performance.now(); ou(dt); cu = performance.now() - t; };
+  game.render = function () { const t = performance.now(); orr(); cr = performance.now() - t; };
+  let last = performance.now(), lastProg = 0;
+  const names = (from, to) => game.renderer.info.programs.slice(from, to).map(p => (p.name || '?') + (String(p.cacheKey).includes('srgb-linear') ? '/rt' : '/scr'));
+  (function tick() {
+    requestAnimationFrame(tick);
+    const now = performance.now(); const dt = now - last; last = now;
+    const progs = game.renderer.info.programs.length;
+    const f = { t: +(now - t00).toFixed(0), st: game.state, dt: +dt.toFixed(1), upd: +cu.toFixed(1), ren: +cr.toFixed(1), np: progs - lastProg, gt: +game.time.toFixed(2) };
+    if (progs - lastProg > 0 && game.state === 'playing' && progs - lastProg > 3) f.names = names(lastProg, progs);
+    R.frames.push(f);
+    lastProg = progs; cu = 0; cr = 0;
+  })();
+  if (Q.get('hidehud') === '1') { game.hud.show = function (v) { this.visible = !!v; if (v) this._c = Object.create(null); }; }
+  await game.boot();
+  mark('boot done, state=' + game.state);
+  await new Promise(r => setTimeout(r, +(Q.get('menuMs') || 3000)));
+  const fix = Q.get('fix') || 'none';
+  R.fix = fix;
+  if (fix !== 'none') {
+    game.projectiles._warm = function () { this._warmed = true; };
+    game.weapons._compileViewmodels = function () { this._compiled = true; };
+  }
+  const tPlay = performance.now();
+  mark('click Play');
+  await game.startMatch({ mapId: Q.get('map') || 'foundry', mode: 'ffa', botCount: +(Q.get('bots') || 5), difficulty: 'normal', scoreLimit: 0, timeLimit: 0 });
+  mark('startMatch resolved', +(performance.now() - tPlay).toFixed(0));
+  game.player.god = true;
+  const inp = game.input;
+  const t1 = performance.now();
+  while (performance.now() - t1 < +(Q.get('playMs') || 9000)) {
+    const s = (performance.now() - t1) / 1000;
+    inp.setVirtual('forward', s > 1); inp.setVirtual('sprint', s > 1.2);
+    inp.setVirtual('fire', s > 3 && s < 5.5);
+    inp.addLook(2, 0);
+    await new Promise(r => setTimeout(r, 16));
+  }
+  mark('play done');
+  R.programs = game.renderer.info.programs.length; R.warm = window.__WARM__;
+} catch (e) { R.errors.push('FATAL ' + (e && e.stack || e)); }
+window.__DONE__ = true;
+</script></body></html>

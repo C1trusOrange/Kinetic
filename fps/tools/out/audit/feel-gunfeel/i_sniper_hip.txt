@@ -1,0 +1,6 @@
+[run] http://127.0.0.1:51516/index.html?autotest=1&map=gunfeel&mapfile=tools/out/audit/feel-gunfeel/testmap.js&bots=1&god=1&scenario=tools/out/audit/feel-gunfeel/fire.js&duration=90&w=sniper&t=wall&pz=0&n=1
+[run] screenshot -> tools\out\audit\feel-gunfeel\i_sniper_hip.png
+[result] {
+ "tFire": 2.4712999999999994
+}
+[run] done: wait=ok console_errors=0 warnings=0

@@ -1,0 +1,728 @@
+[run] http://127.0.0.1:57933/index.html?autotest=1&mapfile=tools/out/audit/design-depth/aerie_proto.js&bots=7&script=idle&scenario=tools/out/audit/design-depth/sim2.js&duration=75&diff=hard&quality=low
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[log] [autotest] finished {"ok":true,"errors":0,"fps":92.4}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 75.11,
+ "frames": 5299,
+ "fps": {
+  "avg": 92.4,
+  "min": 4,
+  "max": 294.1
+ },
+ "errors": [],
+ "map": "aerie",
+ "player": {
+  "distance": 52.5,
+  "maxSpeed": 8.94,
+  "minY": -37.87096782611887,
+  "maxY": 5,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 5,
+   "deaths": 7,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 374.9,
+   "pos": [
+    -8.6,
+    9.2,
+    -8.6
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 8,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 281.8,
+   "pos": [
+    26.8,
+    0,
+    -17.6
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 7,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 309.9,
+   "pos": [
+    -7.5,
+    0,
+    38.2
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 5,
+   "deaths": 7,
+   "health": 31,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 391.6,
+   "pos": [
+    -19,
+    0,
+    -28.5
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": false,
+   "kills": 3,
+   "deaths": 8,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 327.2,
+   "pos": [
+    -18,
+    0,
+    26
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 5,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 310.2,
+   "pos": [
+    51.3,
+    5,
+    -4
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 5,
+   "deaths": 6,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 374.7,
+   "pos": [
+    38.5,
+    0,
+    7.3
+   ]
+  }
+ ],
+ "events": {
+  "damage": 201,
+  "death": 42,
+  "spawn": 49,
+  "pickup": 10,
+  "fire": 698
+ },
+ "renderer": {
+  "calls": 291,
+  "triangles": 51232,
+  "geometries": 248,
+  "textures": 98,
+  "programs": 74
+ },
+ "custom": {
+  "deaths": {
+   "pistol": 16,
+   "fall": 3,
+   "rocket": 8,
+   "sniper": 2,
+   "rifle": 12,
+   "shotgun": 1
+  },
+  "falls": [
+   {
+    "victim": "Byte",
+    "attacker": null,
+    "t": 3.3,
+    "tail": [
+     {
+      "t": 1.22,
+      "p": [
+       -14.3,
+       0.4,
+       35.7
+      ],
+      "v": [
+       -5.7,
+       6.7,
+       -5.6
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 1.39,
+      "p": [
+       -15.2,
+       1.1,
+       34.8
+      ],
+      "v": [
+       -5.5,
+       2.6,
+       -3.8
+      ],
+      "s": "chase",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 1.52,
+      "p": [
+       -15.9,
+       1.2,
+       34.6
+      ],
+      "v": [
+       -4.6,
+       -0.5,
+       -0.4
+      ],
+      "s": "chase",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 1.6,
+      "p": [
+       -16.2,
+       1.1,
+       34.7
+      ],
+      "v": [
+       -3.8,
+       -2.4,
+       1.7
+      ],
+      "s": "chase",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 1.68,
+      "p": [
+       -16.5,
+       0.8,
+       35
+      ],
+      "v": [
+       -2.7,
+       -4.4,
+       3.8
+      ],
+      "s": "chase",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 1.78,
+      "p": [
+       -16.7,
+       0.2,
+       35.5
+      ],
+      "v": [
+       -1.3,
+       -6.7,
+       6.1
+      ],
+      "s": "chase",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 1.94,
+      "p": [
+       -16.6,
+       -1.2,
+       36.7
+      ],
+      "v": [
+       1.5,
+       -10.4,
+       9.4
+      ],
+      "s": "chase",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 2.1,
+      "p": [
+       -16.4,
+       -3,
+       38.2
+      ],
+      "v": [
+       0,
+       -14,
+       10.2
+      ],
+      "s": "chase",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 2.24,
+      "p": [
+       -16.4,
+       -5,
+       39.5
+      ],
+      "v": [
+       0,
+       -16.9,
+       10.5
+      ],
+      "s": "chase",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 2.47,
+      "p": [
+       -16.3,
+       -10.2,
+       42.2
+      ],
+      "v": [
+       0.9,
+       -23,
+       11.2
+      ],
+      "s": "chase",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 2.62,
+      "p": [
+       -16.2,
+       -14.2,
+       44
+      ],
+      "v": [
+       0.9,
+       -26.8,
+       11.2
+      ],
+      "s": "chase",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 2.77,
+      "p": [
+       -15.9,
+       -18.5,
+       45.6
+      ],
+      "v": [
+       0.9,
+       -30.4,
+       9.6
+      ],
+      "s": "chase",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 2.87,
+      "p": [
+       -15.9,
+       -21.6,
+       46.4
+      ],
+      "v": [
+       -0.3,
+       -32.8,
+       7.2
+      ],
+      "s": "chase",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 2.98,
+      "p": [
+       -16,
+       -25.2,
+       47
+      ],
+      "v": [
+       -1.7,
+       -35.2,
+       4.6
+      ],
+      "s": "chase",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 3.14,
+      "p": [
+       -16.4,
+       -30.6,
+       47.4
+      ],
+      "v": [
+       -3.1,
+       -38.7,
+       1
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     }
+    ]
+   },
+   {
+    "victim": "Gasket",
+    "attacker": null,
+    "t": 22.2,
+    "tail": [
+     {
+      "t": 20.72,
+      "p": [
+       -5.3,
+       -1.4,
+       26.3
+      ],
+      "v": [
+       -6.4,
+       -8,
+       -7
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 20.83,
+      "p": [
+       -5.9,
+       -2.3,
+       25.7
+      ],
+      "v": [
+       -6.4,
+       -10.3,
+       -7
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 20.97,
+      "p": [
+       -6.9,
+       -4.3,
+       24.6
+      ],
+      "v": [
+       -6.4,
+       -14,
+       -7
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 21.1,
+      "p": [
+       -7.8,
+       -6.4,
+       23.7
+      ],
+      "v": [
+       -6.4,
+       -17.2,
+       -7
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 21.17,
+      "p": [
+       -8.2,
+       -7.6,
+       23.2
+      ],
+      "v": [
+       -6.4,
+       -18.8,
+       -7
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 21.23,
+      "p": [
+       -8.6,
+       -8.9,
+       22.7
+      ],
+      "v": [
+       -6.4,
+       -20.4,
+       -7
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 21.31,
+      "p": [
+       -9.1,
+       -10.6,
+       22.2
+      ],
+      "v": [
+       -6.4,
+       -22.3,
+       -7
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 21.4,
+      "p": [
+       -9.6,
+       -12.4,
+       21.6
+      ],
+      "v": [
+       -6.4,
+       -24.2,
+       -7
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 21.53,
+      "p": [
+       -10.4,
+       -15.8,
+       20.7
+      ],
+      "v": [
+       -6.4,
+       -27.2,
+       -7
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 21.59,
+      "p": [
+       -10.9,
+       -17.8,
+       20.2
+      ],
+      "v": [
+       -6.4,
+       -29,
+       -7
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 21.72,
+      "p": [
+       -11.7,
+       -21.3,
+       19.4
+      ],
+      "v": [
+       -6.4,
+       -31.7,
+       -7
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 21.84,
+      "p": [
+       -12.5,
+       -25.8,
+       18.5
+      ],
+      "v": [
+       -6.4,
+       -34.9,
+       -7
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 21.95,
+      "p": [
+       -13.2,
+       -29.6,
+       17.8
+      ],
+      "v": [
+       -6.4,
+       -37.4,
+       -7
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 22.01,
+      "p": [
+       -13.6,
+       -32.4,
+       17.3
+      ],
+      "v": [
+       -6.4,
+       -39.2,
+       -7
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     },
+     {
+      "t": 22.09,
+      "p": [
+       -14.2,
+       -35.8,
+       16.7
+      ],
+      "v": [
+       -6.4,
+       -41.2,
+       -7
+      ],
+      "s": "engage",
+      "g": false,
+      "dodge": false,
+      "hp": 100,
+      "w": "rifle"
+     }
+    ]
+   },
+   {
+    "victim": "Player",
+    "attacker": null,
+    "t": 22.4,
+    "tail": []
+   }
+  ],
+  "total": 42
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

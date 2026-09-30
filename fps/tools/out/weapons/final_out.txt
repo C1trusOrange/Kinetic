@@ -1,0 +1,129 @@
+[run] http://127.0.0.1:61821/index.html?autotest=1&map=foundry&bots=5&duration=22&god=1
+[warning] [world] map 'foundry' has 1 warning(s):
+ - only 6 spawn point(s): 14-18 recommended
+[result] {
+ "done": true,
+ "started": true,
+ "t": 22.09,
+ "frames": 2116,
+ "fps": {
+  "avg": 119.7,
+  "min": 4,
+  "max": 181.8
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 80.4,
+  "maxSpeed": 13.02,
+  "minY": -3.3306690738754696e-15,
+  "maxY": 2.2816666666666636,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isGrappling": true,
+   "isWallRunning": true
+  },
+  "shots": 20,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 3,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 119.1,
+   "pos": [
+    -10.9,
+    0,
+    -11.3
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 56.4,
+   "pos": [
+    1.9,
+    0,
+    23.8
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 24.8,
+   "pos": [
+    -24.1,
+    0,
+    27.2
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 1,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 93.3,
+   "pos": [
+    22.6,
+    0,
+    9.3
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": false,
+   "kills": 2,
+   "deaths": 2,
+   "health": 0,
+   "weapon": "sniper",
+   "state": "retreat",
+   "distance": 87.5,
+   "pos": [
+    -9.8,
+    0,
+    -3.3
+   ]
+  }
+ ],
+ "events": {
+  "damage": 32,
+  "death": 7,
+  "spawn": 12,
+  "pickup": 0,
+  "fire": 133
+ },
+ "renderer": {
+  "calls": 171,
+  "triangles": 19746,
+  "geometries": 310,
+  "textures": 93,
+  "programs": 91
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

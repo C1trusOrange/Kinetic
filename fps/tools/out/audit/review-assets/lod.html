@@ -1,0 +1,30 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>lod</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><script type="module">
+import * as THREE from 'three';
+window.__DONE__ = false; window.__RES__ = {};
+try {
+  const { ModelBuilder } = await import('/src/weapons/models/ModelKit.js');
+  const { buildPistol } = await import('/src/weapons/models/pistol.js');
+  const { buildRifle } = await import('/src/weapons/models/rifle.js');
+  const { buildShotgun } = await import('/src/weapons/models/shotgun.js');
+  const { buildSniper } = await import('/src/weapons/models/sniper.js');
+  const { buildRocketLauncher } = await import('/src/weapons/models/rocket.js');
+  const defs = { pistol: buildPistol, rifle: buildRifle, shotgun: buildShotgun, sniper: buildSniper, rocket: buildRocketLauncher };
+  const out = {};
+  for (const [id, fn] of Object.entries(defs)) {
+    const r = {};
+    for (const [k, opts, view] of [['lod0', { lod: 0 }, false], ['lod1', { lod: 1 }, false], ['view', { hi: true }, true], ['viewNoArms', { hi: true }, false]]) {
+      const b = new ModelBuilder(opts);
+      fn(b, view);
+      const t = b.build();
+      r[k] = t.tris;
+      if (k === 'view') { r.parts = Object.keys(t.parts).map(n => n + ':' + t.parts[n].meshes.length + 'm/' + Math.round(t.parts[n].meshes.reduce((s, m) => s + m.geometry.attributes.position.count / 3, 0)) + 't'); }
+    }
+    out[id] = r;
+  }
+  window.__RES__ = out;
+} catch (e) { window.__RES__ = { fatal: String(e && e.stack || e) }; }
+window.__DONE__ = true;
+</script></body></html>

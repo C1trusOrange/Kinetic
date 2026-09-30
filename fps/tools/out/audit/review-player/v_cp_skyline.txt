@@ -1,0 +1,130 @@
+[run] http://127.0.0.1:51304/index.html?autotest=1&map=skyline&bots=0&script=idle&scenario=tools/out/audit/review-player/v_canstand_probe.js
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0,
+ "frames": 47,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 84.03361344539839
+ },
+ "errors": [],
+ "map": "skyline",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "pts": [
+   {
+    "at": [
+     -1.25,
+     20.1,
+     0.25
+    ],
+    "canStand": true,
+    "contacts": [
+     [
+      0,
+      -1,
+      0,
+      0.5
+     ],
+     [
+      0,
+      1,
+      0,
+      0.5
+     ],
+     [
+      0,
+      -1,
+      0,
+      0.5
+     ],
+     [
+      0,
+      1,
+      0,
+      0.5
+     ]
+    ],
+    "netStartDisplacement": 0
+   },
+   {
+    "at": [
+     0.25,
+     20.1,
+     0.25
+    ],
+    "canStand": true,
+    "contacts": [
+     [
+      0,
+      -1,
+      0,
+      0.5
+     ],
+     [
+      0,
+      1,
+      0,
+      0.5
+     ],
+     [
+      0,
+      -1,
+      0,
+      0.5
+     ],
+     [
+      0,
+      1,
+      0,
+      0.5
+     ]
+    ],
+    "netStartDisplacement": 0
+   },
+   {
+    "at": [
+     10,
+     0,
+     17.5
+    ],
+    "canStand": true,
+    "contacts": [],
+    "netStartDisplacement": 0
+   }
+  ]
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

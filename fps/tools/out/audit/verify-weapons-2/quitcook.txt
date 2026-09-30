@@ -1,0 +1,4 @@
+[run] http://127.0.0.1:63403/index.html?autotest=1&map=sandbox&bots=2&scenario=tools/out/audit/verify-weapons-2/quitcook.js&duration=6
+[run] screenshot -> tools\out\audit\verify-weapons-2\quitcook_menu2.png
+[result] "{\"state\":\"menu\",\"cooking\":true,\"g\":2,\"dots\":true,\"ring\":true,\"count\":41,\"inScene\":true}"
+[run] done: wait=ok console_errors=0 warnings=0

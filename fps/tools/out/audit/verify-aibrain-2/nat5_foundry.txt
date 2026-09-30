@@ -1,0 +1,549 @@
+[run] http://127.0.0.1:50154/index.html?autotest=1&map=foundry&bots=8&duration=1000&sec=400&jit=1&scenario=tools/out/audit/verify-aibrain-2/nat5.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":44.1}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 404.89,
+ "frames": 150,
+ "fps": {
+  "avg": 44.1,
+  "min": 4,
+  "max": 135.1351351350608
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0.1,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 100
+ },
+ "bots": [
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 21,
+   "deaths": 23,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 2083.2,
+   "pos": [
+    44.5,
+    0,
+    -24.4
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 13,
+   "deaths": 22,
+   "health": 24,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 1970.6,
+   "pos": [
+    1.1,
+    0,
+    -16.3
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 26,
+   "deaths": 20,
+   "health": 56,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 2010.4,
+   "pos": [
+    31.4,
+    0,
+    7.3
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 29,
+   "deaths": 24,
+   "health": 49,
+   "weapon": "sniper",
+   "state": "collect",
+   "distance": 2036.3,
+   "pos": [
+    14.9,
+    1.8,
+    -17.7
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 21,
+   "deaths": 18,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "chase",
+   "distance": 1859.2,
+   "pos": [
+    18.3,
+    0,
+    -22.6
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 16,
+   "deaths": 23,
+   "health": 49,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 2104.5,
+   "pos": [
+    -11.1,
+    0,
+    11.1
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 23,
+   "deaths": 18,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "collect",
+   "distance": 1960.5,
+   "pos": [
+    8.8,
+    0,
+    -36.7
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 12,
+   "deaths": 22,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 2081,
+   "pos": [
+    38,
+    -0.8,
+    23.2
+   ]
+  }
+ ],
+ "events": {
+  "damage": 944,
+  "death": 171,
+  "spawn": 180,
+  "pickup": 48,
+  "fire": 2237
+ },
+ "renderer": {
+  "calls": 562,
+  "triangles": 155696,
+  "geometries": 225,
+  "textures": 142,
+  "programs": 104
+ },
+ "custom": {
+  "rec": [
+   {
+    "t": 18.4,
+    "bot": "Gasket",
+    "st": "engage",
+    "stage": 1,
+    "pos": [
+     24.5,
+     0,
+     31.3
+    ],
+    "mode": "path",
+    "wp": "15.5,0,30.5,walk",
+    "los": "clear"
+   },
+   {
+    "t": 124.6,
+    "bot": "Sprocket",
+    "st": "engage",
+    "stage": 1,
+    "pos": [
+     15,
+     2,
+     -17.2
+    ],
+    "mode": "path",
+    "wp": "14.1,2.3,-16.5,walk",
+    "los": "clear"
+   },
+   {
+    "t": 136,
+    "bot": "Tesla",
+    "st": "engage",
+    "stage": 1,
+    "pos": [
+     -3.8,
+     0,
+     -12.2
+    ],
+    "mode": "idle",
+    "wp": null,
+    "los": null
+   },
+   {
+    "t": 209.5,
+    "bot": "Glitch",
+    "st": "engage",
+    "stage": 1,
+    "pos": [
+     6.2,
+     0,
+     -9.7
+    ],
+    "mode": "idle",
+    "wp": null,
+    "los": null
+   },
+   {
+    "t": 258.6,
+    "bot": "Gasket",
+    "st": "chase",
+    "stage": 1,
+    "pos": [
+     -21.5,
+     5,
+     15
+    ],
+    "mode": "path",
+    "wp": "-21.5,0,13.5,drop",
+    "los": 0.5
+   },
+   {
+    "t": 270.7,
+    "bot": "Glitch",
+    "st": "chase",
+    "stage": 1,
+    "pos": [
+     16.6,
+     0,
+     -15.8
+    ],
+    "mode": "direct",
+    "wp": null,
+    "los": null
+   },
+   {
+    "t": 271.8,
+    "bot": "Glitch",
+    "st": "chase",
+    "stage": 2,
+    "pos": [
+     16.9,
+     0.6,
+     -15.8
+    ],
+    "mode": "direct",
+    "wp": null,
+    "los": null
+   },
+   {
+    "t": 274.8,
+    "bot": "Glitch",
+    "st": "retreat",
+    "stage": 3,
+    "pos": [
+     16.9,
+     1.2,
+     -15.5
+    ],
+    "mode": "path",
+    "wp": "18.5,0,-15.5,walk",
+    "los": 0.1
+   },
+   {
+    "t": 276.3,
+    "bot": "Glitch",
+    "st": "retreat",
+    "stage": 4,
+    "pos": [
+     16.9,
+     1.2,
+     -14.5
+    ],
+    "mode": "path",
+    "wp": "12.5,0,-14.5,drop",
+    "los": 0.4
+   },
+   {
+    "t": 278.4,
+    "bot": "Glitch",
+    "st": "retreat",
+    "stage": 5,
+    "pos": [
+     16.9,
+     0.6,
+     -14.6
+    ],
+    "mode": "path",
+    "wp": "12.5,0,-14.5,drop",
+    "los": 0.4
+   },
+   {
+    "t": 279.4,
+    "bot": "Glitch",
+    "st": "retreat",
+    "stage": 6,
+    "pos": [
+     16.9,
+     0,
+     -14.5
+    ],
+    "mode": "path",
+    "wp": "12.5,0,-14.5,drop",
+    "los": 0.4
+   },
+   {
+    "t": 282,
+    "bot": "Glitch",
+    "st": "chase",
+    "stage": 5,
+    "pos": [
+     16.9,
+     0.8,
+     -11.4
+    ],
+    "mode": "path",
+    "wp": "18.5,0,-11.5,walk",
+    "los": 0.1
+   },
+   {
+    "t": 283,
+    "bot": "Glitch",
+    "st": "chase",
+    "stage": 6,
+    "pos": [
+     16.9,
+     1.1,
+     -11.4
+    ],
+    "mode": "path",
+    "wp": "18.5,0,-11.5,walk",
+    "los": 0.1
+   },
+   {
+    "t": 284.5,
+    "bot": "Glitch",
+    "st": "chase",
+    "stage": 7,
+    "pos": [
+     16.6,
+     0,
+     -11.4
+    ],
+    "mode": "path",
+    "wp": "18.5,0,-11.5,walk",
+    "los": 0.4
+   },
+   {
+    "t": 285.5,
+    "bot": "Glitch",
+    "st": "chase",
+    "stage": 8,
+    "pos": [
+     16.6,
+     0,
+     -11.4
+    ],
+    "mode": "path",
+    "wp": "18.5,0,-11.5,walk",
+    "los": 0.4
+   },
+   {
+    "t": 287.6,
+    "bot": "Glitch",
+    "st": "retreat",
+    "stage": 9,
+    "pos": [
+     16.9,
+     0,
+     -10.5
+    ],
+    "mode": "path",
+    "wp": "18.5,0,-10.5,walk",
+    "los": 0.1
+   },
+   {
+    "t": 308.6,
+    "bot": "Tesla",
+    "st": "engage",
+    "stage": 1,
+    "pos": [
+     -7.1,
+     0.6,
+     -8.1
+    ],
+    "mode": "idle",
+    "wp": null,
+    "los": null
+   },
+   {
+    "t": 313.7,
+    "bot": "Tesla",
+    "st": "chase",
+    "stage": 1,
+    "pos": [
+     -6.9,
+     0.1,
+     -8
+    ],
+    "mode": "path",
+    "wp": "-4.5,0,6.5,walk",
+    "los": "clear"
+   },
+   {
+    "t": 321.5,
+    "bot": "Gasket",
+    "st": "chase",
+    "stage": 1,
+    "pos": [
+     6.9,
+     0,
+     -8
+    ],
+    "mode": "path",
+    "wp": "6.5,0,-0.5,walk",
+    "los": "clear"
+   },
+   {
+    "t": 325.8,
+    "bot": "Flux",
+    "st": "engage",
+    "stage": 1,
+    "pos": [
+     24.7,
+     0,
+     -10.5
+    ],
+    "mode": "path",
+    "wp": "25.5,0,-12.5,walk",
+    "los": "clear"
+   },
+   {
+    "t": 333.7,
+    "bot": "Nimbus",
+    "st": "engage",
+    "stage": 1,
+    "pos": [
+     -21.6,
+     5,
+     16.5
+    ],
+    "mode": "path",
+    "wp": "-23.5,0,-14.5,walk",
+    "los": 1.9
+   },
+   {
+    "t": 361.2,
+    "bot": "Glitch",
+    "st": "engage",
+    "stage": 1,
+    "pos": [
+     6.9,
+     0,
+     -8
+    ],
+    "mode": "path",
+    "wp": "6.5,0.2,-7.5,walk",
+    "los": "clear"
+   }
+  ],
+  "byCell": {
+   "24,0,30": 1,
+   "15,2,-18": 1,
+   "-3,0,-12": 1,
+   "6,0,-9": 3,
+   "-21,5,15": 1,
+   "18,0,-15": 2,
+   "18,1,-15": 4,
+   "18,1,-12": 2,
+   "18,0,-12": 2,
+   "18,0,-9": 1,
+   "-6,1,-9": 1,
+   "-6,0,-9": 1,
+   "24,0,-9": 1,
+   "-21,5,18": 1
+  },
+  "n": 22,
+  "top": [
+   [
+    "18,1,-15",
+    4
+   ],
+   [
+    "6,0,-9",
+    3
+   ],
+   [
+    "18,0,-15",
+    2
+   ],
+   [
+    "18,1,-12",
+    2
+   ],
+   [
+    "18,0,-12",
+    2
+   ],
+   [
+    "24,0,30",
+    1
+   ],
+   [
+    "15,2,-18",
+    1
+   ],
+   [
+    "-3,0,-12",
+    1
+   ],
+   [
+    "-21,5,15",
+    1
+   ],
+   [
+    "18,0,-9",
+    1
+   ],
+   [
+    "-6,1,-9",
+    1
+   ],
+   [
+    "-6,0,-9",
+    1
+   ]
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

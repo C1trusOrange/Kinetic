@@ -1,0 +1,66 @@
+[run] http://127.0.0.1:53182/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-player/loops.js&mode2=end
+[result] {
+ "done": true,
+ "started": true,
+ "t": 1.78,
+ "frames": 234,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 172.41379310342765
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 12.20127223066915,
+  "maxSpeed": 19.25663364577426,
+  "minY": 0,
+  "maxY": 7.374479721299,
+  "states": {
+   "onGround": true,
+   "isGrappling": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "mode": "end",
+  "attT": 0.38449999999999784,
+  "beforeStop": {
+   "attached": true,
+   "gstate": "attached",
+   "loops": 1,
+   "loopBusGain": 1,
+   "ready": true,
+   "ctx": "running",
+   "state": "playing",
+   "gvis": true
+  },
+  "after4s": {
+   "attached": true,
+   "gstate": "attached",
+   "loops": 1,
+   "loopBusGain": 1,
+   "ready": true,
+   "ctx": "running",
+   "state": "ended",
+   "gvis": true,
+   "alive": true
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

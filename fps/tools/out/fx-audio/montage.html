@@ -1,0 +1,15 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>montage</title>
+<style>body{margin:0;background:#111}canvas{display:block}</style></head><body><canvas id="c"></canvas>
+<script>
+const P = new URLSearchParams(location.search);
+const dir = P.get('dir'), names = P.get('names').split(','), cols = +(P.get('cols') || 3), sc = +(P.get('scale') || 0.5);
+const c = document.getElementById('c'), g = c.getContext('2d');
+let loaded = 0;
+const imgs = names.map(n => { const i = new Image(); i.onload = () => { if (++loaded === names.length) draw(); }; i.src = '/' + dir + '/' + n + '.png?' + Date.now(); return i; });
+function draw() {
+  const w = Math.round(imgs[0].width * sc), h = Math.round(imgs[0].height * sc), rows = Math.ceil(names.length / cols);
+  c.width = w * cols; c.height = h * rows;
+  imgs.forEach((im, i) => { const x = (i % cols) * w, y = Math.floor(i / cols) * h; g.drawImage(im, x, y, w, h); g.fillStyle = '#fff'; g.font = '13px monospace'; g.fillText(names[i], x + 6, y + 14); });
+  window.__READY__ = true;
+}
+</script></body></html>

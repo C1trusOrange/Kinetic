@@ -1,0 +1,10 @@
+[run] http://127.0.0.1:50044/index.html?autotest=1&map=foundry&bots=5&duration=4&warm=1&css=l&scenario=tools/out/audit/review-perf/frames/scenario.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:50044/src/ui/Menu.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:50044/src/core/Game.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:50044/vendor/three/examples/jsm/shaders/CopyShader.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:50044/vendor/three/examples/jsm/postprocessing/ShaderPass.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:50044/vendor/three/examples/jsm/postprocessing/MaskPass.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:50044/vendor/three/examples/jsm/postprocessing/Pass.js]
+[error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done
+[result] null
+[run] done: wait=TIMEOUT console_errors=7 warnings=0

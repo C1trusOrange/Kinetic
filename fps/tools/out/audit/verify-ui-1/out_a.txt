@@ -1,0 +1,21 @@
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+state playing
+F1 mid {'annLeft': 636.6771240234375, 'annRight': 1130.7291259765625, 'annCenter': 883.703125, 'titleCenter': 883.703125, 'vw': 1280, 'tf': 'matrix(1.01363, 0, 0, 1.01363, 0, 0)', 'op': '1', 'css_left': '640px'}
+[shot] tools\out\audit\verify-ui-1\a_announce.png
+F1 idle {'annCenter': 640, 'tf': 'matrix(1, 0, 0, 1, -243.703, 0)', 'op': '0'}
+F1 minute {'l': 635.03857421875, 'r': 1314.27392578125, 'vw': 1280}
+[shot] tools\out\audit\verify-ui-1\a_minute.png
+F1 killtext {'l': 640, 'r': 736.921875, 'center': 688.4609375, 'tf': 'matrix(1, 0, 0, 1, 0, 0)', 'op': '1', 'crossCenter': 640}
+F2 0.5 {'arc': {'dash': 'none', 'off': '0px', 'fill': 'rgb(0, 0, 0)', 'stroke': 'rgb(61, 224, 255)'}, 'trk': {'stroke': 'none', 'fill': 'rgb(0, 0, 0)', 'sw': '6px'}}
+grap rect [524.171875, 647.609375, 50.671875, 50.671875]
+F2 0.1 {'arc': {'dash': 'none', 'off': '0px', 'fill': 'rgb(0, 0, 0)', 'stroke': 'rgb(61, 224, 255)'}, 'trk': {'stroke': 'none', 'fill': 'rgb(0, 0, 0)', 'sw': '6px'}}
+grap rect [524.171875, 647.609375, 50.671875, 50.671875]
+F8 {'panel': [220, 73, 1060, 647], 'hint': {'x': 525, 'y': 111, 'r': 755, 'b': 138, 'op': '1'}, 'hintTxt': 'CLICK TO CAPTURE MOUSE', 'shield': {'x': 582, 'y': 79, 'r': 698, 'b': 98, 'op': '1'}, 'boardInfo': {'x': 240, 'y': 88, 'r': 1040, 'b': 113, 'op': '1'}, 'topAtShield': 'CANVAS', 'topAtHint': 'CANVAS'}
+[shot] tools\out\audit\verify-ui-1\a_board.png
+quality before high high
+row info {'label': [673.15625, 162.171875], 'tag': 'LABEL', 'first': '<button data-v="low">low</button>'}
+quality after label click low low
+[shot] tools\out\audit\verify-ui-1\a_settings_after.png
+F9 {'setting': 'Zed', 'playerName': 'Player', 'board': 'Player'}
+[sess] console errors=0 warnings=1

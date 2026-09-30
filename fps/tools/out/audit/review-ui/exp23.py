@@ -1,0 +1,20 @@
+import sys, json
+from common import *
+s = Session(1280, 720)
+s.goto('index.html', "window.__GAME__ && window.__GAME__.state === 'menu'", timeout=180)
+s.wait(1.5)
+s.run("__GAME__.menu._go('settings');")
+s.wait(0.8)
+rows = s.js("[...document.querySelectorAll('.s-settings .set-row')].map(r => r.querySelector('[data-set]').dataset.set)")
+print(rows)
+for key in rows:
+    before = s.js("JSON.stringify(__GAME__.settings.data)")
+    pos = s.js(f"(() => {{ const b = document.querySelector('[data-set={key}]').closest('label').querySelector('.set-l').getBoundingClientRect(); return [b.x + 8, b.y + b.height/2]; }})()")
+    s.cdp.call('Input.dispatchMouseEvent', {'type': 'mouseMoved', 'x': pos[0], 'y': pos[1]})
+    s.cdp.call('Input.dispatchMouseEvent', {'type': 'mousePressed', 'x': pos[0], 'y': pos[1], 'button': 'left', 'clickCount': 1})
+    s.cdp.call('Input.dispatchMouseEvent', {'type': 'mouseReleased', 'x': pos[0], 'y': pos[1], 'button': 'left', 'clickCount': 1})
+    s.wait(0.6)
+    after = s.js("JSON.stringify(__GAME__.settings.data)")
+    b = json.loads(before); a = json.loads(after)
+    print(key, {k: (b[k], a[k]) for k in a if a[k] != b[k]})
+s.close()

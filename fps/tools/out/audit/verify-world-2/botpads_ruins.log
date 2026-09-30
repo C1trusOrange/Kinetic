@@ -1,0 +1,328 @@
+[run] http://127.0.0.1:62188/index.html?autotest=1&map=ruins&bots=12&duration=110&scenario=tools/out/audit/verify-world-2/botpads.js&script=idle
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":28.3}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 110.18,
+ "frames": 2947,
+ "fps": {
+  "avg": 28.3,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 44,
+  "maxSpeed": 20.63,
+  "minY": 0,
+  "maxY": 7.474678131424504,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 10,
+   "deaths": 8,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 503.5,
+   "pos": [
+    23,
+    0,
+    49.6
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": false,
+   "kills": 8,
+   "deaths": 6,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 528.9,
+   "pos": [
+    14.9,
+    0,
+    7.6
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 9,
+   "deaths": 7,
+   "health": 65,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 536.6,
+   "pos": [
+    -42.9,
+    7.2,
+    3.3
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 6,
+   "deaths": 7,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 539.3,
+   "pos": [
+    23.8,
+    0.1,
+    -3.3
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 9,
+   "deaths": 6,
+   "health": 66,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 532.7,
+   "pos": [
+    5.2,
+    1.2,
+    50.7
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 4,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 461.9,
+   "pos": [
+    -26.6,
+    0.4,
+    -17
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": false,
+   "kills": 7,
+   "deaths": 8,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 505.7,
+   "pos": [
+    27.8,
+    0,
+    -8.8
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 1,
+   "deaths": 6,
+   "health": 55,
+   "weapon": "shotgun",
+   "state": "engage",
+   "distance": 422.4,
+   "pos": [
+    -41.1,
+    1.9,
+    32.5
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 4,
+   "deaths": 6,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 476,
+   "pos": [
+    27.3,
+    0,
+    37.2
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": false,
+   "kills": 7,
+   "deaths": 7,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 382.1,
+   "pos": [
+    -47.4,
+    9.1,
+    -18.7
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 6,
+   "deaths": 7,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "collect",
+   "distance": 556,
+   "pos": [
+    1.5,
+    0.1,
+    -28.8
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 3,
+   "deaths": 8,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 430,
+   "pos": [
+    10.5,
+    0,
+    29.3
+   ]
+  }
+ ],
+ "events": {
+  "damage": 423,
+  "death": 80,
+  "spawn": 90,
+  "pickup": 16,
+  "fire": 1048
+ },
+ "renderer": {
+  "calls": 595,
+  "triangles": 131230,
+  "geometries": 220,
+  "textures": 130,
+  "programs": 100
+ },
+ "custom": {
+  "byPad": {
+   "pad3": {
+    "n": 5,
+    "ok": 0,
+    "died": 1,
+    "res": [
+     [
+      18.9,
+      -8.9,
+      -3.9,
+      0.1,
+      -26.5
+     ],
+     [
+      14.8,
+      -9,
+      -10.7,
+      0,
+      -34.8
+     ],
+     [
+      10.5,
+      0,
+      -8.6,
+      9,
+      -38.9
+     ],
+     [
+      17.2,
+      -9,
+      12.8,
+      0,
+      -33.4
+     ]
+    ]
+   },
+   "pad0": {
+    "n": 4,
+    "ok": 3,
+    "died": 0,
+    "res": [
+     [
+      1.7,
+      0,
+      -38.5,
+      4.5,
+      0.8
+     ],
+     [
+      10.6,
+      2,
+      -32.6,
+      6.5,
+      7.6
+     ],
+     [
+      0.6,
+      0,
+      -40.6,
+      4.5,
+      0.3
+     ],
+     [
+      1.1,
+      0,
+      -41,
+      4.5,
+      0.5
+     ]
+    ]
+   },
+   "pad1": {
+    "n": 2,
+    "ok": 1,
+    "died": 1,
+    "res": [
+     [
+      1.7,
+      0,
+      41.6,
+      4.5,
+      0.5
+     ]
+    ]
+   }
+  },
+  "launches": 11
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

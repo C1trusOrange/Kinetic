@@ -1,0 +1,93 @@
+[run] http://127.0.0.1:55240/index.html?autotest=1&map=sandbox&bots=0&god=1&script=idle&mode=two&scenario=tools/out/audit/review-fxaudio/s7_trail.js&duration=4
+[log] [autotest] finished {"ok":true,"errors":0,"fps":24.1}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 4.26,
+ "frames": 130,
+ "fps": {
+  "avg": 24.1,
+  "min": 4,
+  "max": 82.6
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 135,
+  "triangles": 36942,
+  "geometries": 128,
+  "textures": 119,
+  "programs": 97
+ },
+ "custom": {
+  "mode": "two",
+  "samples": [
+   0,
+   13,
+   37,
+   61,
+   85,
+   109,
+   133,
+   157,
+   181,
+   281,
+   281,
+   281,
+   281,
+   281,
+   281,
+   281,
+   281,
+   281,
+   281,
+   281,
+   281,
+   281,
+   281,
+   281,
+   281,
+   280,
+   278,
+   269,
+   264,
+   261,
+   249,
+   236,
+   223,
+   215,
+   194,
+   178,
+   166,
+   149,
+   123,
+   110
+  ],
+  "rockets": 0
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

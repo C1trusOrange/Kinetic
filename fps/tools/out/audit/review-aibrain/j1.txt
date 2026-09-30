@@ -1,0 +1,720 @@
+[run] http://127.0.0.1:56557/index.html?autotest=1&map=foundry&bots=1&spectate=1&patchjump=1&fs=-12.5,5,-4.4&fg=-3.5,9.5,-20.5&scenario=tools/out/audit/review-aibrain/scen_walk.js&duration=150
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":38.8}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 150.09,
+ "frames": 5129,
+ "fps": {
+  "avg": 38.8,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 837.9,
+   "pos": [
+    -7.5,
+    9.5,
+    -20.3
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 161,
+  "triangles": 105732,
+  "geometries": 112,
+  "textures": 113,
+  "programs": 93
+ },
+ "custom": {
+  "trials": [
+   {
+    "ok": true,
+    "t": 6.9,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.8,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.7,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.9,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.7,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.8,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.1,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.9,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.6,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.6,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.7,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.6,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.6,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.9,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.8,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.8,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.8,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.9,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.6,
+    "d": 18.9,
+    "req": 2,
+    "stuck": 0
+   }
+  ],
+  "cnt": {
+   "req": 44,
+   "stuck": 0,
+   "rescue": 0
+  },
+  "patchedJump": true,
+  "n": 21,
+  "ok": 21,
+  "fail": [],
+  "slow": [
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.9,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0,
+    "speedAvg": 2.7
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.8,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.3,
+    "finalDy": 0,
+    "speedAvg": 2.8
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.7,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.3,
+    "finalDy": 0,
+    "speedAvg": 2.8
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.9,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0,
+    "speedAvg": 2.7
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.7,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.4,
+    "finalDy": 0,
+    "speedAvg": 2.8
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 7,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.3,
+    "finalDy": 0,
+    "speedAvg": 2.7
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.8,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.4,
+    "finalDy": 0,
+    "speedAvg": 2.8
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 7.1,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0,
+    "speedAvg": 2.7
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.9,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0,
+    "speedAvg": 2.7
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.6,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.6,
+    "finalDy": 0,
+    "speedAvg": 2.8
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 7,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0,
+    "speedAvg": 2.7
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.6,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0,
+    "speedAvg": 2.9
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.7,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0,
+    "speedAvg": 2.8
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.6,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.6,
+    "finalDy": 0,
+    "speedAvg": 2.9
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.6,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0,
+    "speedAvg": 2.8
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.9,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0,
+    "speedAvg": 2.8
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.8,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0,
+    "speedAvg": 2.8
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.8,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.6,
+    "finalDy": 0,
+    "speedAvg": 2.8
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.8,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.6,
+    "finalDy": 0,
+    "speedAvg": 2.8
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.9,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.4,
+    "finalDy": 0,
+    "speedAvg": 2.8
+   },
+   {
+    "bot": 1,
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 18.9,
+    "conn": true,
+    "ok": true,
+    "time": 6.6,
+    "req": 2,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.4,
+    "finalDy": 0,
+    "speedAvg": 2.9
+   }
+  ],
+  "stuckTrials": 0,
+  "nav": {
+   "nodes": 10303,
+   "links": 73261,
+   "components": 2,
+   "largestComponent": 10297,
+   "buildMs": 405,
+   "traps": 0,
+   "strongComponents": 91,
+   "largestStrong": 8266,
+   "cells": 9000
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

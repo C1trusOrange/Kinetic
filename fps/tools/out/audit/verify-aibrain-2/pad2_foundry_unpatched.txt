@@ -1,0 +1,140 @@
+[run] http://127.0.0.1:63610/index.html?autotest=1&map=foundry&bots=2&duration=1000&god=1&far=1&nt=3&pads=0,2,3&scenario=tools/out/audit/verify-aibrain-2/pad2.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":82.6}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 55.75,
+ "frames": 54,
+ "fps": {
+  "avg": 82.6,
+  "min": 6.591957811469932,
+  "max": 166.66666666666035
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 5,
+  "maxY": 5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 486.7,
+   "pos": [
+    32.1,
+    10,
+    -40.5
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    46,
+    0,
+    -21
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 35
+ },
+ "renderer": {
+  "calls": 173,
+  "triangles": 107678,
+  "geometries": 154,
+  "textures": 121,
+  "programs": 100
+ },
+ "custom": {
+  "trials": [
+   {
+    "pad": 0,
+    "ok": true,
+    "t": 8.6,
+    "air": 2.1,
+    "inv": 0,
+    "launches": 1
+   },
+   {
+    "pad": 0,
+    "ok": false,
+    "t": 20,
+    "air": 11.5,
+    "inv": 7,
+    "launches": 4
+   },
+   {
+    "pad": 0,
+    "ok": true,
+    "t": 8.7,
+    "air": 2.7,
+    "inv": 1,
+    "launches": 1
+   },
+   {
+    "pad": 2,
+    "ok": true,
+    "t": 4.2,
+    "air": 1.5,
+    "inv": 2,
+    "launches": 1
+   },
+   {
+    "pad": 2,
+    "ok": true,
+    "t": 8.5,
+    "air": 1.6,
+    "inv": 0,
+    "launches": 1
+   },
+   {
+    "pad": 2,
+    "ok": true,
+    "t": 3.2,
+    "air": 1.7,
+    "inv": 0,
+    "launches": 1
+   }
+  ],
+  "summary": [
+   "0:ok:8.6s air2.1 inv0 launches1",
+   "0:FAIL:20s air11.5 inv7 launches4",
+   "0:ok:8.7s air2.7 inv1 launches1",
+   "2:ok:4.2s air1.5 inv2 launches1",
+   "2:ok:8.5s air1.6 inv0 launches1",
+   "2:ok:3.2s air1.7 inv0 launches1"
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

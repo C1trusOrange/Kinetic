@@ -1,0 +1,46 @@
+[run] http://127.0.0.1:51995/index.html?autotest=1&map=foundry&bots=0&script=idle&scenario=tools/out/audit/verify-player-2/scan.js&step=0.6
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0,
+ "frames": 42,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 125.00000000001377
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "map": "foundry",
+  "spots": 786,
+  "wrongTrue": 0,
+  "wrongFalse": 0,
+  "examples": []
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

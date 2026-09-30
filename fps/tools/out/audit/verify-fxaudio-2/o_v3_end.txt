@@ -1,0 +1,113 @@
+[run] http://127.0.0.1:64951/index.html?autotest=1&map=sandbox&bots=0&god=1&script=idle&mode=end&scenario=tools/out/audit/verify-fxaudio-2/v3_audio.js&duration=9
+[error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done
+[result] {
+ "done": false,
+ "started": true,
+ "t": 1.34,
+ "frames": 2029,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 232.5581395340807
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 4.662754459267366,
+  "maxSpeed": 18.079320985383386,
+  "minY": 0,
+  "maxY": 0.0906826794815615,
+  "states": {
+   "onGround": true,
+   "isGrappling": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "mode": "end",
+  "samples": [
+   {
+    "tag": "attached",
+    "state": "playing",
+    "endTimer": 0,
+    "grapple": "attached",
+    "loops": 1,
+    "loopGain": 1,
+    "muffleHz": 20000,
+    "ctx": "running",
+    "timeScale": 1
+   },
+   {
+    "tag": "after-300",
+    "state": "ended",
+    "endTimer": 1.99,
+    "grapple": "attached",
+    "loops": 1,
+    "loopGain": 1,
+    "muffleHz": 20000,
+    "ctx": "running",
+    "timeScale": 0.25
+   },
+   {
+    "tag": "after-1000",
+    "state": "ended",
+    "endTimer": 1.2,
+    "grapple": "attached",
+    "loops": 1,
+    "loopGain": 1,
+    "muffleHz": 20000,
+    "ctx": "running",
+    "timeScale": 0.25
+   },
+   {
+    "tag": "after-2500",
+    "state": "ended",
+    "endTimer": -0.1,
+    "grapple": "attached",
+    "loops": 1,
+    "loopGain": 1,
+    "muffleHz": 20000,
+    "ctx": "running",
+    "timeScale": 1
+   },
+   {
+    "tag": "after-4500",
+    "state": "ended",
+    "endTimer": -0.1,
+    "grapple": "attached",
+    "loops": 1,
+    "loopGain": 1,
+    "muffleHz": 20000,
+    "ctx": "running",
+    "timeScale": 1
+   },
+   {
+    "tag": "x",
+    "state": "ended",
+    "endTimer": -0.1,
+    "grapple": "attached",
+    "loops": 1,
+    "loopGain": 1,
+    "muffleHz": 20000,
+    "ctx": "running",
+    "timeScale": 1
+   }
+  ]
+ },
+ "errorCount": 0
+}
+[run] done: wait=TIMEOUT console_errors=1 warnings=0

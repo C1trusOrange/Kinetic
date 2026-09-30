@@ -1,0 +1,20 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>envlab</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script></head>
+<body><script type="module">
+import { AudioSystem, SOUND_LIST } from '/src/core/Audio.js';
+const audio = new AudioSystem({ camera: { position: { x: 0, y: 0, z: 0 } } });
+await audio.init();
+const names = (new URLSearchParams(location.search).get('names') || 'pistol_fire,rifle_fire,shotgun_fire,sniper_fire,rocket_fire,explosion,bot_death,hurt,death').split(',');
+const edges = [0, 0.005, 0.02, 0.06, 0.15, 0.3, 0.6, 1.0, 1.6, 2.4, 3.4];
+const out = {};
+for (const n of names) {
+  const b = audio.getBuffers(n)[0]; const d = b.getChannelData(0); const sr = b.sampleRate; const row = [];
+  for (let i = 0; i < edges.length - 1; i++) {
+    const a = Math.floor(edges[i] * sr), e = Math.min(d.length, Math.floor(edges[i + 1] * sr)); if (a >= d.length) { row.push(null); continue; }
+    let s = 0; for (let k = a; k < e; k++) s += d[k] * d[k]; row.push(+(10 * Math.log10(s / (e - a) + 1e-12)).toFixed(0));
+  }
+  out[n] = row.join(' ');
+}
+window.__ENV__ = { edges, out }; window.__READY__ = true;
+</script></body></html>

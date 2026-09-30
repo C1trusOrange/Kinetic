@@ -1,0 +1,83 @@
+[run] http://127.0.0.1:57755/index.html?autotest=1&map=sandbox&bots=3&mode=tdm&duration=600&scenario=tools/out/audit/review-lifecycle/grenade.js
+[result] {
+ "done": true,
+ "log": [
+  "done1"
+ ],
+ "mode": "tdm",
+ "teams": {
+  "player": 1,
+  "bots": [
+   2,
+   1,
+   2
+  ]
+ },
+ "playerGrenadeVsBot": {
+  "death": [
+   {
+    "victim": "Torque",
+    "attacker": null,
+    "weapon": "grenade"
+   }
+  ],
+  "explosion": [
+   {
+    "owner": null,
+    "weapon": "grenade"
+   }
+  ],
+  "damage": [
+   {
+    "target": "Player",
+    "attacker": null,
+    "amount": 84,
+    "weapon": "grenade"
+   },
+   {
+    "target": "Torque",
+    "attacker": null,
+    "amount": 40,
+    "weapon": "grenade"
+   }
+  ]
+ },
+ "botAlive": false,
+ "playerKills": 0,
+ "targetDeaths": 1,
+ "targetKills": 0,
+ "playerDeaths": 0,
+ "friendlyFire": {
+  "mateTeam": 1,
+  "playerTeam": 1,
+  "mateHealthAfter": 0,
+  "mateAlive": false,
+  "damage": [
+   {
+    "target": "Flux",
+    "attacker": null,
+    "amount": 100,
+    "weapon": "grenade"
+   }
+  ],
+  "deaths": [
+   {
+    "victim": "Flux",
+    "attacker": null,
+    "weapon": "grenade"
+   }
+  ]
+ },
+ "selfGrenade": {
+  "damage": [
+   {
+    "target": "Player",
+    "attacker": null,
+    "amount": 100,
+    "weapon": "grenade"
+   }
+  ],
+  "playerHealth": 0
+ }
+}
+[run] done: wait=ok console_errors=0 warnings=0

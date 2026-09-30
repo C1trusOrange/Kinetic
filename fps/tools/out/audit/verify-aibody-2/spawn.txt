@@ -1,0 +1,236 @@
+[run] http://127.0.0.1:54126/index.html?autotest=1&map=sandbox&bots=2&diff=easy&god=1&script=idle&scenario=tools/out/audit/verify-aibody-2/spawn.js&duration=9
+[log] [autotest] finished {"ok":true,"errors":0,"fps":21.2}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 9.13,
+ "frames": 237,
+ "fps": {
+  "avg": 21.2,
+  "min": 4,
+  "max": 85.5
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 4.5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 40.3,
+   "pos": [
+    0.4,
+    4.5,
+    -19.8
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 45.9,
+   "pos": [
+    7.3,
+    0,
+    11
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 1,
+  "spawn": 4,
+  "pickup": 1,
+  "fire": 10
+ },
+ "renderer": {
+  "calls": 215,
+  "triangles": 46264,
+  "geometries": 176,
+  "textures": 128,
+  "programs": 99
+ },
+ "custom": {
+  "rows": [
+   {
+    "mark": "kill",
+    "t": 4.016
+   },
+   {
+    "mark": "spawn",
+    "t": 6.56,
+    "mAirT_before": 0,
+    "wasGround": true
+   },
+   {
+    "t": 6.609,
+    "since": 0.048,
+    "onGround": false,
+    "y": 4.5,
+    "vy": 0,
+    "air": 0,
+    "airT": 0,
+    "land": 0,
+    "noSnapLeft": 0.152,
+    "lod": 0
+   },
+   {
+    "t": 6.651,
+    "since": 0.091,
+    "onGround": false,
+    "y": 4.5,
+    "vy": 0,
+    "air": 0,
+    "airT": 0.048,
+    "land": 0,
+    "noSnapLeft": 0.109,
+    "lod": 0
+   },
+   {
+    "t": 6.676,
+    "since": 0.115,
+    "onGround": false,
+    "y": 4.5,
+    "vy": 0,
+    "air": 0,
+    "airT": 0.091,
+    "land": 0,
+    "noSnapLeft": 0.085,
+    "lod": 0
+   },
+   {
+    "t": 6.726,
+    "since": 0.165,
+    "onGround": false,
+    "y": 4.5,
+    "vy": 0,
+    "air": 0,
+    "airT": 0.091,
+    "land": 0,
+    "noSnapLeft": 0.035,
+    "lod": 0.025
+   },
+   {
+    "t": 6.776,
+    "since": 0.215,
+    "onGround": false,
+    "y": 4.5,
+    "vy": 0,
+    "air": 0,
+    "airT": 0.091,
+    "land": 0,
+    "noSnapLeft": -0.015,
+    "lod": 0.075
+   },
+   {
+    "t": 6.826,
+    "since": 0.265,
+    "onGround": true,
+    "y": 4.5,
+    "vy": 0,
+    "air": 0,
+    "airT": 0,
+    "land": 0.022,
+    "noSnapLeft": -0.065,
+    "lod": 0
+   },
+   {
+    "t": 6.876,
+    "since": 0.315,
+    "onGround": true,
+    "y": 4.5,
+    "vy": 0,
+    "air": 0,
+    "airT": 0,
+    "land": 0.022,
+    "noSnapLeft": -0.115,
+    "lod": 0.05
+   },
+   {
+    "t": 6.926,
+    "since": 0.365,
+    "onGround": true,
+    "y": 4.5,
+    "vy": 0,
+    "air": 0,
+    "airT": 0,
+    "land": 0.022,
+    "noSnapLeft": -0.165,
+    "lod": 0.1
+   },
+   {
+    "t": 6.976,
+    "since": 0.415,
+    "onGround": true,
+    "y": 4.5,
+    "vy": 0,
+    "air": 0,
+    "airT": 0,
+    "land": 0.01,
+    "noSnapLeft": -0.215,
+    "lod": 0
+   },
+   {
+    "t": 7.026,
+    "since": 0.465,
+    "onGround": true,
+    "y": 4.5,
+    "vy": 0,
+    "air": 0,
+    "airT": 0,
+    "land": 0.01,
+    "noSnapLeft": -0.265,
+    "lod": 0.05
+   },
+   {
+    "t": 7.076,
+    "since": 0.515,
+    "onGround": true,
+    "y": 4.5,
+    "vy": 0,
+    "air": 0,
+    "airT": 0,
+    "land": 0.01,
+    "noSnapLeft": -0.315,
+    "lod": 0.1
+   },
+   {
+    "t": 7.126,
+    "since": 0.565,
+    "onGround": true,
+    "y": 4.5,
+    "vy": 0,
+    "air": 0,
+    "airT": 0,
+    "land": 0.004,
+    "noSnapLeft": -0.365,
+    "lod": 0
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

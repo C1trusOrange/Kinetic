@@ -1,0 +1,26 @@
+[run] http://127.0.0.1:58176/index.html?autotest=1&map=foundry&bots=15&mode=ffa&duration=900&diff=hard&god=1&scenario=tools/out/audit/review-lifecycle/alloc.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "rows": [
+  {
+   "label": "match running (bots+player, scripted player)",
+   "frames": 400,
+   "kbPerFrame": 457.7,
+   "gcDrops": 6,
+   "entities": 16,
+   "gibs": 53
+  },
+  {
+   "label": "main menu backdrop",
+   "frames": 300,
+   "kbPerFrame": 50.3,
+   "gcDrops": 0,
+   "entities": 0,
+   "gibs": 0
+  }
+ ],
+ "errors": []
+}
+[run] done: wait=ok console_errors=0 warnings=1

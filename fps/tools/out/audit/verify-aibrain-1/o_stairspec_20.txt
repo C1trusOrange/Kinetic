@@ -1,0 +1,112 @@
+[run] http://127.0.0.1:60397/index.html?autotest=1&bots=2&duration=1&god=1&script=idle&map=foundry&scenario=tools/out/audit/verify-aibrain-1/scen_stair.js&sfps=20&np=2&a=-12.49,5,-4.49&g=-3.5,9.5,-20.5
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 93.64,
+ "frames": 40,
+ "fps": {
+  "avg": 0,
+  "min": 7.496251874063071,
+  "max": 81.3008130081317
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 458.8,
+   "pos": [
+    -5,
+    9.5,
+    -20.1
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    46,
+    0,
+    26
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 136,
+  "triangles": 102912,
+  "geometries": 116,
+  "textures": 87,
+  "programs": 88
+ },
+ "custom": {
+  "variants": {
+   "unpatched": {
+    "n": 2,
+    "ok": 0,
+    "avgT": 40,
+    "totalInv": 178,
+    "totalStuck": 1,
+    "slow": [
+     "FAIL t40 inv92 stuck1 -12.49,5,-4.49->-3.5,9.5,-20.5",
+     "FAIL t40 inv86 stuck0 -12.49,5,-4.49->-3.5,9.5,-20.5"
+    ],
+    "all": [
+     "FAIL:40:i92:s1",
+     "FAIL:40:i86:s0"
+    ]
+   },
+   "jumpExempt": {
+    "n": 2,
+    "ok": 2,
+    "avgT": 6.05,
+    "totalInv": 0,
+    "totalStuck": 0,
+    "slow": [],
+    "all": [
+     "ok:6.05:i0:s0",
+     "ok:6.05:i0:s0"
+    ]
+   }
+  },
+  "map": "foundry",
+  "pairs": 2,
+  "dt": 0.05
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

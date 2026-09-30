@@ -1,0 +1,22 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<style>body{margin:0;background:#333;color:#ddd;font:11px monospace} .r{display:flex;gap:4px;margin:2px} canvas{width:200px;height:200px;image-rendering:auto}</style></head>
+<body><div id="o"></div>
+<script type="module">
+import { getMaterials } from '/src/weapons/models/WeaponMaterials.js';
+const t0 = performance.now();
+const M = getMaterials();
+document.title = 'gen ' + Math.round(performance.now() - t0) + 'ms';
+const P = new URLSearchParams(location.search);
+const names = (P.get('n') || 'steel,poly,paintOlive,wood,grip,sleeve,glove,rail,hazard').split(',');
+const o = document.getElementById('o');
+const info = document.createElement('div'); info.textContent = 'generation ms: ' + Math.round(performance.now() - t0); o.appendChild(info);
+for (const n of names) {
+  const m = M[n]; const row = document.createElement('div'); row.className = 'r'; row.append(n + ' ');
+  for (const k of ['map', 'normalMap', 'roughnessMap', 'metalnessMap']) { const t = m[k]; if (t && t.image) { const c = document.createElement('canvas'); c.width = t.image.width; c.height = t.image.height; c.getContext('2d').drawImage(t.image, 0, 0); row.appendChild(c); } }
+  o.appendChild(row);
+}
+window.__VIEWER_INFO__ = { ms: Math.round(performance.now() - t0) };
+window.__VIEWER_READY__ = true;
+</script></body></html>

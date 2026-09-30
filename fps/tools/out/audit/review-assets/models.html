@@ -1,0 +1,90 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>models audit</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><script type="module">
+import * as THREE from 'three';
+window.__DONE__ = false;
+window.__RES__ = {};
+try {
+  const WM = await import('/src/weapons/WeaponModels.js');
+  const MK = await import('/src/weapons/models/ModelKit.js');
+  const ids = ['pistol','rifle','shotgun','sniper','rocket'];
+  const out = {};
+  const triCount = (root) => { let t = 0; root.traverse(o => { if (o.isMesh && o.geometry) t += (o.geometry.index ? o.geometry.index.count : o.geometry.attributes.position.count) / 3; }); return Math.round(t); };
+  function inspect(root) {
+    const rep = { meshes: 0, nan: 0, missingAttr: [], inverted: 0, totalTris: 0, badNormal: 0, noColorWithVC: 0, transparentMeshes: 0, matNames: new Set(), degenerate: 0 };
+    root.traverse(o => {
+      if (!o.isMesh) return;
+      rep.meshes++;
+      const g = o.geometry;
+      const m = o.material;
+      if (m.transparent) rep.transparentMeshes++;
+      const a = g.attributes;
+      for (const k of ['position','normal','uv']) if (!a[k]) rep.missingAttr.push(o.name + ':' + k);
+      if (m.vertexColors && !a.color) rep.noColorWithVC++;
+      for (const k of Object.keys(a)) {
+        const arr = a[k].array;
+        for (let i = 0; i < arr.length; i++) if (!Number.isFinite(arr[i])) { rep.nan++; break; }
+      }
+      const p = a.position, n = a.normal;
+      const idx = g.index;
+      const cnt = idx ? idx.count : p.count;
+      const A = new THREE.Vector3(), B = new THREE.Vector3(), C = new THREE.Vector3(), N = new THREE.Vector3(), N0 = new THREE.Vector3();
+      for (let t = 0; t < cnt; t += 3) {
+        const ia = idx ? idx.getX(t) : t, ib = idx ? idx.getX(t+1) : t+1, ic = idx ? idx.getX(t+2) : t+2;
+        A.fromBufferAttribute(p, ia); B.fromBufferAttribute(p, ib); C.fromBufferAttribute(p, ic);
+        N.subVectors(C, B).cross(new THREE.Vector3().subVectors(A, B));
+        const area = N.length();
+        if (area < 1e-12) { rep.degenerate++; continue; }
+        N.divideScalar(area);
+        if (n) { N0.fromBufferAttribute(n, ia); const l = N0.length(); if (l < 0.9 || l > 1.1) rep.badNormal++; if (N.dot(N0) < -0.2) rep.inverted++; }
+      }
+      rep.totalTris += cnt / 3;
+      rep.matNames.add(o.material.name || o.name);
+    });
+    rep.matNames = [...rep.matNames];
+    return rep;
+  }
+  for (const id of ids) {
+    for (const view of [false, true]) {
+      const key = id + (view ? ':view' : ':world');
+      const t0 = performance.now();
+      let m;
+      try { m = WM.createWeaponModel(id, { view }); } catch (e) { out[key] = { error: String(e && e.stack || e) }; continue; }
+      const ms = Math.round(performance.now() - t0);
+      m.root.updateMatrixWorld(true);
+      const box = new THREE.Box3().setFromObject(m.root);
+      const r = inspect(m.root);
+      const partInfo = {};
+      for (const [k, o] of Object.entries(m.parts)) {
+        const b = new THREE.Box3().setFromObject(o);
+        partInfo[k] = { pos: o.position.toArray().map(v => +v.toFixed(4)), parent: o.parent && o.parent.name, meshes: o.children.filter(c => c.isMesh).length, bb: b.isEmpty() ? null : [b.min.toArray().map(v => +v.toFixed(3)), b.max.toArray().map(v => +v.toFixed(3))] };
+      }
+      const wp = (o) => o ? o.getWorldPosition(new THREE.Vector3()).toArray().map(v => +v.toFixed(4)) : null;
+      out[key] = {
+        ms, triangles: m.triangles, actualTris: triCount(m.root), bbox: [box.min.toArray().map(v => +v.toFixed(3)), box.max.toArray().map(v => +v.toFixed(3))],
+        parts: partInfo, muzzle: wp(m.muzzle), sight: wp(m.sight), eject: wp(m.ejectPort), hip: m.hip.toArray(), adsDistance: m.adsDistance,
+        inspect: r,
+      };
+    }
+  }
+  // independence: two calls return separate trees, shared geometry
+  const a = WM.createWeaponModel('rifle', { view: true }), b = WM.createWeaponModel('rifle', { view: true });
+  let sharedGeo = true, sharedMat = true, sepGroups = a.root !== b.root && a.parts.mag !== b.parts.mag;
+  const ga = [], gb = [];
+  a.root.traverse(o => o.isMesh && ga.push(o)); b.root.traverse(o => o.isMesh && gb.push(o));
+  for (let i = 0; i < ga.length; i++) { if (ga[i].geometry !== gb[i].geometry) sharedGeo = false; if (ga[i].material !== gb[i].material) sharedMat = false; }
+  out.sharing = { sharedGeo, sharedMat, sepGroups, meshes: ga.length };
+  // unknown id
+  try { WM.createWeaponModel('laser'); out.unknown = 'no throw'; } catch (e) { out.unknown = 'throws: ' + e.message; }
+  try { WM.createWeaponModel('grenade'); out.unknownGrenade = 'no throw'; } catch (e) { out.unknownGrenade = 'throws: ' + e.message; }
+  // grenade / rocket
+  const gr = WM.createGrenadeModel(), rk = WM.createRocketModel();
+  const gbb = new THREE.Box3().setFromObject(gr), rbb = new THREE.Box3().setFromObject(rk);
+  out.grenade = { tris: triCount(gr), size: gbb.getSize(new THREE.Vector3()).toArray(), center: gbb.getCenter(new THREE.Vector3()).toArray(), inspect: inspect(gr) };
+  out.rocket = { tris: triCount(rk), size: rbb.getSize(new THREE.Vector3()).toArray(), center: rbb.getCenter(new THREE.Vector3()).toArray(), flame: !!rk.userData.flame, inspect: inspect(rk) };
+  // frame timings of preload
+  window.__RES__ = out;
+} catch (e) { window.__RES__ = { fatal: String(e && e.stack || e) }; }
+window.__DONE__ = true;
+</script></body></html>

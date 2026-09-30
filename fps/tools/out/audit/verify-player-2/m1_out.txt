@@ -1,0 +1,150 @@
+    -45.45
+   ],
+   [
+    1.5,
+    "air/idle",
+    0.12,
+    5.62,
+    -46.49
+   ],
+   [
+    2,
+    "air/idle",
+    0.12,
+    0.47,
+    -49.59
+   ],
+   [
+    2.5,
+    "air/idle",
+    0.12,
+    -10.68,
+    -52.69
+   ],
+   [
+    3,
+    "air/idle",
+    0.12,
+    -27.84,
+    -55.78
+   ],
+   [
+    3.5,
+    "air/idle",
+    0.12,
+    -51.04,
+    -58.88
+   ],
+   [
+    4,
+    "air/idle",
+    0.12,
+    -78.4,
+    -61.98
+   ],
+   [
+    4.5,
+    "air/idle",
+    0.12,
+    -105.9,
+    -65.08
+   ],
+   [
+    5,
+    "air/idle",
+    0.12,
+    -133.4,
+    -68.18
+   ],
+   [
+    5.5,
+    "air/idle",
+    0.12,
+    -160.9,
+    -71.28
+   ],
+   [
+    5.95,
+    "ground/idle",
+    30,
+    0,
+    40
+   ]
+  ],
+  "mantleTo": [
+   0.12,
+   6.01,
+   -44.47
+  ],
+  "mantleFrom": [
+   0.12,
+   3.83,
+   -43.12
+  ],
+  "mantleH": 2.17,
+  "after": {
+   "t": 1.23,
+   "feet": [
+    0.12,
+    6,
+    -44.51
+   ],
+   "grounded": true,
+   "alive": true
+  },
+  "chest": [
+   0.12,
+   7.12,
+   -44.51
+  ],
+  "shots": [
+   {
+    "from": [
+     0.12,
+     5.5,
+     -30
+    ],
+    "hitEntity": null,
+    "hitDist": 14.09,
+    "dist": 14.6,
+    "canSee": false,
+    "surface": "metal"
+   },
+   {
+    "from": [
+     0.12,
+     1.7,
+     -20
+    ],
+    "hitEntity": null,
+    "hitDist": 24.58,
+    "dist": 25.1,
+    "canSee": false,
+    "surface": "metal"
+   },
+   {
+    "from": [
+     5.12,
+     12,
+     -25
+    ],
+    "hitEntity": null,
+    "hitDist": 20.18,
+    "dist": 20.72,
+    "canSee": false,
+    "surface": "metal"
+   }
+  ],
+  "final": {
+   "pos": [
+    30.02,
+    0,
+    39.97
+   ],
+   "alive": true,
+   "deaths": 1
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

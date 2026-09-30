@@ -1,0 +1,132 @@
+[run] http://127.0.0.1:50572/index.html?autotest=1&map=foundry&bots=5&duration=20
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":107.1}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 20.09,
+ "frames": 1889,
+ "fps": {
+  "avg": 107.1,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 78.3,
+  "maxSpeed": 11.96,
+  "minY": 0,
+  "maxY": 5.291666666666665,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isMantling": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "isGrappling": true,
+   "isWallRunning": true
+  },
+  "shots": 21,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 83.92356797807952
+ },
+ "bots": [
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 2,
+   "deaths": 0,
+   "health": 54,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 116.7,
+   "pos": [
+    -20.8,
+    -4,
+    24.8
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "collect",
+   "distance": 94.5,
+   "pos": [
+    41.7,
+    0,
+    23.7
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "chase",
+   "distance": 82.6,
+   "pos": [
+    10.3,
+    0,
+    -10.2
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "collect",
+   "distance": 119.3,
+   "pos": [
+    -42.2,
+    3,
+    -2.8
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 47,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 96.2,
+   "pos": [
+    27.2,
+    0,
+    -22.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 28,
+  "death": 3,
+  "spawn": 9,
+  "pickup": 3,
+  "fire": 132
+ },
+ "renderer": {
+  "calls": 283,
+  "triangles": 119436,
+  "geometries": 366,
+  "textures": 145,
+  "programs": 115
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

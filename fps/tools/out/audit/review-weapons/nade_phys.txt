@@ -1,0 +1,70 @@
+[run] http://127.0.0.1:63090/index.html?autotest=1&map=foundry&bots=0&script=idle&scenario=tools/out/audit/review-weapons/nade_phys.js&duration=11
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":24.8}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 11.15,
+ "frames": 287,
+ "fps": {
+  "avg": 24.8,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -4,
+  "maxY": -4,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 352,
+  "triangles": 123656,
+  "geometries": 128,
+  "textures": 120,
+  "programs": 96
+ },
+ "custom": {
+  "n": 80,
+  "fell": 0,
+  "inside": [],
+  "nan": 0,
+  "resting": 80,
+  "moving": [],
+  "bounds": [
+   [
+    -50,
+    -6,
+    -45
+   ],
+   [
+    50,
+    36,
+    45
+   ]
+  ],
+  "ySamples": []
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

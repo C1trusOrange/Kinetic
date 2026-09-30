@@ -1,0 +1,701 @@
+[run] http://127.0.0.1:52037/index.html?autotest=1&map=foundry&bots=5&duration=4&warm=1&css=i&scenario=tools/out/audit/review-perf/frames/scenario.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 4.05,
+ "frames": 206,
+ "fps": {
+  "avg": 47.4,
+  "min": 4,
+  "max": 83.33333333333017
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 16.512708238285107,
+  "maxSpeed": 8.1,
+  "minY": 0.3374011885310848,
+  "maxY": 6.874999999999999,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "isMantling": true,
+   "airborne": true,
+   "isCrouching": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 27.3,
+   "pos": [
+    -7.8,
+    0,
+    35.2
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 90,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 16.9,
+   "pos": [
+    31,
+    0,
+    31.1
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "collect",
+   "distance": 31.2,
+   "pos": [
+    -44.6,
+    0,
+    -6.8
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 49,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 16.8,
+   "pos": [
+    29.6,
+    0,
+    7.7
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 27.7,
+   "pos": [
+    8.1,
+    0,
+    3.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 3,
+  "death": 0,
+  "spawn": 6,
+  "pickup": 0,
+  "fire": 14
+ },
+ "renderer": {
+  "calls": 339,
+  "triangles": 123938,
+  "geometries": 183,
+  "textures": 130,
+  "programs": 79
+ },
+ "custom": {
+  "warmMs": 870.4,
+  "warmNewProgs": 28,
+  "startProgs": 79,
+  "prof": {
+   "frames": 163,
+   "cpuMs": {
+    "p50": 17.1,
+    "p90": 28.5,
+    "p99": 99.2,
+    "max": 130.4
+   },
+   "intervalMs": {
+    "p50": 18.8,
+    "p90": 36.6,
+    "p99": 133.4,
+    "max": 424.3
+   },
+   "totalNewPrograms": 79,
+   "slow": [
+    {
+     "i": 43,
+     "ts": 29150,
+     "gap": 404,
+     "heap": 129.8,
+     "heapEnd": 129.8,
+     "t": 0.19,
+     "dur": 22.7,
+     "interval": 424.3,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 2.2,
+      "hud.update": 1.1,
+      "render": 17
+     },
+     "gl": {}
+    },
+    {
+     "i": 44,
+     "ts": 29183,
+     "gap": 11,
+     "heap": 129.8,
+     "heapEnd": 132.1,
+     "t": 0.24,
+     "dur": 54,
+     "interval": 30.3,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 29,
+      "render": 20.8
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 364,
+       "ms": 1.2
+      }
+     }
+    },
+    {
+     "i": 86,
+     "ts": 29984,
+     "gap": 14,
+     "heap": 150.2,
+     "heapEnd": 134.2,
+     "t": 1.03,
+     "dur": 42,
+     "interval": 30.4,
+     "newProg": [],
+     "dTex": 1,
+     "dGeo": 8,
+     "parts": {
+      "bots.update": 22,
+      "render": 18.2
+     },
+     "gl": {}
+    },
+    {
+     "i": 183,
+     "ts": 32260,
+     "gap": 3,
+     "heap": 119.1,
+     "heapEnd": 119.4,
+     "t": 3.29,
+     "dur": 76.3,
+     "interval": 24.2,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 1.7,
+      "render": 71.7
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 460,
+       "ms": 1.2
+      }
+     }
+    },
+    {
+     "i": 185,
+     "ts": 32381,
+     "gap": 2,
+     "heap": 119.4,
+     "heapEnd": 119.9,
+     "t": 3.36,
+     "dur": 130.4,
+     "interval": 36.3,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "player.update": 1.9,
+      "render": 127.2
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 460,
+       "ms": 16.9
+      },
+      "drawArrays": {
+       "n": 284,
+       "ms": 4.5
+      }
+     }
+    },
+    {
+     "i": 186,
+     "ts": 32520,
+     "gap": 8,
+     "heap": 119.9,
+     "heapEnd": 120.2,
+     "t": 3.4,
+     "dur": 99.2,
+     "interval": 133.4,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "render": 83.8
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 460,
+       "ms": 3.6
+      }
+     }
+    },
+    {
+     "i": 187,
+     "ts": 32623,
+     "gap": 4,
+     "heap": 120.2,
+     "heapEnd": 120.5,
+     "t": 3.45,
+     "dur": 68.2,
+     "interval": 102.9,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 2,
+      "render": 49.2
+     },
+     "gl": {}
+    },
+    {
+     "i": 188,
+     "ts": 32699,
+     "gap": 8,
+     "heap": 120.5,
+     "heapEnd": 120.9,
+     "t": 3.5,
+     "dur": 75.4,
+     "interval": 78.9,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "player.update": 9.8,
+      "bots.update": 8.7,
+      "weapons.updateViewModel": 14.9,
+      "render": 40.7
+     },
+     "gl": {
+      "useProgram": {
+       "n": 77,
+       "ms": 4.3
+      },
+      "uniformMatrix4fv": {
+       "n": 460,
+       "ms": 4.7
+      },
+      "drawArrays": {
+       "n": 284,
+       "ms": 2.9
+      }
+     }
+    },
+    {
+     "i": 189,
+     "ts": 32794,
+     "gap": 20,
+     "heap": 120.9,
+     "heapEnd": 121.3,
+     "t": 3.55,
+     "dur": 70.4,
+     "interval": 97.1,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "autotest.update": 7.8,
+      "weapons.update": 1.4,
+      "bots.update": 7.8,
+      "render": 45.2
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 460,
+       "ms": 1.7
+      },
+      "drawArrays": {
+       "n": 284,
+       "ms": 3.9
+      }
+     }
+    },
+    {
+     "i": 190,
+     "ts": 32875,
+     "gap": 11,
+     "heap": 121.3,
+     "heapEnd": 121.6,
+     "t": 3.6,
+     "dur": 71,
+     "interval": 78.7,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 7.9,
+      "effects.update": 1.6,
+      "render": 59.9
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 460,
+       "ms": 1.7
+      }
+     }
+    },
+    {
+     "i": 191,
+     "ts": 32973,
+     "gap": 27,
+     "heap": 121.6,
+     "heapEnd": 122.3,
+     "t": 3.65,
+     "dur": 96.8,
+     "interval": 96.9,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "weapons.update": 1.5,
+      "render": 81.7
+     },
+     "gl": {
+      "bufferSubData": {
+       "n": 24,
+       "ms": 7.5
+      },
+      "uniformMatrix4fv": {
+       "n": 430,
+       "ms": 11.5
+      },
+      "drawArrays": {
+       "n": 271,
+       "ms": 6.9
+      }
+     }
+    },
+    {
+     "i": 192,
+     "ts": 33075,
+     "gap": 6,
+     "heap": 122.3,
+     "heapEnd": 122.3,
+     "t": 3.7,
+     "dur": 39.8,
+     "interval": 103.1,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 6.3,
+      "render": 30.8
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 413,
+       "ms": 1.1
+      }
+     }
+    }
+   ],
+   "longtasks": [
+    {
+     "start": 4283,
+     "dur": 454,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 7523,
+     "dur": 132,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 7972,
+     "dur": 75,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 8753,
+     "dur": 3067,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 11823,
+     "dur": 649,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 12710,
+     "dur": 2028,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 14752,
+     "dur": 180,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 14933,
+     "dur": 574,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 15509,
+     "dur": 127,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 15646,
+     "dur": 160,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 15807,
+     "dur": 137,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 15946,
+     "dur": 147,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 16094,
+     "dur": 121,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 16215,
+     "dur": 223,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 16439,
+     "dur": 92,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 16532,
+     "dur": 81,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 16650,
+     "dur": 271,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 16926,
+     "dur": 234,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 17161,
+     "dur": 128,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 17289,
+     "dur": 196,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 17487,
+     "dur": 133,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 17621,
+     "dur": 68,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 17770,
+     "dur": 51,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 17911,
+     "dur": 187,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 18098,
+     "dur": 1092,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 19192,
+     "dur": 885,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 20082,
+     "dur": 203,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 20286,
+     "dur": 6509,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 26796,
+     "dur": 1476,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 28273,
+     "dur": 352,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 28666,
+     "dur": 55,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 29183,
+     "dur": 58,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 29984,
+     "dur": 53,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 32259,
+     "dur": 84,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 32381,
+     "dur": 136,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 32520,
+     "dur": 102,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 32623,
+     "dur": 75,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 32699,
+     "dur": 94,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 32794,
+     "dur": 81,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 32875,
+     "dur": 96,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 32972,
+     "dur": 102,
+     "name": "self",
+     "attr": "window"
+    }
+   ],
+   "glTotalMs": {
+    "bufferSubData": 29.2,
+    "bufferData": 3,
+    "useProgram": 26.6,
+    "drawElements": 16.4,
+    "uniformMatrix4fv": 141.3,
+    "drawArrays": 72.8,
+    "getProgramInfoLog": 64.2,
+    "getUniformLocation": 1.5,
+    "texSubImage2D": 24.4,
+    "drawElementsInstanced": 3
+   }
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

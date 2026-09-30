@@ -1,0 +1,279 @@
+[run] http://127.0.0.1:61556/index.html?autotest=1&map=foundry&bots=15&mode=tdm&duration=25&diff=hard
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 25.01,
+ "frames": 886,
+ "fps": {
+  "avg": 41,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 50.6,
+  "maxSpeed": 11.74,
+  "minY": -0.07999999999999996,
+  "maxY": 2.0182665568992983,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "isGrappling": true
+  },
+  "shots": 19,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 100
+ },
+ "bots": [
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 10,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 167.1,
+   "pos": [
+    14.4,
+    1.1,
+    -20.4
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 2,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 113.6,
+   "pos": [
+    -42.5,
+    0,
+    -17.4
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 167.6,
+   "pos": [
+    14.3,
+    0,
+    29
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 11,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 134.4,
+   "pos": [
+    -35.4,
+    0,
+    -12
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 3,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 165.2,
+   "pos": [
+    14.5,
+    7.2,
+    21.9
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 8,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 175.6,
+   "pos": [
+    2.9,
+    0,
+    -24.6
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": false,
+   "kills": 4,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 172,
+   "pos": [
+    -8.7,
+    0,
+    -11.7
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": false,
+   "kills": 0,
+   "deaths": 2,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 142.8,
+   "pos": [
+    -12.4,
+    0,
+    -14.5
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 34,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 165.7,
+   "pos": [
+    -19.7,
+    0,
+    14.9
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 56,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 114.2,
+   "pos": [
+    -19.4,
+    0,
+    8.4
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 2,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 168.5,
+   "pos": [
+    9,
+    5,
+    16.2
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 10,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 152.2,
+   "pos": [
+    12.7,
+    5,
+    4.7
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": false,
+   "kills": 0,
+   "deaths": 2,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 171.2,
+   "pos": [
+    6.8,
+    0,
+    -17.2
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 1,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 126.6,
+   "pos": [
+    -38.9,
+    0,
+    -15.4
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 27,
+   "weapon": "shotgun",
+   "state": "retreat",
+   "distance": 168.3,
+   "pos": [
+    -18.4,
+    0.4,
+    1
+   ]
+  }
+ ],
+ "events": {
+  "damage": 119,
+  "death": 20,
+  "spawn": 33,
+  "pickup": 6,
+  "fire": 299
+ },
+ "renderer": {
+  "calls": 805,
+  "triangles": 177598,
+  "geometries": 376,
+  "textures": 142,
+  "programs": 115
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

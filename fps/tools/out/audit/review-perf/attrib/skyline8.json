@@ -1,0 +1,265 @@
+{
+ "eval": {
+  "snaps": [
+   {
+    "label": "player-pov t=3.0",
+    "base": {
+     "main": {
+      "calls": 269,
+      "tris": 69092
+     },
+     "shadow": {
+      "calls": 222,
+      "tris": 38604
+     }
+    },
+    "view": {
+     "calls": 36,
+     "tris": 3634
+    },
+    "full": {
+     "calls": 541,
+     "tris": 111344,
+     "shadowCalls": 222,
+     "shadowTris": 38604
+    },
+    "postCalls": 14,
+    "mapStats": {
+     "drawCalls": 41,
+     "triangles": 28470,
+     "solids": 1452,
+     "collisionTriangles": 6304,
+     "materials": 34
+    },
+    "rows": [
+     {
+      "name": "bot",
+      "n": 8,
+      "sceneMeshes": 194,
+      "sceneTris": 21732,
+      "mainCalls": 155,
+      "mainTris": 16522,
+      "shadowCalls": 194,
+      "shadowTris": 21732
+     },
+     {
+      "name": "map/map-solids",
+      "n": 1,
+      "sceneMeshes": 41,
+      "sceneTris": 28470,
+      "mainCalls": 38,
+      "mainTris": 28440,
+      "shadowCalls": 28,
+      "shadowTris": 16872
+     },
+     {
+      "name": "map/pickups",
+      "n": 1,
+      "sceneMeshes": 38,
+      "sceneTris": 16914,
+      "mainCalls": 39,
+      "mainTris": 16916,
+      "shadowCalls": 0,
+      "shadowTris": 0
+     },
+     {
+      "name": "projectiles",
+      "n": 1,
+      "sceneMeshes": 90,
+      "sceneTris": 5404,
+      "mainCalls": 27,
+      "mainTris": 604,
+      "shadowCalls": 0,
+      "shadowTris": 0
+     },
+     {
+      "name": "map/jump-pads",
+      "n": 1,
+      "sceneMeshes": 5,
+      "sceneTris": 3136,
+      "mainCalls": 6,
+      "mainTris": 3184,
+      "shadowCalls": 0,
+      "shadowTris": 0
+     },
+     {
+      "name": "scene/Mesh",
+      "n": 4,
+      "sceneMeshes": 4,
+      "sceneTris": 54,
+      "mainCalls": 2,
+      "mainTris": 1238,
+      "shadowCalls": 0,
+      "shadowTris": 0
+     },
+     {
+      "name": "scene/Mesh[inst]",
+      "n": 2,
+      "sceneMeshes": 2,
+      "sceneTris": 348,
+      "mainCalls": 1,
+      "mainTris": 348,
+      "shadowCalls": 0,
+      "shadowTris": 0
+     },
+     {
+      "name": "map/sky",
+      "n": 1,
+      "sceneMeshes": 1,
+      "sceneTris": 1840,
+      "mainCalls": 1,
+      "mainTris": 1840,
+      "shadowCalls": 0,
+      "shadowTris": 0
+     },
+     {
+      "name": "grapple",
+      "n": 1,
+      "sceneMeshes": 4,
+      "sceneTris": 462,
+      "mainCalls": 0,
+      "mainTris": 0,
+      "shadowCalls": 0,
+      "shadowTris": 0
+     }
+    ],
+    "pixelRatio": 1,
+    "size": [
+     1280,
+     720
+    ],
+    "liveBots": 8
+   },
+   {
+    "label": "overview",
+    "base": {
+     "main": {
+      "calls": 321,
+      "tris": 74790
+     },
+     "shadow": {
+      "calls": 222,
+      "tris": 38604
+     }
+    },
+    "view": {
+     "calls": 36,
+     "tris": 3634
+    },
+    "full": {
+     "calls": 593,
+     "tris": 117042,
+     "shadowCalls": 222,
+     "shadowTris": 38604
+    },
+    "postCalls": 14,
+    "mapStats": {
+     "drawCalls": 41,
+     "triangles": 28470,
+     "solids": 1452,
+     "collisionTriangles": 6304,
+     "materials": 34
+    },
+    "rows": [
+     {
+      "name": "bot",
+      "n": 8,
+      "sceneMeshes": 194,
+      "sceneTris": 21732,
+      "mainCalls": 197,
+      "mainTris": 21738,
+      "shadowCalls": 194,
+      "shadowTris": 21732
+     },
+     {
+      "name": "map/map-solids",
+      "n": 1,
+      "sceneMeshes": 41,
+      "sceneTris": 28470,
+      "mainCalls": 41,
+      "mainTris": 28470,
+      "shadowCalls": 28,
+      "shadowTris": 16872
+     },
+     {
+      "name": "map/pickups",
+      "n": 1,
+      "sceneMeshes": 38,
+      "sceneTris": 16914,
+      "mainCalls": 39,
+      "mainTris": 16916,
+      "shadowCalls": 0,
+      "shadowTris": 0
+     },
+     {
+      "name": "projectiles",
+      "n": 1,
+      "sceneMeshes": 90,
+      "sceneTris": 5404,
+      "mainCalls": 34,
+      "mainTris": 1056,
+      "shadowCalls": 0,
+      "shadowTris": 0
+     },
+     {
+      "name": "map/jump-pads",
+      "n": 1,
+      "sceneMeshes": 5,
+      "sceneTris": 3136,
+      "mainCalls": 6,
+      "mainTris": 3184,
+      "shadowCalls": 0,
+      "shadowTris": 0
+     },
+     {
+      "name": "scene/Mesh",
+      "n": 4,
+      "sceneMeshes": 4,
+      "sceneTris": 54,
+      "mainCalls": 2,
+      "mainTris": 1238,
+      "shadowCalls": 0,
+      "shadowTris": 0
+     },
+     {
+      "name": "scene/Mesh[inst]",
+      "n": 2,
+      "sceneMeshes": 2,
+      "sceneTris": 348,
+      "mainCalls": 1,
+      "mainTris": 348,
+      "shadowCalls": 0,
+      "shadowTris": 0
+     },
+     {
+      "name": "map/sky",
+      "n": 1,
+      "sceneMeshes": 1,
+      "sceneTris": 1840,
+      "mainCalls": 1,
+      "mainTris": 1840,
+      "shadowCalls": 0,
+      "shadowTris": 0
+     },
+     {
+      "name": "grapple",
+      "n": 1,
+      "sceneMeshes": 4,
+      "sceneTris": 462,
+      "mainCalls": 0,
+      "mainTris": 0,
+      "shadowCalls": 0,
+      "shadowTris": 0
+     }
+    ],
+    "pixelRatio": 1,
+    "size": [
+     1280,
+     720
+    ],
+    "liveBots": 8
+   }
+  ]
+ },
+ "errors": []
+}

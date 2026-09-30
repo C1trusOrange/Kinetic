@@ -1,0 +1,25 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>uvkey</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><script type="module">
+import * as THREE from 'three';
+window.__DONE__ = false; window.__RES__ = {};
+try {
+  const WM = await import('/src/weapons/WeaponModels.js');
+  const WMat = await import('/src/weapons/models/WeaponMaterials.js');
+  const M = WMat.getMaterials();
+  const out = window.__RES__;
+  out.uvKeysWithoutMaterial = Object.keys(WMat.UV_SCALE).filter(k => !(k in M));
+  out.materialKeysUsingDefault = Object.keys(M).filter(k => !(k in WMat.UV_SCALE));
+  out.materialsWithMap = Object.keys(M).filter(k => M[k].map).filter(k => !(k in WMat.UV_SCALE));
+  const m = WM.createWeaponModel('rifle', { view: false });
+  m.root.traverse(o => { if (o.isMesh && o.name.includes('cellBody')) {
+    const uv = o.geometry.attributes.uv, p = o.geometry.attributes.position, nor = o.geometry.attributes.normal;
+    // X-facing faces only
+    let umin = 1e9, umax = -1e9, vmin = 1e9, vmax = -1e9, zmin = 1e9, zmax = -1e9;
+    for (let i = 0; i < uv.count; i++) if (Math.abs(nor.getX(i)) > 0.99 && p.getX(i) > 0) { umin = Math.min(umin, uv.getX(i)); umax = Math.max(umax, uv.getX(i)); vmin = Math.min(vmin, uv.getY(i)); vmax = Math.max(vmax, uv.getY(i)); zmin = Math.min(zmin, p.getZ(i)); zmax = Math.max(zmax, p.getZ(i)); }
+    out.cellUV = { uSpan: +(umax - umin).toFixed(3), vSpan: +(vmax - vmin).toFixed(3), zSpan: +(zmax - zmin).toFixed(3), texWrap: M.cellBody.map.wrapS };
+  } });
+} catch (e) { window.__RES__.error = String(e && e.stack || e); }
+window.__DONE__ = true;
+</script></body></html>

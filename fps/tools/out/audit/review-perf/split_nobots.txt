@@ -1,0 +1,230 @@
+[run] http://127.0.0.1:54197/index.html?autotest=1&map=foundry&bots=8&duration=30&toggle=nobots&scenario=tools/out/audit/review-perf/scenario_split.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 30.1,
+ "frames": 976,
+ "fps": {
+  "avg": 37.3,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 40.4,
+  "maxSpeed": 9.6,
+  "minY": 0,
+  "maxY": 0.010685509208704536,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true
+  },
+  "shots": 32,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Torque",
+   "alive": false,
+   "kills": 0,
+   "deaths": 3,
+   "health": 0,
+   "weapon": "sniper",
+   "state": "retreat",
+   "distance": 117.8,
+   "pos": [
+    21.2,
+    0,
+    30.8
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 163.7,
+   "pos": [
+    18.4,
+    0,
+    10.2
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 189,
+   "pos": [
+    17,
+    0,
+    -36
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 185.5,
+   "pos": [
+    2.7,
+    0,
+    19.8
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 1,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 146.5,
+   "pos": [
+    -17.7,
+    7.2,
+    19.1
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "collect",
+   "distance": 164.9,
+   "pos": [
+    -44.7,
+    0,
+    -14.1
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 1,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 150.3,
+   "pos": [
+    44.6,
+    0,
+    -3.3
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 2,
+   "deaths": 0,
+   "health": 32,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 247.4,
+   "pos": [
+    -13.8,
+    0,
+    -24.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 67,
+  "death": 11,
+  "spawn": 19,
+  "pickup": 3,
+  "fire": 253
+ },
+ "renderer": {
+  "calls": 153,
+  "triangles": 106460,
+  "geometries": 215,
+  "textures": 133,
+  "programs": 107
+ },
+ "custom": {
+  "toggle": "nobots",
+  "n": {
+   "A": 422,
+   "B": 422
+  },
+  "A": {
+   "renderMedian": 9.1,
+   "renderMean": 11.81,
+   "shadowMedian": 1.8,
+   "shadowMean": 2.43,
+   "callsMedian": 373,
+   "trisMedian": 130752
+  },
+  "B": {
+   "renderMedian": 6.3,
+   "renderMean": 7.65,
+   "shadowMedian": 0.5,
+   "shadowMean": 0.67,
+   "callsMedian": 148,
+   "trisMedian": 105298
+  },
+  "pass": {
+   "0:RenderPass A": {
+    "median": 7.2,
+    "mean": 14.47
+   },
+   "1:RenderPass A": {
+    "median": 1.6,
+    "mean": 6.05
+   },
+   "2:UnrealBloomPass A": {
+    "median": 0.4,
+    "mean": 0.58
+   },
+   "3:OutputPass A": {
+    "median": 0.1,
+    "mean": 0.07
+   },
+   "0:RenderPass B": {
+    "median": 4.1,
+    "mean": 5.24
+   },
+   "1:RenderPass B": {
+    "median": 1.5,
+    "mean": 1.7
+   },
+   "2:UnrealBloomPass B": {
+    "median": 0.4,
+    "mean": 0.58
+   },
+   "3:OutputPass B": {
+    "median": 0.1,
+    "mean": 0.06
+   }
+  },
+  "bots": 8,
+  "map": "foundry"
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

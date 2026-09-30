@@ -1,0 +1,44 @@
+[run] http://127.0.0.1:52875/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-player/v_spawns.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0.27,
+ "frames": 32,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": 4.5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "map": "sandbox",
+  "bad": [],
+  "total": 16
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

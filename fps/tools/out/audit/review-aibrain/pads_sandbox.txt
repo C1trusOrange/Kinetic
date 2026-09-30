@@ -1,0 +1,450 @@
+[run] http://127.0.0.1:53027/index.html?autotest=1&map=sandbox&bots=10&spectate=1&pads=1&scenario=tools/out/audit/review-aibrain/scen_walk.js&duration=90
+[log] [autotest] finished {"ok":true,"errors":0,"fps":56.4}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 90.05,
+ "frames": 3947,
+ "fps": {
+  "avg": 56.4,
+  "min": 4,
+  "max": 188.7
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 50.1,
+   "pos": [
+    23.3,
+    16,
+    -19.7
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 44.1,
+   "pos": [
+    24.1,
+    16,
+    -13.2
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 44.6,
+   "pos": [
+    24.6,
+    16,
+    -18.9
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 36.9,
+   "pos": [
+    25.2,
+    16,
+    -14.2
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 272.5,
+   "pos": [
+    19.4,
+    16,
+    -11.8
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 1139,
+   "pos": [
+    19.1,
+    15.5,
+    -8
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 44.6,
+   "pos": [
+    -23,
+    0,
+    -8.2
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 39.7,
+   "pos": [
+    -30.4,
+    0,
+    0.3
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 58.6,
+   "pos": [
+    -30.4,
+    0,
+    4.2
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 53.9,
+   "pos": [
+    -20,
+    0,
+    0.1
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 10,
+  "pickup": 4,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 411,
+  "triangles": 66518,
+  "geometries": 136,
+  "textures": 128,
+  "programs": 93
+ },
+ "custom": {
+  "trials": [
+   {
+    "ok": true,
+    "t": 2.3,
+    "d": 6.7,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 2.5,
+    "d": 9.2,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 2.9,
+    "d": 24.9,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 3.8,
+    "d": 25.6,
+    "req": 4,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 4,
+    "d": 16.1,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 4.6,
+    "d": 28.7,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 4.8,
+    "d": 26.7,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 4.9,
+    "d": 18.6,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 5.1,
+    "d": 33.5,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 4.5,
+    "d": 27.5,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.7,
+    "d": 22.7,
+    "req": 7,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 5.4,
+    "d": 13.6,
+    "req": 1,
+    "stuck": 0
+   }
+  ],
+  "cnt": {
+   "req": 122,
+   "stuck": 0,
+   "rescue": 0
+  },
+  "n": 12,
+  "ok": 12,
+  "fail": [],
+  "slow": [
+   {
+    "pad": 1,
+    "bot": 9,
+    "a": [
+     -24.5,
+     -4,
+     12.5
+    ],
+    "g": [
+     -29.5,
+     0,
+     14.5
+    ],
+    "d": 6.7,
+    "conn": true,
+    "ok": true,
+    "time": 2.3,
+    "req": 3,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0.2,
+    "speedAvg": 2.9
+   },
+   {
+    "pad": 1,
+    "bot": 10,
+    "a": [
+     -22.5,
+     -4,
+     12.5
+    ],
+    "g": [
+     -30.5,
+     0,
+     14.5
+    ],
+    "d": 9.2,
+    "conn": true,
+    "ok": true,
+    "time": 2.5,
+    "req": 3,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.4,
+    "finalDy": 0,
+    "speedAvg": 3.7
+   },
+   {
+    "pad": 0,
+    "bot": 2,
+    "a": [
+     24.5,
+     0,
+     -13.5
+    ],
+    "g": [
+     23.5,
+     16,
+     -12.5
+    ],
+    "d": 16.1,
+    "conn": true,
+    "ok": true,
+    "time": 4,
+    "req": 3,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.6,
+    "finalDy": 0,
+    "speedAvg": 4.1
+   },
+   {
+    "pad": 0,
+    "bot": 1,
+    "a": [
+     18.5,
+     0,
+     -28.5
+    ],
+    "g": [
+     23.5,
+     16,
+     -20.5
+    ],
+    "d": 18.6,
+    "conn": true,
+    "ok": true,
+    "time": 4.9,
+    "req": 3,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.4,
+    "finalDy": 0,
+    "speedAvg": 3.8
+   },
+   {
+    "pad": 0,
+    "bot": 6,
+    "a": [
+     10.5,
+     0,
+     -25.5
+    ],
+    "g": [
+     18.5,
+     16,
+     -11.5
+    ],
+    "d": 22.7,
+    "conn": true,
+    "ok": true,
+    "time": 7.7,
+    "req": 7,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.3,
+    "finalDy": 2.3,
+    "speedAvg": 3
+   },
+   {
+    "pad": 1,
+    "bot": 10,
+    "a": [
+     -20.5,
+     -4,
+     12.5
+    ],
+    "g": [
+     -20.5,
+     0,
+     -0.5
+    ],
+    "d": 13.6,
+    "conn": true,
+    "ok": true,
+    "time": 5.4,
+    "req": 1,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0,
+    "speedAvg": 2.5
+   }
+  ],
+  "stuckTrials": 0,
+  "nav": {
+   "nodes": 4091,
+   "links": 29699,
+   "components": 5,
+   "largestComponent": 4087,
+   "buildMs": 202,
+   "traps": 0,
+   "strongComponents": 26,
+   "largestStrong": 3885,
+   "cells": 4096
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

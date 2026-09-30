@@ -1,0 +1,141 @@
+[run] http://127.0.0.1:57650/index.html?autotest=1&map=foundry&bots=0&script=idle&scenario=tools/out/audit/verify-player-1/loops2.js&mode2=end&sx=0&sy=0&sz=-5&tx=0&ty=6&tz=-44
+[run] screenshot -> tools\out\audit\verify-player-1\f3_end_far_8s.png
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 1.9,
+ "frames": 187,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 166.66666666675903
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 14.45860885900661,
+  "maxSpeed": 24.058355127201175,
+  "minY": 0,
+  "maxY": 1.2000000000000002,
+  "states": {
+   "onGround": true,
+   "isGrappling": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "mode": "end",
+  "log": [
+   [
+    717,
+    "ended",
+    "attached",
+    33.36,
+    1,
+    1,
+    1.49
+   ],
+   [
+    1416,
+    "ended",
+    "attached",
+    30.15,
+    1,
+    1,
+    0.79
+   ],
+   [
+    2110,
+    "ended",
+    "attached",
+    26.86,
+    1,
+    1,
+    0.11
+   ],
+   [
+    2802,
+    "ended",
+    "attached",
+    26.09,
+    1,
+    1,
+    -0.02
+   ],
+   [
+    3508,
+    "ended",
+    "attached",
+    26.09,
+    1,
+    1,
+    -0.02
+   ],
+   [
+    4211,
+    "ended",
+    "attached",
+    26.09,
+    1,
+    1,
+    -0.02
+   ],
+   [
+    4911,
+    "ended",
+    "attached",
+    26.09,
+    1,
+    1,
+    -0.02
+   ]
+  ],
+  "attT": 0.5502000000000018,
+  "anchor": [
+   1.46,
+   7.09,
+   -43.97
+  ],
+  "anchorDist": 38.37,
+  "before": {
+   "gstate": "attached",
+   "loops": 1,
+   "loopBusGain": 1,
+   "ready": true,
+   "ctx": "running",
+   "state": "playing",
+   "gvis": true,
+   "dist": 36.27
+  },
+  "after": {
+   "gstate": "attached",
+   "loops": 1,
+   "loopBusGain": 1,
+   "ready": true,
+   "ctx": "running",
+   "state": "ended",
+   "gvis": true,
+   "alive": true,
+   "isGrappling": true,
+   "endTimer": -0.024499999999998856
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

@@ -1,0 +1,766 @@
+[run] http://127.0.0.1:60362/index.html?autotest=1&map=foundry&bots=5&duration=20&warm=0&scenario=tools/out/audit/review-perf/frames/scenario.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 20.12,
+ "frames": 882,
+ "fps": {
+  "avg": 51,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 71.8,
+  "maxSpeed": 11.74,
+  "minY": 0,
+  "maxY": 2.299999999999999,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "isMantling": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true
+  },
+  "shots": 20,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 3,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 101.3,
+   "pos": [
+    5.3,
+    -4,
+    25.5
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 59,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 116.9,
+   "pos": [
+    -0.5,
+    0.4,
+    17.7
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 46,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 122,
+   "pos": [
+    -2.1,
+    0,
+    1.2
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 107.6,
+   "pos": [
+    -42,
+    0,
+    5.2
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "collect",
+   "distance": 115.4,
+   "pos": [
+    31.2,
+    0,
+    -30.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 25,
+  "death": 3,
+  "spawn": 9,
+  "pickup": 1,
+  "fire": 90
+ },
+ "renderer": {
+  "calls": 305,
+  "triangles": 120808,
+  "geometries": 376,
+  "textures": 144,
+  "programs": 115
+ },
+ "custom": {
+  "startProgs": 51,
+  "prof": {
+   "frames": 836,
+   "cpuMs": {
+    "p50": 14.1,
+    "p90": 24.9,
+    "p99": 58,
+    "max": 698.7
+   },
+   "intervalMs": {
+    "p50": 23.9,
+    "p90": 42.4,
+    "p99": 72.8,
+    "max": 1145.4
+   },
+   "totalNewPrograms": 115,
+   "slow": [
+    {
+     "i": 38,
+     "t": 0.05,
+     "dur": 42.4,
+     "interval": 0,
+     "newProg": "50 programs",
+     "users": {
+      "52": [
+       "S:body:frag/MeshStandardMaterial@grenade",
+       "S:body:frag/MeshStandardMaterial@grenade",
+       "S:body:frag/MeshStandardMaterial@grenade",
+       "+11"
+      ],
+      "55": [
+       "S:Mesh/MeshBasicMaterial@flame",
+       "S:Mesh/MeshBasicMaterial@flame",
+       "S:Mesh/MeshBasicMaterial@flame",
+       "+5"
+      ],
+      "57": [
+       "S:Mesh/MeshBasicMaterial@flame",
+       "S:Mesh/MeshBasicMaterial@flame",
+       "S:Mesh/MeshBasicMaterial@flame",
+       "+9"
+      ],
+      "58": [
+       "S:Sprite/SpriteMaterial",
+       "S:Sprite/SpriteMaterial",
+       "S:Sprite/SpriteMaterial",
+       "+3"
+      ],
+      "59": [
+       "S:Mesh/MeshBasicMaterial[inst]"
+      ],
+      "61": [
+       "S:Mesh/MeshBasicMaterial"
+      ],
+      "66": [
+       "S:grapple-rope/MeshBasicMaterial@grapple"
+      ],
+      "67": [
+       "S:Mesh/MeshStandardMaterial@grapple-claw"
+      ],
+      "68": [
+       "S:Mesh/MeshBasicMaterial@grapple-claw"
+      ],
+      "69": [
+       "S:Sprite/SpriteMaterial@grapple-claw"
+      ],
+      "85": [
+       "S:pelvis/MeshStandardMaterial(bot_6ee05a)@BotModel",
+       "S:torso/MeshStandardMaterial(bot_6ee05a)@pelvis",
+       "S:head/MeshStandardMaterial(bot_6ee05a)@torso",
+       "+23"
+      ],
+      "87": [
+       "S:body:polyTan/MeshStandardMaterial@weapon_sniper",
+       "V:body:polyTan/MeshStandardMaterial@weapon_sniper_view"
+      ],
+      "88": [
+       "S:body:paintOlive/MeshStandardMaterial@rocket",
+       "S:body:hazard/MeshStandardMaterial@rocket",
+       "S:body:paintOrange/MeshStandardMaterial@rocket",
+       "+21"
+      ],
+      "91": [
+       "S:pelvis/MeshStandardMaterial(bot_ff4a3d)@BotModel",
+       "S:torso/MeshStandardMaterial(bot_ff4a3d)@pelvis",
+       "S:head/MeshStandardMaterial(bot_ff4a3d)@torso",
+       "+36"
+      ],
+      "92": [
+       "S:Mesh/ShaderMaterial"
+      ],
+      "93": [
+       "S:Mesh/ShaderMaterial"
+      ],
+      "94": [
+       "S:body:steelBlack/MeshStandardMaterial@rocket",
+       "S:body:steelDark/MeshStandardMaterial@rocket",
+       "S:body:steelBlack/MeshStandardMaterial@rocket",
+       "+77"
+      ],
+      "95": [
+       "S:body:polyGrey/MeshStandardMaterial@weapon_rifle",
+       "S:body:poly/MeshStandardMaterial@weapon_rifle",
+       "S:body:grip/MeshStandardMaterial@weapon_rifle",
+       "+61"
+      ],
+      "96": [
+       "S:body:glowCyan/MeshStandardMaterial@weapon_rifle",
+       "S:body:void/MeshStandardMaterial@weapon_rifle",
+       "S:body:glowCyan/MeshStandardMaterial@weapon_rifle",
+       "+34"
+      ],
+      "97": [
+       "S:body:cellBody/MeshStandardMaterial@weapon_rifle",
+       "S:body:cellBody/MeshStandardMaterial@weapon_rifle",
+       "V:body:cellBody/MeshStandardMaterial@weapon_rifle_view",
+       "+1"
+      ],
+      "98": [
+       "S:body:custom:93be2dd0-7ef5-489d-be81-0508ffb0aaaa/MeshStandardMaterial@weapon_rifle",
+       "S:body:custom:93be2dd0-7ef5-489d-be81-0508ffb0aaaa/MeshStandardMaterial@weapon_rifle",
+       "V:body:custom:93be2dd0-7ef5-489d-be81-0508ffb0aaaa/MeshStandardMaterial@weapon_rifle_view",
+       "+2"
+      ],
+      "100": [
+       "S:Mesh/MeshBasicMaterial",
+       "S:body:reticleRing/MeshBasicMaterial@weapon_rifle",
+       "S:body:reticleRing/MeshBasicMaterial@weapon_rifle",
+       "+4"
+      ],
+      "101": [
+       "S:Mesh/MeshStandardMaterial",
+       "S:body:lens/MeshStandardMaterial@weapon_rifle",
+       "S:body:lens/MeshStandardMaterial@weapon_rifle",
+       "+4"
+      ]
+     },
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 1.2,
+      "render": 36.6
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 446,
+       "ms": 2
+      }
+     }
+    },
+    {
+     "i": 39,
+     "t": 0.1,
+     "dur": 43,
+     "interval": 1145.4,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "player.update": 2.3,
+      "bots.update": 17.6,
+      "render": 20.7
+     },
+     "gl": {}
+    },
+    {
+     "i": 40,
+     "t": 0.15,
+     "dur": 44.2,
+     "interval": 54.5,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 5.4,
+      "render": 36.6
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 448,
+       "ms": 4.4
+      }
+     }
+    },
+    {
+     "i": 99,
+     "t": 1.9,
+     "dur": 103.6,
+     "interval": 66.6,
+     "newProg": [
+      "#102",
+      "#103"
+     ],
+     "users": {
+      "103": [
+       "S:Mesh/MeshBasicMaterial@flame",
+       "S:Mesh/MeshBasicMaterial@flame",
+       "S:Mesh/MeshBasicMaterial@flame",
+       "+5"
+      ]
+     },
+     "keys": [
+      "|basic,highp,srgb-linear,false,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,2049,5123,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+      "|basic,highp,srgb-linear,false,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,2049,1027,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}"
+     ],
+     "dTex": 1,
+     "dGeo": 11,
+     "parts": {
+      "bots.update": 8,
+      "render": 92.3
+     },
+     "gl": {
+      "getProgramInfoLog": {
+       "n": 2,
+       "ms": 64.7
+      }
+     }
+    },
+    {
+     "i": 100,
+     "t": 1.95,
+     "dur": 23,
+     "interval": 103.3,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 1.2,
+      "render": 19
+     },
+     "gl": {}
+    },
+    {
+     "i": 178,
+     "t": 4.25,
+     "dur": 43.2,
+     "interval": 24.2,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 8,
+     "parts": {
+      "bots.update": 12,
+      "render": 29.9
+     },
+     "gl": {
+      "bufferSubData": {
+       "n": 24,
+       "ms": 1.8
+      }
+     }
+    },
+    {
+     "i": 199,
+     "t": 4.78,
+     "dur": 261.1,
+     "interval": 48.3,
+     "newProg": [
+      "#104"
+     ],
+     "users": {
+      "104": [
+       "V:Mesh/MeshStandardMaterial@viewmodel",
+       "V:Mesh/MeshStandardMaterial@viewmodel",
+       "V:Mesh/MeshStandardMaterial@viewmodel",
+       "+7"
+      ]
+     },
+     "keys": [
+      "|physical,STANDARD,,highp,srgb-linear,306,1024,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,false,false,0,,1,1,0,0,1,0,0,0,0,0,0,2,0,0,0,0,33,131074,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}"
+     ],
+     "dTex": 0,
+     "dGeo": 1,
+     "parts": {
+      "weapons.update": 3.6,
+      "render": 255.2
+     },
+     "gl": {
+      "getProgramInfoLog": {
+       "n": 1,
+       "ms": 238.1
+      }
+     }
+    },
+    {
+     "i": 200,
+     "t": 4.83,
+     "dur": 41.1,
+     "interval": 272.8,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 29.8,
+      "render": 9.7
+     },
+     "gl": {}
+    },
+    {
+     "i": 201,
+     "t": 4.88,
+     "dur": 61.2,
+     "interval": 42.5,
+     "newProg": [
+      "#105",
+      "#106",
+      "#107"
+     ],
+     "users": {
+      "106": [
+       "V:Mesh/MeshBasicMaterial",
+       "V:Mesh/MeshBasicMaterial"
+      ],
+      "107": [
+       "V:Sprite/SpriteMaterial"
+      ]
+     },
+     "keys": [
+      "|basic,highp,srgb-linear,false,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,false,false,0,,1,1,0,0,1,0,0,0,0,0,0,2,0,0,0,0,1,4096,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+      "|basic,highp,srgb-linear,false,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,false,false,0,,1,1,0,0,1,0,0,0,0,0,0,2,0,0,0,0,1,0,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+      "|sprite,highp,srgb-linear,false,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,false,true,0,,1,1,0,0,1,0,0,0,0,0,0,2,0,0,0,0,1,0,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}"
+     ],
+     "dTex": 2,
+     "dGeo": 3,
+     "parts": {
+      "weapons.update": 1.3,
+      "render": 57.1
+     },
+     "gl": {
+      "getProgramInfoLog": {
+       "n": 3,
+       "ms": 30.8
+      },
+      "getProgramParameter": {
+       "n": 9,
+       "ms": 1.4
+      }
+     }
+    },
+    {
+     "i": 442,
+     "t": 11.18,
+     "dur": 89.6,
+     "interval": 36.2,
+     "newProg": [
+      "#108",
+      "#109",
+      "#110"
+     ],
+     "users": {
+      "109": [
+       "S:Mesh/MeshBasicMaterial"
+      ],
+      "110": [
+       "S:Mesh/MeshBasicMaterial[inst]"
+      ]
+     },
+     "keys": [
+      "|basic,highp,srgb-linear,false,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,1,5121,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+      "|basic,highp,srgb-linear,false,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,1,1025,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+      "|basic,highp,srgb-linear,false,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,3,1025,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}"
+     ],
+     "dTex": 0,
+     "dGeo": 2,
+     "parts": {
+      "bots.update": 16.7,
+      "render": 70.1
+     },
+     "gl": {
+      "useProgram": {
+       "n": 62,
+       "ms": 1.1
+      },
+      "getProgramInfoLog": {
+       "n": 3,
+       "ms": 40.5
+      },
+      "getProgramParameter": {
+       "n": 9,
+       "ms": 2.6
+      }
+     }
+    },
+    {
+     "i": 444,
+     "t": 11.27,
+     "dur": 43,
+     "interval": 18.2,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 1.2,
+      "render": 40.5
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 280,
+       "ms": 1.9
+      }
+     }
+    },
+    {
+     "i": 460,
+     "t": 11.7,
+     "dur": 40.7,
+     "interval": 24.3,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 16.7,
+      "render": 20.8
+     },
+     "gl": {}
+    },
+    {
+     "i": 461,
+     "t": 11.72,
+     "dur": 37.3,
+     "interval": 54.7,
+     "newProg": [
+      "#111"
+     ],
+     "users": {
+      "111": [
+       "S:Sprite/SpriteMaterial",
+       "S:Sprite/SpriteMaterial",
+       "S:Sprite/SpriteMaterial",
+       "+3"
+      ]
+     },
+     "keys": [
+      "|sprite,highp,srgb-linear,false,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,true,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,1,1025,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}"
+     ],
+     "dTex": 1,
+     "dGeo": 0,
+     "parts": {
+      "weapons.update": 4.2,
+      "render": 30
+     },
+     "gl": {
+      "getProgramInfoLog": {
+       "n": 1,
+       "ms": 13.5
+      }
+     }
+    },
+    {
+     "i": 482,
+     "t": 12.31,
+     "dur": 698.7,
+     "interval": 24.2,
+     "newProg": [
+      "#112",
+      "#113",
+      "#114",
+      "#115"
+     ],
+     "users": {
+      "112": [
+       "S:grapple-rope/MeshBasicMaterial@grapple"
+      ],
+      "113": [
+       "S:Mesh/MeshStandardMaterial@grapple-claw"
+      ],
+      "114": [
+       "S:Mesh/MeshBasicMaterial@grapple-claw"
+      ],
+      "115": [
+       "S:Sprite/SpriteMaterial@grapple-claw"
+      ]
+     },
+     "keys": [
+      "|basic,highp,srgb-linear,false,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,1,134147,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+      "|physical,STANDARD,,highp,srgb-linear,306,1024,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,33,132099,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+      "|basic,highp,srgb-linear,false,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,1,132099,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+      "|sprite,highp,srgb-linear,false,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,true,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,1,1027,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}"
+     ],
+     "dTex": 2,
+     "dGeo": 3,
+     "parts": {
+      "player.update": 1.5,
+      "bots.update": 1.7,
+      "player.updateCamera": 1.3,
+      "render": 692.4
+     },
+     "gl": {
+      "getProgramInfoLog": {
+       "n": 4,
+       "ms": 666.1
+      },
+      "getProgramParameter": {
+       "n": 12,
+       "ms": 1.8
+      }
+     }
+    },
+    {
+     "i": 483,
+     "t": 12.33,
+     "dur": 15.5,
+     "interval": 709.1,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "player.update": 1.4,
+      "bots.update": 2.7,
+      "render": 9.3
+     },
+     "gl": {}
+    },
+    {
+     "i": 826,
+     "t": 18.79,
+     "dur": 69.1,
+     "interval": 36.3,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 54.3,
+      "render": 13.4
+     },
+     "gl": {}
+    },
+    {
+     "i": 846,
+     "t": 19.21,
+     "dur": 58,
+     "interval": 42.6,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 1.2,
+      "render": 54.5
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 316,
+       "ms": 35.2
+      }
+     }
+    },
+    {
+     "i": 848,
+     "t": 19.3,
+     "dur": 17.5,
+     "interval": 169.8,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "render": 15.4
+     },
+     "gl": {}
+    },
+    {
+     "i": 850,
+     "t": 19.37,
+     "dur": 59.9,
+     "interval": 24.3,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 7.8,
+      "render": 50.8
+     },
+     "gl": {}
+    },
+    {
+     "i": 855,
+     "t": 19.53,
+     "dur": 54.8,
+     "interval": 24.3,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 26.5,
+      "effects.update": 5.2,
+      "render": 21.8
+     },
+     "gl": {}
+    },
+    {
+     "i": 864,
+     "t": 19.75,
+     "dur": 56.7,
+     "interval": 18.1,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "render": 13.7
+     },
+     "gl": {}
+    },
+    {
+     "i": 866,
+     "t": 19.81,
+     "dur": 67.2,
+     "interval": 30.2,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "autotest.update": 1.8,
+      "player.update": 3,
+      "bots.update": 6.7,
+      "effects.update": 1.8,
+      "render": 49.6
+     },
+     "gl": {}
+    }
+   ],
+   "glTotalMs": {
+    "createProgram": 2.4,
+    "linkProgram": 2.5,
+    "bufferSubData": 121.8,
+    "bufferData": 11.7,
+    "useProgram": 111.3,
+    "drawElements": 84.5,
+    "uniformMatrix4fv": 475.9,
+    "drawArrays": 263.3,
+    "getProgramInfoLog": 5212.9,
+    "getProgramParameter": 14.9,
+    "getActiveUniform": 2.1,
+    "getUniformLocation": 2.4,
+    "texSubImage2D": 31.5,
+    "drawElementsInstanced": 29.5
+   }
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

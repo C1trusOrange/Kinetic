@@ -1,0 +1,113 @@
+[run] http://127.0.0.1:50212/index.html?autotest=1&mapfile=tools/out/audit/design-depth/aerie_proto.js&bots=0&script=idle&scenario=tools/out/audit/design-depth/recover.js&duration=28&quality=low
+[log] [autotest] finished {"ok":true,"errors":0,"fps":103.7}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 28.19,
+ "frames": 1886,
+ "fps": {
+  "avg": 103.7,
+  "min": 4,
+  "max": 188.7
+ },
+ "errors": [],
+ "map": "aerie",
+ "player": {
+  "distance": 254.8,
+  "maxSpeed": 14.19,
+  "minY": -37.966666666666626,
+  "maxY": 0.07500000000000007,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isGrappling": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 4,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 4,
+  "spawn": 4,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 99,
+  "triangles": 30234,
+  "geometries": 114,
+  "textures": 74,
+  "programs": 71
+ },
+ "custom": {
+  "runs": [
+   {
+    "name": "grapple_after_0.55s",
+    "firedAt": 0.57,
+    "firedY": -3.1,
+    "grappled": true,
+    "minY": -38.6,
+    "diedByKillPlane": true,
+    "endPos": [
+     10,
+     -38.6,
+     -23.8
+    ],
+    "endAlive": false,
+    "onGround": false
+   },
+   {
+    "name": "grapple_after_0.9s",
+    "firedAt": 0.92,
+    "firedY": -8.9,
+    "grappled": true,
+    "minY": -39,
+    "diedByKillPlane": true,
+    "endPos": [
+     10,
+     -39,
+     -11.2
+    ],
+    "endAlive": false,
+    "onGround": false
+   },
+   {
+    "name": "no_recovery_control",
+    "firedAt": null,
+    "firedY": null,
+    "grappled": false,
+    "minY": -38.3,
+    "diedByKillPlane": true,
+    "endPos": [
+     10,
+     -38.3,
+     -43.1
+    ],
+    "endAlive": false,
+    "onGround": false
+   },
+   {
+    "name": "grapple_after_1.3s_short_push",
+    "firedAt": 1.31,
+    "firedY": -18.5,
+    "grappled": true,
+    "minY": -38.3,
+    "diedByKillPlane": true,
+    "endPos": [
+     10,
+     -38.3,
+     -15.4
+    ],
+    "endAlive": false,
+    "onGround": false
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

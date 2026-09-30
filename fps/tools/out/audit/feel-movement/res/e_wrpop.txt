@@ -1,0 +1,4 @@
+fps {'avg': 32.3, 'min': 4, 'max': 175.4} errors 0 [] t 10.42
+wr_ground_entry {"dur":2.01,"end":"timeout","maxY":4.05,"dist":21.06,"ySeries":[1.01,2.05,2.93,3.62,4.01,3.94,3.4,2.54,1.32],"vySeries":[4.2,3.79,3.21,2.27,0.8,-1.4,-2.72,-4.16,-6]}
+wr_walljump_from_ground_entry {"wj":{"y":3.94,"hs":12.9},"maxY":5.39}
+[run] done: wait=ok console_errors=0 warnings=1

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\caleb\Desktop\AiProject\fps\tools\run.py", line 416, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\caleb\Desktop\AiProject\fps\tools\run.py", line 333, in main
+    proc, profile, ws_url = launch_chrome(width, height, not args.cpu)
+                            ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\caleb\Desktop\AiProject\fps\tools\run.py", line 223, in launch_chrome
+    raise RuntimeError('could not connect to headless Chrome')
+RuntimeError: could not connect to headless Chrome

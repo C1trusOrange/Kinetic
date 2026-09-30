@@ -1,0 +1,62 @@
+[run] http://127.0.0.1:50437/index.html?autotest=1&map=testmap5&mapfile=tools/out/audit/review-player/testmap5.js&bots=0&script=idle&scenario=tools/out/audit/review-player/v_corner.js
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] [world] map 'testmap5' has 1 warning(s):
+ - only 4 spawn point(s): 14-18 recommended
+[result] {
+ "done": true,
+ "started": true,
+ "t": 1716,
+ "frames": 16,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "testmap5",
+ "player": {
+  "distance": 10977.79458282112,
+  "maxSpeed": 9.736411255863803,
+  "minY": 0,
+  "maxY": 2.234999999999997,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "vendor": {
+   "runs": 468,
+   "runsOver": 0,
+   "frames": 51480,
+   "framesOver": 0,
+   "maxDepth": 0,
+   "samples": []
+  },
+  "fixed": {
+   "runs": 468,
+   "runsOver": 0,
+   "frames": 51480,
+   "framesOver": 0,
+   "maxDepth": 0,
+   "samples": []
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=2

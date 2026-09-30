@@ -1,0 +1,337 @@
+[run] http://127.0.0.1:55591/index.html?autotest=1&map=skyline&bots=2&duration=1&god=1&script=idle&scenario=tools/out/audit/verify-aibrain-1/scen_jump.js
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0.1,
+ "frames": 47,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 18.281535648994378
+ },
+ "errors": [],
+ "map": "skyline",
+ "player": {
+  "distance": 0.19000000000000006,
+  "maxSpeed": 0,
+  "minY": -0.16000000000000003,
+  "maxY": 0.030000000000000027,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    6,
+    0,
+    41
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    34,
+    1.1,
+    -14
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 127,
+  "triangles": 67276,
+  "geometries": 100,
+  "textures": 123,
+  "programs": 53
+ },
+ "custom": {
+  "map": "skyline",
+  "jumpLinks": 927,
+  "movedByPull": 275,
+  "movedUp": 18,
+  "dyOver1_3_raw": 0,
+  "dyOver1_3_after": 18,
+  "examples": [
+   {
+    "a": [
+     -16.49,
+     0.03,
+     -27.49
+    ],
+    "b": [
+     -15.49,
+     1.1,
+     -26.49
+    ],
+    "w": [
+     -14.89,
+     1.5,
+     -26.49
+    ],
+    "dyRaw": 1.07,
+    "dyNew": 1.47,
+    "moved": 0.6
+   },
+   {
+    "a": [
+     -16.49,
+     0.03,
+     -26.49
+    ],
+    "b": [
+     -15.49,
+     1.1,
+     -26.49
+    ],
+    "w": [
+     -14.89,
+     1.5,
+     -26.49
+    ],
+    "dyRaw": 1.07,
+    "dyNew": 1.47,
+    "moved": 0.6
+   },
+   {
+    "a": [
+     -16.49,
+     0.03,
+     -26.49
+    ],
+    "b": [
+     -15.49,
+     1.1,
+     -25.49
+    ],
+    "w": [
+     -14.89,
+     1.5,
+     -25.49
+    ],
+    "dyRaw": 1.07,
+    "dyNew": 1.47,
+    "moved": 0.6
+   },
+   {
+    "a": [
+     -16.49,
+     0.03,
+     -25.49
+    ],
+    "b": [
+     -15.49,
+     1.1,
+     -26.49
+    ],
+    "w": [
+     -14.89,
+     1.5,
+     -26.49
+    ],
+    "dyRaw": 1.07,
+    "dyNew": 1.47,
+    "moved": 0.6
+   },
+   {
+    "a": [
+     -16.49,
+     0.03,
+     -25.49
+    ],
+    "b": [
+     -15.49,
+     1.1,
+     -25.49
+    ],
+    "w": [
+     -14.89,
+     1.5,
+     -25.49
+    ],
+    "dyRaw": 1.07,
+    "dyNew": 1.47,
+    "moved": 0.6
+   },
+   {
+    "a": [
+     -16.49,
+     0.03,
+     -24.49
+    ],
+    "b": [
+     -15.49,
+     1.1,
+     -25.49
+    ],
+    "w": [
+     -14.89,
+     1.5,
+     -25.49
+    ],
+    "dyRaw": 1.07,
+    "dyNew": 1.47,
+    "moved": 0.6
+   },
+   {
+    "a": [
+     24.51,
+     0,
+     16.51
+    ],
+    "b": [
+     25.51,
+     1.1,
+     15.51
+    ],
+    "w": [
+     25.51,
+     1.5,
+     14.91
+    ],
+    "dyRaw": 1.1,
+    "dyNew": 1.5,
+    "moved": 0.6
+   },
+   {
+    "a": [
+     25.51,
+     0,
+     16.51
+    ],
+    "b": [
+     25.51,
+     1.1,
+     15.51
+    ],
+    "w": [
+     25.51,
+     1.5,
+     14.91
+    ],
+    "dyRaw": 1.1,
+    "dyNew": 1.5,
+    "moved": 0.6
+   },
+   {
+    "a": [
+     25.51,
+     0,
+     16.51
+    ],
+    "b": [
+     26.51,
+     1.1,
+     15.51
+    ],
+    "w": [
+     26.51,
+     1.5,
+     14.91
+    ],
+    "dyRaw": 1.1,
+    "dyNew": 1.5,
+    "moved": 0.6
+   },
+   {
+    "a": [
+     26.51,
+     0,
+     16.51
+    ],
+    "b": [
+     25.51,
+     1.1,
+     15.51
+    ],
+    "w": [
+     25.51,
+     1.5,
+     14.91
+    ],
+    "dyRaw": 1.1,
+    "dyNew": 1.5,
+    "moved": 0.6
+   },
+   {
+    "a": [
+     26.51,
+     0,
+     16.51
+    ],
+    "b": [
+     26.51,
+     1.1,
+     15.51
+    ],
+    "w": [
+     26.51,
+     1.5,
+     14.91
+    ],
+    "dyRaw": 1.1,
+    "dyNew": 1.5,
+    "moved": 0.6
+   },
+   {
+    "a": [
+     27.51,
+     0,
+     16.51
+    ],
+    "b": [
+     26.51,
+     1.1,
+     15.51
+    ],
+    "w": [
+     26.51,
+     1.5,
+     14.91
+    ],
+    "dyRaw": 1.1,
+    "dyNew": 1.5,
+    "moved": 0.6
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

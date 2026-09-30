@@ -1,0 +1,239 @@
+{
+ "alloc_total_mb": 183.82,
+ "alloc_top_kb": [
+  [
+   "setValueM4 three.module.js:18481",
+   25851.7,
+   13.7
+  ],
+  [
+   "setValueV3f three.module.js:18356",
+   14993.2,
+   8.0
+  ],
+  [
+   "join :0",
+   12043.9,
+   6.4
+  ],
+  [
+   "getParameters three.module.js:20573",
+   9318.5,
+   5.0
+  ],
+  [
+   "_clearLine NavGraph.js:857",
+   8722.7,
+   4.6
+  ],
+  [
+   "getProgramCacheKeyParameters three.module.js:20939",
+   7612.7,
+   4.0
+  ],
+  [
+   "raycast Collision.js:130",
+   6666.9,
+   3.5
+  ],
+  [
+   "update BotModel.js:1249",
+   5456.0,
+   2.9
+  ],
+  [
+   "triangleCapsuleIntersect Octree.js:226",
+   5333.8,
+   2.8
+  ],
+  [
+   "setValueM3 three.module.js:18454",
+   4298.3,
+   2.3
+  ],
+  [
+   "findPath NavGraph.js:738",
+   3692.1,
+   2.0
+  ],
+  [
+   "replace :0",
+   3159.4,
+   1.7
+  ],
+  [
+   "setProgram three.module.js:30501",
+   2692.5,
+   1.4
+  ],
+  [
+   "intersectsBox Capsule.js:61",
+   2639.7,
+   1.4
+  ],
+  [
+   "hypot :0",
+   2395.3,
+   1.3
+  ],
+  [
+   "copyArray three.module.js:18275",
+   1993.3,
+   1.1
+  ],
+  [
+   "update Particles.js:345",
+   1980.8,
+   1.1
+  ],
+  [
+   "clone three.module.js:4021",
+   1850.7,
+   1.0
+  ],
+  [
+   "boneQuat BotModel.js:933",
+   1749.1,
+   0.9
+  ],
+  [
+   "rayBoxEntry Collision.js:12",
+   1650.8,
+   0.9
+  ],
+  [
+   "_updateModel Bot.js:703",
+   1585.6,
+   0.8
+  ],
+  [
+   "WebGLRenderer.renderBufferDirect three.module.js:29463",
+   1569.4,
+   0.8
+  ],
+  [
+   "_updateGibs Effects.js:814",
+   1543.7,
+   0.8
+  ],
+  [
+   "determinant three.module.js:6315",
+   1520.5,
+   0.8
+  ],
+  [
+   "_animate Pickups.js:628",
+   1510.6,
+   0.8
+  ],
+  [
+   "updateViewModel WeaponSystem.js:1371",
+   1510.4,
+   0.8
+  ],
+  [
+   "getProgramCacheKey three.module.js:20899",
+   1477.4,
+   0.8
+  ],
+  [
+   "probeGround Collision.js:261",
+   1448.5,
+   0.8
+  ],
+  [
+   "sort :0",
+   1443.9,
+   0.8
+  ],
+  [
+   "push :0",
+   1374.2,
+   0.7
+  ],
+  [
+   "perceive BotBrain.js:275",
+   1366.1,
+   0.7
+  ],
+  [
+   "projectObject three.module.js:30038",
+   1338.9,
+   0.7
+  ],
+  [
+   "updateAim BotBrain.js:1491",
+   1338.1,
+   0.7
+  ],
+  [
+   "update Pickups.js:585",
+   1290.1,
+   0.7
+  ],
+  [
+   "dot three.module.js:4348",
+   1175.5,
+   0.6
+  ],
+  [
+   "update three.module.js:17553",
+   1136.6,
+   0.6
+  ],
+  [
+   "random :0",
+   1129.3,
+   0.6
+  ],
+  [
+   "_move Bot.js:355",
+   1063.6,
+   0.6
+  ],
+  [
+   "next :0",
+   991.3,
+   0.5
+  ],
+  [
+   "moveEngage BotBrain.js:1305",
+   912.0,
+   0.5
+  ],
+  [
+   "seqWithValue three.module.js:19301",
+   869.3,
+   0.5
+  ],
+  [
+   "painterSortStable three.module.js:21237",
+   868.6,
+   0.5
+  ],
+  [
+   "update CameraRig.js:94",
+   836.4,
+   0.4
+  ],
+  [
+   "setFromRotationMatrix three.module.js:3543",
+   822.4,
+   0.4
+  ],
+  [
+   "update Input.js:259",
+   785.0,
+   0.4
+  ]
+ ],
+ "eval": {
+  "fps": {
+   "avg": 24,
+   "min": 4,
+   "max": 172.4
+  },
+  "frames": 512
+ },
+ "errors": []
+}

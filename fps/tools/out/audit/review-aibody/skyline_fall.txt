@@ -1,0 +1,232 @@
+[run] http://127.0.0.1:52999/index.html?autotest=1&map=skyline&bots=8&duration=40&god=1&script=idle&scenario=tools/out/audit/review-aibody/scen_fall.js
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":39.9}
+[error] [game] frame error (x1): TypeError: Cannot read properties of null (reading 'Sprocket')
+    at Module.drive (http://127.0.0.1:52999/tools/out/audit/review-aibody/scen_fall.js:15:21)
+    at AutoTest.update (http://127.0.0.1:52999/src/core/AutoTest.js:98:61)
+    at Game.update (http://127.0.0.1:52999/src/core/Game.js:620:38)
+    at Game._loop (http://127.0.0.1:52999/src/core/Game.js:592:16)
+[error] [game] frame error (x2): TypeError: Cannot read properties of null (reading 'Sprocket')
+    at Module.drive (http://127.0.0.1:52999/tools/out/audit/review-aibody/scen_fall.js:15:21)
+    at AutoTest.update (http://127.0.0.1:52999/src/core/AutoTest.js:98:61)
+    at Game.update (http://127.0.0.1:52999/src/core/Game.js:620:38)
+    at Game._loop (http://127.0.0.1:52999/src/core/Game.js:592:16)
+[error] [game] frame error (x3): TypeError: Cannot read properties of null (reading 'Sprocket')
+    at Module.drive (http://127.0.0.1:52999/tools/out/audit/review-aibody/scen_fall.js:15:21)
+    at AutoTest.update (http://127.0.0.1:52999/src/core/AutoTest.js:98:61)
+    at Game.update (http://127.0.0.1:52999/src/core/Game.js:620:38)
+    at Game._loop (http://127.0.0.1:52999/src/core/Game.js:592:16)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 40.59,
+ "frames": 1495,
+ "fps": {
+  "avg": 39.9,
+  "min": 4,
+  "max": 178.57142857184473
+ },
+ "errors": [
+  "[game] frame error (x1): TypeError: Cannot read properties of null (reading 'Sprocket')\n    at Module.drive (http://127.0.0.1:52999/tools/out/audit/review-aibody/scen_fall.js:15:21)\n    at AutoTest.update (http://127.0.0.1:52999/src/core/AutoTest.js:98:61)\n    at Game.update (http://127.0.0.1:52999/src/core/Game.js:620:38)\n    at Game._loop (http://127.0.0.1:52999/src/core/Game.js:592:16)",
+  "[game] frame error (x2): TypeError: Cannot read properties of null (reading 'Sprocket')\n    at Module.drive (http://127.0.0.1:52999/tools/out/audit/review-aibody/scen_fall.js:15:21)\n    at AutoTest.update (http://127.0.0.1:52999/src/core/AutoTest.js:98:61)\n    at Game.update (http://127.0.0.1:52999/src/core/Game.js:620:38)\n    at Game._loop (http://127.0.0.1:52999/src/core/Game.js:592:16)",
+  "[game] frame error (x3): TypeError: Cannot read properties of null (reading 'Sprocket')\n    at Module.drive (http://127.0.0.1:52999/tools/out/audit/review-aibody/scen_fall.js:15:21)\n    at AutoTest.update (http://127.0.0.1:52999/src/core/AutoTest.js:98:61)\n    at Game.update (http://127.0.0.1:52999/src/core/Game.js:620:38)\n    at Game._loop (http://127.0.0.1:52999/src/core/Game.js:592:16)"
+ ],
+ "map": "skyline",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0.030000000000000082,
+  "maxY": 0.030000000000000082,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 2,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 200.9,
+   "pos": [
+    -12.5,
+    0,
+    27.6
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 2,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 179.9,
+   "pos": [
+    -20.1,
+    16,
+    -34.7
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 204.9,
+   "pos": [
+    27.3,
+    12.7,
+    17.8
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": false,
+   "kills": 1,
+   "deaths": 2,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 210.7,
+   "pos": [
+    12.1,
+    0.9,
+    -21.3
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 93,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 214.4,
+   "pos": [
+    -16.7,
+    0,
+    -12.9
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 4,
+   "deaths": 1,
+   "health": 5,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 187.7,
+   "pos": [
+    17.6,
+    9,
+    3.4
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 1,
+   "deaths": 2,
+   "health": 41,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 249.6,
+   "pos": [
+    19,
+    10.8,
+    -1.6
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": false,
+   "kills": 2,
+   "deaths": 3,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 194.5,
+   "pos": [
+    1.2,
+    6.4,
+    -18.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 87,
+  "death": 16,
+  "spawn": 23,
+  "pickup": 8,
+  "fire": 266
+ },
+ "renderer": {
+  "calls": 372,
+  "triangles": 94674,
+  "geometries": 232,
+  "textures": 170,
+  "programs": 104
+ },
+ "custom": {
+  "falls": [],
+  "bounds": [
+   [
+    -46,
+    -4,
+    -46
+   ],
+   [
+    46,
+    42,
+    46
+   ]
+  ],
+  "killY": -20,
+  "hist": null,
+  "deathsByFall": 0,
+  "deaths": [
+   "rocket",
+   "pistol",
+   "rifle",
+   "grenade",
+   "rocket",
+   "pistol",
+   "rocket",
+   "rifle",
+   "rifle",
+   "pistol",
+   "grenade",
+   "pistol",
+   "pistol",
+   "pistol",
+   "rifle",
+   "sniper"
+  ]
+ },
+ "ok": true,
+ "errorCount": 3
+}
+[run] done: wait=ok console_errors=3 warnings=1

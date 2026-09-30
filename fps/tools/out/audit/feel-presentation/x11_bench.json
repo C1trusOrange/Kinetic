@@ -1,0 +1,30 @@
+{
+ "raycast": {
+  "n": 3000,
+  "totalMs": 55.3,
+  "usPerRay": 18.43,
+  "blockedPct": 88
+ },
+ "particles": [
+  {
+   "n": 0,
+   "live": 0,
+   "msPerUpdate": 0.005
+  },
+  {
+   "n": 150,
+   "live": 150,
+   "msPerUpdate": 0.027
+  },
+  {
+   "n": 400,
+   "live": 400,
+   "msPerUpdate": 0.06
+  },
+  {
+   "n": 1200,
+   "live": 1200,
+   "msPerUpdate": 0.13
+  }
+ ]
+}

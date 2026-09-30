@@ -1,0 +1,174 @@
+[run] http://127.0.0.1:60423/index.html?autotest=1&map=foundry&bots=7&diff=insane&god=1&scenario=tools/out/audit/verify-fxaudio-1/v678.js&mode=natural&duration=70
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":28.9}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 70.17,
+ "frames": 1888,
+ "fps": {
+  "avg": 28.9,
+  "min": 4,
+  "max": 172.4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 39.1,
+  "maxSpeed": 9.99,
+  "minY": 0,
+  "maxY": 6.0991793273668335,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 7,
+   "deaths": 4,
+   "health": 87,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 440.1,
+   "pos": [
+    26.3,
+    0,
+    -16.5
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 3,
+   "deaths": 6,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 404.6,
+   "pos": [
+    -39.9,
+    0,
+    -6.4
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": false,
+   "kills": 6,
+   "deaths": 5,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 307,
+   "pos": [
+    -17.1,
+    1.2,
+    14.5
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 5,
+   "deaths": 6,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 355.3,
+   "pos": [
+    -43.1,
+    1,
+    24.1
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": false,
+   "kills": 3,
+   "deaths": 4,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 316.1,
+   "pos": [
+    -21.6,
+    0,
+    4.9
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 6,
+   "deaths": 7,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 341.2,
+   "pos": [
+    37.5,
+    0,
+    21.3
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 6,
+   "deaths": 4,
+   "health": 17,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 370.3,
+   "pos": [
+    -19.8,
+    0,
+    11.1
+   ]
+  }
+ ],
+ "events": {
+  "damage": 193,
+  "death": 36,
+  "spawn": 42,
+  "pickup": 8,
+  "fire": 560
+ },
+ "renderer": {
+  "calls": 435,
+  "triangles": 139620,
+  "geometries": 225,
+  "textures": 141,
+  "programs": 104
+ },
+ "custom": {
+  "mode": "natural",
+  "nat": {
+   "maxRockets": 2,
+   "maxSmoke": 711,
+   "maxGren": 1,
+   "dropped": 0,
+   "rocketsSpawned": 10
+  },
+  "effStats": {
+   "smoke": 97,
+   "glow": 58,
+   "tracers": 1,
+   "decals": 172,
+   "gibs": 35,
+   "dropped": 0
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

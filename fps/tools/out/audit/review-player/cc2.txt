@@ -1,0 +1,341 @@
+[run] http://127.0.0.1:58970/index.html?autotest=1&map=testmap2&mapfile=tools/out/audit/review-player/testmap2.js&bots=0&script=idle&scenario=tools/out/audit/review-player/clearcheck2.js
+[warning] [world] map 'testmap2' has 5 warning(s):
+ - only 4 spawn point(s): 14-18 recommended
+ - spawn #0 at [-58, 0, 58]: floor is at y=-0.50 (snapped)
+ - spawn #1 at [58, 0, 58]: floor is at y=-0.50 (snapped)
+ - spawn #2 at [58, 0, -58]: floor is at y=-0.50 (snapped)
+ - spawn #3 at [-58, 0, -58]: floor is at y=-0.50 (snapped)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0,
+ "frames": 13,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "testmap2",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "out": [
+   {
+    "clear": 1.3,
+    "thick": 0.3,
+    "floorFirst": true,
+    "clearRes": false,
+    "contacts": [
+     [
+      -1,
+      0.52
+     ],
+     [
+      1,
+      0.5
+     ],
+     [
+      -1,
+      0.5
+     ]
+    ],
+    "dy": -0.52
+   },
+   {
+    "clear": 1.4000000000000001,
+    "thick": 0.8999999999999999,
+    "floorFirst": false,
+    "clearRes": false,
+    "contacts": [
+     [
+      -1,
+      0.42
+     ],
+     [
+      1,
+      0.4
+     ],
+     [
+      -1,
+      0.4
+     ]
+    ],
+    "dy": -0.42
+   },
+   {
+    "clear": 1.5,
+    "thick": 1.5,
+    "floorFirst": true,
+    "clearRes": false,
+    "contacts": [
+     [
+      -1,
+      0.32
+     ],
+     [
+      1,
+      0.3
+     ],
+     [
+      -1,
+      0.3
+     ]
+    ],
+    "dy": -0.32
+   },
+   {
+    "clear": 1.6,
+    "thick": 0.3,
+    "floorFirst": false,
+    "clearRes": false,
+    "contacts": [
+     [
+      -1,
+      0.22
+     ],
+     [
+      1,
+      0.2
+     ],
+     [
+      -1,
+      0.2
+     ]
+    ],
+    "dy": -0.22
+   },
+   {
+    "clear": 1.7000000000000002,
+    "thick": 0.8999999999999999,
+    "floorFirst": true,
+    "clearRes": false,
+    "contacts": [
+     [
+      -1,
+      0.12
+     ],
+     [
+      1,
+      0.1
+     ],
+     [
+      -1,
+      0.1
+     ]
+    ],
+    "dy": -0.12
+   },
+   {
+    "clear": 1.3,
+    "thick": 1.5,
+    "floorFirst": false,
+    "clearRes": false,
+    "contacts": [
+     [
+      -1,
+      0.52
+     ],
+     [
+      1,
+      0.5
+     ],
+     [
+      -1,
+      0.5
+     ]
+    ],
+    "dy": -0.52
+   },
+   {
+    "clear": 1.4000000000000001,
+    "thick": 0.3,
+    "floorFirst": true,
+    "clearRes": false,
+    "contacts": [
+     [
+      -1,
+      0.42
+     ],
+     [
+      1,
+      0.4
+     ],
+     [
+      -1,
+      0.4
+     ]
+    ],
+    "dy": -0.42
+   },
+   {
+    "clear": 1.5,
+    "thick": 0.8999999999999999,
+    "floorFirst": false,
+    "clearRes": false,
+    "contacts": [
+     [
+      -1,
+      0.32
+     ],
+     [
+      1,
+      0.3
+     ],
+     [
+      -1,
+      0.3
+     ]
+    ],
+    "dy": -0.32
+   },
+   {
+    "clear": 1.6,
+    "thick": 1.5,
+    "floorFirst": true,
+    "clearRes": false,
+    "contacts": [
+     [
+      -1,
+      0.22
+     ],
+     [
+      1,
+      0.2
+     ],
+     [
+      -1,
+      0.2
+     ]
+    ],
+    "dy": -0.22
+   },
+   {
+    "clear": 1.7000000000000002,
+    "thick": 0.3,
+    "floorFirst": false,
+    "clearRes": false,
+    "contacts": [
+     [
+      -1,
+      0.12
+     ],
+     [
+      1,
+      0.1
+     ],
+     [
+      -1,
+      0.1
+     ]
+    ],
+    "dy": -0.12
+   },
+   {
+    "clear": 1.3,
+    "thick": 0.8999999999999999,
+    "floorFirst": true,
+    "clearRes": false,
+    "contacts": [
+     [
+      -1,
+      0.52
+     ],
+     [
+      1,
+      0.5
+     ],
+     [
+      -1,
+      0.5
+     ]
+    ],
+    "dy": -0.52
+   },
+   {
+    "clear": 1.4000000000000001,
+    "thick": 1.5,
+    "floorFirst": false,
+    "clearRes": false,
+    "contacts": [
+     [
+      -1,
+      0.42
+     ],
+     [
+      1,
+      0.4
+     ],
+     [
+      -1,
+      0.4
+     ]
+    ],
+    "dy": -0.42
+   },
+   {
+    "clear": 1.5,
+    "thick": 0.3,
+    "floorFirst": true,
+    "clearRes": false,
+    "contacts": [
+     [
+      -1,
+      0.32
+     ],
+     [
+      1,
+      0.3
+     ],
+     [
+      -1,
+      0.3
+     ]
+    ],
+    "dy": -0.32
+   },
+   {
+    "clear": 1.6,
+    "thick": 0.8999999999999999,
+    "floorFirst": false,
+    "clearRes": false,
+    "contacts": [
+     [
+      -1,
+      0.22
+     ],
+     [
+      1,
+      0.2
+     ],
+     [
+      -1,
+      0.2
+     ]
+    ],
+    "dy": -0.22
+   }
+  ]
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

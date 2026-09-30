@@ -1,0 +1,285 @@
+[run] http://127.0.0.1:55948/index.html?autotest=1&map=skyline&bots=15&mode=ffa&duration=25&diff=insane
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 25.18,
+ "frames": 1045,
+ "fps": {
+  "avg": 46.5,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "skyline",
+ "player": {
+  "distance": 60.2,
+  "maxSpeed": 10.03,
+  "minY": 0.02999999999999997,
+  "maxY": 9.649418259068534,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true
+  },
+  "shots": 1,
+  "kills": 0,
+  "deaths": 3,
+  "damageDealt": 0,
+  "damageTaken": 300
+ },
+ "bots": [
+  {
+   "name": "Torque",
+   "alive": false,
+   "kills": 2,
+   "deaths": 2,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 158.5,
+   "pos": [
+    -2.9,
+    7.5,
+    17.8
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 2,
+   "deaths": 3,
+   "health": 34,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 93.3,
+   "pos": [
+    19.9,
+    0,
+    -16.3
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": false,
+   "kills": 1,
+   "deaths": 3,
+   "health": 0,
+   "weapon": "shotgun",
+   "state": "retreat",
+   "distance": 106.3,
+   "pos": [
+    13.9,
+    0,
+    37.9
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 2,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 136.2,
+   "pos": [
+    -19.1,
+    16,
+    -29.7
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 1,
+   "deaths": 2,
+   "health": 39,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 129,
+   "pos": [
+    -4.4,
+    6.4,
+    -29
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 4,
+   "deaths": 2,
+   "health": 89,
+   "weapon": "sniper",
+   "state": "chase",
+   "distance": 120.6,
+   "pos": [
+    -24.1,
+    12.8,
+    -7.2
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": false,
+   "kills": 2,
+   "deaths": 3,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 126.6,
+   "pos": [
+    -13.2,
+    1,
+    -16.5
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 3,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "engage",
+   "distance": 95.8,
+   "pos": [
+    20.2,
+    13.4,
+    31.6
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 2,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "collect",
+   "distance": 129.6,
+   "pos": [
+    27.8,
+    1.1,
+    13.8
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": false,
+   "kills": 4,
+   "deaths": 3,
+   "health": 0,
+   "weapon": "shotgun",
+   "state": "retreat",
+   "distance": 118.6,
+   "pos": [
+    8.8,
+    0,
+    -16.2
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": false,
+   "kills": 1,
+   "deaths": 3,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 127.1,
+   "pos": [
+    15,
+    1.1,
+    22
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 5,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 128.7,
+   "pos": [
+    -15,
+    0,
+    -9.2
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": false,
+   "kills": 3,
+   "deaths": 3,
+   "health": 0,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 119.2,
+   "pos": [
+    12.6,
+    0,
+    32.3
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 4,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 84.7,
+   "pos": [
+    -24.8,
+    9.6,
+    24.4
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 4,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 81.3,
+   "pos": [
+    6.5,
+    0,
+    40.3
+   ]
+  }
+ ],
+ "events": {
+  "damage": 177,
+  "death": 42,
+  "spawn": 52,
+  "pickup": 4,
+  "fire": 376
+ },
+ "renderer": {
+  "calls": 683,
+  "triangles": 134826,
+  "geometries": 360,
+  "textures": 187,
+  "programs": 116
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

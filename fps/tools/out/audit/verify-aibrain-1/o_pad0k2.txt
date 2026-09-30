@@ -1,0 +1,372 @@
+[run] http://127.0.0.1:62489/index.html?autotest=1&map=foundry&bots=2&duration=1&god=1&script=idle&scenario=tools/out/audit/verify-aibrain-1/scen_pad2.js&pad=0&kk=2
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.75,
+ "frames": 42,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 42.73504273505149
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 77.4,
+   "pos": [
+    -19.9,
+    7,
+    15.8
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    46,
+    0,
+    -21
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 129,
+  "triangles": 102532,
+  "geometries": 112,
+  "textures": 87,
+  "programs": 89
+ },
+ "custom": {
+  "trials": [
+   {
+    "pad": 0,
+    "k": 2,
+    "ok": true,
+    "t": 7.98,
+    "air": 5.68,
+    "launched": 2,
+    "inv": 1,
+    "invSites": [
+     {
+      "t": 4.25,
+      "y": 1.83,
+      "g": false,
+      "idx": 2,
+      "wp": "-18.49 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 9,
+    "from": [
+     -11.49,
+     -4,
+     25.51
+    ],
+    "goal": [
+     -18.49,
+     5,
+     15.51
+    ],
+    "reqs": [
+     {
+      "t": 0.32,
+      "y": -4,
+      "g": true,
+      "vy": 0,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-19.49 -4 24.51 walk ",
+       "-19.49 5 15.51 jump P",
+       "-18.49 5 15.51 walk "
+      ]
+     },
+     {
+      "t": 1.52,
+      "y": 0.59,
+      "g": false,
+      "vy": 18.8,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-18.49 0 21.31 walk ",
+       "-18.49 -4 22.51 drop ",
+       "-19.49 -4 24.51 walk ",
+       "-19.49 5 15.51 jump P"
+      ]
+     },
+     {
+      "t": 1.98,
+      "y": 6.66,
+      "g": false,
+      "vy": 7.6,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-21.69 6.05 17.51 walk ",
+       "-20.49 5 16.51 drop ",
+       "-18.49 5 15.51 walk "
+      ]
+     },
+     {
+      "t": 4.27,
+      "y": 1.58,
+      "g": false,
+      "vy": -14.8,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-21.72 1.2 20.06 walk ",
+       "-21.48 1.2 20.28 walk ",
+       "-21.49 0 21.51 drop ",
+       "-21.49 -4 22.51 drop "
+      ]
+     },
+     {
+      "t": 5.22,
+      "y": 1.17,
+      "g": false,
+      "vy": -0.4,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-21.48 1.2 20.28 walk ",
+       "-21.49 0 21.51 drop ",
+       "-21.49 -4 22.51 drop ",
+       "-19.49 -4 24.51 walk "
+      ]
+     },
+     {
+      "t": 6.08,
+      "y": 1.19,
+      "g": true,
+      "vy": 0,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-21.49 0 21.51 drop ",
+       "-21.49 -4 22.51 drop ",
+       "-19.49 -4 24.51 walk ",
+       "-19.49 5 15.51 jump P"
+      ]
+     },
+     {
+      "t": 6.55,
+      "y": -1.15,
+      "g": false,
+      "vy": -10.4,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-20.49 -4 22.51 drop ",
+       "-19.49 -4 24.51 walk ",
+       "-19.49 5 15.51 jump P",
+       "-18.49 5 15.51 walk "
+      ]
+     },
+     {
+      "t": 7.32,
+      "y": 0.59,
+      "g": false,
+      "vy": 18.8,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-19.49 0 21.31 walk ",
+       "-19.49 -4 22.51 drop ",
+       "-19.49 -4 24.51 walk ",
+       "-19.49 5 15.51 jump P"
+      ]
+     },
+     {
+      "t": 7.78,
+      "y": 6.66,
+      "g": false,
+      "vy": 7.6,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-20.49 5 16.51 drop ",
+       "-18.49 5 15.51 walk "
+      ]
+     }
+    ],
+    "trace": [
+     "0.52 | -14.59,-4,25.12 | vy0 | G | path | i0/3 | -19.49 -4 24.51 walk ",
+     "0.75 | -16.25,-4,24.91 | vy0 | G | path | i0/3 | -19.49 -4 24.51 walk ",
+     "1 | -17.93,-3.61,24.61 | vy23.6 | A | path | i0/3 | -19.49 -4 24.51 walk ",
+     "1.25 | -18.88,1.49,23.32 | vy17.6 | A | path | i0/5 | -18.49 0 21.31 walk ",
+     "1.52 | -19.82,5.28,21.02 | vy11.2 | A | path | i0/5 | -18.49 0 21.31 walk ",
+     "1.77 | -19.45,7.28,18.78 | vy5.2 | A | path | i0/3 | -21.69 6.05 17.51 walk ",
+     "2.02 | -20.18,7.78,16.22 | vy-0.8 | A | path | i0/3 | -21.69 6.05 17.51 walk ",
+     "2.27 | -22.09,6.78,14.62 | vy-6.8 | A | path | i0/3 | -21.69 6.05 17.51 walk ",
+     "2.52 | -23.56,5.95,14.99 | vy-2 | A | path | i0/3 | -21.69 6.05 17.51 walk ",
+     "2.77 | -23.67,5,16.9 | vy0 | G | path | i0/3 | -21.69 6.05 17.51 walk ",
+     "3.02 | -22.3,5.13,16.74 | vy7.6 | A | path | i0/3 | -21.69 6.05 17.51 walk ",
+     "3.27 | -20.59,6.23,17.27 | vy1.6 | A | path | i0/3 | -21.69 6.05 17.51 walk ",
+     "3.52 | -20.29,5.83,18.28 | vy-4.4 | A | path | i0/3 | -21.69 6.05 17.51 walk ",
+     "3.77 | -21.38,3.93,18.45 | vy-10.4 | A | path | i1/3 | -20.49 5 16.51 drop ",
+     "4.02 | -22.04,0,17.29 | vy0 | G | path | i0/7 | -21.72 1.2 20.06 walk ",
+     "4.27 | -21.93,0,18.44 | vy0 | G | path | i0/7 | -21.72 1.2 20.06 walk ",
+     "4.52 | -21.66,1.08,19.1 | vy3.21 | A | path | i0/7 | -21.72 1.2 20.06 walk ",
+     "4.77 | -21.24,1.2,20.5 | vy0 | G | path | i2/7 | -21.49 0 21.51 drop ",
+     "5.02 | -21.43,0.74,21.93 | vy-4.4 | A | path | i0/6 | -21.48 1.2 20.28 walk ",
+     "5.27 | -21.88,0,21.64 | vy0 | G | path | i0/6 | -21.48 1.2 20.28 walk ",
+     "5.52 | -21.71,1.13,20.87 | vy2.81 | A | path | i0/6 | -21.48 1.2 20.28 walk ",
+     "5.77 | -21.16,1.18,21.19 | vy-0.4 | A | path | i1/5 | -21.49 -4 22.51 drop ",
+     "6.02 | -21.13,0.28,23.16 | vy-6.4 | A | path | i2/5 | -19.49 -4 24.51 walk ",
+     "6.27 | -20.22,-2.12,25.76 | vy-12.4 | A | path | i0/4 | -20.49 -4 22.51 drop ",
+     "6.52 | -19.42,-4,26.55 | vy0 | G | path | i0/4 | -20.49 -4 22.51 drop ",
+     "6.77 | -19.7,-3.22,25.08 | vy23.2 | A | path | i0/4 | -20.49 -4 22.51 drop ",
+     "7.02 | -19.85,1.78,23.19 | vy17.2 | A | path | i0/5 | -19.49 0 21.31 walk ",
+     "7.27 | -19.9,5.28,21.17 | vy11.2 | A | path | i1/5 | -19.49 -4 22.51 drop ",
+     "7.52 | -19.56,7.28,19.92 | vy5.2 | A | path | i0/2 | -20.49 5 16.51 drop ",
+     "7.77 | -19.44,7.78,17.96 | vy-0.8 | A | path | i0/2 | -20.49 5 16.51 drop "
+    ]
+   }
+  ],
+  "pads": [
+   {
+    "pos": [
+     -19,
+     -4,
+     24.5
+    ],
+    "target": [
+     -19,
+     5,
+     16
+    ],
+    "vel": [
+     0,
+     24,
+     -5.67
+    ]
+   },
+   {
+    "pos": [
+     19,
+     -4,
+     24.5
+    ],
+    "target": [
+     19,
+     5,
+     16
+    ],
+    "vel": [
+     0,
+     24,
+     -5.67
+    ]
+   },
+   {
+    "pos": [
+     24,
+     0,
+     -33
+    ],
+    "target": [
+     31.5,
+     10,
+     -36
+    ],
+    "vel": [
+     4.87,
+     24.98,
+     -1.95
+    ]
+   },
+   {
+    "pos": [
+     38.5,
+     5,
+     -26.8
+    ],
+    "target": [
+     43.8,
+     10,
+     -34.8
+    ],
+    "vel": [
+     4.03,
+     19.6,
+     -6.08
+    ]
+   }
+  ],
+  "summary": [
+   {
+    "pad": 0,
+    "n": 1,
+    "ok": 1,
+    "avgT": 7.98,
+    "avgInv": 1,
+    "avgAir": 5.68
+   },
+   {
+    "pad": 1,
+    "n": 0,
+    "ok": 0,
+    "avgT": 0,
+    "avgInv": 0,
+    "avgAir": 0
+   },
+   {
+    "pad": 2,
+    "n": 0,
+    "ok": 0,
+    "avgT": 0,
+    "avgInv": 0,
+    "avgAir": 0
+   },
+   {
+    "pad": 3,
+    "n": 0,
+    "ok": 0,
+    "avgT": 0,
+    "avgInv": 0,
+    "avgAir": 0
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

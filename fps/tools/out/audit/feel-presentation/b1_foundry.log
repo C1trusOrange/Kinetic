@@ -1,0 +1,11 @@
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[shot] tools\out\audit\feel-presentation\b_foundry_tdm_enemy_8_1280.png
+enemy 8 Torque 2
+[shot] tools\out\audit\feel-presentation\b_foundry_tdm_enemy_20_1280.png
+enemy 20 Relay 2
+[shot] tools\out\audit\feel-presentation\b_foundry_tdm_enemy_40_1280.png
+enemy 40 Torque 2
+[shot] tools\out\audit\feel-presentation\b_foundry_tdm_ally_12_1280.png
+ally 12 Rivet 1
+[sess] console errors=0 warnings=1

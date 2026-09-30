@@ -1,0 +1,391 @@
+[run] http://127.0.0.1:51004/index.html?autotest=1&map=sandbox&bots=0&god=1&scenario=tools/out/audit/review-assets/scenario.js&duration=45
+[log] [autotest] finished {"ok":true,"errors":0,"fps":97.5}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 45.22,
+ "frames": 3478,
+ "fps": {
+  "avg": 97.5,
+  "min": 4,
+  "max": 312.5
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": -5.551115123125783e-17,
+  "states": {
+   "onGround": true
+  },
+  "shots": 6,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 6
+ },
+ "renderer": {
+  "calls": 136,
+  "triangles": 36586,
+  "geometries": 259,
+  "textures": 127,
+  "programs": 101
+ },
+ "custom": {
+  "weapons": {
+   "pistol": {
+    "maxPos": {
+     "slide": 0.036,
+     "trigger": 0,
+     "mag": 0.1002,
+     "rightArm": 0,
+     "rightHand": 0,
+     "leftArm": 0.1122,
+     "leftHand": 0
+    },
+    "maxRot": {
+     "slide": 0,
+     "trigger": 0.39,
+     "mag": 0,
+     "rightArm": 0,
+     "rightHand": 0,
+     "leftArm": 0.248,
+     "leftHand": 0
+    },
+    "nonFinite": [],
+    "final": {
+     "slide": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "trigger": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "mag": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "rightArm": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "rightHand": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "leftArm": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "leftHand": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     }
+    },
+    "handCam": {
+     "minX": 0.07276888369052703,
+     "maxX": 0.181463390414228,
+     "minY": -0.44808992866078245,
+     "maxY": -0.15028805808138412,
+     "minZ": -0.2522346164754019,
+     "maxZ": -0.22637241048168377
+    },
+    "reloadSeen": true,
+    "magHiddenSeen": true,
+    "ammoAfter": 12
+   },
+   "rifle": {
+    "maxPos": {
+     "trigger": 0,
+     "mag": 0.1507,
+     "bolt": 0.0239,
+     "rightArm": 0,
+     "rightHand": 0,
+     "leftArm": 0.3656,
+     "leftHand": 0
+    },
+    "maxRot": {
+     "trigger": 0.473,
+     "mag": 0,
+     "bolt": 0,
+     "rightArm": 0,
+     "rightHand": 0,
+     "leftArm": 0.471,
+     "leftHand": 0
+    },
+    "nonFinite": [],
+    "final": {
+     "trigger": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "mag": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "bolt": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "rightArm": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "rightHand": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "leftArm": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "leftHand": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     }
+    },
+    "handCam": {
+     "minX": -0.04079999999999979,
+     "maxX": 0.1294885487512221,
+     "minY": -0.7005531843995606,
+     "maxY": 0.08515581394043027,
+     "minZ": -0.7239112227990213,
+     "maxZ": -0.3179999999999979
+    },
+    "reloadSeen": true,
+    "magHiddenSeen": true,
+    "ammoAfter": 32
+   },
+   "shotgun": {
+    "maxPos": {
+     "trigger": 0,
+     "pump": 0.0937,
+     "rightArm": 0,
+     "rightHand": 0,
+     "leftArm": 0.4211,
+     "leftHand": 0
+    },
+    "maxRot": {
+     "trigger": 0.473,
+     "pump": 0,
+     "rightArm": 0,
+     "rightHand": 0,
+     "leftArm": 0.321,
+     "leftHand": 0
+    },
+    "nonFinite": [],
+    "final": {
+     "trigger": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "pump": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "rightArm": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "rightHand": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "leftArm": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "leftHand": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     }
+    },
+    "handCam": {
+     "minX": -0.03780000000000007,
+     "maxX": 0.11961990251288618,
+     "minY": -0.6826018053102614,
+     "maxY": 0.060722128247070906,
+     "minZ": -0.6711302357265296,
+     "maxZ": -0.26799999999999713
+    },
+    "reloadSeen": true,
+    "magHiddenSeen": false,
+    "ammoAfter": 6
+   },
+   "sniper": {
+    "maxPos": {
+     "trigger": 0,
+     "mag": 0.12,
+     "bolt": 0.0837,
+     "rightArm": 0,
+     "rightHand": 0,
+     "leftArm": 0.2883,
+     "leftHand": 0
+    },
+    "maxRot": {
+     "trigger": 0.418,
+     "mag": 0,
+     "bolt": 0.95,
+     "rightArm": 0,
+     "rightHand": 0,
+     "leftArm": 0.347,
+     "leftHand": 0
+    },
+    "nonFinite": [],
+    "final": {
+     "trigger": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "mag": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "bolt": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "rightArm": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "rightHand": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "leftArm": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "leftHand": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     }
+    },
+    "handCam": {
+     "minX": -0.03880000000000159,
+     "maxX": 0.13945910647366927,
+     "minY": -0.8139606403726611,
+     "maxY": 0.07422212824707054,
+     "minZ": -0.7950080458388309,
+     "maxZ": -0.269999999999996
+    },
+    "reloadSeen": true,
+    "magHiddenSeen": true,
+    "ammoAfter": 5
+   },
+   "rocket": {
+    "maxPos": {
+     "trigger": 0,
+     "mag": 0.14,
+     "rightArm": 0,
+     "rightHand": 0,
+     "leftArm": 0.3187,
+     "leftHand": 0,
+     "rocket": 0.14
+    },
+    "maxRot": {
+     "trigger": 0.446,
+     "mag": 0,
+     "rightArm": 0,
+     "rightHand": 0,
+     "leftArm": 0.2,
+     "leftHand": 0,
+     "rocket": 0
+    },
+    "nonFinite": [],
+    "final": {
+     "trigger": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "mag": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "rightArm": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "rightHand": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "leftArm": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "leftHand": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     },
+     "rocket": {
+      "dp": 0,
+      "dr": 0,
+      "vis": true
+     }
+    },
+    "handCam": {
+     "minX": 0.010420662421875018,
+     "maxX": 0.22150792563794175,
+     "minY": -0.8629233747166647,
+     "maxY": -0.02049999999999974,
+     "minZ": -1.0101198901352506,
+     "maxZ": -0.26869999999999905
+    },
+    "reloadSeen": true,
+    "magHiddenSeen": true,
+    "ammoAfter": 4
+   }
+  },
+  "notes": [],
+  "done": 5
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

@@ -1,0 +1,69 @@
+"custom": {
+  "result": {
+   "samples": [
+    {
+     "i": 0,
+     "afterMedium": {
+      "tex": 124,
+      "geo": 117,
+      "progs": 94
+     },
+     "afterHigh": {
+      "tex": 122,
+      "geo": 117,
+      "progs": 94
+     }
+    },
+    {
+     "i": 1,
+     "afterMedium": {
+      "tex": 135,
+      "geo": 117,
+      "progs": 94
+     },
+     "afterHigh": {
+      "tex": 147,
+      "geo": 117,
+      "progs": 94
+     }
+    },
+    {
+     "i": 2,
+     "afterMedium": {
+      "tex": 157,
+      "geo": 117,
+      "progs": 94
+     },
+     "afterHigh": {
+      "tex": 169,
+      "geo": 117,
+      "progs": 94
+     }
+    }
+   ],
+   "start": {
+    "tex": 114,
+    "geo": 117,
+    "progs": 94
+   },
+   "quality0": "high",
+   "controlAfterProperDispose": {
+    "before": {
+     "tex": 169,
+     "geo": 117,
+     "progs": 94
+    },
+    "after": {
+     "tex": 169,
+     "geo": 117,
+     "progs": 94
+    }
+   }
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+
+[run] done: wait=ok console_errors=0 warnings=0
+

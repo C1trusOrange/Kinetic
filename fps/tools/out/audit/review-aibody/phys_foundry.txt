@@ -1,0 +1,11 @@
+[run] http://127.0.0.1:60345/index.html?autotest=1&map=foundry&bots=10&diff=hard&duration=50&god=1&script=idle&scenario=tools/out/audit/review-aibody/physwatch.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:60345/src/player/Player.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:60345/src/core/Game.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:60345/src/weapons/WeaponSystem.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:60345/src/weapons/Projectiles.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:60345/src/ai/BotManager.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:60345/src/fx/Effects.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:60345/src/ui/HUD.js]
+[error] [run] timed out after 250s waiting for: window.__TEST__ && window.__TEST__.done
+[result] null
+[run] done: wait=TIMEOUT console_errors=8 warnings=0

@@ -1,0 +1,107 @@
+[run] http://127.0.0.1:64387/index.html?autotest=1&map=sandbox&bots=2&duration=8&scenario=tools/out/audit/review-perf/scenario_proj.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.09,
+ "frames": 275,
+ "fps": {
+  "avg": 33.9,
+  "min": 4,
+  "max": 161.3
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 4.5,
+  "maxY": 4.5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 57.3,
+   "pos": [
+    -11.1,
+    0,
+    -27.4
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 2.8,
+   "pos": [
+    9.7,
+    4.5,
+    -28.3
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 153,
+  "triangles": 37718,
+  "geometries": 135,
+  "textures": 124,
+  "programs": 101
+ },
+ "custom": {
+  "rec": [
+   {
+    "label": "baseline",
+    "calls": 127,
+    "tris": 35258
+   },
+   {
+    "label": "1 rocket",
+    "calls": 146,
+    "tris": 35872
+   },
+   {
+    "label": "3 rockets",
+    "calls": 180,
+    "tris": 37330
+   },
+   {
+    "label": "after",
+    "calls": 130,
+    "tris": 36796
+   },
+   {
+    "label": "4 grenades",
+    "calls": 158,
+    "tris": 38872
+   }
+  ],
+  "rocketMeshes": 0
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

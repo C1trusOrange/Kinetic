@@ -1,0 +1,91 @@
+[run] http://127.0.0.1:62008/index.html?autotest=1&map=foundry&bots=2&duration=1&god=1&script=idle&test=capsule&scenario=tools/out/audit/review-aibrain/v/t_multi.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0.1,
+ "frames": 29,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    30,
+    0,
+    40
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    -30,
+    0,
+    33
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 106,
+  "triangles": 100002,
+  "geometries": 86,
+  "textures": 86,
+  "programs": 51
+ },
+ "custom": {
+  "capsule_foundry": {
+   "nodes": 10303,
+   "walkLinks": 32156,
+   "ceil": 0,
+   "wall": 146,
+   "floor": 514,
+   "nodeIntersect": 68,
+   "ceilClusters": []
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

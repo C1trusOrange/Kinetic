@@ -1,0 +1,208 @@
+[run] http://127.0.0.1:55580/index.html?autotest=1&map=foundry&bots=5&duration=20&warm=1&scenario=tools/out/audit/review-perf/scenario_warm.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 20.12,
+ "frames": 676,
+ "fps": {
+  "avg": 36.6,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 110.3122354485436,
+  "maxSpeed": 11.33,
+  "minY": -4,
+  "maxY": 1.5399999999999974,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "isGrappling": true,
+   "isMantling": true
+  },
+  "shots": 20,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 20,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 137.2,
+   "pos": [
+    18.2,
+    0,
+    6.8
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "collect",
+   "distance": 89.8,
+   "pos": [
+    -22.3,
+    0,
+    -34.4
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 37,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 115.6,
+   "pos": [
+    9.1,
+    0,
+    19.3
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 6,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 92.9,
+   "pos": [
+    -9.2,
+    0,
+    32.1
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 85.9,
+   "pos": [
+    -29.7,
+    0,
+    8.4
+   ]
+  }
+ ],
+ "events": {
+  "damage": 25,
+  "death": 3,
+  "spawn": 9,
+  "pickup": 1,
+  "fire": 97
+ },
+ "renderer": {
+  "calls": 268,
+  "triangles": 118658,
+  "geometries": 376,
+  "textures": 144,
+  "programs": 79
+ },
+ "custom": {
+  "warm": "1",
+  "warmMs": 768.5,
+  "warmNewProgs": 28,
+  "startProgs": 51,
+  "endProgs": 79,
+  "firstFrame": {
+   "n": 1,
+   "gt": 0.05,
+   "dt": 2449.4,
+   "upd": 25.5,
+   "ren": 485.1,
+   "newProgs": 40
+  },
+  "second": {
+   "n": 2,
+   "gt": 0.1,
+   "dt": 182.9,
+   "upd": 4.3,
+   "ren": 15.3,
+   "newProgs": 0
+  },
+  "stallCount": 6,
+  "stallSumMs": 1500,
+  "stalls": [
+   {
+    "n": 2,
+    "gt": 0.1,
+    "dt": 182.9,
+    "upd": 4.3,
+    "ren": 15.3,
+    "newProgs": 0
+   },
+   {
+    "n": 3,
+    "gt": 0.15,
+    "dt": 730.8,
+    "upd": 19.6,
+    "ren": 21.1,
+    "newProgs": 0
+   },
+   {
+    "n": 161,
+    "gt": 4.81,
+    "dt": 157.5,
+    "upd": 6.9,
+    "ren": 132.6,
+    "newProgs": 0
+   },
+   {
+    "n": 430,
+    "gt": 12.36,
+    "dt": 181.6,
+    "upd": 5.5,
+    "ren": 144.1,
+    "newProgs": 0
+   },
+   {
+    "n": 432,
+    "gt": 12.46,
+    "dt": 125.2,
+    "upd": 6.2,
+    "ren": 11.6,
+    "newProgs": 0
+   },
+   {
+    "n": 561,
+    "gt": 16.96,
+    "dt": 121.8,
+    "upd": 4.1,
+    "ren": 13.9,
+    "newProgs": 0
+   }
+  ],
+  "midGameNewProgFrames": [],
+  "p50": 28.7,
+  "frames": 643
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

@@ -1,0 +1,5 @@
+fps {'avg': 44.6, 'min': 4, 'max': 175.4} errors 0 [] t 12.55
+wj_view_into_wall_0.3 {"hsAfter":12.9,"vyAfter":7.6,"angleOffViewDeg":-51.08,"outwardSpeed":7.2,"nextWallRun":null,"x_0_15":[-9.54,-8.58,-7.92,-7.58,-7.58,-7.91,-8.42,-8.85]}
+wj_view_along_wall {"hsAfter":12.9,"vyAfter":7.6,"angleOffViewDeg":-33.89,"outwardSpeed":7.2,"nextWallRun":null,"x_0_15":[-9.54,-8.58,-7.92,-7.58,-7.54,-7.54,-7.54,-7.54]}
+wj_view_toward_far_wall {"hsAfter":12.9,"vyAfter":7.6,"angleOffViewDeg":-10.97,"outwardSpeed":7.2,"nextWallRun":null,"x_0_15":[-9.54,-8.58,-7.82,-7.07,-6.31,-5.56,-4.87,-4.4]}
+[run] done: wait=ok console_errors=0 warnings=1

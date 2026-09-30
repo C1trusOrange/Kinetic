@@ -1,0 +1,959 @@
+[run] http://127.0.0.1:64385/index.html?autotest=1&map=sandbox&scenario=tools/out/audit/verify-assets-2/uv.js&duration=3
+[log] [autotest] finished {"ok":true,"errors":0,"fps":27.2}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 3.23,
+ "frames": 114,
+ "fps": {
+  "avg": 27.2,
+  "min": 4,
+  "max": 82.6
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 20.3,
+   "pos": [
+    22.7,
+    0,
+    12.1
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 20,
+   "pos": [
+    -9.2,
+    0,
+    26
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 14.5,
+   "pos": [
+    16.6,
+    0.9,
+    -27.8
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": false,
+   "kills": 0,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "sniper",
+   "state": "retreat",
+   "distance": 15.3,
+   "pos": [
+    17.4,
+    0,
+    -2.5
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 15.1,
+   "pos": [
+    0.6,
+    4.5,
+    -24.2
+   ]
+  }
+ ],
+ "events": {
+  "damage": 6,
+  "death": 1,
+  "spawn": 6,
+  "pickup": 1,
+  "fire": 10
+ },
+ "renderer": {
+  "calls": 373,
+  "triangles": 64248,
+  "geometries": 190,
+  "textures": 130,
+  "programs": 101
+ },
+ "custom": {
+  "cyl_seg8": {
+   "tris": 32,
+   "bad": 2,
+   "worst": 7.3,
+   "areaPct": 11.2
+  },
+  "cyl_seg10": {
+   "tris": 40,
+   "bad": 2,
+   "worst": 9.3,
+   "areaPct": 8.9
+  },
+  "cyl_seg12": {
+   "tris": 48,
+   "bad": 2,
+   "worst": 11.3,
+   "areaPct": 7.4
+  },
+  "cyl_seg14": {
+   "tris": 56,
+   "bad": 2,
+   "worst": 13.4,
+   "areaPct": 6.4
+  },
+  "grenade/body:frag": {
+   "tris": 192,
+   "bad": 29,
+   "worst": 25.8,
+   "areaPct": 11.2
+  },
+  "grenade/body:glowOrange": {
+   "tris": 24,
+   "bad": 2,
+   "worst": 8.8,
+   "areaPct": 8.3
+  },
+  "grenade/body:steelDark": {
+   "tris": 172,
+   "bad": 2,
+   "worst": 12.6,
+   "areaPct": 1.3
+  },
+  "grenade/body:steel": {
+   "tris": 140,
+   "bad": 12,
+   "worst": 83.8,
+   "areaPct": 10.9
+  },
+  "grenade/body:steelBlack": {
+   "tris": 32,
+   "bad": 16,
+   "worst": 19.3,
+   "areaPct": 40.6
+  },
+  "rocketProj/body:paintOlive": {
+   "tris": 40,
+   "bad": 2,
+   "worst": 11.1,
+   "areaPct": 8.6
+  },
+  "rocketProj/body:steelBlack": {
+   "tris": 120,
+   "bad": 10,
+   "worst": 21.2,
+   "areaPct": 8.4
+  },
+  "rocketProj/body:hazard": {
+   "tris": 40,
+   "bad": 2,
+   "worst": 12.1,
+   "areaPct": 5.5
+  },
+  "rocketProj/body:paintOrange": {
+   "tris": 40,
+   "bad": 2,
+   "worst": 10.8,
+   "areaPct": 2.6
+  },
+  "rocketProj/body:glowOrange": {
+   "tris": 40,
+   "bad": 2,
+   "worst": 9.1,
+   "areaPct": 1.2
+  },
+  "rocketProj/": {
+   "tris": 16,
+   "bad": 8,
+   "worst": 3.3,
+   "areaPct": 33.3
+  },
+  "pistol:view/body:steelDark": {
+   "tris": 104,
+   "bad": 30,
+   "worst": 60.5,
+   "areaPct": 10.6
+  },
+  "pistol:view/body:custom:be9cab71-fa9e-4454-9a40-91c130bd34ef": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 35.7,
+   "areaPct": 100
+  },
+  "pistol:view/slide:steel": {
+   "tris": 132,
+   "bad": 20,
+   "worst": 32.4,
+   "areaPct": 2.1
+  },
+  "pistol:view/slide:void": {
+   "tris": 152,
+   "bad": 16,
+   "worst": 53.2,
+   "areaPct": 0.2
+  },
+  "pistol:view/slide:custom:101fef4d-9a23-4c47-afda-a87adb2f6161": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 20.4,
+   "areaPct": 100
+  },
+  "pistol:view/rightArm:armor": {
+   "tris": 92,
+   "bad": 2,
+   "worst": 5.4,
+   "areaPct": 7.2
+  },
+  "pistol:view/rightArm:glowArm": {
+   "tris": 52,
+   "bad": 2,
+   "worst": 7.3,
+   "areaPct": 6.8
+  },
+  "pistol:view/rightArm:sleeve": {
+   "tris": 24,
+   "bad": 2,
+   "worst": 10.6,
+   "areaPct": 12
+  },
+  "pistol:view/rightHand:glove": {
+   "tris": 286,
+   "bad": 28,
+   "worst": 6.8,
+   "areaPct": 7.9
+  },
+  "pistol:view/leftArm:armor": {
+   "tris": 92,
+   "bad": 2,
+   "worst": 5.4,
+   "areaPct": 7.2
+  },
+  "pistol:view/leftArm:glowArm": {
+   "tris": 52,
+   "bad": 2,
+   "worst": 7.3,
+   "areaPct": 6.8
+  },
+  "pistol:view/leftArm:sleeve": {
+   "tris": 24,
+   "bad": 2,
+   "worst": 10.6,
+   "areaPct": 11.9
+  },
+  "pistol:view/leftHand:glove": {
+   "tris": 286,
+   "bad": 28,
+   "worst": 6.8,
+   "areaPct": 8.5
+  },
+  "pistol:world/body:steel": {
+   "tris": 132,
+   "bad": 20,
+   "worst": 32.4,
+   "areaPct": 2.1
+  },
+  "pistol:world/body:custom:101fef4d-9a23-4c47-afda-a87adb2f6161": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 20.4,
+   "areaPct": 100
+  },
+  "rifle:view/body:steelDark": {
+   "tris": 496,
+   "bad": 68,
+   "worst": 51.8,
+   "areaPct": 1.7
+  },
+  "rifle:view/body:steel": {
+   "tris": 108,
+   "bad": 2,
+   "worst": 22.2,
+   "areaPct": 1.4
+  },
+  "rifle:view/body:steelBlack": {
+   "tris": 388,
+   "bad": 4,
+   "worst": 14.1,
+   "areaPct": 2.3
+  },
+  "rifle:view/body:void": {
+   "tris": 116,
+   "bad": 16,
+   "worst": 33.6,
+   "areaPct": 0.2
+  },
+  "rifle:view/body:glowCyan": {
+   "tris": 136,
+   "bad": 2,
+   "worst": 16.9,
+   "areaPct": 0.7
+  },
+  "rifle:view/body:custom:299fdaf8-cabf-4fbc-9d72-4f5659fbd1c6": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 14.8,
+   "areaPct": 100
+  },
+  "rifle:view/body:lens": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 7.2,
+   "areaPct": 100
+  },
+  "rifle:view/body:reticleRing": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 7.1,
+   "areaPct": 100
+  },
+  "rifle:view/body:custom:a32b5190-7341-4618-bfd5-ded5644ac5b7": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 40,
+   "areaPct": 100
+  },
+  "rifle:view/rightArm:armor": {
+   "tris": 92,
+   "bad": 2,
+   "worst": 5.4,
+   "areaPct": 7.2
+  },
+  "rifle:view/rightArm:glowArm": {
+   "tris": 52,
+   "bad": 2,
+   "worst": 7.3,
+   "areaPct": 6.8
+  },
+  "rifle:view/rightArm:sleeve": {
+   "tris": 24,
+   "bad": 2,
+   "worst": 10.6,
+   "areaPct": 12.1
+  },
+  "rifle:view/rightHand:glove": {
+   "tris": 286,
+   "bad": 28,
+   "worst": 6.8,
+   "areaPct": 7.9
+  },
+  "rifle:view/leftArm:armor": {
+   "tris": 92,
+   "bad": 2,
+   "worst": 5.4,
+   "areaPct": 7.2
+  },
+  "rifle:view/leftArm:glowArm": {
+   "tris": 52,
+   "bad": 2,
+   "worst": 7.3,
+   "areaPct": 6.8
+  },
+  "rifle:view/leftArm:sleeve": {
+   "tris": 24,
+   "bad": 2,
+   "worst": 10.6,
+   "areaPct": 12.2
+  },
+  "rifle:view/leftHand:glove": {
+   "tris": 286,
+   "bad": 28,
+   "worst": 6.8,
+   "areaPct": 8.7
+  },
+  "rifle:world/body:steelDark": {
+   "tris": 136,
+   "bad": 2,
+   "worst": 9.4,
+   "areaPct": 2
+  },
+  "rifle:world/body:steel": {
+   "tris": 64,
+   "bad": 2,
+   "worst": 17.4,
+   "areaPct": 1.8
+  },
+  "rifle:world/body:steelBlack": {
+   "tris": 112,
+   "bad": 4,
+   "worst": 11.1,
+   "areaPct": 3.1
+  },
+  "rifle:world/body:glowCyan": {
+   "tris": 104,
+   "bad": 2,
+   "worst": 13.3,
+   "areaPct": 0.9
+  },
+  "rifle:world/body:custom:299fdaf8-cabf-4fbc-9d72-4f5659fbd1c6": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 14.8,
+   "areaPct": 100
+  },
+  "rifle:world/body:lens": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 7.2,
+   "areaPct": 100
+  },
+  "rifle:world/body:reticleRing": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 7.1,
+   "areaPct": 100
+  },
+  "shotgun:view/body:steel": {
+   "tris": 148,
+   "bad": 2,
+   "worst": 18.6,
+   "areaPct": 3.7
+  },
+  "shotgun:view/body:paintOrange": {
+   "tris": 268,
+   "bad": 2,
+   "worst": 14.7,
+   "areaPct": 0.7
+  },
+  "shotgun:view/body:steelBlack": {
+   "tris": 472,
+   "bad": 2,
+   "worst": 13.1,
+   "areaPct": 0.8
+  },
+  "shotgun:view/body:custom:50385131-6ed5-4fa4-9129-f94bac3ebb5e": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 16,
+   "areaPct": 100
+  },
+  "shotgun:view/body:steelDark": {
+   "tris": 288,
+   "bad": 42,
+   "worst": 51.8,
+   "areaPct": 7.5
+  },
+  "shotgun:view/body:void": {
+   "tris": 172,
+   "bad": 20,
+   "worst": 29.7,
+   "areaPct": 0.6
+  },
+  "shotgun:view/body:custom:68000c05-6a17-4f9a-b791-854198686374": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 23.5,
+   "areaPct": 100
+  },
+  "shotgun:view/rightArm:armor": {
+   "tris": 92,
+   "bad": 2,
+   "worst": 5.4,
+   "areaPct": 7.2
+  },
+  "shotgun:view/rightArm:glowArm": {
+   "tris": 52,
+   "bad": 2,
+   "worst": 7.3,
+   "areaPct": 6.8
+  },
+  "shotgun:view/rightArm:sleeve": {
+   "tris": 24,
+   "bad": 2,
+   "worst": 10.6,
+   "areaPct": 12.1
+  },
+  "shotgun:view/rightHand:glove": {
+   "tris": 286,
+   "bad": 28,
+   "worst": 6.8,
+   "areaPct": 8
+  },
+  "shotgun:view/leftArm:armor": {
+   "tris": 92,
+   "bad": 2,
+   "worst": 5.4,
+   "areaPct": 7.2
+  },
+  "shotgun:view/leftArm:glowArm": {
+   "tris": 52,
+   "bad": 2,
+   "worst": 7.3,
+   "areaPct": 6.8
+  },
+  "shotgun:view/leftArm:sleeve": {
+   "tris": 24,
+   "bad": 2,
+   "worst": 10.6,
+   "areaPct": 12.2
+  },
+  "shotgun:view/leftHand:glove": {
+   "tris": 286,
+   "bad": 28,
+   "worst": 6.8,
+   "areaPct": 8.5
+  },
+  "shotgun:world/body:steel": {
+   "tris": 148,
+   "bad": 2,
+   "worst": 18.6,
+   "areaPct": 3.7
+  },
+  "shotgun:world/body:paintOrange": {
+   "tris": 148,
+   "bad": 2,
+   "worst": 14.7,
+   "areaPct": 0.8
+  },
+  "shotgun:world/body:steelBlack": {
+   "tris": 212,
+   "bad": 2,
+   "worst": 13.1,
+   "areaPct": 0.8
+  },
+  "shotgun:world/body:custom:50385131-6ed5-4fa4-9129-f94bac3ebb5e": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 16,
+   "areaPct": 100
+  },
+  "shotgun:world/body:steelDark": {
+   "tris": 160,
+   "bad": 2,
+   "worst": 18.6,
+   "areaPct": 4.2
+  },
+  "shotgun:world/body:void": {
+   "tris": 40,
+   "bad": 20,
+   "worst": 29.7,
+   "areaPct": 9.7
+  },
+  "sniper:view/body:steelBlack": {
+   "tris": 676,
+   "bad": 18,
+   "worst": 17.1,
+   "areaPct": 2.7
+  },
+  "sniper:view/body:void": {
+   "tris": 176,
+   "bad": 16,
+   "worst": 25.4,
+   "areaPct": 0.3
+  },
+  "sniper:view/body:custom:eec3bd7c-2089-46f6-9dcd-5f73bb77980d": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 19,
+   "areaPct": 100
+  },
+  "sniper:view/body:glowViolet": {
+   "tris": 204,
+   "bad": 6,
+   "worst": 15.5,
+   "areaPct": 0.8
+  },
+  "sniper:view/body:steelDark": {
+   "tris": 352,
+   "bad": 102,
+   "worst": 51.8,
+   "areaPct": 13.5
+  },
+  "sniper:view/body:steel": {
+   "tris": 48,
+   "bad": 2,
+   "worst": 20,
+   "areaPct": 8.1
+  },
+  "sniper:view/body:lensDark": {
+   "tris": 96,
+   "bad": 4,
+   "worst": 19.5,
+   "areaPct": 0.7
+  },
+  "sniper:view/body:paintViolet": {
+   "tris": 84,
+   "bad": 20,
+   "worst": 25.6,
+   "areaPct": 1.9
+  },
+  "sniper:view/body:custom:a9c81c52-d18e-40c6-944d-4b9dd1d2722f": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 26.7,
+   "areaPct": 100
+  },
+  "sniper:view/bolt:steelDark": {
+   "tris": 64,
+   "bad": 14,
+   "worst": 19.7,
+   "areaPct": 28.8
+  },
+  "sniper:view/bolt:steelBlack": {
+   "tris": 40,
+   "bad": 2,
+   "worst": 15.7,
+   "areaPct": 5.9
+  },
+  "sniper:view/rightArm:armor": {
+   "tris": 92,
+   "bad": 2,
+   "worst": 5.4,
+   "areaPct": 7.2
+  },
+  "sniper:view/rightArm:glowArm": {
+   "tris": 52,
+   "bad": 2,
+   "worst": 7.3,
+   "areaPct": 6.8
+  },
+  "sniper:view/rightArm:sleeve": {
+   "tris": 24,
+   "bad": 2,
+   "worst": 10.6,
+   "areaPct": 12.1
+  },
+  "sniper:view/rightHand:glove": {
+   "tris": 286,
+   "bad": 28,
+   "worst": 6.8,
+   "areaPct": 8
+  },
+  "sniper:view/leftArm:armor": {
+   "tris": 92,
+   "bad": 2,
+   "worst": 5.4,
+   "areaPct": 7.2
+  },
+  "sniper:view/leftArm:glowArm": {
+   "tris": 52,
+   "bad": 2,
+   "worst": 7.3,
+   "areaPct": 6.8
+  },
+  "sniper:view/leftArm:sleeve": {
+   "tris": 24,
+   "bad": 2,
+   "worst": 10.6,
+   "areaPct": 12.2
+  },
+  "sniper:view/leftHand:glove": {
+   "tris": 286,
+   "bad": 28,
+   "worst": 6.8,
+   "areaPct": 8.6
+  },
+  "sniper:world/body:steelBlack": {
+   "tris": 292,
+   "bad": 14,
+   "worst": 12.4,
+   "areaPct": 4.3
+  },
+  "sniper:world/body:void": {
+   "tris": 56,
+   "bad": 16,
+   "worst": 25.4,
+   "areaPct": 0.6
+  },
+  "sniper:world/body:custom:eec3bd7c-2089-46f6-9dcd-5f73bb77980d": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 19,
+   "areaPct": 100
+  },
+  "sniper:world/body:glowViolet": {
+   "tris": 156,
+   "bad": 6,
+   "worst": 10,
+   "areaPct": 1.3
+  },
+  "sniper:world/body:steel": {
+   "tris": 32,
+   "bad": 2,
+   "worst": 12.9,
+   "areaPct": 12.2
+  },
+  "sniper:world/body:steelDark": {
+   "tris": 204,
+   "bad": 48,
+   "worst": 20.8,
+   "areaPct": 11.6
+  },
+  "sniper:world/body:lensDark": {
+   "tris": 64,
+   "bad": 4,
+   "worst": 12.6,
+   "areaPct": 1.1
+  },
+  "sniper:world/body:paintViolet": {
+   "tris": 104,
+   "bad": 16,
+   "worst": 20.1,
+   "areaPct": 1
+  },
+  "sniper:world/body:custom:a9c81c52-d18e-40c6-944d-4b9dd1d2722f": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 26.7,
+   "areaPct": 100
+  },
+  "rocket:view/body:paintOlive": {
+   "tris": 56,
+   "bad": 2,
+   "worst": 11.9,
+   "areaPct": 6.7
+  },
+  "rocket:view/body:steelBlack": {
+   "tris": 388,
+   "bad": 6,
+   "worst": 16.7,
+   "areaPct": 1.6
+  },
+  "rocket:view/body:void": {
+   "tris": 108,
+   "bad": 2,
+   "worst": 11.4,
+   "areaPct": 0.2
+  },
+  "rocket:view/body:glowOrange": {
+   "tris": 40,
+   "bad": 2,
+   "worst": 10.6,
+   "areaPct": 7
+  },
+  "rocket:view/body:steelDark": {
+   "tris": 560,
+   "bad": 50,
+   "worst": 57.3,
+   "areaPct": 1.3
+  },
+  "rocket:view/body:hazard": {
+   "tris": 56,
+   "bad": 2,
+   "worst": 13.2,
+   "areaPct": 4.1
+  },
+  "rocket:view/body:custom:8095dee5-bb13-4a9c-9633-28ec3bb85471": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 5.5,
+   "areaPct": 100
+  },
+  "rocket:view/body:custom:1f662029-3a25-429d-a6fa-6b84c3ae0549": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 16.4,
+   "areaPct": 100
+  },
+  "rocket:view/body:lens": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 8.5,
+   "areaPct": 100
+  },
+  "rocket:view/body:reticleRing": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 7.1,
+   "areaPct": 100
+  },
+  "rocket:view/body:custom:a32b5190-7341-4618-bfd5-ded5644ac5b7": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 40,
+   "areaPct": 100
+  },
+  "rocket:view/body:poly": {
+   "tris": 100,
+   "bad": 2,
+   "worst": 10.5,
+   "areaPct": 3.6
+  },
+  "rocket:view/body:grip": {
+   "tris": 160,
+   "bad": 2,
+   "worst": 10.7,
+   "areaPct": 3.7
+  },
+  "rocket:view/mag:paintOlive": {
+   "tris": 144,
+   "bad": 40,
+   "worst": 31.5,
+   "areaPct": 13.2
+  },
+  "rocket:view/mag:glowRed": {
+   "tris": 60,
+   "bad": 2,
+   "worst": 14,
+   "areaPct": 6.1
+  },
+  "rocket:view/rightArm:armor": {
+   "tris": 92,
+   "bad": 2,
+   "worst": 5.4,
+   "areaPct": 7.2
+  },
+  "rocket:view/rightArm:glowArm": {
+   "tris": 52,
+   "bad": 2,
+   "worst": 7.3,
+   "areaPct": 6.8
+  },
+  "rocket:view/rightArm:sleeve": {
+   "tris": 24,
+   "bad": 2,
+   "worst": 10.6,
+   "areaPct": 12.1
+  },
+  "rocket:view/rightHand:glove": {
+   "tris": 286,
+   "bad": 28,
+   "worst": 6.8,
+   "areaPct": 7.9
+  },
+  "rocket:view/leftArm:armor": {
+   "tris": 92,
+   "bad": 2,
+   "worst": 5.4,
+   "areaPct": 7.2
+  },
+  "rocket:view/leftArm:glowArm": {
+   "tris": 52,
+   "bad": 2,
+   "worst": 7.3,
+   "areaPct": 6.8
+  },
+  "rocket:view/leftArm:sleeve": {
+   "tris": 24,
+   "bad": 2,
+   "worst": 10.6,
+   "areaPct": 12.2
+  },
+  "rocket:view/leftHand:glove": {
+   "tris": 286,
+   "bad": 28,
+   "worst": 6.8,
+   "areaPct": 8.1
+  },
+  "rocket:world/body:paintOlive": {
+   "tris": 176,
+   "bad": 42,
+   "worst": 31.5,
+   "areaPct": 12
+  },
+  "rocket:world/body:steelBlack": {
+   "tris": 124,
+   "bad": 2,
+   "worst": 9.1,
+   "areaPct": 3.2
+  },
+  "rocket:world/body:void": {
+   "tris": 44,
+   "bad": 2,
+   "worst": 7.4,
+   "areaPct": 0.4
+  },
+  "rocket:world/body:glowOrange": {
+   "tris": 16,
+   "bad": 2,
+   "worst": 5.8,
+   "areaPct": 12.5
+  },
+  "rocket:world/body:steelDark": {
+   "tris": 212,
+   "bad": 10,
+   "worst": 8.1,
+   "areaPct": 2.4
+  },
+  "rocket:world/body:hazard": {
+   "tris": 32,
+   "bad": 2,
+   "worst": 7.2,
+   "areaPct": 7.4
+  },
+  "rocket:world/body:custom:8095dee5-bb13-4a9c-9633-28ec3bb85471": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 5.5,
+   "areaPct": 100
+  },
+  "rocket:world/body:custom:1f662029-3a25-429d-a6fa-6b84c3ae0549": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 16.4,
+   "areaPct": 100
+  },
+  "rocket:world/body:lens": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 8.5,
+   "areaPct": 100
+  },
+  "rocket:world/body:reticleRing": {
+   "tris": 2,
+   "bad": 2,
+   "worst": 7.1,
+   "areaPct": 100
+  },
+  "rocket:world/body:glowRed": {
+   "tris": 76,
+   "bad": 2,
+   "worst": 9.1,
+   "areaPct": 7.3
+  },
+  "rocket:world/body:poly": {
+   "tris": 60,
+   "bad": 2,
+   "worst": 8.2,
+   "areaPct": 4.6
+  },
+  "rocket:world/body:grip": {
+   "tris": 88,
+   "bad": 2,
+   "worst": 8.4,
+   "areaPct": 4.7
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

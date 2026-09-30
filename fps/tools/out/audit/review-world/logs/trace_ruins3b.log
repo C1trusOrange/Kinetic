@@ -1,0 +1,1244 @@
+[run] http://127.0.0.1:62682/index.html?autotest=1&map=ruins&bots=0&duration=8&scenario=tools/out/audit/review-world/padtrace2.js&god=1&pad=3
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.07,
+ "frames": 355,
+ "fps": {
+  "avg": 47.9,
+  "min": 4,
+  "max": 178.6
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 25.1,
+  "maxSpeed": 6.75,
+  "minY": 0.050000000000000044,
+  "maxY": 12.398360433589447,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 126,
+  "triangles": 71682,
+  "geometries": 116,
+  "textures": 99,
+  "programs": 90
+ },
+ "custom": {
+  "trace": [
+   {
+    "t": 0,
+    "pos": [
+     0,
+     0.1,
+     -34.5
+    ],
+    "vel": [
+     0,
+     24.4,
+     -6.7
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     0.5,
+     -34.5
+    ],
+    "ce": [
+     0,
+     1.5,
+     -34.5
+    ],
+    "col": [
+     0,
+     [
+      0,
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "t": 0.05,
+    "pos": [
+     0,
+     1.28,
+     -34.84
+    ],
+    "vel": [
+     0,
+     23.2,
+     -6.7
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     1.68,
+     -34.84
+    ],
+    "ce": [
+     0,
+     2.68,
+     -34.84
+    ],
+    "col": null
+   },
+   {
+    "t": 0.07,
+    "pos": [
+     0,
+     2.41,
+     -35.17
+    ],
+    "vel": [
+     0,
+     22,
+     -6.7
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     2.81,
+     -35.17
+    ],
+    "ce": [
+     0,
+     3.81,
+     -35.17
+    ],
+    "col": null
+   },
+   {
+    "t": 0.1,
+    "pos": [
+     0,
+     2.77,
+     -35.29
+    ],
+    "vel": [
+     0,
+     21.6,
+     -6.7
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     3.17,
+     -35.29
+    ],
+    "ce": [
+     0,
+     4.17,
+     -35.29
+    ],
+    "col": null
+   },
+   {
+    "t": 0.15,
+    "pos": [
+     0,
+     3.3,
+     -35.46
+    ],
+    "vel": [
+     0,
+     21,
+     -6.7
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     3.7,
+     -35.46
+    ],
+    "ce": [
+     0,
+     4.7,
+     -35.46
+    ],
+    "col": null
+   },
+   {
+    "t": 0.18,
+    "pos": [
+     0,
+     4.32,
+     -35.79
+    ],
+    "vel": [
+     0,
+     19.8,
+     -6.7
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     4.72,
+     -35.79
+    ],
+    "ce": [
+     0,
+     5.72,
+     -35.79
+    ],
+    "col": null
+   },
+   {
+    "t": 0.2,
+    "pos": [
+     0,
+     5.12,
+     -36.07
+    ],
+    "vel": [
+     0,
+     18.8,
+     -6.7
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     5.52,
+     -36.07
+    ],
+    "ce": [
+     0,
+     6.52,
+     -36.07
+    ],
+    "col": null
+   },
+   {
+    "t": 0.25,
+    "pos": [
+     0,
+     5.27,
+     -36.13
+    ],
+    "vel": [
+     0,
+     18.6,
+     -6.7
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     5.67,
+     -36.13
+    ],
+    "ce": [
+     0,
+     6.67,
+     -36.13
+    ],
+    "col": null
+   },
+   {
+    "t": 0.27,
+    "pos": [
+     0,
+     6.17,
+     -36.47
+    ],
+    "vel": [
+     0,
+     17.4,
+     -6.7
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     6.57,
+     -36.47
+    ],
+    "ce": [
+     0,
+     7.57,
+     -36.47
+    ],
+    "col": null
+   },
+   {
+    "t": 0.29,
+    "pos": [
+     0,
+     6.59,
+     -36.64
+    ],
+    "vel": [
+     0,
+     16.8,
+     -6.7
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     6.99,
+     -36.64
+    ],
+    "ce": [
+     0,
+     7.99,
+     -36.64
+    ],
+    "col": null
+   },
+   {
+    "t": 0.31,
+    "pos": [
+     0,
+     7,
+     -36.8
+    ],
+    "vel": [
+     0,
+     16.2,
+     -6.7
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     7.4,
+     -36.8
+    ],
+    "ce": [
+     0,
+     8.4,
+     -36.8
+    ],
+    "col": null
+   },
+   {
+    "t": 0.34,
+    "pos": [
+     0,
+     7.27,
+     -36.92
+    ],
+    "vel": [
+     0,
+     15.8,
+     -6.7
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     7.67,
+     -36.92
+    ],
+    "ce": [
+     0,
+     8.67,
+     -36.92
+    ],
+    "col": null
+   },
+   {
+    "t": 0.37,
+    "pos": [
+     0,
+     7.65,
+     -37
+    ],
+    "vel": [
+     0,
+     15.2,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     8.05,
+     -37
+    ],
+    "ce": [
+     0,
+     9.05,
+     -37
+    ],
+    "col": [
+     0,
+     [
+      0,
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "t": 0.41,
+    "pos": [
+     0,
+     8.14,
+     -37
+    ],
+    "vel": [
+     0,
+     14.4,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     8.54,
+     -37
+    ],
+    "ce": [
+     0,
+     9.54,
+     -37
+    ],
+    "col": [
+     0,
+     [
+      0,
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "t": 0.42,
+    "pos": [
+     0,
+     8.72,
+     -37
+    ],
+    "vel": [
+     0,
+     13.4,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     9.12,
+     -37
+    ],
+    "ce": [
+     0,
+     10.12,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.44,
+    "pos": [
+     0,
+     8.72,
+     -37
+    ],
+    "vel": [
+     0,
+     13.4,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     9.12,
+     -37
+    ],
+    "ce": [
+     0,
+     10.12,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.46,
+    "pos": [
+     0,
+     9.04,
+     -37
+    ],
+    "vel": [
+     0,
+     12.8,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     9.44,
+     -37
+    ],
+    "ce": [
+     0,
+     10.44,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.47,
+    "pos": [
+     0,
+     9.25,
+     -37
+    ],
+    "vel": [
+     0,
+     12.4,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     9.65,
+     -37
+    ],
+    "ce": [
+     0,
+     10.65,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.49,
+    "pos": [
+     0,
+     9.45,
+     -37
+    ],
+    "vel": [
+     0,
+     12,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     9.85,
+     -37
+    ],
+    "ce": [
+     0,
+     10.85,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.52,
+    "pos": [
+     0,
+     9.74,
+     -37
+    ],
+    "vel": [
+     0,
+     11.4,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     10.14,
+     -37
+    ],
+    "ce": [
+     0,
+     11.14,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.53,
+    "pos": [
+     0,
+     10.01,
+     -37
+    ],
+    "vel": [
+     0,
+     10.8,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     10.41,
+     -37
+    ],
+    "ce": [
+     0,
+     11.41,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.58,
+    "pos": [
+     0,
+     10.1,
+     -37
+    ],
+    "vel": [
+     0,
+     10.6,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     10.5,
+     -37
+    ],
+    "ce": [
+     0,
+     11.5,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.6,
+    "pos": [
+     0,
+     10.6,
+     -37
+    ],
+    "vel": [
+     0,
+     9.4,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     11,
+     -37
+    ],
+    "ce": [
+     0,
+     12,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.62,
+    "pos": [
+     0,
+     10.75,
+     -37
+    ],
+    "vel": [
+     0,
+     9,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     11.15,
+     -37
+    ],
+    "ce": [
+     0,
+     12.15,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.64,
+    "pos": [
+     0,
+     10.96,
+     -37
+    ],
+    "vel": [
+     0,
+     8.4,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     11.36,
+     -37
+    ],
+    "ce": [
+     0,
+     12.36,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.67,
+    "pos": [
+     0,
+     11.1,
+     -37
+    ],
+    "vel": [
+     0,
+     8,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     11.5,
+     -37
+    ],
+    "ce": [
+     0,
+     12.5,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.69,
+    "pos": [
+     0,
+     11.29,
+     -37
+    ],
+    "vel": [
+     0,
+     7.4,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     11.69,
+     -37
+    ],
+    "ce": [
+     0,
+     12.69,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.71,
+    "pos": [
+     0,
+     11.46,
+     -37
+    ],
+    "vel": [
+     0,
+     6.8,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     11.86,
+     -37
+    ],
+    "ce": [
+     0,
+     12.86,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.73,
+    "pos": [
+     0,
+     11.57,
+     -37
+    ],
+    "vel": [
+     0,
+     6.4,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     11.97,
+     -37
+    ],
+    "ce": [
+     0,
+     12.97,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.76,
+    "pos": [
+     0,
+     11.72,
+     -37
+    ],
+    "vel": [
+     0,
+     5.8,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     12.12,
+     -37
+    ],
+    "ce": [
+     0,
+     13.12,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.77,
+    "pos": [
+     0,
+     11.86,
+     -37
+    ],
+    "vel": [
+     0,
+     5.2,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     12.26,
+     -37
+    ],
+    "ce": [
+     0,
+     13.26,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.79,
+    "pos": [
+     0,
+     11.94,
+     -37
+    ],
+    "vel": [
+     0,
+     4.8,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     12.34,
+     -37
+    ],
+    "ce": [
+     0,
+     13.34,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.82,
+    "pos": [
+     0,
+     12.01,
+     -37
+    ],
+    "vel": [
+     0,
+     4.4,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     12.41,
+     -37
+    ],
+    "ce": [
+     0,
+     13.41,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.83,
+    "pos": [
+     0,
+     12.11,
+     -37
+    ],
+    "vel": [
+     0,
+     3.8,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     12.51,
+     -37
+    ],
+    "ce": [
+     0,
+     13.51,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.85,
+    "pos": [
+     0,
+     12.2,
+     -37
+    ],
+    "vel": [
+     0,
+     3.2,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     12.6,
+     -37
+    ],
+    "ce": [
+     0,
+     13.6,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.9,
+    "pos": [
+     0,
+     12.25,
+     -37
+    ],
+    "vel": [
+     0,
+     2.8,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     12.65,
+     -37
+    ],
+    "ce": [
+     0,
+     13.65,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.94,
+    "pos": [
+     0,
+     12.35,
+     -37
+    ],
+    "vel": [
+     0,
+     1.6,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     12.75,
+     -37
+    ],
+    "ce": [
+     0,
+     13.75,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.96,
+    "pos": [
+     0,
+     12.39,
+     -37
+    ],
+    "vel": [
+     0,
+     0.8,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     12.79,
+     -37
+    ],
+    "ce": [
+     0,
+     13.79,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 0.98,
+    "pos": [
+     0,
+     12.4,
+     -37
+    ],
+    "vel": [
+     0,
+     0.2,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     12.8,
+     -37
+    ],
+    "ce": [
+     0,
+     13.8,
+     -37
+    ],
+    "col": null
+   },
+   {
+    "t": 1,
+    "pos": [
+     0,
+     12.4,
+     -37
+    ],
+    "vel": [
+     0,
+     -0.2,
+     0
+    ],
+    "wr": false,
+    "mantle": false,
+    "grap": false,
+    "slide": false,
+    "og": false,
+    "cs": [
+     0,
+     12.8,
+     -37
+    ],
+    "ce": [
+     0,
+     13.8,
+     -37
+    ],
+    "col": null
+   }
+  ],
+  "idx": 3,
+  "finished": true
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

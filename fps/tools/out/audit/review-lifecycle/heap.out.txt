@@ -1,0 +1,210 @@
+[run] http://127.0.0.1:63094/index.html?autotest=1&map=sandbox&bots=8&duration=900&god=1&scenario=tools/out/audit/review-lifecycle/heap.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "rows": [
+  {
+   "label": "start",
+   "heap": 70.4,
+   "geo": 192,
+   "tex": 135,
+   "listeners": 20,
+   "sceneNodes": 483
+  },
+  {
+   "label": "restart 1",
+   "heap": 71,
+   "geo": 203,
+   "tex": 135,
+   "listeners": 20,
+   "sceneNodes": 493
+  },
+  {
+   "label": "restart 2",
+   "heap": 71.1,
+   "geo": 203,
+   "tex": 135,
+   "listeners": 20,
+   "sceneNodes": 481
+  },
+  {
+   "label": "restart 3",
+   "heap": 71.2,
+   "geo": 203,
+   "tex": 135,
+   "listeners": 20,
+   "sceneNodes": 478
+  },
+  {
+   "label": "restart 4",
+   "heap": 71.4,
+   "geo": 203,
+   "tex": 135,
+   "listeners": 20,
+   "sceneNodes": 477
+  },
+  {
+   "label": "restart 5",
+   "heap": 71.4,
+   "geo": 203,
+   "tex": 135,
+   "listeners": 20,
+   "sceneNodes": 483
+  },
+  {
+   "label": "restart 6",
+   "heap": 71.5,
+   "geo": 203,
+   "tex": 135,
+   "listeners": 20,
+   "sceneNodes": 477
+  },
+  {
+   "label": "restart 7",
+   "heap": 71.5,
+   "geo": 203,
+   "tex": 135,
+   "listeners": 20,
+   "sceneNodes": 472
+  },
+  {
+   "label": "restart 8",
+   "heap": 71.7,
+   "geo": 203,
+   "tex": 135,
+   "listeners": 20,
+   "sceneNodes": 479
+  },
+  {
+   "label": "restart 9",
+   "heap": 71.8,
+   "geo": 203,
+   "tex": 135,
+   "listeners": 20,
+   "sceneNodes": 474
+  },
+  {
+   "label": "restart 10",
+   "heap": 71.9,
+   "geo": 203,
+   "tex": 135,
+   "listeners": 20,
+   "sceneNodes": 498
+  },
+  {
+   "label": "restart 11",
+   "heap": 71.9,
+   "geo": 203,
+   "tex": 135,
+   "listeners": 20,
+   "sceneNodes": 490
+  },
+  {
+   "label": "restart 12",
+   "heap": 72,
+   "geo": 203,
+   "tex": 135,
+   "listeners": 20,
+   "sceneNodes": 492
+  },
+  {
+   "label": "switch 1",
+   "heap": 115.6,
+   "geo": 207,
+   "tex": 148,
+   "listeners": 20,
+   "sceneNodes": 474
+  },
+  {
+   "label": "switch 2",
+   "heap": 82.1,
+   "geo": 203,
+   "tex": 148,
+   "listeners": 20,
+   "sceneNodes": 493
+  },
+  {
+   "label": "switch 3",
+   "heap": 116.8,
+   "geo": 207,
+   "tex": 148,
+   "listeners": 20,
+   "sceneNodes": 480
+  },
+  {
+   "label": "switch 4",
+   "heap": 83.2,
+   "geo": 203,
+   "tex": 148,
+   "listeners": 20,
+   "sceneNodes": 478
+  },
+  {
+   "label": "quit+start 1",
+   "heap": 83.4,
+   "geo": 203,
+   "tex": 148,
+   "listeners": 20,
+   "sceneNodes": 480
+  },
+  {
+   "label": "quit+start 2",
+   "heap": 83.5,
+   "geo": 203,
+   "tex": 148,
+   "listeners": 20,
+   "sceneNodes": 478
+  },
+  {
+   "label": "quit+start 3",
+   "heap": 83.6,
+   "geo": 203,
+   "tex": 148,
+   "listeners": 20,
+   "sceneNodes": 492
+  },
+  {
+   "label": "quit+start 4",
+   "heap": 83.7,
+   "geo": 203,
+   "tex": 148,
+   "listeners": 20,
+   "sceneNodes": 481
+  },
+  {
+   "label": "quit+start 5",
+   "heap": 83.7,
+   "geo": 203,
+   "tex": 148,
+   "listeners": 20,
+   "sceneNodes": 493
+  },
+  {
+   "label": "quit+start 6",
+   "heap": 83.8,
+   "geo": 203,
+   "tex": 148,
+   "listeners": 20,
+   "sceneNodes": 483
+  },
+  {
+   "label": "quit+start 7",
+   "heap": 83.9,
+   "geo": 203,
+   "tex": 148,
+   "listeners": 20,
+   "sceneNodes": 476
+  },
+  {
+   "label": "quit+start 8",
+   "heap": 83.8,
+   "geo": 203,
+   "tex": 148,
+   "listeners": 20,
+   "sceneNodes": 482
+  }
+ ],
+ "errors": []
+}
+[run] done: wait=ok console_errors=0 warnings=1

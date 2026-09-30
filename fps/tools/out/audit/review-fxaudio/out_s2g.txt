@@ -1,0 +1,15 @@
+[run] http://127.0.0.1:52717/index.html?autotest=1&map=sandbox&bots=0&god=1&script=idle&mode=end&scenario=tools/out/audit/review-fxaudio/s2g_grapple.js&duration=12
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52717/src/weapons/Projectiles.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52717/src/ai/BotManager.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52717/src/fx/Effects.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52717/src/ui/HUD.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52717/src/ui/Menu.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52717/vendor/three/examples/jsm/shaders/CopyShader.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52717/vendor/three/examples/jsm/postprocessing/ShaderPass.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:52717/src/core/Game.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52717/vendor/three/examples/jsm/postprocessing/MaskPass.js]
+[error] [run] timed out after 100s waiting for: window.__S2DONE__
+[result] {
+ "__eval_error__": "TypeError: Cannot read properties of undefined (reading 'custom')\n    at <anonymous>:1:37\n    at <anonymous>:1:111"
+}
+[run] done: wait=TIMEOUT console_errors=10 warnings=0

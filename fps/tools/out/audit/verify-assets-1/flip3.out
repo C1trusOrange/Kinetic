@@ -1,0 +1,63 @@
+[run] http://127.0.0.1:57932/index.html?autotest=1&map=foundry&bots=8&god=1&script=idle&scenario=tools/out/audit/verify-assets-1/flip3.js&duration=20
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done
+[result] {
+ "done": false,
+ "started": true,
+ "t": 4.11,
+ "frames": 116,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 82.64462809919631
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 5,
+  "death": 0,
+  "spawn": 9,
+  "pickup": 0,
+  "fire": 23
+ },
+ "renderer": {},
+ "custom": {
+  "flipCount": {
+   "sharedMats": 13,
+   "passes": 12,
+   "flipsTotal": 156,
+   "flipsPerFrame": 26
+  },
+  "ab": {
+   "sharedMean": 7.614347824670266,
+   "decoupledMean": 7.211594203416851,
+   "sharedMed": 7.486956518629323,
+   "decoupledMed": 7.165217394414156,
+   "diffMed": 0.4304348023041431,
+   "diffMean": 0.4027536212534143,
+   "diffPositiveRounds": 22,
+   "rounds": 30
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=TIMEOUT console_errors=1 warnings=4

@@ -1,0 +1,10 @@
+g_rifle_hip_bot: [run] done: wait=ok console_errors=0 warnings=0
+g_rifle_ads_bot: [run] done: wait=ok console_errors=0 warnings=0
+g_pistol_hip_bot: [run] done: wait=ok console_errors=0 warnings=0
+g_shotgun_hip_bot: [run] done: wait=ok console_errors=0 warnings=0
+g_sniper_scope_bot: [run] done: wait=ok console_errors=0 warnings=0
+g_rifle_hip_metal: [run] done: wait=ok console_errors=0 warnings=0
+g_shotgun_wall: [run] done: wait=ok console_errors=0 warnings=0
+g_rocket_wall: [run] done: wait=ok console_errors=0 warnings=0
+g_rifle_night_bot: [run] done: wait=ok console_errors=0 warnings=0
+ALLDONE

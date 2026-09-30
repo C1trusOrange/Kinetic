@@ -1,0 +1,11 @@
+[run] http://127.0.0.1:65251/index.html?autotest=1&map=skyline&bots=0&script=idle&scenario=tools/out/audit/review-player/v_spawns.js
+Traceback (most recent call last):
+  File "C:\Users\caleb\Desktop\AiProject\fps\tools\run.py", line 416, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\caleb\Desktop\AiProject\fps\tools\run.py", line 345, in main
+    cdp.call('Page.navigate', {'url': full})
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\caleb\Desktop\AiProject\fps\tools\run.py", line 149, in call
+    raise TimeoutError(f'CDP call timed out: {method}')
+TimeoutError: CDP call timed out: Page.navigate

@@ -1,0 +1,114 @@
+[run] http://127.0.0.1:65437/index.html?autotest=1&map=sandbox&bots=3&duration=3&god=1&script=idle&scenario=tools/out/audit/review-aibody/scen_weap.js
+[log] [autotest] finished {"ok":true,"errors":0,"fps":24.1}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 3.22,
+ "frames": 107,
+ "fps": {
+  "avg": 24.1,
+  "min": 4,
+  "max": 82.64462809917204
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 4.5,
+  "maxY": 4.5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 11,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    7,
+    4.5,
+    -29
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 16.7,
+   "pos": [
+    -13.8,
+    0,
+    29.2
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 17.8,
+   "pos": [
+    12.1,
+    0,
+    23.6
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 11,
+  "spawn": 15,
+  "pickup": 1,
+  "fire": 8
+ },
+ "renderer": {
+  "calls": 380,
+  "triangles": 72778,
+  "geometries": 181,
+  "textures": 123,
+  "programs": 102
+ },
+ "custom": {
+  "socketChildren": 1,
+  "socketNames": [
+   "weapon_shotgun"
+  ],
+  "weaponId": "shotgun",
+  "sceneWeaponRoots": 3,
+  "botCount": 3,
+  "socketChildrenAfterRespawns": 1,
+  "gibsInScene": 70,
+  "rootVisible": true,
+  "weaponModels": [
+   "rifle",
+   "pistol",
+   "sniper",
+   "rocket",
+   "shotgun"
+  ],
+  "deadVisible": false,
+  "deadAlive": false
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

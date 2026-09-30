@@ -1,0 +1,234 @@
+[run] http://127.0.0.1:54856/index.html?autotest=1&map=foundry&bots=8&duration=30&scenario=tools/out/audit/review-perf/scenario_gpu.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 30.14,
+ "frames": 708,
+ "fps": {
+  "avg": 21.7,
+  "min": 4,
+  "max": 163.9
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 108.25581026527819,
+  "maxSpeed": 7.41,
+  "minY": -4,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 31,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 173.8,
+   "pos": [
+    15.5,
+    0,
+    -29.5
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 1,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 138.9,
+   "pos": [
+    19.7,
+    2.8,
+    22.8
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 166.1,
+   "pos": [
+    16.6,
+    0,
+    3.6
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 24,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 158.5,
+   "pos": [
+    1.4,
+    0,
+    3.7
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 135.8,
+   "pos": [
+    -11.4,
+    0,
+    -25.7
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": false,
+   "kills": 2,
+   "deaths": 2,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 151.3,
+   "pos": [
+    6.9,
+    0,
+    -3.7
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 24,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 186.7,
+   "pos": [
+    2.4,
+    0.6,
+    -28.6
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 3,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 161.8,
+   "pos": [
+    -21.2,
+    0,
+    30.7
+   ]
+  }
+ ],
+ "events": {
+  "damage": 47,
+  "death": 11,
+  "spawn": 19,
+  "pickup": 3,
+  "fire": 184
+ },
+ "renderer": {
+  "calls": 343,
+  "triangles": 127844,
+  "geometries": 222,
+  "textures": 138,
+  "programs": 107
+ },
+ "custom": {
+  "hasTimer": true,
+  "names": [
+   "0:RenderPass",
+   "1:RenderPass",
+   "2:UnrealBloomPass",
+   "3:OutputPass"
+  ],
+  "passes": {
+   "0:RenderPass [shadowSkip]": {
+    "n": 371,
+    "median": 5.964,
+    "mean": 18.367,
+    "p90": 26.929
+   },
+   "1:RenderPass [shadowSkip]": {
+    "n": 371,
+    "median": 2.39,
+    "mean": 6.669,
+    "p90": 5.593
+   },
+   "2:UnrealBloomPass [shadowSkip]": {
+    "n": 371,
+    "median": 3.597,
+    "mean": 7.176,
+    "p90": 21.551
+   },
+   "3:OutputPass [shadowSkip]": {
+    "n": 371,
+    "median": 0.644,
+    "mean": 1.249,
+    "p90": 0.69
+   },
+   "0:RenderPass [shadowUpdate]": {
+    "n": 304,
+    "median": 23.001,
+    "mean": 23.003,
+    "p90": 36.072
+   },
+   "1:RenderPass [shadowUpdate]": {
+    "n": 304,
+    "median": 2.409,
+    "mean": 5.751,
+    "p90": 17.972
+   },
+   "2:UnrealBloomPass [shadowUpdate]": {
+    "n": 304,
+    "median": 3.58,
+    "mean": 7.519,
+    "p90": 18.051
+   },
+   "3:OutputPass [shadowUpdate]": {
+    "n": 304,
+    "median": 0.655,
+    "mean": 0.829,
+    "p90": 0.709
+   }
+  },
+  "size": [
+   1920,
+   1080
+  ],
+  "quality": "high",
+  "bots": 8
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

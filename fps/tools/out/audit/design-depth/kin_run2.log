@@ -1,0 +1,148 @@
+[run] http://127.0.0.1:50946/index.html?autotest=1&mapfile=tools/out/audit/design-depth/void_map.js&bots=1&script=idle&scenario=tools/out/audit/design-depth/scenario_kin.js&duration=22
+[warning] [world] map 'voidtest' has 1 warning(s):
+ - only 4 spawn point(s): 14-18 recommended
+[log] [autotest] finished {"ok":true,"errors":0,"fps":51.5}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 22.14,
+ "frames": 749,
+ "fps": {
+  "avg": 51.5,
+  "min": 4,
+  "max": 200
+ },
+ "errors": [],
+ "map": "voidtest",
+ "player": {
+  "distance": 61.7,
+  "maxSpeed": 17.33,
+  "minY": 0,
+  "maxY": 5.850244358907034,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 1,
+  "deaths": 0,
+  "damageDealt": 8.186666666666667,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 122.5,
+   "pos": [
+    6,
+    0,
+    -8.3
+   ]
+  }
+ ],
+ "events": {
+  "damage": 1,
+  "death": 1,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 39
+ },
+ "renderer": {
+  "calls": 98,
+  "triangles": 11076,
+  "geometries": 116,
+  "textures": 60,
+  "programs": 75
+ },
+ "custom": {
+  "runs": [
+   {
+    "name": "kinetic22_at_2.0m",
+    "v0": [
+     18.3,
+     9.1,
+     0
+    ],
+    "maxHoriz": 15.1,
+    "maxUp": 1.5,
+    "endX": 11.9,
+    "died": false
+   },
+   {
+    "name": "kinetic22_near_edge_x14_ringout",
+    "v0": [
+     18.9,
+     6,
+     0
+    ],
+    "maxHoriz": 18.9,
+    "maxUp": 0.6,
+    "endX": 28.3,
+    "died": true,
+    "deathT": 1.32,
+    "deathPos": [
+     28.3,
+     -13.5,
+     -12.3
+    ]
+   },
+   {
+    "name": "repulsor_style_push23_at_2m",
+    "v0": [
+     20.1,
+     4.5,
+     0
+    ],
+    "maxHoriz": 10.1,
+    "maxUp": 0.3,
+    "endX": 6.6,
+    "died": false
+   },
+   {
+    "name": "repulsor_style_push23_at_8m",
+    "v0": [
+     11.4,
+     4.5,
+     0
+    ],
+    "maxHoriz": 12.3,
+    "maxUp": 0.3,
+    "endX": 9.1,
+    "died": false
+   },
+   {
+    "name": "player_self_down_shot_12.8up",
+    "maxUp": 3.36
+   },
+   {
+    "name": "player_recoil_8_horizontal_ground",
+    "slideDist": 1.58
+   },
+   {
+    "name": "player_kinetic_launch_21_at_35deg",
+    "maxUp": 5.85,
+    "maxX": 26.37,
+    "landedY": 0,
+    "alive": true
+   }
+  ],
+  "stage": 12,
+  "killEvents": [
+   {
+    "victim": "Servo",
+    "attacker": "Player",
+    "weapon": "fall",
+    "t": 5.41
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

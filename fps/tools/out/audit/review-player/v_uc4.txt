@@ -1,0 +1,154 @@
+[run] http://127.0.0.1:61963/index.html?autotest=1&map=testmap4&mapfile=tools/out/audit/review-player/testmap4.js&bots=0&script=idle&scenario=tools/out/audit/review-player/v_uncrouch4.js
+[warning] [world] map 'testmap4' has 1 warning(s):
+ - only 4 spawn point(s): 14-18 recommended
+[result] {
+ "done": true,
+ "started": true,
+ "t": 7,
+ "frames": 17,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "testmap4",
+ "player": {
+  "distance": 10.336120340167806,
+  "maxSpeed": 0,
+  "minY": 1.5,
+  "maxY": 1.5,
+  "states": {
+   "onGround": true,
+   "isCrouching": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "cases": [
+   {
+    "at": [
+     0,
+     1.5,
+     22
+    ],
+    "before": {
+     "crouched": true,
+     "h": 1.15
+    },
+    "after": {
+     "crouched": false,
+     "h": 1.8,
+     "eyeY": 3.16,
+     "headroom": 1.38,
+     "ceilingY": 2.88
+    }
+   },
+   {
+    "at": [
+     -1,
+     1.5,
+     22.5
+    ],
+    "before": {
+     "crouched": true,
+     "h": 1.15
+    },
+    "after": {
+     "crouched": false,
+     "h": 1.8,
+     "eyeY": 3.16,
+     "headroom": 1.38,
+     "ceilingY": 2.88
+    }
+   },
+   {
+    "at": [
+     2,
+     1.5,
+     24
+    ],
+    "before": {
+     "crouched": true,
+     "h": 1.15
+    },
+    "after": {
+     "crouched": false,
+     "h": 1.8,
+     "eyeY": 3.16,
+     "headroom": 1.38,
+     "ceilingY": 2.88
+    }
+   },
+   {
+    "at": [
+     0.5,
+     1.5,
+     23
+    ],
+    "before": {
+     "crouched": true,
+     "h": 1.15
+    },
+    "after": {
+     "crouched": true,
+     "h": 1.15,
+     "eyeY": 2.51,
+     "headroom": 1.38,
+     "ceilingY": 2.88
+    }
+   },
+   {
+    "at": [
+     1,
+     1.5,
+     22.5
+    ],
+    "before": {
+     "crouched": true,
+     "h": 1.15
+    },
+    "after": {
+     "crouched": true,
+     "h": 1.15,
+     "eyeY": 2.51,
+     "headroom": 1.38,
+     "ceilingY": 2.88
+    }
+   },
+   {
+    "at": [
+     -2,
+     1.5,
+     24
+    ],
+    "before": {
+     "crouched": true,
+     "h": 1.15
+    },
+    "after": {
+     "crouched": false,
+     "h": 1.8,
+     "eyeY": 3.16,
+     "headroom": 1.38,
+     "ceilingY": 2.88
+    }
+   }
+  ]
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

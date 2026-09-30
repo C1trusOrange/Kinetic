@@ -1,0 +1,368 @@
+[run] http://127.0.0.1:63504/index.html?autotest=1&map=skyline&bots=0&script=idle&scenario=tools/out/audit/review-player/mantle_wall.js
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8,
+ "frames": 50,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "skyline",
+ "player": {
+  "distance": 51.72832608955606,
+  "maxSpeed": 6.377520847700058,
+  "minY": -19.639999999999947,
+  "maxY": 15.005,
+  "states": {
+   "airborne": true,
+   "isMantling": true,
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 1,
+  "spawn": 2,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "map": "skyline",
+  "afterMantle": {
+   "pos": [
+    0,
+    -120.37,
+    -67.46
+   ],
+   "state": "air",
+   "grounded": false
+  },
+  "wallTop": 15,
+  "bounds": {
+   "min": [
+    -46,
+    -4,
+    -46
+   ],
+   "max": [
+    46,
+    42,
+    46
+   ]
+  },
+  "afterWalkOut": {
+   "pos": [
+    2.22,
+    6.4,
+    29.72
+   ],
+   "state": "ground",
+   "grounded": true,
+   "alive": true
+  },
+  "inBounds": true,
+  "log": [
+   [
+    0.02,
+    0,
+    13.74,
+    -43.55,
+    "mantle"
+   ],
+   [
+    0.03,
+    0,
+    14,
+    -43.55,
+    "mantle"
+   ],
+   [
+    0.05,
+    0,
+    14.23,
+    -43.55,
+    "mantle"
+   ],
+   [
+    0.07,
+    0,
+    14.43,
+    -43.55,
+    "mantle"
+   ],
+   [
+    0.08,
+    0,
+    14.6,
+    -43.55,
+    "mantle"
+   ],
+   [
+    0.1,
+    0,
+    14.74,
+    -43.55,
+    "mantle"
+   ],
+   [
+    0.12,
+    0,
+    14.85,
+    -43.55,
+    "mantle"
+   ],
+   [
+    0.13,
+    0,
+    14.93,
+    -43.55,
+    "mantle"
+   ],
+   [
+    0.15,
+    0,
+    14.98,
+    -43.57,
+    "mantle"
+   ],
+   [
+    0.17,
+    0,
+    15,
+    -43.6,
+    "mantle"
+   ],
+   [
+    0.18,
+    0,
+    15.01,
+    -43.6,
+    "mantle"
+   ],
+   [
+    0.2,
+    0,
+    15.01,
+    -43.6,
+    "mantle"
+   ],
+   [
+    0.22,
+    0,
+    15.01,
+    -44.07,
+    "mantle"
+   ],
+   [
+    0.23,
+    0,
+    15.01,
+    -44.24,
+    "mantle"
+   ],
+   [
+    0.25,
+    0,
+    15.01,
+    -44.36,
+    "mantle"
+   ],
+   [
+    0.27,
+    0,
+    15.01,
+    -44.44,
+    "mantle"
+   ],
+   [
+    0.28,
+    0,
+    15.01,
+    -44.47,
+    "mantle"
+   ],
+   [
+    0.32,
+    0,
+    15,
+    -44.59,
+    "ground"
+   ],
+   [
+    0.42,
+    0,
+    14.92,
+    -45.23,
+    "ground"
+   ],
+   [
+    0.52,
+    0,
+    14.81,
+    -45.85,
+    "air"
+   ],
+   [
+    0.62,
+    0,
+    14.46,
+    -46.47,
+    "air"
+   ],
+   [
+    0.72,
+    0,
+    12.48,
+    -47.11,
+    "air"
+   ],
+   [
+    0.82,
+    0,
+    11.65,
+    -47.73,
+    "air"
+   ],
+   [
+    0.92,
+    0,
+    10.58,
+    -48.35,
+    "air"
+   ],
+   [
+    1.02,
+    0,
+    9.27,
+    -48.97,
+    "air"
+   ],
+   [
+    1.12,
+    0,
+    7.72,
+    -49.59,
+    "air"
+   ],
+   [
+    1.22,
+    0,
+    5.93,
+    -50.21,
+    "air"
+   ],
+   [
+    1.32,
+    0,
+    3.9,
+    -50.83,
+    "air"
+   ],
+   [
+    1.42,
+    0,
+    1.63,
+    -51.45,
+    "air"
+   ],
+   [
+    1.52,
+    0,
+    -0.88,
+    -52.07,
+    "air"
+   ],
+   [
+    1.62,
+    0,
+    -3.63,
+    -52.69,
+    "air"
+   ],
+   [
+    1.72,
+    0,
+    -6.62,
+    -53.31,
+    "air"
+   ],
+   [
+    1.82,
+    0,
+    -9.85,
+    -53.93,
+    "air"
+   ],
+   [
+    1.92,
+    0,
+    -13.32,
+    -54.55,
+    "air"
+   ],
+   [
+    2.02,
+    0,
+    -17.03,
+    -55.17,
+    "air"
+   ],
+   [
+    2.12,
+    0,
+    -20.98,
+    -55.79,
+    "air"
+   ],
+   [
+    2.22,
+    0,
+    -25.18,
+    -56.41,
+    "air"
+   ],
+   [
+    2.32,
+    0,
+    -29.62,
+    -57.03,
+    "air"
+   ],
+   [
+    2.42,
+    0,
+    -34.3,
+    -57.65,
+    "air"
+   ],
+   [
+    2.52,
+    0,
+    -39.22,
+    -58.27,
+    "air"
+   ]
+  ]
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

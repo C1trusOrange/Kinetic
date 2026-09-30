@@ -1,0 +1,13 @@
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+state playing
+F2 0.5 {'cls': 'grap', 'arc': {'dash': 'none', 'off': '50px', 'fill': 'rgb(0, 0, 0)', 'stroke': 'rgb(255, 154, 60)'}, 'trk': {'stroke': 'none', 'fill': 'rgb(0, 0, 0)', 'sw': '6px'}}
+F2 0.1 {'cls': 'grap', 'arc': {'dash': 'none', 'off': '90px', 'fill': 'rgb(0, 0, 0)', 'stroke': 'rgb(255, 154, 60)'}, 'trk': {'stroke': 'none', 'fill': 'rgb(0, 0, 0)', 'sw': '6px'}}
+F6 {'hudOrdinal': '1ST', 'hudTag': 'RIVAL', 'scoreboardRank': 2, 'rows': [['Flux', 3, 1], ['Player', 3, 2], ['Tesla', 0, 0]]}
+F6 winner-sort {'winner': 'Flux', 'isPlayer': False}
+F6b log [{'f': 26, 't': 34823, 'title': 'YOU TOOK THE LEAD', 'sub': '', 'kind': 'info'}] {'p': [1, 0], 'hud': '1ST', 'b': [[1, 0], [0, 1], [0, 1], [0, 0]]}
+F5 log [{'f': 52, 't': 35747, 'title': 'DOUBLE KILL', 'sub': 'FIRST BLOOD · HEADSHOT', 'kind': 'kill'}, {'f': 53, 't': 35749, 'title': 'MATCH POINT', 'sub': '', 'kind': 'alert'}] kills 9 shown MATCH POINT
+F4 log [{'f': 77, 't': 36949, 'title': 'VICTORY', 'sub': 'YOU WIN', 'kind': 'win'}, {'f': 77, 't': 36955, 'title': 'TRIPLE KILL', 'sub': 'HEADSHOT', 'kind': 'kill'}]
+F4 state {'state': 'ended', 'over': True, 'playerWon': True, 'banner': 'TRIPLE KILL / HEADSHOT', 'opacity': '0.939393'}
+[shot] tools\out\audit\verify-ui-1\b_victory.png
+[sess] console errors=0 warnings=1

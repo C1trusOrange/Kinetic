@@ -1,0 +1,80 @@
+[run] http://127.0.0.1:53800/index.html?autotest=1&map=sandbox&bots=2&duration=900&god=1&scenario=tools/out/audit/review-lifecycle/quality.js
+[result] {
+ "done": true,
+ "rows": [
+  {
+   "label": "start",
+   "quality": "high",
+   "textures": 119,
+   "geometries": 161,
+   "programs": 101,
+   "composer": true
+  },
+  {
+   "label": "set medium #1",
+   "quality": "medium",
+   "textures": 130,
+   "geometries": 161,
+   "programs": 101,
+   "composer": true
+  },
+  {
+   "label": "set high #2",
+   "quality": "high",
+   "textures": 143,
+   "geometries": 161,
+   "programs": 101,
+   "composer": true
+  },
+  {
+   "label": "set medium #3",
+   "quality": "medium",
+   "textures": 154,
+   "geometries": 161,
+   "programs": 101,
+   "composer": true
+  },
+  {
+   "label": "set high #4",
+   "quality": "high",
+   "textures": 165,
+   "geometries": 161,
+   "programs": 101,
+   "composer": true
+  },
+  {
+   "label": "set medium #5",
+   "quality": "medium",
+   "textures": 176,
+   "geometries": 161,
+   "programs": 101,
+   "composer": true
+  },
+  {
+   "label": "set high #6",
+   "quality": "high",
+   "textures": 187,
+   "geometries": 161,
+   "programs": 101,
+   "composer": true
+  },
+  {
+   "label": "low",
+   "quality": "low",
+   "textures": 184,
+   "geometries": 161,
+   "programs": 127,
+   "composer": false
+  },
+  {
+   "label": "high again",
+   "quality": "high",
+   "textures": 198,
+   "geometries": 161,
+   "programs": 127,
+   "composer": true
+  }
+ ],
+ "errors": []
+}
+[run] done: wait=ok console_errors=0 warnings=0

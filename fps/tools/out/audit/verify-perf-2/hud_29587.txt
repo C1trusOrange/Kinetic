@@ -1,0 +1,173 @@
+[run] http://127.0.0.1:53740/index.html?autotest=1&map=sandbox&bots=3&duration=8&hide=1&scenario=tools/out/audit/verify-perf-2/sc_hud.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.12,
+ "frames": 318,
+ "fps": {
+  "avg": 41.5,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 53.275000033012624,
+  "maxSpeed": 11.65,
+  "minY": 0,
+  "maxY": 2.0916666666666637,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true
+  },
+  "shots": 17,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 11.86415460479487
+ },
+ "bots": [
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 55,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 49.5,
+   "pos": [
+    22.5,
+    0,
+    16.7
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 47,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 59.5,
+   "pos": [
+    -19.7,
+    -2.8,
+    15.9
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 32.2,
+   "pos": [
+    1.2,
+    2.2,
+    12.3
+   ]
+  }
+ ],
+ "events": {
+  "damage": 5,
+  "death": 0,
+  "spawn": 4,
+  "pickup": 4,
+  "fire": 38
+ },
+ "renderer": {
+  "calls": 209,
+  "triangles": 43570,
+  "geometries": 216,
+  "textures": 132,
+  "programs": 107
+ },
+ "custom": {
+  "hide": "1",
+  "firstPlay": 28,
+  "firstFrame": {
+   "f": 28,
+   "dt": 5664,
+   "js": 4862,
+   "gt": 0.05,
+   "st": "playing"
+  },
+  "next8": [
+   {
+    "f": 29,
+    "dt": 36,
+    "js": 20,
+    "gt": 0.1,
+    "st": "playing"
+   },
+   {
+    "f": 30,
+    "dt": 20,
+    "js": 20,
+    "gt": 0.14,
+    "st": "playing"
+   },
+   {
+    "f": 31,
+    "dt": 36,
+    "js": 36,
+    "gt": 0.15,
+    "st": "playing"
+   },
+   {
+    "f": 32,
+    "dt": 20,
+    "js": 19,
+    "gt": 0.19,
+    "st": "playing"
+   },
+   {
+    "f": 33,
+    "dt": 37,
+    "js": 23,
+    "gt": 0.23,
+    "st": "playing"
+   },
+   {
+    "f": 34,
+    "dt": 31,
+    "js": 14,
+    "gt": 0.26,
+    "st": "playing"
+   },
+   {
+    "f": 35,
+    "dt": 55,
+    "js": 16,
+    "gt": 0.31,
+    "st": "playing"
+   },
+   {
+    "f": 36,
+    "dt": 42,
+    "js": 21,
+    "gt": 0.35,
+    "st": "playing"
+   }
+  ],
+  "maxGapAfter": 215,
+  "maxGapAfterJs": {
+   "f": 59,
+   "dt": 215,
+   "js": 181,
+   "gt": 1.3,
+   "st": "playing"
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

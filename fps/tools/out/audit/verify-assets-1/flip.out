@@ -1,0 +1,272 @@
+[run] http://127.0.0.1:59625/index.html?autotest=1&map=foundry&bots=8&god=1&script=idle&scenario=tools/out/audit/verify-assets-1/flip.js&duration=14
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":38.8}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 14.18,
+ "frames": 510,
+ "fps": {
+  "avg": 38.8,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Servo",
+   "alive": false,
+   "kills": 0,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 74.5,
+   "pos": [
+    -17.2,
+    0,
+    -14.4
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 88.4,
+   "pos": [
+    -10.9,
+    0,
+    -18.8
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 36,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 81.3,
+   "pos": [
+    -2.2,
+    0,
+    -19.7
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 51.8,
+   "pos": [
+    14.8,
+    0,
+    25.8
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 44.4,
+   "pos": [
+    -0.3,
+    5,
+    7.5
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "collect",
+   "distance": 74.6,
+   "pos": [
+    -44.8,
+    0,
+    -23.1
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 45.8,
+   "pos": [
+    14.9,
+    3.4,
+    -14.4
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 65.9,
+   "pos": [
+    34.1,
+    0.9,
+    18.4
+   ]
+  }
+ ],
+ "events": {
+  "damage": 18,
+  "death": 2,
+  "spawn": 11,
+  "pickup": 0,
+  "fire": 65
+ },
+ "renderer": {
+  "calls": 462,
+  "triangles": 141774,
+  "geometries": 218,
+  "textures": 135,
+  "programs": 103
+ },
+ "custom": {
+  "log": [],
+  "flipSamples": [
+   {
+    "pass": "world",
+    "lsv": 26,
+    "fog": true,
+    "prog": 88
+   },
+   {
+    "pass": "view",
+    "lsv": 27,
+    "fog": false,
+    "prog": 94
+   },
+   {
+    "pass": "other",
+    "lsv": 27,
+    "fog": false,
+    "prog": 94
+   },
+   {
+    "pass": "other",
+    "lsv": 27,
+    "fog": false,
+    "prog": 94
+   },
+   {
+    "pass": "other",
+    "lsv": 27,
+    "fog": false,
+    "prog": 94
+   },
+   {
+    "pass": "other",
+    "lsv": 27,
+    "fog": false,
+    "prog": 94
+   }
+  ],
+  "sceneFog": {
+   "world": true,
+   "view": false
+  },
+  "composer": true,
+  "mats": {
+   "worldInFrustum": 28,
+   "worldMeshesInFrustum": 75,
+   "view": 17,
+   "both": 13
+  },
+  "directMedians": {
+   "shared": 8.800000071525574,
+   "decoupled": 8.200000047683716,
+   "sharedAll": [
+    8.8,
+    8.8,
+    9.9,
+    8.7,
+    7.2,
+    7.1,
+    8.9,
+    9.1
+   ],
+   "decoupledAll": [
+    8.2,
+    8.5,
+    9.6,
+    8.1,
+    7.7,
+    8.4,
+    8.2,
+    8
+   ]
+  },
+  "gameRenderMedians": {
+   "shared": 17.100000023841858,
+   "decoupled": 17.200000047683716,
+   "sharedAll": [
+    11.7,
+    25.1,
+    17.4,
+    11,
+    16.8,
+    17.1,
+    16,
+    19.2
+   ],
+   "decoupledAll": [
+    22,
+    17.2,
+    11.7,
+    18.8,
+    12.3,
+    15.5,
+    20.8,
+    12.6
+   ]
+  },
+  "viewMeshes": 156,
+  "clones": 33
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

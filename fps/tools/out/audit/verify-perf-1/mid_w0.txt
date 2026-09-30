@@ -1,0 +1,208 @@
+[run] http://127.0.0.1:60378/index.html?autotest=1&map=foundry&bots=5&duration=17&warm=0&scenario=tools/out/audit/verify-perf-1/mid.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 17.45,
+ "frames": 424,
+ "fps": {
+  "avg": 21.1,
+  "min": 4,
+  "max": 172.4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 65.76265708239957,
+  "maxSpeed": 12.59,
+  "minY": 0,
+  "maxY": 2.1331305267204907,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isWallRunning": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "isGrappling": true
+  },
+  "shots": 19,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Axle",
+   "alive": false,
+   "kills": 0,
+   "deaths": 2,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 96.5,
+   "pos": [
+    -32.2,
+    0,
+    -3.7
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 86,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 101.6,
+   "pos": [
+    -7.4,
+    0,
+    -9.6
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 35,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 107,
+   "pos": [
+    -19.6,
+    0,
+    -21.4
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 25,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 100.7,
+   "pos": [
+    12.3,
+    0,
+    -19.5
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 87.2,
+   "pos": [
+    7.3,
+    0,
+    -25.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 14,
+  "death": 3,
+  "spawn": 8,
+  "pickup": 0,
+  "fire": 82
+ },
+ "renderer": {
+  "calls": 268,
+  "triangles": 117366,
+  "geometries": 363,
+  "textures": 143,
+  "programs": 115
+ },
+ "custom": {
+  "warm": "0",
+  "events": [
+   {
+    "gt": 3.35,
+    "n": 2,
+    "ren": 393,
+    "who": [
+     "world:MeshBasicMaterial:Mesh<flame<rocket<Group"
+    ]
+   },
+   {
+    "gt": 4.84,
+    "n": 1,
+    "ren": 355,
+    "who": [
+     "view:MeshStandardMaterial:Mesh<viewmodel<PerspectiveCamera<Scene"
+    ]
+   },
+   {
+    "gt": 4.96,
+    "n": 3,
+    "ren": 291,
+    "who": [
+     "view:SpriteMaterial:Sprite<Group<muzzle<weapon_rifle_view",
+     "view:MeshBasicMaterial:Mesh<Group<muzzle<weapon_rifle_view"
+    ]
+   },
+   {
+    "gt": 7.22,
+    "n": 1,
+    "ren": 682,
+    "who": [
+     "world:MeshStandardMaterial:body:cellBody<weapon_rifle<weaponSocket<torso",
+     "view:MeshStandardMaterial:body:cellBody<weapon_rifle_view<viewmodel<PerspectiveCamera",
+     "view:MeshStandardMaterial:mag:cellBody<mag<weapon_rifle_view<viewmodel"
+    ]
+   },
+   {
+    "gt": 11.23,
+    "n": 3,
+    "ren": 276,
+    "who": [
+     "world:MeshBasicMaterial:Mesh<Scene"
+    ]
+   },
+   {
+    "gt": 12.35,
+    "n": 4,
+    "ren": 845,
+    "who": [
+     "world:MeshBasicMaterial:grapple-rope<grapple<Scene",
+     "world:MeshStandardMaterial:Mesh<grapple-claw<grapple<Scene",
+     "world:MeshBasicMaterial:Mesh<grapple-claw<grapple<Scene",
+     "world:SpriteMaterial:Sprite<grapple-claw<grapple<Scene"
+    ]
+   },
+   {
+    "gt": 15.04,
+    "n": 1,
+    "ren": 154,
+    "who": [
+     "world:SpriteMaterial:Sprite<Group<projectiles<Scene"
+    ]
+   }
+  ],
+  "stallsOver120": 25,
+  "stallSumMs": 7233,
+  "first": {
+   "n": 1,
+   "gt": 0.05,
+   "dt": 5274.5,
+   "upd": 666.6,
+   "ren": 3993.3
+  },
+  "frames": 384,
+  "endProgs": 115
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

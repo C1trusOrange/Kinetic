@@ -1,0 +1,378 @@
+[run] http://127.0.0.1:59719/index.html?autotest=1&map=sandbox&bots=0&god=1&script=idle&scenario=tools/out/audit/feel-gunfeel/audio.js&duration=1
+[log] [autotest] finished {"ok":true,"errors":0,"fps":17.6}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0.59,
+ "frames": 40,
+ "fps": {
+  "avg": 17.6,
+  "min": 4,
+  "max": 33.1
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 133,
+  "triangles": 36594,
+  "geometries": 117,
+  "textures": 114,
+  "programs": 94
+ },
+ "custom": {
+  "ready": true,
+  "enabled": true,
+  "stats": {
+   "sounds": 59,
+   "buffers": 151,
+   "bytes": 18257928,
+   "ms": 1990
+  },
+  "sounds": {
+   "pistol_fire": {
+    "variants": 3,
+    "peakDb": -2.3,
+    "rms100msDb": -9.5,
+    "rmsAllDb": -18.1,
+    "centroidHz": 286,
+    "lowPct": 89,
+    "midPct": 10,
+    "highPct": 1,
+    "audibleS": 0.67
+   },
+   "rifle_fire": {
+    "variants": 4,
+    "peakDb": -3.4,
+    "rms100msDb": -12.1,
+    "rmsAllDb": -19.3,
+    "centroidHz": 181,
+    "lowPct": 92,
+    "midPct": 7,
+    "highPct": 1,
+    "audibleS": 0.33
+   },
+   "shotgun_fire": {
+    "variants": 2,
+    "peakDb": -1.4,
+    "rms100msDb": -6.4,
+    "rmsAllDb": -16,
+    "centroidHz": 496,
+    "lowPct": 87,
+    "midPct": 7,
+    "highPct": 6,
+    "audibleS": 1.58
+   },
+   "sniper_fire": {
+    "variants": 2,
+    "peakDb": -0.9,
+    "rms100msDb": -6.5,
+    "rmsAllDb": -16.7,
+    "centroidHz": 217,
+    "lowPct": 93,
+    "midPct": 6,
+    "highPct": 1,
+    "audibleS": 2.56
+   },
+   "rocket_fire": {
+    "variants": 2,
+    "peakDb": -1.4,
+    "rms100msDb": -6.5,
+    "rmsAllDb": -16.1,
+    "centroidHz": 210,
+    "lowPct": 91,
+    "midPct": 8,
+    "highPct": 1,
+    "audibleS": 1.79
+   },
+   "dry_fire": {
+    "variants": 2,
+    "peakDb": -5.4,
+    "rms100msDb": -20.1,
+    "rmsAllDb": -22.2,
+    "centroidHz": 170,
+    "lowPct": 97,
+    "midPct": 3,
+    "highPct": 1,
+    "audibleS": 0.11
+   },
+   "reload_start": {
+    "variants": 2,
+    "peakDb": -4.7,
+    "rms100msDb": -18.3,
+    "rmsAllDb": -23.8,
+    "centroidHz": 476,
+    "lowPct": 78,
+    "midPct": 18,
+    "highPct": 4,
+    "audibleS": 0.16
+   },
+   "reload_insert": {
+    "variants": 3,
+    "peakDb": -4,
+    "rms100msDb": -16.1,
+    "rmsAllDb": -22.1,
+    "centroidHz": 770,
+    "lowPct": 59,
+    "midPct": 34,
+    "highPct": 7,
+    "audibleS": 0.22
+   },
+   "reload_end": {
+    "variants": 3,
+    "peakDb": -4,
+    "rms100msDb": -20.9,
+    "rmsAllDb": -24.3,
+    "centroidHz": 535,
+    "lowPct": 62,
+    "midPct": 37,
+    "highPct": 1,
+    "audibleS": 0.33
+   },
+   "pump": {
+    "variants": 3,
+    "peakDb": -2.9,
+    "rms100msDb": -22,
+    "rmsAllDb": -22.7,
+    "centroidHz": 201,
+    "lowPct": 95,
+    "midPct": 4,
+    "highPct": 1,
+    "audibleS": 0.53
+   },
+   "bolt": {
+    "variants": 2,
+    "peakDb": -2.9,
+    "rms100msDb": -24.5,
+    "rmsAllDb": -21.8,
+    "centroidHz": 1329,
+    "lowPct": 41,
+    "midPct": 52,
+    "highPct": 8,
+    "audibleS": 0.79
+   },
+   "weapon_switch": {
+    "variants": 3,
+    "peakDb": -5.4,
+    "rms100msDb": -19.6,
+    "rmsAllDb": -23.8,
+    "centroidHz": 356,
+    "lowPct": 90,
+    "midPct": 9,
+    "highPct": 1,
+    "audibleS": 0.23
+   },
+   "melee_swing": {
+    "variants": 3,
+    "peakDb": -4,
+    "rms100msDb": -14.9,
+    "rmsAllDb": -21,
+    "centroidHz": 1602,
+    "lowPct": 35,
+    "midPct": 53,
+    "highPct": 12,
+    "audibleS": 0.39
+   },
+   "melee_hit": {
+    "variants": 3,
+    "peakDb": -1.8,
+    "rms100msDb": -9.9,
+    "rmsAllDb": -17,
+    "centroidHz": 185,
+    "lowPct": 94,
+    "midPct": 6,
+    "highPct": 1,
+    "audibleS": 0.36
+   },
+   "grenade_pin": {
+    "variants": 2,
+    "peakDb": -4,
+    "rms100msDb": -16.1,
+    "rmsAllDb": -20.6,
+    "centroidHz": 2962,
+    "lowPct": 0,
+    "midPct": 90,
+    "highPct": 10,
+    "audibleS": 0.45
+   },
+   "grenade_throw": {
+    "variants": 3,
+    "peakDb": -3.4,
+    "rms100msDb": -17.5,
+    "rmsAllDb": -24.3,
+    "centroidHz": 1632,
+    "lowPct": 14,
+    "midPct": 76,
+    "highPct": 10,
+    "audibleS": 0.39
+   },
+   "explosion": {
+    "variants": 2,
+    "peakDb": -0.9,
+    "rms100msDb": -7.5,
+    "rmsAllDb": -15.8,
+    "centroidHz": 305,
+    "lowPct": 88,
+    "midPct": 9,
+    "highPct": 3,
+    "audibleS": 3.7
+   },
+   "impact_metal": {
+    "variants": 4,
+    "peakDb": -5.4,
+    "rms100msDb": -19.8,
+    "rmsAllDb": -26.7,
+    "centroidHz": 2630,
+    "lowPct": 1,
+    "midPct": 79,
+    "highPct": 21,
+    "audibleS": 0.45
+   },
+   "impact_concrete": {
+    "variants": 4,
+    "peakDb": -5.4,
+    "rms100msDb": -19.4,
+    "rmsAllDb": -25.2,
+    "centroidHz": 817,
+    "lowPct": 86,
+    "midPct": 6,
+    "highPct": 8,
+    "audibleS": 0.27
+   },
+   "impact_robot": {
+    "variants": 4,
+    "peakDb": -3.4,
+    "rms100msDb": -18.5,
+    "rmsAllDb": -24.4,
+    "centroidHz": 872,
+    "lowPct": 10,
+    "midPct": 88,
+    "highPct": 3,
+    "audibleS": 0.28
+   },
+   "hitmarker": {
+    "variants": 2,
+    "peakDb": -4.7,
+    "rms100msDb": -21.3,
+    "rmsAllDb": -23.3,
+    "centroidHz": 1187,
+    "lowPct": 20,
+    "midPct": 80,
+    "highPct": 0,
+    "audibleS": 0.1
+   },
+   "headshot": {
+    "variants": 2,
+    "peakDb": -3.4,
+    "rms100msDb": -18.5,
+    "rmsAllDb": -25.1,
+    "centroidHz": 2041,
+    "lowPct": 17,
+    "midPct": 59,
+    "highPct": 24,
+    "audibleS": 0.41
+   },
+   "kill_confirm": {
+    "variants": 2,
+    "peakDb": -3.4,
+    "rms100msDb": -12.6,
+    "rmsAllDb": -18.8,
+    "centroidHz": 1311,
+    "lowPct": 9,
+    "midPct": 89,
+    "highPct": 2,
+    "audibleS": 0.69
+   },
+   "hurt": {
+    "variants": 3,
+    "peakDb": -1.8,
+    "rms100msDb": -11,
+    "rmsAllDb": -16.9,
+    "centroidHz": 143,
+    "lowPct": 96,
+    "midPct": 4,
+    "highPct": 0,
+    "audibleS": 0.44
+   },
+   "footstep": {
+    "variants": 5,
+    "peakDb": -8,
+    "rms100msDb": -20.7,
+    "rmsAllDb": -25.4,
+    "centroidHz": 264,
+    "lowPct": 94,
+    "midPct": 3,
+    "highPct": 3,
+    "audibleS": 0.21
+   },
+   "jump": {
+    "variants": 3,
+    "peakDb": -6.1,
+    "rms100msDb": -15.4,
+    "rmsAllDb": -20.8,
+    "centroidHz": 414,
+    "lowPct": 70,
+    "midPct": 29,
+    "highPct": 1,
+    "audibleS": 0.33
+   },
+   "land": {
+    "variants": 3,
+    "peakDb": -5.4,
+    "rms100msDb": -16.3,
+    "rmsAllDb": -21.6,
+    "centroidHz": 110,
+    "lowPct": 97,
+    "midPct": 3,
+    "highPct": 0,
+    "audibleS": 0.32
+   },
+   "pickup_ammo": {
+    "variants": 2,
+    "peakDb": -3.4,
+    "rms100msDb": -15.8,
+    "rmsAllDb": -20.5,
+    "centroidHz": 499,
+    "lowPct": 82,
+    "midPct": 15,
+    "highPct": 3,
+    "audibleS": 0.44
+   },
+   "ui_click": {
+    "variants": 2,
+    "peakDb": -6.1,
+    "rms100msDb": -19.4,
+    "rmsAllDb": -22.8,
+    "centroidHz": 445,
+    "lowPct": 25,
+    "midPct": 75,
+    "highPct": 0,
+    "audibleS": 0.19
+   }
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

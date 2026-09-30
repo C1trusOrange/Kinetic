@@ -1,0 +1,257 @@
+[run] http://127.0.0.1:56701/index.html?autotest=1&map=skyline&bots=12&diff=hard&duration=70&god=1&script=idle&scenario=tools/out/audit/review-aibody/deaths.js
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":29}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 70.09,
+ "frames": 1894,
+ "fps": {
+  "avg": 29,
+  "min": 4,
+  "max": 172.4
+ },
+ "errors": [],
+ "map": "skyline",
+ "player": {
+  "distance": 7.1,
+  "maxSpeed": 10.01,
+  "minY": 9.6,
+  "maxY": 12.875819954923022,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 5,
+   "deaths": 6,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 316.2,
+   "pos": [
+    23,
+    0,
+    -14.8
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": false,
+   "kills": 1,
+   "deaths": 3,
+   "health": 0,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 203.5,
+   "pos": [
+    -10.4,
+    4.3,
+    -22.8
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 54,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 139.3,
+   "pos": [
+    19.2,
+    9.6,
+    -30.3
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 4,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 286.2,
+   "pos": [
+    -19.5,
+    16,
+    -29.9
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 4,
+   "deaths": 5,
+   "health": 55,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 242.4,
+   "pos": [
+    -13.3,
+    0,
+    -17
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 5,
+   "deaths": 7,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 311.6,
+   "pos": [
+    -34.3,
+    0,
+    17
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 8,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 383.6,
+   "pos": [
+    17.2,
+    0,
+    18.9
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 11,
+   "deaths": 6,
+   "health": 60,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 374.3,
+   "pos": [
+    -13.9,
+    0,
+    15.5
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 7,
+   "deaths": 1,
+   "health": 32,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 142.1,
+   "pos": [
+    19.9,
+    11.9,
+    0.4
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 4,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 191.7,
+   "pos": [
+    -19.4,
+    14,
+    -3
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 3,
+   "deaths": 6,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 351.3,
+   "pos": [
+    -8.5,
+    0,
+    38.5
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 4,
+   "deaths": 7,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 294.2,
+   "pos": [
+    -6,
+    0,
+    -41
+   ]
+  }
+ ],
+ "events": {
+  "damage": 246,
+  "death": 56,
+  "spawn": 68,
+  "pickup": 12,
+  "fire": 661
+ },
+ "renderer": {
+  "calls": 451,
+  "triangles": 105528,
+  "geometries": 236,
+  "textures": 167,
+  "programs": 104
+ },
+ "custom": {
+  "D": {
+   "byWeapon": {
+    "pistol": 25,
+    "rocket": 8,
+    "sniper": 10,
+    "rifle": 12,
+    "shotgun": 1
+   },
+   "fall": [],
+   "self": 0,
+   "tele": [],
+   "nan": 0,
+   "oob": 0,
+   "maxSpeed": 29.647594482069085,
+   "ticks": 1854,
+   "underY": 0
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

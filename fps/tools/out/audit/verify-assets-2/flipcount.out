@@ -1,0 +1,207 @@
+[run] http://127.0.0.1:49229/index.html?autotest=1&map=foundry&bots=8&god=1&script=idle&scenario=tools/out/audit/verify-assets-2/flipcount.js&duration=10
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":29.3}
+[error] [game] frame error (x1): TypeError: Cannot read properties of null (reading 'push')
+    at r.render (http://127.0.0.1:49229/tools/out/audit/verify-assets-2/flipcount.js:18:64)
+    at RenderPass.render (http://127.0.0.1:49229/vendor/three/examples/jsm/postprocessing/RenderPass.js:71:12)
+    at EffectComposer.render (http://127.0.0.1:49229/vendor/three/examples/jsm/postprocessing/EffectComposer.js:126:9)
+    at Game.render (http://127.0.0.1:49229/src/core/Game.js:717:21)
+    at Game._loop (http://127.0.0.1:49229/src/core/Game.js:607:12)
+[error] [game] frame error (x2): TypeError: Cannot read properties of null (reading 'push')
+    at r.render (http://127.0.0.1:49229/tools/out/audit/verify-assets-2/flipcount.js:18:64)
+    at RenderPass.render (http://127.0.0.1:49229/vendor/three/examples/jsm/postprocessing/RenderPass.js:71:12)
+    at EffectComposer.render (http://127.0.0.1:49229/vendor/three/examples/jsm/postprocessing/EffectComposer.js:126:9)
+    at Game.render (http://127.0.0.1:49229/src/core/Game.js:717:21)
+    at Game._loop (http://127.0.0.1:49229/src/core/Game.js:607:12)
+[error] [game] frame error (x3): TypeError: Cannot read properties of null (reading 'push')
+    at r.render (http://127.0.0.1:49229/tools/out/audit/verify-assets-2/flipcount.js:18:64)
+    at RenderPass.render (http://127.0.0.1:49229/vendor/three/examples/jsm/postprocessing/RenderPass.js:71:12)
+    at EffectComposer.render (http://127.0.0.1:49229/vendor/three/examples/jsm/postprocessing/EffectComposer.js:126:9)
+    at Game.render (http://127.0.0.1:49229/src/core/Game.js:717:21)
+    at Game._loop (http://127.0.0.1:49229/src/core/Game.js:607:12)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 10.22,
+ "frames": 305,
+ "fps": {
+  "avg": 29.3,
+  "min": 4,
+  "max": 163.93442622960382
+ },
+ "errors": [
+  "[game] frame error (x1): TypeError: Cannot read properties of null (reading 'push')\n    at r.render (http://127.0.0.1:49229/tools/out/audit/verify-assets-2/flipcount.js:18:64)\n    at RenderPass.render (http://127.0.0.1:49229/vendor/three/examples/jsm/postprocessing/RenderPass.js:71:12)\n    at EffectComposer.render (http://127.0.0.1:49229/vendor/three/examples/jsm/postprocessing/EffectComposer.js:126:9)\n    at Game.render (http://127.0.0.1:49229/src/core/Game.js:717:21)\n    at Game._loop (http://127.0.0.1:49229/src/core/Game.js:607:12)",
+  "[game] frame error (x2): TypeError: Cannot read properties of null (reading 'push')\n    at r.render (http://127.0.0.1:49229/tools/out/audit/verify-assets-2/flipcount.js:18:64)\n    at RenderPass.render (http://127.0.0.1:49229/vendor/three/examples/jsm/postprocessing/RenderPass.js:71:12)\n    at EffectComposer.render (http://127.0.0.1:49229/vendor/three/examples/jsm/postprocessing/EffectComposer.js:126:9)\n    at Game.render (http://127.0.0.1:49229/src/core/Game.js:717:21)\n    at Game._loop (http://127.0.0.1:49229/src/core/Game.js:607:12)",
+  "[game] frame error (x3): TypeError: Cannot read properties of null (reading 'push')\n    at r.render (http://127.0.0.1:49229/tools/out/audit/verify-assets-2/flipcount.js:18:64)\n    at RenderPass.render (http://127.0.0.1:49229/vendor/three/examples/jsm/postprocessing/RenderPass.js:71:12)\n    at EffectComposer.render (http://127.0.0.1:49229/vendor/three/examples/jsm/postprocessing/EffectComposer.js:126:9)\n    at Game.render (http://127.0.0.1:49229/src/core/Game.js:717:21)\n    at Game._loop (http://127.0.0.1:49229/src/core/Game.js:607:12)"
+ ],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 65,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 62.2,
+   "pos": [
+    7.2,
+    0,
+    -0.6
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 13.9,
+   "pos": [
+    45.4,
+    0.2,
+    25.8
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "collect",
+   "distance": 63.7,
+   "pos": [
+    -42.1,
+    2.4,
+    -1.6
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 65.5,
+   "pos": [
+    -8.6,
+    0,
+    -23.4
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "chase",
+   "distance": 38.9,
+   "pos": [
+    -45,
+    0,
+    -37.9
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 2,
+   "deaths": 0,
+   "health": 23,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 58.6,
+   "pos": [
+    27.6,
+    0,
+    1.8
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 54.8,
+   "pos": [
+    -29.1,
+    0,
+    -10.3
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 88,
+   "weapon": "shotgun",
+   "state": "chase",
+   "distance": 85.3,
+   "pos": [
+    -48.3,
+    0,
+    16.3
+   ]
+  }
+ ],
+ "events": {
+  "damage": 20,
+  "death": 3,
+  "spawn": 12,
+  "pickup": 2,
+  "fire": 48
+ },
+ "renderer": {
+  "calls": 427,
+  "triangles": 136170,
+  "geometries": 211,
+  "textures": 132,
+  "programs": 103
+ },
+ "custom": {
+  "frames": 0,
+  "flipsWorldPass": null,
+  "flipsViewPass": null,
+  "world": {
+   "n": 184,
+   "mean": 9.4,
+   "max": 13
+  },
+  "view": {
+   "n": 184,
+   "mean": 9.4,
+   "max": 13
+  }
+ },
+ "ok": true,
+ "errorCount": 3
+}
+[run] done: wait=ok console_errors=3 warnings=1

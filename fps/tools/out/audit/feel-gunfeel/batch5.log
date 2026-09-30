@@ -1,0 +1,5 @@
+r_rifle_35: [run] done: wait=ok console_errors=0 warnings=0
+r_rifle_55: [run] done: wait=ok console_errors=0 warnings=0
+r_shotgun_40: [run] done: wait=ok console_errors=0 warnings=0
+r_pistol_35: [run] done: wait=ok console_errors=0 warnings=0
+ALLDONE

@@ -1,0 +1,222 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>proto sky</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#000}</style></head>
+<body>
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+const P = new URLSearchParams(location.search);
+const view = P.get('view') || 'horizon';
+const flash = parseFloat(P.get('flash') || '0');
+
+const VERT = `varying vec3 vDir; void main(){ vDir = position; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`;
+const FRAG = `
+uniform vec3 uTop, uHorizon, uBottom, uSunColor, uSunDir, uFogColor;
+uniform float uCosSun, uSunBoost, uTime, uFogBlend;
+// --- proposed additions ---
+uniform vec3 uCam;            // world camera position (set in onBeforeRender)
+uniform float uDeckY;         // world y of the cloud-deck top (0 = off)
+uniform vec3 uDeckLit, uDeckShade, uFlashColor;
+uniform float uFlash;         // 0..1 global lightning flash
+uniform vec4 uBolt[4];        // deck bolt glows: x, z, radius, intensity
+uniform vec3 uPlanetDir, uPlanetLight, uPlanetA, uPlanetB, uRingColor;
+uniform vec4 uPlanet;         // x angular radius (rad), y ring inner, z ring outer (in planet radii), w ring tilt (0..1 squash)
+uniform vec3 uAur0, uAur1, uAur2;
+uniform float uAurora;
+varying vec3 vDir;
+
+float hash12(vec2 p){ vec3 p3 = fract(vec3(p.xyx) * 0.1031); p3 += dot(p3, p3.yzx + 33.33); return fract((p3.x + p3.y) * p3.z); }
+float vnoise(vec2 p){ vec2 i = floor(p), f = fract(p); f = f*f*(3.0-2.0*f);
+  return mix(mix(hash12(i), hash12(i+vec2(1,0)), f.x), mix(hash12(i+vec2(0,1)), hash12(i+vec2(1,1)), f.x), f.y); }
+float fbm(vec2 p){ float s = 0.0, a = 0.5; for (int i = 0; i < 5; i++){ s += a*vnoise(p); p = p*2.03 + vec2(17.1, 9.7); a *= 0.5; } return s; }
+float fbm3(vec2 p){ float s = 0.0, a = 0.5; for (int i = 0; i < 3; i++){ s += a*vnoise(p); p = p*2.03 + vec2(17.1, 9.7); a *= 0.5; } return s; }
+
+void main(){
+  vec3 d = normalize(vDir);
+  float h = d.y;
+  float t = clamp(h, 0.0, 1.0);
+  float k = 1.0 - pow(1.0 - t, 2.3);
+  vec3 col = mix(uHorizon, uTop, k);
+  float sd = max(dot(d, uSunDir), 0.0);
+  float horizonBand = 1.0 - smoothstep(0.0, 0.45, abs(h));
+  col += uSunColor * pow(sd, 5.0) * horizonBand * 0.45;
+
+  // stars
+  if (h > 0.0) {
+    vec3 p = d * 70.0; vec3 ip = floor(p); vec3 fp = fract(p);
+    float rnd = fract(sin(dot(ip, vec3(12.9898,78.233,37.719))) * 43758.5453);
+    vec3 off = vec3(fract(rnd*7.1), fract(rnd*13.7), fract(rnd*29.3)) * 0.6 + 0.2;
+    float star = step(0.955, rnd) * smoothstep(0.17, 0.0, length(fp - off));
+    col += vec3(0.85,0.92,1.0) * star * smoothstep(0.02, 0.25, h) * 1.4;
+  }
+
+  // ---- planet (gnomonic projection around uPlanetDir) ----
+  vec3 Pd = normalize(uPlanetDir);
+  float cosA = dot(d, Pd);
+  if (cosA > 0.2 && uPlanet.x > 0.0) {
+    vec3 T = normalize(cross(Pd, vec3(0.0,1.0,0.0))); vec3 B = cross(T, Pd);
+    vec2 q = vec2(dot(d,T), dot(d,B)) / cosA;
+    float R = tan(uPlanet.x);
+    vec2 pq = q / R;
+    // tilted ring plane: rotate then squash
+    float tilt = 0.42;
+    vec2 rq = vec2(pq.x*cos(tilt) + pq.y*sin(tilt), -pq.x*sin(tilt) + pq.y*cos(tilt));
+    rq.y /= uPlanet.w;
+    float rr = length(rq);
+    float ringMask = smoothstep(uPlanet.y - 0.02, uPlanet.y + 0.02, rr) * (1.0 - smoothstep(uPlanet.z - 0.03, uPlanet.z + 0.03, rr));
+    float gaps = 0.55 + 0.45 * sin(rr * 46.0) * sin(rr * 11.0 + 1.0);
+    float ringA = ringMask * clamp(gaps, 0.0, 1.0) * 0.82;
+    float r2 = dot(pq, pq);
+    // far half of ring (behind the planet)
+    if (rq.y < 0.0 || r2 > 1.0) { }
+    vec3 ringCol = uRingColor * (0.55 + 0.6 * pow(max(dot(vec3(0.0,1.0,0.0), uPlanetLight), 0.0), 0.5));
+    if (r2 < 1.0) {
+      float z = sqrt(1.0 - r2);
+      vec3 n = normalize(T*pq.x + B*pq.y - Pd*z);
+      float lat = pq.y;
+      float bands = 0.5 + 0.5 * sin(lat * 15.0 + fbm3(vec2(pq.x*2.0, lat*6.0)) * 3.2);
+      vec3 base = mix(uPlanetA, uPlanetB, bands);
+      float lit = clamp(dot(n, normalize(uPlanetLight)) * 1.05 + 0.08, 0.0, 1.0);
+      float rim = pow(1.0 - z, 3.0);
+      vec3 pc = base * (0.06 + 1.25 * lit) + vec3(0.35,0.5,0.9) * rim * 0.45;
+      // atmosphere edge blend
+      float edge = 1.0 - smoothstep(0.985, 1.0, sqrt(r2));
+      // ring shadow / front ring
+      float front = step(0.0, -rq.y) ; // lower half is in front of the planet
+      col = mix(col, pc, edge);
+      col = mix(col, ringCol, ringA * front);
+    } else {
+      // ring outside the disc (both halves visible)
+      col = mix(col, ringCol, ringA);
+      // soft atmosphere glow around limb
+      float gl = exp(-(sqrt(r2) - 1.0) * 14.0) * 0.28;
+      col += vec3(0.45,0.6,1.0) * gl;
+    }
+  }
+
+  // ---- aurora curtains ----
+  if (h > 0.02 && uAurora > 0.001) {
+    float az = atan(d.z, d.x);
+    float wob = fbm3(vec2(az * 1.6 + uTime * 0.02, 3.1));
+    float baseH = 0.13 + 0.16 * wob;
+    float hh = h - baseH;
+    float curtain = smoothstep(-0.015, 0.05, hh) * exp(-max(hh, 0.0) * 5.0);
+    float rays = 0.45 + 0.55 * vnoise(vec2(az * 34.0 + wob * 9.0, uTime * 0.35));
+    float band = smoothstep(0.30, 0.78, fbm3(vec2(az * 2.6 - uTime * 0.015, 1.7)));
+    vec3 ac = mix(uAur0, uAur1, clamp(hh * 3.2, 0.0, 1.0));
+    ac = mix(ac, uAur2, clamp((hh - 0.22) * 4.0, 0.0, 1.0));
+    col += ac * curtain * rays * band * uAurora * smoothstep(0.02, 0.10, h);
+  }
+
+  // ---- sun disc + glow ----
+  float disc = smoothstep(uCosSun - 0.00035, uCosSun + 0.00025, dot(d, uSunDir));
+  float glow = pow(sd, 96.0) * 0.9 + pow(sd, 14.0) * 0.28 + pow(sd, 3.0) * 0.06;
+  col += uSunColor * (disc * uSunBoost + glow);
+
+  // ---- cloud deck below the horizon ----
+  if (uDeckY != 0.0 && h < 0.0) {
+    float tt = (uCam.y - uDeckY) / max(-h, 1e-4);
+    vec2 wp = uCam.xz + d.xz * tt;
+    vec2 q = wp * 0.0055 + vec2(uTime * 0.004, uTime * 0.0016);
+    float n = fbm(q);
+    float n2 = fbm(q * 2.7 + 8.3);
+    float dens = smoothstep(0.28, 0.74, n * 0.78 + n2 * 0.32);
+    vec2 sdir = normalize(uSunDir.xz + vec2(1e-4));
+    float nl = fbm(q + sdir * 0.045);
+    float lit = clamp((n - nl) * 7.0 + 0.55, 0.0, 1.0) * clamp(uSunDir.y * 5.0 + 0.45, 0.0, 1.0);
+    vec3 c = mix(uDeckShade, uDeckLit, lit * dens);
+    c = mix(c * 0.5, c, smoothstep(0.1, 0.6, dens));
+    // lightning inside the deck
+    float g = uFlash * (0.18 + 0.82 * dens);
+    for (int i = 0; i < 4; i++) {
+      vec2 dd = wp - uBolt[i].xy;
+      g += uBolt[i].w * exp(-dot(dd, dd) / (uBolt[i].z * uBolt[i].z)) * (0.25 + 1.1 * dens);
+    }
+    c += uFlashColor * g;
+    float fogK = 1.0 - exp(-tt * 0.0016);
+    c = mix(c, uFogColor, clamp(fogK, 0.0, 1.0));
+    col = mix(col, c, smoothstep(-0.0008, -0.02, h));
+  }
+
+  // lightning flash also brightens the whole sky
+  col += uFlashColor * uFlash * 0.22 * (0.4 + 0.6 * (1.0 - abs(h)));
+  float fogW = uFogBlend * (1.0 - smoothstep(0.0, 0.2, max(h, 0.0)));
+  col = mix(col, uFogColor, fogW * step(-0.0008, h));
+  gl_FragColor = vec4(col, 1.0);
+  #include <tonemapping_fragment>
+  #include <colorspace_fragment>
+}`;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.05, 700);
+const C = h => new THREE.Color(h);
+const sunDir = new THREE.Vector3(-0.72, 0.13, -0.68).normalize();
+const mat = new THREE.ShaderMaterial({
+  vertexShader: VERT, fragmentShader: FRAG, side: THREE.BackSide, depthWrite: false, depthTest: false,
+  uniforms: {
+    uTop: { value: C('#060b2c') }, uHorizon: { value: C('#ff8a6a') }, uBottom: { value: C('#20124d') },
+    uSunColor: { value: C('#ffb27a') }, uSunDir: { value: sunDir }, uFogColor: { value: C('#5a3f86') },
+    uCosSun: { value: Math.cos(0.03 * 1.6) }, uSunBoost: { value: 9 }, uTime: { value: 12.0 }, uFogBlend: { value: 0.6 },
+    uCam: { value: new THREE.Vector3() }, uDeckY: { value: -60 },
+    uDeckLit: { value: C('#ffb09a') }, uDeckShade: { value: C('#2a2058') }, uFlashColor: { value: C('#9fd8ff') },
+    uFlash: { value: flash },
+    uBolt: { value: [new THREE.Vector4(80, -30, 60, flash * 2.5), new THREE.Vector4(-40, 90, 90, flash * 1.2), new THREE.Vector4(0, 0, 1, 0), new THREE.Vector4(0, 0, 1, 0)] },
+    uPlanetDir: { value: new THREE.Vector3(0.62, 0.30, 0.72) }, uPlanetLight: { value: new THREE.Vector3(-0.6, 0.35, -0.5) },
+    uPlanetA: { value: C('#e9c9a0') }, uPlanetB: { value: C('#b7896a') }, uRingColor: { value: C('#d8c3a0') },
+    uPlanet: { value: new THREE.Vector4(0.17, 1.32, 2.15, 0.34) },
+    uAur0: { value: C('#25ffa8') }, uAur1: { value: C('#2d8cff') }, uAur2: { value: C('#b060ff') }, uAurora: { value: 0.75 },
+  },
+});
+const dome = new THREE.Mesh(new THREE.SphereGeometry(1, 48, 32), mat);
+dome.scale.setScalar(560); dome.frustumCulled = false; dome.renderOrder = -1000;
+scene.add(dome);
+
+// some platforms to check occlusion / scale
+const std = new THREE.MeshStandardMaterial({ color: 0x8e97a8, roughness: 0.4, metalness: 0.1 });
+const dark = new THREE.MeshStandardMaterial({ color: 0x2a303a, roughness: 0.5, metalness: 0.6 });
+const glowM = new THREE.MeshBasicMaterial({ color: new THREE.Color(0.2, 2.2, 3.0) });
+const disc = new THREE.Mesh(new THREE.CylinderGeometry(17, 17, 3, 48), std); disc.position.set(0, -1.5, 0); scene.add(disc);
+const ring = new THREE.Mesh(new THREE.CylinderGeometry(15.6, 15.6, 0.08, 48), glowM); ring.position.set(0, 0.04, 0); scene.add(ring);
+const spindle = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 4.2, 62, 16), dark); spindle.position.set(0, 31, 0); scene.add(spindle);
+for (const y of [6, 14, 22, 30, 38]) { const b = new THREE.Mesh(new THREE.CylinderGeometry(4.35, 4.35, 0.4, 16), glowM); b.position.set(0, y, 0); scene.add(b); }
+for (const a of [0, 1, 2, 3]) {
+  const arm = new THREE.Mesh(new THREE.BoxGeometry(9, 3, 22), std); arm.position.set(Math.sin(a * Math.PI / 2) * 28, -1.5, Math.cos(a * Math.PI / 2) * 28); arm.rotation.y = a * Math.PI / 2; scene.add(arm);
+  const dock = new THREE.Mesh(new THREE.CylinderGeometry(12, 12, 3, 32), std); dock.position.set(Math.sin(a * Math.PI / 2) * 50, -1.5, Math.cos(a * Math.PI / 2) * 50); scene.add(dock);
+}
+scene.add(new THREE.HemisphereLight(0xb0a0ff, 0x402030, 0.55));
+const sun = new THREE.DirectionalLight(0xffb27a, 2.6); sun.position.copy(sunDir).multiplyScalar(100); scene.add(sun);
+scene.fog = new THREE.Fog(0x5a3f86, 90, 420);
+
+const views = {
+  horizon: { pos: [0, 1.7, 14], look: [-10, 9, -60] },
+  ring:    { pos: [20, 1.7, 12], look: [-40, 24, 120] },
+  down:    { pos: [0, 1.7, 15.5], look: [30, -30, 40] },
+  up:      { pos: [-30, 1.7, -20], look: [40, 40, 60] },
+  wide:    { pos: [0, 12, 60], look: [0, 6, -20] },
+  planet:  { pos: [0, 1.7, -20], look: [62, 26, 52] },
+  deck:    { pos: [30, 6, 40], look: [-30, -8, -30] },
+};
+const v = views[view];
+camera.position.set(...v.pos); camera.lookAt(...v.look);
+camera.updateMatrixWorld();
+dome.position.copy(camera.position);
+mat.uniforms.uCam.value.copy(camera.position);
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.55 + flash * 0.3, 0.5, 0.85));
+composer.addPass(new OutputPass());
+requestAnimationFrame(() => { composer.render(); requestAnimationFrame(() => { composer.render(); window.__PROTO_READY__ = true; }); });
+</script>
+</body></html>

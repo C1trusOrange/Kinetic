@@ -1,0 +1,68 @@
+[run] http://127.0.0.1:57869/index.html?autotest=1&map=sandbox&bots=0&mapfile=tools/out/audit/feel-movement/flatmap.js&scenario=tools/out/audit/feel-movement/shots.js&pose=mantle&mp=0.5&duration=30
+[warning] [world] map 'ftest' has 2 warning(s):
+ - only 3 spawn point(s): 14-18 recommended
+ - spawn #2 at [-4,0,40] is inside or too close to solid geometry (depth 0.40)
+[run] screenshot -> tools\out\audit\feel-movement\img\mantle.png
+[result] {
+ "done": true,
+ "started": true,
+ "t": 1.04,
+ "frames": 68,
+ "fps": {
+  "avg": 26,
+  "min": 4,
+  "max": 161.29032258065138
+ },
+ "errors": [],
+ "map": "ftest",
+ "player": {
+  "distance": 9.065909134121467,
+  "maxSpeed": 9.6,
+  "minY": 0,
+  "maxY": 2.005,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isMantling": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 62,
+  "triangles": 6052,
+  "geometries": 57,
+  "textures": 65,
+  "programs": 63
+ },
+ "custom": {
+  "pose": "mantle",
+  "state": {
+   "why": "mantle",
+   "speed": 0,
+   "fov": 72.69,
+   "roll": 0.01,
+   "pitch": -2.66,
+   "sliding": false,
+   "wall": false,
+   "grappling": false,
+   "eye": 1.66,
+   "camY": 1.7
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

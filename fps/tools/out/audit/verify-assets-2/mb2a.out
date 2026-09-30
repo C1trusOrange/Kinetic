@@ -1,0 +1,215 @@
+[run] http://127.0.0.1:59272/index.html?autotest=1&map=foundry&bots=8&god=1&script=idle&scenario=tools/out/audit/verify-assets-2/mb2.js&duration=14
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":26.4}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 14.03,
+ "frames": 377,
+ "fps": {
+  "avg": 26.4,
+  "min": 4,
+  "max": 163.9
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 5,
+  "maxY": 5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 35,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 85.8,
+   "pos": [
+    -19.4,
+    6.9,
+    18.1
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 66.2,
+   "pos": [
+    -45.5,
+    0,
+    2.5
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 106.4,
+   "pos": [
+    -16.5,
+    6.1,
+    14.7
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 65,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 97.7,
+   "pos": [
+    -17.9,
+    0,
+    -15.5
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 15,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 80.2,
+   "pos": [
+    -25.7,
+    0,
+    -7.4
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": false,
+   "kills": 1,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "shotgun",
+   "state": "retreat",
+   "distance": 92.8,
+   "pos": [
+    -33.9,
+    0,
+    2.1
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 90.1,
+   "pos": [
+    15.3,
+    0,
+    1.5
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 39,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 84.1,
+   "pos": [
+    -24.5,
+    0,
+    -32.2
+   ]
+  }
+ ],
+ "events": {
+  "damage": 20,
+  "death": 2,
+  "spawn": 10,
+  "pickup": 3,
+  "fire": 69
+ },
+ "renderer": {
+  "calls": 537,
+  "triangles": 144200,
+  "geometries": 212,
+  "textures": 142,
+  "programs": 104
+ },
+ "custom": {
+  "meshes": 116,
+  "bots": 8,
+  "res": {
+   "A": [
+    6.328,
+    5.79,
+    6.628,
+    5.615,
+    6.903,
+    6.62
+   ],
+   "H": [
+    4.36,
+    4.138,
+    3.895,
+    4.472,
+    3.913,
+    6.747
+   ],
+   "S": [
+    6.237,
+    5.227,
+    5.49,
+    5.43,
+    5.22,
+    6.192
+   ]
+  },
+  "calls": {
+   "A": 466,
+   "H": 281,
+   "S": 350
+  },
+  "mean": {
+   "A": 6.314,
+   "H": 4.588,
+   "S": 5.633
+  },
+  "median": {
+   "A": 6.62,
+   "H": 4.36,
+   "S": 5.49
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

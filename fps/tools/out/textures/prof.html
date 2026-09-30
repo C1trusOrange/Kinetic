@@ -1,0 +1,28 @@
+<!doctype html><meta charset="utf-8">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<script type="module">
+const P = new URLSearchParams(location.search);
+const names = P.get('names').split(',');
+let src = await (await fetch('/src/world/Textures.js')).text();
+// instrument
+src = src.replace("function runPass(S, fn, { emissive = false, alpha = false } = {}) {", "function runPass(S, fn, o2) { const t0 = performance.now(); const r = runPass_(S, fn, o2); (window.__P.pass = (window.__P.pass || 0) + performance.now() - t0); return r; }\nfunction runPass_(S, fn, { emissive = false, alpha = false } = {}) {");
+src = src.replace("function cavity(H, r = 3) {", "function cavity(H, r = 3) { const t0 = performance.now(); const r_ = cavity_(H, r); window.__P.cav = (window.__P.cav || 0) + performance.now() - t0; return r_; }\nfunction cavity_(H, r = 3) {");
+src = src.replace("function finish(H, px, o = {}) {", "function finish(H, px, o = {}) { const t0 = performance.now(); const r = finish_(H, px, o); window.__P.fin = (window.__P.fin || 0) + performance.now() - t0; return r; }\nfunction finish_(H, px, o = {}) {");
+src = src.replace("function buildCells(S, blocks) {", "function buildCells(S, blocks) { const t0 = performance.now(); const r = buildCells_(S, blocks); window.__P.cells = (window.__P.cells || 0) + performance.now() - t0; return r; }\nfunction buildCells_(S, blocks) {");
+src = src.replace(/from '\.\.\/core\//g, "from '" + location.origin + "/src/core/");
+const blob = new Blob([src], { type: 'text/javascript' });
+const T = await import(URL.createObjectURL(blob));
+const res = {};
+window.__P = {};
+// warm banks
+T.getMaterial('concrete');
+for (const n of names) {
+  window.__P = {};
+  const s = performance.now();
+  T.getMaterial(n);
+  const tot = performance.now() - s;
+  const p = window.__P;
+  res[n] = { total: Math.round(tot), pass: Math.round(p.pass || 0), cav: Math.round(p.cav || 0), fin: Math.round(p.fin || 0), cells: Math.round(p.cells || 0) };
+}
+window.__RES__ = res; window.__R__ = true;
+</script>

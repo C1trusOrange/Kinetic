@@ -1,0 +1,222 @@
+[run] http://127.0.0.1:58136/index.html?autotest=1&map=sandbox&bots=10&duration=70&god=1&script=idle&diff=normal&scenario=tools/out/audit/review-aibody/scen_ammo.js
+[log] [autotest] finished {"ok":true,"errors":0,"fps":19.5}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 70.05,
+ "frames": 1536,
+ "fps": {
+  "avg": 19.5,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 26.6,
+  "maxSpeed": 10.73,
+  "minY": 0,
+  "maxY": 5.196412272105357,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 5,
+   "deaths": 6,
+   "health": 37,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 283,
+   "pos": [
+    -8.6,
+    4.5,
+    -29
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 5,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 287.9,
+   "pos": [
+    22.3,
+    0,
+    16.9
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 5,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 319.5,
+   "pos": [
+    -7.1,
+    4.5,
+    -30.1
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 1,
+   "deaths": 4,
+   "health": 54,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 290.4,
+   "pos": [
+    1.5,
+    4.5,
+    -26.6
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 4,
+   "deaths": 5,
+   "health": 86,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 278.6,
+   "pos": [
+    13.5,
+    0,
+    -13
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": false,
+   "kills": 7,
+   "deaths": 4,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 337.9,
+   "pos": [
+    6.6,
+    0,
+    -5.2
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 4,
+   "deaths": 6,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 241.6,
+   "pos": [
+    8.4,
+    0,
+    23.9
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 8,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 271.8,
+   "pos": [
+    -16.7,
+    -1.3,
+    16.9
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 2,
+   "deaths": 5,
+   "health": 44,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 229.8,
+   "pos": [
+    -11.6,
+    0,
+    -24.3
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 7,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "engage",
+   "distance": 286.1,
+   "pos": [
+    6,
+    4.5,
+    -30.2
+   ]
+  }
+ ],
+ "events": {
+  "damage": 330,
+  "death": 48,
+  "spawn": 58,
+  "pickup": 21,
+  "fire": 842
+ },
+ "renderer": {
+  "calls": 538,
+  "triangles": 81964,
+  "geometries": 221,
+  "textures": 143,
+  "programs": 104
+ },
+ "custom": {
+  "emptyHold": {},
+  "reloadStuck": [],
+  "fireBlocked": {},
+  "weaponTime": {
+   "rocket": 73,
+   "rifle": 251,
+   "shotgun": 27,
+   "sniper": 52,
+   "pistol": 177
+  },
+  "reloadTimeMax": {
+   "rocket": 2.9,
+   "pistol": 1.5,
+   "rifle": 2.2,
+   "shotgun": 2.2
+  },
+  "switches": 0,
+  "emptyEngaged": 0,
+  "samples": 0,
+  "noAmmoAll": 0,
+  "stats": "Sprocket:63/20/g1 Rivet:103/36/g1 Servo:87/38/g0 Relay:84/29/g1 Torque:97/39/g0 Piston:77/29/g0 Byte:64/29/g0 Nimbus:96/39/g0 Tesla:52/16/g0 Axle:119/65/g0"
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

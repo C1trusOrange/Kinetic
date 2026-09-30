@@ -1,0 +1,59 @@
+[run] http://127.0.0.1:63772/index.html?autotest=1&map=foundry&bots=8&diff=hard&script=idle&scenario=tools/out/audit/review-weapons/fuzz.js&duration=90
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done
+[result] {
+ "done": false,
+ "started": true,
+ "t": 51.35,
+ "frames": 1925,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 172.41379310363888
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 251.97445335167257,
+  "maxSpeed": 12.903487900563972,
+  "minY": -4,
+  "maxY": 3.930617216692505,
+  "states": {
+   "onGround": true,
+   "isCrouching": true,
+   "airborne": true,
+   "isSprinting": true,
+   "isSliding": true,
+   "isMantling": true,
+   "isWallRunning": true
+  },
+  "shots": 46,
+  "kills": 0,
+  "deaths": 3,
+  "damageDealt": 0,
+  "damageTaken": 360
+ },
+ "bots": [],
+ "events": {
+  "damage": 156,
+  "death": 33,
+  "spawn": 41,
+  "pickup": 2,
+  "fire": 427
+ },
+ "renderer": {},
+ "custom": {
+  "viol": {},
+  "stats": {
+   "deaths": 3,
+   "respawns": 3,
+   "explosions": 22,
+   "fires": 46,
+   "cookoffs": 0
+  },
+  "log": []
+ },
+ "errorCount": 0
+}
+[run] done: wait=TIMEOUT console_errors=1 warnings=1

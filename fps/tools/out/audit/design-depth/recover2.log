@@ -1,0 +1,129 @@
+[run] http://127.0.0.1:55777/index.html?autotest=1&mapfile=tools/out/audit/design-depth/aerie_proto.js&bots=0&script=idle&scenario=tools/out/audit/design-depth/recover.js&duration=28&quality=low
+[log] [autotest] finished {"ok":true,"errors":0,"fps":96.6}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 28.18,
+ "frames": 1612,
+ "fps": {
+  "avg": 96.6,
+  "min": 4,
+  "max": 185.2
+ },
+ "errors": [],
+ "map": "aerie",
+ "player": {
+  "distance": 261.6,
+  "maxSpeed": 15.23,
+  "minY": -37.966666666666626,
+  "maxY": 5,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isGrappling": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 4,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 4,
+  "spawn": 3,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 91,
+  "triangles": 29308,
+  "geometries": 148,
+  "textures": 74,
+  "programs": 71
+ },
+ "custom": {
+  "runs": [
+   {
+    "name": "grapple_after_0.55s",
+    "firedAt": 0.56,
+    "firedY": -2.7,
+    "grappled": true,
+    "anchor": [
+     10,
+     -0.7,
+     -30
+    ],
+    "minY": -39.3,
+    "diedByKillPlane": true,
+    "endPos": [
+     10,
+     -39.3,
+     -16.1
+    ],
+    "endAlive": false,
+    "onGround": false
+   },
+   {
+    "name": "grapple_after_0.9s",
+    "firedAt": 0.91,
+    "firedY": -8,
+    "grappled": true,
+    "anchor": [
+     10,
+     -3,
+     -30.7
+    ],
+    "minY": -38.5,
+    "diedByKillPlane": true,
+    "endPos": [
+     10,
+     -38.5,
+     -10.9
+    ],
+    "endAlive": false,
+    "onGround": false
+   },
+   {
+    "name": "no_recovery_control",
+    "firedAt": null,
+    "firedY": null,
+    "grappled": false,
+    "anchor": null,
+    "minY": -38.6,
+    "diedByKillPlane": true,
+    "endPos": [
+     10,
+     -38.6,
+     -43.2
+    ],
+    "endAlive": false,
+    "onGround": false
+   },
+   {
+    "name": "grapple_after_1.3s_short_push",
+    "firedAt": 1.31,
+    "firedY": -17.8,
+    "grappled": true,
+    "anchor": [
+     10,
+     -3,
+     -30.8
+    ],
+    "minY": -36,
+    "diedByKillPlane": false,
+    "endPos": [
+     10,
+     -36,
+     -12.6
+    ],
+    "endAlive": true,
+    "onGround": false
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

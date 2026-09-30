@@ -1,0 +1,747 @@
+[run] http://127.0.0.1:61398/index.html?autotest=1&map=ruins&bots=2&duration=1000&god=1&scenario=tools/out/audit/verify-aibrain-2/scan.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[error] [run] timed out after 700s waiting for: window.__TEST__ && window.__TEST__.done
+[result] {
+ "done": false,
+ "started": false,
+ "t": 0.25,
+ "frames": 30,
+ "fps": {
+  "avg": 0,
+  "min": 1000000000,
+  "max": 0
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 0.11448460947572134,
+  "maxSpeed": 0,
+  "minY": 0.7629650070293267,
+  "maxY": 0.795800155300373,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "map": "ruins",
+  "nodes": 11543,
+  "f4": {
+   "totalWalkLinks": 37697,
+   "ceilingBlocked": 34,
+   "sample": [
+    {
+     "a": [
+      -38.49,
+      4.5,
+      1.51
+     ],
+     "b": [
+      -38.49,
+      4.5,
+      2.51
+     ],
+     "head": 1.65
+    },
+    {
+     "a": [
+      -39.49,
+      4.5,
+      2.51
+     ],
+     "b": [
+      -38.49,
+      4.5,
+      2.51
+     ],
+     "head": 1.65
+    },
+    {
+     "a": [
+      -38.49,
+      4.5,
+      2.51
+     ],
+     "b": [
+      -39.49,
+      4.5,
+      3.51
+     ],
+     "head": 1.65
+    },
+    {
+     "a": [
+      -40.49,
+      4.5,
+      3.51
+     ],
+     "b": [
+      -39.49,
+      4.5,
+      4.51
+     ],
+     "head": 1.65
+    },
+    {
+     "a": [
+      -39.49,
+      4.5,
+      3.51
+     ],
+     "b": [
+      -39.49,
+      4.5,
+      4.51
+     ],
+     "head": 1.65
+    },
+    {
+     "a": [
+      -39.49,
+      4.5,
+      3.51
+     ],
+     "b": [
+      -40.49,
+      4.5,
+      4.51
+     ],
+     "head": 1.65
+    },
+    {
+     "a": [
+      -39.49,
+      4.5,
+      4.51
+     ],
+     "b": [
+      -39.49,
+      4.5,
+      5.51
+     ],
+     "head": 1.65
+    },
+    {
+     "a": [
+      -39.49,
+      4.5,
+      5.51
+     ],
+     "b": [
+      -38.49,
+      4.5,
+      6.51
+     ],
+     "head": 1.65
+    },
+    {
+     "a": [
+      -39.49,
+      4.5,
+      5.51
+     ],
+     "b": [
+      -39.49,
+      4.5,
+      6.51
+     ],
+     "head": 1.65
+    },
+    {
+     "a": [
+      -39.49,
+      4.5,
+      6.51
+     ],
+     "b": [
+      -38.49,
+      4.5,
+      6.51
+     ],
+     "head": 1.65
+    },
+    {
+     "a": [
+      -32.49,
+      -1.6,
+      21.51
+     ],
+     "b": [
+      -31.49,
+      -1.6,
+      21.51
+     ],
+     "head": 1.6
+    },
+    {
+     "a": [
+      -32.49,
+      -1.6,
+      21.51
+     ],
+     "b": [
+      -31.49,
+      -1.6,
+      22.51
+     ],
+     "head": 1.6
+    },
+    {
+     "a": [
+      -31.49,
+      -1.6,
+      21.51
+     ],
+     "b": [
+      -30.49,
+      -1.6,
+      21.51
+     ],
+     "head": 1.6
+    },
+    {
+     "a": [
+      -31.49,
+      -1.6,
+      21.51
+     ],
+     "b": [
+      -30.49,
+      -1.6,
+      22.51
+     ],
+     "head": 1.6
+    },
+    {
+     "a": [
+      -31.49,
+      -1.6,
+      21.51
+     ],
+     "b": [
+      -31.49,
+      -1.6,
+      22.51
+     ],
+     "head": 1.6
+    },
+    {
+     "a": [
+      -31.49,
+      -1.6,
+      21.51
+     ],
+     "b": [
+      -32.49,
+      -1.6,
+      22.51
+     ],
+     "head": 1.6
+    },
+    {
+     "a": [
+      -30.49,
+      -1.6,
+      21.51
+     ],
+     "b": [
+      -30.49,
+      -1.6,
+      22.51
+     ],
+     "head": 1.6
+    },
+    {
+     "a": [
+      -30.49,
+      -1.6,
+      21.51
+     ],
+     "b": [
+      -31.49,
+      -1.6,
+      22.51
+     ],
+     "head": 1.6
+    },
+    {
+     "a": [
+      -23.49,
+      -1.6,
+      21.51
+     ],
+     "b": [
+      -22.49,
+      -1.6,
+      21.51
+     ],
+     "head": 1.6
+    },
+    {
+     "a": [
+      -23.49,
+      -1.6,
+      21.51
+     ],
+     "b": [
+      -22.49,
+      -1.6,
+      22.51
+     ],
+     "head": 1.6
+    },
+    {
+     "a": [
+      -23.49,
+      -1.6,
+      21.51
+     ],
+     "b": [
+      -23.49,
+      -1.6,
+      22.51
+     ],
+     "head": 1.6
+    },
+    {
+     "a": [
+      -22.49,
+      -1.6,
+      21.51
+     ],
+     "b": [
+      -21.49,
+      -1.6,
+      21.51
+     ],
+     "head": 1.6
+    },
+    {
+     "a": [
+      -22.49,
+      -1.6,
+      21.51
+     ],
+     "b": [
+      -21.49,
+      -1.6,
+      22.51
+     ],
+     "head": 1.6
+    },
+    {
+     "a": [
+      -22.49,
+      -1.6,
+      21.51
+     ],
+     "b": [
+      -22.49,
+      -1.6,
+      22.51
+     ],
+     "head": 1.6
+    },
+    {
+     "a": [
+      -22.49,
+      -1.6,
+      21.51
+     ],
+     "b": [
+      -23.49,
+      -1.6,
+      22.51
+     ],
+     "head": 1.6
+    }
+   ],
+   "regions": {
+    "-40,5,0": 1,
+    "-40,5,4": 8,
+    "-40,5,8": 1,
+    "-32,-2,20": 8,
+    "-24,-2,20": 7,
+    "-20,-2,20": 1,
+    "-32,-2,24": 2,
+    "-24,-2,24": 2,
+    "-32,5,44": 2,
+    "-32,6,44": 1,
+    "-28,5,44": 1
+   }
+  },
+  "f3": {
+   "jumpLinks": 1194,
+   "tested": 170,
+   "moved": 93,
+   "over13": 0,
+   "guardAtStart": 0,
+   "ex": [
+    {
+     "a": [
+      -23.49,
+      9,
+      -46.49
+     ],
+     "raw": [
+      -24.49,
+      10,
+      -45.49
+     ],
+     "nud": [
+      -24.6,
+      10,
+      -45.66
+     ],
+     "moved": 0.2,
+     "dyRaw": 1,
+     "dyNew": 1,
+     "d": 1.39,
+     "idx": 0,
+     "len": 2
+    },
+    {
+     "a": [
+      -46.49,
+      9,
+      -45.49
+     ],
+     "raw": [
+      -45.49,
+      10,
+      -45.49
+     ],
+     "nud": [
+      -45.37,
+      10,
+      -45.66
+     ],
+     "moved": 0.2,
+     "dyRaw": 1,
+     "dyNew": 1,
+     "d": 1.13,
+     "idx": 0,
+     "len": 2
+    },
+    {
+     "a": [
+      -23.49,
+      9,
+      -45.49
+     ],
+     "raw": [
+      -24.49,
+      10,
+      -45.49
+     ],
+     "nud": [
+      -24.6,
+      10,
+      -45.66
+     ],
+     "moved": 0.2,
+     "dyRaw": 1,
+     "dyNew": 1,
+     "d": 1.13,
+     "idx": 0,
+     "len": 2
+    },
+    {
+     "a": [
+      46.51,
+      9,
+      -45.49
+     ],
+     "raw": [
+      45.51,
+      10,
+      -45.49
+     ],
+     "nud": [
+      45.4,
+      10,
+      -45.66
+     ],
+     "moved": 0.2,
+     "dyRaw": 1,
+     "dyNew": 1,
+     "d": 1.13,
+     "idx": 0,
+     "len": 2
+    },
+    {
+     "a": [
+      44.51,
+      9,
+      -43.49
+     ],
+     "raw": [
+      45.51,
+      10,
+      -42.49
+     ],
+     "nud": [
+      45.4,
+      10,
+      -42.33
+     ],
+     "moved": 0.2,
+     "dyRaw": 1,
+     "dyNew": 1,
+     "d": 1.46,
+     "idx": 0,
+     "len": 2
+    },
+    {
+     "a": [
+      45.51,
+      9,
+      -43.49
+     ],
+     "raw": [
+      45.51,
+      10,
+      -42.49
+     ],
+     "nud": [
+      45.4,
+      10,
+      -42.33
+     ],
+     "moved": 0.2,
+     "dyRaw": 1,
+     "dyNew": 1,
+     "d": 1.17,
+     "idx": 0,
+     "len": 2
+    },
+    {
+     "a": [
+      -46.49,
+      9,
+      -42.49
+     ],
+     "raw": [
+      -45.49,
+      10,
+      -42.49
+     ],
+     "nud": [
+      -45.37,
+      10,
+      -42.33
+     ],
+     "moved": 0.2,
+     "dyRaw": 1,
+     "dyNew": 1,
+     "d": 1.13,
+     "idx": 0,
+     "len": 2
+    },
+    {
+     "a": [
+      -46.49,
+      9,
+      -42.49
+     ],
+     "raw": [
+      -46.49,
+      10.1,
+      -41.49
+     ],
+     "nud": [
+      -46.32,
+      10.1,
+      -41.38
+     ],
+     "moved": 0.2,
+     "dyRaw": 1.1,
+     "dyNew": 1.1,
+     "d": 1.13,
+     "idx": 0,
+     "len": 2
+    },
+    {
+     "a": [
+      -23.49,
+      9,
+      -42.49
+     ],
+     "raw": [
+      -24.49,
+      10,
+      -42.49
+     ],
+     "nud": [
+      -24.6,
+      10,
+      -42.33
+     ],
+     "moved": 0.2,
+     "dyRaw": 1,
+     "dyNew": 1,
+     "d": 1.13,
+     "idx": 0,
+     "len": 2
+    },
+    {
+     "a": [
+      24.51,
+      9,
+      -42.49
+     ],
+     "raw": [
+      24.51,
+      10,
+      -41.49
+     ],
+     "nud": [
+      24.36,
+      10,
+      -40.92
+     ],
+     "moved": 0.59,
+     "dyRaw": 1,
+     "dyNew": 1,
+     "d": 1.58,
+     "idx": 0,
+     "len": 2
+    },
+    {
+     "a": [
+      46.51,
+      9,
+      -42.49
+     ],
+     "raw": [
+      45.51,
+      10,
+      -42.49
+     ],
+     "nud": [
+      45.4,
+      10,
+      -42.33
+     ],
+     "moved": 0.2,
+     "dyRaw": 1,
+     "dyNew": 1,
+     "d": 1.13,
+     "idx": 0,
+     "len": 2
+    },
+    {
+     "a": [
+      46.51,
+      9,
+      -42.49
+     ],
+     "raw": [
+      46.51,
+      10.1,
+      -41.49
+     ],
+     "nud": [
+      46.35,
+      10.1,
+      -41.38
+     ],
+     "moved": 0.2,
+     "dyRaw": 1.1,
+     "dyNew": 1.1,
+     "d": 1.13,
+     "idx": 0,
+     "len": 2
+    }
+   ]
+  },
+  "f5": {
+   "samples": 34027,
+   "blocked": 1,
+   "ex": [
+    {
+     "p": [
+      36.21,
+      1.87,
+      -33.79
+     ],
+     "node": [
+      36.51,
+      1.87,
+      -35.49
+     ],
+     "d": 1.73
+    }
+   ],
+   "noLosCloseNode": 0
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=TIMEOUT console_errors=1 warnings=45

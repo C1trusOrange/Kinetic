@@ -1,0 +1,224 @@
+[run] http://127.0.0.1:63867/index.html?autotest=1&map=sandbox&scenario=tools/out/audit/verify-assets-2/count.js&duration=3
+[log] [autotest] finished {"ok":true,"errors":0,"fps":18.7}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 3.19,
+ "frames": 94,
+ "fps": {
+  "avg": 18.7,
+  "min": 4,
+  "max": 158.7
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 18.3,
+   "pos": [
+    11.4,
+    0,
+    28.8
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 54,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 16.4,
+   "pos": [
+    -14.8,
+    0,
+    30.6
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 9,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 15.5,
+   "pos": [
+    2.6,
+    4.5,
+    -1.4
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 75,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 12.9,
+   "pos": [
+    9.1,
+    4.5,
+    -24.6
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 92,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 14.6,
+   "pos": [
+    -2.3,
+    0,
+    19.6
+   ]
+  }
+ ],
+ "events": {
+  "damage": 11,
+  "death": 0,
+  "spawn": 6,
+  "pickup": 1,
+  "fire": 23
+ },
+ "renderer": {
+  "calls": 310,
+  "triangles": 56318,
+  "geometries": 183,
+  "textures": 127,
+  "programs": 103
+ },
+ "custom": {
+  "pistol:world": {
+   "meshes": 8,
+   "transparent": 1,
+   "distinctMats": 8,
+   "tris": 626,
+   "small": []
+  },
+  "pistol:view": {
+   "meshes": 30,
+   "transparent": 2,
+   "distinctMats": 15,
+   "tris": 2368,
+   "small": [
+    "body:glowCyan:0.8cm",
+    "body:void:2.3cm",
+    "slide:steelDark:1.6cm",
+    "mag:glowGreen:2.1cm"
+   ]
+  },
+  "rifle:world": {
+   "meshes": 14,
+   "transparent": 3,
+   "distinctMats": 14,
+   "tris": 882,
+   "small": [
+    "body:reticleRing:2.8cm"
+   ]
+  },
+  "rifle:view": {
+   "meshes": 35,
+   "transparent": 4,
+   "distinctMats": 19,
+   "tris": 3632,
+   "small": [
+    "body:paintCyan:1.0cm",
+    "body:reticleRing:2.8cm",
+    "body:custom:c36678b1-434c-44fa-8990-e9aae5bf47d2:2.0cm",
+    "bolt:paintCyan:2.0cm",
+    "bolt:steelDark:3.0cm"
+   ]
+  },
+  "shotgun:world": {
+   "meshes": 10,
+   "transparent": 1,
+   "distinctMats": 10,
+   "tris": 1126,
+   "small": [
+    "body:void:2.0cm"
+   ]
+  },
+  "shotgun:view": {
+   "meshes": 28,
+   "transparent": 2,
+   "distinctMats": 15,
+   "tris": 3476,
+   "small": []
+  },
+  "sniper:world": {
+   "meshes": 13,
+   "transparent": 3,
+   "distinctMats": 13,
+   "tris": 1176,
+   "small": []
+  },
+  "sniper:view": {
+   "meshes": 34,
+   "transparent": 3,
+   "distinctMats": 18,
+   "tris": 3884,
+   "small": [
+    "bolt:steelBlack:3.0cm",
+    "bolt:paintViolet:2.5cm",
+    "bolt:glowViolet:2.5cm"
+   ]
+  },
+  "rocket:world": {
+   "meshes": 18,
+   "transparent": 4,
+   "distinctMats": 18,
+   "tris": 932,
+   "small": [
+    "body:lens:2.8cm",
+    "body:reticleRing:2.8cm"
+   ]
+  },
+  "rocket:view": {
+   "meshes": 34,
+   "transparent": 5,
+   "distinctMats": 24,
+   "tris": 3262,
+   "small": [
+    "body:lens:2.8cm",
+    "body:reticleRing:2.8cm",
+    "body:custom:c36678b1-434c-44fa-8990-e9aae5bf47d2:2.0cm",
+    "body:glowAmber:1.2cm"
+   ]
+  },
+  "rocketProj": 12,
+  "grenade": 6
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

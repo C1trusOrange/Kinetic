@@ -1,0 +1,3 @@
+[run] http://127.0.0.1:51409/tools/viewer.html?kind=viewmodel&id=pistol&ads=1
+[run] screenshot -> tools\out\audit\review-assets\ads_pistol.png
+[run] done: wait=ok console_errors=0 warnings=0

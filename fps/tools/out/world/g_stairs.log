@@ -1,0 +1,4 @@
+[run] http://127.0.0.1:63475/tools/viewer.html?kind=map&id=sandbox&cam=6,2.0,12,1.57,-0.12&markers=0
+[warning] [pickups] createWeaponModel('rocket') failed: createWeaponModel: unknown weapon "rocket"
+[run] screenshot -> tools\out\world\g_stairs.png
+[run] done: wait=ok console_errors=0 warnings=1

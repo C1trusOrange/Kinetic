@@ -1,0 +1,32 @@
+<!doctype html><meta charset="utf-8">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<style>html,body{margin:0;background:#000}</style>
+<script type="module">
+import * as THREE from 'three';
+import * as T from '/src/world/Textures.js';
+const P = new URLSearchParams(location.search);
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(parseInt(P.get("w")||"1000"), parseInt(P.get("h")||"500"));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+document.body.appendChild(renderer.domElement);
+T.initTextures(renderer);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x101010);
+const names = (P.get('names') || 'metal_panel,brick').split(',');
+const dir = (P.get('dir') || '1,0.4,0.6').split(',').map(Number);
+const light = new THREE.DirectionalLight(0xffffff, 3.0);
+light.position.set(dir[0], dir[1], dir[2]);
+scene.add(light);
+scene.add(new THREE.AmbientLight(0xffffff, 0.15));
+names.forEach((n, i) => {
+  const s = T.getMaterialInfo(n).scale;
+  const zoom = parseFloat(P.get('zoom') || '0.5');
+  const g = new THREE.PlaneGeometry(1, 1);
+  const uv = g.attributes.uv; for (let k = 0; k < uv.count; k++) uv.setXY(k, uv.getX(k) * zoom / s * 2, uv.getY(k) * zoom / s * 2);
+  const m = new THREE.Mesh(g, T.getMaterial(n)); m.position.x = i * 1.05 - (names.length - 1) * 0.525; scene.add(m);
+});
+const cam = new THREE.OrthographicCamera(-0.55 * names.length, 0.55 * names.length, 0.55, -0.55, 0.1, 10);
+cam.position.z = 3;
+renderer.render(scene, cam); renderer.render(scene, cam);
+window.__R__ = true;
+</script>

@@ -1,0 +1,80 @@
+[run] http://127.0.0.1:65100/index.html?autotest=1&map=gunfeel&mapfile=tools/out/audit/feel-gunfeel/testmap.js&bots=0&god=1&script=idle&scenario=tools/out/audit/feel-gunfeel/sprintfire.js&duration=60
+[log] [autotest] finished {"ok":true,"errors":0,"fps":84}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 24.93,
+ "frames": 1343,
+ "fps": {
+  "avg": 84,
+  "min": 4,
+  "max": 185.2
+ },
+ "errors": [],
+ "map": "gunfeel",
+ "player": {
+  "distance": 112.2,
+  "maxSpeed": 9.6,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true,
+   "isSprinting": true
+  },
+  "shots": 3,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 3
+ },
+ "renderer": {
+  "calls": 66,
+  "triangles": 7078,
+  "geometries": 125,
+  "textures": 88,
+  "programs": 72
+ },
+ "custom": {
+  "sprintToShot_rifle": {
+   "latency_s": 0.067,
+   "sprintingAtPress": true,
+   "blendAtPress": 1
+  },
+  "adsIn_rifle": {
+   "adsTimeDef": 0.16,
+   "to50_s": 0.067,
+   "to90_s": 0.133
+  },
+  "sprintToShot_pistol": {
+   "latency_s": 0.05,
+   "sprintingAtPress": true,
+   "blendAtPress": 1
+  },
+  "adsIn_pistol": {
+   "adsTimeDef": 0.12,
+   "to50_s": 0.067,
+   "to90_s": 0.14
+  },
+  "sprintToShot_shotgun": {
+   "latency_s": 0.067,
+   "sprintingAtPress": true,
+   "blendAtPress": 1
+  },
+  "adsIn_shotgun": {
+   "adsTimeDef": 0.18,
+   "to50_s": 0.097,
+   "to90_s": 0.17
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

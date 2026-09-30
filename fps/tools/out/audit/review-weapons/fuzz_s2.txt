@@ -1,0 +1,160 @@
+[run] http://127.0.0.1:62604/index.html?autotest=1&map=sandbox&bots=6&diff=insane&script=idle&seed=2&scenario=tools/out/audit/review-weapons/fuzz.js&duration=60
+[log] [autotest] finished {"ok":true,"errors":0,"fps":26.8}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 60.05,
+ "frames": 1543,
+ "fps": {
+  "avg": 26.8,
+  "min": 4,
+  "max": 172.4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 214.9185748373325,
+  "maxSpeed": 12.83,
+  "minY": -3.3306690738754696e-15,
+  "maxY": 7.186666666666666,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSprinting": true,
+   "isWallRunning": true
+  },
+  "shots": 53,
+  "kills": 0,
+  "deaths": 7,
+  "damageDealt": 0,
+  "damageTaken": 700
+ },
+ "bots": [
+  {
+   "name": "Cog",
+   "alive": false,
+   "kills": 3,
+   "deaths": 5,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 269.1,
+   "pos": [
+    2.1,
+    0,
+    15.5
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 6,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 290.4,
+   "pos": [
+    7.6,
+    0.2,
+    7.6
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 4,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 240.7,
+   "pos": [
+    -7.3,
+    0,
+    -12.5
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 10,
+   "deaths": 4,
+   "health": 65,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 246.1,
+   "pos": [
+    -18.8,
+    -4,
+    12.4
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 3,
+   "deaths": 6,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 262.3,
+   "pos": [
+    7.4,
+    0,
+    -22.8
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": false,
+   "kills": 6,
+   "deaths": 5,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 279.3,
+   "pos": [
+    -1.5,
+    0,
+    -0.4
+   ]
+  }
+ ],
+ "events": {
+  "damage": 178,
+  "death": 37,
+  "spawn": 42,
+  "pickup": 16,
+  "fire": 452
+ },
+ "renderer": {
+  "calls": 453,
+  "triangles": 69458,
+  "geometries": 336,
+  "textures": 143,
+  "programs": 111
+ },
+ "custom": {
+  "viol": {},
+  "stats": {
+   "deaths": 7,
+   "respawns": 7,
+   "explosions": 25,
+   "fires": 53,
+   "cookoffs": 0
+  },
+  "log": [],
+  "final": {
+   "cur": "rifle",
+   "owned": "pistol,rifle,shotgun",
+   "grenades": 1,
+   "projectiles": 0,
+   "rockets": 0
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

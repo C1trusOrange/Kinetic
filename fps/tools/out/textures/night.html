@@ -1,0 +1,69 @@
+<!doctype html><meta charset="utf-8">
+<style>html,body{margin:0;background:#000;overflow:hidden}</style>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import * as T from '/src/world/Textures.js';
+const P = new URLSearchParams(location.search);
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.shadowMap.enabled = true;
+document.body.appendChild(renderer.domElement);
+T.initTextures(renderer);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0a0d1a);
+scene.fog = new THREE.Fog(0x0a0d1a, 30, 90);
+const pm = new THREE.PMREMGenerator(renderer);
+scene.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = parseFloat(P.get('env') || '0.25');
+scene.add(new THREE.HemisphereLight(0x6f86c8, 0x1a1410, 0.5));
+const sun = new THREE.DirectionalLight(0xb9c8ff, parseFloat(P.get('sun') || '1.0'));
+sun.position.set(-8, 20, 10); sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+Object.assign(sun.shadow.camera, { left: -20, right: 20, top: 20, bottom: -20, far: 60 });
+scene.add(sun);
+function box(mat, w, h, d, x, y, z, ry = 0) {
+  const g = new THREE.BoxGeometry(w, h, d);
+  const s = T.getMaterialInfo(mat).scale, uv = g.attributes.uv, pos = g.attributes.position, nor = g.attributes.normal;
+  for (let i = 0; i < uv.count; i++) {
+    const nx = Math.abs(nor.getX(i)), ny = Math.abs(nor.getY(i));
+    let u, v;
+    if (ny > 0.5) { u = pos.getX(i); v = pos.getZ(i); } else if (nx > 0.5) { u = pos.getZ(i); v = pos.getY(i); } else { u = pos.getX(i); v = pos.getY(i); }
+    uv.setXY(i, u / s, v / s);
+  }
+  const m = new THREE.Mesh(g, T.getMaterial(mat));
+  m.position.set(x, y, z); m.rotation.y = ry; m.castShadow = m.receiveShadow = true; scene.add(m); return m;
+}
+box('concrete_floor', 60, 1, 60, 0, -0.5, 0);
+box('glass_window', 32, 24, 1, 0, 12, -14);           // facade
+box('brick', 1, 8, 20, -12, 4, 0);                    // side wall
+box('metal_panel', 1, 8, 20, 12, 4, 0);
+box('neon_blue', 8, 0.3, 0.3, -11.4, 5, -3);
+box('neon_pink', 8, 0.3, 0.3, -11.4, 4.2, 3);
+box('neon_orange', 0.3, 0.3, 8, 11.4, 5, 0);
+box('neon_green', 0.3, 0.3, 6, 11.4, 4, 0);
+box('light_panel', 3, 0.1, 3, 0, 7.9, 4);
+box('metal_grate', 6, 0.15, 6, 0, 3, 2);              // catwalk
+box('crate', 1.2, 1.2, 1.2, -4, 0.6, 5);
+box('container_red', 2.44, 2.6, 6.06, 6, 1.3, -6);
+box('gold', 1, 1, 1, 3.5, 0.5, 6);
+box('water', 8, 0.1, 8, -6, 0.05, -7);
+box('hazard', 4, 0.05, 1, 0, 0.03, 8);
+const pl = new THREE.PointLight(0xffaa66, 60, 14); pl.position.set(0, 1.2, 2); scene.add(pl);
+const cam = new THREE.PerspectiveCamera(65, innerWidth / innerHeight, 0.05, 200);
+const c = (P.get('cam') || '0,2.2,16,0,5,-14').split(',').map(Number);
+cam.position.set(c[0], c[1], c[2]); cam.lookAt(c[3], c[4], c[5]);
+const comp = new EffectComposer(renderer);
+comp.addPass(new RenderPass(scene, cam));
+comp.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), parseFloat(P.get('bloom') || '0.6'), 0.4, 0.85));
+comp.addPass(new OutputPass());
+let n = 0;
+function loop() { requestAnimationFrame(loop); comp.render(); if (++n === 8) window.__READY__ = true; }
+loop();
+</script>

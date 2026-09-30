@@ -1,0 +1,84 @@
+[run] http://127.0.0.1:56997/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-player/allocs.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0,
+ "frames": 70,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 81.3008130081317
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "idle": {
+   "perFrame": {
+    "raycast": 10,
+    "probeGround": 2,
+    "resolveCapsule": 2,
+    "moveCapsule": 2
+   },
+   "avgMs": 0.38,
+   "worstMs": 9.3,
+   "heapDeltaKB": 3851
+  },
+  "running": {
+   "perFrame": {
+    "raycast": 9.66,
+    "probeGround": 1.86,
+    "resolveCapsule": 2.13,
+    "moveCapsule": 2.01
+   },
+   "avgMs": 0.16,
+   "worstMs": 3.8,
+   "heapDeltaKB": 0
+  },
+  "airborne": {
+   "perFrame": {
+    "raycast": 6.68,
+    "probeGround": 1.17,
+    "resolveCapsule": 2.19,
+    "moveCapsule": 2.02
+   },
+   "avgMs": 0.17,
+   "worstMs": 3.6,
+   "heapDeltaKB": 5990
+  },
+  "wallrun": {
+   "perFrame": {
+    "raycast": 9.33,
+    "probeGround": 1.51,
+    "resolveCapsule": 2,
+    "moveCapsule": 2
+   },
+   "avgMs": 0.05,
+   "worstMs": 1.3,
+   "heapDeltaKB": 0
+  },
+  "states": "ground"
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

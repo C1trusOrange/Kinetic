@@ -1,0 +1,125 @@
+[run] http://127.0.0.1:62753/index.html?autotest=1&map=gunfeel&mapfile=tools/out/audit/feel-gunfeel/testmap.js&bots=0&god=1&script=idle&scenario=tools/out/audit/feel-gunfeel/timing.js&only=equip,rate&duration=200
+[log] [autotest] finished {"ok":true,"errors":0,"fps":84.4}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 37.82,
+ "frames": 2210,
+ "fps": {
+  "avg": 84.4,
+  "min": 4,
+  "max": 178.6
+ },
+ "errors": [],
+ "map": "gunfeel",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 50,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 50
+ },
+ "renderer": {
+  "calls": 75,
+  "triangles": 7040,
+  "geometries": 204,
+  "textures": 97,
+  "programs": 78
+ },
+ "custom": {
+  "_total": 37.5,
+  "equip_pistol": {
+   "equipTimeDef": 0.26,
+   "applied_s": 0.188,
+   "canAct_s": 0.394,
+   "full_s": 0.412,
+   "firstShot_s": null
+  },
+  "equip_rifle": {
+   "equipTimeDef": 0.34,
+   "applied_s": 0.189,
+   "canAct_s": 0.5,
+   "full_s": 0.506,
+   "firstShot_s": 0.45
+  },
+  "equip_shotgun": {
+   "equipTimeDef": 0.42,
+   "applied_s": 0.17,
+   "canAct_s": 0.517,
+   "full_s": 0.589,
+   "firstShot_s": 0
+  },
+  "equip_sniper": {
+   "equipTimeDef": 0.5,
+   "applied_s": 0.177,
+   "canAct_s": 0.656,
+   "full_s": 0.722,
+   "firstShot_s": null
+  },
+  "equip_rocket": {
+   "equipTimeDef": 0.5,
+   "applied_s": 0.196,
+   "canAct_s": 0.606,
+   "full_s": 0.679,
+   "firstShot_s": null
+  },
+  "rate_pistol": {
+   "defRate": 5.2,
+   "shots": 10,
+   "avgInterval_s": 0.214,
+   "achievedRate": 4.67,
+   "minI": 0.194,
+   "maxI": 0.261
+  },
+  "rate_rifle": {
+   "defRate": 11,
+   "shots": 19,
+   "avgInterval_s": 0.106,
+   "achievedRate": 9.43,
+   "minI": 0.091,
+   "maxI": 0.141
+  },
+  "rate_shotgun": {
+   "defRate": 1.15,
+   "shots": 7,
+   "avgInterval_s": 0.878,
+   "achievedRate": 1.14,
+   "minI": 0.873,
+   "maxI": 0.887
+  },
+  "rate_sniper": {
+   "defRate": 0.95,
+   "shots": 6,
+   "avgInterval_s": 1.059,
+   "achievedRate": 0.94,
+   "minI": 1.055,
+   "maxI": 1.068
+  },
+  "rate_rocket": {
+   "defRate": 1.1,
+   "shots": 6,
+   "avgInterval_s": 0.919,
+   "achievedRate": 1.09,
+   "minI": 0.912,
+   "maxI": 0.933
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

@@ -1,0 +1,184 @@
+[run] http://127.0.0.1:63209/index.html?autotest=1&map=foundry&bots=8&diff=insane&god=1&script=idle&scenario=tools/out/audit/verify-aibody-1/muz.js&duration=30
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":28.5}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 30.18,
+ "frames": 829,
+ "fps": {
+  "avg": 28.5,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 1,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 142.1,
+   "pos": [
+    30.8,
+    12,
+    -35.2
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 2,
+   "deaths": 2,
+   "health": 1,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 185.7,
+   "pos": [
+    -24.2,
+    0,
+    -11.3
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 3,
+   "deaths": 2,
+   "health": 47,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 167,
+   "pos": [
+    2.5,
+    0,
+    -15.8
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 3,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 171.4,
+   "pos": [
+    -40,
+    0,
+    -16.1
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 3,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 165.6,
+   "pos": [
+    29.5,
+    0,
+    37.2
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": false,
+   "kills": 0,
+   "deaths": 4,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 136.8,
+   "pos": [
+    34.7,
+    0,
+    31.2
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 3,
+   "deaths": 2,
+   "health": 1,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 179.2,
+   "pos": [
+    -22,
+    0,
+    -21.1
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 4,
+   "deaths": 2,
+   "health": 12,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 185.9,
+   "pos": [
+    18.9,
+    0,
+    17.6
+   ]
+  }
+ ],
+ "events": {
+  "damage": 85,
+  "death": 19,
+  "spawn": 27,
+  "pickup": 2,
+  "fire": 190
+ },
+ "renderer": {
+  "calls": 494,
+  "triangles": 145650,
+  "geometries": 225,
+  "textures": 142,
+  "programs": 104
+ },
+ "custom": {
+  "muz": {
+   "fires": 92,
+   "skippedLod": 98
+  },
+  "muzDist": {
+   "n": 92,
+   "p50": 0.062,
+   "p90": 0.222,
+   "p99": 0.63,
+   "max": 0.63
+  },
+  "fps": 28.52977987083554
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

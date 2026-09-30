@@ -1,0 +1,98 @@
+[run] http://127.0.0.1:49689/index.html?autotest=1&map=foundry&bots=0&duration=25&scenario=tools/out/audit/review-world/pk.js&god=1
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 25.08,
+ "frames": 614,
+ "fps": {
+  "avg": 24.2,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 9.5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 142,
+  "triangles": 103636,
+  "geometries": 121,
+  "textures": 115,
+  "programs": 94
+ },
+ "custom": {
+  "log": [
+   {
+    "test": "health full hp not consumed",
+    "available": true,
+    "events": 0
+   },
+   {
+    "test": "health consumed",
+    "available": true,
+    "hp": 40,
+    "amount": 50,
+    "respawnIn": -0.55,
+    "events": 0
+   },
+   {
+    "test": "after world.reset",
+    "available": true,
+    "next": 0
+   },
+   {
+    "test": "armor full not consumed",
+    "available": true
+   },
+   {
+    "test": "armor consumed",
+    "available": true,
+    "armor": 10
+   },
+   {
+    "test": "rocket pad (not owned)",
+    "available": true,
+    "current": "rifle",
+    "owned": [
+     "pistol",
+     "rifle",
+     "shotgun"
+    ]
+   },
+   {
+    "test": "rocket pad (owned, reserve huge)",
+    "available": true
+   },
+   {
+    "test": "dead player not collecting",
+    "available": true
+   }
+  ],
+  "finished": true
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

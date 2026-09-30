@@ -1,0 +1,43 @@
+[run] http://127.0.0.1:50343/index.html?autotest=1&map=foundry&bots=12&diff=insane&duration=45&god=1&script=idle
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done
+[result] {
+ "done": false,
+ "started": true,
+ "t": 37,
+ "frames": 1020,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 169.49152542381765
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 167,
+  "death": 36,
+  "spawn": 46,
+  "pickup": 3,
+  "fire": 352
+ },
+ "renderer": {},
+ "errorCount": 0
+}
+[run] done: wait=TIMEOUT console_errors=1 warnings=1
+exit=1

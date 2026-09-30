@@ -1,0 +1,168 @@
+[run] http://127.0.0.1:62889/index.html?autotest=1&map=foundry&scenario=tools/out/audit/verify-player-1/v_seam.js&duration=10
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 5,
+ "frames": 43,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 8.935132435602453,
+  "maxSpeed": 13.62332128186796,
+  "minY": 0,
+  "maxY": 2.5135768124227083,
+  "states": {
+   "onGround": true,
+   "isGrappling": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 6,
+  "death": 0,
+  "spawn": 6,
+  "pickup": 1,
+  "fire": 22
+ },
+ "renderer": {},
+ "custom": {
+  "log": [
+   [
+    0,
+    "ground/idle",
+    0.12,
+    0,
+    -38
+   ],
+   [
+    0.22,
+    "ground/flying",
+    0.12,
+    0,
+    -38
+   ],
+   [
+    0.27,
+    "grapple/attached",
+    0.12,
+    0.01,
+    -38.01
+   ],
+   [
+    0.5,
+    "grapple/attached",
+    0.12,
+    0.36,
+    -39.17
+   ],
+   [
+    0.87,
+    "air/retract",
+    0.12,
+    2,
+    -43.45
+   ],
+   [
+    1,
+    "air/retract",
+    0.12,
+    2.45,
+    -43.6
+   ],
+   [
+    1.03,
+    "air/idle",
+    0.12,
+    2.49,
+    -43.6
+   ],
+   [
+    1.5,
+    "air/idle",
+    0.12,
+    0.34,
+    -43.6
+   ],
+   [
+    1.53,
+    "ground/idle",
+    0.12,
+    0,
+    -43.6
+   ],
+   [
+    2,
+    "ground/idle",
+    0.12,
+    0,
+    -43.6
+   ],
+   [
+    2.5,
+    "ground/idle",
+    0.12,
+    0,
+    -43.6
+   ],
+   [
+    3,
+    "ground/idle",
+    0.12,
+    0,
+    -43.6
+   ],
+   [
+    3.5,
+    "ground/idle",
+    0.12,
+    0,
+    -43.6
+   ],
+   [
+    4,
+    "ground/idle",
+    0.12,
+    0,
+    -43.6
+   ],
+   [
+    4.5,
+    "ground/idle",
+    0.12,
+    0,
+    -43.6
+   ]
+  ],
+  "map": "foundry",
+  "anchor": [
+   0.12,
+   5.06,
+   -43.97
+  ],
+  "afterMantle": null,
+  "final": {
+   "pos": [
+    0.12,
+    0,
+    -43.6
+   ],
+   "alive": true,
+   "deaths": 0
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

@@ -1,0 +1,95 @@
+[run] http://127.0.0.1:53094/index.html?autotest=1&map=sandbox&bots=1&scenario=tools/out/audit/verify-weapons-2/rate.js&duration=9
+[log] [autotest] finished {"ok":true,"errors":0,"fps":54.7}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 9.16,
+ "frames": 399,
+ "fps": {
+  "avg": 54.7,
+  "min": 4,
+  "max": 178.6
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": -5.551115123125783e-17,
+  "states": {
+   "onGround": true
+  },
+  "shots": 57,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 63.8,
+   "pos": [
+    3.7,
+    0,
+    16.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 2,
+  "pickup": 1,
+  "fire": 57
+ },
+ "renderer": {
+  "calls": 184,
+  "triangles": 41498,
+  "geometries": 147,
+  "textures": 121,
+  "programs": 105
+ },
+ "custom": {
+  "shots": 57,
+  "t0": 1.010100000000007,
+  "t1": 7.030600000000017,
+  "n": 248,
+  "sumDt": 6.050600000000014,
+  "gaps": {
+   "0.104": 1,
+   "0.121": 5,
+   "0.097": 11,
+   "0.103": 10,
+   "0.106": 1,
+   "0.093": 2,
+   "0.111": 2,
+   "0.115": 3,
+   "0.128": 1,
+   "0.098": 3,
+   "0.127": 2,
+   "0.129": 1,
+   "0.105": 1,
+   "0.092": 3,
+   "0.096": 1,
+   "0.109": 3,
+   "0.133": 1,
+   "0.091": 3,
+   "0.130": 1,
+   "0.099": 1
+  },
+  "perSec": 9.468,
+  "hz": 41,
+  "def": 11
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

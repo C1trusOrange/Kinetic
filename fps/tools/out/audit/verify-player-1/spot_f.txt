@@ -1,0 +1,281 @@
+[run] http://127.0.0.1:50444/index.html?autotest=1&map=foundry&bots=0&script=idle&scenario=tools/out/audit/verify-player-1/probe_spot.js&px=-12.75&py=10.55&pz=-19
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0,
+ "frames": 39,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 18.41620626150967
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "cols": [
+   {
+    "t": "box",
+    "min": [
+     -18,
+     12,
+     -22
+    ],
+    "max": [
+     18,
+     12.45,
+     -12
+    ],
+    "vis": true,
+    "top": "metal_corrugated"
+   },
+   {
+    "t": "box",
+    "min": [
+     -18.6,
+     12.888,
+     -19.275
+    ],
+    "max": [
+     18.6,
+     13,
+     -18.725
+    ],
+    "vis": true,
+    "top": "metal_painted_yellow"
+   },
+   {
+    "t": "box",
+    "min": [
+     -18.6,
+     12.3,
+     -19.275
+    ],
+    "max": [
+     18.6,
+     12.412,
+     -18.725
+    ],
+    "vis": true,
+    "top": "metal_rust"
+   },
+   {
+    "t": "box",
+    "min": [
+     -18.6,
+     12.412,
+     -19.088
+    ],
+    "max": [
+     18.6,
+     12.888,
+     -18.912
+    ],
+    "vis": true,
+    "top": "metal_rust"
+   }
+  ],
+  "other": [
+   {
+    "t": "panel",
+    "pos": [
+     -18.17,
+     8.25,
+     -16
+    ],
+    "size": [
+     7.6,
+     0.22
+    ]
+   },
+   {
+    "t": "panel",
+    "pos": [
+     -16.83,
+     8.25,
+     -16
+    ],
+    "size": [
+     7.6,
+     0.22
+    ]
+   },
+   {
+    "t": "panel",
+    "pos": [
+     -10,
+     11.2,
+     -22.03
+    ],
+    "size": [
+     5,
+     0.3
+    ]
+   },
+   {
+    "t": "cylinder",
+    "pos": [
+     -11.5,
+     11.3,
+     -16
+    ]
+   },
+   {
+    "t": "cylinder",
+    "pos": [
+     -11.5,
+     11.9,
+     -16
+    ]
+   },
+   {
+    "t": "cylinder",
+    "pos": [
+     -5,
+     11.3,
+     -16
+    ]
+   },
+   {
+    "t": "cylinder",
+    "pos": [
+     -5,
+     11.9,
+     -16
+    ]
+   },
+   {
+    "t": "cylinder",
+    "pos": [
+     -14,
+     13.049999999999999,
+     -20
+    ]
+   },
+   {
+    "t": "cylinder",
+    "pos": [
+     -14,
+     13.75,
+     -20
+    ]
+   }
+  ],
+  "up": {
+   "d": 1.43,
+   "n": [
+    0,
+    -1,
+    0
+   ]
+  },
+  "down": {
+   "d": 0.3,
+   "n": [
+    0,
+    1,
+    0
+   ]
+  },
+  "canStand": false,
+  "capsuleClear": true,
+  "nbr": [
+   [
+    0.3,
+    0,
+    false,
+    true
+   ],
+   [
+    -0.3,
+    0,
+    false,
+    true
+   ],
+   [
+    0,
+    0.3,
+    false,
+    false
+   ],
+   [
+    0,
+    -0.3,
+    false,
+    false
+   ],
+   [
+    0.6,
+    0,
+    false,
+    false
+   ],
+   [
+    -0.6,
+    0,
+    false,
+    false
+   ],
+   [
+    0,
+    0.6,
+    false,
+    false
+   ],
+   [
+    0,
+    -0.6,
+    false,
+    false
+   ],
+   [
+    1,
+    0,
+    false,
+    false
+   ],
+   [
+    -1,
+    0,
+    false,
+    false
+   ],
+   [
+    0,
+    1,
+    false,
+    false
+   ],
+   [
+    0,
+    -1,
+    false,
+    false
+   ]
+  ]
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

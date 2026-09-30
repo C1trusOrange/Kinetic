@@ -1,0 +1,205 @@
+[run] http://127.0.0.1:63828/index.html?autotest=1&map=foundry&bots=0&script=idle&secs=60&seed=2&ring=outOfBounds&ringn=60&trace=0.2&scenario=tools/out/audit/review-player/fastsim.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 60,
+ "frames": 53,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 6.877579092159456
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 482.9875109421514,
+  "maxSpeed": 17.86187459241638,
+  "minY": -4.0000000000000036,
+  "maxY": 6.98833333333333,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isSprinting": true,
+   "isGrappling": true,
+   "isWallRunning": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "isMantling": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "seed": 2,
+  "viol": {},
+  "samples": {
+   "cameraFarFromEye": {
+    "t": 29.75,
+    "pos": [
+     45.12,
+     5.2,
+     9.28
+    ],
+    "vel": [
+     -2.1,
+     4.6,
+     -0.84
+    ],
+    "state": "air",
+    "grounded": false,
+    "crouched": false,
+    "h": 1.8,
+    "keys": "forward+sprint",
+    "gr": "idle",
+    "dcam": 1.46,
+    "so": [
+     0,
+     0,
+     0
+    ],
+    "alpha": 0,
+    "prev": [
+     45.25,
+     3.78,
+     9
+    ],
+    "eye": 1.66
+   }
+  },
+  "counts": {
+   "cameraFarFromEye": 1
+  },
+  "ring": {},
+  "trace": [
+   {
+    "t": 3.63,
+    "d": 0.3,
+    "from": [
+     -5.78,
+     5.2,
+     -40.13
+    ],
+    "to": [
+     -5.5,
+     5.2,
+     -40.24
+    ],
+    "n": 1,
+    "normals": [
+     [
+      0.92,
+      0.01,
+      -0.38,
+      0.3
+     ]
+    ],
+    "stack": "at CollisionWorld.moveCapsule (src/world/Collision.js:236:22) | at PlayerController._airStep (src/player/PlayerController.js:691:22) | at PlayerController.step (src/player/PlayerController.js:228:15) | at Player.update (src/player/Player.js:178:12)"
+   },
+   {
+    "t": 29.48,
+    "d": 0.27,
+    "from": [
+     45.42,
+     3.01,
+     10.35
+    ],
+    "to": [
+     45.42,
+     3.01,
+     10.62
+    ],
+    "n": 1,
+    "normals": [
+     [
+      0,
+      0,
+      1,
+      0.27
+     ]
+    ],
+    "stack": "at PlayerController._stepMantle (src/player/PlayerController.js:1021:15) | at PlayerController.step (src/player/PlayerController.js:212:12) | at Player.update (src/player/Player.js:178:12) | at Game.update (src/core/Game.js:622:19)"
+   },
+   {
+    "t": 29.75,
+    "d": 1.43,
+    "from": [
+     45.24,
+     4.21,
+     8.97
+    ],
+    "to": [
+     45.12,
+     5.6,
+     9.28
+    ],
+    "n": 2,
+    "normals": [
+     [
+      -0.37,
+      0,
+      0.93,
+      0.34
+     ],
+     [
+      0,
+      1,
+      0,
+      1.39
+     ]
+    ],
+    "stack": "at CollisionWorld.moveCapsule (src/world/Collision.js:236:22) | at PlayerController._airStep (src/player/PlayerController.js:691:22) | at PlayerController.step (src/player/PlayerController.js:228:15) | at Player.update (src/player/Player.js:178:12)"
+   },
+   {
+    "t": 32.25,
+    "d": 0.5,
+    "from": [
+     30.07,
+     3.9,
+     6.68
+    ],
+    "to": [
+     30.07,
+     3.4,
+     6.68
+    ],
+    "n": 1,
+    "normals": [
+     [
+      0,
+      -1,
+      0,
+      0.5
+     ]
+    ],
+    "stack": "at PlayerController._tryStepUp (src/player/PlayerController.js:634:10) | at PlayerController._airStep (src/player/PlayerController.js:698:41) | at PlayerController.step (src/player/PlayerController.js:228:15) | at Player.update (src/player/Player.js:178:12)"
+   }
+  ],
+  "maxSpeed": 17.86187459241638,
+  "states": {
+   "ground": 563,
+   "air": 2679,
+   "grapple": 96,
+   "wallrun": 92,
+   "slide": 52,
+   "mantle": 118
+  },
+  "simSeconds": 60,
+  "dt": 0.016666666666666666
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

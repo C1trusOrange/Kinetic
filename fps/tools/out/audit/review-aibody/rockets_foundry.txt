@@ -1,0 +1,292 @@
+[run] http://127.0.0.1:56685/index.html?autotest=1&map=foundry&bots=8&diff=insane&duration=60&god=1&script=idle&scenario=tools/out/audit/review-aibody/rockets.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":29.4}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 60.31,
+ "frames": 1677,
+ "fps": {
+  "avg": 29.4,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 30.1,
+  "maxSpeed": 8.56,
+  "minY": 0,
+  "maxY": 5.255709136664396,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 2,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 294.3,
+   "pos": [
+    21.5,
+    0,
+    14.1
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 3,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 344.4,
+   "pos": [
+    -36.3,
+    0,
+    -3.8
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 2,
+   "deaths": 3,
+   "health": 36,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 352.8,
+   "pos": [
+    -28.2,
+    0,
+    -2.5
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 2,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 337.1,
+   "pos": [
+    3.4,
+    1,
+    -23.1
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 3,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 310.9,
+   "pos": [
+    46,
+    0,
+    -21
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 3,
+   "deaths": 3,
+   "health": 81,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 329.3,
+   "pos": [
+    -25.2,
+    0,
+    -34
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": false,
+   "kills": 7,
+   "deaths": 5,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 314.9,
+   "pos": [
+    34.3,
+    0,
+    20.8
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": false,
+   "kills": 3,
+   "deaths": 2,
+   "health": 0,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 381.4,
+   "pos": [
+    17.9,
+    0,
+    1.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 56,
+  "death": 28,
+  "spawn": 43,
+  "pickup": 4,
+  "fire": 137
+ },
+ "renderer": {
+  "calls": 541,
+  "triangles": 146428,
+  "geometries": 188,
+  "textures": 139,
+  "programs": 102
+ },
+ "custom": {
+  "R": {
+   "rockets": 126,
+   "rocketOriginBlocked": 0,
+   "rocketOriginNearWall": 2,
+   "selfSplash": 2,
+   "selfDamage": 4,
+   "selfKills": 2,
+   "explosions": 129,
+   "grenades": 4,
+   "grenadeOriginBlocked": 0,
+   "grenadeSelfDamage": 0,
+   "minOwnerDist": 1.8313678141680838,
+   "samples": [
+    {
+     "k": "nearwall",
+     "d": 1.19,
+     "eye": [
+      26.337897599619687,
+      2.448504479999975,
+      16.09496366583972
+     ],
+     "org": [
+      25.553490890169495,
+      2.1445584247339218,
+      15.98172896956307
+     ]
+    },
+    {
+     "k": "nearwall",
+     "d": 0.44,
+     "eye": [
+      39.02420735683834,
+      1.972032634599636,
+      21.365248122401837
+     ],
+     "org": [
+      38.40480159102525,
+      2.1977216198882337,
+      20.903512452159493
+     ]
+    }
+   ],
+   "shots": 0,
+   "hits": 0,
+   "botStats": [
+    {
+     "n": "Voltage",
+     "w": "rocket",
+     "shots": 16,
+     "dmg": 245,
+     "gren": 1,
+     "k": 2,
+     "d": 5
+    },
+    {
+     "n": "Glitch",
+     "w": "rocket",
+     "shots": 14,
+     "dmg": 276,
+     "gren": 1,
+     "k": 3,
+     "d": 2
+    },
+    {
+     "n": "Gasket",
+     "w": "rocket",
+     "shots": 15,
+     "dmg": 453,
+     "gren": 0,
+     "k": 2,
+     "d": 3
+    },
+    {
+     "n": "Torque",
+     "w": "rocket",
+     "shots": 19,
+     "dmg": 269,
+     "gren": 1,
+     "k": 2,
+     "d": 4
+    },
+    {
+     "n": "Relay",
+     "w": "rocket",
+     "shots": 17,
+     "dmg": 226,
+     "gren": 0,
+     "k": 3,
+     "d": 4
+    },
+    {
+     "n": "Axle",
+     "w": "rocket",
+     "shots": 17,
+     "dmg": 238,
+     "gren": 0,
+     "k": 3,
+     "d": 3
+    },
+    {
+     "n": "Rivet",
+     "w": "pistol",
+     "shots": 27,
+     "dmg": 799,
+     "gren": 0,
+     "k": 7,
+     "d": 5
+    },
+    {
+     "n": "Tesla",
+     "w": "rocket",
+     "shots": 12,
+     "dmg": 262,
+     "gren": 1,
+     "k": 3,
+     "d": 2
+    }
+   ]
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

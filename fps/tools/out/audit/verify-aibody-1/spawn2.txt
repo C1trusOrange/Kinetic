@@ -1,0 +1,251 @@
+[run] http://127.0.0.1:51347/index.html?autotest=1&map=sandbox&bots=4&god=1&script=idle&scenario=tools/out/audit/verify-aibody-1/spawn2.js&duration=6
+[log] [autotest] finished {"ok":true,"errors":0,"fps":37.3}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 6.11,
+ "frames": 225,
+ "fps": {
+  "avg": 37.3,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 8.278297475880471,
+  "maxSpeed": 6.41,
+  "minY": 0,
+  "maxY": 6.086627167633549,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "roam",
+   "distance": 11.2,
+   "pos": [
+    -2,
+    4.5,
+    -3
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 36.9,
+   "pos": [
+    -1.9,
+    0,
+    -15.1
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 38.3,
+   "pos": [
+    -16.2,
+    -1,
+    10.3
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 41.2,
+   "pos": [
+    13,
+    0.1,
+    -6.6
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 1,
+  "spawn": 6,
+  "pickup": 1,
+  "fire": 30
+ },
+ "renderer": {
+  "calls": 338,
+  "triangles": 60716,
+  "geometries": 201,
+  "textures": 132,
+  "programs": 103
+ },
+ "custom": {
+  "phase": 2,
+  "t0": 4.047500000000003,
+  "samples": [
+   [
+    0.05,
+    false,
+    0,
+    4.5,
+    0,
+    0,
+    0.04,
+    0.952,
+    0.15
+   ],
+   [
+    0.093,
+    false,
+    0,
+    4.5,
+    0,
+    0,
+    0.09,
+    0.952,
+    0.107
+   ],
+   [
+    0.117,
+    false,
+    0,
+    4.5,
+    0.5,
+    0,
+    0.14,
+    0.922,
+    0.083
+   ],
+   [
+    0.135,
+    false,
+    0,
+    4.5,
+    0.66,
+    0,
+    0.16,
+    0.912,
+    0.065
+   ],
+   [
+    0.171,
+    false,
+    0,
+    4.5,
+    0.74,
+    0,
+    0.18,
+    0.907,
+    0.029
+   ],
+   [
+    0.221,
+    false,
+    0,
+    4.5,
+    0.86,
+    0,
+    0.21,
+    0.9,
+    -0.021
+   ],
+   [
+    0.264,
+    true,
+    0,
+    4.5,
+    0.49,
+    0.04,
+    0,
+    0.882,
+    -0.064
+   ],
+   [
+    0.306,
+    true,
+    0,
+    4.5,
+    0.31,
+    0.028,
+    0,
+    0.904,
+    -0.106
+   ],
+   [
+    0.337,
+    true,
+    0,
+    4.5,
+    0.19,
+    0.02,
+    0,
+    0.919,
+    -0.137
+   ],
+   [
+    0.387,
+    true,
+    0,
+    4.5,
+    0.14,
+    0.016,
+    0,
+    0.926,
+    -0.187
+   ],
+   [
+    0.437,
+    true,
+    0,
+    4.5,
+    0.08,
+    0.011,
+    0,
+    0.934,
+    -0.237
+   ],
+   [
+    0.487,
+    true,
+    0,
+    4.5,
+    0.05,
+    0.007,
+    0,
+    0.939,
+    -0.287
+   ]
+  ],
+  "afterSpawn": {
+   "airT": 0,
+   "wasGround": true
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

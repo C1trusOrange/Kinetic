@@ -1,0 +1,170 @@
+[run] http://127.0.0.1:60329/index.html?autotest=1&map=ruins&bots=2&duration=1&god=1&script=idle&test=spots&scenario=tools/out/audit/review-aibrain/v/t_multi.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0.1,
+ "frames": 27,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 5.551115123125783e-17,
+  "maxY": 5.551115123125783e-17,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    49,
+    9,
+    16
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    -30,
+    0,
+    -24
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 93,
+  "triangles": 69906,
+  "geometries": 81,
+  "textures": 70,
+  "programs": 48
+ },
+ "custom": {
+  "spots_ruins": {
+   "snipe": {
+    "total": 24,
+    "main": 17,
+    "reachableNotMain": 0,
+    "noNode": 0,
+    "unreachable": 7,
+    "ex": [
+     [
+      0.51,
+      15.7,
+      -1.49
+     ],
+     [
+      -1.49,
+      15.7,
+      1.51
+     ],
+     [
+      -27.49,
+      10,
+      -9.49
+     ],
+     [
+      30.51,
+      8.6,
+      -12.49
+     ],
+     [
+      30.51,
+      8.6,
+      12.51
+     ],
+     [
+      -31.49,
+      13.4,
+      -29.49
+     ]
+    ]
+   },
+   "cover": {
+    "total": 111,
+    "main": 103,
+    "reachableNotMain": 0,
+    "noNode": 0,
+    "unreachable": 8,
+    "ex": [
+     [
+      -8.49,
+      6.2,
+      -31.49
+     ],
+     [
+      -26.49,
+      6.2,
+      -30.49
+     ],
+     [
+      -15.49,
+      1.3,
+      -29.49
+     ],
+     [
+      -23.49,
+      6.2,
+      -28.49
+     ],
+     [
+      -50.49,
+      12.85,
+      -25.49
+     ],
+     [
+      -51.49,
+      12.61,
+      -24.49
+     ]
+    ]
+   }
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

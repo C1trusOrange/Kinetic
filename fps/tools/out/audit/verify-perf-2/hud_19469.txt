@@ -1,0 +1,172 @@
+[run] http://127.0.0.1:65486/index.html?autotest=1&map=sandbox&bots=3&duration=8&hide=0&scenario=tools/out/audit/verify-perf-2/sc_hud.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.09,
+ "frames": 305,
+ "fps": {
+  "avg": 40.7,
+  "min": 4,
+  "max": 163.9
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 46.4,
+  "maxSpeed": 11.44,
+  "minY": -5.551115123125783e-17,
+  "maxY": 2.4197597594426017,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true
+  },
+  "shots": 16,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 100
+ },
+ "bots": [
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 71,
+   "weapon": "shotgun",
+   "state": "engage",
+   "distance": 39.9,
+   "pos": [
+    -5.1,
+    0,
+    23.9
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 41.7,
+   "pos": [
+    -6.5,
+    0,
+    -14.2
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 19,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 36.7,
+   "pos": [
+    8.4,
+    0,
+    20.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 14,
+  "death": 1,
+  "spawn": 4,
+  "pickup": 1,
+  "fire": 43
+ },
+ "renderer": {
+  "calls": 194,
+  "triangles": 44552,
+  "geometries": 210,
+  "textures": 132,
+  "programs": 105
+ },
+ "custom": {
+  "hide": "0",
+  "firstPlay": 25,
+  "firstFrame": {
+   "f": 25,
+   "dt": 5344,
+   "js": 4491,
+   "gt": 0.05,
+   "st": "playing"
+  },
+  "next8": [
+   {
+    "f": 26,
+    "dt": 60,
+    "js": 30,
+    "gt": 0.1,
+    "st": "playing"
+   },
+   {
+    "f": 27,
+    "dt": 175,
+    "js": 35,
+    "gt": 0.15,
+    "st": "playing"
+   },
+   {
+    "f": 28,
+    "dt": 39,
+    "js": 27,
+    "gt": 0.2,
+    "st": "playing"
+   },
+   {
+    "f": 29,
+    "dt": 79,
+    "js": 56,
+    "gt": 0.25,
+    "st": "playing"
+   },
+   {
+    "f": 30,
+    "dt": 28,
+    "js": 25,
+    "gt": 0.3,
+    "st": "playing"
+   },
+   {
+    "f": 31,
+    "dt": 44,
+    "js": 40,
+    "gt": 0.33,
+    "st": "playing"
+   },
+   {
+    "f": 32,
+    "dt": 51,
+    "js": 35,
+    "gt": 0.38,
+    "st": "playing"
+   },
+   {
+    "f": 33,
+    "dt": 35,
+    "js": 23,
+    "gt": 0.43,
+    "st": "playing"
+   }
+  ],
+  "maxGapAfter": 239,
+  "maxGapAfterJs": {
+   "f": 65,
+   "dt": 239,
+   "js": 158,
+   "gt": 1.42,
+   "st": "playing"
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

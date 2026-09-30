@@ -1,0 +1,52 @@
+[run] http://127.0.0.1:55158/index.html?autotest=1&map=sandbox&bots=0&god=1&script=idle&scenario=tools/out/audit/review-fxaudio/s10_quality.js&duration=3
+[log] [autotest] finished {"ok":true,"errors":0,"fps":94.4}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 3.15,
+ "frames": 217,
+ "fps": {
+  "avg": 94.4,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 103,
+  "triangles": 30726,
+  "geometries": 117,
+  "textures": 111,
+  "programs": 116
+ },
+ "custom": {
+  "highLive": 120,
+  "lowLive": 120,
+  "lowMax": 40
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

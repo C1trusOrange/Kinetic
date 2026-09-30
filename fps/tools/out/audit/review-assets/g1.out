@@ -1,0 +1,96 @@
+[run] http://127.0.0.1:53782/index.html?autotest=1&map=foundry&bots=3&god=1&script=idle&duration=14
+[run] screenshot -> tools\out\audit\review-assets\game_foundry_10s.png
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[run] screenshot -> tools\out\audit\review-assets\game_foundry_16s.png
+[result] {
+ "done": true,
+ "started": true,
+ "t": 14.28,
+ "frames": 802,
+ "fps": {
+  "avg": 63.7,
+  "min": 4,
+  "max": 172.4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "collect",
+   "distance": 72.1,
+   "pos": [
+    28.4,
+    0,
+    -31.3
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 2,
+   "deaths": 0,
+   "health": 49,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 99.2,
+   "pos": [
+    -33.5,
+    0,
+    -31.6
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": false,
+   "kills": 0,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 49.2,
+   "pos": [
+    -48.2,
+    0,
+    -17.6
+   ]
+  }
+ ],
+ "events": {
+  "damage": 9,
+  "death": 2,
+  "spawn": 5,
+  "pickup": 2,
+  "fire": 20
+ },
+ "renderer": {
+  "calls": 251,
+  "triangles": 114876,
+  "geometries": 187,
+  "textures": 125,
+  "programs": 101
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

@@ -1,0 +1,69 @@
+[run] http://127.0.0.1:55301/index.html?autotest=1&map=foundry&bots=0&script=idle&scenario=tools/out/audit/verify-player-1/loops.js&mode2=quit
+[run] screenshot -> tools\out\audit\verify-player-1\loops_quit_5.6s.png
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 1.08,
+ "frames": 281,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 166.66666666666035
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 1.4059745814578117,
+  "maxSpeed": 6.803687060846822,
+  "minY": 0,
+  "maxY": 0.9178801749515316,
+  "states": {
+   "onGround": true,
+   "isGrappling": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "mode": "quit",
+  "attT": 0.20149999999999868,
+  "beforeStop": {
+   "attached": true,
+   "gstate": "attached",
+   "loops": 1,
+   "loopBusGain": 1,
+   "ready": true,
+   "ctx": "running",
+   "state": "playing",
+   "gvis": true
+  },
+  "after4s": {
+   "attached": true,
+   "gstate": "attached",
+   "loops": 1,
+   "loopBusGain": 0,
+   "ready": true,
+   "ctx": "running",
+   "state": "menu",
+   "gvis": true,
+   "alive": false
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

@@ -1,0 +1,3 @@
+fps {'avg': 26.8, 'min': 4, 'max': 163.9} errors 0 [] t 5.47
+pad1_lookaway {"landAt":[17.37,17.05,-21],"final":[18.79,0,-30.6],"note":"target is (19.5,16,-16); player looks -z holding W"}
+[run] done: wait=ok console_errors=0 warnings=0

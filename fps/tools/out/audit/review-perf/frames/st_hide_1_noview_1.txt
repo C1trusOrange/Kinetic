@@ -1,0 +1,14 @@
+[run] http://127.0.0.1:56534/index.html?autotest=1&map=foundry&bots=5&duration=6&warm=1&hide=1&noview=1&scenario=tools/out/audit/review-perf/frames/scenario.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56534/src/ai/Bot.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56534/src/ai/BotConfig.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56534/src/fx/Atlas.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56534/src/fx/Particles.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56534/src/ui/Icons.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:56534/src/core/Game.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56534/src/ui/dom.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56534/src/ui/Scoreboard.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56534/vendor/three/examples/jsm/math/Octree.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56534/src/core/procgen.js]
+[error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done
+[result] null
+[run] done: wait=TIMEOUT console_errors=11 warnings=0

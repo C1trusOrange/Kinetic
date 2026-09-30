@@ -1,0 +1,8 @@
+{
+ "eval": {
+  "__eval_error__": "TypeError: Cannot read properties of undefined (reading 'custom')\n    at <anonymous>:1:37\n    at <anonymous>:1:111"
+ },
+ "errors": [
+  "TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:62154/src/core/Game.js"
+ ]
+}

@@ -1,0 +1,11 @@
+attempt 0 failed: .0.1:59507/src/weapons/Projectiles.js] | [error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:59507/src/ai/BotManager.js] | [error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done | [result] null | [run] done: wait=TIMEOUT console_errors=5 warnings=0 | 
+fps {'avg': 67, 'min': 4, 'max': 181.81818181825324} errors 0 [] t 26.26
+land_from_0.3 {"impact":null,"dipMin":0,"overshoot":0,"pitchDipDeg":-24.23,"landImpact":0,"trauma":0,"recoverT":null,"dipSeries":[],"speedAfter":0}
+land_from_3 {"impact":12,"dipMin":-0.017,"overshoot":0.001,"pitchDipDeg":-0.34,"landImpact":0.28,"trauma":0,"recoverT":0.19,"dipSeries":[0,-0.017,-0.009,-0.004,0,0.001,0.001,0.001,0,0,0,0,0,0],"speedAfter":0}
+land_from_8 {"impact":19.6,"dipMin":-0.034,"overshoot":0.003,"pitchDipDeg":-0.67,"landImpact":0.66,"trauma":0.23,"recoverT":0.19,"dipSeries":[0,-0.034,-0.028,-0.012,-0.002,0.002,0.003,0.003,0.002,0,0,0,0,0],"speedAfter":0}
+land_from_15 {"impact":26.8,"dipMin":-0.061,"overshoot":0.006,"pitchDipDeg":-1.23,"landImpact":0.92,"trauma":0.31,"recoverT":0.23,"dipSeries":[0,-0.061,-0.055,-0.033,-0.022,0.003,0.006,0.006,0.004,0.001,0,-0.001,-0.001,0],"speedAfter":0}
+land_from_30 {"impact":38,"dipMin":-0.051,"overshoot":0.004,"pitchDipDeg":-0.99,"landImpact":0.85,"trauma":0.29,"recoverT":0.24,"dipSeries":[0,-0.051,-0.037,-0.026,-0.005,0.002,0.004,0.002,0.001,0,0,0,0,0],"speedAfter":0}
+bob_walk {"bobY_cm":3.98,"rollDegPP":0.44,"stepsPerSec":3.53,"speed":6.2}
+bob_sprint {"bobY_cm":7.06,"rollDegPP":0.82,"stepsPerSec":4.28,"speed":9.6}
+bob_crouch {"bobY_cm":1.57,"rollDegPP":0.12,"stepsPerSec":2.8,"speed":3.2}
+[run] done: wait=ok console_errors=0 warnings=1

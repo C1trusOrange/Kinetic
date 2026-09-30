@@ -1,0 +1,13 @@
+[run] http://127.0.0.1:64154/tools/viewer.html?kind=map&id=sandbox&cam=0,1.7,29,0,0.05&markers=0
+[warning] [pickups] createWeaponModel('rocket') failed: createWeaponModel: unknown weapon "rocket"
+[warning] [pickups] createWeaponModel('sniper') failed: createWeaponModel: unknown weapon "sniper"
+[warning] [pickups] createWeaponModel('shotgun') failed: createWeaponModel: unknown weapon "shotgun"
+[warning] [world] map 'sandbox' has 6 warning(s):
+ - spawn #6 at [24,0,29] is inside or too close to solid geometry (depth 0.14)
+ - spawn #8 at [-6,0,20] is inside or too close to solid geometry (depth 1.25)
+ - spawn #12 at [-5, 4.5, -5]: floor is at y=5.70 (snapped)
+ - spawn #12 at [-5,5.7,-5] is inside or too close to solid geometry (depth 1.15)
+ - bots cannot reach: spawn #12, pickup #13 (weapon:sniper, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+ - 294 walkable cells are one-way traps for bots (drop-ins with no way back up)
+[run] screenshot -> tools\out\world\cam_south.png
+[run] done: wait=ok console_errors=0 warnings=4

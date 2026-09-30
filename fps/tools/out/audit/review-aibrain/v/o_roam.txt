@@ -1,0 +1,425 @@
+[run] http://127.0.0.1:56226/index.html?autotest=1&map=foundry&bots=2&duration=8&god=1&script=idle&scenario=tools/out/audit/review-aibrain/v/t_roamrescue.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":25.4}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.24,
+ "frames": 227,
+ "fps": {
+  "avg": 25.4,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 64,
+   "pos": [
+    13.1,
+    0,
+    24.5
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    -30,
+    0,
+    33
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 131,
+  "triangles": 103156,
+  "geometries": 111,
+  "textures": 87,
+  "programs": 89
+ },
+ "custom": {
+  "log": [
+   {
+    "ev": "TELEPORT",
+    "t": 0,
+    "from": [
+     -44.88,
+     0,
+     -29.94
+    ],
+    "to": [
+     -6.49,
+     0.22,
+     -7.49
+    ],
+    "roamFailures": 0,
+    "state": "roam"
+   },
+   {
+    "ev": "start",
+    "y": 0.22,
+    "roamFailures": 0,
+    "hasGoal": true
+   },
+   {
+    "el": 0,
+    "y": 0.22,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 0.15,
+    "y": 3.14,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 0.25,
+    "y": 4.8,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 0.35,
+    "y": 6.22,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 0.45,
+    "y": 7.41,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 0.55,
+    "y": 8.35,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 0.65,
+    "y": 9.05,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 0.75,
+    "y": 9.52,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 0.85,
+    "y": 9.74,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 0.95,
+    "y": 9.9,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 1.05,
+    "y": 9.84,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 1.15,
+    "y": 9.55,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 1.22,
+    "y": 9.15,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 1.31,
+    "y": 8.49,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 1.43,
+    "y": 7.45,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 1.51,
+    "y": 6.25,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 1.61,
+    "y": 5.12,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 1.71,
+    "y": 3.47,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 1.81,
+    "y": 1.27,
+    "air": true,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 1.92,
+    "y": 0.01,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 2.02,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 2.11,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 2.25,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 2.32,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 2.4,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 2.52,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 2.61,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 2.73,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 2.82,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 2.9,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 3.02,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 3.12,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 3.22,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 3.31,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 3.41,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 3.55,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 3.64,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 3.74,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 3.84,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   },
+   {
+    "el": 3.94,
+    "y": 0,
+    "air": false,
+    "state": "roam",
+    "hasGoal": true,
+    "rf": 0
+   }
+  ],
+  "bots": 2
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

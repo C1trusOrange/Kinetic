@@ -1,0 +1,8 @@
+[run] http://127.0.0.1:50501/index.html?autotest=1&map=ruins&bots=8&duration=60&god=1&script=idle&scenario=tools/out/audit/review-aibody/scen_watch.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:50501/vendor/three/examples/jsm/postprocessing/Pass.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:50501/vendor/three/examples/jsm/shaders/CopyShader.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:50501/vendor/three/examples/jsm/postprocessing/ShaderPass.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:50501/src/core/Game.js
+[error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done
+[result] null
+[run] done: wait=TIMEOUT console_errors=5 warnings=0

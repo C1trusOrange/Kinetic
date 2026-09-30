@@ -1,0 +1,175 @@
+[run] http://127.0.0.1:62369/index.html?autotest=1&map=skyline&bots=0&scenario=tools/out/audit/verify-world-2/pads.js&duration=40
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":36.6}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 40.2,
+ "frames": 1360,
+ "fps": {
+  "avg": 36.6,
+  "min": 4,
+  "max": 135.1
+ },
+ "errors": [],
+ "map": "skyline",
+ "player": {
+  "distance": 75.4,
+  "maxSpeed": 6.87,
+  "minY": 0.030000000000000027,
+  "maxY": 17.676711699092802,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 163,
+  "triangles": 70910,
+  "geometries": 135,
+  "textures": 151,
+  "programs": 97
+ },
+ "custom": {
+  "pads": [
+   {
+    "i": 0,
+    "pos": [
+     14.5,
+     0.03,
+     4
+    ],
+    "target": [
+     24,
+     9.6,
+     4
+    ],
+    "land": [
+     19.97,
+     9.6,
+     4
+    ],
+    "errH": 4.03,
+    "errY": 0,
+    "apexRel": 12.82,
+    "vel": [
+     6.24,
+     24.56,
+     0
+    ],
+    "air": 1.62,
+    "onGround": true
+   },
+   {
+    "i": 1,
+    "pos": [
+     -14.5,
+     0.03,
+     -4
+    ],
+    "target": [
+     -24,
+     12.8,
+     -4
+    ],
+    "land": [
+     -24.16,
+     12.8,
+     -4
+    ],
+    "errH": 0.16,
+    "errY": 0,
+    "apexRel": 17.65,
+    "vel": [
+     -5.1,
+     29.21,
+     0
+    ],
+    "air": 1.9,
+    "onGround": true
+   },
+   {
+    "i": 2,
+    "pos": [
+     0,
+     0.03,
+     -14.5
+    ],
+    "target": [
+     0,
+     6.4,
+     -24
+    ],
+    "land": [
+     0,
+     6.4,
+     -24.05
+    ],
+    "errH": 0.05,
+    "errY": 0,
+    "apexRel": 9.28,
+    "vel": [
+     0,
+     21.21,
+     -6.87
+    ],
+    "air": 1.38,
+    "onGround": true
+   },
+   {
+    "i": 3,
+    "pos": [
+     0,
+     0.03,
+     14.5
+    ],
+    "target": [
+     0,
+     6.4,
+     24
+    ],
+    "land": [
+     0.2,
+     6.4,
+     23.52
+    ],
+    "errH": 0.53,
+    "errY": 0,
+    "apexRel": 9.28,
+    "vel": [
+     0,
+     21.21,
+     6.87
+    ],
+    "air": 1.37,
+    "onGround": true
+   }
+  ],
+  "count": 4,
+  "finished": true
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

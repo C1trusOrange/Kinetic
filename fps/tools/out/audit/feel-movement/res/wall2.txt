@@ -1,0 +1,15 @@
+attempt 0 failed: 566/src/weapons/models/Arms.js] | [error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52566/src/weapons/models/parts.js] | [error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done | [result] null | [run] done: wait=TIMEOUT console_errors=5 warnings=0 | 
+fps {'avg': 62.9, 'min': 4, 'max': 196.1} errors 0 [] t 48.48
+hug_x-9.4_yaw0 {"wallRuns":1,"runs":[{"t":0.77,"y":0.98,"sp":9.6,"dur":1.46,"end":"land","endY":0.03}],"jumps":[{"t":0.61,"ty":"ground","y":0,"hs":9.6}]}
+hug_x-9.4_yaw0.06 {"wallRuns":1,"runs":[{"t":0.78,"y":0.98,"sp":9.61,"dur":1.46,"end":"land","endY":0.03}],"jumps":[{"t":0.62,"ty":"ground","y":0,"hs":9.62}]}
+hug_x-9.1_yaw0.1 {"wallRuns":1,"runs":[{"t":0.81,"y":0.98,"sp":9.63,"dur":1.46,"end":"land","endY":0.03}],"jumps":[{"t":0.64,"ty":"ground","y":0,"hs":9.64}]}
+hug_x-8.8_yaw0.1 {"wallRuns":1,"runs":[{"t":0.78,"y":0.98,"sp":9.6,"dur":1.46,"end":"land","endY":0.03}],"jumps":[{"t":0.62,"ty":"ground","y":0,"hs":9.6}]}
+hug_x-8.6_yaw0.2 {"wallRuns":1,"runs":[{"t":0.83,"y":0.98,"sp":9.76,"dur":1.46,"end":"land","endY":0.03}],"jumps":[{"t":0.67,"ty":"ground","y":0,"hs":9.77}]}
+hug_x-8_yaw0.35 {"wallRuns":1,"runs":[{"t":0.77,"y":0.98,"sp":9.31,"dur":1.46,"end":"land","endY":0.03}],"jumps":[{"t":0.6,"ty":"ground","y":0,"hs":9.32}]}
+headon_0.9 {"wallRuns":1,"runs":[{"t":0.59,"y":0.98,"sp":5.96,"dur":1.46,"end":"land","endY":0.03}],"jumps":[{"t":0.43,"ty":"ground","y":0,"hs":9.6}]}
+headon_1.2 {"wallRuns":1,"runs":[{"t":0.58,"y":0.98,"sp":4.95,"dur":1.46,"end":"land","endY":0.03}],"jumps":[{"t":0.41,"ty":"ground","y":0,"hs":3.81}]}
+headon_1.45 {"wallRuns":0,"runs":[],"jumps":[{"t":0.4,"ty":"ground","y":0,"hs":0.74}]}
+high_full_run {"wallRuns":1,"runs":[{"t":0.28,"y":7.01,"sp":9.56,"dur":1.71,"end":"timeout","endY":3.56}],"jumps":[],"ySeries":[6.95,6.51,6.43,6.32,6.17,5.92,5.53,4.94,4.07],"vySeries":[-7,-0.36,-0.43,-0.61,-0.96,-1.53,-2.38,-3.56,-5.13],"speedSeries":[9.56,10.57,10.5,10.5,10.5,10.5,10.5,10.5,10.5]}
+pingpong {"wallRuns":1,"runs":[{"t":0.7,"y":0.98,"sp":10.13,"dur":0.47,"end":"jump","endY":1.62}],"jumps":[{"t":0.53,"ty":"ground","y":0,"hs":10.14},{"t":1.17,"ty":"wall","y":1.62,"hs":12.9}],"maxY":2.99,"finalZ":-32.69,"travel":88.69,"ySeries":[0,0,1.26,2,2.84,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"speedSeries":[0,9.6,10.5,12.9,12.9,12.15,9.6,9.6,9.77,9.77,9.77,9.77,9.77,9.77,9.77,9.77,9.77,9.77,9.77,9.77,9.77,9.77,9.77]}
+walljump_then_double {"wallRuns":2,"runs":[{"t":0.71,"y":0.98,"sp":9.47,"dur":0.45,"end":"jump","endY":1.62},{"t":2,"y":3.84,"sp":12.9,"dur":1.71,"end":"timeout","endY":0.72}],"jumps":[{"t":0.54,"ty":"ground","y":0,"hs":9.48},{"t":1.16,"ty":"wall","y":1.62,"hs":12.9},{"t":1.56,"ty":"double","y":2.95,"hs":12.9}],"maxY":4.06}
+[run] done: wait=ok console_errors=0 warnings=1

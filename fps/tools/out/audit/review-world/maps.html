@@ -1,0 +1,34 @@
+<!doctype html><html><head><meta charset="utf-8">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><script type="module">
+import { MAPS } from '/src/world/maps/index.js';
+window.__DONE__ = false;
+const out = {};
+for (const m of MAPS) {
+  const r = { types: {}, slopedRail: [], slopedCat: [], nonAxisCat: [], vertRail: [], pillars: 0, stairs: [], ramps: [], railCount: 0, hiddenCount: 0, noCollide: 0, panelCollide: 0, bevelBig: [] };
+  for (const s of m.solids) {
+    r.types[s.type] = (r.types[s.type] || 0) + 1;
+    if (s.visible === false) r.hiddenCount++;
+    if (s.collide === false) r.noCollide++;
+    if (s.type === 'railing') {
+      r.railCount++;
+      if (Math.abs(s.from[1] - s.to[1]) > 1e-6) r.slopedRail.push([s.from, s.to, s.height]);
+      if (Math.abs(s.from[0] - s.to[0]) < 1e-6 && Math.abs(s.from[2] - s.to[2]) < 1e-6) r.vertRail.push([s.from, s.to]);
+    }
+    if (s.type === 'catwalk') {
+      if (Math.abs(s.from[1] - s.to[1]) > 1e-6) r.slopedCat.push([s.from, s.to]);
+      if (Math.abs(s.from[0] - s.to[0]) > 1e-3 && Math.abs(s.from[2] - s.to[2]) > 1e-3) r.nonAxisCat.push([s.from, s.to]);
+    }
+    if (s.type === 'pillar') r.pillars++;
+    if (s.type === 'stairs') r.stairs.push({ pos: s.pos, size: s.size, dir: s.dir, steps: s.steps, rot: s.rot });
+    if (s.type === 'ramp') r.ramps.push({ pos: s.pos, size: s.size, dir: s.dir, rot: s.rot, collide: s.collide });
+  }
+  r.spawns = m.spawns.length; r.pickups = m.pickups.length; r.jumpPads = (m.jumpPads || []).length; r.lights = (m.lights || []).length;
+  r.bounds = m.bounds; r.killY = m.killY; r.sun = m.theme && m.theme.sun; r.fog = m.theme && m.theme.fog; r.sky = m.theme && m.theme.sky;
+  r.pk = m.pickups.map(p => p.type + (p.weapon ? ':' + p.weapon : '') + '@' + p.pos.join(','));
+  r.pads = (m.jumpPads || []).map(p => JSON.stringify(p));
+  out[m.id] = r;
+}
+window.__R__ = out;
+window.__DONE__ = true;
+</script></body></html>

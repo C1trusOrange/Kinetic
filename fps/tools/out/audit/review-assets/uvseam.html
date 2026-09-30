@@ -1,0 +1,39 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>uvseam</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><script type="module">
+import * as THREE from 'three';
+window.__DONE__ = false; window.__RES__ = {};
+try {
+  const WM = await import('/src/weapons/WeaponModels.js');
+  const MAT = await import('/src/weapons/models/WeaponMaterials.js');
+  const out = {};
+  function scan(label, root) {
+    root.traverse(o => {
+      if (!o.isMesh) return;
+      const g = o.geometry, p = g.attributes.position, uv = g.attributes.uv;
+      if (!uv) return;
+      const matKey = o.name.split(':')[1] || '?';
+      const su = MAT.UV_SCALE[matKey] || MAT.DEFAULT_UV_SCALE;
+      let bad = 0, tot = 0, worst = 0, badAreaFrac = 0, area = 0, badArea = 0;
+      const A = new THREE.Vector3(), B = new THREE.Vector3(), C = new THREE.Vector3();
+      for (let t = 0; t < p.count; t += 3) {
+        A.fromBufferAttribute(p, t); B.fromBufferAttribute(p, t + 1); C.fromBufferAttribute(p, t + 2);
+        const e = Math.max(A.distanceTo(B), B.distanceTo(C), C.distanceTo(A));
+        const uu = [uv.getX(t), uv.getX(t + 1), uv.getX(t + 2)], vv = [uv.getY(t), uv.getY(t + 1), uv.getY(t + 2)];
+        const spanU = Math.max(...uu) - Math.min(...uu), spanV = Math.max(...vv) - Math.min(...vv);
+        const exp = e / su;
+        const span = Math.max(spanU, spanV);
+        const tri = new THREE.Triangle(A, B, C).getArea();
+        area += tri; tot++;
+        if (span > 2.5 * exp + 0.35) { bad++; badArea += tri; worst = Math.max(worst, span / Math.max(exp, 1e-6)); }
+      }
+      if (bad) { const k = label + ' ' + o.name; out[k] = { bad, tot, worstStretch: +worst.toFixed(1), badAreaCm2: +(badArea * 1e4).toFixed(2), areaCm2: +(area * 1e4).toFixed(1) }; }
+    });
+  }
+  for (const id of ['pistol','rifle','shotgun','sniper','rocket']) { scan(id + ':view', WM.createWeaponModel(id, { view: true }).root); scan(id + ':world', WM.createWeaponModel(id, { view: false }).root); }
+  scan('grenade', WM.createGrenadeModel()); scan('rocketProj', WM.createRocketModel());
+  window.__RES__ = out;
+} catch (e) { window.__RES__ = { fatal: String(e && e.stack || e) }; }
+window.__DONE__ = true;
+</script></body></html>

@@ -1,0 +1,22 @@
+"custom": {
+  "result": {
+   "thrown": 1,
+   "state": "ended",
+   "endTimer": -0.006099999999999106,
+   "menuScreen": null,
+   "menuOpen": false,
+   "hudVisible": true,
+   "frameErrors": [
+    [
+     "probe-once",
+     1
+    ]
+   ]
+  }
+ },
+ "ok": false,
+ "errorCount": 1
+}
+
+[run] done: wait=ok console_errors=1 warnings=0
+

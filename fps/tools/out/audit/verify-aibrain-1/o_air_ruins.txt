@@ -1,0 +1,264 @@
+[run] http://127.0.0.1:64960/index.html?autotest=1&bots=2&duration=1&god=1&script=idle&map=ruins&scenario=tools/out/audit/verify-aibrain-1/scen_air.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 51.7,
+ "frames": 25,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 45,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 500,
+   "pos": [
+    10.2,
+    0,
+    -15.1
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    -30,
+    0,
+    46
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 2,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 93,
+  "triangles": 69906,
+  "geometries": 81,
+  "textures": 70,
+  "programs": 83
+ },
+ "custom": {
+  "trials": [
+   {
+    "k": 0,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.5,
+    "states": "collect>roam",
+    "blacklistedWhileFlying": 2,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 1.1,
+    "roamFailuresEnd": 2
+   },
+   {
+    "k": 1,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 10,
+    "states": "collect>roam",
+    "blacklistedWhileFlying": 1,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 0.9,
+    "roamFailuresEnd": 1
+   },
+   {
+    "k": 2,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 3.3,
+    "states": "collect",
+    "blacklistedWhileFlying": 0,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 0.7,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 3,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect",
+    "blacklistedWhileFlying": 0,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 1.2,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 4,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 10,
+    "states": "collect",
+    "blacklistedWhileFlying": 0,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 0.9,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 5,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect>roam",
+    "blacklistedWhileFlying": 4,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 1.8,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 6,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect",
+    "blacklistedWhileFlying": 0,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 1.8,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 7,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect>roam",
+    "blacklistedWhileFlying": 3,
+    "teleports": 1,
+    "rescueCalls": 1,
+    "landedAt": 1.2,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 8,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect>roam",
+    "blacklistedWhileFlying": 3,
+    "teleports": 1,
+    "rescueCalls": 1,
+    "landedAt": 1.4,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 9,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 3.5,
+    "states": "collect",
+    "blacklistedWhileFlying": 0,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 0.7,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 10,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect>roam",
+    "blacklistedWhileFlying": 2,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 1.8,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 11,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect>roam",
+    "blacklistedWhileFlying": 3,
+    "teleports": 1,
+    "rescueCalls": 1,
+    "landedAt": 1.6,
+    "roamFailuresEnd": 0
+   }
+  ],
+  "summary": {
+   "n": 12,
+   "withBlacklist": 7,
+   "withRescueCall": 3,
+   "withTeleport": 3
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

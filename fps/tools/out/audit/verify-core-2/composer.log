@@ -1,0 +1,82 @@
+[run] http://127.0.0.1:64123/index.html?autotest=1&map=sandbox&bots=1&quality=medium&scenario=tools/out/audit/verify-core-2/composer.js&duration=6
+[log] [autotest] finished {"ok":true,"errors":0,"fps":81.5}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 6.23,
+ "frames": 336,
+ "fps": {
+  "avg": 81.5,
+  "min": 6.6,
+  "max": 172.4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "collect",
+   "distance": 42,
+   "pos": [
+    10.5,
+    3.1,
+    0.7
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 2,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 191,
+  "triangles": 42338,
+  "geometries": 143,
+  "textures": 207,
+  "programs": 101
+ },
+ "custom": {
+  "start": {
+   "quality": "medium",
+   "textures": 119,
+   "hasComposer": true
+  },
+  "afterCyclesMediumHigh": [
+   141,
+   163,
+   185,
+   207
+  ],
+  "afterCyclesWithFullDispose": [
+   207,
+   207,
+   207
+  ],
+  "composer": true
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

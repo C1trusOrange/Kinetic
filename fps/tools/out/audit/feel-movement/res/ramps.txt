@@ -1,0 +1,8 @@
+fps {'avg': 27.8, 'min': 4, 'max': 166.7} errors 0 [] t 19.61
+stairs_up_sprint {"groundToggles":0,"camOffsetMean":1.62,"camOffsetMaxDev":0.069,"speedMax":9.6,"vyRange":{"min":0,"max":4.62},"yEnd":4.5,"zEnd":-6.02,"xEnd":0,"tookAirFrames":0}
+ramp_up_sprint {"groundToggles":0,"camOffsetMean":1.62,"camOffsetMaxDev":0.055,"speedMax":9.6,"vyRange":{"min":0,"max":4.71},"yEnd":4.5,"zEnd":0,"xEnd":-5.93,"tookAirFrames":0}
+stairs_down_sprint {"groundToggles":0,"camOffsetMean":1.64,"camOffsetMaxDev":0.051,"speedMax":9.6,"vyRange":{"min":-4.62,"max":0},"yEnd":0,"zEnd":23.35,"xEnd":0,"tookAirFrames":0}
+ramp_down_sprint {"groundToggles":0,"camOffsetMean":1.63,"camOffsetMaxDev":0.057,"speedMax":9.6,"vyRange":{"min":-4.71,"max":0},"yEnd":0,"zEnd":0,"xEnd":30.6,"tookAirFrames":0}
+ramp_up_sprint_jump_at_crest {"maxY":6.6,"jumpHs":[8.37]}
+ramp_crest_sprint_no_jump {"maxY":4.5,"airFrames":0,"airSeconds":0,"lands":[]}
+[run] done: wait=ok console_errors=0 warnings=0

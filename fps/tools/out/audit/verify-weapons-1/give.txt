@@ -1,0 +1,89 @@
+[run] http://127.0.0.1:49216/index.html?autotest=1&map=sandbox&bots=0&god=1&scenario=tools/out/audit/verify-weapons-1/give.js&duration=8
+[log] [autotest] finished {"ok":true,"errors":0,"fps":46.1}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.09,
+ "frames": 331,
+ "fps": {
+  "avg": 46.1,
+  "min": 4,
+  "max": 181.8
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": -5.551115123125783e-17,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 135,
+  "triangles": 36238,
+  "geometries": 151,
+  "textures": 118,
+  "programs": 94
+ },
+ "custom": {
+  "log": [
+   [
+    "start",
+    {
+     "cur": "rifle",
+     "owned": "pistol,rifle,shotgun"
+    }
+   ],
+   [
+    "melee running",
+    {
+     "meleeT": 0.03
+    }
+   ],
+   [
+    "giveWeapon(sniper) during melee ->",
+    true
+   ],
+   [
+    "after melee",
+    {
+     "cur": "rifle",
+     "owned": "pistol,rifle,shotgun,sniper",
+     "pending": null,
+     "queued": null,
+     "sw": 0
+    }
+   ],
+   [
+    "giveWeapon(rocket) idle ->",
+    true
+   ],
+   [
+    "after idle give",
+    {
+     "cur": "rocket",
+     "owned": "pistol,rifle,shotgun,sniper,rocket"
+    }
+   ]
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

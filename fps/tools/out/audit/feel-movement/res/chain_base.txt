@@ -1,0 +1,10 @@
+fps {'avg': 52.6, 'min': 4, 'max': 185.2} errors 0 [] t 40.93
+slide_basic_e {"start":12.1,"dur":1.37,"dist":9.49,"t_below_sprint":0.25,"speed_0_15":[9.6,10.49,9.16,8,6.98,6.1,5.33,4.65,4.06,3.55,3.2,3.2,3.2,3.2]}
+slide_jump_land_plain {"jumps":[{"ty":"slide","hs":11.57}],"afterLand_hs":[10.89,9.6,9.6,9.6,9.6,9.6,9.6,9.6,9.6,9.6]}
+slide_jump_land_slide {"slides":[{"t":1.3,"hs":12.1}],"lands":[{"t":1.99,"imp":8}],"speed_every0_15":[9.6,11.74,11.74,11.74,11.74,11.74,6.2,6.2,6.2,9.6,9.6,9.6,9.6,9.6,9.6,9.6,9.6,9.6,9.6,9.6,9.6,9.6]}
+slide_hop_x3 {"jumps":[{"t":1.05,"ty":"slide","hs":11.65},{"t":1.81,"ty":"slide","hs":9.25},{"t":2.52,"ty":"slide","hs":12.01},{"t":3.27,"ty":"slide","hs":9.32},{"t":4.02,"ty":"slide","hs":11.83},{"t":4.71,"ty":"slide","hs":10.97},{"t":5.44,"ty":"slide","hs":12.1},{"t":6.16,"ty":"slide","hs":9.88},{"t":6.88,"ty":"slide","hs":12.01},{"t":7.61,"ty":"slide","hs":9.39}],"lands":[11.65,9.25,12.01,9.32,11.83,8.33,12.1,9.88,12.01],"speed_every0_3":[0,9.6,9.6,9.6,11.65,11.65,9.25,9.25,9.25,12.01,12.01,9.32,9.32,9.32,11.83,11.83,10.97,10.97,9.59,12.1,12.1,9.88,9.88,12.01,12.01,12.01],"dist":84.57}
+chain_slide_wall {"events":["SlideStart@0.99 hs12.49 y0","Jump:ground@1.02 hs12.21 y0","WallRunStart@1.18 hs12.2 y0.98","WallRunEnd:jump@1.74 hs14.32 y1.6","Jump:wall@1.74 hs14.32 y1.6","Land@2.57 hs14.32 y0.02"],"maxHs":14.32}
+wr_ground_entry {"dur":1.46,"end":"land","maxY":1.62,"dist":15.29,"ySeries":[1.01,1.49,1.62,1.46,1.16,0.65],"vySeries":[2.5,1.22,-0.24,-0.85,-1.53,-2.64]}
+wr_walljump_from_ground_entry {"wj":{"y":1.25,"hs":12.9},"maxY":2.61}
+mantle_run_2 {"dur":0.28,"speedAfter":[4,7.81,9.6,9.6,9.6,9.6,9.6,9.6],"before":0}
+[run] done: wait=ok console_errors=0 warnings=1

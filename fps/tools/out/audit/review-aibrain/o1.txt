@@ -1,0 +1,446 @@
+[run] http://127.0.0.1:56798/index.html?autotest=1&map=foundry&bots=10&diff=normal&spectate=1&scenario=tools/out/audit/review-aibrain/scen_instr.js&duration=60
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":19}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 60.12,
+ "frames": 1330,
+ "fps": {
+  "avg": 19,
+  "min": 4,
+  "max": 172.4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 1,
+   "deaths": 3,
+   "health": 18,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 343.7,
+   "pos": [
+    15.2,
+    3.2,
+    -14.8
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 1,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 297.2,
+   "pos": [
+    -26.9,
+    0,
+    -7.1
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 6,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 309.8,
+   "pos": [
+    -9.8,
+    0,
+    -0.7
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 2,
+   "deaths": 3,
+   "health": 49,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 276.6,
+   "pos": [
+    27.6,
+    0,
+    31.8
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 3,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 316.9,
+   "pos": [
+    9.9,
+    0,
+    -22.7
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": false,
+   "kills": 2,
+   "deaths": 4,
+   "health": 0,
+   "weapon": "sniper",
+   "state": "retreat",
+   "distance": 281.2,
+   "pos": [
+    3,
+    0,
+    5
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 6,
+   "deaths": 2,
+   "health": 49,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 314.8,
+   "pos": [
+    20.3,
+    0,
+    12.3
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 3,
+   "deaths": 3,
+   "health": 38,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 341.2,
+   "pos": [
+    -10.7,
+    5,
+    -7.6
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 3,
+   "deaths": 3,
+   "health": 32,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 275.9,
+   "pos": [
+    13.9,
+    0,
+    20.3
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 3,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 304,
+   "pos": [
+    -7.1,
+    0,
+    12.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 156,
+  "death": 30,
+  "spawn": 39,
+  "pickup": 7,
+  "fire": 405
+ },
+ "renderer": {
+  "calls": 568,
+  "triangles": 150946,
+  "geometries": 190,
+  "textures": 137,
+  "programs": 96
+ },
+ "custom": {
+  "stateTime": {
+   "roam": 11.92449999999991,
+   "collect": 43.98149999999985,
+   "engage": 297.10360000002225,
+   "chase": 134.2089999999979,
+   "retreat": 38.52020000000003
+  },
+  "reqTotal": 601,
+  "reqAirborne": 86,
+  "reqAirUnreach": 5,
+  "reqGroundUnreach": 24,
+  "airSamples": [
+   {
+    "t": 21.1,
+    "bot": 2,
+    "st": "chase",
+    "ground": false,
+    "vy": 0,
+    "y": 0,
+    "unreach": true,
+    "mode": "direct",
+    "before": "idle",
+    "len": 0,
+    "goalD": 23.6
+   },
+   {
+    "t": 28.36,
+    "bot": 7,
+    "st": "chase",
+    "ground": false,
+    "vy": 24.1,
+    "y": 0.9,
+    "unreach": true,
+    "mode": "direct",
+    "before": "idle",
+    "len": 0,
+    "goalD": 42.5
+   },
+   {
+    "t": 29.46,
+    "bot": 3,
+    "st": "engage",
+    "ground": false,
+    "vy": -3.8,
+    "y": 0.2,
+    "unreach": true,
+    "mode": "direct",
+    "before": "idle",
+    "len": 0,
+    "goalD": 48.3
+   },
+   {
+    "t": 29.66,
+    "bot": 7,
+    "st": "engage",
+    "ground": false,
+    "vy": -6.9,
+    "y": 11.3,
+    "unreach": true,
+    "mode": "direct",
+    "before": "idle",
+    "len": 0,
+    "goalD": 45.2
+   },
+   {
+    "t": 54.97,
+    "bot": 10,
+    "st": "engage",
+    "ground": false,
+    "vy": 1.4,
+    "y": 7.4,
+    "unreach": true,
+    "mode": "direct",
+    "before": "idle",
+    "len": 0,
+    "goalD": 47.6
+   }
+  ],
+  "groundUnreach": [
+   {
+    "t": 1.05,
+    "bot": 1,
+    "st": "engage",
+    "ground": true,
+    "vy": 0,
+    "y": 0,
+    "unreach": true,
+    "mode": "path",
+    "before": "idle",
+    "len": 7,
+    "goalD": 33.4
+   },
+   {
+    "t": 1.74,
+    "bot": 5,
+    "st": "chase",
+    "ground": true,
+    "vy": 0,
+    "y": 5,
+    "unreach": true,
+    "mode": "path",
+    "before": "idle",
+    "len": 5,
+    "goalD": 25.2
+   },
+   {
+    "t": 2,
+    "bot": 6,
+    "st": "chase",
+    "ground": true,
+    "vy": 0,
+    "y": 5,
+    "unreach": true,
+    "mode": "direct",
+    "before": "idle",
+    "len": 0,
+    "goalD": 53.3
+   },
+   {
+    "t": 2.56,
+    "bot": 9,
+    "st": "chase",
+    "ground": true,
+    "vy": 0,
+    "y": 0,
+    "unreach": true,
+    "mode": "direct",
+    "before": "idle",
+    "len": 0,
+    "goalD": 10.5
+   },
+   {
+    "t": 4.65,
+    "bot": 8,
+    "st": "engage",
+    "ground": true,
+    "vy": 0,
+    "y": 0,
+    "unreach": true,
+    "mode": "direct",
+    "before": "path",
+    "len": 0,
+    "goalD": 26.9
+   },
+   {
+    "t": 6.25,
+    "bot": 9,
+    "st": "chase",
+    "ground": true,
+    "vy": 0,
+    "y": 0,
+    "unreach": true,
+    "mode": "direct",
+    "before": "path",
+    "len": 0,
+    "goalD": 15
+   },
+   {
+    "t": 8.11,
+    "bot": 9,
+    "st": "chase",
+    "ground": true,
+    "vy": 0,
+    "y": 0,
+    "unreach": true,
+    "mode": "direct",
+    "before": "path",
+    "len": 0,
+    "goalD": 16.4
+   },
+   {
+    "t": 12.69,
+    "bot": 5,
+    "st": "chase",
+    "ground": true,
+    "vy": 0,
+    "y": 5,
+    "unreach": true,
+    "mode": "direct",
+    "before": "idle",
+    "len": 0,
+    "goalD": 19.7
+   },
+   {
+    "t": 14.09,
+    "bot": 5,
+    "st": "chase",
+    "ground": true,
+    "vy": 0,
+    "y": 5,
+    "unreach": true,
+    "mode": "direct",
+    "before": "direct",
+    "len": 0,
+    "goalD": 11.2
+   },
+   {
+    "t": 14.69,
+    "bot": 6,
+    "st": "engage",
+    "ground": true,
+    "vy": 0,
+    "y": 0,
+    "unreach": true,
+    "mode": "path",
+    "before": "idle",
+    "len": 13,
+    "goalD": 21.9
+   },
+   {
+    "t": 14.99,
+    "bot": 1,
+    "st": "chase",
+    "ground": true,
+    "vy": 0,
+    "y": 0,
+    "unreach": true,
+    "mode": "direct",
+    "before": "idle",
+    "len": 0,
+    "goalD": 30.9
+   },
+   {
+    "t": 21.15,
+    "bot": 7,
+    "st": "chase",
+    "ground": true,
+    "vy": 0,
+    "y": 0,
+    "unreach": true,
+    "mode": "direct",
+    "before": "path",
+    "len": 0,
+    "goalD": 28.1
+   }
+  ],
+  "ign": [],
+  "ignCount": 0,
+  "stuckCount": 0,
+  "stuck": [],
+  "rescue": [],
+  "pathStats": {
+   "count": 602,
+   "totalMs": 2765.699998497963,
+   "maxMs": 266.5
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

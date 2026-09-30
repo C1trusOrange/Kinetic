@@ -1,0 +1,15 @@
+[run] http://127.0.0.1:56703/index.html?autotest=1&map=foundry&bots=5&duration=3&warm=1&css=q&scenario=tools/out/audit/review-perf/frames/scenario.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56703/src/world/maps/index.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56703/src/player/Player.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56703/src/weapons/WeaponSystem.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56703/src/weapons/Projectiles.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:56703/src/core/Game.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56703/src/ai/BotManager.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56703/src/fx/Effects.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56703/src/ui/HUD.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56703/src/ui/Menu.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56703/vendor/three/examples/jsm/shaders/CopyShader.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:56703/vendor/three/examples/jsm/shaders/LuminosityHighPassShader.js]
+[error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done
+[result] null
+[run] done: wait=TIMEOUT console_errors=12 warnings=0

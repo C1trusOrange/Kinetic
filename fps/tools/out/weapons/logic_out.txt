@@ -1,0 +1,783 @@
+[run] http://127.0.0.1:53942/tools/out/weapons/harness.html?scenario=tools/out/weapons/logic.js&duration=50&models=real
+[result] {
+ "done": true,
+ "started": true,
+ "t": 50.17,
+ "errors": [],
+ "custom": {
+  "checks": [
+   {
+    "name": "loadout owned",
+    "ok": true,
+    "info": "pistol,rifle,shotgun"
+   },
+   {
+    "name": "loadout rifle selected",
+    "ok": true
+   },
+   {
+    "name": "loadout ammo 32/96",
+    "ok": true,
+    "info": "32/96"
+   },
+   {
+    "name": "loadout grenades",
+    "ok": true,
+    "info": "2"
+   },
+   {
+    "name": "equip finished",
+    "ok": true
+   },
+   {
+    "name": "rifle ~11 shots/s",
+    "ok": true,
+    "info": "11"
+   },
+   {
+    "name": "rifle ammo matches shots",
+    "ok": true,
+    "info": "21 vs 21"
+   },
+   {
+    "name": "rifle damaged dummy",
+    "ok": true,
+    "info": "100->0"
+   },
+   {
+    "name": "spread bloomed",
+    "ok": true,
+    "info": "0.030229999999999986"
+   },
+   {
+    "name": "recoil applied",
+    "ok": true,
+    "info": "0.10377322518814715"
+   },
+   {
+    "name": "spread recovers",
+    "ok": true,
+    "info": "0.030229999999999986->0.0125"
+   },
+   {
+    "name": "reload started",
+    "ok": true
+   },
+   {
+    "name": "reload progress",
+    "ok": true,
+    "info": "0.468894736842105"
+   },
+   {
+    "name": "cannot fire while reloading (mag)",
+    "ok": true,
+    "info": "11"
+   },
+   {
+    "name": "reload done ammo 32",
+    "ok": true,
+    "info": "32"
+   },
+   {
+    "name": "reload reserve",
+    "ok": true,
+    "info": "85 (was 21)"
+   },
+   {
+    "name": "reload finished flag",
+    "ok": true
+   },
+   {
+    "name": "sprint pose engaged",
+    "ok": true,
+    "info": "1"
+   },
+   {
+    "name": "fire cancelled sprint",
+    "ok": true,
+    "info": "17"
+   },
+   {
+    "name": "switch to pistol (key 1)",
+    "ok": true,
+    "info": "pistol"
+   },
+   {
+    "name": "pistol single shot",
+    "ok": true,
+    "info": "11"
+   },
+   {
+    "name": "pistol semi-auto (holding fires once)",
+    "ok": true,
+    "info": "10"
+   },
+   {
+    "name": "pistol reserve infinite",
+    "ok": true
+   },
+   {
+    "name": "Q returns to rifle",
+    "ok": true,
+    "info": "rifle"
+   },
+   {
+    "name": "wheel + -> shotgun",
+    "ok": true,
+    "info": "shotgun"
+   },
+   {
+    "name": "wheel - -> rifle",
+    "ok": true,
+    "info": "rifle"
+   },
+   {
+    "name": "switch to shotgun (key 3)",
+    "ok": true
+   },
+   {
+    "name": "shotgun fired",
+    "ok": true,
+    "info": "1 5"
+   },
+   {
+    "name": "shotgun 9 pellets close range damage",
+    "ok": true,
+    "info": "100->1"
+   },
+   {
+    "name": "pump blocks refire",
+    "ok": true,
+    "info": "1"
+   },
+   {
+    "name": "shotgun refires after pump",
+    "ok": true,
+    "info": "2"
+   },
+   {
+    "name": "shell reload started",
+    "ok": true
+   },
+   {
+    "name": "shell reload inserts shells",
+    "ok": true,
+    "info": "5"
+   },
+   {
+    "name": "shell reload complete 6",
+    "ok": true,
+    "info": "6 rl=false"
+   },
+   {
+    "name": "shell reserve",
+    "ok": true,
+    "info": "16"
+   },
+   {
+    "name": "fire interrupts shell reload",
+    "ok": true,
+    "info": "false 2 (was 3)"
+   },
+   {
+    "name": "giveWeapon sniper true",
+    "ok": true
+   },
+   {
+    "name": "give sniper twice refills",
+    "ok": true,
+    "info": "23"
+   },
+   {
+    "name": "give sniper capped",
+    "ok": true,
+    "info": "25"
+   },
+   {
+    "name": "give pistol false",
+    "ok": true
+   },
+   {
+    "name": "addAmmo(null) true",
+    "ok": true
+   },
+   {
+    "name": "addGrenades",
+    "ok": true,
+    "info": "3"
+   },
+   {
+    "name": "addGrenades cap",
+    "ok": true,
+    "info": "4"
+   },
+   {
+    "name": "addGrenades full false",
+    "ok": true
+   },
+   {
+    "name": "owned includes sniper",
+    "ok": true
+   },
+   {
+    "name": "auto-switched to sniper",
+    "ok": true,
+    "info": "sniper"
+   },
+   {
+    "name": "scoped",
+    "ok": true,
+    "info": "1"
+   },
+   {
+    "name": "fov zoom",
+    "ok": true,
+    "info": "0.27"
+   },
+   {
+    "name": "look scale",
+    "ok": true,
+    "info": "0.30000000000000004"
+   },
+   {
+    "name": "scoped spread tiny",
+    "ok": true,
+    "info": "0.0001999999999999988"
+   },
+   {
+    "name": "sniper unscopes while cycling",
+    "ok": true,
+    "info": "0"
+   },
+   {
+    "name": "sniper damage ~100",
+    "ok": true,
+    "info": "100->0 alive=false"
+   },
+   {
+    "name": "sniper re-scopes",
+    "ok": true,
+    "info": "1"
+   },
+   {
+    "name": "rocket selected",
+    "ok": true,
+    "info": "rocket"
+   },
+   {
+    "name": "rocket spawned",
+    "ok": true,
+    "info": "1"
+   },
+   {
+    "name": "rocket exploded",
+    "ok": true,
+    "info": "[[26.51,\"rocket\",4.8]]"
+   },
+   {
+    "name": "rocket damaged target",
+    "ok": true,
+    "info": "100->0"
+   },
+   {
+    "name": "rocket no leftovers",
+    "ok": true
+   },
+   {
+    "name": "rocket jump launched player",
+    "ok": true,
+    "info": "18.363844151110676"
+   },
+   {
+    "name": "rocket self damage scaled",
+    "ok": true,
+    "info": "100->66.75"
+   },
+   {
+    "name": "cooking",
+    "ok": true,
+    "info": "true 1"
+   },
+   {
+    "name": "cook progress",
+    "ok": true,
+    "info": "0.18411538461538593"
+   },
+   {
+    "name": "grenade in flight",
+    "ok": true,
+    "info": "1"
+   },
+   {
+    "name": "cooked fuse shorter",
+    "ok": true,
+    "info": "1.2182000000000017"
+   },
+   {
+    "name": "grenade exploded",
+    "ok": true,
+    "info": "[[26.51,\"rocket\",4.8],[28.43,\"rocket\",4.8],[32.62,\"grenade\",6.5]]"
+   },
+   {
+    "name": "grenade gone",
+    "ok": true
+   },
+   {
+    "name": "cook-off exploded in hand",
+    "ok": true,
+    "info": "1 cooking=false"
+   },
+   {
+    "name": "cook-off hurt thrower",
+    "ok": true,
+    "info": "100->40"
+   },
+   {
+    "name": "melee damage 55",
+    "ok": true,
+    "info": "100->45"
+   },
+   {
+    "name": "melee event weapon",
+    "ok": true,
+    "info": "1"
+   },
+   {
+    "name": "cooking before death",
+    "ok": true
+   },
+   {
+    "name": "grenade dropped on death",
+    "ok": true,
+    "info": "1 false"
+   },
+   {
+    "name": "viewmodel state reset",
+    "ok": true
+   },
+   {
+    "name": "respawn loadout",
+    "ok": true,
+    "info": "pistol,rifle,shotgun 32 rifle 2"
+   },
+   {
+    "name": "no reload when full",
+    "ok": true
+   },
+   {
+    "name": "shotgun selected (empty)",
+    "ok": true,
+    "info": "shotgun 0"
+   },
+   {
+    "name": "empty weapon falls back to another",
+    "ok": true,
+    "info": "rifle"
+   },
+   {
+    "name": "auto reload on empty magazine",
+    "ok": true,
+    "info": "rifle rl=true"
+   },
+   {
+    "name": "auto reload finished",
+    "ok": true,
+    "info": "32/8"
+   }
+  ],
+  "notes": {
+   "peakVY": 18.363844151110676,
+   "hp0": 100,
+   "rifleShots1s": 11,
+   "spreadAfterBurst": 0.030229999999999986,
+   "ammoBeforeReload": 21,
+   "cancels0": 0,
+   "sprintBlend": 1,
+   "shotsBefore": 11,
+   "pistolAmmo": 12,
+   "pistolReserveInf": true,
+   "hp1": 100,
+   "shellAmmoAtInterrupt": 3,
+   "hp2": 100,
+   "hp3": 100,
+   "hpP": 100,
+   "vyBefore": 0,
+   "gr0": 2,
+   "gFuse": 1.2182000000000017,
+   "hpC": 100,
+   "exC": 3,
+   "hpM": 100,
+   "dry0": 0
+  },
+  "ev": {
+   "fire": [
+    [
+     1.02,
+     "rifle"
+    ],
+    [
+     1.12,
+     "rifle"
+    ],
+    [
+     1.21,
+     "rifle"
+    ],
+    [
+     1.3,
+     "rifle"
+    ],
+    [
+     1.4,
+     "rifle"
+    ],
+    [
+     1.49,
+     "rifle"
+    ],
+    [
+     1.6,
+     "rifle"
+    ],
+    [
+     1.69,
+     "rifle"
+    ],
+    [
+     1.79,
+     "rifle"
+    ],
+    [
+     1.89,
+     "rifle"
+    ],
+    [
+     1.98,
+     "rifle"
+    ],
+    [
+     7.47,
+     "rifle"
+    ],
+    [
+     9.31,
+     "pistol"
+    ],
+    [
+     9.71,
+     "pistol"
+    ],
+    [
+     12.91,
+     "shotgun"
+    ],
+    [
+     14.11,
+     "shotgun"
+    ],
+    [
+     20.22,
+     "shotgun"
+    ],
+    [
+     22.52,
+     "sniper"
+    ],
+    [
+     26.02,
+     "rocket"
+    ],
+    [
+     28.42,
+     "rocket"
+    ]
+   ],
+   "switch": [
+    [
+     8.63,
+     "pistol"
+    ],
+    [
+     10.13,
+     "rifle"
+    ],
+    [
+     10.83,
+     "shotgun"
+    ],
+    [
+     11.52,
+     "rifle"
+    ],
+    [
+     12.23,
+     "shotgun"
+    ],
+    [
+     21.11,
+     "sniper"
+    ],
+    [
+     25.12,
+     "rocket"
+    ],
+    [
+     42,
+     "rifle"
+    ],
+    [
+     42.79,
+     "shotgun"
+    ],
+    [
+     43.93,
+     "rifle"
+    ]
+   ],
+   "explosion": [
+    [
+     26.51,
+     "rocket",
+     4.8
+    ],
+    [
+     28.43,
+     "rocket",
+     4.8
+    ],
+    [
+     32.62,
+     "grenade",
+     6.5
+    ],
+    [
+     36.63,
+     "grenade",
+     6.5
+    ]
+   ],
+   "damage": [
+    {
+     "t": 1.02,
+     "tgt": "A",
+     "amt": 16,
+     "w": "rifle",
+     "hs": false
+    },
+    {
+     "t": 1.12,
+     "tgt": "A",
+     "amt": 16,
+     "w": "rifle",
+     "hs": false
+    },
+    {
+     "t": 1.21,
+     "tgt": "A",
+     "amt": 16,
+     "w": "rifle",
+     "hs": false
+    },
+    {
+     "t": 1.3,
+     "tgt": "A",
+     "amt": 16,
+     "w": "rifle",
+     "hs": false
+    },
+    {
+     "t": 1.4,
+     "tgt": "A",
+     "amt": 16,
+     "w": "rifle",
+     "hs": false
+    },
+    {
+     "t": 1.49,
+     "tgt": "A",
+     "amt": 16,
+     "w": "rifle",
+     "hs": false
+    },
+    {
+     "t": 1.6,
+     "tgt": "A",
+     "amt": 4,
+     "w": "rifle",
+     "hs": false
+    },
+    {
+     "t": 12.91,
+     "tgt": "B",
+     "amt": 11,
+     "w": "shotgun",
+     "hs": false
+    },
+    {
+     "t": 12.91,
+     "tgt": "B",
+     "amt": 11,
+     "w": "shotgun",
+     "hs": false
+    },
+    {
+     "t": 12.91,
+     "tgt": "B",
+     "amt": 11,
+     "w": "shotgun",
+     "hs": false
+    },
+    {
+     "t": 12.91,
+     "tgt": "B",
+     "amt": 11,
+     "w": "shotgun",
+     "hs": false
+    },
+    {
+     "t": 12.91,
+     "tgt": "B",
+     "amt": 11,
+     "w": "shotgun",
+     "hs": false
+    },
+    {
+     "t": 12.91,
+     "tgt": "B",
+     "amt": 11,
+     "w": "shotgun",
+     "hs": false
+    },
+    {
+     "t": 12.91,
+     "tgt": "B",
+     "amt": 11,
+     "w": "shotgun",
+     "hs": false
+    },
+    {
+     "t": 12.91,
+     "tgt": "B",
+     "amt": 11,
+     "w": "shotgun",
+     "hs": false
+    },
+    {
+     "t": 12.91,
+     "tgt": "B",
+     "amt": 11,
+     "w": "shotgun",
+     "hs": false
+    },
+    {
+     "t": 14.11,
+     "tgt": "B",
+     "amt": 1,
+     "w": "shotgun",
+     "hs": false
+    },
+    {
+     "t": 22.52,
+     "tgt": "E",
+     "amt": 100,
+     "w": "sniper",
+     "hs": false
+    },
+    {
+     "t": 26.51,
+     "tgt": "D",
+     "amt": 100,
+     "w": "rocket",
+     "hs": false
+    },
+    {
+     "t": 28.43,
+     "tgt": "Player",
+     "amt": 33.3,
+     "w": "rocket",
+     "hs": false
+    },
+    {
+     "t": 32.62,
+     "tgt": "B",
+     "amt": 25.6,
+     "w": "grenade",
+     "hs": false
+    },
+    {
+     "t": 36.63,
+     "tgt": "Player",
+     "amt": 60,
+     "w": "grenade",
+     "hs": false
+    },
+    {
+     "t": 38.14,
+     "tgt": "A",
+     "amt": 55,
+     "w": "melee",
+     "hs": false
+    }
+   ],
+   "death": [
+    {
+     "v": "A",
+     "w": "rifle"
+    },
+    {
+     "v": "B",
+     "w": "shotgun"
+    },
+    {
+     "v": "E",
+     "w": "sniper"
+    },
+    {
+     "v": "D",
+     "w": "rocket"
+    },
+    {
+     "v": "Player",
+     "w": "explosion"
+    }
+   ]
+  },
+  "summary": {
+   "total": 79,
+   "failed": 0
+  },
+  "failed": [],
+  "fire": 20,
+  "sounds": {
+   "rifle_fire": 12,
+   "reload_start": 4,
+   "reload_insert": 5,
+   "reload_end": 2,
+   "weapon_switch": 9,
+   "pistol_fire": 2,
+   "shotgun_fire": 3,
+   "pump": 3,
+   "sniper_fire": 1,
+   "bolt": 1,
+   "rocket_fire": 2,
+   "explosion": 4,
+   "grenade_pin": 3,
+   "grenade_throw": 1,
+   "grenade_bounce": 5,
+   "melee_swing": 1,
+   "melee_hit": 1,
+   "dry_fire": 1
+  },
+  "fx": {
+   "impact": 24,
+   "hitSpark": 19,
+   "tracer": 24,
+   "flashLight": 20,
+   "explosion": 4,
+   "trail": 288
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

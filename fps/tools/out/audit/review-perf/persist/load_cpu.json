@@ -1,0 +1,246 @@
+{
+ "cpu_total_ms": 13380.3,
+ "cpu_top": [
+  [
+   "onFirstUse three.module.js:20241",
+   1888.0,
+   14.1
+  ],
+  [
+   "(program) :0",
+   1076.1,
+   8.0
+  ],
+  [
+   "(idle) :0",
+   810.0,
+   6.1
+  ],
+  [
+   "perlin procgen.js:45",
+   592.6,
+   4.4
+  ],
+  [
+   "satForAxes three.module.js:5160",
+   506.1,
+   3.8
+  ],
+  [
+   "runPass Textures.js:250",
+   447.1,
+   3.3
+  ],
+  [
+   "_createContext Audio.js:992",
+   435.7,
+   3.3
+  ],
+  [
+   "(garbage collector) :0",
+   410.8,
+   3.1
+  ],
+  [
+   "voice Audio.js:174",
+   313.2,
+   2.3
+  ],
+  [
+   "(anon) Textures.js:1497",
+   246.6,
+   1.8
+  ],
+  [
+   "reverbIn Audio.js:153",
+   221.8,
+   1.7
+  ],
+  [
+   "toNormalCanvas procgen.js:335",
+   213.1,
+   1.6
+  ],
+  [
+   "split Octree.js:125",
+   165.7,
+   1.2
+  ],
+  [
+   "(anon) Textures.js:294",
+   162.4,
+   1.2
+  ],
+  [
+   "segBlocked NavGraph.js:200",
+   138.7,
+   1.0
+  ],
+  [
+   "sstep Textures.js:21",
+   133.6,
+   1.0
+  ],
+  [
+   "(anon) Textures.js:1264",
+   128.8,
+   1.0
+  ],
+  [
+   "stamp Textures.js:194",
+   124.1,
+   0.9
+  ],
+  [
+   "fbm procgen.js:66",
+   119.9,
+   0.9
+  ],
+  [
+   "texSubImage2D three.module.js:23612",
+   118.2,
+   0.9
+  ],
+  [
+   "concreteGen Textures.js:356",
+   116.9,
+   0.9
+  ],
+  [
+   "buildCells Textures.js:221",
+   111.6,
+   0.8
+  ],
+  [
+   "plateGen Textures.js:909",
+   102.2,
+   0.8
+  ],
+  [
+   "(anon) WeaponMaterials.js:388",
+   99.0,
+   0.7
+  ],
+  [
+   "getAtlas BotModel.js:81",
+   94.7,
+   0.7
+  ],
+  [
+   "makeAlbedo BotModel.js:479",
+   88.5,
+   0.7
+  ],
+  [
+   "_hash procgen.js:40",
+   75.1,
+   0.6
+  ],
+  [
+   "_build NavGraph.js:320",
+   73.8,
+   0.6
+  ],
+  [
+   "getMaterialSet BotModel.js:535",
+   72.0,
+   0.5
+  ],
+  [
+   "worley procgen.js:94",
+   69.2,
+   0.5
+  ],
+  [
+   "dot three.module.js:4348",
+   66.5,
+   0.5
+  ],
+  [
+   "(anon) utils.js:75",
+   66.4,
+   0.5
+  ],
+  [
+   "renderSound Audio.js:858",
+   66.3,
+   0.5
+  ],
+  [
+   "(anon) Textures.js:1019",
+   62.6,
+   0.5
+  ],
+  [
+   "postProcess Audio.js:884",
+   60.4,
+   0.5
+  ],
+  [
+   "paint Atlas.js:63",
+   60.4,
+   0.5
+  ],
+  [
+   "makeCanvasFrom procgen.js:407",
+   56.4,
+   0.4
+  ],
+  [
+   "noiseBuffer Audio.js:143",
+   54.9,
+   0.4
+  ],
+  [
+   "intersectsTriangle three.module.js:4986",
+   54.4,
+   0.4
+  ],
+  [
+   "cavity Textures.js:165",
+   54.3,
+   0.4
+  ],
+  [
+   "apply procgen.js:154",
+   53.2,
+   0.4
+  ],
+  [
+   "rayBoxEntry Collision.js:12",
+   51.7,
+   0.4
+  ],
+  [
+   "WebGLShader three.module.js:19318",
+   49.2,
+   0.4
+  ],
+  [
+   "(anon) Textures.js:1034",
+   48.2,
+   0.4
+  ],
+  [
+   "set three.module.js:1143",
+   47.7,
+   0.4
+  ]
+ ],
+ "eval": {
+  "solids": 800,
+  "drawCalls": 27,
+  "triangles": 40212,
+  "collisionTriangles": 8852,
+  "materials": 23,
+  "navNodes": 10303,
+  "navBuildMs": 463,
+  "geometryMs": 198,
+  "textureMs": 4508,
+  "lightingMs": 178,
+  "itemsMs": 418,
+  "navMs": 465,
+  "totalMs": 5991
+ },
+ "errors": []
+}

@@ -1,0 +1,671 @@
+[run] http://127.0.0.1:63975/index.html?autotest=1&map=ruins&bots=0&script=idle&secs=90&seed=2&ring=cameraFarFromEye,embedded,loopMismatch,flagMismatch&ringn=30&scenario=tools/out/audit/review-player/fastsim.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 90,
+ "frames": 42,
+ "fps": {
+  "avg": 0,
+  "min": 6.112469437652854,
+  "max": 172.41379310353327
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 793.9895053729248,
+  "maxSpeed": 16.85013492558958,
+  "minY": -1.5999999999999996,
+  "maxY": 18.614333333333338,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isSprinting": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "isMantling": true,
+   "isGrappling": true,
+   "isWallRunning": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "seed": 2,
+  "viol": {},
+  "samples": {
+   "embedded": {
+    "t": 42.05,
+    "pos": [
+     -15.22,
+     0.06,
+     -49.87
+    ],
+    "vel": [
+     -7.01,
+     0,
+     -6.68
+    ],
+    "state": "ground",
+    "grounded": true,
+    "crouched": false,
+    "h": 1.8,
+    "keys": "forward+left+sprint",
+    "gr": "idle",
+    "depth": 0.08
+   }
+  },
+  "counts": {
+   "embedded": 3
+  },
+  "ring": {
+   "embedded": [
+    {
+     "t": 41.57,
+     "pos": [
+      -12.14,
+      0.06,
+      -46.22
+     ],
+     "vel": [
+      -3.29,
+      0,
+      -5.64
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.58,
+     "pos": [
+      -12.2,
+      0.06,
+      -46.32
+     ],
+     "vel": [
+      -3.64,
+      0,
+      -6.55
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.6,
+     "pos": [
+      -12.26,
+      0.06,
+      -46.44
+     ],
+     "vel": [
+      -3.94,
+      0,
+      -7.36
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.62,
+     "pos": [
+      -12.33,
+      0.06,
+      -46.57
+     ],
+     "vel": [
+      -4.19,
+      0,
+      -8.09
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.63,
+     "pos": [
+      -12.4,
+      0.06,
+      -46.71
+     ],
+     "vel": [
+      -4.33,
+      0,
+      -8.58
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.65,
+     "pos": [
+      -12.47,
+      0.06,
+      -46.86
+     ],
+     "vel": [
+      -4.27,
+      0,
+      -8.62
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.67,
+     "pos": [
+      -12.54,
+      0.06,
+      -47
+     ],
+     "vel": [
+      -4.2,
+      0,
+      -8.65
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.68,
+     "pos": [
+      -12.61,
+      0.06,
+      -47.15
+     ],
+     "vel": [
+      -4.14,
+      0,
+      -8.68
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.7,
+     "pos": [
+      -12.68,
+      0.06,
+      -47.29
+     ],
+     "vel": [
+      -4.07,
+      0,
+      -8.71
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.72,
+     "pos": [
+      -12.75,
+      0.06,
+      -47.44
+     ],
+     "vel": [
+      -4,
+      0,
+      -8.74
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.73,
+     "pos": [
+      -12.83,
+      0.06,
+      -47.58
+     ],
+     "vel": [
+      -5.11,
+      0,
+      -8.46
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.75,
+     "pos": [
+      -12.93,
+      0.06,
+      -47.72
+     ],
+     "vel": [
+      -6.08,
+      0,
+      -8.22
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.77,
+     "pos": [
+      -13.04,
+      0.06,
+      -47.85
+     ],
+     "vel": [
+      -6.83,
+      0,
+      -7.98
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.78,
+     "pos": [
+      -13.15,
+      0.06,
+      -47.98
+     ],
+     "vel": [
+      -7,
+      0,
+      -7.53
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.8,
+     "pos": [
+      -13.27,
+      0.06,
+      -48.1
+     ],
+     "vel": [
+      -7.15,
+      0,
+      -7.15
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.82,
+     "pos": [
+      -13.39,
+      0.06,
+      -48.21
+     ],
+     "vel": [
+      -7.28,
+      0,
+      -6.83
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.83,
+     "pos": [
+      -13.51,
+      0.06,
+      -48.32
+     ],
+     "vel": [
+      -7.39,
+      0,
+      -6.55
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.85,
+     "pos": [
+      -13.64,
+      0.06,
+      -48.43
+     ],
+     "vel": [
+      -7.49,
+      0,
+      -6.32
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.87,
+     "pos": [
+      -13.76,
+      0.06,
+      -48.53
+     ],
+     "vel": [
+      -7.57,
+      0,
+      -6.13
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.88,
+     "pos": [
+      -13.89,
+      0.06,
+      -48.63
+     ],
+     "vel": [
+      -7.64,
+      0,
+      -5.97
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.9,
+     "pos": [
+      -14.02,
+      0.06,
+      -48.73
+     ],
+     "vel": [
+      -7.7,
+      0,
+      -5.84
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.92,
+     "pos": [
+      -14.15,
+      0.06,
+      -48.83
+     ],
+     "vel": [
+      -7.75,
+      0,
+      -5.73
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.93,
+     "pos": [
+      -14.28,
+      0.06,
+      -48.92
+     ],
+     "vel": [
+      -7.79,
+      0,
+      -5.65
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.95,
+     "pos": [
+      -14.41,
+      0.06,
+      -49.02
+     ],
+     "vel": [
+      -7.82,
+      0,
+      -5.59
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.97,
+     "pos": [
+      -14.62,
+      0.2,
+      -49.18
+     ],
+     "vel": [
+      -6.78,
+      0,
+      -6.81
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.98,
+     "pos": [
+      -14.7,
+      0.2,
+      -49.3
+     ],
+     "vel": [
+      -6.62,
+      0,
+      -7.29
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 42,
+     "pos": [
+      -14.87,
+      0.28,
+      -49.5
+     ],
+     "vel": [
+      -6.72,
+      0,
+      -7.19
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 42.02,
+     "pos": [
+      -14.99,
+      0.28,
+      -49.61
+     ],
+     "vel": [
+      -6.83,
+      0,
+      -6.99
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 42.03,
+     "pos": [
+      -15.1,
+      0.2,
+      -49.75
+     ],
+     "vel": [
+      -6.93,
+      0,
+      -6.82
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 42.05,
+     "pos": [
+      -15.22,
+      0.06,
+      -49.87
+     ],
+     "vel": [
+      -7.01,
+      0,
+      -6.68
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+left+sprint",
+     "gr": "idle"
+    }
+   ]
+  },
+  "trace": [],
+  "maxSpeed": 16.85013492558958,
+  "states": {
+   "ground": 848,
+   "air": 3875,
+   "slide": 61,
+   "mantle": 207,
+   "grapple": 225,
+   "wallrun": 184
+  },
+  "simSeconds": 90,
+  "dt": 0.016666666666666666
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

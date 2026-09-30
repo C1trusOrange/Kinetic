@@ -1,0 +1,198 @@
+[run] http://127.0.0.1:64805/index.html?autotest=1&map=foundry&bots=2&duration=1&god=1&script=idle&scenario=tools/out/audit/review-aibrain/v/t_dodge2.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 36.12,
+ "frames": 36,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 53.19148936170547
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 231.9,
+   "pos": [
+    -13.2,
+    5,
+    16.3
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    -46,
+    0,
+    26
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 106,
+  "triangles": 100002,
+  "geometries": 86,
+  "textures": 87,
+  "programs": 86
+ },
+ "custom": {
+  "search": {
+   "tested": 2500,
+   "codeFail": 128,
+   "fixedFail": 12,
+   "onlyFixedOk": 60
+  },
+  "rows": [
+   {
+    "at": [
+     19.51,
+     2.35,
+     39.51
+    ],
+    "movedOriginal": 3.83,
+    "movedMirroredSearch": 3.83
+   },
+   {
+    "at": [
+     -42.49,
+     5.2,
+     -11.49
+    ],
+    "movedOriginal": 9.07,
+    "movedMirroredSearch": 0.71
+   },
+   {
+    "at": [
+     -11.49,
+     9.5,
+     7.51
+    ],
+    "movedOriginal": 5.23,
+    "movedMirroredSearch": 4.29
+   },
+   {
+    "at": [
+     -13.49,
+     -4,
+     28.51
+    ],
+    "movedOriginal": 10.34,
+    "movedMirroredSearch": 9.61
+   },
+   {
+    "at": [
+     5.51,
+     -4,
+     27.51
+    ],
+    "movedOriginal": 7.81,
+    "movedMirroredSearch": 7.58
+   },
+   {
+    "at": [
+     27.51,
+     0,
+     -14.49
+    ],
+    "movedOriginal": 9.01,
+    "movedMirroredSearch": 8.62
+   },
+   {
+    "at": [
+     -45.49,
+     0,
+     -43.49
+    ],
+    "movedOriginal": 3.11,
+    "movedMirroredSearch": 3.11
+   },
+   {
+    "at": [
+     -13.49,
+     0,
+     10.51
+    ],
+    "movedOriginal": 8.6,
+    "movedMirroredSearch": 9.85
+   },
+   {
+    "at": [
+     -47.49,
+     0,
+     -34.49
+    ],
+    "movedOriginal": 10.34,
+    "movedMirroredSearch": 9.62
+   },
+   {
+    "at": [
+     47.51,
+     0,
+     24.51
+    ],
+    "movedOriginal": 7.47,
+    "movedMirroredSearch": 7.46
+   },
+   {
+    "at": [
+     -26.49,
+     0,
+     30.51
+    ],
+    "movedOriginal": 9.39,
+    "movedMirroredSearch": 9.47
+   },
+   {
+    "at": [
+     -22.49,
+     6.05,
+     14.51
+    ],
+    "movedOriginal": 9.61,
+    "movedMirroredSearch": 9.46
+   }
+  ],
+  "avgOriginal": 7.82,
+  "avgFixed": 6.97
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

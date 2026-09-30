@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<title>module check</title>
+<script type="importmap">
+{
+  "imports": {
+    "three": "/vendor/three/build/three.module.js",
+    "three/addons/": "/vendor/three/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<script>
+  // Imports each module listed in ?m=a.js,b.js and reports success / failure in window.__CHECK__.
+  window.__CHECK__ = { done: false, results: [], errors: [] };
+  window.addEventListener('error', function (e) {
+    window.__CHECK__.errors.push(e.message + ' @ ' + e.filename + ':' + e.lineno + ':' + e.colno);
+  });
+  var mods = (new URLSearchParams(location.search).get('m') || '').split(',').filter(Boolean);
+  var pending = mods.length;
+  function finish(m, ok, info) {
+    window.__CHECK__.results.push({ module: m, ok: ok, info: info });
+    if (--pending <= 0) window.__CHECK__.done = true;
+  }
+  window.__checkDone = finish;
+  mods.forEach(function (m) {
+    var s = document.createElement('script');
+    s.type = 'module';
+    var url = '/' + m.replace(/^\/+/, '');
+    s.textContent = "import * as M from '" + url + "'; window.__checkDone(" + JSON.stringify(m) + ", true, 'exports: ' + Object.keys(M).join(', '));";
+    s.onerror = function () { finish(m, false, 'failed to load (404 or failed import - see errors)'); };
+    document.body.appendChild(s);
+  });
+  if (!mods.length) window.__CHECK__.done = true;
+  setTimeout(function () {
+    if (!window.__CHECK__.done) {
+      window.__CHECK__.timeout = true;
+      window.__CHECK__.done = true;
+    }
+  }, 8000);
+</script>
+</body>
+</html>

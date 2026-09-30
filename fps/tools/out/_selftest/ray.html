@@ -1,0 +1,32 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:,">
+<script type="importmap">{ "imports": { "three": "/vendor/three/build/three.module.js", "three/addons/": "/vendor/three/examples/jsm/" } }</script>
+</head><body><script type="module">
+import * as THREE from 'three';
+import { Capsule } from 'three/addons/math/Capsule.js';
+import { CollisionWorld } from '/src/world/Collision.js';
+const cw = new CollisionWorld();
+const add = (w, h, d, x, y, z, s) => { const g = new THREE.BoxGeometry(w, h, d); g.translate(x, y, z); cw.addGeometry(g, null, s); };
+add(100, 1, 100, 0, -0.5, 0, 'concrete');      // floor, top at y=0
+add(1, 6, 20, 5, 3, 0, 'metal');               // wall at x=4.5..5.5
+for (let i = 0; i < 40; i++) add(1, 1, 1, -40 + i * 2, 0.5, -30, 'wood'); // clutter to deepen the octree
+cw.build();
+const V = (x, y, z) => new THREE.Vector3(x, y, z);
+const r = {};
+const hit = (o, d, m) => { const h = cw.raycast(o, d.normalize(), m); return h ? { d: +h.distance.toFixed(3), s: h.surface, n: h.normal.toArray().map(v => +v.toFixed(2)) } : null; };
+r.shortDown1 = hit(V(0, 0.4, 0), V(0, -1, 0), 1);          // expect 0.4 concrete
+r.shortDown10 = hit(V(10, 1.7, 7), V(0, -1, 0), 10);        // expect 1.7
+r.tooShort = hit(V(0, 2, 0), V(0, -1, 0), 1);               // expect null
+r.wallShort = hit(V(0, 1, 0), V(1, 0, 0), 5);               // expect 4.5 metal
+r.wallBlocked = hit(V(0, 1, 0), V(1, 0, 0), 4);             // expect null (wall at 4.5)
+r.fromInsideWall = hit(V(5, 1, 0), V(1, 0, 0), 10);         // inside solid: back faces ignored -> null
+r.diag = hit(V(-10, 3, -10), V(1, -0.3, 0.2), 50);
+r.axisAligned = hit(V(-45, 0.5, -30), V(1, 0, 0), 3);       // expect 4.5? first crate at x=-40 face -40.5 -> 4.5 > 3 -> null
+r.axisAligned2 = hit(V(-45, 0.5, -30), V(1, 0, 0), 10);     // expect 4.5 wood
+const cap = new Capsule(V(0, 0.4, 0), V(0, 1.4, 0), 0.4);
+const pg = cw.probeGround(cap, 0.5);
+r.probe = pg ? +pg.distance.toFixed(3) : null;              // expect ~0
+const cap2 = new Capsule(V(0, 0.7, 0), V(0, 1.7, 0), 0.4);
+const pg2 = cw.probeGround(cap2, 0.5);
+r.probe2 = pg2 ? +pg2.distance.toFixed(3) : null;           // expect ~0.3
+window.__R__ = r; window.__DONE__ = true;
+</script></body></html>

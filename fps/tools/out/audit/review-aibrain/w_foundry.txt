@@ -1,0 +1,2098 @@
+[run] http://127.0.0.1:52568/index.html?autotest=1&map=foundry&bots=10&spectate=1&scenario=tools/out/audit/review-aibrain/scen_walk.js&duration=120
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":58.2}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 120.24,
+ "frames": 5907,
+ "fps": {
+  "avg": 58.2,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 811.6,
+   "pos": [
+    16.6,
+    10.4,
+    -37.1
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 849.3,
+   "pos": [
+    -18.3,
+    0,
+    10.4
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 784.9,
+   "pos": [
+    -12.6,
+    5,
+    -5.1
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 832.2,
+   "pos": [
+    -15.6,
+    6.2,
+    17.1
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 784.5,
+   "pos": [
+    11.9,
+    0,
+    5.1
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 913.8,
+   "pos": [
+    28.4,
+    0,
+    -0.1
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 850.2,
+   "pos": [
+    42,
+    0,
+    3.5
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 862.9,
+   "pos": [
+    -4.9,
+    0,
+    -31
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 861.6,
+   "pos": [
+    0.7,
+    0,
+    -19.8
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 838.8,
+   "pos": [
+    -47.5,
+    0,
+    -16.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 10,
+  "pickup": 9,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 380,
+  "triangles": 130238,
+  "geometries": 153,
+  "textures": 129,
+  "programs": 93
+ },
+ "custom": {
+  "trials": [
+   {
+    "ok": true,
+    "t": 4.3,
+    "d": 20.9,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6,
+    "d": 38.2,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.7,
+    "d": 44.1,
+    "req": 9,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.1,
+    "d": 42.1,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 8.1,
+    "d": 58.5,
+    "req": 7,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 8.9,
+    "d": 48.4,
+    "req": 4,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 9.7,
+    "d": 67.1,
+    "req": 9,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 5.2,
+    "d": 33.1,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 13,
+    "d": 66,
+    "req": 14,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 13.5,
+    "d": 35,
+    "req": 6,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 5.9,
+    "d": 43,
+    "req": 11,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 8.6,
+    "d": 56,
+    "req": 7,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.8,
+    "d": 40.2,
+    "req": 7,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.8,
+    "d": 42.7,
+    "req": 6,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 12.8,
+    "d": 50.7,
+    "req": 9,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.2,
+    "d": 38.1,
+    "req": 1,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 5.6,
+    "d": 37.3,
+    "req": 5,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.5,
+    "d": 38.5,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6,
+    "d": 28.6,
+    "req": 5,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 9.3,
+    "d": 57.9,
+    "req": 11,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 17.2,
+    "d": 66.4,
+    "req": 18,
+    "stuck": 1
+   },
+   {
+    "ok": true,
+    "t": 7.9,
+    "d": 48.4,
+    "req": 9,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 4.3,
+    "d": 26.4,
+    "req": 1,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 12.8,
+    "d": 63.8,
+    "req": 12,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 8.3,
+    "d": 44.4,
+    "req": 5,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 10.5,
+    "d": 62.5,
+    "req": 10,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 9.8,
+    "d": 59.5,
+    "req": 7,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6,
+    "d": 38.3,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 4.3,
+    "d": 23.5,
+    "req": 1,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 8,
+    "d": 36.5,
+    "req": 6,
+    "stuck": 1
+   },
+   {
+    "ok": false,
+    "t": 30,
+    "d": 33.2,
+    "req": 11,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.1,
+    "d": 39.6,
+    "req": 4,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 5,
+    "d": 37,
+    "req": 9,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 10.5,
+    "d": 43.7,
+    "req": 5,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.7,
+    "d": 44.8,
+    "req": 2,
+    "stuck": 1
+   },
+   {
+    "ok": true,
+    "t": 6.8,
+    "d": 40.5,
+    "req": 1,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.2,
+    "d": 24.8,
+    "req": 12,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 3.2,
+    "d": 21.5,
+    "req": 1,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 9.3,
+    "d": 60.4,
+    "req": 9,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 13,
+    "d": 62.8,
+    "req": 15,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 10.2,
+    "d": 38.7,
+    "req": 1,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.9,
+    "d": 53.8,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 10.1,
+    "d": 65.8,
+    "req": 12,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 10.3,
+    "d": 65.2,
+    "req": 9,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 8.2,
+    "d": 57.7,
+    "req": 12,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.7,
+    "d": 41.1,
+    "req": 4,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.7,
+    "d": 50.9,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 3.3,
+    "d": 21.9,
+    "req": 4,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 9.3,
+    "d": 59.8,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.1,
+    "d": 43,
+    "req": 5,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 8.5,
+    "d": 59.2,
+    "req": 7,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 10.2,
+    "d": 50.5,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 9.3,
+    "d": 20.7,
+    "req": 1,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 8.9,
+    "d": 49.7,
+    "req": 1,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.7,
+    "d": 43.7,
+    "req": 4,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 11.3,
+    "d": 56.8,
+    "req": 11,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 12.7,
+    "d": 65.5,
+    "req": 13,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 3.2,
+    "d": 21.2,
+    "req": 1,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 8.3,
+    "d": 53.9,
+    "req": 6,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 10.6,
+    "d": 68.1,
+    "req": 18,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 10.3,
+    "d": 68.9,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 10.8,
+    "d": 65.2,
+    "req": 10,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 14.8,
+    "d": 33.3,
+    "req": 21,
+    "stuck": 1
+   },
+   {
+    "ok": true,
+    "t": 4.8,
+    "d": 35.1,
+    "req": 6,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 17.3,
+    "d": 61.9,
+    "req": 18,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 19.1,
+    "d": 26,
+    "req": 11,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 4.4,
+    "d": 29.6,
+    "req": 4,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 9.1,
+    "d": 63.7,
+    "req": 13,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7,
+    "d": 48.1,
+    "req": 4,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 9.7,
+    "d": 63.5,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 4.8,
+    "d": 24,
+    "req": 4,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 5.9,
+    "d": 26.6,
+    "req": 2,
+    "stuck": 1
+   },
+   {
+    "ok": true,
+    "t": 5,
+    "d": 30.3,
+    "req": 5,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 12.3,
+    "d": 40.6,
+    "req": 7,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 10.6,
+    "d": 68.6,
+    "req": 5,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.3,
+    "d": 51.4,
+    "req": 11,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 8.9,
+    "d": 20,
+    "req": 7,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.3,
+    "d": 47.2,
+    "req": 5,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 10.9,
+    "d": 66.7,
+    "req": 4,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 4.6,
+    "d": 33.4,
+    "req": 7,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.7,
+    "d": 47.4,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6,
+    "d": 30.6,
+    "req": 7,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 5.6,
+    "d": 25.6,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 8.1,
+    "d": 23.9,
+    "req": 4,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 12.5,
+    "d": 68,
+    "req": 13,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.7,
+    "d": 50.4,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 11.5,
+    "d": 66.9,
+    "req": 14,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 5.4,
+    "d": 36.2,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 10.4,
+    "d": 54.2,
+    "req": 7,
+    "stuck": 1
+   },
+   {
+    "ok": true,
+    "t": 9.3,
+    "d": 61.7,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 10.3,
+    "d": 29.6,
+    "req": 6,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 13.1,
+    "d": 53.4,
+    "req": 13,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 2.9,
+    "d": 21.1,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 5.5,
+    "d": 40,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.4,
+    "d": 46,
+    "req": 7,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 2.9,
+    "d": 20.8,
+    "req": 1,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 8.8,
+    "d": 61.3,
+    "req": 6,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 5.8,
+    "d": 37.7,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 4.7,
+    "d": 29,
+    "req": 4,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.7,
+    "d": 34.3,
+    "req": 7,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.6,
+    "d": 35.8,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.4,
+    "d": 48.5,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 15,
+    "d": 31,
+    "req": 9,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.3,
+    "d": 39.1,
+    "req": 4,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.3,
+    "d": 46.9,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": false,
+    "t": 30,
+    "d": 36.2,
+    "req": 54,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 11,
+    "d": 69.1,
+    "req": 10,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 3.3,
+    "d": 22.3,
+    "req": 1,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 4.7,
+    "d": 23.9,
+    "req": 5,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 8.5,
+    "d": 48,
+    "req": 1,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 4,
+    "d": 29.3,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 8.6,
+    "d": 59.8,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.7,
+    "d": 42.1,
+    "req": 9,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.4,
+    "d": 45.3,
+    "req": 11,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 10.2,
+    "d": 67.4,
+    "req": 10,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 3.1,
+    "d": 22.8,
+    "req": 1,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 4.7,
+    "d": 33.8,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 9.5,
+    "d": 60.1,
+    "req": 4,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.3,
+    "d": 45.4,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.7,
+    "d": 51.7,
+    "req": 2,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 5.7,
+    "d": 35.9,
+    "req": 6,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 9.5,
+    "d": 60.9,
+    "req": 6,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.2,
+    "d": 34.7,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 5.4,
+    "d": 39.1,
+    "req": 9,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 5.1,
+    "d": 37.5,
+    "req": 9,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 7.9,
+    "d": 52.5,
+    "req": 11,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 3.1,
+    "d": 21.2,
+    "req": 1,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.4,
+    "d": 45.5,
+    "req": 7,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.9,
+    "d": 43.3,
+    "req": 4,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 8.1,
+    "d": 31.2,
+    "req": 3,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 4.1,
+    "d": 29.2,
+    "req": 1,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 9.6,
+    "d": 59.4,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 15.1,
+    "d": 35.9,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 4.8,
+    "d": 35.1,
+    "req": 8,
+    "stuck": 0
+   },
+   {
+    "ok": true,
+    "t": 6.2,
+    "d": 35.7,
+    "req": 5,
+    "stuck": 0
+   }
+  ],
+  "cnt": {
+   "req": 1028,
+   "stuck": 6,
+   "rescue": 0
+  },
+  "n": 135,
+  "ok": 133,
+  "fail": [
+   {
+    "bot": 6,
+    "a": [
+     -5.5,
+     0,
+     43.5
+    ],
+    "g": [
+     9.5,
+     6.1,
+     14.5
+    ],
+    "d": 33.2,
+    "conn": true,
+    "ok": false,
+    "time": 30,
+    "req": 11,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 10.9,
+    "finalDy": 6.1,
+    "samples": [
+     [
+      0.7,
+      0,
+      41.5,
+      "path",
+      1,
+      11
+     ],
+     [
+      6.5,
+      0,
+      37.5,
+      "path",
+      3,
+      11
+     ],
+     [
+      9.4,
+      0,
+      31.5,
+      "path",
+      5,
+      11
+     ],
+     [
+      12.1,
+      -3.9,
+      24.8,
+      "path",
+      7,
+      11
+     ],
+     [
+      17.7,
+      0,
+      23,
+      "path",
+      2,
+      4
+     ],
+     [
+      13.3,
+      7,
+      13.9,
+      "path",
+      2,
+      4
+     ],
+     [
+      7.9,
+      0.5,
+      12.6,
+      "path",
+      0,
+      8
+     ],
+     [
+      11.8,
+      0,
+      16.4,
+      "path",
+      2,
+      8
+     ],
+     [
+      16.5,
+      0,
+      21.7,
+      "path",
+      3,
+      8
+     ],
+     [
+      18.9,
+      0.5,
+      23.9,
+      "path",
+      5,
+      8
+     ],
+     [
+      17,
+      6.8,
+      14.3,
+      "path",
+      5,
+      8
+     ],
+     [
+      20.1,
+      0,
+      14.6,
+      "path",
+      0,
+      6
+     ],
+     [
+      18.2,
+      0,
+      21.5,
+      "path",
+      1,
+      6
+     ],
+     [
+      17.8,
+      4.1,
+      21.8,
+      "path",
+      1,
+      3
+     ],
+     [
+      11.8,
+      6,
+      12.8,
+      "path",
+      1,
+      3
+     ],
+     [
+      8.4,
+      1.2,
+      12.5,
+      "path",
+      1,
+      8
+     ],
+     [
+      14,
+      0,
+      17.3,
+      "path",
+      2,
+      8
+     ],
+     [
+      17.3,
+      -0.9,
+      23.9,
+      "path",
+      4,
+      8
+     ],
+     [
+      18,
+      5.7,
+      21,
+      "path",
+      1,
+      4
+     ],
+     [
+      19.3,
+      3.4,
+      12.2,
+      "path",
+      1,
+      4
+     ],
+     [
+      16.4,
+      0,
+      14.5,
+      "path",
+      0,
+      6
+     ],
+     [
+      17.4,
+      0,
+      19.5,
+      "path",
+      0,
+      6
+     ],
+     [
+      18.4,
+      -0.1,
+      24.2,
+      "path",
+      2,
+      4
+     ],
+     [
+      15,
+      8,
+      15.3,
+      "path",
+      2,
+      4
+     ],
+     [
+      7.9,
+      0.3,
+      12.5,
+      "path",
+      0,
+      8
+     ],
+     [
+      13.1,
+      0,
+      16.1,
+      "path",
+      2,
+      8
+     ],
+     [
+      16.6,
+      0,
+      22.4,
+      "path",
+      4,
+      8
+     ],
+     [
+      18.4,
+      3.1,
+      22.6,
+      "path",
+      1,
+      4
+     ],
+     [
+      18,
+      5.8,
+      13,
+      "path",
+      1,
+      4
+     ]
+    ],
+    "speedAvg": 1.1
+   },
+   {
+    "bot": 1,
+    "a": [
+     27.5,
+     0,
+     -4.5
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "d": 36.2,
+    "conn": true,
+    "ok": false,
+    "time": 30,
+    "req": 54,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 16.9,
+    "finalDy": 4.5,
+    "samples": [
+     [
+      22,
+      0,
+      -1.2,
+      "path",
+      0,
+      9
+     ],
+     [
+      15.7,
+      0,
+      1.7,
+      "path",
+      0,
+      8
+     ],
+     [
+      8.4,
+      0,
+      2.8,
+      "path",
+      0,
+      8
+     ],
+     [
+      1.2,
+      0,
+      3.9,
+      "path",
+      0,
+      8
+     ],
+     [
+      -6,
+      0,
+      5,
+      "path",
+      0,
+      8
+     ],
+     [
+      -12.2,
+      0,
+      7.6,
+      "path",
+      2,
+      8
+     ],
+     [
+      -14.7,
+      1.1,
+      7.1,
+      "path",
+      0,
+      4
+     ],
+     [
+      -14.7,
+      2.8,
+      3.7,
+      "path",
+      0,
+      4
+     ],
+     [
+      -14.7,
+      4.3,
+      0.7,
+      "path",
+      0,
+      4
+     ],
+     [
+      -12.6,
+      5,
+      -3.6,
+      "path",
+      0,
+      4
+     ],
+     [
+      -12.7,
+      5,
+      -10.7,
+      "path",
+      1,
+      4
+     ],
+     [
+      -12.5,
+      5,
+      -11.4,
+      "path",
+      0,
+      7
+     ],
+     [
+      -12.5,
+      5,
+      -4.3,
+      "idle",
+      2,
+      0
+     ],
+     [
+      -12.6,
+      5,
+      -4.4,
+      "path",
+      2,
+      6
+     ],
+     [
+      -12.6,
+      5,
+      -5.3,
+      "idle",
+      2,
+      0
+     ],
+     [
+      -12.4,
+      5,
+      -5.8,
+      "idle",
+      2,
+      0
+     ],
+     [
+      -12.2,
+      5,
+      -5.5,
+      "path",
+      0,
+      7
+     ],
+     [
+      -12.5,
+      5,
+      -4.2,
+      "idle",
+      2,
+      0
+     ],
+     [
+      -12.3,
+      5,
+      -4.3,
+      "path",
+      0,
+      6
+     ],
+     [
+      -12.5,
+      5,
+      -4.1,
+      "path",
+      2,
+      6
+     ],
+     [
+      -12.5,
+      5,
+      -5.4,
+      "idle",
+      2,
+      0
+     ],
+     [
+      -12.2,
+      5,
+      -5.8,
+      "path",
+      0,
+      7
+     ],
+     [
+      -12.5,
+      5,
+      -4.1,
+      "idle",
+      2,
+      0
+     ],
+     [
+      -12.6,
+      5,
+      -4.8,
+      "path",
+      2,
+      6
+     ],
+     [
+      -12.5,
+      5,
+      -5.9,
+      "path",
+      0,
+      7
+     ],
+     [
+      -12.3,
+      5,
+      -5,
+      "path",
+      0,
+      7
+     ],
+     [
+      -12.5,
+      5,
+      -4.1,
+      "idle",
+      2,
+      0
+     ],
+     [
+      -12.6,
+      5,
+      -5.1,
+      "idle",
+      2,
+      0
+     ],
+     [
+      -12.3,
+      5,
+      -5.9,
+      "path",
+      0,
+      7
+     ]
+    ],
+    "speedAvg": 1.2
+   }
+  ],
+  "slow": [
+   {
+    "bot": 7,
+    "a": [
+     -5.5,
+     0.2,
+     -3.5
+    ],
+    "g": [
+     28.5,
+     6.1,
+     2.5
+    ],
+    "d": 35,
+    "conn": true,
+    "ok": true,
+    "time": 13.5,
+    "req": 6,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 1.1,
+    "speedAvg": 2.6
+   },
+   {
+    "bot": 3,
+    "a": [
+     34.5,
+     0,
+     -0.5
+    ],
+    "g": [
+     -13.5,
+     6.1,
+     -15.5
+    ],
+    "d": 50.7,
+    "conn": true,
+    "ok": true,
+    "time": 12.8,
+    "req": 9,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.6,
+    "finalDy": 1.1,
+    "speedAvg": 4
+   },
+   {
+    "bot": 5,
+    "a": [
+     8.5,
+     0,
+     -42.5
+    ],
+    "g": [
+     21.5,
+     -4,
+     22.5
+    ],
+    "d": 66.4,
+    "conn": true,
+    "ok": true,
+    "time": 17.2,
+    "req": 18,
+    "stuck": 1,
+    "rescue": 0,
+    "finalDist": 0.9,
+    "finalDy": 1.9,
+    "speedAvg": 3.9
+   },
+   {
+    "bot": 5,
+    "a": [
+     14.5,
+     0,
+     25.5
+    ],
+    "g": [
+     -12.5,
+     5,
+     -8.5
+    ],
+    "d": 43.7,
+    "conn": true,
+    "ok": true,
+    "time": 10.5,
+    "req": 5,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0,
+    "speedAvg": 4.2
+   },
+   {
+    "bot": 4,
+    "a": [
+     -11.5,
+     -4,
+     22.5
+    ],
+    "g": [
+     12.5,
+     0,
+     17.5
+    ],
+    "d": 24.8,
+    "conn": true,
+    "ok": true,
+    "time": 7.2,
+    "req": 12,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0.9,
+    "speedAvg": 3.4
+   },
+   {
+    "bot": 10,
+    "a": [
+     4.5,
+     0,
+     18.5
+    ],
+    "g": [
+     31.5,
+     6.1,
+     -8.5
+    ],
+    "d": 38.7,
+    "conn": true,
+    "ok": true,
+    "time": 10.2,
+    "req": 1,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0,
+    "speedAvg": 3.8
+   },
+   {
+    "bot": 10,
+    "a": [
+     10.5,
+     0,
+     -8.5
+    ],
+    "g": [
+     30.5,
+     5,
+     -10.5
+    ],
+    "d": 20.7,
+    "conn": true,
+    "ok": true,
+    "time": 9.3,
+    "req": 1,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0,
+    "speedAvg": 2.2
+   },
+   {
+    "bot": 5,
+    "a": [
+     7.5,
+     9.5,
+     7.5
+    ],
+    "g": [
+     -19.5,
+     0,
+     -9.5
+    ],
+    "d": 33.3,
+    "conn": true,
+    "ok": true,
+    "time": 14.8,
+    "req": 21,
+    "stuck": 1,
+    "rescue": 0,
+    "finalDist": 1.6,
+    "finalDy": 0,
+    "speedAvg": 2.2
+   },
+   {
+    "bot": 3,
+    "a": [
+     -47.5,
+     0,
+     -0.5
+    ],
+    "g": [
+     13.5,
+     10.6,
+     -0.5
+    ],
+    "d": 61.9,
+    "conn": true,
+    "ok": true,
+    "time": 17.3,
+    "req": 18,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 1.1,
+    "speedAvg": 3.6
+   },
+   {
+    "bot": 2,
+    "a": [
+     5.5,
+     0,
+     7.5
+    ],
+    "g": [
+     30.5,
+     5,
+     12.5
+    ],
+    "d": 26,
+    "conn": true,
+    "ok": true,
+    "time": 19.1,
+    "req": 11,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.4,
+    "finalDy": 0,
+    "speedAvg": 1.4
+   },
+   {
+    "bot": 6,
+    "a": [
+     4.5,
+     0,
+     8.5
+    ],
+    "g": [
+     -32.5,
+     5.2,
+     -7.5
+    ],
+    "d": 40.6,
+    "conn": true,
+    "ok": true,
+    "time": 12.3,
+    "req": 7,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.6,
+    "finalDy": 0,
+    "speedAvg": 3.3
+   },
+   {
+    "bot": 2,
+    "a": [
+     13.5,
+     6.1,
+     -19.5
+    ],
+    "g": [
+     29.5,
+     5,
+     -7.5
+    ],
+    "d": 20,
+    "conn": true,
+    "ok": true,
+    "time": 8.9,
+    "req": 7,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.4,
+    "finalDy": 0,
+    "speedAvg": 2.2
+   },
+   {
+    "bot": 7,
+    "a": [
+     -14.5,
+     -4,
+     27.5
+    ],
+    "g": [
+     -9.5,
+     0,
+     4.5
+    ],
+    "d": 23.9,
+    "conn": true,
+    "ok": true,
+    "time": 8.1,
+    "req": 4,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0,
+    "speedAvg": 2.9
+   },
+   {
+    "bot": 5,
+    "a": [
+     -24.5,
+     0,
+     6.5
+    ],
+    "g": [
+     4.5,
+     6.1,
+     7.5
+    ],
+    "d": 29.6,
+    "conn": true,
+    "ok": true,
+    "time": 10.3,
+    "req": 6,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 1.1,
+    "speedAvg": 2.9
+   },
+   {
+    "bot": 9,
+    "a": [
+     37.5,
+     0.3,
+     19.5
+    ],
+    "g": [
+     -15.5,
+     6.1,
+     17.5
+    ],
+    "d": 53.4,
+    "conn": true,
+    "ok": true,
+    "time": 13.1,
+    "req": 13,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.4,
+    "finalDy": 1.1,
+    "speedAvg": 4.1
+   },
+   {
+    "bot": 8,
+    "a": [
+     -20.5,
+     0,
+     16.5
+    ],
+    "g": [
+     8.5,
+     6.1,
+     7.5
+    ],
+    "d": 31,
+    "conn": true,
+    "ok": true,
+    "time": 15,
+    "req": 9,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.6,
+    "finalDy": 1.1,
+    "speedAvg": 2.1
+   },
+   {
+    "bot": 2,
+    "a": [
+     15.5,
+     5,
+     15.5
+    ],
+    "g": [
+     8.5,
+     0,
+     -14.5
+    ],
+    "d": 31.2,
+    "conn": true,
+    "ok": true,
+    "time": 8.1,
+    "req": 3,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.6,
+    "finalDy": 0,
+    "speedAvg": 3.9
+   },
+   {
+    "bot": 10,
+    "a": [
+     18.5,
+     3.9,
+     36.5
+    ],
+    "g": [
+     0.5,
+     5,
+     5.5
+    ],
+    "d": 35.9,
+    "conn": true,
+    "ok": true,
+    "time": 15.1,
+    "req": 8,
+    "stuck": 0,
+    "rescue": 0,
+    "finalDist": 1.5,
+    "finalDy": 0,
+    "speedAvg": 2.4
+   }
+  ],
+  "stuckTrials": 6,
+  "nav": {
+   "nodes": 10303,
+   "links": 73261,
+   "components": 2,
+   "largestComponent": 10297,
+   "buildMs": 474,
+   "traps": 0,
+   "strongComponents": 91,
+   "largestStrong": 8266,
+   "cells": 9000
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

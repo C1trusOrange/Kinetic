@@ -1,0 +1,203 @@
+[run] http://127.0.0.1:55677/index.html?autotest=1&map=sandbox&bots=8&duration=60&god=1&script=idle&scenario=tools/out/audit/review-aibody/scen_watch.js
+[error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done
+[log] [autotest] finished {"ok":true,"errors":0,"fps":50.3}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 60.14,
+ "frames": 2482,
+ "fps": {
+  "avg": 50.3,
+  "min": 4,
+  "max": 172.4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 24.3,
+  "maxSpeed": 16.25,
+  "minY": -5.551115123125783e-17,
+  "maxY": 6.025757294673043,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 4,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 260.2,
+   "pos": [
+    -4.5,
+    0,
+    21.2
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 1,
+   "deaths": 5,
+   "health": 61,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 230,
+   "pos": [
+    -0.4,
+    4.5,
+    -22.1
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 7,
+   "deaths": 3,
+   "health": 56,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 185.4,
+   "pos": [
+    -16.5,
+    0,
+    -16.8
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 3,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 242.9,
+   "pos": [
+    -10.3,
+    5.7,
+    -25.4
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 43,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 278.7,
+   "pos": [
+    -30.2,
+    0,
+    6.9
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 4,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "collect",
+   "distance": 239.9,
+   "pos": [
+    26.5,
+    0,
+    25.9
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 2,
+   "deaths": 4,
+   "health": 75,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 263.1,
+   "pos": [
+    18.5,
+    16,
+    -15.4
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 2,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 256.5,
+   "pos": [
+    9.4,
+    0,
+    -19.3
+   ]
+  }
+ ],
+ "events": {
+  "damage": 170,
+  "death": 28,
+  "spawn": 37,
+  "pickup": 15,
+  "fire": 648
+ },
+ "renderer": {
+  "calls": 441,
+  "triangles": 72854,
+  "geometries": 221,
+  "textures": 141,
+  "programs": 104
+ },
+ "custom": {
+  "stuck": {
+   "Gasket": 0.1,
+   "Axle": 0.1,
+   "Byte": 0,
+   "Glitch": 0.1,
+   "Tesla": 0.2,
+   "Piston": 0,
+   "Nimbus": 0.2,
+   "Servo": 0.3
+  },
+  "tele": 0,
+  "teleLog": [],
+  "nan": [],
+  "embedded": [],
+  "maxSpeed": 22.46643427692858,
+  "hopStats": {},
+  "groundFlicker": {
+   "Gasket": 24,
+   "Axle": 28,
+   "Byte": 16,
+   "Glitch": 27,
+   "Tesla": 12,
+   "Piston": 28,
+   "Nimbus": 34,
+   "Servo": 30
+  },
+  "lowY": [],
+  "gibs": 17,
+  "nextCheck": 60.194199999999846,
+  "deaths": "4,5,3,4,1,4,4,3",
+  "time": 60.02439999999985
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=TIMEOUT console_errors=1 warnings=0

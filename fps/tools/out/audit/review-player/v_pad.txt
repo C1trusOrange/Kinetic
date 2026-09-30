@@ -1,0 +1,153 @@
+[run] http://127.0.0.1:50554/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-player/v_pad.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 12,
+ "frames": 67,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 99.93098706858089,
+  "maxSpeed": 11,
+  "minY": 0,
+  "maxY": 19.870962354396212,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "pad": {
+   "pos": [
+    12,
+    0,
+    -16
+   ],
+   "vel": [
+    4.01,
+    30.98,
+    0
+   ],
+   "radius": 1.1
+  },
+  "walkOn": {
+   "launched": {
+    "t": 0.85,
+    "pos": [
+     10.99,
+     0,
+     -16
+    ],
+    "vel": [
+     4.01,
+     30.98,
+     0
+    ],
+    "state": "air"
+   },
+   "maxY": 19.87,
+   "land": {
+    "t": 2.72,
+    "pos": [
+     18.49,
+     16,
+     -16
+    ]
+   },
+   "finalState": "ground",
+   "events": [
+    [
+     "land",
+     13.62
+    ]
+   ]
+  },
+  "slideOn": {
+   "launched": {
+    "t": 0.53,
+    "pos": [
+     10.9,
+     0,
+     -16
+    ],
+    "vel": [
+     4.01,
+     30.98,
+     0
+    ],
+    "state": "air"
+   },
+   "maxY": 19.87,
+   "land": {
+    "t": 2.4,
+    "pos": [
+     18.39,
+     16,
+     -16
+    ]
+   },
+   "finalState": "ground",
+   "events": [
+    [
+     "land",
+     13.62
+    ]
+   ]
+  },
+  "standOn": {
+   "launched": {
+    "t": 0,
+    "pos": [
+     12,
+     0,
+     -16
+    ],
+    "vel": [
+     4.01,
+     30.98,
+     0
+    ],
+    "state": "air"
+   },
+   "maxY": 19.87,
+   "land": {
+    "t": 1.87,
+    "pos": [
+     19.49,
+     16,
+     -16
+    ]
+   },
+   "finalState": "ground",
+   "events": [
+    [
+     "land",
+     13.62
+    ]
+   ]
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

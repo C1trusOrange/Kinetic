@@ -1,0 +1,189 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>proto beams</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#000}</style></head>
+<body>
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+const P = new URLSearchParams(location.search);
+const view = P.get('view') || 'strike';
+
+// ------------------------------------------------------------------ BeamLayer (proposed src/fx/Beams.js core)
+const VS = `
+attribute vec3 iA; attribute vec3 iB; attribute vec4 iColor; attribute vec2 iParams;
+varying vec2 vUv; varying vec4 vColor;
+void main(){
+  vec3 p = mix(iA, iB, position.y);
+  vec3 dir = iB - iA;
+  vec3 toCam = cameraPosition - p;
+  vec3 s = cross(dir, toCam);
+  float sl = length(s);
+  vec3 side = sl > 1e-5 ? s / sl : vec3(1.0, 0.0, 0.0);
+  // widen slightly with distance so distant bolts stay visible
+  float dc = length(toCam);
+  float w = iParams.x * (1.0 + dc * 0.006);
+  p += side * position.x * w * 0.5;
+  vColor = iColor; vUv = vec2(position.x * 0.5 + 0.5, position.y);
+  gl_Position = projectionMatrix * viewMatrix * vec4(p, 1.0);
+}`;
+const FS = `
+varying vec2 vUv; varying vec4 vColor;
+void main(){
+  float across = clamp(1.0 - abs(vUv.x * 2.0 - 1.0), 0.0, 1.0);
+  float core = pow(across, 4.0);
+  float halo = pow(across, 1.3);
+  float a = (halo * 0.55 + core) * vColor.a;
+  if (a < 0.003) discard;
+  vec3 col = vColor.rgb * (0.6 + 1.6 * halo) + vec3(core * core * 1.6);
+  gl_FragColor = vec4(col, a);
+  #include <tonemapping_fragment>
+  #include <colorspace_fragment>
+}`;
+class BeamLayer {
+  constructor(cap = 768) {
+    this.cap = cap; this.n = 0;
+    const geo = new THREE.InstancedBufferGeometry();
+    geo.setAttribute('position', new THREE.Float32BufferAttribute([-1, 0, 0, 1, 0, 0, -1, 1, 0, 1, 1, 0], 3));
+    geo.setIndex([0, 1, 2, 2, 1, 3]);
+    this.data = new Float32Array(cap * 12);
+    this.buf = new THREE.InstancedInterleavedBuffer(this.data, 12, 1); this.buf.setUsage(THREE.DynamicDrawUsage);
+    geo.setAttribute('iA', new THREE.InterleavedBufferAttribute(this.buf, 3, 0));
+    geo.setAttribute('iB', new THREE.InterleavedBufferAttribute(this.buf, 3, 3));
+    geo.setAttribute('iColor', new THREE.InterleavedBufferAttribute(this.buf, 4, 6));
+    geo.setAttribute('iParams', new THREE.InterleavedBufferAttribute(this.buf, 2, 10));
+    geo.instanceCount = 0;
+    this.geo = geo;
+    this.mesh = new THREE.Mesh(geo, new THREE.ShaderMaterial({
+      vertexShader: VS, fragmentShader: FS, transparent: true, depthWrite: false, depthTest: true,
+      blending: THREE.AdditiveBlending, side: THREE.DoubleSide,
+    }));
+    this.mesh.frustumCulled = false; this.mesh.renderOrder = 6;
+  }
+  seg(a, b, r, g, bl, alpha, width) {
+    if (this.n >= this.cap) return;
+    const o = this.n++ * 12, d = this.data;
+    d[o] = a.x; d[o + 1] = a.y; d[o + 2] = a.z; d[o + 3] = b.x; d[o + 4] = b.y; d[o + 5] = b.z;
+    d[o + 6] = r; d[o + 7] = g; d[o + 8] = bl; d[o + 9] = alpha; d[o + 10] = width; d[o + 11] = 0;
+  }
+  flush() { this.geo.instanceCount = this.n; this.buf.needsUpdate = true; }
+}
+
+// fractal (midpoint displacement) polyline from a to b
+let seed = 7;
+const rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+function bolt(a, b, jitter, depth, out = []) {
+  if (depth === 0) { out.push(a.clone(), b.clone()); return out; }
+  const m = a.clone().add(b).multiplyScalar(0.5);
+  const dir = b.clone().sub(a); const len = dir.length(); dir.normalize();
+  const up = Math.abs(dir.y) < 0.9 ? new THREE.Vector3(0, 1, 0) : new THREE.Vector3(1, 0, 0);
+  const t1 = new THREE.Vector3().crossVectors(dir, up).normalize(); const t2 = new THREE.Vector3().crossVectors(dir, t1);
+  const j = len * jitter;
+  m.addScaledVector(t1, (rnd() - 0.5) * 2 * j).addScaledVector(t2, (rnd() - 0.5) * 2 * j);
+  bolt(a, m, jitter, depth - 1, out); bolt(m, b, jitter, depth - 1, out);
+  return out;
+}
+function drawBolt(layer, a, b, o) {
+  const pts = bolt(a, b, o.jitter ?? 0.22, o.depth ?? 5);
+  const col = new THREE.Color(o.color ?? 0x9fd8ff).multiplyScalar(o.k ?? 2.4);
+  for (let i = 0; i < pts.length; i += 2) layer.seg(pts[i], pts[i + 1], col.r, col.g, col.b, o.alpha ?? 1, o.width ?? 0.3);
+  if (o.forks) {
+    for (let f = 0; f < o.forks; f++) {
+      const idx = (Math.floor(rnd() * (pts.length / 2 - 4)) + 2) * 2;
+      const s = pts[idx];
+      const dir = b.clone().sub(a).normalize();
+      const off = new THREE.Vector3(rnd() - 0.5, -rnd() * 0.5 - 0.15, rnd() - 0.5).multiplyScalar(2).add(dir).normalize();
+      const len = a.distanceTo(b) * (0.12 + rnd() * 0.16);
+      const e = s.clone().addScaledVector(off, len);
+      drawBolt(layer, s, e, { ...o, width: (o.width ?? 0.3) * 0.5, forks: 0, depth: 4, alpha: (o.alpha ?? 1) * 0.7 });
+    }
+  }
+}
+
+// ------------------------------------------------------------------ scene
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(view === 'strike' ? 0x0c1030 : 0x070a14);
+scene.fog = new THREE.Fog(scene.background.getHex(), 60, 260);
+const camera = new THREE.PerspectiveCamera(72, innerWidth / innerHeight, 0.05, 700);
+
+const floor = new THREE.Mesh(new THREE.CylinderGeometry(40, 40, 2, 48), new THREE.MeshStandardMaterial({ color: 0x232a38, roughness: 0.5, metalness: 0.3 }));
+floor.position.y = -1; scene.add(floor);
+scene.add(new THREE.HemisphereLight(0x8090ff, 0x201830, 0.25));
+const sunL = new THREE.DirectionalLight(0xffb27a, 0.35); sunL.position.set(-30, 12, -30); scene.add(sunL);
+
+const layer = new BeamLayer(); scene.add(layer.mesh);
+
+const mk = (g, m, x, y, z) => { const o = new THREE.Mesh(g, m); o.position.set(x, y, z); scene.add(o); return o; };
+const dk = new THREE.MeshStandardMaterial({ color: 0x1c2230, roughness: 0.5, metalness: 0.7 });
+const glowM = new THREE.MeshBasicMaterial({ color: new THREE.Color(0.2, 2.2, 3.0) });
+const white = new THREE.MeshStandardMaterial({ color: 0xc8ced8, roughness: 0.3, metalness: 0.2 });
+
+if (view === 'strike') {
+  // lightning rod + strike + ground shock ring + flash light
+  mk(new THREE.CylinderGeometry(0.15, 0.3, 26, 8), dk, 0, 13, 0);
+  mk(new THREE.SphereGeometry(0.35, 12, 8), glowM, 0, 26.2, 0);
+  const tip = new THREE.Vector3(0, 26.2, 0), sky = new THREE.Vector3(6, 130, -4);
+  drawBolt(layer, sky, tip, { jitter: 0.16, depth: 6, width: 0.9, color: 0xbfe4ff, k: 2.6, forks: 5 });
+  drawBolt(layer, sky.clone().add(new THREE.Vector3(0.5, 0, 0.5)), tip, { jitter: 0.12, depth: 6, width: 0.4, color: 0xffffff, k: 2.0, forks: 2, alpha: 0.7 });
+  // ground arcs
+  for (let i = 0; i < 7; i++) {
+    const a = rnd() * 6.28, r = 3 + rnd() * 5;
+    drawBolt(layer, new THREE.Vector3(0, 0.2, 0), new THREE.Vector3(Math.cos(a) * r, 0.2, Math.sin(a) * r), { jitter: 0.25, depth: 4, width: 0.16, color: 0x9fe8ff, k: 2.2 });
+  }
+  const ringG = new THREE.RingGeometry(3.6, 4.0, 64); ringG.rotateX(-Math.PI / 2);
+  mk(ringG, new THREE.MeshBasicMaterial({ color: new THREE.Color(0.4, 2.0, 3.0), side: THREE.DoubleSide, transparent: true, opacity: 0.9 }), 0, 0.05, 0);
+  const pl = new THREE.PointLight(0xbfe0ff, 260, 60, 2); pl.position.set(0, 4, 0); scene.add(pl);
+  camera.position.set(14, 3.2, 20); camera.lookAt(0, 20, 0);
+} else if (view === 'arc') {
+  // Tempest: muzzle -> primary target, chain to two neighbours
+  const muzzle = new THREE.Vector3(0.6, 1.5, 6);
+  const t0 = new THREE.Vector3(0, 1.3, -8), t1 = new THREE.Vector3(-3.6, 1.3, -10), t2 = new THREE.Vector3(3.4, 1.3, -11.5);
+  for (const t of [t0, t1, t2]) mk(new THREE.CapsuleGeometry(0.4, 1.0, 4, 10), white, t.x, t.y, t.z);
+  drawBolt(layer, muzzle, t0, { jitter: 0.09, depth: 5, width: 0.16, color: 0x7fe3ff, k: 2.4, forks: 1 });
+  drawBolt(layer, muzzle, t0, { jitter: 0.05, depth: 5, width: 0.05, color: 0xffffff, k: 2.0 });
+  drawBolt(layer, t0, t1, { jitter: 0.22, depth: 4, width: 0.11, color: 0x9fd0ff, k: 2.2 });
+  drawBolt(layer, t0, t2, { jitter: 0.22, depth: 4, width: 0.11, color: 0x9fd0ff, k: 2.2 });
+  for (const t of [t0, t1, t2]) for (let i = 0; i < 4; i++) {
+    const o = new THREE.Vector3((rnd() - 0.5) * 2.2, (rnd() - 0.2) * 1.6, (rnd() - 0.5) * 2.2);
+    drawBolt(layer, t, t.clone().add(o), { jitter: 0.3, depth: 3, width: 0.06, color: 0xb8e8ff, k: 2.6 });
+  }
+  const pl = new THREE.PointLight(0x7fe3ff, 28, 30, 2); pl.position.set(0, 2, -6); scene.add(pl);
+  camera.position.set(-1.2, 1.7, 9); camera.lookAt(0, 1.4, -8);
+} else if (view === 'rail') {
+  const muzzle = new THREE.Vector3(0.5, 1.4, 6), end = new THREE.Vector3(0.2, 1.6, -90);
+  // core + sheath
+  drawBolt(layer, muzzle, end, { jitter: 0.0, depth: 1, width: 0.10, color: 0xffffff, k: 3.0 });
+  drawBolt(layer, muzzle, end, { jitter: 0.004, depth: 3, width: 0.55, color: 0x6fd8ff, k: 1.6, alpha: 0.5 });
+  // helical shock rings along the beam
+  const dir = end.clone().sub(muzzle).normalize();
+  const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, 1), dir);
+  for (let i = 1; i < 16; i++) {
+    const t = i * 4.2, r = 0.5 + i * 0.16;
+    const g = new THREE.RingGeometry(r, r + 0.06, 40);
+    const m = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: new THREE.Color(0.5, 1.8, 2.6), transparent: true, opacity: Math.max(0.1, 0.8 - i * 0.05), side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false }));
+    m.position.copy(muzzle).addScaledVector(dir, t); m.quaternion.copy(q); scene.add(m);
+  }
+  // pierced targets
+  for (const z of [-16, -30, -48]) mk(new THREE.CapsuleGeometry(0.4, 1.0, 4, 10), white, 0.3 + (z + 16) * -0.002, 1.3, z);
+  // wall it pierced
+  mk(new THREE.BoxGeometry(8, 4, 0.8), dk, 0.3, 2, -22);
+  const pl = new THREE.PointLight(0xbfeaff, 60, 40, 2); pl.position.set(0, 2, 2); scene.add(pl);
+  camera.position.set(-2.6, 1.8, 9.5); camera.lookAt(0.5, 1.4, -30);
+}
+layer.flush();
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.8, 0.55, 0.8));
+composer.addPass(new OutputPass());
+requestAnimationFrame(() => { composer.render(); requestAnimationFrame(() => { composer.render(); window.__PROTO_READY__ = true; }); });
+</script>
+</body></html>

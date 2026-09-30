@@ -1,0 +1,181 @@
+[run] http://127.0.0.1:51193/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-player/v_wallmantle.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 7,
+ "frames": 30,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 45.631604394277296,
+  "maxSpeed": 6.635075000929137,
+  "minY": -19.376666666666612,
+  "maxY": 10.005,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isMantling": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 1,
+  "spawn": 2,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "log": [
+   [
+    0,
+    "ground",
+    6.1,
+    7.1,
+    -29.6
+   ],
+   [
+    0.5,
+    "air",
+    6.1,
+    8.2,
+    -29.97
+   ],
+   [
+    1,
+    "air",
+    6.1,
+    9.91,
+    -32.44
+   ],
+   [
+    1.5,
+    "air",
+    6.1,
+    6.56,
+    -35.93
+   ],
+   [
+    2,
+    "air",
+    6.1,
+    -2.79,
+    -39.03
+   ],
+   [
+    2.5,
+    "air",
+    6.1,
+    -18.14,
+    -42.13
+   ],
+   [
+    3,
+    "air",
+    6.1,
+    -39.53,
+    -45.23
+   ],
+   [
+    3.5,
+    "air",
+    6.1,
+    -66.23,
+    -48.33
+   ],
+   [
+    4,
+    "air",
+    6.1,
+    -93.73,
+    -51.43
+   ],
+   [
+    4.5,
+    "air",
+    6.1,
+    -121.23,
+    -54.53
+   ],
+   [
+    5,
+    "air",
+    6.1,
+    -148.73,
+    -57.63
+   ],
+   [
+    5.5,
+    "air",
+    6.1,
+    -176.23,
+    -60.73
+   ],
+   [
+    6,
+    "ground",
+    -25.43,
+    0,
+    27.31
+   ],
+   [
+    6.5,
+    "ground",
+    -22.6,
+    0,
+    27
+   ]
+  ],
+  "map": "sandbox",
+  "afterMantle": {
+   "t": 0.85,
+   "feet": [
+    6.1,
+    10,
+    -31.51
+   ],
+   "state": "ground",
+   "capIntersectDepth": 0,
+   "upRay": null,
+   "inBounds": true
+  },
+  "solidsHere": [
+   {
+    "min": [
+     -33,
+     10,
+     -33
+    ],
+    "max": [
+     33,
+     30,
+     -31
+    ],
+    "visible": false
+   }
+  ],
+  "final": {
+   "pos": [
+    -19.4,
+    0,
+    27
+   ],
+   "alive": true,
+   "deaths": 1,
+   "inBounds": true
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

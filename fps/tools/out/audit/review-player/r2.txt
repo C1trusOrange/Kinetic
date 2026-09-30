@@ -1,0 +1,11 @@
+[run] http://127.0.0.1:63647/index.html?autotest=1&map=sandbox&bots=0&script=idle&secs=12&seed=1&trace=0.35&scenario=tools/out/audit/review-player/fastsim2.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:63647/src/ui/Scoreboard.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:63647/src/core/Game.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:63647/src/core/procgen.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:63647/vendor/three/examples/jsm/geometries/RoundedBoxGeometry.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:63647/src/weapons/models/ModelKit.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:63647/src/weapons/models/pistol.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:63647/src/weapons/models/rifle.js]
+[error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done
+[result] null
+[run] done: wait=TIMEOUT console_errors=8 warnings=0

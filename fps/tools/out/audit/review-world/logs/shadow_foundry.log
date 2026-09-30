@@ -1,0 +1,53 @@
+[run] http://127.0.0.1:62199/index.html?autotest=1&map=foundry&bots=0&duration=2&script=idle
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "map": "foundry",
+ "total": 80734,
+ "out": 0,
+ "outPlay": 0,
+ "outNear": 0,
+ "outFar": 0,
+ "outXY": 0,
+ "worst": 0,
+ "cam": {
+  "l": -68.53685674516522,
+  "r": 68.53685674516522,
+  "t": 60.3080865809951,
+  "b": -60.3080865809951,
+  "n": 1,
+  "f": 136.50019220293055
+ },
+ "size": 2048,
+ "fit": {
+  "extent": 137.07371349033045,
+  "range": 135.50019220293055
+ },
+ "bias": -0.00024697575360248404,
+ "nb": 0.1137818910808407,
+ "sunPos": [
+  28.95766465730082,
+  58.6467160198066,
+  38.10219033855371
+ ],
+ "sunDir": [
+  0.43059662864436976,
+  0.7025523941039716,
+  0.5665745113741707
+ ],
+ "bounds": [
+  [
+   -50,
+   -6,
+   -45
+  ],
+  [
+   50,
+   36,
+   45
+  ]
+ ],
+ "castShadow": true,
+ "q": "high"
+}
+[run] done: wait=ok console_errors=0 warnings=1

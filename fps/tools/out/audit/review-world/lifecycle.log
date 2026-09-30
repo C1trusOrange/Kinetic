@@ -1,0 +1,376 @@
+[run] http://127.0.0.1:56825/index.html?autotest=1&map=sandbox&bots=0&duration=3&scenario=tools/out/audit/review-world/lifecycle.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 3.14,
+ "frames": 236,
+ "fps": {
+  "avg": 43,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": -5.551115123125783e-17,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 136,
+  "triangles": 36608,
+  "geometries": 117,
+  "textures": 172,
+  "programs": 96
+ },
+ "custom": {
+  "initial": {
+   "geos": 82,
+   "tex": 85,
+   "programs": 51,
+   "lights": 10,
+   "lightList": "PointLight,PointLight,PointLight,PointLight,HemisphereLight,DirectionalLight,PointLight,PointLight,PointLight,PointLight",
+   "meshes": 134,
+   "instanced": 26,
+   "groups": 34,
+   "sceneChildren": 14,
+   "bg": "set",
+   "env": "set"
+  },
+  "seq": [
+   {
+    "geos": 86,
+    "tex": 98,
+    "programs": 51,
+    "lights": 10,
+    "lightList": "PointLight,PointLight,PointLight,PointLight,HemisphereLight,DirectionalLight,PointLight,PointLight,PointLight,PointLight",
+    "meshes": 138,
+    "instanced": 26,
+    "groups": 34,
+    "sceneChildren": 14,
+    "bg": "set",
+    "env": "set",
+    "id": "foundry",
+    "ms": 2661,
+    "warn": 1,
+    "tris": 8852
+   },
+   {
+    "geos": 81,
+    "tex": 131,
+    "programs": 51,
+    "lights": 10,
+    "lightList": "PointLight,PointLight,PointLight,PointLight,HemisphereLight,DirectionalLight,PointLight,PointLight,PointLight,PointLight",
+    "meshes": 133,
+    "instanced": 26,
+    "groups": 35,
+    "sceneChildren": 14,
+    "bg": "set",
+    "env": "set",
+    "id": "ruins",
+    "ms": 3368,
+    "warn": 9,
+    "tris": 9522
+   },
+   {
+    "geos": 100,
+    "tex": 144,
+    "programs": 53,
+    "lights": 10,
+    "lightList": "PointLight,PointLight,PointLight,PointLight,HemisphereLight,DirectionalLight,PointLight,PointLight,PointLight,PointLight",
+    "meshes": 152,
+    "instanced": 26,
+    "groups": 34,
+    "sceneChildren": 14,
+    "bg": "set",
+    "env": "set",
+    "id": "skyline",
+    "ms": 2262,
+    "warn": 8,
+    "tris": 6304
+   },
+   {
+    "geos": 82,
+    "tex": 144,
+    "programs": 53,
+    "lights": 10,
+    "lightList": "PointLight,PointLight,PointLight,PointLight,HemisphereLight,DirectionalLight,PointLight,PointLight,PointLight,PointLight",
+    "meshes": 134,
+    "instanced": 26,
+    "groups": 34,
+    "sceneChildren": 14,
+    "bg": "set",
+    "env": "set",
+    "id": "sandbox",
+    "ms": 243,
+    "warn": 0,
+    "tris": 1628
+   },
+   {
+    "geos": 86,
+    "tex": 144,
+    "programs": 53,
+    "lights": 10,
+    "lightList": "PointLight,PointLight,PointLight,PointLight,HemisphereLight,DirectionalLight,PointLight,PointLight,PointLight,PointLight",
+    "meshes": 138,
+    "instanced": 26,
+    "groups": 34,
+    "sceneChildren": 14,
+    "bg": "set",
+    "env": "set",
+    "id": "foundry",
+    "ms": 1130,
+    "warn": 1,
+    "tris": 8852
+   },
+   {
+    "geos": 81,
+    "tex": 144,
+    "programs": 53,
+    "lights": 10,
+    "lightList": "PointLight,PointLight,PointLight,PointLight,HemisphereLight,DirectionalLight,PointLight,PointLight,PointLight,PointLight",
+    "meshes": 133,
+    "instanced": 26,
+    "groups": 35,
+    "sceneChildren": 14,
+    "bg": "set",
+    "env": "set",
+    "id": "ruins",
+    "ms": 1194,
+    "warn": 9,
+    "tris": 9522
+   },
+   {
+    "geos": 100,
+    "tex": 144,
+    "programs": 53,
+    "lights": 10,
+    "lightList": "PointLight,PointLight,PointLight,PointLight,HemisphereLight,DirectionalLight,PointLight,PointLight,PointLight,PointLight",
+    "meshes": 152,
+    "instanced": 26,
+    "groups": 34,
+    "sceneChildren": 14,
+    "bg": "set",
+    "env": "set",
+    "id": "skyline",
+    "ms": 827,
+    "warn": 8,
+    "tris": 6304
+   },
+   {
+    "geos": 82,
+    "tex": 144,
+    "programs": 53,
+    "lights": 10,
+    "lightList": "PointLight,PointLight,PointLight,PointLight,HemisphereLight,DirectionalLight,PointLight,PointLight,PointLight,PointLight",
+    "meshes": 134,
+    "instanced": 26,
+    "groups": 34,
+    "sceneChildren": 14,
+    "bg": "set",
+    "env": "set",
+    "id": "sandbox",
+    "ms": 225,
+    "warn": 0,
+    "tris": 1628
+   },
+   {
+    "geos": 86,
+    "tex": 144,
+    "programs": 53,
+    "lights": 10,
+    "lightList": "PointLight,PointLight,PointLight,PointLight,HemisphereLight,DirectionalLight,PointLight,PointLight,PointLight,PointLight",
+    "meshes": 138,
+    "instanced": 26,
+    "groups": 34,
+    "sceneChildren": 14,
+    "bg": "set",
+    "env": "set",
+    "id": "foundry",
+    "ms": 1406,
+    "warn": 1,
+    "tris": 8852
+   }
+  ],
+  "warnings": {
+   "foundry": {
+    "list": [
+     "800 solids (budget ~700)"
+    ],
+    "stats": {
+     "solids": 800,
+     "drawCalls": 27,
+     "triangles": 40212,
+     "collisionTriangles": 8852,
+     "materials": 23,
+     "navNodes": 10303,
+     "navBuildMs": 335,
+     "geometryMs": 81,
+     "textureMs": 1024,
+     "lightingMs": 73,
+     "itemsMs": 7,
+     "navMs": 1,
+     "totalMs": 1208
+    },
+    "nav": {
+     "nodes": 10303,
+     "links": 73261,
+     "components": 2,
+     "largestComponent": 10297,
+     "buildMs": 335,
+     "traps": 0,
+     "strongComponents": 91,
+     "largestStrong": 8266,
+     "cells": 9000
+    }
+   },
+   "ruins": {
+    "list": [
+     "spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)",
+     "spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)",
+     "spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)",
+     "spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)",
+     "spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)",
+     "pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)",
+     "pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)",
+     "777 solids (budget ~700)",
+     "bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)"
+    ],
+    "stats": {
+     "solids": 777,
+     "drawCalls": 16,
+     "triangles": 23372,
+     "collisionTriangles": 9522,
+     "materials": 15,
+     "navNodes": 11543,
+     "navBuildMs": 384,
+     "geometryMs": 75,
+     "textureMs": 1064,
+     "lightingMs": 18,
+     "itemsMs": 9,
+     "navMs": 1,
+     "totalMs": 1186
+    },
+    "nav": {
+     "nodes": 11543,
+     "links": 81899,
+     "components": 26,
+     "largestComponent": 11490,
+     "buildMs": 384,
+     "traps": 0,
+     "strongComponents": 119,
+     "largestStrong": 10555,
+     "cells": 11664
+    }
+   },
+   "skyline": {
+    "list": [
+     "spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)",
+     "spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)",
+     "spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)",
+     "spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)",
+     "spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)",
+     "pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)",
+     "1452 solids (budget ~700)",
+     "bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)"
+    ],
+    "stats": {
+     "solids": 1452,
+     "drawCalls": 41,
+     "triangles": 28470,
+     "collisionTriangles": 6304,
+     "materials": 34,
+     "navNodes": 7640,
+     "navBuildMs": 172,
+     "geometryMs": 51,
+     "textureMs": 659,
+     "lightingMs": 30,
+     "itemsMs": 8,
+     "navMs": 0,
+     "totalMs": 769
+    },
+    "nav": {
+     "nodes": 7640,
+     "links": 51057,
+     "components": 6,
+     "largestComponent": 7264,
+     "buildMs": 172,
+     "traps": 0,
+     "strongComponents": 80,
+     "largestStrong": 6174,
+     "cells": 8464
+    }
+   },
+   "sandbox": {
+    "list": [],
+    "stats": {
+     "solids": 118,
+     "drawCalls": 23,
+     "triangles": 6426,
+     "collisionTriangles": 1628,
+     "materials": 22,
+     "navNodes": 4091,
+     "navBuildMs": 190,
+     "geometryMs": 10,
+     "textureMs": 124,
+     "lightingMs": 36,
+     "itemsMs": 6,
+     "navMs": 1,
+     "totalMs": 199
+    },
+    "nav": {
+     "nodes": 4091,
+     "links": 29699,
+     "components": 5,
+     "largestComponent": 4087,
+     "buildMs": 190,
+     "traps": 0,
+     "strongComponents": 26,
+     "largestStrong": 3885,
+     "cells": 4096
+    }
+   }
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=3

@@ -1,0 +1,49 @@
+[run] http://127.0.0.1:49708/index.html?autotest=1&map=testmap2&mapfile=tools/out/audit/review-player/testmap2.js&bots=0&script=idle&scenario=tools/out/audit/review-player/canstand.js
+[warning] [world] map 'testmap2' has 5 warning(s):
+ - only 4 spawn point(s): 14-18 recommended
+ - spawn #0 at [-58, 0, 58]: floor is at y=-0.50 (snapped)
+ - spawn #1 at [58, 0, 58]: floor is at y=-0.50 (snapped)
+ - spawn #2 at [58, 0, -58]: floor is at y=-0.50 (snapped)
+ - spawn #3 at [-58, 0, -58]: floor is at y=-0.50 (snapped)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0,
+ "frames": 17,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 41.15226337448524
+ },
+ "errors": [],
+ "map": "testmap2",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "results": [],
+  "wrong": 0,
+  "total": 48,
+  "clearWrong": []
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

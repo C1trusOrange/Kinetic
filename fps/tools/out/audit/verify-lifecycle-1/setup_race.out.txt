@@ -1,0 +1,4 @@
+[run] http://127.0.0.1:63594/index.html?autotest=1&map=sandbox&bots=1&scenario=tools/out/audit/verify-lifecycle-1/setup_race.js&duration=1
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] "{\"S\":{\"setupDone\":false,\"driveBeforeSetup\":26,\"driveAfterSetup\":0,\"finishSeenAt\":{\"t\":1.02,\"setupDone\":false,\"started\":false},\"startedAtFinish\":null},\"done\":true,\"started\":false}"
+[run] done: wait=ok console_errors=0 warnings=0

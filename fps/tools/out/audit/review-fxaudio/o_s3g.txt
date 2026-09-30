@@ -1,0 +1,78 @@
+[run] http://127.0.0.1:58058/index.html?autotest=1&map=sandbox&bots=0&god=1&script=idle&mode=grenade&scenario=tools/out/audit/review-fxaudio/s3_decal.js&duration=9
+[run] screenshot -> tools\out\audit\review-fxaudio\s3_grenade2.png
+[result] {
+ "done": true,
+ "started": true,
+ "t": 9.73,
+ "frames": 347,
+ "fps": {
+  "avg": 41.6,
+  "min": 4,
+  "max": 178.6
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 137,
+  "triangles": 36956,
+  "geometries": 123,
+  "textures": 118,
+  "programs": 95
+ },
+ "custom": {
+  "mode": "grenade",
+  "lights0": 10,
+  "decals": [
+   {
+    "i": 150,
+    "scorch": true,
+    "pos": [
+     10,
+     4.87,
+     20
+    ],
+    "n": [
+     0,
+     1,
+     0
+    ],
+    "size": 9.37,
+    "onSurface": false
+   }
+  ],
+  "lights1": 10,
+  "effStats": {
+   "smoke": 0,
+   "glow": 0,
+   "tracers": 0,
+   "decals": 1,
+   "gibs": 0,
+   "dropped": 0
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

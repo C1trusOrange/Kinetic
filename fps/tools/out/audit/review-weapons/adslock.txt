@@ -1,0 +1,364 @@
+[run] http://127.0.0.1:49165/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-weapons/adslock.js&duration=6
+[log] [autotest] finished {"ok":true,"errors":0,"fps":37.7}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 6.32,
+ "frames": 226,
+ "fps": {
+  "avg": 37.7,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": -5.551115123125783e-17,
+  "states": {
+   "onGround": true
+  },
+  "shots": 1,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 1
+ },
+ "renderer": {
+  "calls": 134,
+  "triangles": 36926,
+  "geometries": 155,
+  "textures": 116,
+  "programs": 98
+ },
+ "custom": {
+  "log": [],
+  "samples": [
+   {
+    "t": 0.15,
+    "cur": "sniper",
+    "sw": 0,
+    "eq": 1,
+    "ads": 0,
+    "lockLeft": 0.66
+   },
+   {
+    "t": 0.18,
+    "cur": "sniper",
+    "sw": 1,
+    "eq": 1,
+    "ads": 0,
+    "lockLeft": 0.64
+   },
+   {
+    "t": 0.22,
+    "cur": "sniper",
+    "sw": 1,
+    "eq": 0.8,
+    "ads": 0,
+    "lockLeft": 0.59
+   },
+   {
+    "t": 0.23,
+    "cur": "sniper",
+    "sw": 1,
+    "eq": 0.4,
+    "ads": 0,
+    "lockLeft": 0.58
+   },
+   {
+    "t": 0.26,
+    "cur": "sniper",
+    "sw": 1,
+    "eq": 0.35,
+    "ads": 0,
+    "lockLeft": 0.55
+   },
+   {
+    "t": 0.3,
+    "cur": "sniper",
+    "sw": 1,
+    "eq": 0.09,
+    "ads": 0,
+    "lockLeft": 0.51
+   },
+   {
+    "t": 0.35,
+    "cur": "rifle",
+    "sw": 2,
+    "eq": 0,
+    "ads": 0,
+    "lockLeft": 0.46
+   },
+   {
+    "t": 0.38,
+    "cur": "rifle",
+    "sw": 2,
+    "eq": 0.15,
+    "ads": 0,
+    "lockLeft": 0.44
+   },
+   {
+    "t": 0.39,
+    "cur": "rifle",
+    "sw": 2,
+    "eq": 0.22,
+    "ads": 0,
+    "lockLeft": 0.42
+   },
+   {
+    "t": 0.4,
+    "cur": "rifle",
+    "sw": 2,
+    "eq": 0.25,
+    "ads": 0,
+    "lockLeft": 0.41
+   },
+   {
+    "t": 0.41,
+    "cur": "rifle",
+    "sw": 2,
+    "eq": 0.29,
+    "ads": 0,
+    "lockLeft": 0.4
+   },
+   {
+    "t": 0.43,
+    "cur": "rifle",
+    "sw": 2,
+    "eq": 0.33,
+    "ads": 0,
+    "lockLeft": 0.38
+   },
+   {
+    "t": 0.46,
+    "cur": "rifle",
+    "sw": 2,
+    "eq": 0.38,
+    "ads": 0,
+    "lockLeft": 0.35
+   },
+   {
+    "t": 0.49,
+    "cur": "rifle",
+    "sw": 2,
+    "eq": 0.47,
+    "ads": 0,
+    "lockLeft": 0.33
+   },
+   {
+    "t": 0.51,
+    "cur": "rifle",
+    "sw": 2,
+    "eq": 0.54,
+    "ads": 0,
+    "lockLeft": 0.3
+   },
+   {
+    "t": 0.54,
+    "cur": "rifle",
+    "sw": 2,
+    "eq": 0.61,
+    "ads": 0,
+    "lockLeft": 0.27
+   },
+   {
+    "t": 0.57,
+    "cur": "rifle",
+    "sw": 2,
+    "eq": 0.7,
+    "ads": 0,
+    "lockLeft": 0.24
+   },
+   {
+    "t": 0.61,
+    "cur": "rifle",
+    "sw": 2,
+    "eq": 0.79,
+    "ads": 0,
+    "lockLeft": 0.2
+   },
+   {
+    "t": 0.66,
+    "cur": "rifle",
+    "sw": 2,
+    "eq": 0.91,
+    "ads": 0,
+    "lockLeft": 0.15
+   },
+   {
+    "t": 0.69,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 0,
+    "lockLeft": 0.13
+   },
+   {
+    "t": 0.72,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 0,
+    "lockLeft": 0.1
+   },
+   {
+    "t": 0.75,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 0,
+    "lockLeft": 0.07
+   },
+   {
+    "t": 0.78,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 0,
+    "lockLeft": 0.04
+   },
+   {
+    "t": 0.83,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 0,
+    "lockLeft": -0.01
+   },
+   {
+    "t": 0.88,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 0.3,
+    "lockLeft": -0.06
+   },
+   {
+    "t": 0.9,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 0.61,
+    "lockLeft": -0.09
+   },
+   {
+    "t": 0.94,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 0.77,
+    "lockLeft": -0.12
+   },
+   {
+    "t": 0.97,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 0.99,
+    "lockLeft": -0.15
+   },
+   {
+    "t": 1,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 1,
+    "lockLeft": -0.18
+   },
+   {
+    "t": 1.04,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 1,
+    "lockLeft": -0.23
+   },
+   {
+    "t": 1.08,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 1,
+    "lockLeft": -0.26
+   },
+   {
+    "t": 1.11,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 1,
+    "lockLeft": -0.29
+   },
+   {
+    "t": 1.12,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 1,
+    "lockLeft": -0.31
+   },
+   {
+    "t": 1.17,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 1,
+    "lockLeft": -0.35
+   },
+   {
+    "t": 1.21,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 1,
+    "lockLeft": -0.4
+   },
+   {
+    "t": 1.23,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 1,
+    "lockLeft": -0.42
+   },
+   {
+    "t": 1.28,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 1,
+    "lockLeft": -0.47
+   },
+   {
+    "t": 1.31,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 1,
+    "lockLeft": -0.49
+   },
+   {
+    "t": 1.34,
+    "cur": "rifle",
+    "sw": 0,
+    "eq": 1,
+    "ads": 1,
+    "lockLeft": -0.53
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

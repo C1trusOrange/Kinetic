@@ -1,0 +1,9 @@
+[run] http://127.0.0.1:57944/index.html?autotest=1&map=sandbox&bots=2&god=1&script=idle&scenario=tools/out/audit/review-assets/lazy.js&duration=3
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:57944/vendor/three/examples/jsm/postprocessing/MaskPass.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:57944/vendor/three/examples/jsm/postprocessing/Pass.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:57944/src/core/Game.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:57944/vendor/three/examples/jsm/shaders/LuminosityHighPassShader.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:57944/vendor/three/examples/jsm/shaders/OutputShader.js]
+[error] [run] timed out after 200s waiting for: window.__TEST__ && window.__TEST__.done
+[result] null
+[run] done: wait=TIMEOUT console_errors=6 warnings=0

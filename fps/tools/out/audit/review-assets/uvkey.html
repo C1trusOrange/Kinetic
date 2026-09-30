@@ -1,0 +1,19 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>uvkey</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><script type="module">
+import * as THREE from 'three';
+window.__DONE__ = false; window.__RES__ = {};
+try {
+  const MAT = await import('/src/weapons/models/WeaponMaterials.js');
+  const WM = await import('/src/weapons/WeaponModels.js');
+  const M = MAT.getMaterials();
+  const keys = Object.keys(M);
+  const unused = Object.keys(MAT.UV_SCALE).filter(k => !(k in M));
+  const m = WM.createWeaponModel('rifle', { view: true });
+  let cellUV = null;
+  m.root.traverse(o => { if (o.isMesh && o.name === 'body:cellBody') { const uv = o.geometry.attributes.uv, p = o.geometry.attributes.position; let mnx = 9, mxx = -9; for (let i = 0; i < uv.count; i++) { mnx = Math.min(mnx, uv.getX(i)); mxx = Math.max(mxx, uv.getX(i)); } cellUV = { uSpan: mxx - mnx }; o.geometry.computeBoundingBox(); cellUV.zLen = o.geometry.boundingBox.max.z - o.geometry.boundingBox.min.z; } });
+  window.__RES__ = { uvScaleKeysWithoutMaterial: unused, cellBodyScale: MAT.UV_SCALE.cellBody ?? null, cellScale: MAT.UV_SCALE.cell, cellUV };
+} catch (e) { window.__RES__ = { fatal: String(e && e.stack || e) }; }
+window.__DONE__ = true;
+</script></body></html>

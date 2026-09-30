@@ -1,0 +1,236 @@
+{
+ "cpu_total_ms": 27897.5,
+ "cpu_top": [
+  [
+   "(idle) :0",
+   13336.6,
+   47.8
+  ],
+  [
+   "(program) :0",
+   3623.5,
+   13.0
+  ],
+  [
+   "setProgram three.module.js:30501",
+   1452.7,
+   5.2
+  ],
+  [
+   "getProgramInfoLog :0",
+   717.0,
+   2.6
+  ],
+  [
+   "setValue three.module.js:19157",
+   560.4,
+   2.0
+  ],
+  [
+   "projectObject three.module.js:30038",
+   558.3,
+   2.0
+  ],
+  [
+   "bindTexture :0",
+   505.1,
+   1.8
+  ],
+  [
+   "update Player.js:125",
+   278.2,
+   1.0
+  ],
+  [
+   "setValue three.module.js:19267",
+   228.9,
+   0.8
+  ],
+  [
+   "_animateParts WeaponSystem.js:1559",
+   228.5,
+   0.8
+  ],
+  [
+   "multiplyMatrices three.module.js:6262",
+   208.6,
+   0.7
+  ],
+  [
+   "WebGLRenderer.renderBufferDirect three.module.js:29463",
+   197.9,
+   0.7
+  ],
+  [
+   "raycast Collision.js:130",
+   191.6,
+   0.7
+  ],
+  [
+   "_loop Game.js:576",
+   163.9,
+   0.6
+  ],
+  [
+   "bindVertexArray :0",
+   159.6,
+   0.6
+  ],
+  [
+   "updateMatrixWorld three.module.js:7772",
+   157.3,
+   0.6
+  ],
+  [
+   "findPath NavGraph.js:738",
+   151.2,
+   0.5
+  ],
+  [
+   "disable :0",
+   138.8,
+   0.5
+  ],
+  [
+   "rayBoxEntry Collision.js:12",
+   125.2,
+   0.4
+  ],
+  [
+   "upload three.module.js:19283",
+   115.1,
+   0.4
+  ],
+  [
+   "setValueV3f three.module.js:18356",
+   112.3,
+   0.4
+  ],
+  [
+   "update three.module.js:13735",
+   98.0,
+   0.4
+  ],
+  [
+   "uniformMatrix4fv :0",
+   92.2,
+   0.3
+  ],
+  [
+   "renderObject three.module.js:22551",
+   90.3,
+   0.3
+  ],
+  [
+   "copy three.module.js:4027",
+   86.0,
+   0.3
+  ],
+  [
+   "drawArrays :0",
+   84.4,
+   0.3
+  ],
+  [
+   "update Pickups.js:585",
+   83.6,
+   0.3
+  ],
+  [
+   "compose three.module.js:6609",
+   82.9,
+   0.3
+  ],
+  [
+   "update BotNav.js:205",
+   78.8,
+   0.3
+  ],
+  [
+   "refreshFogUniforms three.module.js:27821",
+   76.1,
+   0.3
+  ],
+  [
+   "getProgram three.module.js:30354",
+   75.8,
+   0.3
+  ],
+  [
+   "needsUpdate three.module.js:15289",
+   75.8,
+   0.3
+  ],
+  [
+   "copyArray three.module.js:18275",
+   74.0,
+   0.3
+  ],
+  [
+   "refreshUniformsCommon three.module.js:27918",
+   73.1,
+   0.3
+  ],
+  [
+   "columnHits NavGraph.js:131",
+   73.0,
+   0.3
+  ],
+  [
+   "update three.module.js:17553",
+   65.6,
+   0.2
+  ],
+  [
+   "updateViewModel WeaponSystem.js:1371",
+   63.0,
+   0.2
+  ],
+  [
+   "update three.module.js:18021",
+   62.3,
+   0.2
+  ],
+  [
+   "update Audio.js:1266",
+   58.8,
+   0.2
+  ],
+  [
+   "applyMatrix4 three.module.js:4168",
+   58.6,
+   0.2
+  ],
+  [
+   "H NavGraph.js:747",
+   54.6,
+   0.2
+  ],
+  [
+   "update Game.js:618",
+   53.6,
+   0.2
+  ],
+  [
+   "_updateModel Bot.js:703",
+   52.9,
+   0.2
+  ],
+  [
+   "setMaterial three.module.js:23368",
+   52.8,
+   0.2
+  ],
+  [
+   "update Bot.js:344",
+   48.7,
+   0.2
+  ]
+ ],
+ "eval": {
+  "avg": 25,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": []
+}

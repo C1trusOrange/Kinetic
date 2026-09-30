@@ -1,0 +1,137 @@
+[run] http://127.0.0.1:50775/index.html?autotest=1&map=ruins&bots=5&duration=8
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.21,
+ "frames": 236,
+ "fps": {
+  "avg": 27.9,
+  "min": 4,
+  "max": 163.9
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 36.90178191380081,
+  "maxSpeed": 13.89,
+  "minY": 0,
+  "maxY": 7.514737985390234,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isWallRunning": true,
+   "isCrouching": true,
+   "isSliding": true
+  },
+  "shots": 16,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 8,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 53.1,
+   "pos": [
+    -38.6,
+    3.2,
+    28.1
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 18,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 45.4,
+   "pos": [
+    -39.5,
+    4.5,
+    11.8
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 58.6,
+   "pos": [
+    2.7,
+    0.1,
+    23.5
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 59,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 49,
+   "pos": [
+    -28.2,
+    -0.3,
+    10.9
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "chase",
+   "distance": 30.2,
+   "pos": [
+    6.3,
+    0,
+    -19.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 14,
+  "death": 0,
+  "spawn": 6,
+  "pickup": 1,
+  "fire": 43
+ },
+ "renderer": {
+  "calls": 343,
+  "triangles": 95140,
+  "geometries": 226,
+  "textures": 117,
+  "programs": 103
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

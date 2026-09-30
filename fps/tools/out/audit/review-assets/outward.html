@@ -1,0 +1,42 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>outward</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><script type="module">
+import * as THREE from 'three';
+window.__DONE__ = false; window.__RES__ = {};
+try {
+  const WM = await import('/src/weapons/WeaponModels.js');
+  const out = [];
+  function check(label, root) {
+    root.updateMatrixWorld(true);
+    root.traverse(o => {
+      if (!o.isMesh) return;
+      if (o.material.transparent && !o.material.vertexColors) return;
+      const g = o.geometry, p = g.attributes.position, n = g.attributes.normal;
+      g.computeBoundingBox();
+      const c = g.boundingBox.getCenter(new THREE.Vector3());
+      let out_ = 0, tot = 0, inn = 0;
+      const A = new THREE.Vector3(), B = new THREE.Vector3(), C = new THREE.Vector3(), N = new THREE.Vector3(), M = new THREE.Vector3();
+      for (let t = 0; t < p.count; t += 3) {
+        A.fromBufferAttribute(p, t); B.fromBufferAttribute(p, t + 1); C.fromBufferAttribute(p, t + 2);
+        N.subVectors(C, B).cross(new THREE.Vector3().subVectors(A, B));
+        if (N.lengthSq() < 1e-14) continue;
+        N.normalize();
+        M.copy(A).add(B).add(C).divideScalar(3).sub(c);
+        const d = N.dot(M);
+        tot++; if (d > 0) out_++; else inn++;
+      }
+      const f = out_ / Math.max(tot, 1);
+      if (f < 0.55) out.push(`${label} ${o.name} tris=${tot} outward=${f.toFixed(2)} extent=${g.boundingBox.getSize(new THREE.Vector3()).toArray().map(v=>v.toFixed(3)).join('x')}`);
+    });
+  }
+  for (const id of ['pistol','rifle','shotgun','sniper','rocket']) {
+    check(id + ':view', WM.createWeaponModel(id, { view: true }).root);
+    check(id + ':world', WM.createWeaponModel(id, { view: false }).root);
+  }
+  check('grenade', WM.createGrenadeModel());
+  check('rocketProj', WM.createRocketModel());
+  window.__RES__ = out;
+} catch (e) { window.__RES__ = { fatal: String(e && e.stack || e) }; }
+window.__DONE__ = true;
+</script></body></html>

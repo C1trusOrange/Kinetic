@@ -1,0 +1,15 @@
+p = 'src/ai/BotModel.js'
+s = open(p, encoding='utf-8').read()
+a = s.index('let _geos = null;')
+b = s.index('// ====================================================================== animation helpers')
+new = open('tools/out/bot-model/geos1.js', encoding='utf-8').read()
+s = s[:a] + new + '\n' + s[b:]
+s = s.replace("const SHOULDER_X = 0.30;", "const SHOULDER_X = 0.29;")
+s = s.replace("const DENSITY = 330; ", "const DENSITY = 480; ")
+s = s.replace("const C_PAINT = [0.70, 0.73, 0.78];", "const C_PAINT = [0.60, 0.63, 0.68];")
+s = s.replace("const C_BARE = [0.62, 0.64, 0.68];", "const C_BARE = [0.56, 0.58, 0.62];\nconst C_STEEL = [0.42, 0.44, 0.48];")
+s = s.replace("r = C_BARE[0] * k; g = C_BARE[1] * k; b = C_BARE[2] * k;", "r = C_STEEL[0] * k; g = C_STEEL[1] * k; b = C_STEEL[2] * k;")
+s = s.replace("for (let k = 0; k < 560; k++) {", "for (let k = 0; k < 260; k++) {")
+s = s.replace("const wear = smoothstep(0.22, 0.7, convex * (0.35 + 1.5 * nw) + sc * 0.8);", "const wear = smoothstep(0.24, 0.75, convex * (0.3 + 1.4 * nw) + sc * 0.55);")
+open(p, 'w', encoding='utf-8').write(s)
+print('patched')

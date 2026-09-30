@@ -1,0 +1,474 @@
+{
+ "pistol_fire": {
+  "dur": 0.8,
+  "ch": 2,
+  "peak": 0.9,
+  "rmsActive": 0.1817,
+  "rms100": 0.3922,
+  "active_s": 0.52
+ },
+ "rifle_fire": {
+  "dur": 0.55,
+  "ch": 2,
+  "peak": 0.9,
+  "rmsActive": 0.1844,
+  "rms100": 0.3091,
+  "active_s": 0.29
+ },
+ "shotgun_fire": {
+  "dur": 1.6,
+  "ch": 2,
+  "peak": 0.9,
+  "rmsActive": 0.1866,
+  "rms100": 0.5045,
+  "active_s": 1.25
+ },
+ "sniper_fire": {
+  "dur": 2.6,
+  "ch": 2,
+  "peak": 0.9,
+  "rmsActive": 0.1722,
+  "rms100": 0.5085,
+  "active_s": 2.03
+ },
+ "rocket_fire": {
+  "dur": 1.8,
+  "ch": 2,
+  "peak": 0.9,
+  "rmsActive": 0.1806,
+  "rms100": 0.5075,
+  "active_s": 1.54
+ },
+ "rocket_loop": {
+  "dur": 0.74,
+  "ch": 1,
+  "peak": 0.97,
+  "rmsActive": 0.2672,
+  "rms100": 0.3259,
+  "active_s": 0.74
+ },
+ "dry_fire": {
+  "dur": 0.16,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1791,
+  "rms100": 0.1791,
+  "active_s": 0.1
+ },
+ "reload_start": {
+  "dur": 0.35,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1567,
+  "rms100": 0.1917,
+  "active_s": 0.15
+ },
+ "reload_insert": {
+  "dur": 0.4,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1741,
+  "rms100": 0.2453,
+  "active_s": 0.2
+ },
+ "reload_end": {
+  "dur": 0.5,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1178,
+  "rms100": 0.191,
+  "active_s": 0.27
+ },
+ "pump": {
+  "dur": 0.7,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1226,
+  "rms100": 0.2258,
+  "active_s": 0.42
+ },
+ "bolt": {
+  "dur": 0.8,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.0938,
+  "rms100": 0.2064,
+  "active_s": 0.77
+ },
+ "weapon_switch": {
+  "dur": 0.32,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1271,
+  "rms100": 0.1786,
+  "active_s": 0.21
+ },
+ "melee_swing": {
+  "dur": 0.45,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1591,
+  "rms100": 0.2805,
+  "active_s": 0.34
+ },
+ "melee_hit": {
+  "dur": 0.55,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.197,
+  "rms100": 0.3495,
+  "active_s": 0.34
+ },
+ "grenade_pin": {
+  "dur": 0.45,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.131,
+  "rms100": 0.2199,
+  "active_s": 0.45
+ },
+ "grenade_throw": {
+  "dur": 0.5,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1023,
+  "rms100": 0.1768,
+  "active_s": 0.31
+ },
+ "grenade_bounce": {
+  "dur": 0.45,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1209,
+  "rms100": 0.1926,
+  "active_s": 0.26
+ },
+ "explosion": {
+  "dur": 3.8,
+  "ch": 2,
+  "peak": 0.9,
+  "rmsActive": 0.1735,
+  "rms100": 0.4424,
+  "active_s": 3.12
+ },
+ "impact_metal": {
+  "dur": 0.55,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.088,
+  "rms100": 0.1694,
+  "active_s": 0.41
+ },
+ "impact_concrete": {
+  "dur": 0.38,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1248,
+  "rms100": 0.1883,
+  "active_s": 0.23
+ },
+ "impact_stone": {
+  "dur": 0.42,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1086,
+  "rms100": 0.1284,
+  "active_s": 0.14
+ },
+ "impact_wood": {
+  "dur": 0.4,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1724,
+  "rms100": 0.2372,
+  "active_s": 0.19
+ },
+ "impact_dirt": {
+  "dur": 0.32,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.167,
+  "rms100": 0.2502,
+  "active_s": 0.23
+ },
+ "impact_sand": {
+  "dur": 0.32,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1237,
+  "rms100": 0.1826,
+  "active_s": 0.22
+ },
+ "impact_glass": {
+  "dur": 0.85,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.0985,
+  "rms100": 0.1331,
+  "active_s": 0.49
+ },
+ "impact_grass": {
+  "dur": 0.28,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1542,
+  "rms100": 0.2231,
+  "active_s": 0.21
+ },
+ "impact_energy": {
+  "dur": 0.45,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.0921,
+  "rms100": 0.1524,
+  "active_s": 0.28
+ },
+ "impact_robot": {
+  "dur": 0.4,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1017,
+  "rms100": 0.159,
+  "active_s": 0.25
+ },
+ "hitmarker": {
+  "dur": 0.16,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1387,
+  "rms100": 0.1316,
+  "active_s": 0.09
+ },
+ "headshot": {
+  "dur": 0.5,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.0869,
+  "rms100": 0.1607,
+  "active_s": 0.37
+ },
+ "kill_confirm": {
+  "dur": 0.7,
+  "ch": 2,
+  "peak": 0.9,
+  "rmsActive": 0.1452,
+  "rms100": 0.2907,
+  "active_s": 0.66
+ },
+ "hurt": {
+  "dur": 0.45,
+  "ch": 2,
+  "peak": 0.9,
+  "rmsActive": 0.1545,
+  "rms100": 0.2974,
+  "active_s": 0.44
+ },
+ "death": {
+  "dur": 2,
+  "ch": 2,
+  "peak": 0.9,
+  "rmsActive": 0.2077,
+  "rms100": 0.5213,
+  "active_s": 1.96
+ },
+ "bot_death": {
+  "dur": 1.6,
+  "ch": 2,
+  "peak": 0.9,
+  "rmsActive": 0.1629,
+  "rms100": 0.4991,
+  "active_s": 1.54
+ },
+ "footstep": {
+  "dur": 0.3,
+  "ch": 1,
+  "peak": 0.8,
+  "rmsActive": 0.1485,
+  "rms100": 0.2044,
+  "active_s": 0.19
+ },
+ "jump": {
+  "dur": 0.35,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.19,
+  "rms100": 0.3154,
+  "active_s": 0.28
+ },
+ "double_jump": {
+  "dur": 0.5,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1235,
+  "rms100": 0.2336,
+  "active_s": 0.39
+ },
+ "land": {
+  "dur": 0.35,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.154,
+  "rms100": 0.2614,
+  "active_s": 0.3
+ },
+ "land_hard": {
+  "dur": 0.8,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.2195,
+  "rms100": 0.5081,
+  "active_s": 0.77
+ },
+ "wall_jump": {
+  "dur": 0.5,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1485,
+  "rms100": 0.2763,
+  "active_s": 0.36
+ },
+ "mantle": {
+  "dur": 0.65,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1371,
+  "rms100": 0.3133,
+  "active_s": 0.61
+ },
+ "slide": {
+  "dur": 1.14,
+  "ch": 1,
+  "peak": 1.079,
+  "rmsActive": 0.2294,
+  "rms100": 0.3104,
+  "active_s": 1.15
+ },
+ "wallrun": {
+  "dur": 1.34,
+  "ch": 1,
+  "peak": 1.011,
+  "rmsActive": 0.2272,
+  "rms100": 0.2808,
+  "active_s": 1.34
+ },
+ "grapple_fire": {
+  "dur": 0.65,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1128,
+  "rms100": 0.2231,
+  "active_s": 0.41
+ },
+ "grapple_attach": {
+  "dur": 0.55,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1605,
+  "rms100": 0.3429,
+  "active_s": 0.54
+ },
+ "grapple_reel": {
+  "dur": 0.94,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.2041,
+  "rms100": 0.2548,
+  "active_s": 0.95
+ },
+ "grapple_release": {
+  "dur": 0.4,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1384,
+  "rms100": 0.2044,
+  "active_s": 0.22
+ },
+ "jumppad": {
+  "dur": 0.8,
+  "ch": 2,
+  "peak": 0.9,
+  "rmsActive": 0.1393,
+  "rms100": 0.3289,
+  "active_s": 0.74
+ },
+ "pickup_health": {
+  "dur": 0.8,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1755,
+  "rms100": 0.3151,
+  "active_s": 0.8
+ },
+ "pickup_armor": {
+  "dur": 0.7,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1245,
+  "rms100": 0.2834,
+  "active_s": 0.69
+ },
+ "pickup_ammo": {
+  "dur": 0.45,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.13,
+  "rms100": 0.2132,
+  "active_s": 0.41
+ },
+ "pickup_weapon": {
+  "dur": 0.9,
+  "ch": 2,
+  "peak": 0.9,
+  "rmsActive": 0.1031,
+  "rms100": 0.2462,
+  "active_s": 0.9
+ },
+ "pickup_grenade": {
+  "dur": 0.55,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1265,
+  "rms100": 0.2325,
+  "active_s": 0.36
+ },
+ "ui_hover": {
+  "dur": 0.1,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.199,
+  "rms100": 0.1541,
+  "active_s": 0.06
+ },
+ "ui_click": {
+  "dur": 0.22,
+  "ch": 1,
+  "peak": 0.9,
+  "rmsActive": 0.1445,
+  "rms100": 0.1825,
+  "active_s": 0.16
+ },
+ "match_start": {
+  "dur": 2,
+  "ch": 2,
+  "peak": 0.9,
+  "rmsActive": 0.1496,
+  "rms100": 0.3682,
+  "active_s": 2
+ },
+ "match_end": {
+  "dur": 2.4,
+  "ch": 2,
+  "peak": 0.9,
+  "rmsActive": 0.1999,
+  "rms100": 0.4049,
+  "active_s": 2.4
+ },
+ "spawn": {
+  "dur": 1.1,
+  "ch": 2,
+  "peak": 0.9,
+  "rmsActive": 0.1726,
+  "rms100": 0.326,
+  "active_s": 1.1
+ }
+}

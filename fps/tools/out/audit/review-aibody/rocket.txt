@@ -1,0 +1,379 @@
+[run] http://127.0.0.1:62504/index.html?autotest=1&map=foundry&bots=10&duration=60&god=1&script=idle&diff=hard&scenario=tools/out/audit/review-aibody/scen_rocket.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":36.2}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 60.29,
+ "frames": 1938,
+ "fps": {
+  "avg": 36.2,
+  "min": 4,
+  "max": 172.4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 108.2,
+  "maxSpeed": 18.85,
+  "minY": 0,
+  "maxY": 17.509107577568944,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 3,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 317.3,
+   "pos": [
+    18,
+    0,
+    12.8
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 2,
+   "deaths": 3,
+   "health": 12,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 299.7,
+   "pos": [
+    -34.3,
+    0,
+    -30.9
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 5,
+   "deaths": 3,
+   "health": 19,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 349.7,
+   "pos": [
+    14,
+    1.2,
+    -18.9
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 4,
+   "deaths": 5,
+   "health": 44,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 304.1,
+   "pos": [
+    -36.1,
+    0,
+    -29.2
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 5,
+   "deaths": 2,
+   "health": 19,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 314.5,
+   "pos": [
+    13.2,
+    6,
+    0.3
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": false,
+   "kills": 3,
+   "deaths": 3,
+   "health": 0,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 367.6,
+   "pos": [
+    34.4,
+    0,
+    30.8
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 3,
+   "deaths": 2,
+   "health": 41,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 333,
+   "pos": [
+    -22.2,
+    0,
+    -16.8
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 1,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 299.6,
+   "pos": [
+    -22.2,
+    0,
+    32.3
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 4,
+   "deaths": 4,
+   "health": 58,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 329.3,
+   "pos": [
+    -27.6,
+    1,
+    -26.7
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": false,
+   "kills": 1,
+   "deaths": 4,
+   "health": 0,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 283.4,
+   "pos": [
+    27.1,
+    0,
+    1.1
+   ]
+  }
+ ],
+ "events": {
+  "damage": 92,
+  "death": 34,
+  "spawn": 43,
+  "pickup": 4,
+  "fire": 210
+ },
+ "renderer": {
+  "calls": 713,
+  "triangles": 162902,
+  "geometries": 181,
+  "textures": 136,
+  "programs": 101
+ },
+ "custom": {
+  "rockets": 197,
+  "short": [
+   {
+    "age": 0.22,
+    "travel": 9.42,
+    "bot": "Cog",
+    "state": "engage",
+    "wallDist": 10.61,
+    "tgtDist": 30,
+    "tgtVis": true,
+    "org2eye": 0.66,
+    "spd": 8,
+    "pitch": -0.04
+   },
+   {
+    "age": 0.21,
+    "travel": 9.4,
+    "bot": "Voltage",
+    "state": "engage",
+    "wallDist": 31.55,
+    "tgtDist": 26.2,
+    "tgtVis": true,
+    "org2eye": 0.82,
+    "spd": 4.9,
+    "pitch": -0.05
+   },
+   {
+    "age": 0.18,
+    "travel": 6.36,
+    "bot": "Servo",
+    "state": "engage",
+    "wallDist": 18.61,
+    "tgtDist": 9.5,
+    "tgtVis": true,
+    "org2eye": 0.79,
+    "spd": 1.2,
+    "pitch": -0.08
+   },
+   {
+    "age": 0.22,
+    "travel": 9.42,
+    "bot": "Cog",
+    "state": "engage",
+    "wallDist": 10.36,
+    "tgtDist": 30.1,
+    "tgtVis": true,
+    "org2eye": 0.77,
+    "spd": 1.4,
+    "pitch": -0.03
+   },
+   {
+    "age": 0.24,
+    "travel": 10.17,
+    "bot": "Axle",
+    "state": "engage",
+    "wallDist": 11.47,
+    "tgtDist": 17.7,
+    "tgtVis": true,
+    "org2eye": 0.84,
+    "spd": 4.4,
+    "pitch": -0.09
+   },
+   {
+    "age": 0.06,
+    "travel": 3.37,
+    "bot": "Tesla",
+    "state": "engage",
+    "wallDist": 5.54,
+    "tgtDist": 36.6,
+    "tgtVis": true,
+    "org2eye": 0.84,
+    "spd": 7.1,
+    "pitch": -0.09
+   },
+   {
+    "age": 0,
+    "travel": 0,
+    "bot": "Cog",
+    "state": "retreat",
+    "wallDist": 1.72,
+    "tgtDist": 5,
+    "tgtVis": true,
+    "org2eye": 0.96,
+    "spd": 9,
+    "pitch": -0.27
+   },
+   {
+    "age": 0.1,
+    "travel": 4.2,
+    "bot": "Servo",
+    "state": "engage",
+    "wallDist": 5.5,
+    "tgtDist": 50.8,
+    "tgtVis": true,
+    "org2eye": 0.91,
+    "spd": 7.5,
+    "pitch": -0.09
+   },
+   {
+    "age": 0.23,
+    "travel": 8.9,
+    "bot": "Torque",
+    "state": "engage",
+    "wallDist": 10.38,
+    "tgtDist": 9.9,
+    "tgtVis": true,
+    "org2eye": 0.85,
+    "spd": 4.6,
+    "pitch": -0.11
+   },
+   {
+    "age": 0,
+    "travel": 0,
+    "bot": "Tesla",
+    "state": "engage",
+    "wallDist": 1.85,
+    "tgtDist": 6.3,
+    "tgtVis": true,
+    "org2eye": 0.84,
+    "spd": 1.9,
+    "pitch": -0.18
+   },
+   {
+    "age": 0.04,
+    "travel": 1,
+    "bot": "Axle",
+    "state": "engage",
+    "wallDist": 3.36,
+    "tgtDist": 9,
+    "tgtVis": true,
+    "org2eye": 0.84,
+    "spd": 1.1,
+    "pitch": -0.08
+   },
+   {
+    "age": 0.08,
+    "travel": 3.57,
+    "bot": "Tesla",
+    "state": "engage",
+    "wallDist": 5.44,
+    "tgtDist": 9.1,
+    "tgtVis": true,
+    "org2eye": 0.77,
+    "spd": 2,
+    "pitch": -0.1
+   },
+   {
+    "age": 0.24,
+    "travel": 9.16,
+    "bot": "Piston",
+    "state": "engage",
+    "wallDist": 10.34,
+    "tgtDist": 8.5,
+    "tgtVis": true,
+    "org2eye": 0.94,
+    "spd": 6.1,
+    "pitch": -0.23
+   },
+   {
+    "age": 0.19,
+    "travel": 7.38,
+    "bot": "Tesla",
+    "state": "engage",
+    "wallDist": 8.7,
+    "tgtDist": 26.6,
+    "tgtVis": true,
+    "org2eye": 0.85,
+    "spd": 4.7,
+    "pitch": -0.08
+   }
+  ],
+  "selfDmg": 160,
+  "selfHits": 10,
+  "ageHist": {},
+  "wallFire": 0,
+  "stats": {}
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

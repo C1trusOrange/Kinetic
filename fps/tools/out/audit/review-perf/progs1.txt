@@ -1,0 +1,156 @@
+[run] http://127.0.0.1:62537/index.html?autotest=1&map=foundry&bots=5&duration=10&scenario=tools/out/audit/review-perf/scenario_progs.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":33.3}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 10.1,
+ "frames": 339,
+ "fps": {
+  "avg": 33.3,
+  "min": 4,
+  "max": 161.3
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 56,
+   "pos": [
+    -38.8,
+    0,
+    9.9
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 60.6,
+   "pos": [
+    10.5,
+    0,
+    6.5
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 31,
+   "weapon": "sniper",
+   "state": "retreat",
+   "distance": 74.9,
+   "pos": [
+    -10.7,
+    5.3,
+    15.5
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 49,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 67.9,
+   "pos": [
+    32.6,
+    0,
+    4.9
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 76,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 22.9,
+   "pos": [
+    38.7,
+    -0.5,
+    22.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 6,
+  "death": 0,
+  "spawn": 6,
+  "pickup": 2,
+  "fire": 13
+ },
+ "renderer": {
+  "calls": 372,
+  "triangles": 129826,
+  "geometries": 200,
+  "textures": 138,
+  "programs": 102
+ },
+ "custom": {
+  "setupProgs": 51,
+  "before": {
+   "": 41,
+   "OutputShader": 1,
+   "concrete_dark": 2,
+   "metal_panel": 2,
+   "light_panel": 2,
+   "metal_grate": 2,
+   "SphericalGaussianBlur": 1
+  },
+  "after": {
+   "": 86,
+   "OutputShader": 1,
+   "concrete_dark": 3,
+   "metal_panel": 3,
+   "light_panel": 3,
+   "metal_grate": 3,
+   "SphericalGaussianBlur": 1,
+   "bot_ff4a3d": 2
+  },
+  "diff": {
+   "": 45,
+   "concrete_dark": 1,
+   "metal_panel": 1,
+   "light_panel": 1,
+   "metal_grate": 1,
+   "bot_ff4a3d": 2
+  },
+  "total": 102
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

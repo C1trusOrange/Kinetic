@@ -1,0 +1,169 @@
+[run] http://127.0.0.1:50363/index.html?autotest=1&map=ruins&bots=0&script=idle&scenario=tools/out/audit/review-player/v_grapple_top.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 7,
+ "frames": 30,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 16.35414669635415,
+  "maxSpeed": 6.4598120523709,
+  "minY": 0.06,
+  "maxY": 5.86979273089307,
+  "states": {
+   "onGround": true,
+   "isGrappling": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "log": [
+   [
+    0,
+    "ground/idle",
+    0,
+    0.2,
+    -45.03
+   ],
+   [
+    0.22,
+    "ground/flying",
+    0,
+    0.2,
+    -45.05
+   ],
+   [
+    0.27,
+    "grapple/attached",
+    0,
+    0.21,
+    -45.06
+   ],
+   [
+    0.85,
+    "air/retract",
+    0,
+    4.95,
+    -47.26
+   ],
+   [
+    1,
+    "air/retract",
+    -0.17,
+    5.85,
+    -47.1
+   ],
+   [
+    1.02,
+    "air/idle",
+    -0.19,
+    5.83,
+    -47.08
+   ],
+   [
+    1.65,
+    "ground/idle",
+    -1.23,
+    0.28,
+    -47.86
+   ],
+   [
+    2,
+    "ground/idle",
+    -1.79,
+    0.06,
+    -49.93
+   ],
+   [
+    3,
+    "ground/idle",
+    -1.83,
+    0.06,
+    -51.6
+   ],
+   [
+    4,
+    "ground/idle",
+    -1.83,
+    0.06,
+    -51.6
+   ],
+   [
+    5,
+    "ground/idle",
+    -1.83,
+    0.06,
+    -51.6
+   ],
+   [
+    6,
+    "ground/idle",
+    -1.83,
+    0.06,
+    -51.6
+   ]
+  ],
+  "map": "ruins",
+  "probe": {
+   "z": -53,
+   "y": 44,
+   "n": [
+    0,
+    1,
+    0
+   ]
+  },
+  "aim": {
+   "yaw": 0,
+   "pitch": 1.28,
+   "dist": 22.4
+  },
+  "anchor": [
+   0,
+   7.97,
+   -46.91
+  ],
+  "final": {
+   "pos": [
+    -1.83,
+    0.06,
+    -51.6
+   ],
+   "alive": true,
+   "deaths": 0,
+   "state": "ground"
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

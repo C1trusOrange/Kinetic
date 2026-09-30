@@ -1,0 +1,5 @@
+[run] http://127.0.0.1:49936/tools/viewer.html?kind=map&id=foundry&overview=1
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[run] screenshot -> tools\out\audit\design-depth\ov_foundry.png
+[run] done: wait=ok console_errors=0 warnings=1

@@ -1,0 +1,209 @@
+[run] http://127.0.0.1:54172/index.html?autotest=1&map=foundry&bots=8&duration=9&scenario=tools/out/audit/review-perf/scenario_census.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 9.27,
+ "frames": 298,
+ "fps": {
+  "avg": 31.7,
+  "min": 4,
+  "max": 161.3
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 58.8,
+   "pos": [
+    -8.3,
+    5,
+    16.4
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 69.2,
+   "pos": [
+    -28.5,
+    0,
+    20
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "collect",
+   "distance": 32.1,
+   "pos": [
+    -21.1,
+    0,
+    -33.2
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": false,
+   "kills": 0,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 40.2,
+   "pos": [
+    -4.5,
+    0,
+    34.6
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 6,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 62.2,
+   "pos": [
+    14.9,
+    2.2,
+    -16.8
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 67.6,
+   "pos": [
+    28.6,
+    0.6,
+    -34
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 36.8,
+   "pos": [
+    27.4,
+    0,
+    30.9
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 56.1,
+   "pos": [
+    -42.5,
+    0,
+    -15.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 33,
+  "death": 4,
+  "spawn": 12,
+  "pickup": 0,
+  "fire": 76
+ },
+ "renderer": {
+  "calls": 527,
+  "triangles": 146640,
+  "geometries": 218,
+  "textures": 135,
+  "programs": 103
+ },
+ "custom": {
+  "cnt": {
+   "total": 529,
+   "auto": 323,
+   "meshes": 416,
+   "groups": 94,
+   "lights": 10,
+   "instanced": 26,
+   "visible": 514,
+   "skinned": 0
+  },
+  "byParent": {
+   "PerspectiveCamera": 1,
+   "projectiles": 119,
+   "Mesh": 6,
+   "PointLight": 4,
+   "grapple": 6,
+   "map:foundry": 85,
+   "BotModel": 271,
+   "gib_head": 3,
+   "gib_torso": 3,
+   "gib_pelvis": 3,
+   "gib_upperArmL": 3,
+   "gib_upperArmR": 3,
+   "gib_foreArmL": 3,
+   "gib_foreArmR": 3,
+   "gib_thighL": 3,
+   "gib_thighR": 3,
+   "gib_shinL": 3,
+   "gib_shinR": 3,
+   "gib_weapon": 3
+  },
+  "updateMatrixWorldMs": 0.144,
+  "traverseVisibleMs": 0.033,
+  "textures": 130,
+  "cpuImageBytesMB": 68.8,
+  "cpuImages": 130,
+  "bots": 8,
+  "calls": 0
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

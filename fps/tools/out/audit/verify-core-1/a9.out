@@ -1,0 +1,43 @@
+"custom": {
+  "result": {
+   "found": {
+    "yaw": 0.6,
+    "pitch": 0.3,
+    "dist": 10.603912108837992
+   },
+   "grappleStateBefore": "retract",
+   "state": "menu",
+   "grappleState": "retract",
+   "ropeVisible": true,
+   "ropeVertsInView": 135,
+   "ropeVerts": 135,
+   "ndcBox": [
+    0.12,
+    0.13,
+    -0.72,
+    -0.57
+   ],
+   "claw": [
+    22.3,
+    4.8,
+    20.6
+   ],
+   "playerPos": [
+    24.8,
+    0.8,
+    22.9
+   ],
+   "camPos": [
+    32.2,
+    38,
+    44.6
+   ],
+   "hasRoot": false
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+
+[run] done: wait=ok console_errors=0 warnings=0
+

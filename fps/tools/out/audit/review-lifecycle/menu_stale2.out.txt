@@ -1,0 +1,84 @@
+[run] http://127.0.0.1:61596/index.html?autotest=1&map=sandbox&bots=2&duration=900&scenario=tools/out/audit/review-lifecycle/menu_stale2.js
+[run] screenshot -> tools\out\audit\review-lifecycle\menu_stale2.png
+[result] {
+ "done": true,
+ "rows": [
+  {
+   "label": "attached",
+   "state": "playing",
+   "grState": "attached",
+   "grVisible": true,
+   "isGrappling": true,
+   "claw": {
+    "x": 0,
+    "y": 0,
+    "onScreen": true
+   },
+   "hand": {
+    "x": -0.2,
+    "y": -0.56,
+    "onScreen": true
+   },
+   "previewDots": false,
+   "previewCount": 0,
+   "previewRing": false,
+   "cam": [
+    -10,
+    1.7,
+    29
+   ]
+  },
+  {
+   "label": "attached + cooking",
+   "state": "playing",
+   "grState": "attached",
+   "grVisible": true,
+   "isGrappling": true,
+   "claw": {
+    "x": 0,
+    "y": 0.02,
+    "onScreen": true
+   },
+   "hand": {
+    "x": -0.17,
+    "y": -0.48,
+    "onScreen": true
+   },
+   "previewDots": true,
+   "previewCount": 44,
+   "previewRing": true,
+   "cam": [
+    -11.3,
+    1.6,
+    27.2
+   ]
+  },
+  {
+   "label": "menu after quit",
+   "state": "menu",
+   "grState": "attached",
+   "grVisible": true,
+   "isGrappling": true,
+   "claw": {
+    "x": -0.3,
+    "y": 0.29,
+    "onScreen": true
+   },
+   "hand": {
+    "x": -0.2,
+    "y": -0.57,
+    "onScreen": true
+   },
+   "previewDots": true,
+   "previewCount": 44,
+   "previewRing": true,
+   "cam": [
+    31.5,
+    38,
+    45
+   ]
+  }
+ ],
+ "errors": []
+}
+[run] done: wait=ok console_errors=0 warnings=0

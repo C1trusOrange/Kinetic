@@ -1,0 +1,926 @@
+[run] http://127.0.0.1:63123/index.html?autotest=1&map=foundry&bots=2&duration=1&god=1&script=idle&scenario=tools/out/audit/verify-aibrain-1/scen_pad.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 98.51,
+ "frames": 40,
+ "fps": {
+  "avg": 0,
+  "min": 9.157509157509049,
+  "max": 9.157509157509049
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 854.3,
+   "pos": [
+    32.4,
+    10,
+    -37.5
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    17,
+    0,
+    -36
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 155,
+  "triangles": 104556,
+  "geometries": 112,
+  "textures": 113,
+  "programs": 93
+ },
+ "custom": {
+  "trials": [
+   {
+    "pad": 0,
+    "k": 0,
+    "ok": true,
+    "t": 2.95,
+    "air": 1.43,
+    "launched": 1,
+    "inv": 2,
+    "invSites": [
+     {
+      "t": 1.85,
+      "y": -4,
+      "g": false,
+      "idx": 2,
+      "wp": "-24.49 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 1.87,
+      "y": -3.61,
+      "g": false,
+      "idx": 2,
+      "wp": "-24.49 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 4,
+    "from": [
+     -30.49,
+     -3.81,
+     22.51
+    ],
+    "goal": [
+     -24.49,
+     5,
+     15.51
+    ],
+    "reqs": [
+     {
+      "t": 0.32,
+      "y": -3.89,
+      "g": true,
+      "vy": 0,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-19.49 -4 24.51 walk ",
+       "-19.49 5 15.51 jump P",
+       "-24.49 5 15.51 walk "
+      ]
+     },
+     {
+      "t": 1.87,
+      "y": -3.61,
+      "g": false,
+      "vy": 23.6,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-19.49 -4 24.51 walk ",
+       "-19.49 5 15.51 jump P",
+       "-24.49 5 15.51 walk "
+      ]
+     },
+     {
+      "t": 2.03,
+      "y": -0.04,
+      "g": false,
+      "vy": 19.6,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-20.49 0 21.31 walk ",
+       "-20.49 -4 22.51 drop ",
+       "-19.49 -4 24.51 walk ",
+       "-19.49 5 15.51 jump P"
+      ]
+     },
+     {
+      "t": 2.5,
+      "y": 6.4,
+      "g": false,
+      "vy": 8.4,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-22.49 6.05 17.51 walk ",
+       "-23.49 5 16.51 drop ",
+       "-24.49 5 15.51 walk "
+      ]
+     }
+    ],
+    "trace": [
+     "0.52 | -27.31,-4,23.42 | vy0 | G | path | i0/3 | -19.49 -4 24.51 walk ",
+     "0.75 | -25.65,-4,23.66 | vy0 | G | path | i0/3 | -19.49 -4 24.51 walk ",
+     "1 | -23.87,-4,23.9 | vy0 | G | path | i0/3 | -19.49 -4 24.51 walk ",
+     "1.25 | -22.09,-4,24.15 | vy0 | G | path | i0/3 | -19.49 -4 24.51 walk ",
+     "1.52 | -20.19,-4,24.41 | vy0 | G | path | i0/3 | -19.49 -4 24.51 walk ",
+     "1.77 | -20.26,0.9,22.72 | vy18.4 | A | path | i0/5 | -20.49 0 21.31 walk ",
+     "2.02 | -20.52,4.7,21.1 | vy12.4 | A | path | i1/5 | -20.49 -4 22.51 drop ",
+     "2.27 | -20.82,7,20.85 | vy6.4 | A | path | i0/3 | -22.49 6.05 17.51 walk ",
+     "2.52 | -21.67,7.8,19.75 | vy0.4 | A | path | i0/3 | -22.49 6.05 17.51 walk ",
+     "2.77 | -22.72,7.1,18.08 | vy-5.6 | A | path | i0/3 | -22.49 6.05 17.51 walk "
+    ]
+   },
+   {
+    "pad": 0,
+    "k": 1,
+    "ok": true,
+    "t": 7.67,
+    "air": 2.38,
+    "launched": 2,
+    "inv": 1,
+    "invSites": [
+     {
+      "t": 5.87,
+      "y": 1.49,
+      "g": false,
+      "idx": 1,
+      "wp": "-21.49 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 4,
+    "from": [
+     -14.49,
+     -4,
+     23.51
+    ],
+    "goal": [
+     -21.49,
+     5,
+     15.51
+    ]
+   },
+   {
+    "pad": 0,
+    "k": 2,
+    "ok": false,
+    "t": 20,
+    "air": 13.57,
+    "launched": 3,
+    "inv": 2,
+    "invSites": [
+     {
+      "t": 15.53,
+      "y": 1.83,
+      "g": false,
+      "idx": 2,
+      "wp": "-18.49 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 30.2,
+      "y": -4,
+      "g": false,
+      "idx": 2,
+      "wp": "-18.49 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 20,
+    "from": [
+     -11.49,
+     -4,
+     25.51
+    ],
+    "goal": [
+     -18.49,
+     5,
+     15.51
+    ]
+   },
+   {
+    "pad": 0,
+    "k": 3,
+    "ok": true,
+    "t": 11.52,
+    "air": 7.1,
+    "launched": 4,
+    "inv": 6,
+    "invSites": [
+     {
+      "t": 35.82,
+      "y": 0,
+      "g": true,
+      "idx": 2,
+      "wp": "-15.49 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 37.13,
+      "y": -1.84,
+      "g": false,
+      "idx": 4,
+      "wp": "-19.49 5 15.51 jump true",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 37.2,
+      "y": -2.52,
+      "g": false,
+      "idx": 1,
+      "wp": "-15.49 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 11,
+    "from": [
+     -13.49,
+     -4,
+     27.51
+    ],
+    "goal": [
+     -15.49,
+     5,
+     15.51
+    ]
+   },
+   {
+    "pad": 0,
+    "k": 4,
+    "ok": true,
+    "t": 3.08,
+    "air": 1.48,
+    "launched": 2,
+    "inv": 0,
+    "invSites": [],
+    "nreq": 3,
+    "from": [
+     -8.49,
+     -4,
+     28.51
+    ],
+    "goal": [
+     -24.49,
+     5,
+     16.51
+    ]
+   },
+   {
+    "pad": 1,
+    "k": 0,
+    "ok": true,
+    "t": 2.98,
+    "air": 1.42,
+    "launched": 2,
+    "inv": 2,
+    "invSites": [
+     {
+      "t": 48.9,
+      "y": -4,
+      "g": false,
+      "idx": 2,
+      "wp": "13.51 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 48.92,
+      "y": -3.61,
+      "g": false,
+      "idx": 2,
+      "wp": "13.51 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 4,
+    "from": [
+     7.51,
+     -4,
+     22.51
+    ],
+    "goal": [
+     13.51,
+     5,
+     15.51
+    ],
+    "reqs": [
+     {
+      "t": 47.32,
+      "y": -4,
+      "g": true,
+      "vy": 0,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "18.51 -4 24.51 walk ",
+       "18.51 5 15.51 jump P",
+       "13.51 5 15.51 walk "
+      ]
+     },
+     {
+      "t": 48.92,
+      "y": -3.61,
+      "g": false,
+      "vy": 23.6,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "18.51 -4 24.51 walk ",
+       "18.51 5 15.51 jump P",
+       "13.51 5 15.51 walk "
+      ]
+     },
+     {
+      "t": 49.09,
+      "y": -0.04,
+      "g": false,
+      "vy": 19.6,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "17.51 0 21.31 walk ",
+       "17.51 -4 22.51 drop ",
+       "18.51 -4 24.51 walk ",
+       "18.51 5 15.51 jump P"
+      ]
+     },
+     {
+      "t": 49.55,
+      "y": 6.4,
+      "g": false,
+      "vy": 8.4,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "15.51 6.05 17.51 walk ",
+       "14.51 5 16.51 drop ",
+       "13.51 5 15.51 walk "
+      ]
+     }
+    ],
+    "trace": [
+     "0.52 | 10.34,-4,23.41 | vy0 | G | path | i0/3 | 18.51 -4 24.51 walk ",
+     "0.75 | 12,-4,23.64 | vy0 | G | path | i0/3 | 18.51 -4 24.51 walk ",
+     "1 | 13.79,-4,23.88 | vy0 | G | path | i0/3 | 18.51 -4 24.51 walk ",
+     "1.25 | 15.57,-4,24.11 | vy0 | G | path | i0/3 | 18.51 -4 24.51 walk ",
+     "1.52 | 17.47,-4,24.37 | vy0 | G | path | i0/3 | 18.51 -4 24.51 walk ",
+     "1.77 | 17.8,-0.04,23.1 | vy19.6 | A | idle | i2/0 | -",
+     "2.02 | 17.55,4.06,21.32 | vy13.6 | A | path | i1/5 | 17.51 -4 22.51 drop ",
+     "2.27 | 17.26,6.66,20.9 | vy7.6 | A | path | i0/3 | 15.51 6.05 17.51 walk ",
+     "2.52 | 16.52,7.76,20.06 | vy1.6 | A | path | i0/3 | 15.51 6.05 17.51 walk ",
+     "2.77 | 15.46,7.36,18.46 | vy-4.4 | A | path | i0/3 | 15.51 6.05 17.51 walk "
+    ]
+   },
+   {
+    "pad": 1,
+    "k": 1,
+    "ok": true,
+    "t": 7.55,
+    "air": 5.15,
+    "launched": 3,
+    "inv": 4,
+    "invSites": [
+     {
+      "t": 52.9,
+      "y": 1.49,
+      "g": false,
+      "idx": 1,
+      "wp": "16.51 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 56.65,
+      "y": -1.69,
+      "g": false,
+      "idx": 5,
+      "wp": "18.51 5 15.51 jump true",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 56.67,
+      "y": -1.84,
+      "g": false,
+      "idx": 1,
+      "wp": "16.51 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 8,
+    "from": [
+     23.51,
+     -4,
+     23.51
+    ],
+    "goal": [
+     16.51,
+     5,
+     15.51
+    ]
+   },
+   {
+    "pad": 1,
+    "k": 2,
+    "ok": true,
+    "t": 3.18,
+    "air": 1.67,
+    "launched": 2,
+    "inv": 2,
+    "invSites": [
+     {
+      "t": 59.92,
+      "y": -4,
+      "g": false,
+      "idx": 2,
+      "wp": "19.51 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 59.93,
+      "y": -3.61,
+      "g": false,
+      "idx": 2,
+      "wp": "19.51 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 4,
+    "from": [
+     8.51,
+     -4,
+     25.51
+    ],
+    "goal": [
+     19.51,
+     5,
+     15.51
+    ]
+   },
+   {
+    "pad": 1,
+    "k": 3,
+    "ok": true,
+    "t": 2.82,
+    "air": 1.48,
+    "launched": 2,
+    "inv": 2,
+    "invSites": [
+     {
+      "t": 62.82,
+      "y": -4,
+      "g": false,
+      "idx": 2,
+      "wp": "22.51 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 62.83,
+      "y": -3.61,
+      "g": false,
+      "idx": 1,
+      "wp": "22.51 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 4,
+    "from": [
+     13.51,
+     -4,
+     27.51
+    ],
+    "goal": [
+     22.51,
+     5,
+     15.51
+    ]
+   },
+   {
+    "pad": 1,
+    "k": 4,
+    "ok": true,
+    "t": 3.05,
+    "air": 1.45,
+    "launched": 2,
+    "inv": 0,
+    "invSites": [],
+    "nreq": 3,
+    "from": [
+     29.51,
+     -4,
+     28.51
+    ],
+    "goal": [
+     14.51,
+     5,
+     16.51
+    ]
+   },
+   {
+    "pad": 2,
+    "k": 0,
+    "ok": true,
+    "t": 4.25,
+    "air": 1.52,
+    "launched": 2,
+    "inv": 2,
+    "invSites": [
+     {
+      "t": 70.08,
+      "y": 0,
+      "g": true,
+      "idx": 2,
+      "wp": "32.51 10 -40.49 walk false",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 70.1,
+      "y": 0,
+      "g": true,
+      "idx": 1,
+      "wp": "32.51 10 -40.49 walk false",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 4,
+    "from": [
+     17.51,
+     0,
+     -43.49
+    ],
+    "goal": [
+     32.51,
+     10,
+     -40.49
+    ],
+    "reqs": [
+     {
+      "t": 68.47,
+      "y": 0,
+      "g": true,
+      "vy": 0,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "23.51 0 -33.49 walk ",
+       "31.51 10 -36.49 jump P",
+       "32.51 10 -40.49 walk "
+      ]
+     },
+     {
+      "t": 70.1,
+      "y": 0,
+      "g": true,
+      "vy": 0,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "31.51 10 -36.49 jump P",
+       "32.51 10 -40.49 walk "
+      ]
+     },
+     {
+      "t": 70.27,
+      "y": 3.09,
+      "g": false,
+      "vy": 21.78,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "27.02 1.2 -32.5 walk ",
+       "25.51 0 -32.49 drop ",
+       "23.51 0 -33.49 walk ",
+       "31.51 10 -36.49 jump P"
+      ]
+     },
+     {
+      "t": 70.73,
+      "y": 10.55,
+      "g": false,
+      "vy": 10.58,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "30.51 10 -34.49 walk ",
+       "32.51 10 -40.49 walk "
+      ]
+     }
+    ],
+    "trace": [
+     "0.52 | 19.12,0,-40.81 | vy0 | G | path | i0/3 | 23.51 0 -33.49 walk ",
+     "0.75 | 19.98,0,-39.37 | vy0 | G | path | i0/3 | 23.51 0 -33.49 walk ",
+     "1 | 20.91,0,-37.83 | vy0 | G | path | i0/3 | 23.51 0 -33.49 walk ",
+     "1.25 | 21.84,0,-36.29 | vy0 | G | path | i0/3 | 23.51 0 -33.49 walk ",
+     "1.52 | 22.82,0,-34.64 | vy0 | G | path | i0/3 | 23.51 0 -33.49 walk ",
+     "1.77 | 24.02,2.36,-34.15 | vy22.58 | A | idle | i1/0 | -",
+     "2.02 | 26.2,7.2,-34.47 | vy16.58 | A | path | i0/5 | 27.02 1.2 -32.5 walk ",
+     "2.27 | 28.85,10.55,-33.32 | vy10.58 | A | path | i0/5 | 27.02 1.2 -32.5 walk ",
+     "2.52 | 31.49,12.39,-32.31 | vy4.58 | A | path | i0/2 | 30.51 10 -34.49 walk ",
+     "2.77 | 33.58,12.74,-32.8 | vy-1.42 | A | path | i0/2 | 30.51 10 -34.49 walk ",
+     "3.02 | 34.18,11.58,-34.14 | vy-7.42 | A | path | i0/2 | 30.51 10 -34.49 walk ",
+     "3.27 | 33.12,10,-35.41 | vy0 | G | path | i0/2 | 30.51 10 -34.49 walk ",
+     "3.52 | 31.49,10,-35.02 | vy0 | G | path | i0/2 | 30.51 10 -34.49 walk ",
+     "3.77 | 30.78,10,-35.51 | vy0 | G | path | i1/2 | 32.51 10 -40.49 walk ",
+     "4.02 | 31.41,10,-37.5 | vy0 | G | path | i1/2 | 32.51 10 -40.49 walk "
+    ]
+   },
+   {
+    "pad": 2,
+    "k": 1,
+    "ok": true,
+    "t": 3.52,
+    "air": 1.52,
+    "launched": 2,
+    "inv": 2,
+    "invSites": [
+     {
+      "t": 74.09,
+      "y": 0,
+      "g": true,
+      "idx": 2,
+      "wp": "31.51 10 -39.49 walk false",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 74.1,
+      "y": 0,
+      "g": true,
+      "idx": 1,
+      "wp": "31.51 10 -39.49 walk false",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 4,
+    "from": [
+     21.51,
+     0,
+     -40.49
+    ],
+    "goal": [
+     31.51,
+     10,
+     -39.49
+    ]
+   },
+   {
+    "pad": 2,
+    "k": 2,
+    "ok": true,
+    "t": 3.9,
+    "air": 1.52,
+    "launched": 2,
+    "inv": 2,
+    "invSites": [
+     {
+      "t": 78.07,
+      "y": 0,
+      "g": true,
+      "idx": 3,
+      "wp": "31.51 10 -36.49 jump true",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 78.09,
+      "y": 0,
+      "g": true,
+      "idx": 1,
+      "wp": "34.51 10 -39.49 walk false",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 4,
+    "from": [
+     15.51,
+     0,
+     -32.49
+    ],
+    "goal": [
+     34.51,
+     10,
+     -39.49
+    ]
+   },
+   {
+    "pad": 2,
+    "k": 3,
+    "ok": true,
+    "t": 8.02,
+    "air": 3.4,
+    "launched": 3,
+    "inv": 1,
+    "invSites": [
+     {
+      "t": 82.62,
+      "y": 1.21,
+      "g": false,
+      "idx": 4,
+      "wp": "31.51 10 -36.49 jump true",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 8,
+    "from": [
+     14.51,
+     0,
+     -28.49
+    ],
+    "goal": [
+     30.51,
+     10,
+     -38.49
+    ]
+   },
+   {
+    "pad": 2,
+    "k": 4,
+    "ok": true,
+    "t": 8.9,
+    "air": 3.58,
+    "launched": 3,
+    "inv": 2,
+    "invSites": [
+     {
+      "t": 92.42,
+      "y": 6.9,
+      "g": false,
+      "idx": 1,
+      "wp": "33.51 10 -38.49 walk false",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 96.33,
+      "y": 0,
+      "g": false,
+      "idx": 4,
+      "wp": "31.51 10 -36.49 jump true",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 7,
+    "from": [
+     30.51,
+     0,
+     -26.49
+    ],
+    "goal": [
+     33.51,
+     10,
+     -38.49
+    ]
+   }
+  ],
+  "pads": [
+   {
+    "pos": [
+     -19,
+     -4,
+     24.5
+    ],
+    "target": [
+     -19,
+     5,
+     16
+    ],
+    "vel": [
+     0,
+     24,
+     -5.67
+    ]
+   },
+   {
+    "pos": [
+     19,
+     -4,
+     24.5
+    ],
+    "target": [
+     19,
+     5,
+     16
+    ],
+    "vel": [
+     0,
+     24,
+     -5.67
+    ]
+   },
+   {
+    "pos": [
+     24,
+     0,
+     -33
+    ],
+    "target": [
+     31.5,
+     10,
+     -36
+    ],
+    "vel": [
+     4.87,
+     24.98,
+     -1.95
+    ]
+   },
+   {
+    "pos": [
+     38.5,
+     5,
+     -26.8
+    ],
+    "target": [
+     43.8,
+     10,
+     -34.8
+    ],
+    "vel": [
+     4.03,
+     19.6,
+     -6.08
+    ]
+   }
+  ],
+  "summary": [
+   {
+    "pad": 0,
+    "n": 5,
+    "ok": 4,
+    "avgT": 9.04,
+    "avgInv": 2.2,
+    "avgAir": 5.19
+   },
+   {
+    "pad": 1,
+    "n": 5,
+    "ok": 5,
+    "avgT": 3.92,
+    "avgInv": 2,
+    "avgAir": 2.23
+   },
+   {
+    "pad": 2,
+    "n": 5,
+    "ok": 5,
+    "avgT": 5.72,
+    "avgInv": 1.8,
+    "avgAir": 2.31
+   },
+   {
+    "pad": 3,
+    "n": 0,
+    "ok": 0,
+    "avgT": 0,
+    "avgInv": 0,
+    "avgAir": 0
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

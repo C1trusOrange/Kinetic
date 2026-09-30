@@ -1,0 +1,45 @@
+[run] http://127.0.0.1:55757/index.html?autotest=1&map=sandbox&bots=0&scenario=tools/out/audit/verify-core-2/quit.js&duration=60
+[run] screenshot -> tools\out\audit\verify-core-2\quit_menu.png
+[result] {
+ "previewCamera": {
+  "pos": [
+   30,
+   38,
+   46
+  ],
+  "lookAt": [
+   0,
+   3,
+   -2
+  ]
+ },
+ "beforeQuit": {
+  "state": "attached",
+  "isGrappling": true,
+  "groupVisible": true,
+  "ropeVisible": true,
+  "loops": 1,
+  "pos": [
+   4,
+   0,
+   4
+  ],
+  "anchor": [
+   4,
+   0,
+   -9.8
+  ]
+ },
+ "afterQuit": {
+  "gameState": "menu",
+  "state": "attached",
+  "isGrappling": true,
+  "groupVisible": true,
+  "ropeVisible": true,
+  "clawVisible": true,
+  "loops": 1,
+  "loopBusGain": 8.090662049653474e-06,
+  "alive": false
+ }
+}
+[run] done: wait=ok console_errors=0 warnings=0

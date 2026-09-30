@@ -1,0 +1,29 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>atlas</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<style>body{margin:0;background:#3a4a5a}canvas{display:block}</style></head><body>
+<canvas id="c" width="1040" height="540"></canvas>
+<script type="module">
+import { createParticleAtlas, createDecalAtlas } from '/src/fx/Atlas.js';
+const P = createParticleAtlas(), Dc = createDecalAtlas();
+const cv = document.getElementById('c'), g = cv.getContext('2d');
+g.fillStyle = '#5a6a7a'; g.fillRect(0, 0, 1040, 540);
+function draw(tex, ox, oy, cols) {
+  const w = tex.image.width, h = tex.image.height, d = tex.image.data;
+  const id = g.createImageData(w, h);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const s = ((h - 1 - y) * w + x) * 4, o = (y * w + x) * 4; // flip: row 0 is the bottom
+    const a = d[s + 3] / 255;
+    id.data[o] = d[s] * a + 90 * (1 - a); id.data[o + 1] = d[s + 1] * a + 106 * (1 - a); id.data[o + 2] = d[s + 2] * a + 122 * (1 - a); id.data[o + 3] = 255;
+  }
+  g.putImageData(id, ox, oy);
+}
+draw(P, 0, 0, 4); draw(Dc, 520, 0, 4);
+// alpha means per cell
+const info = {};
+for (const [name, tex, cols, rows] of [['p', P, 4, 4], ['d', Dc, 4, 2]]) {
+  const w = tex.image.width, d = tex.image.data; const arr = [];
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) { let s = 0, nan = 0; for (let y = 0; y < 128; y++) for (let x = 0; x < 128; x++) { s += d[((r * 128 + y) * w + c * 128 + x) * 4 + 3]; } arr.push(Math.round(s / 16384)); }
+  info[name] = arr;
+}
+window.__INFO__ = info; window.__READY__ = true;
+</script></body></html>

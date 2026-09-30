@@ -1,0 +1,777 @@
+[run] http://127.0.0.1:51014/index.html?autotest=1&map=foundry&bots=3&diff=normal&spectate=1&scenario=tools/out/audit/review-aibrain/scen_pad.js&duration=9
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":49.5}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 9.07,
+ "frames": 413,
+ "fps": {
+  "avg": 49.5,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 26.5,
+   "pos": [
+    -19.5,
+    5,
+    16.8
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    -37,
+    0,
+    -22
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    -30,
+    0,
+    33
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 161,
+  "triangles": 105732,
+  "geometries": 112,
+  "textures": 113,
+  "programs": 93
+ },
+ "custom": {
+  "log": [
+   {
+    "ev": "req",
+    "t": 0.05,
+    "bot": 1,
+    "ground": false,
+    "vy": 0,
+    "pos": [
+     -25,
+     -4,
+     24.5
+    ],
+    "unreach": false,
+    "mode": "path",
+    "path": [
+     "-19.5 -4 24.5 walk false",
+     "-19.5 5 15.5 jump true"
+    ],
+    "goal": [
+     -19,
+     5,
+     16
+    ]
+   },
+   {
+    "ev": "tick",
+    "t": 0.25,
+    "pos": [
+     -24.3,
+     -4,
+     24.5
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 0,
+    "arrived": false,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 0.5,
+    "pos": [
+     -22.5,
+     -4,
+     24.5
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 0,
+    "arrived": false,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 0.76,
+    "pos": [
+     -20.6,
+     -4,
+     24.5
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 0,
+    "arrived": false,
+    "unreach": false
+   },
+   {
+    "ev": "invalidate",
+    "t": 0.83,
+    "bot": 1,
+    "ground": false,
+    "pos": [
+     -20,
+     -4,
+     24.5
+    ],
+    "idx": 1,
+    "len": 2,
+    "wp": [
+     -19.5,
+     5,
+     15.5,
+     "jump",
+     true
+    ],
+    "stack": "at BotNav._followPath (http://127.0.0.1:51014/src/ai/BotNav.js:302:14)"
+   },
+   {
+    "ev": "req",
+    "t": 0.86,
+    "bot": 1,
+    "ground": false,
+    "vy": 23.6,
+    "pos": [
+     -20,
+     -3.6,
+     24.4
+    ],
+    "unreach": false,
+    "mode": "path",
+    "path": [
+     "-19.5 -4 24.5 walk false",
+     "-19.5 5 15.5 jump true"
+    ],
+    "goal": [
+     -19,
+     5,
+     16
+    ]
+   },
+   {
+    "ev": "invalidate",
+    "t": 0.86,
+    "bot": 1,
+    "ground": false,
+    "pos": [
+     -20,
+     -3.6,
+     24.4
+    ],
+    "idx": 1,
+    "len": 2,
+    "wp": [
+     -19.5,
+     5,
+     15.5,
+     "jump",
+     true
+    ],
+    "stack": "at BotNav._followPath (http://127.0.0.1:51014/src/ai/BotNav.js:302:14)"
+   },
+   {
+    "ev": "tick",
+    "t": 1.02,
+    "pos": [
+     -20,
+     -0.1,
+     23.2
+    ],
+    "vy": 19.6,
+    "g": false,
+    "mode": "idle",
+    "idx": 1,
+    "arrived": false,
+    "unreach": false
+   },
+   {
+    "ev": "req",
+    "t": 1.02,
+    "bot": 1,
+    "ground": false,
+    "vy": 19.6,
+    "pos": [
+     -20,
+     -0.1,
+     23.2
+    ],
+    "unreach": false,
+    "mode": "path",
+    "path": [
+     "-20.5 0 21.3 walk false",
+     "-20.5 -4 22.5 drop false",
+     "-19.5 -4 24.5 walk false",
+     "-19.5 5 15.5 jump true"
+    ],
+    "goal": [
+     -19,
+     5,
+     16
+    ]
+   },
+   {
+    "ev": "tick",
+    "t": 1.25,
+    "pos": [
+     -20.1,
+     4,
+     21.2
+    ],
+    "vy": 13.5,
+    "g": false,
+    "mode": "path",
+    "idx": 1,
+    "arrived": false,
+    "unreach": false
+   },
+   {
+    "ev": "req",
+    "t": 1.47,
+    "bot": 1,
+    "ground": false,
+    "vy": 9.3,
+    "pos": [
+     -20.4,
+     6,
+     20.4
+    ],
+    "unreach": false,
+    "mode": "path",
+    "path": [
+     "-21.7 6.1 17.5 walk false",
+     "-20.5 5 16.5 drop false",
+     "-19 5 16 walk false"
+    ],
+    "goal": [
+     -19,
+     5,
+     16
+    ]
+   },
+   {
+    "ev": "tick",
+    "t": 1.52,
+    "pos": [
+     -20.6,
+     6.4,
+     20.3
+    ],
+    "vy": 8.2,
+    "g": false,
+    "mode": "path",
+    "idx": 0,
+    "arrived": false,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 1.75,
+    "pos": [
+     -21.4,
+     7.6,
+     18.8
+    ],
+    "vy": 2.3,
+    "g": false,
+    "mode": "path",
+    "idx": 0,
+    "arrived": false,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 2.01,
+    "pos": [
+     -22.1,
+     7.2,
+     16.6
+    ],
+    "vy": -4.1,
+    "g": false,
+    "mode": "path",
+    "idx": 1,
+    "arrived": false,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 2.27,
+    "pos": [
+     -21.3,
+     6,
+     14.7
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": false,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 2.5,
+    "pos": [
+     -20.2,
+     5.3,
+     15.7
+    ],
+    "vy": -5.6,
+    "g": false,
+    "mode": "path",
+    "idx": 1,
+    "arrived": false,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 2.76,
+    "pos": [
+     -19.5,
+     5,
+     16.7
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 3.02,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 3.25,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 3.52,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 3.78,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 4.01,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 4.26,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 4.5,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 4.75,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 5.01,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 5.27,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 5.51,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 5.76,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 6.01,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 6.28,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 6.53,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 6.75,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 7.01,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 7.27,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 7.51,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 7.75,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 8,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 8.25,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 8.52,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   },
+   {
+    "ev": "tick",
+    "t": 8.75,
+    "pos": [
+     -19.5,
+     5,
+     16.8
+    ],
+    "vy": 0,
+    "g": true,
+    "mode": "path",
+    "idx": 1,
+    "arrived": true,
+    "unreach": false
+   }
+  ],
+  "pad": {
+   "pos": [
+    -19,
+    -4,
+    24.5
+   ],
+   "target": [
+    -19,
+    5,
+    16
+   ],
+   "vel": [
+    0,
+    24,
+    -5.666666666666667
+   ]
+  },
+  "bot": 1
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

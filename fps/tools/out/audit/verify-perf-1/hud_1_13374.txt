@@ -1,0 +1,195 @@
+[run] http://127.0.0.1:61277/index.html?autotest=1&map=foundry&bots=5&duration=6&hide=1&scenario=tools/out/audit/verify-perf-1/hud.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 6.24,
+ "frames": 251,
+ "fps": {
+  "avg": 38.9,
+  "min": 4,
+  "max": 131.6
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 5,
+  "maxY": 5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 40.6,
+   "pos": [
+    4,
+    0,
+    31.3
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 48.7,
+   "pos": [
+    -39.4,
+    0,
+    2.5
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": false,
+   "kills": 0,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "sniper",
+   "state": "retreat",
+   "distance": 22.7,
+   "pos": [
+    27,
+    0,
+    37.1
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 25.5,
+   "pos": [
+    36.8,
+    0,
+    15.2
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 41,
+   "pos": [
+    16.4,
+    0,
+    6.9
+   ]
+  }
+ ],
+ "events": {
+  "damage": 8,
+  "death": 1,
+  "spawn": 6,
+  "pickup": 0,
+  "fire": 30
+ },
+ "renderer": {
+  "calls": 289,
+  "triangles": 122188,
+  "geometries": 189,
+  "textures": 126,
+  "programs": 100
+ },
+ "custom": {
+  "hide": "1",
+  "first8": [
+   {
+    "n": 1,
+    "gt": 0.05,
+    "dt": 5826,
+    "upd": 485,
+    "ren": 3717,
+    "np": 61
+   },
+   {
+    "n": 2,
+    "gt": 0.1,
+    "dt": 29,
+    "upd": 5,
+    "ren": 16,
+    "np": 0
+   },
+   {
+    "n": 3,
+    "gt": 0.13,
+    "dt": 52,
+    "upd": 21,
+    "ren": 29,
+    "np": 0
+   },
+   {
+    "n": 4,
+    "gt": 0.18,
+    "dt": 18,
+    "upd": 7,
+    "ren": 10,
+    "np": 0
+   },
+   {
+    "n": 5,
+    "gt": 0.2,
+    "dt": 17,
+    "upd": 2,
+    "ren": 14,
+    "np": 0
+   },
+   {
+    "n": 6,
+    "gt": 0.22,
+    "dt": 27,
+    "upd": 8,
+    "ren": 18,
+    "np": 0
+   },
+   {
+    "n": 7,
+    "gt": 0.25,
+    "dt": 22,
+    "upd": 3,
+    "ren": 8,
+    "np": 0
+   },
+   {
+    "n": 8,
+    "gt": 0.3,
+    "dt": 81,
+    "upd": 10,
+    "ren": 10,
+    "np": 0
+   }
+  ],
+  "later": [],
+  "hudDisplay": "none"
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

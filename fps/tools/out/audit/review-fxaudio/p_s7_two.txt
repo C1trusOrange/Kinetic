@@ -1,0 +1,92 @@
+[run] http://127.0.0.1:61139/index.html?autotest=1&map=sandbox&bots=0&god=1&script=idle&mode=two&scenario=tools/out/audit/review-fxaudio/s7_trail.js&duration=1.6
+[result] {
+ "done": true,
+ "started": true,
+ "t": 1.72,
+ "frames": 122,
+ "fps": {
+  "avg": 64.8,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 136,
+  "triangles": 37680,
+  "geometries": 128,
+  "textures": 119,
+  "programs": 97
+ },
+ "custom": {
+  "mode": "two",
+  "samples": [
+   0,
+   13,
+   37,
+   61,
+   85,
+   109,
+   133,
+   157,
+   181,
+   205,
+   229,
+   253,
+   277,
+   301,
+   325,
+   349,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449,
+   449
+  ],
+  "rockets": 0
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

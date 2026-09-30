@@ -1,0 +1,74 @@
+[run] http://127.0.0.1:55310/index.html?autotest=1&map=sandbox&bots=0&god=1&script=idle&n=8&scenario=tools/out/audit/review-fxaudio/s4_pool.js&duration=6
+[result] {
+ "done": true,
+ "started": true,
+ "t": 6.06,
+ "frames": 197,
+ "fps": {
+  "avg": 30.3,
+  "min": 4,
+  "max": 82.6
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 134,
+  "triangles": 36926,
+  "geometries": 128,
+  "textures": 119,
+  "programs": 97
+ },
+ "custom": {
+  "N": 8,
+  "smokeDropped": 337,
+  "glowDropped": 0,
+  "maxSmoke": 1200,
+  "maxGlow": 744,
+  "rocketsLeft": 0,
+  "stress": {
+   "before": {
+    "smoke": 1001,
+    "sd": 0,
+    "gd": 0
+   },
+   "after": {
+    "smoke": 1051,
+    "sd": 0,
+    "gd": 0
+   }
+  },
+  "final": {
+   "smoke": 0,
+   "glow": 0,
+   "tracers": 0,
+   "decals": 14,
+   "gibs": 0,
+   "dropped": 337
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

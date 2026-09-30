@@ -1,0 +1,165 @@
+[run] http://127.0.0.1:62011/index.html?autotest=1&mapfile=tools/out/audit/design-depth/aerie_proto2.js&bots=7&script=idle&scenario=tools/out/audit/design-depth/sim2.js&duration=75&diff=hard&quality=low
+[log] [autotest] finished {"ok":true,"errors":0,"fps":93.5}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 75.41,
+ "frames": 5157,
+ "fps": {
+  "avg": 93.5,
+  "min": 4,
+  "max": 294.1
+ },
+ "errors": [],
+ "map": "aerie2",
+ "player": {
+  "distance": 62,
+  "maxSpeed": 12.5,
+  "minY": 0,
+  "maxY": 7.233866484825377,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 4,
+   "deaths": 5,
+   "health": 53,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 341.6,
+   "pos": [
+    -10.9,
+    0,
+    -36.3
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 7,
+   "deaths": 7,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 346.1,
+   "pos": [
+    -2.5,
+    5,
+    48.6
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 5,
+   "deaths": 5,
+   "health": 13,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 364.4,
+   "pos": [
+    -28.2,
+    0,
+    -18.7
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 8,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 350.3,
+   "pos": [
+    -6,
+    0,
+    41.3
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 4,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 207.3,
+   "pos": [
+    52.4,
+    5,
+    1.9
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 3,
+   "deaths": 6,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 364.6,
+   "pos": [
+    29.6,
+    0,
+    17.1
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 5,
+   "deaths": 6,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 373.5,
+   "pos": [
+    -48.7,
+    5,
+    2.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 208,
+  "death": 39,
+  "spawn": 46,
+  "pickup": 12,
+  "fire": 768
+ },
+ "renderer": {
+  "calls": 162,
+  "triangles": 39568,
+  "geometries": 215,
+  "textures": 101,
+  "programs": 74
+ },
+ "custom": {
+  "deaths": {
+   "rocket": 3,
+   "pistol": 14,
+   "rifle": 19,
+   "sniper": 2,
+   "grenade": 1
+  },
+  "falls": [],
+  "total": 39
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

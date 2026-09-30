@@ -1,0 +1,78 @@
+[run] http://127.0.0.1:52569/index.html?autotest=1&map=sandbox&bots=0&god=1&script=idle&mode=grenade&hide=0&scenario=tools/out/audit/verify-fxaudio-2/v1_decal.js&duration=9
+[log] [autotest] finished {"ok":true,"errors":0,"fps":25.4}
+[run] screenshot -> tools\out\audit\verify-fxaudio-2\v1_gren_h0.png
+[result] {
+ "done": true,
+ "started": true,
+ "t": 9.79,
+ "frames": 275,
+ "fps": {
+  "avg": 25.4,
+  "min": 4,
+  "max": 82.6
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 137,
+  "triangles": 36956,
+  "geometries": 124,
+  "textures": 119,
+  "programs": 96
+ },
+ "custom": {
+  "mode": "grenade",
+  "hide": false,
+  "decals": [
+   {
+    "i": 150,
+    "scorch": true,
+    "pos": [
+     10,
+     4.88,
+     20
+    ],
+    "n": [
+     0,
+     1,
+     0
+    ],
+    "size": 8.96,
+    "onSurface": false
+   }
+  ],
+  "stats": {
+   "smoke": 0,
+   "glow": 0,
+   "tracers": 0,
+   "decals": 1,
+   "gibs": 0,
+   "dropped": 0
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

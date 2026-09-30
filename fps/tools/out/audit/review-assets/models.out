@@ -1,0 +1,1534 @@
+[run] http://127.0.0.1:55122/tools/out/audit/review-assets/models.html
+[result] {
+ "pistol:world": {
+  "ms": 911,
+  "triangles": 626,
+  "actualTris": 626,
+  "bbox": [
+   [
+    -0.018,
+    -0.116,
+    -0.161
+   ],
+   [
+    0.018,
+    0.083,
+    0.072
+   ]
+  ],
+  "parts": {},
+  "muzzle": [
+   0,
+   0.052,
+   -0.162
+  ],
+  "sight": [
+   0,
+   0.0835,
+   0.056
+  ],
+  "eject": [
+   0.016,
+   0.062,
+   -0.004
+  ],
+  "hip": [
+   0.095,
+   -0.1,
+   -0.3
+  ],
+  "adsDistance": 0.2,
+  "inspect": {
+   "meshes": 8,
+   "nan": 0,
+   "missingAttr": [],
+   "inverted": 0,
+   "totalTris": 626,
+   "badNormal": 0,
+   "noColorWithVC": 0,
+   "transparentMeshes": 1,
+   "matNames": [
+    "body:poly",
+    "body:grip",
+    "body:paintGreen",
+    "body:steelBlack",
+    "body:steel",
+    "body:glowGreen",
+    "body:custom:902caf8d-2d7d-4cc1-ae7f-987b91b3b122",
+    "body:steelDark"
+   ],
+   "degenerate": 0
+  }
+ },
+ "pistol:view": {
+  "ms": 87,
+  "triangles": 2368,
+  "actualTris": 2368,
+  "bbox": [
+   [
+    -0.163,
+    -0.331,
+    -0.162
+   ],
+   [
+    0.174,
+    0.083,
+    0.52
+   ]
+  ],
+  "parts": {
+   "slide": {
+    "pos": [
+     0,
+     0.05,
+     -0.04
+    ],
+    "parent": "weapon_pistol_view",
+    "meshes": 6,
+    "bb": [
+     [
+      -0.016,
+      0.027,
+      -0.162
+     ],
+     [
+      0.016,
+      0.083,
+      0.072
+     ]
+    ]
+   },
+   "trigger": {
+    "pos": [
+     0,
+     0,
+     -0.052
+    ],
+    "parent": "weapon_pistol_view",
+    "meshes": 1,
+    "bb": [
+     [
+      -0.003,
+      -0.026,
+      -0.058
+     ],
+     [
+      0.003,
+      0.005,
+      -0.045
+     ]
+    ]
+   },
+   "mag": {
+    "pos": [
+     0,
+     -0.0439,
+     0.0025
+    ],
+    "parent": "weapon_pistol_view",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.017,
+      -0.115,
+      -0.028
+     ],
+     [
+      0.017,
+      0.021,
+      0.04
+     ]
+    ]
+   },
+   "rightArm": {
+    "pos": [
+     0.14,
+     -0.3,
+     0.5
+    ],
+    "parent": "weapon_pistol_view",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.037,
+      -0.331,
+      -0.054
+     ],
+     [
+      0.174,
+      0.032,
+      0.52
+     ]
+    ]
+   },
+   "rightHand": {
+    "pos": [
+     -0.1465,
+     0.2683,
+     -0.4655
+    ],
+    "parent": "rightArm",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.033,
+      -0.082,
+      -0.054
+     ],
+     [
+      0.047,
+      0.032,
+      0.056
+     ]
+    ]
+   },
+   "leftArm": {
+    "pos": [
+     -0.13,
+     -0.28,
+     0.48
+    ],
+    "parent": "weapon_pistol_view",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.163,
+      -0.312,
+      -0.058
+     ],
+     [
+      0.017,
+      0.007,
+      0.499
+     ]
+    ]
+   },
+   "leftHand": {
+    "pos": [
+     0.116,
+     0.225,
+     -0.4317
+    ],
+    "parent": "leftArm",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.055,
+      -0.111,
+      -0.058
+     ],
+     [
+      0.017,
+      0.007,
+      0.066
+     ]
+    ]
+   }
+  },
+  "muzzle": [
+   0,
+   0.052,
+   -0.162
+  ],
+  "sight": [
+   0,
+   0.0835,
+   0.056
+  ],
+  "eject": [
+   0.016,
+   0.062,
+   -0.004
+  ],
+  "hip": [
+   0.095,
+   -0.1,
+   -0.3
+  ],
+  "adsDistance": 0.2,
+  "inspect": {
+   "meshes": 30,
+   "nan": 0,
+   "missingAttr": [],
+   "inverted": 0,
+   "totalTris": 2368,
+   "badNormal": 0,
+   "noColorWithVC": 0,
+   "transparentMeshes": 2,
+   "matNames": [
+    "body:poly",
+    "body:grip",
+    "body:paintGreen",
+    "body:steelBlack",
+    "body:glowCyan",
+    "body:void",
+    "body:steelDark",
+    "body:custom:fe2acff0-841e-403e-aa39-e3d3cabf73d3",
+    "slide:steel",
+    "slide:void",
+    "slide:glowGreen",
+    "slide:custom:902caf8d-2d7d-4cc1-ae7f-987b91b3b122",
+    "slide:steelBlack",
+    "slide:steelDark",
+    "trigger:paintGreen",
+    "mag:steelDark",
+    "mag:paintGreen",
+    "mag:glowGreen",
+    "rightArm:armor",
+    "rightArm:glowArm",
+    "rightArm:sleeve",
+    "rightHand:glove",
+    "rightHand:armor",
+    "rightHand:glowArm",
+    "leftArm:armor",
+    "leftArm:glowArm",
+    "leftArm:sleeve",
+    "leftHand:glove",
+    "leftHand:armor",
+    "leftHand:glowArm"
+   ],
+   "degenerate": 0
+  }
+ },
+ "rifle:world": {
+  "ms": 44,
+  "triangles": 882,
+  "actualTris": 882,
+  "bbox": [
+   [
+    -0.037,
+    -0.118,
+    -0.605
+   ],
+   [
+    0.031,
+    0.176,
+    0.358
+   ]
+  ],
+  "parts": {},
+  "muzzle": [
+   0,
+   0.098,
+   -0.615
+  ],
+  "sight": [
+   0,
+   0.1565,
+   -0.06
+  ],
+  "eject": [
+   0.026,
+   0.103,
+   -0.035
+  ],
+  "hip": [
+   0.14,
+   -0.19,
+   -0.4
+  ],
+  "adsDistance": 0.21,
+  "inspect": {
+   "meshes": 14,
+   "nan": 0,
+   "missingAttr": [],
+   "inverted": 0,
+   "totalTris": 882,
+   "badNormal": 0,
+   "noColorWithVC": 0,
+   "transparentMeshes": 3,
+   "matNames": [
+    "body:steelDark",
+    "body:steel",
+    "body:rail",
+    "body:cellBody",
+    "body:steelBlack",
+    "body:polyGrey",
+    "body:glowCyan",
+    "body:void",
+    "body:custom:b3261f22-92f4-4ff1-b815-5169816ed101",
+    "body:poly",
+    "body:grip",
+    "body:paintCyan",
+    "body:lens",
+    "body:reticleRing"
+   ],
+   "degenerate": 0
+  }
+ },
+ "rifle:view": {
+  "ms": 65,
+  "triangles": 3632,
+  "actualTris": 3632,
+  "bbox": [
+   [
+    -0.552,
+    -0.353,
+    -0.606
+   ],
+   [
+    0.371,
+    0.176,
+    0.526
+   ]
+  ],
+  "parts": {
+   "trigger": {
+    "pos": [
+     0,
+     0.028,
+     -0.032
+    ],
+    "parent": "weapon_rifle_view",
+    "meshes": 1,
+    "bb": [
+     [
+      -0.003,
+      -0.003,
+      -0.039
+     ],
+     [
+      0.003,
+      0.028,
+      -0.026
+     ]
+    ]
+   },
+   "mag": {
+    "pos": [
+     0,
+     -0.03,
+     -0.078
+    ],
+    "parent": "weapon_rifle_view",
+    "meshes": 4,
+    "bb": [
+     [
+      -0.016,
+      -0.109,
+      -0.122
+     ],
+     [
+      0.016,
+      0.038,
+      -0.048
+     ]
+    ]
+   },
+   "bolt": {
+    "pos": [
+     0,
+     0.1,
+     0
+    ],
+    "parent": "weapon_rifle_view",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.037,
+      0.097,
+      -0.051
+     ],
+     [
+      0.024,
+      0.111,
+      0.067
+     ]
+    ]
+   },
+   "rightArm": {
+    "pos": [
+     0.34,
+     -0.32,
+     0.5
+    ],
+    "parent": "weapon_rifle_view",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.039,
+      -0.353,
+      -0.05
+     ],
+     [
+      0.371,
+      0.073,
+      0.526
+     ]
+    ]
+   },
+   "rightHand": {
+    "pos": [
+     -0.3477,
+     0.3005,
+     -0.4691
+    ],
+    "parent": "rightArm",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.036,
+      -0.076,
+      -0.05
+     ],
+     [
+      0.048,
+      0.073,
+      0.055
+     ]
+    ]
+   },
+   "leftArm": {
+    "pos": [
+     -0.52,
+     -0.24,
+     0.42
+    ],
+    "parent": "weapon_rifle_view",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.552,
+      -0.274,
+      -0.421
+     ],
+     [
+      0.046,
+      0.135,
+      0.443
+     ]
+    ]
+   },
+   "leftHand": {
+    "pos": [
+     0.4792,
+     0.3252,
+     -0.738
+    ],
+    "parent": "leftArm",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.057,
+      0.036,
+      -0.421
+     ],
+     [
+      0.046,
+      0.135,
+      -0.281
+     ]
+    ]
+   }
+  },
+  "muzzle": [
+   0,
+   0.098,
+   -0.615
+  ],
+  "sight": [
+   0,
+   0.1565,
+   -0.06
+  ],
+  "eject": [
+   0.026,
+   0.103,
+   -0.035
+  ],
+  "hip": [
+   0.14,
+   -0.19,
+   -0.4
+  ],
+  "adsDistance": 0.21,
+  "inspect": {
+   "meshes": 35,
+   "nan": 0,
+   "missingAttr": [],
+   "inverted": 0,
+   "totalTris": 3632,
+   "badNormal": 0,
+   "noColorWithVC": 0,
+   "transparentMeshes": 4,
+   "matNames": [
+    "body:steelDark",
+    "body:steel",
+    "body:rail",
+    "body:steelBlack",
+    "body:void",
+    "body:paintCyan",
+    "body:glowCyan",
+    "body:cellBody",
+    "body:polyGrey",
+    "body:custom:b3261f22-92f4-4ff1-b815-5169816ed101",
+    "body:poly",
+    "body:grip",
+    "body:lens",
+    "body:reticleRing",
+    "body:custom:768a290b-66be-4de6-a333-9592c52df8d6",
+    "trigger:paintCyan",
+    "mag:poly",
+    "mag:paintCyan",
+    "mag:cellBody",
+    "mag:steelDark",
+    "bolt:steelBlack",
+    "bolt:paintCyan",
+    "bolt:steelDark",
+    "rightArm:armor",
+    "rightArm:glowArm",
+    "rightArm:sleeve",
+    "rightHand:glove",
+    "rightHand:armor",
+    "rightHand:glowArm",
+    "leftArm:armor",
+    "leftArm:glowArm",
+    "leftArm:sleeve",
+    "leftHand:glove",
+    "leftHand:armor",
+    "leftHand:glowArm"
+   ],
+   "degenerate": 0
+  }
+ },
+ "shotgun:world": {
+  "ms": 23,
+  "triangles": 1126,
+  "actualTris": 1126,
+  "bbox": [
+   [
+    -0.03,
+    -0.112,
+    -0.643
+   ],
+   [
+    0.03,
+    0.14,
+    0.372
+   ]
+  ],
+  "parts": {},
+  "muzzle": [
+   0,
+   0.095,
+   -0.64
+  ],
+  "sight": [
+   0,
+   0.131,
+   0.05
+  ],
+  "eject": [
+   0.024,
+   0.098,
+   -0.02
+  ],
+  "hip": [
+   0.14,
+   -0.19,
+   -0.4
+  ],
+  "adsDistance": 0.17,
+  "inspect": {
+   "meshes": 10,
+   "nan": 0,
+   "missingAttr": [],
+   "inverted": 0,
+   "totalTris": 1126,
+   "badNormal": 0,
+   "noColorWithVC": 0,
+   "transparentMeshes": 1,
+   "matNames": [
+    "body:steel",
+    "body:paintOrange",
+    "body:steelBlack",
+    "body:custom:cc6296df-d6b2-4710-8d22-60c9f6ff80ee",
+    "body:steelDark",
+    "body:void",
+    "body:poly",
+    "body:wood",
+    "body:rubber",
+    "body:glowOrange"
+   ],
+   "degenerate": 0
+  }
+ },
+ "shotgun:view": {
+  "ms": 28,
+  "triangles": 3476,
+  "actualTris": 3476,
+  "bbox": [
+   [
+    -0.551,
+    -0.353,
+    -0.643
+   ],
+   [
+    0.371,
+    0.14,
+    0.526
+   ]
+  ],
+  "parts": {
+   "trigger": {
+    "pos": [
+     0,
+     0.044,
+     -0.034
+    ],
+    "parent": "weapon_shotgun_view",
+    "meshes": 1,
+    "bb": [
+     [
+      -0.003,
+      0.013,
+      -0.041
+     ],
+     [
+      0.003,
+      0.043,
+      -0.027
+     ]
+    ]
+   },
+   "pump": {
+    "pos": [
+     0,
+     0.062,
+     -0.27
+    ],
+    "parent": "weapon_shotgun_view",
+    "meshes": 4,
+    "bb": [
+     [
+      -0.03,
+      0.032,
+      -0.354
+     ],
+     [
+      0.03,
+      0.09,
+      -0.1
+     ]
+    ]
+   },
+   "rightArm": {
+    "pos": [
+     0.34,
+     -0.32,
+     0.5
+    ],
+    "parent": "weapon_shotgun_view",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.038,
+      -0.353,
+      -0.042
+     ],
+     [
+      0.371,
+      0.078,
+      0.526
+     ]
+    ]
+   },
+   "rightHand": {
+    "pos": [
+     -0.3472,
+     0.2998,
+     -0.4682
+    ],
+    "parent": "rightArm",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.037,
+      -0.072,
+      -0.042
+     ],
+     [
+      0.049,
+      0.078,
+      0.054
+     ]
+    ]
+   },
+   "leftArm": {
+    "pos": [
+     -0.52,
+     -0.24,
+     0.42
+    ],
+    "parent": "weapon_shotgun_view",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.551,
+      -0.274,
+      -0.367
+     ],
+     [
+      0.043,
+      0.096,
+      0.443
+     ]
+    ]
+   },
+   "leftHand": {
+    "pos": [
+     0.4822,
+     0.3007,
+     -0.688
+    ],
+    "parent": "leftArm",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.055,
+      0.006,
+      -0.367
+     ],
+     [
+      0.043,
+      0.096,
+      -0.231
+     ]
+    ]
+   }
+  },
+  "muzzle": [
+   0,
+   0.095,
+   -0.64
+  ],
+  "sight": [
+   0,
+   0.131,
+   0.05
+  ],
+  "eject": [
+   0.024,
+   0.098,
+   -0.02
+  ],
+  "hip": [
+   0.14,
+   -0.19,
+   -0.4
+  ],
+  "adsDistance": 0.17,
+  "inspect": {
+   "meshes": 28,
+   "nan": 0,
+   "missingAttr": [],
+   "inverted": 0,
+   "totalTris": 3476,
+   "badNormal": 0,
+   "noColorWithVC": 0,
+   "transparentMeshes": 2,
+   "matNames": [
+    "body:steel",
+    "body:paintOrange",
+    "body:steelBlack",
+    "body:glowOrange",
+    "body:custom:cc6296df-d6b2-4710-8d22-60c9f6ff80ee",
+    "body:steelDark",
+    "body:void",
+    "body:custom:ca7fc00f-2d26-4ee0-8815-d9a9bd3205e2",
+    "body:poly",
+    "body:wood",
+    "body:rubber",
+    "trigger:paintOrange",
+    "pump:wood",
+    "pump:steelDark",
+    "pump:glowOrange",
+    "pump:void",
+    "rightArm:armor",
+    "rightArm:glowArm",
+    "rightArm:sleeve",
+    "rightHand:glove",
+    "rightHand:armor",
+    "rightHand:glowArm",
+    "leftArm:armor",
+    "leftArm:glowArm",
+    "leftArm:sleeve",
+    "leftHand:glove",
+    "leftHand:armor",
+    "leftHand:glowArm"
+   ],
+   "degenerate": 0
+  }
+ },
+ "sniper:world": {
+  "ms": 33,
+  "triangles": 1176,
+  "actualTris": 1176,
+  "bbox": [
+   [
+    -0.079,
+    -0.099,
+    -0.871
+   ],
+   [
+    0.031,
+    0.209,
+    0.422
+   ]
+  ],
+  "parts": {},
+  "muzzle": [
+   0,
+   0.1,
+   -0.87
+  ],
+  "sight": [
+   0,
+   0.176,
+   0.155
+  ],
+  "eject": [
+   0.026,
+   0.108,
+   0
+  ],
+  "hip": [
+   0.17,
+   -0.245,
+   -0.52
+  ],
+  "adsDistance": 0.11,
+  "inspect": {
+   "meshes": 13,
+   "nan": 0,
+   "missingAttr": [],
+   "inverted": 0,
+   "totalTris": 1176,
+   "badNormal": 0,
+   "noColorWithVC": 0,
+   "transparentMeshes": 3,
+   "matNames": [
+    "body:steelBlack",
+    "body:rail",
+    "body:void",
+    "body:paintTan",
+    "body:custom:ef0392ca-3010-4706-b5ac-e333f9ffe485",
+    "body:glowViolet",
+    "body:polyTan",
+    "body:steel",
+    "body:steelDark",
+    "body:lensDark",
+    "body:paintViolet",
+    "body:custom:20298296-a204-4ae4-8855-28bdf6e0512b",
+    "body:grip"
+   ],
+   "degenerate": 0
+  }
+ },
+ "sniper:view": {
+  "ms": 22,
+  "triangles": 3884,
+  "actualTris": 3884,
+  "bbox": [
+   [
+    -0.551,
+    -0.372,
+    -0.871
+   ],
+   [
+    0.352,
+    0.209,
+    0.526
+   ]
+  ],
+  "parts": {
+   "trigger": {
+    "pos": [
+     0,
+     0.054,
+     -0.038
+    ],
+    "parent": "weapon_sniper_view",
+    "meshes": 1,
+    "bb": [
+     [
+      -0.003,
+      0.023,
+      -0.045
+     ],
+     [
+      0.003,
+      0.053,
+      -0.031
+     ]
+    ]
+   },
+   "mag": {
+    "pos": [
+     0,
+     0.05,
+     -0.09
+    ],
+    "parent": "weapon_sniper_view",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.018,
+      -0.053,
+      -0.125
+     ],
+     [
+      0.018,
+      0.045,
+      -0.055
+     ]
+    ]
+   },
+   "bolt": {
+    "pos": [
+     0,
+     0.1,
+     0.02
+    ],
+    "parent": "weapon_sniper_view",
+    "meshes": 4,
+    "bb": [
+     [
+      -0.079,
+      0.065,
+      0.023
+     ],
+     [
+      0.014,
+      0.115,
+      0.136
+     ]
+    ]
+   },
+   "rightArm": {
+    "pos": [
+     0.32,
+     -0.34,
+     0.5
+    ],
+    "parent": "weapon_sniper_view",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.038,
+      -0.372,
+      -0.046
+     ],
+     [
+      0.352,
+      0.082,
+      0.526
+     ]
+    ]
+   },
+   "rightHand": {
+    "pos": [
+     -0.3272,
+     0.3271,
+     -0.4686
+    ],
+    "parent": "rightArm",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.036,
+      -0.067,
+      -0.046
+     ],
+     [
+      0.049,
+      0.082,
+      0.055
+     ]
+    ]
+   },
+   "leftArm": {
+    "pos": [
+     -0.52,
+     -0.24,
+     0.42
+    ],
+    "parent": "weapon_sniper_view",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.551,
+      -0.274,
+      -0.37
+     ],
+     [
+      0.044,
+      0.114,
+      0.443
+     ]
+    ]
+   },
+   "leftHand": {
+    "pos": [
+     0.4812,
+     0.3142,
+     -0.69
+    ],
+    "parent": "leftArm",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.055,
+      0.022,
+      -0.37
+     ],
+     [
+      0.044,
+      0.114,
+      -0.233
+     ]
+    ]
+   }
+  },
+  "muzzle": [
+   0,
+   0.1,
+   -0.87
+  ],
+  "sight": [
+   0,
+   0.176,
+   0.155
+  ],
+  "eject": [
+   0.026,
+   0.108,
+   0
+  ],
+  "hip": [
+   0.17,
+   -0.245,
+   -0.52
+  ],
+  "adsDistance": 0.11,
+  "inspect": {
+   "meshes": 34,
+   "nan": 0,
+   "missingAttr": [],
+   "inverted": 0,
+   "totalTris": 3884,
+   "badNormal": 0,
+   "noColorWithVC": 0,
+   "transparentMeshes": 3,
+   "matNames": [
+    "body:steelBlack",
+    "body:rail",
+    "body:void",
+    "body:paintTan",
+    "body:custom:ef0392ca-3010-4706-b5ac-e333f9ffe485",
+    "body:glowViolet",
+    "body:steelDark",
+    "body:polyTan",
+    "body:steel",
+    "body:rubber",
+    "body:lensDark",
+    "body:paintViolet",
+    "body:custom:20298296-a204-4ae4-8855-28bdf6e0512b",
+    "body:grip",
+    "trigger:paintViolet",
+    "mag:steelDark",
+    "mag:paintViolet",
+    "mag:void",
+    "bolt:steelDark",
+    "bolt:steelBlack",
+    "bolt:paintViolet",
+    "bolt:glowViolet",
+    "rightArm:armor",
+    "rightArm:glowArm",
+    "rightArm:sleeve",
+    "rightHand:glove",
+    "rightHand:armor",
+    "rightHand:glowArm",
+    "leftArm:armor",
+    "leftArm:glowArm",
+    "leftArm:sleeve",
+    "leftHand:glove",
+    "leftHand:armor",
+    "leftHand:glowArm"
+   ],
+   "degenerate": 0
+  }
+ },
+ "rocket:world": {
+  "ms": 64,
+  "triangles": 932,
+  "actualTris": 932,
+  "bbox": [
+   [
+    -0.079,
+    -0.096,
+    -0.723
+   ],
+   [
+    0.079,
+    0.223,
+    0.375
+   ]
+  ],
+  "parts": {},
+  "muzzle": [
+   0,
+   0.118,
+   -0.56
+  ],
+  "sight": [
+   0,
+   0.206,
+   -0.02
+  ],
+  "eject": null,
+  "hip": [
+   0.19,
+   -0.245,
+   -0.5
+  ],
+  "adsDistance": 0.2,
+  "inspect": {
+   "meshes": 18,
+   "nan": 0,
+   "missingAttr": [],
+   "inverted": 0,
+   "totalTris": 932,
+   "badNormal": 0,
+   "noColorWithVC": 0,
+   "transparentMeshes": 4,
+   "matNames": [
+    "body:paintOlive",
+    "body:steelBlack",
+    "body:void",
+    "body:glowOrange",
+    "body:steelDark",
+    "body:hazard",
+    "body:custom:0a76d3c1-3494-4018-a526-fd543da9af57",
+    "body:custom:717c2a70-6961-408a-9caa-f3dcca697a0b",
+    "body:rail",
+    "body:polyGrey",
+    "body:lens",
+    "body:reticleRing",
+    "body:glowRed",
+    "body:glowGreen",
+    "body:poly",
+    "body:grip",
+    "body:paintOrange",
+    "body:rubber"
+   ],
+   "degenerate": 24
+  }
+ },
+ "rocket:view": {
+  "ms": 21,
+  "triangles": 3262,
+  "actualTris": 3262,
+  "bbox": [
+   [
+    -0.53,
+    -0.372,
+    -0.723
+   ],
+   [
+    0.352,
+    0.223,
+    0.526
+   ]
+  ],
+  "parts": {
+   "trigger": {
+    "pos": [
+     0,
+     0.034,
+     -0.038
+    ],
+    "parent": "weapon_rocket_view",
+    "meshes": 1,
+    "bb": [
+     [
+      -0.003,
+      0.005,
+      -0.045
+     ],
+     [
+      0.003,
+      0.035,
+      -0.031
+     ]
+    ]
+   },
+   "mag": {
+    "pos": [
+     0,
+     0.118,
+     -0.5
+    ],
+    "parent": "weapon_rocket_view",
+    "meshes": 2,
+    "bb": [
+     [
+      -0.051,
+      0.067,
+      -0.723
+     ],
+     [
+      0.051,
+      0.169,
+      -0.525
+     ]
+    ]
+   },
+   "rightArm": {
+    "pos": [
+     0.32,
+     -0.34,
+     0.5
+    ],
+    "parent": "weapon_rocket_view",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.038,
+      -0.372,
+      -0.042
+     ],
+     [
+      0.352,
+      0.084,
+      0.526
+     ]
+    ]
+   },
+   "rightHand": {
+    "pos": [
+     -0.3272,
+     0.3258,
+     -0.4682
+    ],
+    "parent": "rightArm",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.037,
+      -0.066,
+      -0.042
+     ],
+     [
+      0.049,
+      0.084,
+      0.054
+     ]
+    ]
+   },
+   "leftArm": {
+    "pos": [
+     -0.5,
+     -0.24,
+     0.4
+    ],
+    "parent": "weapon_rocket_view",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.53,
+      -0.275,
+      -0.337
+     ],
+     [
+      0.041,
+      0.055,
+      0.422
+     ]
+    ]
+   },
+   "leftHand": {
+    "pos": [
+     0.5104,
+     0.2195,
+     -0.6687
+    ],
+    "parent": "leftArm",
+    "meshes": 3,
+    "bb": [
+     [
+      -0.05,
+      -0.058,
+      -0.337
+     ],
+     [
+      0.035,
+      0.055,
+      -0.252
+     ]
+    ]
+   },
+   "rocket": {
+    "pos": [
+     0,
+     0.118,
+     -0.5
+    ],
+    "parent": "weapon_rocket_view",
+    "meshes": 2,
+    "bb": [
+     [
+      -0.051,
+      0.067,
+      -0.723
+     ],
+     [
+      0.051,
+      0.169,
+      -0.525
+     ]
+    ]
+   }
+  },
+  "muzzle": [
+   0,
+   0.118,
+   -0.56
+  ],
+  "sight": [
+   0,
+   0.206,
+   -0.02
+  ],
+  "eject": null,
+  "hip": [
+   0.19,
+   -0.245,
+   -0.5
+  ],
+  "adsDistance": 0.2,
+  "inspect": {
+   "meshes": 34,
+   "nan": 0,
+   "missingAttr": [],
+   "inverted": 0,
+   "totalTris": 3262,
+   "badNormal": 0,
+   "noColorWithVC": 0,
+   "transparentMeshes": 5,
+   "matNames": [
+    "body:paintOlive",
+    "body:steelBlack",
+    "body:void",
+    "body:glowOrange",
+    "body:steelDark",
+    "body:hazard",
+    "body:custom:0a76d3c1-3494-4018-a526-fd543da9af57",
+    "body:custom:717c2a70-6961-408a-9caa-f3dcca697a0b",
+    "body:rail",
+    "body:polyGrey",
+    "body:lens",
+    "body:reticleRing",
+    "body:glowRed",
+    "body:custom:768a290b-66be-4de6-a333-9592c52df8d6",
+    "body:glowGreen",
+    "body:glowAmber",
+    "body:poly",
+    "body:grip",
+    "body:rubber",
+    "trigger:paintOrange",
+    "mag:paintOlive",
+    "mag:glowRed",
+    "rightArm:armor",
+    "rightArm:glowArm",
+    "rightArm:sleeve",
+    "rightHand:glove",
+    "rightHand:armor",
+    "rightHand:glowArm",
+    "leftArm:armor",
+    "leftArm:glowArm",
+    "leftArm:sleeve",
+    "leftHand:glove",
+    "leftHand:armor",
+    "leftHand:glowArm"
+   ],
+   "degenerate": 24
+  }
+ },
+ "sharing": {
+  "sharedGeo": true,
+  "sharedMat": true,
+  "sepGroups": true,
+  "meshes": 35
+ },
+ "unknown": "throws: createWeaponModel: unknown weapon \"laser\"",
+ "unknownGrenade": "throws: createWeaponModel: unknown weapon \"grenade\"",
+ "grenade": {
+  "tris": 572,
+  "size": [
+   0.0803999975323677,
+   0.11789098754525185,
+   0.0850822813808918
+  ],
+  "center": [
+   0,
+   0.012945493683218956,
+   0.002341141924262047
+  ],
+  "inspect": {
+   "meshes": 6,
+   "nan": 0,
+   "missingAttr": [],
+   "inverted": 0,
+   "totalTris": 572,
+   "badNormal": 0,
+   "noColorWithVC": 0,
+   "transparentMeshes": 0,
+   "matNames": [
+    "body:frag",
+    "body:glowOrange",
+    "body:steelDark",
+    "body:steel",
+    "body:steelBlack",
+    "body:glowGreen"
+   ],
+   "degenerate": 24
+  }
+ },
+ "rocket": {
+  "tris": 490,
+  "size": [
+   0.20160000026226044,
+   0.20160000026226044,
+   0.773794236779213
+  ],
+  "center": [
+   0,
+   0,
+   0.2131028935313225
+  ],
+  "flame": true,
+  "inspect": {
+   "meshes": 12,
+   "nan": 0,
+   "missingAttr": [],
+   "inverted": 0,
+   "totalTris": 490,
+   "badNormal": 0,
+   "noColorWithVC": 0,
+   "transparentMeshes": 5,
+   "matNames": [
+    "body:paintOlive",
+    "body:steelBlack",
+    "body:glowRed",
+    "body:hazard",
+    "body:paintOrange",
+    "body:glowOrange",
+    "body:steelDark",
+    ""
+   ],
+   "degenerate": 10
+  }
+ }
+}
+[run] done: wait=ok console_errors=0 warnings=0

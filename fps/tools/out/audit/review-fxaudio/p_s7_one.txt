@@ -1,0 +1,42 @@
+[run] http://127.0.0.1:60344/index.html?autotest=1&map=sandbox&bots=0&god=1&script=idle&mode=one&scenario=tools/out/audit/review-fxaudio/s7_trail.js&duration=1.6
+[error] Failed to load resource: the server responded with a status of 404 (File not found) [http://127.0.0.1:60344/tools/out/audit/review-fxaudio/s7_trail.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:60344/tools/out/audit/review-fxaudio/s7_trail.js
+[error] [run] timed out after 200s waiting for: window.__TEST__ && window.__TEST__.done
+[result] {
+ "done": false,
+ "started": false,
+ "t": 0,
+ "frames": 7827,
+ "fps": {
+  "avg": 0,
+  "min": 1000000000,
+  "max": 0
+ },
+ "errors": [
+  "TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:60344/tools/out/audit/review-fxaudio/s7_trail.js"
+ ],
+ "map": null,
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 0,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "errorCount": 1
+}
+[run] done: wait=TIMEOUT console_errors=3 warnings=0

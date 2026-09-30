@@ -1,0 +1,515 @@
+[run] http://127.0.0.1:49218/tools/out/audit/review-assets/uvseam.html
+[result] {
+ "pistol:view body:steelDark": {
+  "bad": 6,
+  "tot": 104,
+  "worstStretch": 48.3,
+  "badAreaCm2": 0.1,
+  "areaCm2": 4.8
+ },
+ "pistol:view body:custom:e7bfdc59-2c97-4b3f-a499-e8f1ff724e58": {
+  "bad": 2,
+  "tot": 2,
+  "worstStretch": 5.5,
+  "badAreaCm2": 2.02,
+  "areaCm2": 2
+ },
+ "pistol:view slide:steel": {
+  "bad": 2,
+  "tot": 132,
+  "worstStretch": 8.7,
+  "badAreaCm2": 0.71,
+  "areaCm2": 337.6
+ },
+ "pistol:view slide:void": {
+  "bad": 2,
+  "tot": 152,
+  "worstStretch": 51.7,
+  "badAreaCm2": 0.03,
+  "areaCm2": 135.7
+ },
+ "pistol:view rightArm:glowArm": {
+  "bad": 2,
+  "tot": 52,
+  "worstStretch": 6.9,
+  "badAreaCm2": 1.92,
+  "areaCm2": 28.3
+ },
+ "pistol:view leftArm:glowArm": {
+  "bad": 2,
+  "tot": 52,
+  "worstStretch": 6.9,
+  "badAreaCm2": 1.92,
+  "areaCm2": 28.3
+ },
+ "pistol:world body:steel": {
+  "bad": 2,
+  "tot": 132,
+  "worstStretch": 8.7,
+  "badAreaCm2": 0.71,
+  "areaCm2": 337.6
+ },
+ "rifle:view body:steelDark": {
+  "bad": 18,
+  "tot": 496,
+  "worstStretch": 43.5,
+  "badAreaCm2": 1.37,
+  "areaCm2": 936.2
+ },
+ "rifle:view body:steelBlack": {
+  "bad": 2,
+  "tot": 388,
+  "worstStretch": 6.3,
+  "badAreaCm2": 2.16,
+  "areaCm2": 397.4
+ },
+ "rifle:view body:void": {
+  "bad": 2,
+  "tot": 116,
+  "worstStretch": 33,
+  "badAreaCm2": 0.05,
+  "areaCm2": 168
+ },
+ "rifle:view body:glowCyan": {
+  "bad": 2,
+  "tot": 136,
+  "worstStretch": 15.6,
+  "badAreaCm2": 0.48,
+  "areaCm2": 67.6
+ },
+ "rifle:view body:lens": {
+  "bad": 2,
+  "tot": 2,
+  "worstStretch": 4.8,
+  "badAreaCm2": 8.72,
+  "areaCm2": 8.7
+ },
+ "rifle:view body:reticleRing": {
+  "bad": 2,
+  "tot": 2,
+  "worstStretch": 5.1,
+  "badAreaCm2": 7.84,
+  "areaCm2": 7.8
+ },
+ "rifle:view body:custom:e76dc5fd-aa5b-4eb4-81b4-dcca226065ec": {
+  "bad": 2,
+  "tot": 2,
+  "worstStretch": 9.7,
+  "badAreaCm2": 1,
+  "areaCm2": 1
+ },
+ "rifle:view rightArm:glowArm": {
+  "bad": 2,
+  "tot": 52,
+  "worstStretch": 6.9,
+  "badAreaCm2": 1.92,
+  "areaCm2": 28.3
+ },
+ "rifle:view leftArm:glowArm": {
+  "bad": 2,
+  "tot": 52,
+  "worstStretch": 6.9,
+  "badAreaCm2": 1.92,
+  "areaCm2": 28.3
+ },
+ "rifle:world body:steelBlack": {
+  "bad": 2,
+  "tot": 112,
+  "worstStretch": 5.8,
+  "badAreaCm2": 2.68,
+  "areaCm2": 367.1
+ },
+ "rifle:world body:glowCyan": {
+  "bad": 2,
+  "tot": 104,
+  "worstStretch": 12.6,
+  "badAreaCm2": 0.59,
+  "areaCm2": 65.7
+ },
+ "rifle:world body:lens": {
+  "bad": 2,
+  "tot": 2,
+  "worstStretch": 4.8,
+  "badAreaCm2": 8.72,
+  "areaCm2": 8.7
+ },
+ "rifle:world body:reticleRing": {
+  "bad": 2,
+  "tot": 2,
+  "worstStretch": 5.1,
+  "badAreaCm2": 7.84,
+  "areaCm2": 7.8
+ },
+ "shotgun:view body:paintOrange": {
+  "bad": 2,
+  "tot": 268,
+  "worstStretch": 6,
+  "badAreaCm2": 2.15,
+  "areaCm2": 293.6
+ },
+ "shotgun:view body:steelDark": {
+  "bad": 8,
+  "tot": 288,
+  "worstStretch": 43.5,
+  "badAreaCm2": 0.16,
+  "areaCm2": 359.2
+ },
+ "shotgun:view body:void": {
+  "bad": 2,
+  "tot": 172,
+  "worstStretch": 29.3,
+  "badAreaCm2": 0.06,
+  "areaCm2": 108.7
+ },
+ "shotgun:view body:custom:51e4b35c-7fcf-4933-adbf-370e5cd9091a": {
+  "bad": 2,
+  "tot": 2,
+  "worstStretch": 5.7,
+  "badAreaCm2": 2.89,
+  "areaCm2": 2.9
+ },
+ "shotgun:view rightArm:glowArm": {
+  "bad": 2,
+  "tot": 52,
+  "worstStretch": 6.9,
+  "badAreaCm2": 1.92,
+  "areaCm2": 28.3
+ },
+ "shotgun:view leftArm:glowArm": {
+  "bad": 2,
+  "tot": 52,
+  "worstStretch": 6.9,
+  "badAreaCm2": 1.92,
+  "areaCm2": 28.3
+ },
+ "shotgun:world body:paintOrange": {
+  "bad": 2,
+  "tot": 148,
+  "worstStretch": 6,
+  "badAreaCm2": 2.15,
+  "areaCm2": 260.8
+ },
+ "shotgun:world body:void": {
+  "bad": 2,
+  "tot": 40,
+  "worstStretch": 29.3,
+  "badAreaCm2": 0.06,
+  "areaCm2": 6.3
+ },
+ "sniper:view body:steelBlack": {
+  "bad": 10,
+  "tot": 676,
+  "worstStretch": 11.1,
+  "badAreaCm2": 5.42,
+  "areaCm2": 1851.9
+ },
+ "sniper:view body:void": {
+  "bad": 2,
+  "tot": 176,
+  "worstStretch": 25.1,
+  "badAreaCm2": 0.07,
+  "areaCm2": 190.5
+ },
+ "sniper:view body:glowViolet": {
+  "bad": 6,
+  "tot": 204,
+  "worstStretch": 14.8,
+  "badAreaCm2": 1.59,
+  "areaCm2": 194
+ },
+ "sniper:view body:steelDark": {
+  "bad": 14,
+  "tot": 352,
+  "worstStretch": 43.5,
+  "badAreaCm2": 2.52,
+  "areaCm2": 279.1
+ },
+ "sniper:view body:lensDark": {
+  "bad": 4,
+  "tot": 96,
+  "worstStretch": 19.2,
+  "badAreaCm2": 0.39,
+  "areaCm2": 57.4
+ },
+ "sniper:view body:paintViolet": {
+  "bad": 2,
+  "tot": 84,
+  "worstStretch": 20.9,
+  "badAreaCm2": 0.22,
+  "areaCm2": 118.9
+ },
+ "sniper:view bolt:steelBlack": {
+  "bad": 2,
+  "tot": 40,
+  "worstStretch": 6.5,
+  "badAreaCm2": 1.83,
+  "areaCm2": 31.2
+ },
+ "sniper:view rightArm:glowArm": {
+  "bad": 2,
+  "tot": 52,
+  "worstStretch": 6.9,
+  "badAreaCm2": 1.92,
+  "areaCm2": 28.3
+ },
+ "sniper:view leftArm:glowArm": {
+  "bad": 2,
+  "tot": 52,
+  "worstStretch": 6.9,
+  "badAreaCm2": 1.92,
+  "areaCm2": 28.3
+ },
+ "sniper:world body:steelBlack": {
+  "bad": 6,
+  "tot": 292,
+  "worstStretch": 6.7,
+  "badAreaCm2": 6.66,
+  "areaCm2": 1659.6
+ },
+ "sniper:world body:void": {
+  "bad": 2,
+  "tot": 56,
+  "worstStretch": 25.1,
+  "badAreaCm2": 0.07,
+  "areaCm2": 92.4
+ },
+ "sniper:world body:glowViolet": {
+  "bad": 6,
+  "tot": 156,
+  "worstStretch": 9.8,
+  "badAreaCm2": 2.35,
+  "areaCm2": 187.5
+ },
+ "sniper:world body:steelDark": {
+  "bad": 4,
+  "tot": 204,
+  "worstStretch": 8.1,
+  "badAreaCm2": 2.16,
+  "areaCm2": 575.6
+ },
+ "sniper:world body:lensDark": {
+  "bad": 4,
+  "tot": 64,
+  "worstStretch": 12.5,
+  "badAreaCm2": 0.58,
+  "areaCm2": 54.4
+ },
+ "sniper:world body:paintViolet": {
+  "bad": 2,
+  "tot": 104,
+  "worstStretch": 17.4,
+  "badAreaCm2": 0.28,
+  "areaCm2": 217.3
+ },
+ "rocket:view body:steelBlack": {
+  "bad": 6,
+  "tot": 388,
+  "worstStretch": 11.5,
+  "badAreaCm2": 28.69,
+  "areaCm2": 1843.1
+ },
+ "rocket:view body:void": {
+  "bad": 2,
+  "tot": 108,
+  "worstStretch": 11.4,
+  "badAreaCm2": 0.64,
+  "areaCm2": 378.7
+ },
+ "rocket:view body:glowOrange": {
+  "bad": 2,
+  "tot": 40,
+  "worstStretch": 10.5,
+  "badAreaCm2": 1.75,
+  "areaCm2": 25
+ },
+ "rocket:view body:steelDark": {
+  "bad": 18,
+  "tot": 560,
+  "worstStretch": 46.6,
+  "badAreaCm2": 20.6,
+  "areaCm2": 1597.4
+ },
+ "rocket:view body:hazard": {
+  "bad": 2,
+  "tot": 56,
+  "worstStretch": 4.2,
+  "badAreaCm2": 18.96,
+  "areaCm2": 461.4
+ },
+ "rocket:view body:lens": {
+  "bad": 2,
+  "tot": 2,
+  "worstStretch": 5.5,
+  "badAreaCm2": 6.51,
+  "areaCm2": 6.5
+ },
+ "rocket:view body:reticleRing": {
+  "bad": 2,
+  "tot": 2,
+  "worstStretch": 5.1,
+  "badAreaCm2": 7.84,
+  "areaCm2": 7.8
+ },
+ "rocket:view body:custom:e76dc5fd-aa5b-4eb4-81b4-dcca226065ec": {
+  "bad": 2,
+  "tot": 2,
+  "worstStretch": 9.7,
+  "badAreaCm2": 1,
+  "areaCm2": 1
+ },
+ "rocket:view mag:paintOlive": {
+  "bad": 13,
+  "tot": 144,
+  "worstStretch": 15.5,
+  "badAreaCm2": 47.81,
+  "areaCm2": 573.7
+ },
+ "rocket:view mag:glowRed": {
+  "bad": 2,
+  "tot": 60,
+  "worstStretch": 13.7,
+  "badAreaCm2": 1.57,
+  "areaCm2": 25.6
+ },
+ "rocket:view rightArm:glowArm": {
+  "bad": 2,
+  "tot": 52,
+  "worstStretch": 6.9,
+  "badAreaCm2": 1.92,
+  "areaCm2": 28.3
+ },
+ "rocket:view leftArm:glowArm": {
+  "bad": 2,
+  "tot": 52,
+  "worstStretch": 6.9,
+  "badAreaCm2": 1.92,
+  "areaCm2": 28.3
+ },
+ "rocket:world body:paintOlive": {
+  "bad": 13,
+  "tot": 176,
+  "worstStretch": 15.5,
+  "badAreaCm2": 47.81,
+  "areaCm2": 3631.3
+ },
+ "rocket:world body:steelBlack": {
+  "bad": 2,
+  "tot": 124,
+  "worstStretch": 4.1,
+  "badAreaCm2": 45.74,
+  "areaCm2": 1425.2
+ },
+ "rocket:world body:void": {
+  "bad": 2,
+  "tot": 44,
+  "worstStretch": 7.4,
+  "badAreaCm2": 0.95,
+  "areaCm2": 229.2
+ },
+ "rocket:world body:glowOrange": {
+  "bad": 2,
+  "tot": 16,
+  "worstStretch": 5.8,
+  "badAreaCm2": 3,
+  "areaCm2": 24
+ },
+ "rocket:world body:steelDark": {
+  "bad": 10,
+  "tot": 212,
+  "worstStretch": 7,
+  "badAreaCm2": 34.51,
+  "areaCm2": 1419.7
+ },
+ "rocket:world body:hazard": {
+  "bad": 2,
+  "tot": 32,
+  "worstStretch": 3.6,
+  "badAreaCm2": 32.6,
+  "areaCm2": 443.3
+ },
+ "rocket:world body:lens": {
+  "bad": 2,
+  "tot": 2,
+  "worstStretch": 5.5,
+  "badAreaCm2": 6.51,
+  "areaCm2": 6.5
+ },
+ "rocket:world body:reticleRing": {
+  "bad": 2,
+  "tot": 2,
+  "worstStretch": 5.1,
+  "badAreaCm2": 7.84,
+  "areaCm2": 7.8
+ },
+ "rocket:world body:glowRed": {
+  "bad": 2,
+  "tot": 76,
+  "worstStretch": 8.9,
+  "badAreaCm2": 2.32,
+  "areaCm2": 31.8
+ },
+ "grenade body:frag": {
+  "bad": 24,
+  "tot": 192,
+  "worstStretch": 14.5,
+  "badAreaCm2": 22.51,
+  "areaCm2": 237.3
+ },
+ "grenade body:glowOrange": {
+  "bad": 2,
+  "tot": 24,
+  "worstStretch": 8.6,
+  "badAreaCm2": 0.94,
+  "areaCm2": 11.2
+ },
+ "grenade body:steelDark": {
+  "bad": 2,
+  "tot": 172,
+  "worstStretch": 10.7,
+  "badAreaCm2": 0.8,
+  "areaCm2": 60.1
+ },
+ "grenade body:steel": {
+  "bad": 4,
+  "tot": 140,
+  "worstStretch": 8.1,
+  "badAreaCm2": 1.6,
+  "areaCm2": 28.3
+ },
+ "grenade body:steelBlack": {
+  "bad": 2,
+  "tot": 32,
+  "worstStretch": 14.9,
+  "badAreaCm2": 0.44,
+  "areaCm2": 8.6
+ },
+ "rocketProj body:steelBlack": {
+  "bad": 10,
+  "tot": 120,
+  "worstStretch": 9.6,
+  "badAreaCm2": 48.71,
+  "areaCm2": 583.2
+ },
+ "rocketProj body:hazard": {
+  "bad": 2,
+  "tot": 40,
+  "worstStretch": 5.7,
+  "badAreaCm2": 13.35,
+  "areaCm2": 243.2
+ },
+ "rocketProj body:paintOrange": {
+  "bad": 2,
+  "tot": 40,
+  "worstStretch": 9.6,
+  "badAreaCm2": 3.72,
+  "areaCm2": 145.9
+ },
+ "rocketProj body:glowOrange": {
+  "bad": 2,
+  "tot": 40,
+  "worstStretch": 8.9,
+  "badAreaCm2": 0.79,
+  "areaCm2": 68.1
+ }
+}
+[run] done: wait=ok console_errors=0 warnings=0

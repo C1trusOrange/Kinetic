@@ -1,0 +1,60 @@
+[run] http://127.0.0.1:53798/index.html?autotest=1&map=foundry&bots=0&script=idle&scenario=tools/out/audit/review-player/v_headroom.js&step=0.75
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0,
+ "frames": 35,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "map": "foundry",
+  "spots": 79,
+  "canStandTrue": 0,
+  "clearTrue": 1,
+  "examples": [
+   {
+    "x": -12.75,
+    "y": 10.55,
+    "z": -19,
+    "headroom": 1.43,
+    "canStand": false,
+    "capsuleClear": true,
+    "ceilN": [
+     0,
+     -1,
+     0
+    ]
+   }
+  ]
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

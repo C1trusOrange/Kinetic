@@ -1,0 +1,246 @@
+[run] http://127.0.0.1:58608/index.html?autotest=1&map=ruins&bots=8&duration=1&god=1&script=idle&test=fight&simtime=300&scenario=tools/out/audit/review-aibrain/sim.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 305.27,
+ "frames": 163,
+ "fps": {
+  "avg": 0,
+  "min": 16.50165016501626,
+  "max": 41.49377593360268
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 233.5,
+  "maxSpeed": 13.11,
+  "minY": 0,
+  "maxY": 12.598373789288635,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Axle",
+   "alive": false,
+   "kills": 11,
+   "deaths": 13,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 1501,
+   "pos": [
+    -35.4,
+    0.1,
+    1.9
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 14,
+   "deaths": 15,
+   "health": 64,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 1569.1,
+   "pos": [
+    -23,
+    0,
+    -1.3
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 18,
+   "deaths": 14,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 1448.6,
+   "pos": [
+    5,
+    4.5,
+    -10.6
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 12,
+   "deaths": 14,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 1355.1,
+   "pos": [
+    -1.9,
+    0,
+    40
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 16,
+   "deaths": 13,
+   "health": 24,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 1458.2,
+   "pos": [
+    19,
+    0,
+    23.7
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 12,
+   "deaths": 15,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 1480.4,
+   "pos": [
+    -16.1,
+    -0.1,
+    10.2
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 13,
+   "deaths": 13,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "engage",
+   "distance": 1458.5,
+   "pos": [
+    17.8,
+    0,
+    12.2
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 12,
+   "deaths": 15,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 1535.1,
+   "pos": [
+    -37.9,
+    4.5,
+    9.4
+   ]
+  }
+ ],
+ "events": {
+  "damage": 629,
+  "death": 112,
+  "spawn": 120,
+  "pickup": 35,
+  "fire": 2041
+ },
+ "renderer": {
+  "calls": 421,
+  "triangles": 104400,
+  "geometries": 220,
+  "textures": 126,
+  "programs": 100
+ },
+ "custom": {
+  "fight": {
+   "stuckRecover": 43,
+   "rescue": [],
+   "ignoredSets": [
+    {
+     "t": 251.2,
+     "bot": "Nimbus",
+     "pickup": "weapon:sniper",
+     "dur": 90,
+     "air": true,
+     "gap": 6.2,
+     "state": "collect",
+     "navmode": "direct",
+     "unreachable": true
+    }
+   ],
+   "stateTime": {
+    "collect": 142,
+    "engage": 1156.5,
+    "chase": 454.5,
+    "retreat": 272.5,
+    "roam": 26
+   },
+   "idleStuck": [
+    {
+     "t": 45,
+     "bot": "Tesla",
+     "state": "engage",
+     "navmode": "path",
+     "hasGoal": true,
+     "arrived": false,
+     "searching": false,
+     "pos": "36.3,0.0,37.9",
+     "goal": "26.0,0.1,1.8",
+     "wait": -44.5,
+     "speed": 0,
+     "hp": 100
+    }
+   ],
+   "findPathNull": [],
+   "repath": 0,
+   "pathReq": 2005,
+   "stateFlips": 1212,
+   "kills": 108,
+   "deaths": 112,
+   "falls": 0
+  },
+  "pathStats": {
+   "count": 1971,
+   "totalMs": 4821.100000739098,
+   "maxMs": 120.10000002384186
+  },
+  "navStats": {
+   "nodes": 11543,
+   "links": 81899,
+   "components": 26,
+   "largestComponent": 11490,
+   "buildMs": 416,
+   "traps": 0,
+   "strongComponents": 119,
+   "largestStrong": 10555,
+   "cells": 11664
+  },
+  "wallMs": 35628,
+  "simTime": 305
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

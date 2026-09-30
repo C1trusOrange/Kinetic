@@ -1,0 +1,51 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>audiotest</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script></head>
+<body><script type="module">
+import * as THREE from 'three';
+import { AudioSystem, SOUND_LIST, LOOP_SOUNDS } from '/src/core/Audio.js';
+const errors = []; const warns = [];
+const oe = console.error.bind(console), ow = console.warn.bind(console);
+console.error = (...a) => { errors.push(a.join(' ')); oe(...a); };
+console.warn = (...a) => { warns.push(a.join(' ')); ow(...a); };
+window.addEventListener('error', e => errors.push(e.message));
+const camera = new THREE.PerspectiveCamera(); camera.position.set(0, 1.7, 0); camera.rotation.order = 'YXZ';
+const game = { camera, state: 'playing' };
+const audio = new AudioSystem(game);
+const R = { errors, warns };
+// before init / unlock everything must be a silent no-op
+R.preInit = { play: audio.play('pistol_fire'), loop: typeof audio.playLoop('slide').stop };
+const t0 = performance.now(); await audio.init(); R.initMs = Math.round(performance.now() - t0); R.stats = audio.stats;
+R.preUnlock = { play: audio.play('pistol_fire'), loop: typeof audio.playLoop('slide').setVolume };
+audio.unlock();
+for (let i = 0; i < 60 && (!audio.ctx || audio.ctx.state !== 'running'); i++) await new Promise(r => setTimeout(r, 50));
+R.ctxState = audio.ctx && audio.ctx.state; R.sampleRate = audio.ctx && audio.ctx.sampleRate;
+audio.update(0.016);
+// basic plays
+const v1 = audio.play('pistol_fire'); R.basic = !!v1 && audio.voices.length === 1;
+const v2 = audio.play('explosion', { position: { x: 10, y: 0, z: -30 } }); R.positional = !!v2 && !!v2.panner;
+R.tooFar = audio.play('pistol_fire', { position: { x: 0, y: 0, z: -900 } });
+// unknown names warn once
+audio.play('does_not_exist'); audio.play('does_not_exist'); audio.playLoop('nope');
+R.unknownWarns = warns.filter(w => w.includes('does_not_exist')).length;
+// flood: voice limit
+let tp = performance.now(); let started = 0;
+for (let i = 0; i < 200; i++) { const n = SOUND_LIST[(i * 7) % SOUND_LIST.length]; if (!LOOP_SOUNDS.includes(n) && audio.play(n, i % 2 ? { position: { x: Math.sin(i) * 20, y: 1, z: Math.cos(i) * 20 } } : {})) started++; }
+R.flood = { started, maxVoices: audio.voices.length, ms: +(performance.now() - tp).toFixed(1), perCallMs: +((performance.now() - tp) / 200).toFixed(3) };
+// loops
+const l = audio.playLoop('slide', { volume: 0.8 }); l.setVolume(0.5); l.setRate(1.2); l.setPosition({ x: 1, y: 0, z: 1 });
+const l2 = audio.playLoop('grapple_reel', { position: { x: 5, y: 2, z: -8 } }); l2.setPosition({ x: 6, y: 2, z: -8 });
+R.loopsActive = audio.loops.size;
+await new Promise(r => setTimeout(r, 400)); l.stop(); l.stop(); l2.stop();
+R.loopsAfterStop = audio.loops.size;
+// pause muffle
+game.state = 'paused'; for (let i = 0; i < 40; i++) audio.update(0.03);
+R.muffleHz = Math.round(audio.muffle.frequency.value); game.state = 'playing'; for (let i = 0; i < 60; i++) audio.update(0.03);
+R.muffleBack = Math.round(audio.muffle.frequency.value);
+audio.setMasterVolume(0.3); audio.setMasterVolume(1);
+await new Promise(r => setTimeout(r, 3500));
+R.voicesAfter = audio.voices.length; R.ctxTime = +audio.ctx.currentTime.toFixed(2);
+R.bufferNaN = SOUND_LIST.filter(n => audio.getBuffers(n).some(b => { const d = b.getChannelData(0); for (let i = 0; i < d.length; i += 97) if (d[i] !== d[i]) return true; return false; }));
+R.buffersMissing = SOUND_LIST.filter(n => !audio.getBuffers(n).length);
+window.__AT__ = R; window.__READY__ = true;
+</script></body></html>

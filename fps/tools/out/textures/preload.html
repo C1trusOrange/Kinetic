@@ -1,0 +1,21 @@
+<!doctype html><meta charset="utf-8">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import * as T from '/src/world/Textures.js';
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(400, 300);
+document.body.appendChild(renderer.domElement);
+T.initTextures(renderer);
+const prog = [];
+const s = performance.now();
+let frames = 0;
+const raf = () => { frames++; requestAnimationFrame(raf); }; raf();
+await T.preloadMaterials(T.MATERIAL_NAMES, f => prog.push(+f.toFixed(2)));
+const total = performance.now() - s;
+// warnings: unknown name
+const m = T.getMaterial('does_not_exist');
+const info = T.getMaterialInfo('does_not_exist');
+window.__RES__ = { total: Math.round(total), frames, progCount: prog.length, last: prog[prog.length - 1], fallback: m.name, info, n: T.MATERIAL_NAMES.length, tex: renderer.info.memory.textures };
+window.__R__ = true;
+</script>

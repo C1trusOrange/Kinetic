@@ -1,0 +1,109 @@
+[run] http://127.0.0.1:54221/index.html?autotest=1&map=testmap4&mapfile=tools/out/audit/review-player/testmap4.js&bots=0&script=idle&scenario=tools/out/audit/review-player/canstand4.js
+[warning] [world] map 'testmap4' has 1 warning(s):
+ - only 4 spawn point(s): 14-18 recommended
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0,
+ "frames": 15,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "testmap4",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "pts": [
+   {
+    "x": 0,
+    "z": 22,
+    "canStand": true,
+    "capsuleClear": true
+   },
+   {
+    "x": 0,
+    "z": 23,
+    "canStand": true,
+    "capsuleClear": true
+   },
+   {
+    "x": 0,
+    "z": 24,
+    "canStand": true,
+    "capsuleClear": true
+   },
+   {
+    "x": 0.5,
+    "z": 23,
+    "canStand": false,
+    "capsuleClear": false
+   },
+   {
+    "x": -0.5,
+    "z": 23,
+    "canStand": true,
+    "capsuleClear": true
+   },
+   {
+    "x": 1,
+    "z": 22.5,
+    "canStand": false,
+    "capsuleClear": false
+   },
+   {
+    "x": -1,
+    "z": 22.5,
+    "canStand": true,
+    "capsuleClear": true
+   },
+   {
+    "x": 2,
+    "z": 24,
+    "canStand": true,
+    "capsuleClear": true
+   },
+   {
+    "x": -2,
+    "z": 24,
+    "canStand": true,
+    "capsuleClear": true
+   },
+   {
+    "x": 0,
+    "z": 21,
+    "canStand": true,
+    "capsuleClear": true
+   },
+   {
+    "x": 1.5,
+    "z": 21,
+    "canStand": true,
+    "capsuleClear": true
+   }
+  ]
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

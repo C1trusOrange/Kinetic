@@ -1,0 +1,121 @@
+[run] http://127.0.0.1:61112/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-weapons/cook.js&duration=15
+[log] [autotest] finished {"ok":true,"errors":0,"fps":53}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 15.05,
+ "frames": 683,
+ "fps": {
+  "avg": 53,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 1.5,
+  "maxSpeed": 7.82,
+  "minY": -5.551115123125783e-17,
+  "maxY": 0,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 60
+ },
+ "bots": [],
+ "events": {
+  "damage": 1,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 137,
+  "triangles": 36956,
+  "geometries": 143,
+  "textures": 119,
+  "programs": 100
+ },
+ "custom": {
+  "log": [
+   [
+    "grenades start",
+    2
+   ],
+   [
+    "count after pin",
+    1
+   ],
+   [
+    "explosion",
+    {
+     "t": 4.45,
+     "w": "grenade",
+     "owner": true
+    }
+   ],
+   [
+    "cookoff after",
+    2.65
+   ],
+   [
+    "projectile grenades",
+    0
+   ],
+   [
+    "hp",
+    40
+   ],
+   [
+    "state after cookoff",
+    {
+     "g": 0,
+     "cooking": false,
+     "grenades": 1
+    }
+   ],
+   [
+    "thrown fuse at first sight",
+    {
+     "fuse": 0.84,
+     "sincePin": 1.78,
+     "count": 0
+    }
+   ],
+   [
+    "explosion",
+    {
+     "t": 9.44,
+     "w": "grenade",
+     "owner": false
+    }
+   ],
+   [
+    "end",
+    {
+     "grenades": 0,
+     "live": 0
+    }
+   ]
+  ],
+  "dmg": [
+   {
+    "t": 4.45,
+    "w": "grenade",
+    "a": 60,
+    "att": "p"
+   }
+  ],
+  "cookCountLogged": 1,
+  "cookoff": 2.65
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

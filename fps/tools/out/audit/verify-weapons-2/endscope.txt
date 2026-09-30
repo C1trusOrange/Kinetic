@@ -1,0 +1,67 @@
+[run] http://127.0.0.1:53776/index.html?autotest=1&map=sandbox&bots=2&scenario=tools/out/audit/verify-weapons-2/endscope.js&duration=10
+[error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done
+[run] screenshot -> tools\out\audit\verify-weapons-2\endscope_end.png
+[result] {
+ "done": false,
+ "started": true,
+ "t": 2.83,
+ "frames": 2229,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 175.4385964913089
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 4.5,
+  "maxY": 4.5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 1,
+  "fire": 1
+ },
+ "renderer": {},
+ "custom": {
+  "log": [
+   [
+    "pre-end",
+    {
+     "id": "sniper",
+     "scoped": true,
+     "fov": 0.27,
+     "camFov": 18.271641952106165
+    }
+   ],
+   [
+    "end-screen",
+    {
+     "id": "sniper",
+     "ads": 0,
+     "scoped": false,
+     "fov": 0.27,
+     "look": 0.30000000000000004,
+     "camFov": 18.271641952106165,
+     "vm": true,
+     "vmShown": "ended"
+    }
+   ]
+  ]
+ },
+ "errorCount": 0
+}
+[run] done: wait=TIMEOUT console_errors=1 warnings=0

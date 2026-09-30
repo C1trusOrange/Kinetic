@@ -1,0 +1,131 @@
+[run] http://127.0.0.1:52956/index.html?autotest=1&map=foundry&bots=5&duration=15
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":18.7}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 15.29,
+ "frames": 355,
+ "fps": {
+  "avg": 18.7,
+  "min": 4,
+  "max": 158.7
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 79.71670271677493,
+  "maxSpeed": 10.57,
+  "minY": 0,
+  "maxY": 3.913424259900037,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "isMantling": true,
+   "airborne": true,
+   "isWallRunning": true,
+   "isCrouching": true,
+   "isGrappling": true
+  },
+  "shots": 19,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 100
+ },
+ "bots": [
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 122.3,
+   "pos": [
+    -5.3,
+    0,
+    -0.5
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 52.2,
+   "pos": [
+    38.5,
+    0,
+    18.8
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 2,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 88.9,
+   "pos": [
+    -1.6,
+    0,
+    15
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 79.9,
+   "pos": [
+    -28.6,
+    0,
+    -0.7
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 25,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 83.5,
+   "pos": [
+    17,
+    0,
+    10.7
+   ]
+  }
+ ],
+ "events": {
+  "damage": 11,
+  "death": 3,
+  "spawn": 9,
+  "pickup": 0,
+  "fire": 55
+ },
+ "renderer": {
+  "calls": 361,
+  "triangles": 127176,
+  "geometries": 347,
+  "textures": 145,
+  "programs": 112
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

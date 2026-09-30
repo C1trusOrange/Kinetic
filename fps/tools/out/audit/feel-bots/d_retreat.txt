@@ -1,0 +1,6 @@
+[run] http://127.0.0.1:55824/index.html?autotest=1&scenario=tools/out/audit/feel-bots/director.js&map=foundry&bots=8&mode=ffa&diff=normal&spectate=1&duration=200&shot=retreat&cam=0,30,0,0,-1.2
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:55824/src/ui/HUD.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:55824/src/core/Game.js
+[error] [run] timed out after 240s waiting for: window.__FREEZE
+[run] screenshot -> tools\out\audit\feel-bots\dir_retreat.png
+[run] done: wait=TIMEOUT console_errors=3 warnings=0

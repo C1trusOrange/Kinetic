@@ -1,0 +1,443 @@
+[run] http://127.0.0.1:59372/index.html?autotest=1&map=ruins&bots=2&duration=1&god=1&script=idle&scenario=tools/out/audit/review-aibrain/v/padtest.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 686.17,
+ "frames": 208,
+ "fps": {
+  "avg": 0,
+  "min": 16.50165016501626,
+  "max": 161.29032258065138
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 5610.5,
+   "pos": [
+    -43.1,
+    9,
+    12
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    30,
+    0,
+    -26
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 3,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 110,
+  "triangles": 70824,
+  "geometries": 103,
+  "textures": 90,
+  "programs": 87
+ },
+ "custom": {
+  "pads": 6,
+  "unpatched": {
+   "label": "unpatched",
+   "n": 30,
+   "ok": 20,
+   "avgT": 11.6,
+   "totalInv": 9,
+   "fails": [
+    {
+     "pad": 1,
+     "ok": false,
+     "t": 20,
+     "inv": 1,
+     "air": 4.5,
+     "a": [
+      36.5,
+      0,
+      7.5
+     ],
+     "g": [
+      40.5,
+      4.5,
+      2.5
+     ]
+    },
+    {
+     "pad": 2,
+     "ok": false,
+     "t": 20,
+     "inv": 0,
+     "air": 13.5,
+     "a": [
+      9.5,
+      4.5,
+      -0.5
+     ],
+     "g": [
+      -5.5,
+      14.3,
+      3.5
+     ]
+    },
+    {
+     "pad": 2,
+     "ok": false,
+     "t": 20,
+     "inv": 0,
+     "air": 12.5,
+     "a": [
+      -2.5,
+      4.2,
+      14.5
+     ],
+     "g": [
+      4.5,
+      14.3,
+      -2.5
+     ]
+    },
+    {
+     "pad": 2,
+     "ok": false,
+     "t": 20,
+     "inv": 0,
+     "air": 14.6,
+     "a": [
+      9.5,
+      4.5,
+      3.5
+     ],
+     "g": [
+      -5.5,
+      14.3,
+      -0.5
+     ]
+    },
+    {
+     "pad": 2,
+     "ok": false,
+     "t": 20,
+     "inv": 0,
+     "air": 12.6,
+     "a": [
+      8.5,
+      4.5,
+      -3.5
+     ],
+     "g": [
+      3.5,
+      14.3,
+      -5.5
+     ]
+    },
+    {
+     "pad": 2,
+     "ok": false,
+     "t": 20,
+     "inv": 0,
+     "air": 14,
+     "a": [
+      14.5,
+      4.2,
+      2.5
+     ],
+     "g": [
+      4.5,
+      14.3,
+      0.5
+     ]
+    },
+    {
+     "pad": 4,
+     "ok": false,
+     "t": 20,
+     "inv": 0,
+     "air": 13.9,
+     "a": [
+      51.5,
+      9,
+      -4.5
+     ],
+     "g": [
+      37.5,
+      13.4,
+      -29.5
+     ]
+    },
+    {
+     "pad": 4,
+     "ok": false,
+     "t": 20,
+     "inv": 0,
+     "air": 10.4,
+     "a": [
+      49.5,
+      9,
+      -24.5
+     ],
+     "g": [
+      39.5,
+      13.4,
+      -30.5
+     ]
+    }
+   ],
+   "all": [
+    "0:ok:5.3s:inv1",
+    "0:ok:4.4s:inv0",
+    "0:ok:4.1s:inv0",
+    "0:ok:9.8s:inv1",
+    "0:ok:3.8s:inv0",
+    "1:ok:9.2s:inv0",
+    "1:FAIL:20s:inv1",
+    "1:ok:5.4s:inv0",
+    "1:ok:16.9s:inv1",
+    "1:ok:16.4s:inv1",
+    "2:FAIL:20s:inv0",
+    "2:FAIL:20s:inv0",
+    "2:FAIL:20s:inv0",
+    "2:FAIL:20s:inv0",
+    "2:FAIL:20s:inv0",
+    "3:ok:1.1s:inv0",
+    "3:ok:3.2s:inv0",
+    "3:ok:3.5s:inv0",
+    "3:ok:2.5s:inv0",
+    "3:ok:3.7s:inv0",
+    "4:FAIL:20s:inv0",
+    "4:FAIL:20s:inv0",
+    "4:ok:7.3s:inv0",
+    "4:FAIL:20s:inv0",
+    "4:FAIL:20s:inv0",
+    "5:ok:3.8s:inv2",
+    "5:ok:13.1s:inv1",
+    "5:ok:11s:inv0",
+    "5:ok:14.6s:inv1",
+    "5:ok:8s:inv0"
+   ]
+  },
+  "patched": {
+   "label": "patched (pad wp exempt + no replan during pad flight)",
+   "n": 30,
+   "ok": 22,
+   "avgT": 10.5,
+   "totalInv": 3,
+   "fails": [
+    {
+     "pad": 1,
+     "ok": false,
+     "t": 20,
+     "inv": 0,
+     "air": 11.5,
+     "a": [
+      27.5,
+      0,
+      -10.5
+     ],
+     "g": [
+      44.5,
+      4.5,
+      9.5
+     ]
+    },
+    {
+     "pad": 1,
+     "ok": false,
+     "t": 20,
+     "inv": 0,
+     "air": 13.1,
+     "a": [
+      36.5,
+      0,
+      7.5
+     ],
+     "g": [
+      40.5,
+      4.5,
+      2.5
+     ]
+    },
+    {
+     "pad": 1,
+     "ok": false,
+     "t": 20,
+     "inv": 0,
+     "air": 13.3,
+     "a": [
+      28.5,
+      0,
+      6.5
+     ],
+     "g": [
+      39.5,
+      4.5,
+      -11.5
+     ]
+    },
+    {
+     "pad": 1,
+     "ok": false,
+     "t": 20,
+     "inv": 0,
+     "air": 14,
+     "a": [
+      36.5,
+      0,
+      6.5
+     ],
+     "g": [
+      39.5,
+      4.5,
+      5.5
+     ]
+    },
+    {
+     "pad": 4,
+     "ok": false,
+     "t": 20,
+     "inv": 0,
+     "air": 6.4,
+     "a": [
+      42.5,
+      9,
+      -12.5
+     ],
+     "g": [
+      48.5,
+      13.4,
+      -30.5
+     ]
+    },
+    {
+     "pad": 4,
+     "ok": false,
+     "t": 20,
+     "inv": 0,
+     "air": 6.8,
+     "a": [
+      48.5,
+      9,
+      -7.5
+     ],
+     "g": [
+      34.5,
+      13.4,
+      -30.5
+     ]
+    },
+    {
+     "pad": 5,
+     "ok": false,
+     "t": 20,
+     "inv": 0,
+     "air": 4.8,
+     "a": [
+      -34.5,
+      -1.6,
+      18.5
+     ],
+     "g": [
+      -36.5,
+      8.5,
+      16.5
+     ]
+    },
+    {
+     "pad": 5,
+     "ok": false,
+     "t": 20,
+     "inv": 2,
+     "air": 7,
+     "a": [
+      -24.5,
+      -1.6,
+      28.5
+     ],
+     "g": [
+      -46.5,
+      9,
+      11.5
+     ]
+    }
+   ],
+   "all": [
+    "0:ok:6.1s:inv0",
+    "0:ok:4.4s:inv0",
+    "0:ok:4.1s:inv0",
+    "0:ok:6.9s:inv0",
+    "0:ok:3.8s:inv0",
+    "1:FAIL:20s:inv0",
+    "1:FAIL:20s:inv0",
+    "1:ok:5.3s:inv0",
+    "1:FAIL:20s:inv0",
+    "1:FAIL:20s:inv0",
+    "2:ok:3.9s:inv0",
+    "2:ok:6.7s:inv0",
+    "2:ok:3.9s:inv0",
+    "2:ok:4.8s:inv0",
+    "2:ok:5.9s:inv0",
+    "3:ok:1.2s:inv0",
+    "3:ok:3.1s:inv0",
+    "3:ok:4.3s:inv0",
+    "3:ok:4.7s:inv0",
+    "3:ok:5.8s:inv0",
+    "4:ok:18.5s:inv0",
+    "4:ok:3.1s:inv0",
+    "4:FAIL:20s:inv0",
+    "4:FAIL:20s:inv0",
+    "4:ok:16.9s:inv0",
+    "5:FAIL:20s:inv0",
+    "5:ok:11.7s:inv1",
+    "5:ok:18.2s:inv0",
+    "5:FAIL:20s:inv2",
+    "5:ok:10.7s:inv0"
+   ]
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

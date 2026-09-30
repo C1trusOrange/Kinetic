@@ -1,0 +1,500 @@
+[run] http://127.0.0.1:49811/index.html?autotest=1&map=foundry&bots=2&duration=8&god=0&scenario=tools/out/audit/verify-aibrain-2/cascade.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":41.4}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.25,
+ "frames": 315,
+ "fps": {
+  "avg": 41.4,
+  "min": 4,
+  "max": 131.6
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 12,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 65.1,
+   "pos": [
+    14.7,
+    3.9,
+    -13.4
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    -46,
+    0,
+    26
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 169,
+  "triangles": 106500,
+  "geometries": 147,
+  "textures": 120,
+  "programs": 101
+ },
+ "custom": {
+  "log": [
+   {
+    "el": 0.13,
+    "y": 2.6,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 0.22,
+    "y": 4.2,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 0.31,
+    "y": 5.7,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 0.41,
+    "y": 7,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 0.5,
+    "y": 7.9,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 0.62,
+    "y": 8.9,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 0.72,
+    "y": 9.5,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 0.82,
+    "y": 9.9,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 0.93,
+    "y": 10,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.01,
+    "y": 9.9,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.11,
+    "y": 9.6,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.24,
+    "y": 8.9,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.31,
+    "y": 8.3,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.42,
+    "y": 7.7,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.5,
+    "y": 7.3,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.62,
+    "y": 6.3,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.73,
+    "y": 5.2,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.82,
+    "y": 3.9,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.92,
+    "y": 2.3,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 2.02,
+    "y": 0.9,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 2.13,
+    "y": 0.2,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 2.2,
+    "y": 0.2,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 2.32,
+    "y": 0.2,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 2.42,
+    "y": 0.2,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 2.51,
+    "y": 0.2,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 2.63,
+    "y": 0.2,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 2.71,
+    "y": 0.2,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 2.81,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 2.9,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.01,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.11,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.21,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.31,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.41,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.5,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.61,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.71,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.81,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.91,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 4.02,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   }
+  ],
+  "healthPickups": 4,
+  "phase": "init",
+  "start": {
+   "pos": [
+    -5.4869,
+    0.2199999988079071,
+    -3.49269
+   ],
+   "health": 30
+  },
+  "marker": 1.0065999999999953,
+  "hurt": true,
+  "hurtAt": 0.32,
+  "hurtY": 6.1,
+  "ignoredHealthAtEnd": 0,
+  "state": "retreat"
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

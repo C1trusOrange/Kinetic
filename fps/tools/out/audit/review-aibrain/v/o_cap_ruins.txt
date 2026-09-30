@@ -1,0 +1,140 @@
+[run] http://127.0.0.1:55137/index.html?autotest=1&map=ruins&bots=2&duration=1&god=1&script=idle&test=capsule&scenario=tools/out/audit/review-aibrain/v/t_multi.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0.1,
+ "frames": 26,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    40,
+    4.5,
+    -14
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    26,
+    0,
+    50
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 93,
+  "triangles": 69906,
+  "geometries": 81,
+  "textures": 70,
+  "programs": 48
+ },
+ "custom": {
+  "capsule_ruins": {
+   "nodes": 11543,
+   "walkLinks": 37572,
+   "ceil": 31,
+   "wall": 271,
+   "floor": 565,
+   "nodeIntersect": 157,
+   "ceilClusters": [
+    [
+     "-39,5,3",
+     5
+    ],
+    [
+     "-30,-2,21",
+     5
+    ],
+    [
+     "-24,-2,21",
+     4
+    ],
+    [
+     "-21,-2,21",
+     4
+    ],
+    [
+     "-39,5,6",
+     3
+    ],
+    [
+     "-33,-2,21",
+     3
+    ],
+    [
+     "27,0,-12",
+     1
+    ],
+    [
+     "27,0,-9",
+     1
+    ],
+    [
+     "-33,-2,24",
+     1
+    ],
+    [
+     "-30,-2,24",
+     1
+    ]
+   ]
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

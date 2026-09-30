@@ -1,0 +1,54 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#222}#i{position:fixed;left:6px;top:6px;color:#ddd;font:12px monospace;background:#0008;padding:3px 6px}</style>
+</head><body><div id="i"></div>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { setMaxAnisotropy } from '/src/core/procgen.js';
+const P = new URLSearchParams(location.search);
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(1); renderer.setSize(innerWidth, innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping;
+setMaxAnisotropy(renderer.capabilities.getMaxAnisotropy());
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(P.get('bg') || '#59616e');
+const pm = new THREE.PMREMGenerator(renderer);
+scene.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.75;
+scene.add(new THREE.HemisphereLight(0xdfe8ff, 0x302a24, 0.7));
+const sun = new THREE.DirectionalLight(0xfff2e0, 2.4); sun.position.set(3, 6, 4); scene.add(sun);
+const WM = await import('/src/weapons/WeaponModels.js');
+const id = P.get('id') || 'pistol';
+const view = P.get('view') !== '0';
+const m = id === 'grenade' ? { root: WM.createGrenadeModel(), parts: {} } : id === 'rocketproj' ? { root: WM.createRocketModel(), parts: {} } : WM.createWeaponModel(id, { view });
+scene.add(m.root);
+// part poses: pose=name:x,y,z:rx,ry,rz;name2:...
+for (const spec of (P.get('pose') || '').split(';').filter(Boolean)) {
+  const [name, pos, rot] = spec.split(':');
+  const o = m.parts[name]; if (!o) { console.warn('no part', name); continue; }
+  if (pos) { const [x, y, z] = pos.split(',').map(Number); o.position.x += x; o.position.y += y; o.position.z += z; }
+  if (rot) { const [x, y, z] = rot.split(',').map(Number); o.rotation.set(x, y, z); }
+}
+const cam = new THREE.PerspectiveCamera(parseFloat(P.get('fov') || '35'), innerWidth / innerHeight, 0.005, 50);
+const c = (P.get('cam') || '-0.6,0.25,0.5').split(',').map(Number);
+const l = (P.get('look') || '0,0.02,-0.1').split(',').map(Number);
+cam.position.set(c[0], c[1], c[2]); cam.lookAt(l[0], l[1], l[2]);
+if (P.get('axes')) scene.add(new THREE.AxesHelper(0.1));
+if (P.get('sightline') && m.sight) {
+  const g = new THREE.BufferGeometry().setFromPoints([m.sight.position.clone(), m.sight.position.clone().add(new THREE.Vector3(0, 0, -2))]);
+  scene.add(new THREE.Line(g, new THREE.LineBasicMaterial({ color: 0x33ff33 })));
+}
+if (P.get('markers')) {
+  const mk = (o, col) => { if (!o) return; const sp = new THREE.Mesh(new THREE.SphereGeometry(0.006, 8, 6), new THREE.MeshBasicMaterial({ color: col, depthTest: false })); sp.renderOrder = 10; m.root.updateMatrixWorld(true); sp.position.copy(o.getWorldPosition(new THREE.Vector3())); scene.add(sp); };
+  mk(m.muzzle, 0xff2222); mk(m.sight, 0x22ff22); mk(m.ejectPort, 0x3399ff);
+}
+let tris = 0; m.root.traverse(o => { if (o.isMesh) tris += o.geometry.attributes.position.count / 3; });
+document.getElementById('i').textContent = id + (view ? ' view' : ' world') + ' tris=' + tris + ' meshes=' + (() => { let n = 0; m.root.traverse(o => { if (o.isMesh) n++; }); return n; })();
+const meshes = {}; m.root.traverse(o => { if (o.isMesh) meshes[o.name] = Math.round(o.geometry.attributes.position.count / 3); });
+window.__VIEWER_INFO__ = { tris, parts: Object.keys(m.parts || {}), meshes };
+let f = 0;
+(function loop() { requestAnimationFrame(loop); renderer.render(scene, cam); if (++f === 8) window.__VIEWER_READY__ = true; })();
+</script></body></html>

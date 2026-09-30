@@ -1,0 +1,13 @@
+fps {'avg': 74.3, 'min': 4, 'max': 181.8} errors 0 [] t 35.38
+mantle_0.4_run_jump {"mantled":false,"jump":["ground"],"maxY":1.3}
+mantle_0.7_run_jump {"mantled":false,"jump":["ground"],"maxY":1.3}
+mantle_1_run_jump {"mantled":false,"jump":["ground"],"maxY":1.3}
+mantle_1_walk_jump {"mantled":false,"jump":["ground"],"maxY":1.3}
+mantle_1.5_run_jump {"mantled":true,"jump":["ground"],"maxY":1.51,"startSpeed":0,"dur":0.27,"startAfterJump":0.09,"startPos":[7.14,0.62],"endPos":[8.47,1.51],"speedAfter":[4,9.6],"speedBefore":9.6,"camPitchRangeDeg":[-5.72,0.01],"camYRange":[1.59,1.7],"camYSeries":[1.59,1.62,1.66,1.7,1.69,1.64,1.63,1.66,1.61,1.63]}
+mantle_1.5_walk_jump {"mantled":true,"jump":["ground"],"maxY":1.51,"startSpeed":0,"dur":0.26,"startAfterJump":0.16,"startPos":[7.12,0.95],"endPos":[8.47,1.51],"speedAfter":[4,6.2],"speedBefore":6.2,"camPitchRangeDeg":[-5.6,0.02],"camYRange":[1.62,1.7],"camYSeries":[1.62,1.65,1.67,1.7,1.67,1.64,1.65,1.66,1.65,1.63]}
+mantle_2_run_jump {"mantled":true,"jump":["ground"],"maxY":2.01,"startSpeed":0,"dur":0.28,"startAfterJump":0.09,"startPos":[7.14,0.62],"endPos":[8.47,2.01],"speedAfter":[4,9.6],"speedBefore":9.6,"camPitchRangeDeg":[-5.73,0.02],"camYRange":[1.55,1.7],"camYSeries":[1.6,1.62,1.64,1.69,1.7,1.65,1.62,1.66,1.65,1.6,1.62]}
+mantle_2_walk_jump {"mantled":true,"jump":["ground"],"maxY":2.01,"startSpeed":0,"dur":0.27,"startAfterJump":0.15,"startPos":[7.12,0.91],"endPos":[8.47,2.01],"speedAfter":[4,6.2],"speedBefore":6.2,"camPitchRangeDeg":[-5.7,0.02],"camYRange":[1.6,1.7],"camYSeries":[1.64,1.65,1.6,1.66,1.7,1.68,1.65,1.64,1.65,1.65,1.65,1.63,1.63]}
+mantle_2.3_run_jump {"mantled":true,"jump":["ground"],"maxY":2.3,"startSpeed":0,"dur":0.29,"startAfterJump":0.08,"startPos":[7.14,0.57],"endPos":[8.47,2.3],"speedAfter":[4,9.6],"speedBefore":9.6,"camPitchRangeDeg":[-5.57,0.01],"camYRange":[1.52,1.7],"camYSeries":[1.61,1.64,1.64,1.64,1.7,1.7,1.68,1.63,1.63,1.66,1.63,1.61,1.66]}
+mantle_2.6_run_jump {"mantled":true,"jump":["ground"],"maxY":2.61,"startSpeed":0,"dur":0.3,"startAfterJump":0.09,"startPos":[7.14,0.62],"endPos":[8.47,2.61],"speedAfter":[4,9.6],"speedBefore":9.6,"camPitchRangeDeg":[-5.71,0.02],"camYRange":[1.54,1.7],"camYSeries":[1.61,1.56,1.61,1.64,1.68,1.7,1.7,1.69,1.63,1.63,1.65,1.66,1.63,1.61]}
+mantle_grab_in_air_2 {"mantled":true,"at":[7.14,1.22,0.8]}
+[run] done: wait=ok console_errors=0 warnings=1

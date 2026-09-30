@@ -1,0 +1,1105 @@
+[run] http://127.0.0.1:56601/index.html?autotest=1&scenario=tools/out/audit/feel-bots/telemetry.js&map=skyline&bots=5&mode=tdm&diff=normal&duration=90&idlep=1
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 90.1,
+ "frames": 2403,
+ "fps": {
+  "avg": 28.1,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "skyline",
+ "player": {
+  "distance": 8.4,
+  "maxSpeed": 8.12,
+  "minY": 0.030000000000000027,
+  "maxY": 9.794183287367416,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 3,
+  "damageDealt": 0,
+  "damageTaken": 300
+ },
+ "bots": [
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 4,
+   "deaths": 0,
+   "health": 80,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 621.2,
+   "pos": [
+    5.2,
+    0.1,
+    -3.5
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 5,
+   "health": 69,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 490.2,
+   "pos": [
+    3.8,
+    6.4,
+    -19.6
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 4,
+   "deaths": 1,
+   "health": 46,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 595.7,
+   "pos": [
+    -1.3,
+    0,
+    -12.9
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 1,
+   "deaths": 6,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 439.7,
+   "pos": [
+    13.8,
+    8,
+    -27.3
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 5,
+   "deaths": 0,
+   "health": 5,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 555.4,
+   "pos": [
+    -4.2,
+    0.1,
+    -8.1
+   ]
+  }
+ ],
+ "events": {
+  "damage": 85,
+  "death": 15,
+  "spawn": 21,
+  "pickup": 21,
+  "fire": 250
+ },
+ "renderer": {
+  "calls": 373,
+  "triangles": 93824,
+  "geometries": 239,
+  "textures": 172,
+  "programs": 105
+ },
+ "custom": {
+  "navY": {
+   "0": 4684,
+   "3": 98,
+   "6": 653,
+   "9": 1078,
+   "12": 720,
+   "15": 358,
+   "18": 33,
+   "21": 16
+  },
+  "navClass": {
+   "0": {
+    "n": 4684,
+    "main": 4213,
+    "fromOnly": 0,
+    "unreachable": 471
+   },
+   "3": {
+    "n": 98,
+    "main": 74,
+    "fromOnly": 0,
+    "unreachable": 24
+   },
+   "6": {
+    "n": 653,
+    "main": 643,
+    "fromOnly": 0,
+    "unreachable": 10
+   },
+   "9": {
+    "n": 1078,
+    "main": 660,
+    "fromOnly": 0,
+    "unreachable": 418
+   },
+   "12": {
+    "n": 720,
+    "main": 578,
+    "fromOnly": 0,
+    "unreachable": 142
+   },
+   "15": {
+    "n": 358,
+    "main": 6,
+    "fromOnly": 0,
+    "unreachable": 352
+   },
+   "18": {
+    "n": 33,
+    "main": 0,
+    "fromOnly": 0,
+    "unreachable": 33
+   },
+   "21": {
+    "n": 16,
+    "main": 0,
+    "fromOnly": 0,
+    "unreachable": 16
+   }
+  },
+  "pickupNav": [
+   "rocket@28,10,-14:main",
+   "sniper@-35,16,-35:NO",
+   "shotgun@-41,0,8:main",
+   "armor@0,0,4:main",
+   "armor@-30,10,35:NO",
+   "health@0,7,-32:main",
+   "health@34,10,8:main",
+   "health@-28,0,14:main",
+   "health@41,0,12:main",
+   "ammo@22,10,-20:main",
+   "ammo@33,13,24:main",
+   "ammo@-14,0,12:main",
+   "ammo@14,0,-12:main",
+   "grenades@-21,13,8:main",
+   "grenades@12,0,32:main"
+  ],
+  "spawnNav": "mmmmmmmmmmmmmmmXmX",
+  "spawnY": "0,1,1,1,0,0,0,0,0,0,7,10,10,13,6,10,13,16",
+  "navStats": {
+   "nodes": 7640,
+   "links": 51057,
+   "components": 6,
+   "largestComponent": 7264,
+   "buildMs": 343,
+   "traps": 0,
+   "strongComponents": 80,
+   "largestStrong": 6174,
+   "cells": 8464
+  },
+  "spots": {
+   "cover": 135,
+   "snipe": 24
+  },
+  "mode": "tdm",
+  "diff": "normal",
+  "map": "skyline",
+  "bots": 5,
+  "simSeconds": 90,
+  "aliveBotSec": 420,
+  "stateShare": {
+   "roam": 0.115,
+   "engage": 0.458,
+   "chase": 0.128,
+   "retreat": 0.032,
+   "collect": 0.267
+  },
+  "stuck": {
+   "sec": 1.5,
+   "share": 0.0036,
+   "anySec": 4,
+   "recoverCalls": 3,
+   "rescues": 0
+  },
+  "flap": {
+   "transitionsPerMin": 28.4,
+   "fastFlips": 61,
+   "revsPerMin": 0.4,
+   "revNavPerMin": 0.1,
+   "spinSec": 0.2,
+   "strafeFlipsPerEngageMin": 47.1
+  },
+  "roamIdleShare": 0.383,
+  "combat": {
+   "kills": 15,
+   "kpm": 10,
+   "firstDamageAt": 4.6,
+   "firstKillAt": 7.1,
+   "botShots": 250,
+   "botPelletHits": 65,
+   "botDamage": 1857,
+   "grenadesThrown": 2,
+   "grenadeHits": 0,
+   "grenadeKills": 0,
+   "visShare": 0.401,
+   "triggerShareOfVis": 0.2,
+   "fireByWeapon": {
+    "rifle": 77,
+    "rocket": 37,
+    "pistol": 136
+   },
+   "dmgByWeapon": {
+    "pistol": 946,
+    "rocket": 616,
+    "rifle": 295
+   },
+   "killsByWeapon": {
+    "rocket": 6,
+    "pistol": 5,
+    "rifle": 3
+   },
+   "suicides": 0,
+   "falls": 0,
+   "friendlyDmg": 0,
+   "spawnKills": 0,
+   "deathNearSpawn": 3,
+   "killDist": {
+    "n": 14,
+    "med": 19.7,
+    "p10": 8.8,
+    "p90": 24.3
+   },
+   "lifeSpan": {
+    "n": 11,
+    "med": 15,
+    "p10": 4.9,
+    "p90": 20.3
+   },
+   "reactDelay": {
+    "n": 31,
+    "med": 0.58,
+    "p10": 0.17,
+    "p90": 1.94
+   },
+   "blockedFireShare": 0.156,
+   "nonVisibleFire": 0
+  },
+  "accuracy": {
+   "rifle": {
+    "35-60": "3/12 (25%) cover 1 past 8 other 0 miss 0",
+    "20-35": "6/28 (21%) cover 4 past 18 other 0 miss 0",
+    "12-20": "7/16 (44%) cover 2 past 7 other 0 miss 0",
+    "<6": "5/11 (45%) cover 0 past 5 other 0 miss 1",
+    "6-12": "6/10 (60%) cover 0 past 4 other 0 miss 0"
+   },
+   "pistol": {
+    "35-60": "2/11 (18%) cover 1 past 8 other 0 miss 0",
+    "20-35": "10/69 (14%) cover 11 past 47 other 1 miss 0",
+    "12-20": "12/36 (33%) cover 8 past 16 other 0 miss 0",
+    "6-12": "12/20 (60%) cover 0 past 7 other 1 miss 0"
+   }
+  },
+  "playerPel": {
+   "n": 0,
+   "ent": 0
+  },
+  "engageRangeSec": {
+   "rocket": [
+    0.4,
+    0.5,
+    9.9,
+    29.1,
+    10.8,
+    0.3
+   ],
+   "rifle": [
+    1.9,
+    2.8,
+    5.8,
+    11.3,
+    6.9,
+    0.8
+   ],
+   "pistol": [
+    0.3,
+    7.9,
+    15.9,
+    36.6,
+    7.1,
+    0
+   ],
+   "sniper": [
+    0,
+    0,
+    0,
+    11.3,
+    7.3,
+    0.6
+   ],
+   "shotgun": [
+    0,
+    0,
+    0,
+    0,
+    0.9,
+    0
+   ]
+  },
+  "rangeMismatch": {
+   "visSec": 168.4,
+   "badSec": 4.1,
+   "byWeapon": {
+    "rocket": 0.7258000000000009,
+    "pistol": 1.743100000000027,
+    "rifle": 0.7775000000000063,
+    "shotgun": 0.890500000000003
+   }
+  },
+  "los": {
+   "totalBotSec": 163,
+   "engaged": 140.5,
+   "ignoredInFov": 9.9,
+   "behind": 12.7
+  },
+  "clump": {
+   "withNeighborShare": 0.049,
+   "pairSamples": 38,
+   "samples": 1546
+  },
+  "pickups": {
+   "bot:grenades": 2,
+   "bot:weapon:rocket": 2,
+   "bot:ammo": 4,
+   "bot:armor": 4,
+   "bot:health": 7,
+   "bot:weapon:shotgun": 2
+  },
+  "coverage": {
+   "cells4m": 306
+  },
+  "botTimeByY": {
+   "0": 0.624,
+   "2": 0.014,
+   "4": 0.014,
+   "6": 0.107,
+   "8": 0.156,
+   "10": 0.026,
+   "12": 0.056,
+   "14": 0.001,
+   "16": 0.001
+  },
+  "timeline": [
+   {
+    "t": 5,
+    "alive": 5,
+    "roam": 0,
+    "engage": 3,
+    "chase": 2,
+    "retreat": 0,
+    "collect": 0
+   },
+   {
+    "t": 10,
+    "alive": 5,
+    "roam": 0,
+    "engage": 3,
+    "chase": 1,
+    "retreat": 0,
+    "collect": 1
+   },
+   {
+    "t": 15,
+    "alive": 4,
+    "roam": 0,
+    "engage": 0,
+    "chase": 0,
+    "retreat": 0,
+    "collect": 4
+   },
+   {
+    "t": 20,
+    "alive": 5,
+    "roam": 3,
+    "engage": 0,
+    "chase": 0,
+    "retreat": 0,
+    "collect": 2
+   },
+   {
+    "t": 25,
+    "alive": 5,
+    "roam": 0,
+    "engage": 5,
+    "chase": 0,
+    "retreat": 0,
+    "collect": 0
+   },
+   {
+    "t": 30,
+    "alive": 4,
+    "roam": 0,
+    "engage": 2,
+    "chase": 2,
+    "retreat": 0,
+    "collect": 0
+   },
+   {
+    "t": 35,
+    "alive": 5,
+    "roam": 0,
+    "engage": 3,
+    "chase": 0,
+    "retreat": 1,
+    "collect": 1
+   },
+   {
+    "t": 40,
+    "alive": 5,
+    "roam": 1,
+    "engage": 2,
+    "chase": 1,
+    "retreat": 0,
+    "collect": 1
+   },
+   {
+    "t": 45,
+    "alive": 5,
+    "roam": 0,
+    "engage": 4,
+    "chase": 0,
+    "retreat": 0,
+    "collect": 1
+   },
+   {
+    "t": 50,
+    "alive": 5,
+    "roam": 2,
+    "engage": 3,
+    "chase": 0,
+    "retreat": 0,
+    "collect": 0
+   },
+   {
+    "t": 55,
+    "alive": 4,
+    "roam": 0,
+    "engage": 1,
+    "chase": 2,
+    "retreat": 1,
+    "collect": 0
+   },
+   {
+    "t": 60,
+    "alive": 5,
+    "roam": 1,
+    "engage": 1,
+    "chase": 1,
+    "retreat": 0,
+    "collect": 2
+   },
+   {
+    "t": 65,
+    "alive": 5,
+    "roam": 3,
+    "engage": 0,
+    "chase": 0,
+    "retreat": 0,
+    "collect": 2
+   },
+   {
+    "t": 70,
+    "alive": 5,
+    "roam": 0,
+    "engage": 5,
+    "chase": 0,
+    "retreat": 0,
+    "collect": 0
+   },
+   {
+    "t": 75,
+    "alive": 5,
+    "roam": 1,
+    "engage": 3,
+    "chase": 0,
+    "retreat": 0,
+    "collect": 1
+   },
+   {
+    "t": 80,
+    "alive": 5,
+    "roam": 0,
+    "engage": 3,
+    "chase": 1,
+    "retreat": 1,
+    "collect": 0
+   },
+   {
+    "t": 85,
+    "alive": 4,
+    "roam": 0,
+    "engage": 3,
+    "chase": 0,
+    "retreat": 0,
+    "collect": 1
+   },
+   {
+    "t": 90,
+    "alive": 5,
+    "roam": 0,
+    "engage": 3,
+    "chase": 1,
+    "retreat": 1,
+    "collect": 0
+   }
+  ],
+  "playerSeenAfterSpawn": {
+   "n": 3,
+   "med": 31.8,
+   "p10": 1.1,
+   "p90": 45.4
+  },
+  "playerDist": [
+   {
+    "t": 2,
+    "min": 24,
+    "med": 55
+   },
+   {
+    "t": 8,
+    "min": 21,
+    "med": 36
+   },
+   {
+    "t": 14,
+    "min": 15,
+    "med": 40
+   },
+   {
+    "t": 20,
+    "min": 22,
+    "med": 39
+   },
+   {
+    "t": 26,
+    "min": 26,
+    "med": 40
+   },
+   {
+    "t": 32,
+    "min": 31,
+    "med": 42
+   },
+   {
+    "t": 38,
+    "min": 15,
+    "med": 48
+   },
+   {
+    "t": 45,
+    "min": 41,
+    "med": 46
+   },
+   {
+    "t": 50,
+    "min": 20,
+    "med": 50
+   },
+   {
+    "t": 56,
+    "min": 29,
+    "med": 40
+   },
+   {
+    "t": 63,
+    "min": 25,
+    "med": 67
+   },
+   {
+    "t": 68,
+    "min": 4,
+    "med": 46
+   },
+   {
+    "t": 74,
+    "min": 6,
+    "med": 41
+   },
+   {
+    "t": 80,
+    "min": 16,
+    "med": 28
+   }
+  ],
+  "playerIdleFind": {
+   "firstDamageAt": 39.7,
+   "deaths": [
+    {
+     "t": 41.9,
+     "by": null,
+     "w": "grenade"
+    },
+    {
+     "t": 60,
+     "by": "Tesla",
+     "w": "rocket"
+    },
+    {
+     "t": 83.3,
+     "by": "Tesla",
+     "w": "rocket"
+    }
+   ]
+  },
+  "playerStats": {
+   "kills": 0,
+   "deaths": 3,
+   "health": 100,
+   "dmgTaken": 300,
+   "dmgDealt": 0,
+   "shots": 0,
+   "acc": null
+  },
+  "deathCtx": {
+   "n": 12,
+   "unaware": 0,
+   "behind": 0,
+   "retreating": 10,
+   "engaging": 1,
+   "visTarget": 0,
+   "lowHpNoRetreat": 0,
+   "hpAtDeathTargetOther": 4,
+   "byState": {
+    "retreat": 10,
+    "chase": 1,
+    "engage": 1
+   }
+  },
+  "collectByType": {
+   "armor": {
+    "trips": 9,
+    "ok": 4,
+    "sec": 30,
+    "medDist": 17,
+    "abortedTo": {
+     "engage": 4,
+     "roam": 1
+    }
+   },
+   "weapon:rocket": {
+    "trips": 7,
+    "ok": 3,
+    "sec": 23,
+    "medDist": 44,
+    "abortedTo": {
+     "engage": 1,
+     "chase": 3
+    }
+   },
+   "health": {
+    "trips": 9,
+    "ok": 5,
+    "sec": 38,
+    "medDist": 28,
+    "abortedTo": {
+     "chase": 1,
+     "roam": 1,
+     "engage": 2
+    }
+   },
+   "weapon:shotgun": {
+    "trips": 3,
+    "ok": 1,
+    "sec": 11,
+    "medDist": 20,
+    "abortedTo": {
+     "roam": 1,
+     "engage": 1
+    }
+   },
+   "weapon:sniper": {
+    "trips": 3,
+    "ok": 0,
+    "sec": 0,
+    "medDist": 27,
+    "abortedTo": {
+     "roam": 3
+    }
+   },
+   "ammo": {
+    "trips": 8,
+    "ok": 2,
+    "sec": 10,
+    "medDist": 14,
+    "abortedTo": {
+     "engage": 5,
+     "chase": 1
+    }
+   }
+  },
+  "transitions": {
+   "roam>collect": 24,
+   "collect>engage": 15,
+   "collect>chase": 8,
+   "engage>chase": 45,
+   "chase>engage": 50,
+   "engage>retreat": 12,
+   "engage>collect": 10,
+   "collect>roam": 16,
+   "roam>chase": 4,
+   "engage>roam": 2,
+   "chase>collect": 5,
+   "roam>engage": 7,
+   "retreat>engage": 1
+  },
+  "chaseDurMedByExit": {
+   "engage": {
+    "n": 50,
+    "med": 0.5
+   },
+   "collect": {
+    "n": 5,
+    "med": 2.1
+   }
+  },
+  "retreatEpisodes": {
+   "all": {
+    "n": 12,
+    "dead": 10,
+    "alive": 1
+   },
+   "enemyHpLEmine": {
+    "n": 0,
+    "dead": 0,
+    "alive": 0
+   },
+   "enemyHpGTmine": {
+    "n": 12,
+    "dead": 10,
+    "alive": 1
+   },
+   "visibleAtStart": {
+    "n": 12,
+    "dead": 10,
+    "alive": 1
+   },
+   "kinds": {
+    "health": 10,
+    "cover": 1,
+    "?": 1
+   },
+   "sample": [
+    {
+     "hp": 12,
+     "ehp": 86,
+     "d": 20,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 0,
+     "ehp": 66,
+     "d": 20,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 15,
+     "ehp": 100,
+     "d": 22,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 24,
+     "ehp": 100,
+     "d": 24,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 24,
+     "ehp": 75,
+     "d": 15,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 28,
+     "ehp": 75,
+     "d": 10,
+     "vis": true,
+     "kind": "health",
+     "out": "alive"
+    },
+    {
+     "hp": 27,
+     "ehp": 75,
+     "d": 12,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 23,
+     "ehp": 100,
+     "d": 20,
+     "vis": true,
+     "kind": "cover",
+     "out": "dead"
+    },
+    {
+     "hp": 24,
+     "ehp": 93,
+     "d": 22,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 31,
+     "ehp": 81,
+     "d": 25,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 37,
+     "ehp": 46,
+     "d": 9,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 31,
+     "ehp": 100,
+     "d": 23,
+     "vis": true,
+     "kind": "",
+     "out": "?"
+    }
+   ]
+  },
+  "nullAttacker": {
+   "dmg": {
+    "grenade": 150
+   },
+   "deaths": {
+    "grenade": 1
+   },
+   "explosions": {
+    "rocket:owner:bot": 37,
+    "grenade:NOOWNER": 2
+   }
+  },
+  "grenadeExplosions": [],
+  "collect": {
+   "trips": 39,
+   "ok": 15,
+   "fail": 24,
+   "secTotal": 112,
+   "secFailed": 44
+  },
+  "retreat": {
+   "enter": 12,
+   "exit": 1,
+   "deaths": 10,
+   "medDistToThreatAtEnter": 20,
+   "medDur": 0.1,
+   "medSecToDeath": 0.8
+  },
+  "weaponShare": {
+   "rocket": 0.258,
+   "rifle": 0.181,
+   "pistol": 0.416,
+   "shotgun": 0.016,
+   "sniper": 0.129
+  },
+  "pistolHeld": {
+   "withOtherOwnedShare": 0.307,
+   "primaryDepletedShare": 0.105
+  },
+  "retreatKinds": {
+   "health": 10.8,
+   "cover": 2.6
+  },
+  "coverReloadSec": 4.6,
+  "engage": {
+   "visSec": 156.1,
+   "blindSec": 36.3,
+   "stillShare": 0.055,
+   "meanLatSpeed": 2.97,
+   "meanRadialSpeed": 1.39,
+   "crouchShare": 0.105,
+   "airShare": 0.201
+  },
+  "yawRate": {
+   "n": 4974,
+   "p50": 0.23,
+   "p95": 3.13,
+   "p99": 7.2
+  },
+  "aimErrMetersAtFire": {
+   "n": 250,
+   "p50": 0.66,
+   "p90": 1.22
+  },
+  "pickupAvailShare": {
+   "weapon:rocket": 0.44,
+   "weapon:sniper": 1,
+   "weapon:shotgun": 0.46,
+   "armor": 0.56,
+   "health": 0.62,
+   "ammo": 0.85,
+   "grenades": 0.78
+  },
+  "pickupCounts": {
+   "weapon:rocket": 1,
+   "weapon:sniper": 1,
+   "weapon:shotgun": 1,
+   "armor": 2,
+   "health": 4,
+   "ammo": 4,
+   "grenades": 2
+  },
+  "per": [
+   {
+    "n": "Nimbus",
+    "k": 4,
+    "d": 0,
+    "w": "pistol",
+    "dmg": 375,
+    "shots": 49,
+    "hits": 11,
+    "stuck": 0,
+    "rec": 0,
+    "resc": 0,
+    "y": [
+     0,
+     12
+    ],
+    "tr": 35,
+    "ff": 11,
+    "revs": 0,
+    "spin": 0
+   },
+   {
+    "n": "Servo",
+    "k": 0,
+    "d": 5,
+    "w": "pistol",
+    "dmg": 114,
+    "shots": 39,
+    "hits": 5,
+    "stuck": 0.5,
+    "rec": 0,
+    "resc": 0,
+    "y": [
+     0,
+     12
+    ],
+    "tr": 30,
+    "ff": 9,
+    "revs": 1,
+    "spin": 0.2
+   },
+   {
+    "n": "Voltag",
+    "k": 4,
+    "d": 1,
+    "w": "rifle",
+    "dmg": 345,
+    "shots": 69,
+    "hits": 22,
+    "stuck": 0,
+    "rec": 2,
+    "resc": 0,
+    "y": [
+     0,
+     17
+    ],
+    "tr": 47,
+    "ff": 13,
+    "revs": 1,
+    "spin": 0
+   },
+   {
+    "n": "Torque",
+    "k": 1,
+    "d": 6,
+    "w": "pistol",
+    "dmg": 336,
+    "shots": 50,
+    "hits": 21,
+    "stuck": 0.5,
+    "rec": 0,
+    "resc": 0,
+    "y": [
+     0,
+     14
+    ],
+    "tr": 47,
+    "ff": 16,
+    "revs": 0,
+    "spin": 0
+   },
+   {
+    "n": "Tesla",
+    "k": 5,
+    "d": 0,
+    "w": "rocket",
+    "dmg": 686,
+    "shots": 43,
+    "hits": 6,
+    "stuck": 0.5,
+    "rec": 1,
+    "resc": 0,
+    "y": [
+     0,
+     13
+    ],
+    "tr": 40,
+    "ff": 12,
+    "revs": 1,
+    "spin": 0
+   }
+  ],
+  "grenadeThrows": 2,
+  "weaponSwitches": 25,
+  "rocketSelf": 0,
+  "player": {
+   "kills": 0,
+   "deaths": 3
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1
+exit attempt=1

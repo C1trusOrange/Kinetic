@@ -1,0 +1,203 @@
+[run] http://127.0.0.1:56521/index.html?autotest=1&map=gunfeel&mapfile=tools/out/audit/feel-gunfeel/testmap.js&bots=0&god=1&script=idle&scenario=tools/out/audit/feel-gunfeel/timing.js&only=reload,recoil&duration=200
+[log] [autotest] finished {"ok":true,"errors":0,"fps":44.5}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 61.53,
+ "frames": 1800,
+ "fps": {
+  "avg": 44.5,
+  "min": 4,
+  "max": 196.1
+ },
+ "errors": [],
+ "map": "gunfeel",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 37,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 37
+ },
+ "renderer": {
+  "calls": 75,
+  "triangles": 7102,
+  "geometries": 204,
+  "textures": 97,
+  "programs": 78
+ },
+ "custom": {
+  "_total": 61,
+  "reload_pistol": {
+   "defReloadTime": 1.3,
+   "extraEmpty": 0.2,
+   "mode": "mag",
+   "measuredTotal_s": null,
+   "magFilledAt_s": null,
+   "magSize": 12
+  },
+  "reload_rifle": {
+   "defReloadTime": 1.9,
+   "extraEmpty": 0.3,
+   "mode": "mag",
+   "measuredTotal_s": 1.523,
+   "reloadTotalField": 2.2,
+   "magFilledAt_s": 0.749,
+   "ammoAfter": 32,
+   "magSize": 32
+  },
+  "reload_shotgun": {
+   "defReloadTime": 3.4,
+   "extraEmpty": 0,
+   "mode": "shell",
+   "measuredTotal_s": 2.973,
+   "reloadTotalField": 3.52,
+   "magFilledAt_s": 0.195,
+   "ammoAfter": 6,
+   "magSize": 6
+  },
+  "reload_sniper": {
+   "defReloadTime": 2.8,
+   "extraEmpty": 0,
+   "mode": "mag",
+   "measuredTotal_s": 2.314,
+   "reloadTotalField": 2.8,
+   "magFilledAt_s": 1.278,
+   "ammoAfter": 5,
+   "magSize": 5
+  },
+  "reload_rocket": {
+   "defReloadTime": 2.9,
+   "extraEmpty": 0,
+   "mode": "mag",
+   "measuredTotal_s": 2.387,
+   "reloadTotalField": 2.9,
+   "magFilledAt_s": 1.31,
+   "ammoAfter": 4,
+   "magSize": 4
+  },
+  "recoil_rifle_hip": {
+   "shots": 11,
+   "burstPitchDeg": 2.36,
+   "perShotDeg": 0.215,
+   "burstYawDeg": -0.48,
+   "pitchAfter600msDeg": 1.74,
+   "defPitchDegPerShot": 0.544,
+   "peakTrauma": 0,
+   "peakShakeSq": 0,
+   "peakViewKickBack_m": 0.02,
+   "peakViewKickPitch_rad": 0.026,
+   "maxSpread": 0.027,
+   "spreadEnd": 0.027,
+   "burstTime_s": 1.13
+  },
+  "recoil_rifle_ads": {
+   "shots": 11,
+   "burstPitchDeg": 1.43,
+   "perShotDeg": 0.13,
+   "burstYawDeg": -0.32,
+   "pitchAfter600msDeg": 1.12,
+   "defPitchDegPerShot": 0.544,
+   "peakTrauma": 0,
+   "peakShakeSq": 0,
+   "peakViewKickBack_m": 0.014,
+   "peakViewKickPitch_rad": 0.018,
+   "maxSpread": 0.018,
+   "spreadEnd": 0.018,
+   "burstTime_s": 1.07
+  },
+  "recoil_pistol_hip": {
+   "shots": 6,
+   "burstPitchDeg": 1.77,
+   "perShotDeg": 0.296,
+   "burstYawDeg": -0.25,
+   "pitchAfter600msDeg": 1.79,
+   "defPitchDegPerShot": 0.974,
+   "peakTrauma": 0.012,
+   "peakShakeSq": 0,
+   "peakViewKickBack_m": 0.029,
+   "peakViewKickPitch_rad": 0.037,
+   "maxSpread": 0.015,
+   "spreadEnd": 0.012,
+   "burstTime_s": 1.08
+  },
+  "recoil_pistol_ads": {
+   "shots": 6,
+   "burstPitchDeg": 1.21,
+   "perShotDeg": 0.201,
+   "burstYawDeg": -0.24,
+   "pitchAfter600msDeg": 1.23,
+   "defPitchDegPerShot": 0.974,
+   "peakTrauma": 0.007,
+   "peakShakeSq": 0,
+   "peakViewKickBack_m": 0.018,
+   "peakViewKickPitch_rad": 0.023,
+   "maxSpread": 0.008,
+   "spreadEnd": 0.006,
+   "burstTime_s": 1.06
+  },
+  "recoil_shotgun_hip": {
+   "shots": 1,
+   "burstPitchDeg": 0,
+   "perShotDeg": 0,
+   "burstYawDeg": 0,
+   "pitchAfter600msDeg": 1.4,
+   "defPitchDegPerShot": 4.011,
+   "peakTrauma": 0.194,
+   "peakShakeSq": 0.038,
+   "peakViewKickBack_m": 0.039,
+   "peakViewKickPitch_rad": 0.05,
+   "maxSpread": 0.055,
+   "spreadEnd": 0.055,
+   "burstTime_s": 0.06
+  },
+  "recoil_sniper_hip": {
+   "shots": 1,
+   "burstPitchDeg": 0,
+   "perShotDeg": 0,
+   "burstYawDeg": 0,
+   "pitchAfter600msDeg": 0.88,
+   "defPitchDegPerShot": 3.151,
+   "peakTrauma": 0.282,
+   "peakShakeSq": 0.079,
+   "peakViewKickBack_m": 0.046,
+   "peakViewKickPitch_rad": 0.059,
+   "maxSpread": 0.064,
+   "spreadEnd": 0.064,
+   "burstTime_s": 0.05
+  },
+  "recoil_rocket_hip": {
+   "shots": 1,
+   "burstPitchDeg": 0,
+   "perShotDeg": 0,
+   "burstYawDeg": 0,
+   "pitchAfter600msDeg": 0.79,
+   "defPitchDegPerShot": 2.865,
+   "peakTrauma": 0.325,
+   "peakShakeSq": 0.105,
+   "peakViewKickBack_m": 0.046,
+   "peakViewKickPitch_rad": 0.06,
+   "maxSpread": 0.004,
+   "spreadEnd": 0.004,
+   "burstTime_s": 0.09
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

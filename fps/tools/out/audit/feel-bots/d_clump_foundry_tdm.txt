@@ -1,0 +1,6 @@
+[run] http://127.0.0.1:61697/index.html?autotest=1&scenario=tools/out/audit/feel-bots/director.js&map=foundry&bots=8&mode=tdm&diff=normal&spectate=1&duration=240&shot=clump&cam=0,30,0,0,-1.2
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[run] screenshot -> tools\out\audit\feel-bots\dir_clump_foundry_tdm.png
+[run] done: wait=ok console_errors=0 warnings=1
+exit attempt=1

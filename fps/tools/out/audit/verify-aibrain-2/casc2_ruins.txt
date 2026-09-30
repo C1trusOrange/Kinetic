@@ -1,0 +1,838 @@
+[run] http://127.0.0.1:60828/index.html?autotest=1&map=ruins&bots=2&duration=1000&n=3&scenario=tools/out/audit/verify-aibrain-2/casc2.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 11.55,
+ "frames": 26,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 12,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 113.2,
+   "pos": [
+    10.5,
+    4.5,
+    5.7
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    12,
+    0.1,
+    -46
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 93,
+  "triangles": 69906,
+  "geometries": 81,
+  "textures": 70,
+  "programs": 83
+ },
+ "custom": {
+  "trials": [
+   {
+    "node": [
+     -51.49,
+     0,
+     -51.49
+    ],
+    "maxIgnoredHealth": 1,
+    "log": [
+     {
+      "ev": "enter",
+      "t": 0.32,
+      "y": 5.7,
+      "unr": false,
+      "mode": "idle",
+      "kind": "health"
+     },
+     {
+      "t": 0.42,
+      "y": 7,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 0.52,
+      "y": 8.06,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 0.6,
+      "y": 8.76,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 0.7,
+      "y": 9.38,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 0.8,
+      "y": 9.76,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 0.9,
+      "y": 9.9,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1,
+      "y": 9.8,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.1,
+      "y": 9.46,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.2,
+      "y": 8.88,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.3,
+      "y": 8.06,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.4,
+      "y": 7,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.52,
+      "y": 5.46,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.62,
+      "y": 3.88,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.72,
+      "y": 2.06,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.82,
+      "y": 0,
+      "g": false,
+      "unr": false,
+      "mode": "path",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.92,
+      "y": 0,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.02,
+      "y": 0,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.12,
+      "y": 0,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.22,
+      "y": 0,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.32,
+      "y": 0,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.42,
+      "y": 0,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.52,
+      "y": 0,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.62,
+      "y": 0,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 1,
+      "st": "retreat",
+      "kind": "flee"
+     }
+    ]
+   },
+   {
+    "node": [
+     20.51,
+     0,
+     -21.49
+    ],
+    "maxIgnoredHealth": 3,
+    "log": [
+     {
+      "ev": "enter",
+      "t": 0.32,
+      "y": 5.7,
+      "unr": false,
+      "mode": "idle",
+      "kind": "health"
+     },
+     {
+      "t": 0.42,
+      "y": 7,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 0.52,
+      "y": 8.06,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 0.6,
+      "y": 8.76,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 0.7,
+      "y": 9.38,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 0.8,
+      "y": 9.76,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 0.9,
+      "y": 9.9,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1,
+      "y": 9.8,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.1,
+      "y": 9.46,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.2,
+      "y": 8.88,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.3,
+      "y": 8.06,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.4,
+      "y": 7,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.52,
+      "y": 5.46,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.62,
+      "y": 3.88,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.72,
+      "y": 2.06,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.82,
+      "y": 1.3,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.92,
+      "y": 1.3,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.02,
+      "y": 1.3,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.12,
+      "y": 1.29,
+      "g": false,
+      "unr": false,
+      "mode": "path",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.22,
+      "y": 1.11,
+      "g": false,
+      "unr": false,
+      "mode": "path",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.32,
+      "y": 0.69,
+      "g": false,
+      "unr": false,
+      "mode": "path",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.42,
+      "y": 0.03,
+      "g": false,
+      "unr": false,
+      "mode": "path",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.52,
+      "y": 0,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.62,
+      "y": 0,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 3,
+      "st": "retreat",
+      "kind": "flee"
+     }
+    ]
+   },
+   {
+    "node": [
+     24.51,
+     0.05,
+     -3.49
+    ],
+    "maxIgnoredHealth": 4,
+    "log": [
+     {
+      "ev": "enter",
+      "t": 0.3,
+      "y": 5.51,
+      "unr": false,
+      "mode": "idle",
+      "kind": "health"
+     },
+     {
+      "t": 0.3,
+      "y": 5.51,
+      "g": false,
+      "unr": false,
+      "mode": "idle",
+      "ign": 0,
+      "st": "retreat",
+      "kind": "health"
+     },
+     {
+      "t": 0.42,
+      "y": 7.05,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 0.52,
+      "y": 8.11,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 0.6,
+      "y": 8.81,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 0.7,
+      "y": 9.43,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 0.8,
+      "y": 9.81,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 0.9,
+      "y": 9.95,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1,
+      "y": 9.85,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.1,
+      "y": 9.51,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.2,
+      "y": 8.93,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.3,
+      "y": 8.11,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.4,
+      "y": 7.05,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.52,
+      "y": 5.51,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.62,
+      "y": 3.93,
+      "g": false,
+      "unr": true,
+      "mode": "direct",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.72,
+      "y": 3.69,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.82,
+      "y": 3.68,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 1.92,
+      "y": 3.75,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.02,
+      "y": 3.86,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.12,
+      "y": 3.76,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.22,
+      "y": 3.78,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.32,
+      "y": 3.88,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.42,
+      "y": 3.77,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     },
+     {
+      "t": 2.52,
+      "y": 3.79,
+      "g": true,
+      "unr": false,
+      "mode": "path",
+      "ign": 4,
+      "st": "retreat",
+      "kind": "flee"
+     }
+    ]
+   }
+  ],
+  "healthPacks": 4,
+  "cands": 249
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

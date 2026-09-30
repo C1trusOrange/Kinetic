@@ -1,0 +1,360 @@
+[run] http://127.0.0.1:63236/index.html?autotest=1&map=foundry&bots=8&god=1&script=idle&scenario=tools/out/audit/review-assets/flipscen.js&duration=12
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":49.7}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 12.2,
+ "frames": 540,
+ "fps": {
+  "avg": 49.7,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0.1,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Relay",
+   "alive": false,
+   "kills": 1,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 58.2,
+   "pos": [
+    17.3,
+    0,
+    16.1
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 80.2,
+   "pos": [
+    -14.1,
+    -4,
+    23.2
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 90.7,
+   "pos": [
+    16.9,
+    0,
+    -41.2
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 82.1,
+   "pos": [
+    -14.9,
+    0,
+    11.6
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 86,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 69.2,
+   "pos": [
+    2.3,
+    0,
+    11.6
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "collect",
+   "distance": 20.4,
+   "pos": [
+    7,
+    5,
+    -17.9
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 64.3,
+   "pos": [
+    -44.9,
+    0,
+    -29.7
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 47,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 83.3,
+   "pos": [
+    30.1,
+    0,
+    17.9
+   ]
+  }
+ ],
+ "events": {
+  "damage": 25,
+  "death": 3,
+  "spawn": 11,
+  "pickup": 2,
+  "fire": 78
+ },
+ "renderer": {
+  "calls": 491,
+  "triangles": 145802,
+  "geometries": 218,
+  "textures": 136,
+  "programs": 103
+ },
+ "custom": {
+  "log": [
+   {
+    "pass": "world",
+    "steel": {
+     "lsv": 26,
+     "fog": true,
+     "prog": 88
+    },
+    "glowCyan": {
+     "lsv": 26,
+     "fog": true,
+     "prog": 22
+    }
+   },
+   {
+    "pass": "view",
+    "steel": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 94
+    },
+    "glowCyan": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 96
+    }
+   },
+   {
+    "pass": "other",
+    "steel": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 94
+    },
+    "glowCyan": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 96
+    }
+   },
+   {
+    "pass": "other",
+    "steel": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 94
+    },
+    "glowCyan": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 96
+    }
+   },
+   {
+    "pass": "other",
+    "steel": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 94
+    },
+    "glowCyan": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 96
+    }
+   },
+   {
+    "pass": "other",
+    "steel": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 94
+    },
+    "glowCyan": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 96
+    }
+   },
+   {
+    "pass": "other",
+    "steel": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 94
+    },
+    "glowCyan": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 96
+    }
+   },
+   {
+    "pass": "other",
+    "steel": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 94
+    },
+    "glowCyan": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 96
+    }
+   },
+   {
+    "pass": "other",
+    "steel": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 94
+    },
+    "glowCyan": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 96
+    }
+   },
+   {
+    "pass": "other",
+    "steel": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 94
+    },
+    "glowCyan": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 96
+    }
+   },
+   {
+    "pass": "other",
+    "steel": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 94
+    },
+    "glowCyan": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 96
+    }
+   },
+   {
+    "pass": "other",
+    "steel": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 94
+    },
+    "glowCyan": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 96
+    }
+   },
+   {
+    "pass": "other",
+    "steel": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 94
+    },
+    "glowCyan": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 96
+    }
+   },
+   {
+    "pass": "other",
+    "steel": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 94
+    },
+    "glowCyan": {
+     "lsv": 27,
+     "fog": false,
+     "prog": 96
+    }
+   }
+  ],
+  "info": {
+   "worldFog": true,
+   "viewFog": false
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

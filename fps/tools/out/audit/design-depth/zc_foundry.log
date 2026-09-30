@@ -1,0 +1,308 @@
+[run] http://127.0.0.1:60345/index.html?autotest=1&map=foundry&bots=0&script=idle&scenario=tools/out/audit/design-depth/zone_check.js&duration=1&quality=low
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":87.3}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 1.16,
+ "frames": 114,
+ "fps": {
+  "avg": 87.3,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0.1,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 109,
+  "triangles": 65786,
+  "geometries": 120,
+  "textures": 101,
+  "programs": 74
+ },
+ "custom": {
+  "map": "foundry",
+  "zones": [
+   {
+    "name": "hall",
+    "at": [
+     0,
+     0,
+     2.2
+    ],
+    "r": 7.5,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 136,
+    "reachIn": 136
+   },
+   {
+    "name": "trench",
+    "at": [
+     0,
+     -4,
+     26
+    ],
+    "r": 7,
+    "floorY": -4,
+    "head": 4,
+    "conn": true,
+    "navIn": 103,
+    "reachIn": 99
+   },
+   {
+    "name": "yardN",
+    "at": [
+     0,
+     0,
+     -32
+    ],
+    "r": 8,
+    "floorY": 1,
+    "head": 4,
+    "conn": true,
+    "navIn": 194,
+    "reachIn": 185
+   },
+   {
+    "name": "plazaE",
+    "at": [
+     34,
+     0,
+     0
+    ],
+    "r": 8,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 181,
+    "reachIn": 179
+   },
+   {
+    "name": "tanks",
+    "at": [
+     38.5,
+     10,
+     -37
+    ],
+    "r": 6,
+    "floorY": 10.03,
+    "head": 4,
+    "conn": false,
+    "navIn": 47,
+    "reachIn": 41
+   },
+   {
+    "name": "scrapSW",
+    "at": [
+     -30,
+     0,
+     30
+    ],
+    "r": 8,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 114,
+    "reachIn": 111
+   },
+   {
+    "name": "canyonW",
+    "at": [
+     -32,
+     0,
+     -10
+    ],
+    "r": 7,
+    "floorY": 0,
+    "head": 2.5,
+    "conn": false,
+    "navIn": 115,
+    "reachIn": 114
+   },
+   {
+    "name": "slagRoof",
+    "at": [
+     35,
+     6.1,
+     38
+    ],
+    "r": 8,
+    "floorY": 6.1,
+    "head": 4,
+    "conn": false,
+    "navIn": 176,
+    "reachIn": 0
+   },
+   {
+    "name": "gantryS",
+    "at": [
+     0,
+     5,
+     16
+    ],
+    "r": 7,
+    "floorY": 5,
+    "head": 4,
+    "conn": true,
+    "navIn": 73,
+    "reachIn": 73
+   }
+  ],
+  "pads": [
+   {
+    "name": "pad0",
+    "at": [
+     26,
+     0,
+     3
+    ],
+    "r": 0,
+    "floorY": 1,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad1",
+    "at": [
+     -24,
+     0,
+     4
+    ],
+    "r": 0,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad2",
+    "at": [
+     0,
+     0,
+     -34
+    ],
+    "r": 0,
+    "floorY": 1,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad3",
+    "at": [
+     -8,
+     0,
+     40
+    ],
+    "r": 0,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad4",
+    "at": [
+     24,
+     0,
+     -13
+    ],
+    "r": 0,
+    "floorY": 1,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad5",
+    "at": [
+     -13,
+     9.5,
+     5
+    ],
+    "r": 0,
+    "floorY": 10.55,
+    "head": 1.35,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad6",
+    "at": [
+     14,
+     0,
+     6
+    ],
+    "r": 0,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad7",
+    "at": [
+     -2,
+     -4,
+     26
+    ],
+    "r": 0,
+    "floorY": -4,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad8",
+    "at": [
+     10,
+     0,
+     36
+    ],
+    "r": 0,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

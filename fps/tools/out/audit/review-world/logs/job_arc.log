@@ -1,0 +1,24 @@
+[run] http://127.0.0.1:54579/index.html
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[result] "{\"foundry\":[{\"i\":0,\"waist\":null,\"feet\":null,\"head\":null,\"feetL\":null,\"feetR\":null,\"warnedByWorld\":[]},{\"i\":1,\"waist\":null,\"feet\":null,\"head\":null,\"feetL\":null,\"feetR\":null,\"warnedByWorld\":[]},{\"i\":2,\"waist\":null,\"feet\":null,\"head\":null,\"feetL\":null,\"feetR\":null,\"warnedByWorld\":[]},{\"i\":3,\"waist\":null,\"feet\":null,\"head\":null,\"feetL\":null,\"feetR\":null,\"warnedByWorld\":[]}],\"ruins\":[{\"i\":0,\"waist\":null,\"feet\":null,\"head\":null,\"feetL\":null,\"feetR\":null,\"warnedByWorld\":[]},{\"i\":1,\"waist\":null,\"feet\":null,\"head\":null,\"feetL\":null,\"feetR\":null,\"warnedByWorld\":[]},{\"i\":2,\"waist\":null,\"feet\":null,\"head\":null,\"feetL\":null,\"feetR\":null,\"warnedByWorld\":[]},{\"i\":3,\"waist\":null,\"feet\":[0,8.5,-37.4],\"head\":null,\"feetL\":[0.4,8.7,-37.4],\"feetR\":[-0.4,8.7,-37.4],\"warnedByWorld\":[]},{\"i\":4,\"waist\":null,\"feet\":null,\"head\":null,\"feetL\":null,\"feetR\":null,\"warnedByWorld\":[]},{\"i\":5,\"waist\":null,\"feet\":null,\"head\":null,\"feetL\":null,\"feetR\":null,\"warnedByWorld\":[]}],\"skyline\":[{\"i\":0,\"waist\":null,\"feet\":null,\"head\":null,\"feetL\":null,\"feetR\":null,\"warnedByWorld\":[]},{\"i\":1,\"waist\":null,\"feet\":null,\"head\":null,\"feetL\":null,\"feetR\":null,\"warnedByWorld\":[]},{\"i\":2,\"waist\":null,\"feet\":null,\"head\":null,\"feetL\":null,\"feetR\":null,\"warnedByWorld\":[]},{\"i\":3,\"waist\":null,\"feet\":null,\"head\":null,\"feetL\":null,\"feetR\":null,\"warnedByWorld\":[]}],\"sandbox\":[{\"i\":0,\"waist\":null,\"feet\":null,\"head\":null,\"feetL\":null,\"feetR\":null,\"warnedByWorld\":[]},{\"i\":1,\"waist\":null,\"feet\":null,\"head\":null,\"feetL\":null,\"feetR\":null,\"warnedByWorld\":[]}]}"
+[run] done: wait=ok console_errors=0 warnings=3

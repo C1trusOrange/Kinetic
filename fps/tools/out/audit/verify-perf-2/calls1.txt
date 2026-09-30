@@ -1,0 +1,260 @@
+[run] http://127.0.0.1:51028/index.html?autotest=1&map=foundry&bots=8&duration=20&script=idle&scenario=tools/out/audit/verify-perf-2/sc_calls.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 20.38,
+ "frames": 459,
+ "fps": {
+  "avg": 17,
+  "min": 4,
+  "max": 83.3
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 88,
+  "maxSpeed": 19.69,
+  "minY": 0,
+  "maxY": 10.183333333333332,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "isMantling": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "isGrappling": true
+  },
+  "shots": 18,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 104,
+   "pos": [
+    -34.2,
+    0,
+    -8.7
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 71.3,
+   "pos": [
+    34.9,
+    0,
+    9.8
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 92.3,
+   "pos": [
+    -45,
+    0,
+    -38
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 92.8,
+   "pos": [
+    -17.9,
+    0,
+    19
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 2,
+   "deaths": 0,
+   "health": 60,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 111.4,
+   "pos": [
+    4.9,
+    0,
+    13.9
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 98.7,
+   "pos": [
+    46,
+    0,
+    -21
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 89,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 87.3,
+   "pos": [
+    14.8,
+    0,
+    30
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 107.8,
+   "pos": [
+    15.7,
+    0,
+    -22.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 34,
+  "death": 8,
+  "spawn": 17,
+  "pickup": 1,
+  "fire": 143
+ },
+ "renderer": {
+  "calls": 423,
+  "triangles": 134320,
+  "geometries": 366,
+  "textures": 147,
+  "programs": 115
+ },
+ "custom": {
+  "bots": [
+   {
+    "w": "rocket",
+    "total": 31,
+    "weaponMeshes": 18,
+    "bodyOnly": 13
+   },
+   {
+    "w": "rocket",
+    "total": 31,
+    "weaponMeshes": 18,
+    "bodyOnly": 13
+   },
+   {
+    "w": "sniper",
+    "total": 26,
+    "weaponMeshes": 13,
+    "bodyOnly": 13
+   },
+   {
+    "w": "rocket",
+    "total": 31,
+    "weaponMeshes": 18,
+    "bodyOnly": 13
+   },
+   {
+    "w": "rifle",
+    "total": 27,
+    "weaponMeshes": 14,
+    "bodyOnly": 13
+   },
+   {
+    "w": "sniper",
+    "total": 26,
+    "weaponMeshes": 13,
+    "bodyOnly": 13
+   },
+   {
+    "w": "rifle",
+    "total": 27,
+    "weaponMeshes": 14,
+    "bodyOnly": 13
+   },
+   {
+    "w": "rifle",
+    "total": 27,
+    "weaponMeshes": 14,
+    "bodyOnly": 13
+   }
+  ],
+  "pickupsCulledFalse": null,
+  "sum": {
+   "A": {
+    "n": 128,
+    "calls": 494,
+    "tris": 140942,
+    "r": 11.9
+   },
+   "warm": {
+    "n": 62,
+    "calls": 545,
+    "tris": 145248,
+    "r": 12.3
+   },
+   "noBots": {
+    "n": 108,
+    "calls": 194,
+    "tris": 111630,
+    "r": 7.3
+   },
+   "botNoShadow": {
+    "n": 104,
+    "calls": 233,
+    "tris": 115100,
+    "r": 8.9
+   },
+   "A2": {
+    "n": 46,
+    "calls": 434,
+    "tris": 137744,
+    "r": 11.6
+   }
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

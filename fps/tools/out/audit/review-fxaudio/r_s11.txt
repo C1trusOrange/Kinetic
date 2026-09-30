@@ -1,0 +1,81 @@
+[run] http://127.0.0.1:52497/index.html?autotest=1&map=sandbox&bots=0&god=1&script=idle&scenario=tools/out/audit/review-fxaudio/s11_pillar.js&duration=6
+[run] screenshot -> tools\out\audit\review-fxaudio\s11_pillar.png
+[result] {
+ "done": true,
+ "started": true,
+ "t": 6.83,
+ "frames": 318,
+ "fps": {
+  "avg": 52,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 1.3,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": 1.3000000000000003,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 97,
+  "triangles": 33260,
+  "geometries": 128,
+  "textures": 119,
+  "programs": 97
+ },
+ "custom": {
+  "decals": [
+   {
+    "scorch": true,
+    "pos": [
+     6.5,
+     1.5,
+     7.15
+    ],
+    "n": [
+     0,
+     0.02,
+     1
+    ],
+    "size": 7.91,
+    "coverage": 0.04
+   },
+   {
+    "scorch": true,
+    "pos": [
+     6.5,
+     0.29,
+     7.3
+    ],
+    "n": [
+     0,
+     1,
+     0
+    ],
+    "size": 7.48,
+    "coverage": 0.08
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

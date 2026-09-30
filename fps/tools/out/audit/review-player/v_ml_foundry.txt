@@ -1,0 +1,195 @@
+[run] http://127.0.0.1:54088/index.html?autotest=1&map=foundry&bots=0&script=idle&scenario=tools/out/audit/review-player/v_mantle_lowceil.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.9,
+ "frames": 35,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 15.037593984962907
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 27.982993297755364,
+  "maxSpeed": 6.64415397171506,
+  "minY": 8.95,
+  "maxY": 9.505,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isMantling": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "attempts": [
+   {
+    "k": 3,
+    "edge": [
+     -12.75,
+     10.55,
+     -19
+    ],
+    "mantleTo": [
+     -12.86,
+     9.51,
+     -19.47
+    ],
+    "afterFeet": [
+     -12.86,
+     9.5,
+     -19.47
+    ],
+    "state": "ground",
+    "height": 1.8,
+    "headroomAtLanding": 2.48,
+    "standingTop": 11.3,
+    "ceilingY": 11.98
+   },
+   {
+    "k": 4,
+    "edge": [
+     -12.75,
+     10.55,
+     -19
+    ],
+    "mantleTo": [
+     -12.75,
+     9.51,
+     -19.47
+    ],
+    "afterFeet": [
+     -12.75,
+     9.5,
+     -19.47
+    ],
+    "state": "ground",
+    "height": 1.8,
+    "headroomAtLanding": 2.48,
+    "standingTop": 11.3,
+    "ceilingY": 11.98
+   },
+   {
+    "k": 5,
+    "edge": [
+     -12.75,
+     10.55,
+     -19
+    ],
+    "mantleTo": [
+     -12.64,
+     9.51,
+     -19.47
+    ],
+    "afterFeet": [
+     -12.64,
+     9.5,
+     -19.47
+    ],
+    "state": "ground",
+    "height": 1.8,
+    "headroomAtLanding": 2.48,
+    "standingTop": 11.3,
+    "ceilingY": 11.98
+   }
+  ],
+  "notMantled": [
+   {
+    "k": 0,
+    "edge": [
+     8.95,
+     10.55,
+     -19
+    ],
+    "mantled": false
+   },
+   {
+    "k": 1,
+    "skip": "embedded"
+   },
+   {
+    "k": 2,
+    "skip": "embedded"
+   },
+   {
+    "k": 6,
+    "skip": "embedded"
+   },
+   {
+    "k": 7,
+    "skip": "embedded"
+   },
+   {
+    "k": 8,
+    "edge": [
+     -13.55,
+     10.55,
+     -19
+    ],
+    "mantled": false
+   },
+   {
+    "k": 9,
+    "skip": "embedded"
+   },
+   {
+    "k": 10,
+    "skip": "embedded"
+   },
+   {
+    "k": 11,
+    "edge": [
+     -12.75,
+     10.55,
+     -19
+    ],
+    "mantled": false
+   },
+   {
+    "k": 12,
+    "edge": [
+     -12.75,
+     10.55,
+     -19
+    ],
+    "mantled": false
+   },
+   {
+    "k": 13,
+    "edge": [
+     -12.75,
+     10.55,
+     -19
+    ],
+    "mantled": false
+   },
+   {
+    "k": 14,
+    "skip": "embedded"
+   },
+   {
+    "k": 15,
+    "skip": "embedded"
+   }
+  ]
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

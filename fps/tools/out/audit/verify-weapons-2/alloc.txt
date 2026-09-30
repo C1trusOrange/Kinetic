@@ -1,0 +1,71 @@
+[run] http://127.0.0.1:62801/index.html?autotest=1&map=sandbox&bots=1&scenario=tools/out/audit/verify-weapons-2/alloc.js&duration=6
+[log] [autotest] finished {"ok":true,"errors":0,"fps":21.4}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 6.16,
+ "frames": 170,
+ "fps": {
+  "avg": 21.4,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": -5.551115123125783e-17,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 40.3,
+   "pos": [
+    1.1,
+    4.5,
+    6.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 2,
+  "pickup": 1,
+  "fire": 1
+ },
+ "renderer": {
+  "calls": 176,
+  "triangles": 41466,
+  "geometries": 154,
+  "textures": 128,
+  "programs": 100
+ },
+ "custom": {
+  "calls": 29,
+  "hits": 15,
+  "frames": 22,
+  "resting": true,
+  "speedAtEnd": 0,
+  "resting2": true
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

@@ -1,0 +1,288 @@
+[run] http://127.0.0.1:56424/index.html?autotest=1&map=foundry&bots=8&duration=6&scenario=tools/out/audit/verify-perf-1/calls.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 6.22,
+ "frames": 191,
+ "fps": {
+  "avg": 27.2,
+  "min": 4,
+  "max": 163.9
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 5,
+  "maxY": 5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 8,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 30.4,
+   "pos": [
+    -36.5,
+    0,
+    21.2
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 80,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 16.3,
+   "pos": [
+    18.3,
+    0,
+    30.9
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 40.5,
+   "pos": [
+    -46.8,
+    0,
+    1
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 43.4,
+   "pos": [
+    24.7,
+    0,
+    -8.2
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 49,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 34,
+   "pos": [
+    -0.7,
+    0,
+    9.6
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": false,
+   "kills": 0,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 27.3,
+   "pos": [
+    12.7,
+    0,
+    7.1
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 41,
+   "pos": [
+    -30.9,
+    0,
+    -1.8
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": false,
+   "kills": 0,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 38.5,
+   "pos": [
+    -18.2,
+    6.7,
+    18.3
+   ]
+  }
+ ],
+ "events": {
+  "damage": 17,
+  "death": 2,
+  "spawn": 9,
+  "pickup": 0,
+  "fire": 39
+ },
+ "renderer": {
+  "calls": 419,
+  "triangles": 139460,
+  "geometries": 218,
+  "textures": 137,
+  "programs": 103
+ },
+ "custom": {
+  "botCount": 8,
+  "botMeshes": [
+   {
+    "weapon": "pistol",
+    "body": 21,
+    "total": 21,
+    "weaponMeshes": 8,
+    "weaponMats": 8
+   },
+   {
+    "weapon": "sniper",
+    "body": 26,
+    "total": 26,
+    "weaponMeshes": 13,
+    "weaponMats": 13
+   },
+   {
+    "weapon": "rifle",
+    "body": 27,
+    "total": 27,
+    "weaponMeshes": 14,
+    "weaponMats": 14
+   },
+   {
+    "weapon": "rifle",
+    "body": 27,
+    "total": 27,
+    "weaponMeshes": 14,
+    "weaponMats": 14
+   },
+   {
+    "weapon": "pistol",
+    "body": 21,
+    "total": 21,
+    "weaponMeshes": 8,
+    "weaponMats": 8
+   },
+   {
+    "weapon": "pistol",
+    "body": 21,
+    "total": 21,
+    "weaponMeshes": 8,
+    "weaponMats": 8
+   },
+   {
+    "weapon": "pistol",
+    "body": 21,
+    "total": 21,
+    "weaponMeshes": 8,
+    "weaponMats": 8
+   },
+   {
+    "weapon": "rocket",
+    "body": 31,
+    "total": 31,
+    "weaponMeshes": 18,
+    "weaponMats": 18
+   }
+  ],
+  "rocketPoolGroup": {
+   "meshes": 12,
+   "mats": 9,
+   "geos": 11
+  },
+  "grenadePoolGroup": {
+   "meshes": 6,
+   "mats": 6,
+   "geos": 6
+  },
+  "ab": {
+   "full": {
+    "calls": 538,
+    "tris": 148498,
+    "cpuMedMs": 13
+   },
+   "noBots": {
+    "calls": 145,
+    "tris": 104028,
+    "cpuMedMs": 4.8
+   },
+   "botsNoCast": {
+    "calls": 343,
+    "tris": 126266,
+    "cpuMedMs": 10.5
+   },
+   "shadowFrozen": {
+    "calls": 324,
+    "tris": 88430,
+    "cpuMedMs": 8.7
+   },
+   "noPickups": {
+    "calls": 499,
+    "tris": 131582,
+    "cpuMedMs": 12.1
+   }
+  },
+  "rockets": {
+   "rockets1": {
+    "calls": 555,
+    "tris": 149026
+   },
+   "rockets3": {
+    "calls": 589,
+    "tris": 150082
+   },
+   "none": {
+    "calls": 538,
+    "tris": 148498
+   }
+  },
+  "pickupMeshes": 38,
+  "pickupCulledFalse": 38,
+  "shadowType": 2,
+  "shadowSize": [
+   2048,
+   2048
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

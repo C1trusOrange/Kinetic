@@ -1,0 +1,184 @@
+[run] http://127.0.0.1:55954/index.html?autotest=1&map=skyline&bots=2&duration=1&god=1&script=idle&scenario=tools/out/audit/review-aibrain/v/padtest.js
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 247.77,
+ "frames": 82,
+ "fps": {
+  "avg": 0,
+  "min": 12.738853503183845,
+  "max": 166.66666666666035
+ },
+ "errors": [],
+ "map": "skyline",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 1940.9,
+   "pos": [
+    -4.1,
+    6.4,
+    21.2
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    30,
+    9.6,
+    -32
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 148,
+  "triangles": 67866,
+  "geometries": 130,
+  "textures": 150,
+  "programs": 92
+ },
+ "custom": {
+  "pads": 4,
+  "unpatched": {
+   "label": "unpatched",
+   "n": 20,
+   "ok": 19,
+   "avgT": 5.4,
+   "totalInv": 19,
+   "fails": [
+    {
+     "pad": 2,
+     "ok": false,
+     "t": 20,
+     "inv": 8,
+     "air": 12.5,
+     "a": [
+      -11.5,
+      0,
+      -21.5
+     ],
+     "g": [
+      -3.5,
+      6.6,
+      -33.5
+     ]
+    }
+   ],
+   "all": [
+    "0:ok:5.3s:inv0",
+    "0:ok:4.4s:inv0",
+    "0:ok:3.2s:inv1",
+    "0:ok:2.8s:inv0",
+    "0:ok:4.2s:inv0",
+    "1:ok:5.1s:inv2",
+    "1:ok:3.6s:inv1",
+    "1:ok:5s:inv2",
+    "1:ok:8.8s:inv4",
+    "1:ok:3.9s:inv1",
+    "2:ok:4s:inv0",
+    "2:ok:4s:inv0",
+    "2:ok:3.7s:inv0",
+    "2:FAIL:20s:inv8",
+    "2:ok:4s:inv0",
+    "3:ok:6.9s:inv0",
+    "3:ok:7.3s:inv0",
+    "3:ok:3.9s:inv0",
+    "3:ok:4s:inv0",
+    "3:ok:3.4s:inv0"
+   ]
+  },
+  "patched": {
+   "label": "patched",
+   "n": 20,
+   "ok": 19,
+   "avgT": 6.3,
+   "totalInv": 11,
+   "fails": [
+    {
+     "pad": 2,
+     "ok": false,
+     "t": 20,
+     "inv": 8,
+     "air": 12.3,
+     "a": [
+      -11.5,
+      0,
+      -21.5
+     ],
+     "g": [
+      -3.5,
+      6.6,
+      -33.5
+     ]
+    }
+   ],
+   "all": [
+    "0:ok:4.9s:inv0",
+    "0:ok:4.4s:inv0",
+    "0:ok:3.3s:inv0",
+    "0:ok:2.8s:inv0",
+    "0:ok:4.1s:inv0",
+    "1:ok:15.7s:inv1",
+    "1:ok:3.6s:inv0",
+    "1:ok:18.4s:inv1",
+    "1:ok:3.5s:inv0",
+    "1:ok:3.9s:inv1",
+    "2:ok:4s:inv0",
+    "2:ok:4s:inv0",
+    "2:ok:3.7s:inv0",
+    "2:FAIL:20s:inv8",
+    "2:ok:4s:inv0",
+    "3:ok:6.9s:inv0",
+    "3:ok:7.7s:inv0",
+    "3:ok:3.9s:inv0",
+    "3:ok:4s:inv0",
+    "3:ok:3.4s:inv0"
+   ]
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

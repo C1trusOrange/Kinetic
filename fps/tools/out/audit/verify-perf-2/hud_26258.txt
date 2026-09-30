@@ -1,0 +1,173 @@
+[run] http://127.0.0.1:54826/index.html?autotest=1&map=sandbox&bots=3&duration=8&hide=1&scenario=tools/out/audit/verify-perf-2/sc_hud.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.16,
+ "frames": 329,
+ "fps": {
+  "avg": 42.6,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 54.175000010641405,
+  "maxSpeed": 10.28,
+  "minY": -5.551115123125783e-17,
+  "maxY": 2.059999999999997,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true
+  },
+  "shots": 18,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 80,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 50.8,
+   "pos": [
+    11.3,
+    0,
+    -3.7
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 39.4,
+   "pos": [
+    14.1,
+    0,
+    23.8
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "collect",
+   "distance": 28.5,
+   "pos": [
+    -18.8,
+    0,
+    -17
+   ]
+  }
+ ],
+ "events": {
+  "damage": 5,
+  "death": 1,
+  "spawn": 5,
+  "pickup": 3,
+  "fire": 28
+ },
+ "renderer": {
+  "calls": 215,
+  "triangles": 44950,
+  "geometries": 225,
+  "textures": 131,
+  "programs": 105
+ },
+ "custom": {
+  "hide": "1",
+  "firstPlay": 28,
+  "firstFrame": {
+   "f": 28,
+   "dt": 4960,
+   "js": 4274,
+   "gt": 0.05,
+   "st": "playing"
+  },
+  "next8": [
+   {
+    "f": 29,
+    "dt": 47,
+    "js": 28,
+    "gt": 0.1,
+    "st": "playing"
+   },
+   {
+    "f": 30,
+    "dt": 46,
+    "js": 45,
+    "gt": 0.15,
+    "st": "playing"
+   },
+   {
+    "f": 31,
+    "dt": 34,
+    "js": 32,
+    "gt": 0.2,
+    "st": "playing"
+   },
+   {
+    "f": 32,
+    "dt": 22,
+    "js": 22,
+    "gt": 0.23,
+    "st": "playing"
+   },
+   {
+    "f": 33,
+    "dt": 18,
+    "js": 18,
+    "gt": 0.25,
+    "st": "playing"
+   },
+   {
+    "f": 34,
+    "dt": 29,
+    "js": 26,
+    "gt": 0.27,
+    "st": "playing"
+   },
+   {
+    "f": 35,
+    "dt": 18,
+    "js": 17,
+    "gt": 0.3,
+    "st": "playing"
+   },
+   {
+    "f": 36,
+    "dt": 60,
+    "js": 20,
+    "gt": 0.35,
+    "st": "playing"
+   }
+  ],
+  "maxGapAfter": 143,
+  "maxGapAfterJs": {
+   "f": 67,
+   "dt": 143,
+   "js": 136,
+   "gt": 1.27,
+   "st": "playing"
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

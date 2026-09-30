@@ -1,0 +1,141 @@
+[run] http://127.0.0.1:55313/index.html?autotest=1&map=sandbox&bots=6&spectate=1&duration=24&diff=hard
+[run] screenshot -> tools\out\audit\review-aibody\spec_6s.png
+[run] screenshot -> tools\out\audit\review-aibody\spec_10s.png
+[run] screenshot -> tools\out\audit\review-aibody\spec_14s.png
+[run] screenshot -> tools\out\audit\review-aibody\spec_18s.png
+[run] screenshot -> tools\out\audit\review-aibody\spec_22s.png
+[log] [autotest] finished {"ok":true,"errors":0,"fps":39.7}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 24.29,
+ "frames": 822,
+ "fps": {
+  "avg": 39.7,
+  "min": 4,
+  "max": 178.6
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 127.1,
+   "pos": [
+    4,
+    0,
+    7.6
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 2,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 110,
+   "pos": [
+    -10.5,
+    0,
+    25.3
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 3,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 70,
+   "pos": [
+    -8.8,
+    0,
+    -20.5
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 2,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 115.4,
+   "pos": [
+    15.8,
+    0.2,
+    -0.7
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 114.6,
+   "pos": [
+    11.6,
+    3.1,
+    -25.2
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 1,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 104.7,
+   "pos": [
+    -27,
+    0,
+    29
+   ]
+  }
+ ],
+ "events": {
+  "damage": 34,
+  "death": 10,
+  "spawn": 16,
+  "pickup": 6,
+  "fire": 72
+ },
+ "renderer": {
+  "calls": 358,
+  "triangles": 60460,
+  "geometries": 186,
+  "textures": 132,
+  "programs": 96
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

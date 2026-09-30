@@ -1,0 +1,249 @@
+[run] http://127.0.0.1:56312/index.html?autotest=1&map=foundry&bots=7&duration=90&god=1&script=idle&scenario=tools/out/audit/review-aibrain/diag.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":36.9}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 90.31,
+ "frames": 2833,
+ "fps": {
+  "avg": 36.9,
+  "min": 4,
+  "max": 188.7
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 26.5,
+  "maxSpeed": 12.24,
+  "minY": 0,
+  "maxY": 2.7216417615041535,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 3,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 552.1,
+   "pos": [
+    -23.5,
+    0,
+    -31
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 5,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 486.9,
+   "pos": [
+    9.3,
+    0,
+    14.7
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 6,
+   "deaths": 3,
+   "health": 92,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 459.9,
+   "pos": [
+    16.5,
+    0,
+    11.2
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 3,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 453.2,
+   "pos": [
+    24.7,
+    0,
+    -30.7
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": false,
+   "kills": 4,
+   "deaths": 6,
+   "health": 0,
+   "weapon": "shotgun",
+   "state": "retreat",
+   "distance": 408.8,
+   "pos": [
+    27.8,
+    0,
+    8.1
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 5,
+   "deaths": 4,
+   "health": 49,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 435,
+   "pos": [
+    -34.5,
+    0,
+    -32.9
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 3,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 418,
+   "pos": [
+    -46,
+    0,
+    26
+   ]
+  }
+ ],
+ "events": {
+  "damage": 156,
+  "death": 29,
+  "spawn": 36,
+  "pickup": 11,
+  "fire": 461
+ },
+ "renderer": {
+  "calls": 390,
+  "triangles": 135268,
+  "geometries": 225,
+  "textures": 141,
+  "programs": 104
+ },
+ "custom": {
+  "setupDone": true,
+  "stat": {
+   "stuckRecover": 4,
+   "rescue": 0,
+   "teleports": 0,
+   "ignoredSets": [
+    {
+     "t": 3.6,
+     "bot": "Gasket",
+     "pickup": "weapon:sniper",
+     "dur": 90,
+     "air": true,
+     "gap": 5.5,
+     "state": "collect",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 3.9,
+     "bot": "Gasket",
+     "pickup": "armor",
+     "dur": 90,
+     "air": true,
+     "gap": 10.3,
+     "state": "collect",
+     "navmode": "direct",
+     "unreachable": true
+    }
+   ],
+   "pathReq": 0,
+   "pathNull": 0,
+   "pathNullAir": 0,
+   "stateTime": {
+    "roam": 10,
+    "collect": 59.5,
+    "engage": 267.5,
+    "chase": 130.5,
+    "retreat": 72
+   },
+   "idleStuck": [
+    {
+     "t": 78.6,
+     "bot": "Cog",
+     "state": "engage",
+     "navmode": "path",
+     "hasGoal": true,
+     "arrived": false,
+     "searching": false,
+     "pos": [
+      14,
+      0,
+      40
+     ],
+     "goal": [
+      -47.8,
+      0,
+      -2.5
+     ],
+     "wait": -78.6,
+     "speed": 0
+    }
+   ],
+   "unreachableAir": 0,
+   "unreachableGround": 0,
+   "findPathNullNoNode": 0,
+   "findPathNullComp": 0,
+   "drops": 0,
+   "padUses": 0
+  },
+  "log": [
+   "t=6.7 Torque recoverStuck stage=1 state=retreat navmode=path pos=-30.3,1.1,-13.0",
+   "t=8.8 Torque recoverStuck stage=2 state=retreat navmode=path pos=-30.4,0.2,-13.3",
+   "t=11.9 Torque recoverStuck stage=1 state=retreat navmode=path pos=-30.4,0.0,-13.0",
+   "t=62.8 Torque recoverStuck stage=1 state=chase navmode=direct pos=48.4,0.0,30.7"
+  ],
+  "nav": {
+   "nodes": 10303,
+   "links": 73261,
+   "components": 2,
+   "largestComponent": 10297,
+   "buildMs": 542,
+   "traps": 0,
+   "strongComponents": 91,
+   "largestStrong": 8266,
+   "cells": 9000
+  },
+  "pathStats": {
+   "count": 554,
+   "totalMs": 2423.1000010967255,
+   "maxMs": 41.299999952316284
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

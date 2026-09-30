@@ -1,0 +1,22 @@
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[shot] tools\out\audit\feel-presentation\a_foundry_sp0_1280.png
+[shot] tools\out\audit\feel-presentation\a_foundry_sp1_1280.png
+[shot] tools\out\audit\feel-presentation\a_foundry_sp2_1280.png
+[shot] tools\out\audit\feel-presentation\a_foundry_sp3_1280.png
+[shot] tools\out\audit\feel-presentation\a_foundry_over_1280.png
+[shot] tools\out\audit\feel-presentation\a_foundry_sky_1280.png
+foundry [{"name": "sp0", "c": [-22, -2.3, 26, -1.5707963267948966, -0.03]}, {"name": "sp1", "c": [28, 1.7, 7, 1.1361261116456518, -0.03]}, {"name": "sp2", "c": [-14, 6.7, 16, -1.5707963267948966, -0.03]}, {"name": "sp3", "c": [-22, 1.7, -38, -2.256525837701183, -0.03]}, {"name": "over", "c": [-44, 24, 40, -0.8253768505207384, -0.26230005130233197]}, {"name": "sky", "c": [-22, -2.3, 26, -0.9707963267948966, 0.42]}]
+foundry {'fps': 31.757928055423328, 'lights': {'sun': 1.5, 'hemi': 0.95, 'env': 0.55, 'exp': 1.12, 'bloom': {'strength': 0.75, 'radius': 0.55, 'threshold': 0.8}}, 'fog': {'near': 55, 'far': 230}}
+[sess] console errors=0 warnings=1
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:55812/src/world/Pickups.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:55812/src/world/NavGraph.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:55812/src/core/Game.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:55812/src/world/Sky.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:55812/src/world/maps/foundry.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:55812/src/world/maps/skyline.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:55812/src/world/maps/ruins.js]
+[sess] TIMEOUT waiting for window.__TEST__ && window.__TEST__.started
+[open_game] retry 0
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:55812/src/world/maps/skyline.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:55812/src/core/Game.js

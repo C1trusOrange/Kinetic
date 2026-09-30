@@ -1,0 +1,66 @@
+[run] http://127.0.0.1:50674/index.html?autotest=1&map=foundry&bots=0&script=idle&scenario=tools/out/audit/review-player/v_skyhook_shot.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":36.3}
+[run] screenshot -> tools\out\audit\review-player\v_sky_foundry_end.png
+[result] {
+ "done": true,
+ "started": true,
+ "t": 6.78,
+ "frames": 254,
+ "fps": {
+  "avg": 36.3,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 7.7467803164950855,
+  "maxSpeed": 13.11,
+  "minY": 0,
+  "maxY": 4.027498659428461,
+  "states": {
+   "onGround": true,
+   "isGrappling": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 142,
+  "triangles": 103764,
+  "geometries": 125,
+  "textures": 117,
+  "programs": 98
+ },
+ "custom": {
+  "att": true,
+  "anchor": [
+   0,
+   24.93,
+   -43.97
+  ],
+  "anchorDist": 33.39,
+  "visibleHitBeforeAnchor": 2,
+  "firstVisible": {
+   "d": 33.25,
+   "y": 24.82
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

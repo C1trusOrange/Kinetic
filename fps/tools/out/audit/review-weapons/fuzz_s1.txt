@@ -1,0 +1,162 @@
+[run] http://127.0.0.1:60024/index.html?autotest=1&map=sandbox&bots=6&diff=insane&script=idle&seed=1&scenario=tools/out/audit/review-weapons/fuzz.js&duration=60
+[log] [autotest] finished {"ok":true,"errors":0,"fps":43.2}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 60.19,
+ "frames": 2207,
+ "fps": {
+  "avg": 43.2,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 232.84116794202137,
+  "maxSpeed": 15.99,
+  "minY": -3.3306690738754696e-15,
+  "maxY": 7.186666666666666,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSprinting": true,
+   "isWallRunning": true,
+   "isMantling": true,
+   "isSliding": true
+  },
+  "shots": 32,
+  "kills": 0,
+  "deaths": 8,
+  "damageDealt": 0,
+  "damageTaken": 815.6932586971596
+ },
+ "bots": [
+  {
+   "name": "Servo",
+   "alive": false,
+   "kills": 3,
+   "deaths": 6,
+   "health": 0,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 295.4,
+   "pos": [
+    -2.7,
+    0,
+    -4.2
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 5,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 291.2,
+   "pos": [
+    -5.6,
+    0,
+    -16.6
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 3,
+   "deaths": 6,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 260.2,
+   "pos": [
+    11.1,
+    4,
+    -27.8
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 8,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 273.4,
+   "pos": [
+    -27,
+    0,
+    29
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 11,
+   "deaths": 6,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 256.5,
+   "pos": [
+    16.7,
+    0,
+    13.2
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 9,
+   "deaths": 7,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 250,
+   "pos": [
+    -6.7,
+    0,
+    22.6
+   ]
+  }
+ ],
+ "events": {
+  "damage": 176,
+  "death": 43,
+  "spawn": 49,
+  "pickup": 10,
+  "fire": 378
+ },
+ "renderer": {
+  "calls": 411,
+  "triangles": 68406,
+  "geometries": 335,
+  "textures": 143,
+  "programs": 111
+ },
+ "custom": {
+  "viol": {},
+  "stats": {
+   "deaths": 8,
+   "respawns": 8,
+   "explosions": 25,
+   "fires": 32,
+   "cookoffs": 0
+  },
+  "log": [],
+  "final": {
+   "cur": "rifle",
+   "owned": "pistol,rifle,shotgun",
+   "grenades": 2,
+   "projectiles": 0,
+   "rockets": 0
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

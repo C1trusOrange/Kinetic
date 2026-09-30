@@ -1,0 +1,1030 @@
+{
+ "perPull": {
+  "pistol": {
+   "hip": {
+    "5": {
+     "expDmg": 30,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0085
+    },
+    "10": {
+     "expDmg": 30,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0085
+    },
+    "15": {
+     "expDmg": 30,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0085
+    },
+    "20": {
+     "expDmg": 30,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0085
+    },
+    "30": {
+     "expDmg": 27.9,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0085
+    },
+    "50": {
+     "expDmg": 22.2,
+     "hitPct": 99,
+     "headPct": 0,
+     "ang": 0.0085
+    }
+   },
+   "move": {
+    "5": {
+     "expDmg": 30,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.016
+    },
+    "10": {
+     "expDmg": 30,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.016
+    },
+    "15": {
+     "expDmg": 30,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.016
+    },
+    "20": {
+     "expDmg": 30,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.016
+    },
+    "30": {
+     "expDmg": 27.1,
+     "hitPct": 97,
+     "headPct": 0.3,
+     "ang": 0.016
+    },
+    "50": {
+     "expDmg": 15.2,
+     "hitPct": 65,
+     "headPct": 5.3,
+     "ang": 0.016
+    }
+   },
+   "ads": {
+    "5": {
+     "expDmg": 30,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0012
+    },
+    "10": {
+     "expDmg": 30,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0012
+    },
+    "15": {
+     "expDmg": 30,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0012
+    },
+    "20": {
+     "expDmg": 30,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0012
+    },
+    "30": {
+     "expDmg": 27.9,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0012
+    },
+    "50": {
+     "expDmg": 22.3,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0012
+    }
+   },
+   "air": {
+    "5": {
+     "expDmg": 30,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.03
+    },
+    "10": {
+     "expDmg": 30,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.03
+    },
+    "15": {
+     "expDmg": 29.6,
+     "hitPct": 99,
+     "headPct": 0.1,
+     "ang": 0.03
+    },
+    "20": {
+     "expDmg": 26.5,
+     "hitPct": 86,
+     "headPct": 2.7,
+     "ang": 0.03
+    },
+    "30": {
+     "expDmg": 16.7,
+     "hitPct": 56,
+     "headPct": 6,
+     "ang": 0.03
+    },
+    "50": {
+     "expDmg": 5.8,
+     "hitPct": 25,
+     "headPct": 3,
+     "ang": 0.03
+    }
+   }
+  },
+  "rifle": {
+   "hip": {
+    "5": {
+     "expDmg": 16,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0125
+    },
+    "10": {
+     "expDmg": 16,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0125
+    },
+    "15": {
+     "expDmg": 16,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0125
+    },
+    "20": {
+     "expDmg": 16,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0125
+    },
+    "30": {
+     "expDmg": 14.3,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0125
+    },
+    "50": {
+     "expDmg": 9.2,
+     "hitPct": 84,
+     "headPct": 2.9,
+     "ang": 0.0125
+    }
+   },
+   "move": {
+    "5": {
+     "expDmg": 16,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.022
+    },
+    "10": {
+     "expDmg": 16,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.022
+    },
+    "15": {
+     "expDmg": 16,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.022
+    },
+    "20": {
+     "expDmg": 15.9,
+     "hitPct": 99,
+     "headPct": 0,
+     "ang": 0.022
+    },
+    "30": {
+     "expDmg": 11.9,
+     "hitPct": 80,
+     "headPct": 4,
+     "ang": 0.022
+    },
+    "50": {
+     "expDmg": 4.7,
+     "hitPct": 42,
+     "headPct": 4.2,
+     "ang": 0.022
+    }
+   },
+   "ads": {
+    "5": {
+     "expDmg": 16,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0022
+    },
+    "10": {
+     "expDmg": 16,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0022
+    },
+    "15": {
+     "expDmg": 16,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0022
+    },
+    "20": {
+     "expDmg": 16,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0022
+    },
+    "30": {
+     "expDmg": 14.3,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0022
+    },
+    "50": {
+     "expDmg": 10.7,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0022
+    }
+   },
+   "air": {
+    "5": {
+     "expDmg": 16,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.038
+    },
+    "10": {
+     "expDmg": 16,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.038
+    },
+    "15": {
+     "expDmg": 14.8,
+     "hitPct": 90,
+     "headPct": 2,
+     "ang": 0.038
+    },
+    "20": {
+     "expDmg": 11.7,
+     "hitPct": 69,
+     "headPct": 5.4,
+     "ang": 0.038
+    },
+    "30": {
+     "expDmg": 5.9,
+     "hitPct": 39,
+     "headPct": 4.6,
+     "ang": 0.038
+    },
+    "50": {
+     "expDmg": 1.7,
+     "hitPct": 16,
+     "headPct": 1.5,
+     "ang": 0.038
+    }
+   }
+  },
+  "shotgun": {
+   "hip": {
+    "5": {
+     "expDmg": 99,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.055
+    },
+    "10": {
+     "expDmg": 69.1,
+     "hitPct": 92,
+     "headPct": 1.4,
+     "ang": 0.055
+    },
+    "15": {
+     "expDmg": 31.3,
+     "hitPct": 62,
+     "headPct": 6,
+     "ang": 0.055
+    },
+    "20": {
+     "expDmg": 9.9,
+     "hitPct": 42,
+     "headPct": 4.7,
+     "ang": 0.055
+    },
+    "30": {
+     "expDmg": 2.5,
+     "hitPct": 21,
+     "headPct": 2,
+     "ang": 0.055
+    },
+    "50": {
+     "expDmg": 0.9,
+     "hitPct": 8,
+     "headPct": 0.8,
+     "ang": 0.055
+    }
+   },
+   "move": {
+    "5": {
+     "expDmg": 99,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.065
+    },
+    "10": {
+     "expDmg": 61.7,
+     "hitPct": 81,
+     "headPct": 3.7,
+     "ang": 0.065
+    },
+    "15": {
+     "expDmg": 24.9,
+     "hitPct": 50,
+     "headPct": 5.4,
+     "ang": 0.065
+    },
+    "20": {
+     "expDmg": 7.6,
+     "hitPct": 33,
+     "headPct": 3.4,
+     "ang": 0.065
+    },
+    "30": {
+     "expDmg": 1.8,
+     "hitPct": 15,
+     "headPct": 1.4,
+     "ang": 0.065
+    },
+    "50": {
+     "expDmg": 0.7,
+     "hitPct": 6,
+     "headPct": 0.5,
+     "ang": 0.065
+    }
+   },
+   "ads": {
+    "5": {
+     "expDmg": 99,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.038
+    },
+    "10": {
+     "expDmg": 75.1,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.038
+    },
+    "15": {
+     "expDmg": 44.5,
+     "hitPct": 90,
+     "headPct": 1.9,
+     "ang": 0.038
+    },
+    "20": {
+     "expDmg": 16.6,
+     "hitPct": 69,
+     "headPct": 5.4,
+     "ang": 0.038
+    },
+    "30": {
+     "expDmg": 4.8,
+     "hitPct": 40,
+     "headPct": 4.5,
+     "ang": 0.038
+    },
+    "50": {
+     "expDmg": 1.9,
+     "hitPct": 16,
+     "headPct": 1.5,
+     "ang": 0.038
+    }
+   },
+   "air": {
+    "5": {
+     "expDmg": 98.5,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.085
+    },
+    "10": {
+     "expDmg": 45.9,
+     "hitPct": 60,
+     "headPct": 5.7,
+     "ang": 0.085
+    },
+    "15": {
+     "expDmg": 16.3,
+     "hitPct": 33,
+     "headPct": 3.5,
+     "ang": 0.085
+    },
+    "20": {
+     "expDmg": 4.6,
+     "hitPct": 20,
+     "headPct": 1.9,
+     "ang": 0.085
+    },
+    "30": {
+     "expDmg": 1,
+     "hitPct": 9,
+     "headPct": 0.8,
+     "ang": 0.085
+    },
+    "50": {
+     "expDmg": 0.4,
+     "hitPct": 3,
+     "headPct": 0.3,
+     "ang": 0.085
+    }
+   }
+  },
+  "sniper": {
+   "hip": {
+    "5": {
+     "expDmg": 100,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.045
+    },
+    "10": {
+     "expDmg": 98.7,
+     "hitPct": 99,
+     "headPct": 0.1,
+     "ang": 0.045
+    },
+    "15": {
+     "expDmg": 83.8,
+     "hitPct": 78,
+     "headPct": 4.2,
+     "ang": 0.045
+    },
+    "20": {
+     "expDmg": 62.2,
+     "hitPct": 56,
+     "headPct": 5.1,
+     "ang": 0.045
+    },
+    "30": {
+     "expDmg": 32.5,
+     "hitPct": 29,
+     "headPct": 3.2,
+     "ang": 0.045
+    },
+    "50": {
+     "expDmg": 12.4,
+     "hitPct": 12,
+     "headPct": 1.1,
+     "ang": 0.045
+    }
+   },
+   "move": {
+    "5": {
+     "expDmg": 100,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.07
+    },
+    "10": {
+     "expDmg": 82.8,
+     "hitPct": 76,
+     "headPct": 4.9,
+     "ang": 0.07
+    },
+    "15": {
+     "expDmg": 52.5,
+     "hitPct": 47,
+     "headPct": 5.3,
+     "ang": 0.07
+    },
+    "20": {
+     "expDmg": 30.7,
+     "hitPct": 29,
+     "headPct": 2.5,
+     "ang": 0.07
+    },
+    "30": {
+     "expDmg": 14.2,
+     "hitPct": 14,
+     "headPct": 1.1,
+     "ang": 0.07
+    },
+    "50": {
+     "expDmg": 5,
+     "hitPct": 4,
+     "headPct": 0.6,
+     "ang": 0.07
+    }
+   },
+   "ads": {
+    "5": {
+     "expDmg": 100,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0002
+    },
+    "10": {
+     "expDmg": 100,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0002
+    },
+    "15": {
+     "expDmg": 100,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0002
+    },
+    "20": {
+     "expDmg": 100,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0002
+    },
+    "30": {
+     "expDmg": 100,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0002
+    },
+    "50": {
+     "expDmg": 100,
+     "hitPct": 100,
+     "headPct": 0,
+     "ang": 0.0002
+    }
+   },
+   "air": {
+    "5": {
+     "expDmg": 94.1,
+     "hitPct": 91,
+     "headPct": 2,
+     "ang": 0.11
+    },
+    "10": {
+     "expDmg": 44.8,
+     "hitPct": 40,
+     "headPct": 4.5,
+     "ang": 0.11
+    },
+    "15": {
+     "expDmg": 23,
+     "hitPct": 22,
+     "headPct": 2,
+     "ang": 0.11
+    },
+    "20": {
+     "expDmg": 13,
+     "hitPct": 12,
+     "headPct": 1.2,
+     "ang": 0.11
+    },
+    "30": {
+     "expDmg": 6,
+     "hitPct": 5,
+     "headPct": 0.8,
+     "ang": 0.11
+    },
+    "50": {
+     "expDmg": 1.8,
+     "hitPct": 2,
+     "headPct": 0.2,
+     "ang": 0.11
+    }
+   }
+  }
+ },
+ "ttkChest": {
+  "pistol": {
+   "hip": {
+    "5": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.59,
+      "p90TTK": 0.59
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.78,
+      "p90TTK": 0.78
+     }
+    },
+    "10": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.59,
+      "p90TTK": 0.59
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.78,
+      "p90TTK": 0.78
+     }
+    },
+    "20": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.59,
+      "p90TTK": 0.59
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.78,
+      "p90TTK": 0.78
+     }
+    },
+    "35": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.59,
+      "p90TTK": 0.59
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.98,
+      "p90TTK": 0.98
+     }
+    }
+   },
+   "ads": {
+    "5": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.59,
+      "p90TTK": 0.59
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.78,
+      "p90TTK": 0.78
+     }
+    },
+    "10": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.59,
+      "p90TTK": 0.59
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.78,
+      "p90TTK": 0.78
+     }
+    },
+    "20": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.59,
+      "p90TTK": 0.59
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.78,
+      "p90TTK": 0.78
+     }
+    },
+    "35": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.59,
+      "p90TTK": 0.59
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.98,
+      "p90TTK": 0.98
+     }
+    }
+   }
+  },
+  "rifle": {
+   "hip": {
+    "5": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.55,
+      "p90TTK": 0.55
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.82,
+      "p90TTK": 0.82
+     }
+    },
+    "10": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.55,
+      "p90TTK": 0.55
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.82,
+      "p90TTK": 0.82
+     }
+    },
+    "20": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.55,
+      "p90TTK": 0.55
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.82,
+      "p90TTK": 0.92
+     }
+    },
+    "35": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.73,
+      "p90TTK": 1.1
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 1.56,
+      "p90TTK": 4.74
+     }
+    }
+   },
+   "ads": {
+    "5": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.55,
+      "p90TTK": 0.55
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.82,
+      "p90TTK": 0.82
+     }
+    },
+    "10": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.55,
+      "p90TTK": 0.55
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.82,
+      "p90TTK": 0.82
+     }
+    },
+    "20": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.55,
+      "p90TTK": 0.55
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.82,
+      "p90TTK": 0.82
+     }
+    },
+    "35": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.64,
+      "p90TTK": 0.64
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 1.01,
+      "p90TTK": 1.19
+     }
+    }
+   }
+  },
+  "shotgun": {
+   "hip": {
+    "5": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.87,
+      "p90TTK": 0.87
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.87,
+      "p90TTK": 0.87
+     }
+    },
+    "10": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.87,
+      "p90TTK": 0.87
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 1.74,
+      "p90TTK": 1.74
+     }
+    },
+    "20": {
+     "a0": {
+      "killPct": 77,
+      "medTTK": 10.37,
+      "p90TTK": 11.24
+     },
+     "a50": {
+      "killPct": 1,
+      "medTTK": 11.24,
+      "p90TTK": 11.24
+     }
+    },
+    "35": {
+     "a0": {
+      "killPct": 0,
+      "medTTK": null,
+      "p90TTK": null
+     },
+     "a50": {
+      "killPct": 0,
+      "medTTK": null,
+      "p90TTK": null
+     }
+    }
+   },
+   "ads": {
+    "5": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.87,
+      "p90TTK": 0.87
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.87,
+      "p90TTK": 0.87
+     }
+    },
+    "10": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0.87,
+      "p90TTK": 0.87
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 0.87,
+      "p90TTK": 1.74
+     }
+    },
+    "20": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 4.35,
+      "p90TTK": 7.76
+     },
+     "a50": {
+      "killPct": 99,
+      "medTTK": 10.37,
+      "p90TTK": 11.24
+     }
+    },
+    "35": {
+     "a0": {
+      "killPct": 0,
+      "medTTK": null,
+      "p90TTK": null
+     },
+     "a50": {
+      "killPct": 0,
+      "medTTK": null,
+      "p90TTK": null
+     }
+    }
+   }
+  },
+  "sniper": {
+   "hip": {
+    "5": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0,
+      "p90TTK": 0
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 1.05,
+      "p90TTK": 1.05
+     }
+    },
+    "10": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0,
+      "p90TTK": 0
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 1.05,
+      "p90TTK": 1.05
+     }
+    },
+    "20": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 1.05,
+      "p90TTK": 3.16
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 2.11,
+      "p90TTK": 7.02
+     }
+    },
+    "35": {
+     "a0": {
+      "killPct": 85,
+      "medTTK": 3.16,
+      "p90TTK": 10.18
+     },
+     "a50": {
+      "killPct": 68,
+      "medTTK": 4.22,
+      "p90TTK": 11.24
+     }
+    }
+   },
+   "ads": {
+    "5": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0,
+      "p90TTK": 0
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 1.05,
+      "p90TTK": 1.05
+     }
+    },
+    "10": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0,
+      "p90TTK": 0
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 1.05,
+      "p90TTK": 1.05
+     }
+    },
+    "20": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0,
+      "p90TTK": 0
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 1.05,
+      "p90TTK": 1.05
+     }
+    },
+    "35": {
+     "a0": {
+      "killPct": 100,
+      "medTTK": 0,
+      "p90TTK": 0
+     },
+     "a50": {
+      "killPct": 100,
+      "medTTK": 1.05,
+      "p90TTK": 1.05
+     }
+    }
+   }
+  }
+ }
+}

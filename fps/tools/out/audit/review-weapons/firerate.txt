@@ -1,0 +1,284 @@
+[run] http://127.0.0.1:61551/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-weapons/firerate.js&duration=2
+[log] [autotest] finished {"ok":true,"errors":0,"fps":54.5}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 2.14,
+ "frames": 135,
+ "fps": {
+  "avg": 54.5,
+  "min": 4,
+  "max": 169.4915254237156
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 1688,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 1688
+ },
+ "renderer": {
+  "calls": 132,
+  "triangles": 39710,
+  "geometries": 123,
+  "textures": 118,
+  "programs": 98
+ },
+ "custom": {
+  "rifle": {
+   "20": {
+    "shots": 100,
+    "perSec": 10,
+    "expected": 11
+   },
+   "30": {
+    "shots": 100,
+    "perSec": 10,
+    "expected": 11
+   },
+   "60": {
+    "shots": 100,
+    "perSec": 10,
+    "expected": 11
+   },
+   "75": {
+    "shots": 108,
+    "perSec": 10.8,
+    "expected": 11
+   },
+   "90": {
+    "shots": 100,
+    "perSec": 10,
+    "expected": 11
+   },
+   "120": {
+    "shots": 110,
+    "perSec": 11,
+    "expected": 11
+   },
+   "144": {
+    "shots": 103,
+    "perSec": 10.3,
+    "expected": 11
+   },
+   "165": {
+    "shots": 104,
+    "perSec": 10.4,
+    "expected": 11
+   },
+   "240": {
+    "shots": 110,
+    "perSec": 11,
+    "expected": 11
+   }
+  },
+  "pistol": {
+   "20": {
+    "shots": 50,
+    "perSec": 5,
+    "expected": 5.2
+   },
+   "30": {
+    "shots": 50,
+    "perSec": 5,
+    "expected": 5.2
+   },
+   "60": {
+    "shots": 50,
+    "perSec": 5,
+    "expected": 5.2
+   },
+   "75": {
+    "shots": 50,
+    "perSec": 5,
+    "expected": 5.2
+   },
+   "90": {
+    "shots": 50,
+    "perSec": 5,
+    "expected": 5.2
+   },
+   "120": {
+    "shots": 50,
+    "perSec": 5,
+    "expected": 5.2
+   },
+   "144": {
+    "shots": 52,
+    "perSec": 5.2,
+    "expected": 5.2
+   },
+   "165": {
+    "shots": 52,
+    "perSec": 5.2,
+    "expected": 5.2
+   },
+   "240": {
+    "shots": 52,
+    "perSec": 5.2,
+    "expected": 5.2
+   }
+  },
+  "shotgun": {
+   "20": {
+    "shots": 12,
+    "perSec": 1.2,
+    "expected": 1.15
+   },
+   "30": {
+    "shots": 12,
+    "perSec": 1.2,
+    "expected": 1.15
+   },
+   "60": {
+    "shots": 12,
+    "perSec": 1.2,
+    "expected": 1.15
+   },
+   "75": {
+    "shots": 12,
+    "perSec": 1.2,
+    "expected": 1.15
+   },
+   "90": {
+    "shots": 12,
+    "perSec": 1.2,
+    "expected": 1.15
+   },
+   "120": {
+    "shots": 12,
+    "perSec": 1.2,
+    "expected": 1.15
+   },
+   "144": {
+    "shots": 12,
+    "perSec": 1.2,
+    "expected": 1.15
+   },
+   "165": {
+    "shots": 12,
+    "perSec": 1.2,
+    "expected": 1.15
+   },
+   "240": {
+    "shots": 12,
+    "perSec": 1.2,
+    "expected": 1.15
+   }
+  },
+  "sniper": {
+   "20": {
+    "shots": 10,
+    "perSec": 1,
+    "expected": 0.95
+   },
+   "30": {
+    "shots": 10,
+    "perSec": 1,
+    "expected": 0.95
+   },
+   "60": {
+    "shots": 10,
+    "perSec": 1,
+    "expected": 0.95
+   },
+   "75": {
+    "shots": 10,
+    "perSec": 1,
+    "expected": 0.95
+   },
+   "90": {
+    "shots": 10,
+    "perSec": 1,
+    "expected": 0.95
+   },
+   "120": {
+    "shots": 10,
+    "perSec": 1,
+    "expected": 0.95
+   },
+   "144": {
+    "shots": 10,
+    "perSec": 1,
+    "expected": 0.95
+   },
+   "165": {
+    "shots": 10,
+    "perSec": 1,
+    "expected": 0.95
+   },
+   "240": {
+    "shots": 10,
+    "perSec": 1,
+    "expected": 0.95
+   }
+  },
+  "rocket": {
+   "20": {
+    "shots": 11,
+    "perSec": 1.1,
+    "expected": 1.1
+   },
+   "30": {
+    "shots": 11,
+    "perSec": 1.1,
+    "expected": 1.1
+   },
+   "60": {
+    "shots": 11,
+    "perSec": 1.1,
+    "expected": 1.1
+   },
+   "75": {
+    "shots": 11,
+    "perSec": 1.1,
+    "expected": 1.1
+   },
+   "90": {
+    "shots": 11,
+    "perSec": 1.1,
+    "expected": 1.1
+   },
+   "120": {
+    "shots": 11,
+    "perSec": 1.1,
+    "expected": 1.1
+   },
+   "144": {
+    "shots": 11,
+    "perSec": 1.1,
+    "expected": 1.1
+   },
+   "165": {
+    "shots": 11,
+    "perSec": 1.1,
+    "expected": 1.1
+   },
+   "240": {
+    "shots": 11,
+    "perSec": 1.1,
+    "expected": 1.1
+   }
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

@@ -1,0 +1,216 @@
+[run] http://127.0.0.1:61077/index.html?autotest=1&bots=2&duration=1&god=1&script=idle&map=ruins&scenario=tools/out/audit/verify-aibrain-1/scen_spots.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0.1,
+ "frames": 26,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    40,
+    4.5,
+    -14
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    -30,
+    0,
+    46
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 93,
+  "triangles": 69906,
+  "geometries": 81,
+  "textures": 70,
+  "programs": 48
+ },
+ "custom": {
+  "map": "ruins",
+  "snipe": {
+   "n": 24,
+   "main": 14,
+   "trap": 0,
+   "unreachable": 10,
+   "noNode": 0,
+   "examples": [
+    [
+     "unreach",
+     [
+      1.51,
+      15.7,
+      1.51
+     ]
+    ],
+    [
+     "unreach",
+     [
+      -12.49,
+      13.4,
+      -29.49
+     ]
+    ],
+    [
+     "unreach",
+     [
+      6.51,
+      14,
+      39.51
+     ]
+    ],
+    [
+     "unreach",
+     [
+      4.51,
+      14,
+      41.51
+     ]
+    ],
+    [
+     "unreach",
+     [
+      11.51,
+      7.7,
+      11.51
+     ]
+    ],
+    [
+     "unreach",
+     [
+      31.51,
+      8.6,
+      8.51
+     ]
+    ]
+   ]
+  },
+  "cover": {
+   "n": 116,
+   "main": 105,
+   "trap": 0,
+   "unreachable": 11,
+   "noNode": 0,
+   "examples": [
+    [
+     "unreach",
+     [
+      -17.49,
+      1.8,
+      -50.49
+     ]
+    ],
+    [
+     "unreach",
+     [
+      51.51,
+      9,
+      -43.49
+     ]
+    ],
+    [
+     "unreach",
+     [
+      21.51,
+      0.28,
+      -39.49
+     ]
+    ],
+    [
+     "unreach",
+     [
+      51.51,
+      9,
+      -39.49
+     ]
+    ],
+    [
+     "unreach",
+     [
+      -51.49,
+      14.2,
+      -36.49
+     ]
+    ],
+    [
+     "unreach",
+     [
+      22.51,
+      6.2,
+      -30.49
+     ]
+    ]
+   ]
+  },
+  "navStats": {
+   "nodes": 11543,
+   "links": 81899,
+   "components": 26,
+   "largestComponent": 11490,
+   "buildMs": 385,
+   "traps": 0,
+   "strongComponents": 119,
+   "largestStrong": 10555,
+   "cells": 11664
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

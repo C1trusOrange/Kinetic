@@ -1,0 +1,24 @@
+[run] http://127.0.0.1:58363/index.html?autotest=1&map=sandbox&bots=0&god=1&script=idle&scenario=tools/out/audit/review-fxaudio/s6_voices.js&duration=12
+[result] {
+ "log": [],
+ "burst": {
+  "played": 64,
+  "nulls": 236,
+  "voices": 32,
+  "hrtf": 10,
+  "max": 32,
+  "unique": true
+ },
+ "after": {
+  "voices": 0,
+  "hrtf": 0,
+  "loops": 0
+ },
+ "suspended": {
+  "state": "suspended",
+  "play": true,
+  "loopOk": true,
+  "afterUnlock": "running"
+ }
+}
+[run] done: wait=ok console_errors=0 warnings=0

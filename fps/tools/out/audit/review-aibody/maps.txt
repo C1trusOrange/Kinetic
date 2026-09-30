@@ -1,0 +1,303 @@
+[run] http://127.0.0.1:52741/index.html?autotest=1&map=foundry&bots=5&duration=40&god=1&script=idle&scenario=tools/out/audit/review-aibody/scen_maps.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":30.3}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 40.15,
+ "frames": 1176,
+ "fps": {
+  "avg": 30.3,
+  "min": 4,
+  "max": 181.8
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0.7,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": 0.795800155300373,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 3,
+   "deaths": 2,
+   "health": 48,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 111.7,
+   "pos": [
+    -20.5,
+    0,
+    -29.2
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 16,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 167.2,
+   "pos": [
+    10.7,
+    0,
+    -6.5
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 166.9,
+   "pos": [
+    0.3,
+    0,
+    -13.9
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 75,
+   "weapon": "shotgun",
+   "state": "engage",
+   "distance": 122.7,
+   "pos": [
+    7.6,
+    0,
+    -4
+   ]
+  }
+ ],
+ "events": {
+  "damage": 48,
+  "death": 6,
+  "spawn": 33,
+  "pickup": 9,
+  "fire": 115
+ },
+ "renderer": {
+  "calls": 345,
+  "triangles": 59784,
+  "geometries": 214,
+  "textures": 179,
+  "programs": 102
+ },
+ "custom": {
+  "step": 3,
+  "log": [
+   {
+    "label": "initial",
+    "botModels": 5,
+    "meshes": 292,
+    "lights": 10,
+    "gibsInScene": 0,
+    "totalObjs": 385,
+    "sceneChildren": 19,
+    "geometries": 86,
+    "textures": 86,
+    "bots": 5,
+    "entities": 6,
+    "gibList": 0,
+    "rockets": 0,
+    "grenades": 0,
+    "teams": "2,3,4,5,6",
+    "colors": "ff4a3d,ffb020,6ee05a,b45cff,ff5fb0",
+    "names": "Gasket,Servo,Piston,Glitch,Diode",
+    "ids": "2,3,4,5,6",
+    "playerTeam": 1,
+    "playerId": 1
+   },
+   {
+    "label": "before-restart-0",
+    "botModels": 5,
+    "meshes": 292,
+    "lights": 10,
+    "gibsInScene": 0,
+    "totalObjs": 385,
+    "sceneChildren": 19,
+    "geometries": 168,
+    "textures": 125,
+    "bots": 5,
+    "entities": 6,
+    "gibList": 0,
+    "rockets": 0,
+    "grenades": 0,
+    "teams": "2,3,4,5,6",
+    "colors": "ff4a3d,ffb020,6ee05a,b45cff,ff5fb0",
+    "names": "Gasket,Servo,Piston,Glitch,Diode",
+    "ids": "2,3,4,5,6",
+    "playerTeam": 1,
+    "playerId": 1
+   },
+   {
+    "label": "after-start-1",
+    "botModels": 6,
+    "meshes": 316,
+    "lights": 10,
+    "gibsInScene": 0,
+    "totalObjs": 416,
+    "sceneChildren": 20,
+    "geometries": 163,
+    "textures": 161,
+    "bots": 6,
+    "entities": 7,
+    "gibList": 0,
+    "rockets": 0,
+    "grenades": 0,
+    "teams": "2,1,2,1,2,1",
+    "colors": "ff4a3d,3d9bff,ff4a3d,3d9bff,ff4a3d,3d9bff",
+    "names": "Axle,Tesla,Nimbus,Diode,Torque,Cog",
+    "ids": "8,9,10,11,12,13",
+    "playerTeam": 1,
+    "playerId": 7
+   },
+   {
+    "label": "before-restart-1",
+    "botModels": 6,
+    "meshes": 314,
+    "lights": 10,
+    "gibsInScene": 0,
+    "totalObjs": 414,
+    "sceneChildren": 20,
+    "geometries": 202,
+    "textures": 171,
+    "bots": 6,
+    "entities": 7,
+    "gibList": 0,
+    "rockets": 0,
+    "grenades": 0,
+    "teams": "2,1,2,1,2,1",
+    "colors": "ff4a3d,3d9bff,ff4a3d,3d9bff,ff4a3d,3d9bff",
+    "names": "Axle,Tesla,Nimbus,Diode,Torque,Cog",
+    "ids": "8,9,10,11,12,13",
+    "playerTeam": 1,
+    "playerId": 7
+   },
+   {
+    "label": "after-start-2",
+    "botModels": 8,
+    "meshes": 368,
+    "lights": 10,
+    "gibsInScene": 0,
+    "totalObjs": 482,
+    "sceneChildren": 22,
+    "geometries": 207,
+    "textures": 170,
+    "bots": 8,
+    "entities": 9,
+    "gibList": 0,
+    "rockets": 0,
+    "grenades": 0,
+    "teams": "2,1,2,1,2,1,2,1",
+    "colors": "ff4a3d,3d9bff,ff4a3d,3d9bff,ff4a3d,3d9bff,ff4a3d,3d9bff",
+    "names": "Sprocket,Gasket,Axle,Nimbus,Tesla,Torque,Relay,Piston",
+    "ids": "15,16,17,18,19,20,21,22",
+    "playerTeam": 1,
+    "playerId": 14
+   },
+   {
+    "label": "before-restart-2",
+    "botModels": 8,
+    "meshes": 368,
+    "lights": 10,
+    "gibsInScene": 0,
+    "totalObjs": 482,
+    "sceneChildren": 22,
+    "geometries": 207,
+    "textures": 171,
+    "bots": 8,
+    "entities": 9,
+    "gibList": 0,
+    "rockets": 0,
+    "grenades": 0,
+    "teams": "2,1,2,1,2,1,2,1",
+    "colors": "ff4a3d,3d9bff,ff4a3d,3d9bff,ff4a3d,3d9bff,ff4a3d,3d9bff",
+    "names": "Sprocket,Gasket,Axle,Nimbus,Tesla,Torque,Relay,Piston",
+    "ids": "15,16,17,18,19,20,21,22",
+    "playerTeam": 1,
+    "playerId": 14
+   },
+   {
+    "label": "after-start-3",
+    "botModels": 4,
+    "meshes": 271,
+    "lights": 10,
+    "gibsInScene": 0,
+    "totalObjs": 356,
+    "sceneChildren": 18,
+    "geometries": 203,
+    "textures": 177,
+    "bots": 4,
+    "entities": 5,
+    "gibList": 0,
+    "rockets": 0,
+    "grenades": 0,
+    "teams": "24,25,26,27",
+    "colors": "ff4a3d,ffb020,6ee05a,b45cff",
+    "names": "Cog,Servo,Tesla,Axle",
+    "ids": "24,25,26,27",
+    "playerTeam": 23,
+    "playerId": 23
+   },
+   {
+    "label": "final",
+    "botModels": 4,
+    "meshes": 261,
+    "lights": 10,
+    "gibsInScene": 0,
+    "totalObjs": 346,
+    "sceneChildren": 18,
+    "geometries": 214,
+    "textures": 179,
+    "bots": 4,
+    "entities": 5,
+    "gibList": 0,
+    "rockets": 1,
+    "grenades": 0,
+    "teams": "24,25,26,27",
+    "colors": "ff4a3d,ffb020,6ee05a,b45cff",
+    "names": "Cog,Servo,Tesla,Axle",
+    "ids": "24,25,26,27",
+    "playerTeam": 23,
+    "playerId": 23
+   }
+  ],
+  "nextAt": 13.220400000000033,
+  "pending": false
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=2

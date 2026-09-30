@@ -1,0 +1,932 @@
+[run] http://127.0.0.1:64811/index.html?autotest=1&map=ruins&bots=10&duration=1&god=1&script=idle&test=fight&simtime=400&scenario=tools/out/audit/review-aibrain/sim.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 406.79,
+ "frames": 197,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 40.485829959521176
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 135.8,
+  "maxSpeed": 14.18,
+  "minY": 0,
+  "maxY": 6.198333333333332,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 28,
+   "deaths": 22,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 1991.9,
+   "pos": [
+    5.4,
+    0,
+    23.2
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 23,
+   "deaths": 24,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 2048.6,
+   "pos": [
+    -35.9,
+    0,
+    39.3
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 13,
+   "deaths": 20,
+   "health": 77,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 1779.8,
+   "pos": [
+    -8.1,
+    4.5,
+    11.5
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 30,
+   "deaths": 25,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 1905.9,
+   "pos": [
+    19,
+    0,
+    -24
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 20,
+   "deaths": 27,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 2039.1,
+   "pos": [
+    3.5,
+    0.2,
+    46.2
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 23,
+   "deaths": 23,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 1898,
+   "pos": [
+    46.1,
+    9,
+    15.4
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 25,
+   "deaths": 20,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 2061,
+   "pos": [
+    1.7,
+    0.1,
+    -38.5
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 19,
+   "deaths": 26,
+   "health": 49,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 1830.3,
+   "pos": [
+    -23.6,
+    0,
+    -7.5
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 24,
+   "deaths": 22,
+   "health": 70,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 2021.3,
+   "pos": [
+    -27,
+    -0.2,
+    10.6
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 17,
+   "deaths": 26,
+   "health": 9,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 1972.6,
+   "pos": [
+    -35.2,
+    0,
+    9.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 1322,
+  "death": 235,
+  "spawn": 246,
+  "pickup": 47,
+  "fire": 3432
+ },
+ "renderer": {
+  "calls": 618,
+  "triangles": 131688,
+  "geometries": 220,
+  "textures": 128,
+  "programs": 99
+ },
+ "custom": {
+  "fight": {
+   "stuckRecover": 28,
+   "stuckList": [
+    {
+     "t": 17,
+     "bot": "Diode",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "30.5,0.0,10.0",
+     "wp": "29.5,0.0,8.5:walk",
+     "idx": 0,
+     "len": 5,
+     "goal": "42.0,5.2,4.0",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 62,
+     "bot": "Diode",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.4,-1.6,22.8",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 10,
+     "len": 14,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 63,
+     "bot": "Diode",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.4,-1.0,22.8",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 10,
+     "len": 14,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 95,
+     "bot": "Gasket",
+     "st": "chase",
+     "mode": "path",
+     "pos": "30.0,0.5,-9.9",
+     "wp": "29.5,0.0,-8.5:walk",
+     "idx": 0,
+     "len": 10,
+     "goal": "48.1,9.0,-1.0",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 112,
+     "bot": "Rivet",
+     "st": "chase",
+     "mode": "direct",
+     "pos": "-9.4,0.1,38.9",
+     "wp": null,
+     "idx": 0,
+     "len": 0,
+     "goal": "-7.5,1.7,35.1",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 122,
+     "bot": "Piston",
+     "st": "engage",
+     "mode": "path",
+     "pos": "5.9,0.0,-26.4",
+     "wp": "5.5,0.0,-24.5:walk",
+     "idx": 0,
+     "len": 2,
+     "goal": "-9.6,0.1,-43.7",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 124,
+     "bot": "Voltage",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.3,-1.4,22.8",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 6,
+     "len": 10,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 125,
+     "bot": "Voltage",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.3,-1.2,22.8",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 6,
+     "len": 10,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 127,
+     "bot": "Voltage",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-21.7,-1.6,21.6",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 6,
+     "len": 10,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 130,
+     "bot": "Diode",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.4,-1.0,22.9",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 9,
+     "len": 13,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 149,
+     "bot": "Diode",
+     "st": "chase",
+     "mode": "path",
+     "pos": "-30.7,-1.6,21.2",
+     "wp": "-30.5,-1.6,23.5:walk",
+     "idx": 0,
+     "len": 4,
+     "goal": "-11.0,1.7,21.2",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 157,
+     "bot": "Diode",
+     "st": "chase",
+     "mode": "path",
+     "pos": "32.4,0.4,-7.5",
+     "wp": "31.5,0.3,-7.5:walk",
+     "idx": 0,
+     "len": 4,
+     "goal": "26.0,0.0,-9.1",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 159,
+     "bot": "Diode",
+     "st": "engage",
+     "mode": "path",
+     "pos": "29.1,0.0,-6.2",
+     "wp": "29.5,0.1,-3.5:walk",
+     "idx": 0,
+     "len": 8,
+     "goal": "-2.5,-0.0,40.9",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 164,
+     "bot": "Byte",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.5,-1.6,22.8",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 10,
+     "len": 14,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 165,
+     "bot": "Byte",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.4,-1.1,22.9",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 10,
+     "len": 14,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 171,
+     "bot": "Voltage",
+     "st": "engage",
+     "mode": "direct",
+     "pos": "-47.6,9.0,-14.8",
+     "wp": null,
+     "idx": 1,
+     "len": 0,
+     "goal": "-14.5,0.0,29.2",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 176,
+     "bot": "Relay",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.3,-1.3,22.8",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 11,
+     "len": 15,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 177,
+     "bot": "Relay",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.4,-1.6,22.8",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 11,
+     "len": 15,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 180,
+     "bot": "Relay",
+     "st": "chase",
+     "mode": "path",
+     "pos": "-23.5,-1.4,22.9",
+     "wp": "-23.5,-1.6,17.5:walk",
+     "idx": 2,
+     "len": 11,
+     "goal": "-40.5,6.2,1.3",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 294,
+     "bot": "Sprocket",
+     "st": "collect",
+     "mode": "path",
+     "pos": "29.9,0.0,-10.0",
+     "wp": "29.5,0.0,-8.5:walk",
+     "idx": 0,
+     "len": 10,
+     "goal": "49.0,9.0,-4.0",
+     "stage": 1,
+     "tgt": "-"
+    },
+    {
+     "t": 341,
+     "bot": "Nimbus",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.4,-1.0,22.9",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 10,
+     "len": 14,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 342,
+     "bot": "Nimbus",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.3,-0.6,22.8",
+     "wp": "-19.5,-1.6,22.5:walk",
+     "idx": 0,
+     "len": 12,
+     "goal": "42.0,5.2,4.0",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 363,
+     "bot": "Nimbus",
+     "st": "engage",
+     "mode": "idle",
+     "pos": "-22.6,0.0,33.6",
+     "wp": null,
+     "idx": 0,
+     "len": 0,
+     "goal": "-22.5,0.0,33.5",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 368,
+     "bot": "Rivet",
+     "st": "engage",
+     "mode": "idle",
+     "pos": "-32.0,0.0,7.7",
+     "wp": null,
+     "idx": 0,
+     "len": 0,
+     "goal": "-16.5,-0.5,24.6",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 395,
+     "bot": "Rivet",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.4,-1.0,22.8",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 7,
+     "len": 11,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 396,
+     "bot": "Rivet",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.3,-0.6,22.8",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 7,
+     "len": 11,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 399,
+     "bot": "Rivet",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.5,-1.6,22.8",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 7,
+     "len": 11,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 400,
+     "bot": "Rivet",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.5,-1.4,22.9",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 7,
+     "len": 11,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 2,
+     "tgt": "mem"
+    }
+   ],
+   "rescue": [],
+   "ignoredSets": [
+    {
+     "t": 107.5,
+     "bot": "Gasket",
+     "pickup": "weapon:sniper",
+     "dur": 90,
+     "air": true,
+     "gap": 5.9,
+     "state": "collect",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 164,
+     "bot": "Diode",
+     "pickup": "health",
+     "dur": 90,
+     "air": true,
+     "gap": 8.1,
+     "state": "retreat",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 164,
+     "bot": "Diode",
+     "pickup": "health",
+     "dur": 90,
+     "air": true,
+     "gap": 8.1,
+     "state": "retreat",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 164,
+     "bot": "Diode",
+     "pickup": "health",
+     "dur": 90,
+     "air": true,
+     "gap": 8,
+     "state": "retreat",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 167.4,
+     "bot": "Sprocket",
+     "pickup": "health",
+     "dur": 90,
+     "air": true,
+     "gap": 3.6,
+     "state": "retreat",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 167.4,
+     "bot": "Sprocket",
+     "pickup": "health",
+     "dur": 90,
+     "air": true,
+     "gap": 3.7,
+     "state": "retreat",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 167.5,
+     "bot": "Sprocket",
+     "pickup": "health",
+     "dur": 90,
+     "air": true,
+     "gap": 3.8,
+     "state": "retreat",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 374.5,
+     "bot": "Relay",
+     "pickup": "health",
+     "dur": 90,
+     "air": true,
+     "gap": 3.9,
+     "state": "retreat",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 374.5,
+     "bot": "Relay",
+     "pickup": "health",
+     "dur": 90,
+     "air": true,
+     "gap": 3.6,
+     "state": "retreat",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 374.5,
+     "bot": "Relay",
+     "pickup": "health",
+     "dur": 90,
+     "air": true,
+     "gap": 3.4,
+     "state": "retreat",
+     "navmode": "direct",
+     "unreachable": true
+    }
+   ],
+   "stateTime": {
+    "engage": 1858,
+    "collect": 164.5,
+    "chase": 822.5,
+    "retreat": 412,
+    "roam": 50.5
+   },
+   "idleStuck": [],
+   "findPathNull": [],
+   "repath": 0,
+   "pathReq": 3727,
+   "stateFlips": 2312,
+   "kills": 222,
+   "deaths": 235,
+   "falls": 0,
+   "stuckClusters": [
+    {
+     "cell": "-24,-1,24",
+     "n": 12,
+     "ex": {
+      "t": 63,
+      "bot": "Diode",
+      "st": "retreat",
+      "mode": "path",
+      "pos": "-23.4,-1.0,22.8",
+      "wp": "-23.5,-1.6,21.5:walk",
+      "idx": 10,
+      "len": 14,
+      "goal": "-27.0,-0.3,20.0",
+      "stage": 2,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "-24,-2,24",
+     "n": 4,
+     "ex": {
+      "t": 62,
+      "bot": "Diode",
+      "st": "retreat",
+      "mode": "path",
+      "pos": "-23.4,-1.6,22.8",
+      "wp": "-23.5,-1.6,21.5:walk",
+      "idx": 10,
+      "len": 14,
+      "goal": "-27.0,-0.3,20.0",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    },
+    {
+     "cell": "30,0,9",
+     "n": 1,
+     "ex": {
+      "t": 17,
+      "bot": "Diode",
+      "st": "retreat",
+      "mode": "path",
+      "pos": "30.5,0.0,10.0",
+      "wp": "29.5,0.0,8.5:walk",
+      "idx": 0,
+      "len": 5,
+      "goal": "42.0,5.2,4.0",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    },
+    {
+     "cell": "30,1,-9",
+     "n": 1,
+     "ex": {
+      "t": 95,
+      "bot": "Gasket",
+      "st": "chase",
+      "mode": "path",
+      "pos": "30.0,0.5,-9.9",
+      "wp": "29.5,0.0,-8.5:walk",
+      "idx": 0,
+      "len": 10,
+      "goal": "48.1,9.0,-1.0",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "-9,0,39",
+     "n": 1,
+     "ex": {
+      "t": 112,
+      "bot": "Rivet",
+      "st": "chase",
+      "mode": "direct",
+      "pos": "-9.4,0.1,38.9",
+      "wp": null,
+      "idx": 0,
+      "len": 0,
+      "goal": "-7.5,1.7,35.1",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "6,0,-27",
+     "n": 1,
+     "ex": {
+      "t": 122,
+      "bot": "Piston",
+      "st": "engage",
+      "mode": "path",
+      "pos": "5.9,0.0,-26.4",
+      "wp": "5.5,0.0,-24.5:walk",
+      "idx": 0,
+      "len": 2,
+      "goal": "-9.6,0.1,-43.7",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "-21,-2,21",
+     "n": 1,
+     "ex": {
+      "t": 127,
+      "bot": "Voltage",
+      "st": "retreat",
+      "mode": "path",
+      "pos": "-21.7,-1.6,21.6",
+      "wp": "-23.5,-1.6,21.5:walk",
+      "idx": 6,
+      "len": 10,
+      "goal": "-27.0,-0.3,20.0",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    },
+    {
+     "cell": "-30,-2,21",
+     "n": 1,
+     "ex": {
+      "t": 149,
+      "bot": "Diode",
+      "st": "chase",
+      "mode": "path",
+      "pos": "-30.7,-1.6,21.2",
+      "wp": "-30.5,-1.6,23.5:walk",
+      "idx": 0,
+      "len": 4,
+      "goal": "-11.0,1.7,21.2",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "33,0,-6",
+     "n": 1,
+     "ex": {
+      "t": 157,
+      "bot": "Diode",
+      "st": "chase",
+      "mode": "path",
+      "pos": "32.4,0.4,-7.5",
+      "wp": "31.5,0.3,-7.5:walk",
+      "idx": 0,
+      "len": 4,
+      "goal": "26.0,0.0,-9.1",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "30,0,-6",
+     "n": 1,
+     "ex": {
+      "t": 159,
+      "bot": "Diode",
+      "st": "engage",
+      "mode": "path",
+      "pos": "29.1,0.0,-6.2",
+      "wp": "29.5,0.1,-3.5:walk",
+      "idx": 0,
+      "len": 8,
+      "goal": "-2.5,-0.0,40.9",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    },
+    {
+     "cell": "-48,9,-15",
+     "n": 1,
+     "ex": {
+      "t": 171,
+      "bot": "Voltage",
+      "st": "engage",
+      "mode": "direct",
+      "pos": "-47.6,9.0,-14.8",
+      "wp": null,
+      "idx": 1,
+      "len": 0,
+      "goal": "-14.5,0.0,29.2",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    },
+    {
+     "cell": "30,0,-9",
+     "n": 1,
+     "ex": {
+      "t": 294,
+      "bot": "Sprocket",
+      "st": "collect",
+      "mode": "path",
+      "pos": "29.9,0.0,-10.0",
+      "wp": "29.5,0.0,-8.5:walk",
+      "idx": 0,
+      "len": 10,
+      "goal": "49.0,9.0,-4.0",
+      "stage": 1,
+      "tgt": "-"
+     }
+    }
+   ]
+  },
+  "pathStats": {
+   "count": 3656,
+   "totalMs": 7949.799997806549,
+   "maxMs": 49.09999990463257
+  },
+  "navStats": {
+   "nodes": 11543,
+   "links": 81899,
+   "components": 26,
+   "largestComponent": 11490,
+   "buildMs": 538,
+   "traps": 0,
+   "strongComponents": 119,
+   "largestStrong": 10555,
+   "cells": 11664
+  },
+  "wallMs": 52818,
+  "simTime": 406.7
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

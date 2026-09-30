@@ -1,0 +1,290 @@
+[run] http://127.0.0.1:60086/index.html?autotest=1&map=foundry&bots=3&duration=1&god=1&script=idle&test=search&scenario=tools/out/audit/review-aibrain/v/t_multi.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 6.12,
+ "frames": 34,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 23.6,
+   "pos": [
+    -44.7,
+    0,
+    -25.6
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    2.5,
+    0,
+    -43.5
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    17,
+    0,
+    -36
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 4,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 145,
+  "triangles": 104058,
+  "geometries": 119,
+  "textures": 87,
+  "programs": 88
+ },
+ "custom": {
+  "search": [
+   {
+    "ev": "hurt",
+    "t": 1.05,
+    "searchLeft": 2.33,
+    "state": "chase",
+    "searching": true,
+    "recPos": [
+     -0.75,
+     0,
+     -42.69
+    ],
+    "hurtAt": 1.05
+   },
+   {
+    "el": 0.07,
+    "moved": 0.27,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "hurtAt": 1.05,
+    "known": true
+   },
+   {
+    "el": 0.32,
+    "moved": 0.5,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "hurtAt": 1.05,
+    "known": true
+   },
+   {
+    "el": 0.57,
+    "moved": 0.51,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "hurtAt": 1.05,
+    "known": true
+   },
+   {
+    "el": 0.82,
+    "moved": 0.51,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "hurtAt": 1.05,
+    "known": true
+   },
+   {
+    "el": 1.07,
+    "moved": 0.51,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "hurtAt": 1.05,
+    "known": true
+   },
+   {
+    "el": 1.32,
+    "moved": 0.51,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "hurtAt": 1.05,
+    "known": true
+   },
+   {
+    "el": 1.57,
+    "moved": 0.51,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "hurtAt": 1.05,
+    "known": true
+   },
+   {
+    "el": 1.82,
+    "moved": 0.51,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "hurtAt": 1.05,
+    "known": true
+   },
+   {
+    "el": 2.07,
+    "moved": 0.51,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "hurtAt": 1.05,
+    "known": true
+   },
+   {
+    "el": 2.32,
+    "moved": 0.51,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "hurtAt": 1.05,
+    "known": true
+   },
+   {
+    "el": 2.57,
+    "moved": 0.46,
+    "state": "roam",
+    "searching": false,
+    "hasTarget": false,
+    "hurtAt": -999,
+    "known": false
+   },
+   {
+    "el": 2.82,
+    "moved": 0.98,
+    "state": "roam",
+    "searching": false,
+    "hasTarget": false,
+    "hurtAt": -999,
+    "known": false
+   },
+   {
+    "el": 3.07,
+    "moved": 2.75,
+    "state": "roam",
+    "searching": false,
+    "hasTarget": false,
+    "hurtAt": -999,
+    "known": false
+   },
+   {
+    "el": 3.32,
+    "moved": 4.55,
+    "state": "roam",
+    "searching": false,
+    "hasTarget": false,
+    "hurtAt": -999,
+    "known": false
+   },
+   {
+    "el": 3.62,
+    "moved": 6.7,
+    "state": "roam",
+    "searching": false,
+    "hasTarget": false,
+    "hurtAt": -999,
+    "known": false
+   },
+   {
+    "el": 3.87,
+    "moved": 8.5,
+    "state": "roam",
+    "searching": false,
+    "hasTarget": false,
+    "hurtAt": -999,
+    "known": false
+   },
+   {
+    "el": 4.12,
+    "moved": 10.3,
+    "state": "roam",
+    "searching": false,
+    "hasTarget": false,
+    "hurtAt": -999,
+    "known": false
+   },
+   {
+    "el": 4.37,
+    "moved": 12.1,
+    "state": "roam",
+    "searching": false,
+    "hasTarget": false,
+    "hurtAt": -999,
+    "known": false
+   },
+   {
+    "el": 4.62,
+    "moved": 13.9,
+    "state": "roam",
+    "searching": false,
+    "hasTarget": false,
+    "hurtAt": -999,
+    "known": false
+   },
+   {
+    "el": 4.87,
+    "moved": 15.7,
+    "state": "roam",
+    "searching": false,
+    "hasTarget": false,
+    "hurtAt": -999,
+    "known": false
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

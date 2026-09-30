@@ -1,0 +1,14 @@
+[run] http://127.0.0.1:50971/tools/viewer.html?kind=map&id=../../../tools/out/world/gallery&cam=-22,16,-6,0.5,-0.42&markers=0
+[warning] [Textures] unknown material 'no_such_material', using 'dev_grid'
+[warning] [world] map 'gallery' has 9 warning(s):
+ - solid #45: unknown type 'bogus' (valid: box, wall, ramp, stairs, cylinder, pillar, arch, container, crate, railing, catwalk, panel)
+ - unknown material 'no_such_material' (falls back to dev_grid)
+ - solid #47 (ramp): dir must be '+x'|'-x'|'+z'|'-z' (got '+q')
+ - solid #47 (ramp): slope 56 deg is steeper than 33 (players cannot walk it)
+ - solid #48 (box): 'pos' must be [x,y,z]
+ - only 2 spawn point(s): 14-18 recommended
+ - jumpPad #0: target [10,4,0] has no floor below it
+ - pickup #6: unknown weapon 'nope' (valid: pistol, rifle, shotgun, sniper, rocket)
+ - pickup #7: unknown type 'medal' (valid: health, armor, ammo, grenades, weapon)
+[run] screenshot -> tools\out\world\g1.png
+[run] done: wait=ok console_errors=0 warnings=2

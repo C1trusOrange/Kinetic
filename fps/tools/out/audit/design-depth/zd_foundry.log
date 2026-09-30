@@ -1,0 +1,224 @@
+[run] http://127.0.0.1:57925/index.html?autotest=1&map=foundry&bots=0&script=idle&scenario=tools/out/audit/design-depth/zone_check2.js&duration=1&quality=low
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":95.1}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 1.02,
+ "frames": 100,
+ "fps": {
+  "avg": 95.1,
+  "min": 4,
+  "max": 172.4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 5,
+  "maxY": 5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 109,
+  "triangles": 65786,
+  "geometries": 120,
+  "textures": 101,
+  "programs": 74
+ },
+ "custom": {
+  "map": "foundry",
+  "zones": [
+   {
+    "name": "hall",
+    "at": [
+     0,
+     0,
+     2.2
+    ],
+    "r": 7.5,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 136,
+    "reachIn": 136
+   },
+   {
+    "name": "plazaE",
+    "at": [
+     34,
+     0,
+     0
+    ],
+    "r": 8,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 181,
+    "reachIn": 179
+   },
+   {
+    "name": "trench",
+    "at": [
+     0,
+     -4,
+     26
+    ],
+    "r": 7,
+    "floorY": -4,
+    "head": 4,
+    "conn": true,
+    "navIn": 103,
+    "reachIn": 99
+   },
+   {
+    "name": "yardN",
+    "at": [
+     0,
+     0,
+     -32
+    ],
+    "r": 8,
+    "floorY": 1,
+    "head": 4,
+    "conn": true,
+    "navIn": 194,
+    "reachIn": 185
+   },
+   {
+    "name": "gantry",
+    "at": [
+     0,
+     5,
+     16
+    ],
+    "r": 7,
+    "floorY": 5,
+    "head": 4,
+    "conn": true,
+    "navIn": 73,
+    "reachIn": 73
+   },
+   {
+    "name": "tanks",
+    "at": [
+     38.5,
+     10,
+     -37
+    ],
+    "r": 6,
+    "floorY": 10.03,
+    "head": 4,
+    "conn": false,
+    "navIn": 47,
+    "reachIn": 41
+   }
+  ],
+  "pads": [
+   {
+    "name": "pad0",
+    "at": [
+     14,
+     0,
+     6
+    ],
+    "r": 0,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad1",
+    "at": [
+     -24,
+     0,
+     4
+    ],
+    "r": 0,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad2",
+    "at": [
+     -5,
+     -4,
+     26
+    ],
+    "r": 0,
+    "floorY": -4,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad3",
+    "at": [
+     5,
+     -4,
+     26
+    ],
+    "r": 0,
+    "floorY": -4,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad4",
+    "at": [
+     10,
+     0,
+     36
+    ],
+    "r": 0,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad5",
+    "at": [
+     -8,
+     0,
+     40
+    ],
+    "r": 0,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

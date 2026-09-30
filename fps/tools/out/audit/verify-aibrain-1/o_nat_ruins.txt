@@ -1,0 +1,715 @@
+[run] http://127.0.0.1:65038/index.html?autotest=1&map=ruins&bots=8&duration=1&god=1&script=idle&scenario=tools/out/audit/verify-aibrain-1/scen_nat.js&secs=300&sfps=30
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 302.96,
+ "frames": 99,
+ "fps": {
+  "avg": 0,
+  "min": 55.55555555555345,
+  "max": 55.55555555555345
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 82.5,
+  "maxSpeed": 12.29,
+  "minY": 0,
+  "maxY": 9.30924281552023,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 11,
+   "deaths": 14,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "collect",
+   "distance": 1602.1,
+   "pos": [
+    -32.4,
+    0,
+    41
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 10,
+   "deaths": 16,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 1405.4,
+   "pos": [
+    -2.6,
+    0.1,
+    -36
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 22,
+   "deaths": 14,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 1598.8,
+   "pos": [
+    13.9,
+    0,
+    48.6
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 15,
+   "deaths": 16,
+   "health": 43,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 1415.7,
+   "pos": [
+    25.8,
+    0,
+    0.8
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 15,
+   "deaths": 12,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 1598.8,
+   "pos": [
+    16.6,
+    0,
+    11
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 15,
+   "deaths": 16,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 1585.3,
+   "pos": [
+    -19.3,
+    -1.6,
+    19.8
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": false,
+   "kills": 12,
+   "deaths": 14,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 1242.7,
+   "pos": [
+    40.7,
+    4.5,
+    0.8
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 8,
+   "deaths": 10,
+   "health": 80,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 1193,
+   "pos": [
+    2.3,
+    0,
+    26.3
+   ]
+  }
+ ],
+ "events": {
+  "damage": 669,
+  "death": 112,
+  "spawn": 120,
+  "pickup": 37,
+  "fire": 2153
+ },
+ "renderer": {
+  "calls": 458,
+  "triangles": 112702,
+  "geometries": 213,
+  "textures": 121,
+  "programs": 99
+ },
+ "custom": {
+  "ign": [
+   {
+    "t": 51.2,
+    "bot": "Servo",
+    "what": "health",
+    "air": true,
+    "gap": 5.7,
+    "y": 5.8,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 0.5,
+    "hp": 3
+   },
+   {
+    "t": 51.2,
+    "bot": "Servo",
+    "what": "health",
+    "air": true,
+    "gap": 5.6,
+    "y": 5.6,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 0.5,
+    "hp": 3
+   },
+   {
+    "t": 150.2,
+    "bot": "Flux",
+    "what": "weapon:sniper",
+    "air": true,
+    "gap": 6.2,
+    "y": 6.2,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 0.4,
+    "hp": 100
+   },
+   {
+    "t": 150.5,
+    "bot": "Flux",
+    "what": "weapon:rocket",
+    "air": true,
+    "gap": 5,
+    "y": 5.1,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 0.7,
+    "hp": 100
+   },
+   {
+    "t": 150.8,
+    "bot": "Flux",
+    "what": "armor",
+    "air": true,
+    "gap": 1.7,
+    "y": 1.7,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 1,
+    "hp": 100
+   }
+  ],
+  "rescue": [],
+  "launches": [
+   {
+    "t": 5,
+    "bot": "Voltage",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 2
+   },
+   {
+    "t": 22.6,
+    "bot": "Flux",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 2,
+    "len": 6
+   },
+   {
+    "t": 34.9,
+    "bot": "Flux",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 5
+   },
+   {
+    "t": 38.8,
+    "bot": "Voltage",
+    "state": "engage",
+    "mode": "path",
+    "idx": 3,
+    "len": 5
+   },
+   {
+    "t": 50.7,
+    "bot": "Servo",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 4,
+    "len": 5
+   },
+   {
+    "t": 84.8,
+    "bot": "Voltage",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 2,
+    "len": 6
+   },
+   {
+    "t": 93.6,
+    "bot": "Glitch",
+    "state": "roam",
+    "mode": "idle",
+    "idx": 0,
+    "len": 0
+   },
+   {
+    "t": 102.1,
+    "bot": "Diode",
+    "state": "collect",
+    "mode": "path",
+    "idx": 2,
+    "len": 5
+   },
+   {
+    "t": 109.3,
+    "bot": "Glitch",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 3
+   },
+   {
+    "t": 109.3,
+    "bot": "Flux",
+    "state": "collect",
+    "mode": "path",
+    "idx": 2,
+    "len": 5
+   },
+   {
+    "t": 126.9,
+    "bot": "Glitch",
+    "state": "engage",
+    "mode": "idle",
+    "idx": 0,
+    "len": 0
+   },
+   {
+    "t": 128.8,
+    "bot": "Rivet",
+    "state": "chase",
+    "mode": "path",
+    "idx": 0,
+    "len": 3
+   },
+   {
+    "t": 149.8,
+    "bot": "Flux",
+    "state": "roam",
+    "mode": "idle",
+    "idx": 0,
+    "len": 0
+   },
+   {
+    "t": 151.4,
+    "bot": "Flux",
+    "state": "roam",
+    "mode": "path",
+    "idx": 0,
+    "len": 6
+   },
+   {
+    "t": 174.1,
+    "bot": "Sprocket",
+    "state": "engage",
+    "mode": "idle",
+    "idx": 0,
+    "len": 0
+   },
+   {
+    "t": 183.7,
+    "bot": "Servo",
+    "state": "engage",
+    "mode": "idle",
+    "idx": 0,
+    "len": 0
+   },
+   {
+    "t": 192.1,
+    "bot": "Diode",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 2
+   },
+   {
+    "t": 216.8,
+    "bot": "Cog",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 2
+   },
+   {
+    "t": 219.5,
+    "bot": "Flux",
+    "state": "chase",
+    "mode": "path",
+    "idx": 0,
+    "len": 4
+   },
+   {
+    "t": 230.1,
+    "bot": "Flux",
+    "state": "roam",
+    "mode": "idle",
+    "idx": 0,
+    "len": 0
+   },
+   {
+    "t": 240.9,
+    "bot": "Cog",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 2
+   },
+   {
+    "t": 256,
+    "bot": "Cog",
+    "state": "engage",
+    "mode": "path",
+    "idx": 2,
+    "len": 9
+   },
+   {
+    "t": 270.4,
+    "bot": "Cog",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 2,
+    "len": 12
+   },
+   {
+    "t": 280.9,
+    "bot": "Cog",
+    "state": "collect",
+    "mode": "path",
+    "idx": 0,
+    "len": 3
+   },
+   {
+    "t": 299.1,
+    "bot": "Flux",
+    "state": "chase",
+    "mode": "path",
+    "idx": 0,
+    "len": 8
+   }
+  ],
+  "stuck": [
+   {
+    "t": 32.7,
+    "bot": "Cog",
+    "pos": [
+     -23.4,
+     -1.6,
+     22.8
+    ],
+    "state": "retreat",
+    "mode": "path",
+    "wp": "-23.5,-1.6,21.5,walk",
+    "stage": 1
+   },
+   {
+    "t": 34.8,
+    "bot": "Cog",
+    "pos": [
+     -23.4,
+     -1.6,
+     22.8
+    ],
+    "state": "retreat",
+    "mode": "path",
+    "wp": "-23.5,-1.6,21.5,walk",
+    "stage": 2
+   },
+   {
+    "t": 37.5,
+    "bot": "Cog",
+    "pos": [
+     -21.7,
+     -1.6,
+     21.8
+    ],
+    "state": "retreat",
+    "mode": "path",
+    "wp": "-23.5,-1.6,21.5,walk",
+    "stage": 1
+   },
+   {
+    "t": 140.3,
+    "bot": "Cog",
+    "pos": [
+     6.8,
+     0,
+     -22.4
+    ],
+    "state": "engage",
+    "mode": "path",
+    "wp": "-0.5,0.1,-34.5,walk",
+    "stage": 1
+   },
+   {
+    "t": 141.4,
+    "bot": "Cog",
+    "pos": [
+     7.1,
+     0,
+     -22.5
+    ],
+    "state": "engage",
+    "mode": "path",
+    "wp": "-0.5,0.1,-34.5,walk",
+    "stage": 2
+   },
+   {
+    "t": 163.2,
+    "bot": "Diode",
+    "pos": [
+     -7.7,
+     0.1,
+     38.8
+    ],
+    "state": "engage",
+    "mode": "path",
+    "wp": "-6.5,0,22.9,walk",
+    "stage": 1
+   },
+   {
+    "t": 182.3,
+    "bot": "Flux",
+    "pos": [
+     32.2,
+     0,
+     -13.5
+    ],
+    "state": "engage",
+    "mode": "path",
+    "wp": "32.5,0,-14.5,walk",
+    "stage": 1
+   },
+   {
+    "t": 201.2,
+    "bot": "Cog",
+    "pos": [
+     41.6,
+     4.5,
+     5.1
+    ],
+    "state": "engage",
+    "mode": "path",
+    "wp": "42.5,4.7,5.5,walk",
+    "stage": 1
+   },
+   {
+    "t": 231.4,
+    "bot": "Diode",
+    "pos": [
+     32.5,
+     0,
+     -14.1
+    ],
+    "state": "chase",
+    "mode": "path",
+    "wp": "29.5,0,-13.5,walk",
+    "stage": 1
+   },
+   {
+    "t": 233.6,
+    "bot": "Rivet",
+    "pos": [
+     5.7,
+     0,
+     42.7
+    ],
+    "state": "engage",
+    "mode": "path",
+    "wp": "-0.5,0.3,42.5,walk",
+    "stage": 1
+   },
+   {
+    "t": 263,
+    "bot": "Cog",
+    "pos": [
+     45.2,
+     4.5,
+     7.9
+    ],
+    "state": "chase",
+    "mode": "direct",
+    "wp": null,
+    "stage": 1
+   },
+   {
+    "t": 263.1,
+    "bot": "Flux",
+    "pos": [
+     7.4,
+     0,
+     38.8
+    ],
+    "state": "chase",
+    "mode": "path",
+    "wp": "6.5,0,37.5,walk",
+    "stage": 1
+   },
+   {
+    "t": 264.1,
+    "bot": "Flux",
+    "pos": [
+     7.4,
+     1,
+     38.8
+    ],
+    "state": "chase",
+    "mode": "path",
+    "wp": "6.5,0,37.5,walk",
+    "stage": 2
+   },
+   {
+    "t": 265.6,
+    "bot": "Flux",
+    "pos": [
+     7.4,
+     0.5,
+     38.8
+    ],
+    "state": "chase",
+    "mode": "path",
+    "wp": "6.5,0,37.5,walk",
+    "stage": 3
+   },
+   {
+    "t": 266.6,
+    "bot": "Flux",
+    "pos": [
+     7.4,
+     0.9,
+     38.8
+    ],
+    "state": "chase",
+    "mode": "path",
+    "wp": "6.5,0,37.5,walk",
+    "stage": 4
+   },
+   {
+    "t": 273.8,
+    "bot": "Rivet",
+    "pos": [
+     37.7,
+     0,
+     -34.2
+    ],
+    "state": "engage",
+    "mode": "idle",
+    "wp": null,
+    "stage": 1
+   },
+   {
+    "t": 274.1,
+    "bot": "Cog",
+    "pos": [
+     27.3,
+     0,
+     -10.1
+    ],
+    "state": "retreat",
+    "mode": "path",
+    "wp": "30.5,0,-10.5,drop",
+    "stage": 1
+   },
+   {
+    "t": 283.3,
+    "bot": "Voltage",
+    "pos": [
+     -23.1,
+     -0.9,
+     22.8
+    ],
+    "state": "chase",
+    "mode": "path",
+    "wp": "-23.5,-1.6,16.5,walk",
+    "stage": 1
+   },
+   {
+    "t": 284.8,
+    "bot": "Voltage",
+    "pos": [
+     -23.1,
+     -0.9,
+     22.8
+    ],
+    "state": "chase",
+    "mode": "path",
+    "wp": "-23.5,-1.6,14.5,walk",
+    "stage": 2
+   }
+  ],
+  "roamFail": [],
+  "simSeconds": 300,
+  "summary": {
+   "ign": 5,
+   "ignAir": 5,
+   "rescue": 0,
+   "rescueAir": 0,
+   "launches": 25,
+   "stuck": 19
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

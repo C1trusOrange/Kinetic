@@ -1,0 +1,649 @@
+[run] http://127.0.0.1:60727/index.html?autotest=1&map=foundry&bots=5&duration=20&warm=1&scenario=tools/out/audit/review-perf/frames/scenario.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 20.08,
+ "frames": 869,
+ "fps": {
+  "avg": 51.8,
+  "min": 4,
+  "max": 178.6
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 141.7,
+  "maxSpeed": 23.24,
+  "minY": -24.749999999999943,
+  "maxY": 7.900000000000038,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "isWallRunning": true,
+   "isGrappling": true,
+   "isMantling": true
+  },
+  "shots": 20,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 52,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 116.8,
+   "pos": [
+    -27.3,
+    0,
+    -5.7
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 24,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 100.2,
+   "pos": [
+    -20.7,
+    0,
+    -26.6
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 75,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 146.9,
+   "pos": [
+    3.1,
+    0,
+    -13.3
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": false,
+   "kills": 1,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 113,
+   "pos": [
+    11.1,
+    0,
+    -2.8
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 90.2,
+   "pos": [
+    -33.5,
+    0,
+    -6.2
+   ]
+  }
+ ],
+ "events": {
+  "damage": 22,
+  "death": 4,
+  "spawn": 10,
+  "pickup": 3,
+  "fire": 93
+ },
+ "renderer": {
+  "calls": 248,
+  "triangles": 115850,
+  "geometries": 376,
+  "textures": 143,
+  "programs": 79
+ },
+ "custom": {
+  "warmMs": 813.5,
+  "warmNewProgs": 27,
+  "startProgs": 78,
+  "prof": {
+   "frames": 830,
+   "cpuMs": {
+    "p50": 12,
+    "p90": 22.3,
+    "p99": 64.5,
+    "max": 586.1
+   },
+   "intervalMs": {
+    "p50": 24.1,
+    "p90": 42.2,
+    "p99": 109,
+    "max": 909.1
+   },
+   "totalNewPrograms": 79,
+   "slow": [
+    {
+     "i": 37,
+     "t": 0.1,
+     "dur": 51.5,
+     "interval": 54.6,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 23.2,
+      "render": 25.1
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 420,
+       "ms": 1.1
+      }
+     }
+    },
+    {
+     "i": 38,
+     "t": 0.15,
+     "dur": 36.4,
+     "interval": 909.1,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 11.9,
+      "render": 21.9
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 420,
+       "ms": 1.4
+      }
+     }
+    },
+    {
+     "i": 70,
+     "t": 1.08,
+     "dur": 27.9,
+     "interval": 236.4,
+     "newProg": [],
+     "dTex": 1,
+     "dGeo": 8,
+     "parts": {
+      "bots.update": 13.6,
+      "render": 12.6
+     },
+     "gl": {}
+    },
+    {
+     "i": 116,
+     "t": 2.32,
+     "dur": 46.2,
+     "interval": 24.3,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 1.8,
+      "render": 42.8
+     },
+     "gl": {
+      "useProgram": {
+       "n": 72,
+       "ms": 6.1
+      }
+     }
+    },
+    {
+     "i": 117,
+     "t": 2.35,
+     "dur": 41,
+     "interval": 54.5,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "player.update": 12.5,
+      "bots.update": 18.4,
+      "render": 9.3
+     },
+     "gl": {}
+    },
+    {
+     "i": 131,
+     "t": 2.75,
+     "dur": 64.5,
+     "interval": 24.3,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 2,
+      "render": 61.2
+     },
+     "gl": {
+      "drawArrays": {
+       "n": 238,
+       "ms": 1.6
+      }
+     }
+    },
+    {
+     "i": 152,
+     "t": 3.27,
+     "dur": 88.5,
+     "interval": 24.1,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "autotest.update": 6.3,
+      "bots.update": 37.7,
+      "render": 43.1
+     },
+     "gl": {}
+    },
+    {
+     "i": 153,
+     "t": 3.29,
+     "dur": 81.5,
+     "interval": 90.9,
+     "newProg": [],
+     "dTex": 1,
+     "dGeo": 11,
+     "parts": {
+      "bots.update": 6.6,
+      "projectiles.update": 1.2,
+      "render": 71.7
+     },
+     "gl": {
+      "bufferData": {
+       "n": 44,
+       "ms": 1.4
+      },
+      "getProgramInfoLog": {
+       "n": 2,
+       "ms": 2
+      }
+     }
+    },
+    {
+     "i": 154,
+     "t": 3.34,
+     "dur": 61.6,
+     "interval": 84.9,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 21.1,
+      "projectiles.update": 3.4,
+      "render": 33.6
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 424,
+       "ms": 1.2
+      }
+     }
+    },
+    {
+     "i": 155,
+     "t": 3.39,
+     "dur": 95,
+     "interval": 66.8,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 5.8,
+      "projectiles.update": 37,
+      "world.update": 6.8,
+      "effects.update": 3.2,
+      "render": 40.6
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 379,
+       "ms": 1.1
+      },
+      "drawArrays": {
+       "n": 234,
+       "ms": 1.2
+      }
+     }
+    },
+    {
+     "i": 156,
+     "t": 3.44,
+     "dur": 45.6,
+     "interval": 109,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "weapons.updateViewModel": 1.8,
+      "render": 41.3
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 379,
+       "ms": 1.2
+      },
+      "drawElements": {
+       "n": 47,
+       "ms": 2.7
+      }
+     }
+    },
+    {
+     "i": 158,
+     "t": 3.54,
+     "dur": 41.8,
+     "interval": 36.5,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "player.update": 2.8,
+      "bots.update": 1.1,
+      "render": 36.7
+     },
+     "gl": {}
+    },
+    {
+     "i": 159,
+     "t": 3.58,
+     "dur": 50.3,
+     "interval": 42.3,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "player.update": 3.7,
+      "bots.update": 6,
+      "effects.update": 4.1,
+      "render": 35.4
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 379,
+       "ms": 2.9
+      }
+     }
+    },
+    {
+     "i": 211,
+     "t": 4.79,
+     "dur": 51,
+     "interval": 24.2,
+     "newProg": [],
+     "dTex": 2,
+     "dGeo": 4,
+     "parts": {
+      "weapons.update": 4.6,
+      "render": 43.4
+     },
+     "gl": {
+      "getProgramInfoLog": {
+       "n": 4,
+       "ms": 22.7
+      }
+     }
+    },
+    {
+     "i": 438,
+     "t": 8.87,
+     "dur": 133.7,
+     "interval": 60.6,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "player.update": 28.6,
+      "bots.update": 2.5,
+      "render": 101.5
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 239,
+       "ms": 27.8
+      }
+     }
+    },
+    {
+     "i": 439,
+     "t": 8.92,
+     "dur": 22.8,
+     "interval": 145.4,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "render": 21.1
+     },
+     "gl": {}
+    },
+    {
+     "i": 440,
+     "t": 8.97,
+     "dur": 59.5,
+     "interval": 24.3,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "weapons.update": 1.5,
+      "render": 56.3
+     },
+     "gl": {}
+    },
+    {
+     "i": 443,
+     "t": 9.09,
+     "dur": 76.6,
+     "interval": 66.7,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 34,
+     "parts": {
+      "bots.update": 4.6,
+      "render": 70.4
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 260,
+       "ms": 5.4
+      }
+     }
+    },
+    {
+     "i": 444,
+     "t": 9.14,
+     "dur": 38.1,
+     "interval": 133.3,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 24.5,
+      "render": 11.5
+     },
+     "gl": {}
+    },
+    {
+     "i": 445,
+     "t": 9.19,
+     "dur": 22.2,
+     "interval": 230.4,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 45,
+     "parts": {
+      "bots.update": 2,
+      "projectiles.update": 8.2,
+      "render": 9.1
+     },
+     "gl": {}
+    },
+    {
+     "i": 446,
+     "t": 9.24,
+     "dur": 12.3,
+     "interval": 115.1,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 4.1,
+      "render": 6.7
+     },
+     "gl": {}
+    },
+    {
+     "i": 558,
+     "t": 11.74,
+     "dur": 586.1,
+     "interval": 36.2,
+     "newProg": [
+      "#79"
+     ],
+     "users": {
+      "79": [
+       "S:body:cellBody/MeshStandardMaterial@weapon_rifle",
+       "V:body:cellBody/MeshStandardMaterial@weapon_rifle_view",
+       "V:mag:cellBody/MeshStandardMaterial@mag"
+      ]
+     },
+     "keys": [
+      "|physical,STANDARD,,highp,srgb-linear,306,1024,uv,false,false,false,false,false,false,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,2081,132099,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}"
+     ],
+     "dTex": 1,
+     "dGeo": 14,
+     "parts": {
+      "weapons.update": 1.5,
+      "updateMatch": 21.8,
+      "render": 559.9
+     },
+     "gl": {
+      "getProgramInfoLog": {
+       "n": 2,
+       "ms": 524
+      }
+     }
+    },
+    {
+     "i": 559,
+     "t": 11.78,
+     "dur": 24.7,
+     "interval": 594.1,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 2.1,
+      "render": 20.5
+     },
+     "gl": {}
+    },
+    {
+     "i": 584,
+     "t": 12.31,
+     "dur": 76.6,
+     "interval": 24.4,
+     "newProg": [],
+     "dTex": 2,
+     "dGeo": 3,
+     "parts": {
+      "player.update": 1.3,
+      "render": 72
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 353,
+       "ms": 1.8
+      },
+      "getProgramInfoLog": {
+       "n": 4,
+       "ms": 48.1
+      }
+     }
+    },
+    {
+     "i": 592,
+     "t": 12.5,
+     "dur": 14.4,
+     "interval": 120.8,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 3.3,
+      "render": 8.7
+     },
+     "gl": {}
+    },
+    {
+     "i": 645,
+     "t": 14,
+     "dur": 70.9,
+     "interval": 36.3,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 34.5,
+      "audio.update": 2.1,
+      "hud.update": 5.1,
+      "render": 25.8
+     },
+     "gl": {
+      "bufferSubData": {
+       "n": 24,
+       "ms": 1.6
+      }
+     }
+    }
+   ],
+   "glTotalMs": {
+    "bufferSubData": 109.7,
+    "bufferData": 5.7,
+    "useProgram": 103.5,
+    "drawElements": 89,
+    "uniformMatrix4fv": 422.9,
+    "drawArrays": 248.4,
+    "getProgramInfoLog": 666.9,
+    "getProgramParameter": 1.3,
+    "getActiveUniform": 1.8,
+    "getUniformLocation": 4,
+    "texSubImage2D": 34.2,
+    "drawElementsInstanced": 23.7
+   }
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

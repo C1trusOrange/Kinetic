@@ -1,0 +1,20 @@
+attempt 0 failed: 
+attempt 1 failed: p://127.0.0.1:50790/src/core/Audio.js] | [error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:50790/src/core/AutoTest.js] | [error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done | [result] null | [run] done: wait=TIMEOUT console_errors=8 warnings=0 | 
+fps {'avg': 46.6, 'min': 4, 'max': 185.2} errors 0 [] t 16.54
+h0.3_steps {"minSpeed":0.61,"secondsBelow8":0.11,"maxY":0.3}
+h0.3 {"minSpeedNear":0.61,"maxY":0.3,"passedX":13,"jumps":0,"mantles":0}
+h0.4_steps {"minSpeed":0,"secondsBelow8":0.11,"maxY":0.4}
+h0.4 {"minSpeedNear":3.7,"maxY":0.4,"passedX":13.33,"jumps":0,"mantles":0}
+h0.45_steps {"minSpeed":0,"secondsBelow8":0.11,"maxY":0.45}
+h0.45 {"minSpeedNear":2.29,"maxY":0.45,"passedX":13.01,"jumps":0,"mantles":0}
+h0.5_steps {"minSpeed":0,"secondsBelow8":0.11,"maxY":0.5}
+h0.5 {"minSpeedNear":1.59,"maxY":0.5,"passedX":13.25,"jumps":0,"mantles":0}
+h0.55_steps {"minSpeed":0,"secondsBelow8":0.11,"maxY":0.55}
+h0.55 {"minSpeedNear":0.73,"maxY":0.55,"passedX":13.41,"jumps":0,"mantles":0}
+h0.6_steps {"minSpeed":0,"secondsBelow8":0.12,"maxY":0.6}
+h0.6 {"minSpeedNear":1.47,"maxY":0.6,"passedX":12.81,"jumps":0,"mantles":0}
+h0.7_steps {"minSpeed":0,"secondsBelow8":0.47,"maxY":0}
+h0.7 {"minSpeedNear":0,"maxY":0,"passedX":9.6,"jumps":0,"mantles":0}
+h0.9_steps {"minSpeed":0,"secondsBelow8":0.42,"maxY":0}
+h0.9 {"minSpeedNear":0,"maxY":0,"passedX":9.6,"jumps":0,"mantles":0}
+[run] done: wait=ok console_errors=0 warnings=1

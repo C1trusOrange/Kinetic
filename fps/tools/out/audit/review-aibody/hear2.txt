@@ -1,0 +1,128 @@
+[run] http://127.0.0.1:62438/index.html?autotest=1&map=sandbox&bots=3&duration=4&god=1&script=idle&scenario=tools/out/audit/review-aibody/scen_hear.js
+[log] [autotest] finished {"ok":true,"errors":0,"fps":36.3}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 4.1,
+ "frames": 168,
+ "fps": {
+  "avg": 36.3,
+  "min": 4,
+  "max": 82.6
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 4.5,
+  "maxY": 4.5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    28,
+    0,
+    29
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 924,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 8.9,
+   "pos": [
+    -18.4,
+    0,
+    29
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    28,
+    0,
+    -8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 1,
+  "death": 0,
+  "spawn": 4,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 326,
+  "triangles": 54446,
+  "geometries": 174,
+  "textures": 125,
+  "programs": 101
+ },
+ "custom": {
+  "pair": {
+   "i": 6,
+   "j": 9,
+   "d": 38
+  },
+  "Apos": [
+   28,
+   0,
+   29
+  ],
+  "Bpos": [
+   -10,
+   0,
+   29
+  ],
+  "explosionAt": [
+   -8.5,
+   0.3,
+   29
+  ],
+  "afterExplode": {
+   "recPos": [
+    -9.1,
+    0.4,
+    29.9
+   ],
+   "hurtAt": 0.82,
+   "lastHeard": 0.82,
+   "Bhp": 924
+  },
+  "distRecToA": 37.1,
+  "distRecToExplosion": 1.1,
+  "distExplosionToA": 36.5
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

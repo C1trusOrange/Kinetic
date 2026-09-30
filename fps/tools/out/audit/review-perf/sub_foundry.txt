@@ -1,0 +1,315 @@
+[run] http://127.0.0.1:54821/index.html?autotest=1&map=foundry&bots=8&duration=40&scenario=tools/out/audit/review-perf/scenario_sub.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":31.5}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 40.01,
+ "frames": 1122,
+ "fps": {
+  "avg": 31.5,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 168.1,
+  "maxSpeed": 13.69,
+  "minY": -3.3306690738754696e-15,
+  "maxY": 2.9847379853902325,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isWallRunning": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "isGrappling": true
+  },
+  "shots": 24,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 64.9689570274198
+ },
+ "bots": [
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 2,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 229.2,
+   "pos": [
+    26.9,
+    0,
+    -37.3
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 66,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 60.3,
+   "pos": [
+    37.5,
+    -1,
+    28.7
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 20,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 203.6,
+   "pos": [
+    17.8,
+    0,
+    10.4
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 2,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 243.6,
+   "pos": [
+    -7.8,
+    0,
+    19.5
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 2,
+   "deaths": 0,
+   "health": 39,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 234.9,
+   "pos": [
+    -11.9,
+    0,
+    -35.6
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 19,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 204.8,
+   "pos": [
+    -35.9,
+    0,
+    -29.8
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 1,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 186.5,
+   "pos": [
+    -12.7,
+    0,
+    20.8
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 1,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 233.7,
+   "pos": [
+    -44.9,
+    0,
+    -30.7
+   ]
+  }
+ ],
+ "events": {
+  "damage": 97,
+  "death": 10,
+  "spawn": 19,
+  "pickup": 4,
+  "fire": 392
+ },
+ "renderer": {
+  "calls": 337,
+  "triangles": 127098,
+  "geometries": 358,
+  "textures": 146,
+  "programs": 115
+ },
+ "custom": {
+  "frames": 1079,
+  "perFrame": {
+   "collision.moveCapsule": {
+    "mean": 0.497,
+    "p95": 1.4,
+    "p99": 4.6,
+    "max": 11.4
+   },
+   "collision.raycast": {
+    "mean": 0.944,
+    "p95": 3.1,
+    "p99": 5.8,
+    "max": 13.8
+   },
+   "collision.probeGround": {
+    "mean": 0.137,
+    "p95": 0.4,
+    "p99": 1.8,
+    "max": 5
+   },
+   "player.update": {
+    "mean": 0.75,
+    "p95": 2.3,
+    "p99": 6.9,
+    "max": 14.2
+   },
+   "weapons.update": {
+    "mean": 0.154,
+    "p95": 0.5,
+    "p99": 2.9,
+    "max": 5.3
+   },
+   "combat.canSee": {
+    "mean": 0.434,
+    "p95": 1.7,
+    "p99": 4.2,
+    "max": 11.6,
+    "calls": 0
+   },
+   "bots.update": {
+    "mean": 4.547,
+    "p95": 12.9,
+    "p99": 24.8,
+    "max": 150.9
+   },
+   "projectiles.update": {
+    "mean": 0.044,
+    "p95": 0.1,
+    "p99": 1.1,
+    "max": 5.3
+   },
+   "world.update": {
+    "mean": 0.185,
+    "p95": 0.5,
+    "p99": 1.9,
+    "max": 8.3
+   },
+   "effects.update": {
+    "mean": 0.471,
+    "p95": 1.6,
+    "p99": 4.2,
+    "max": 79.4
+   },
+   "updateMatch": {
+    "mean": 0.061,
+    "p95": 0.1,
+    "p99": 2.7,
+    "max": 14.1
+   },
+   "player.updateCamera": {
+    "mean": 0.088,
+    "p95": 0.2,
+    "p99": 0.8,
+    "max": 4.3
+   },
+   "weapons.updateViewModel": {
+    "mean": 0.195,
+    "p95": 0.5,
+    "p99": 1.4,
+    "max": 15.2
+   },
+   "audio.update": {
+    "mean": 0.091,
+    "p95": 0.2,
+    "p99": 0.8,
+    "max": 3
+   },
+   "hud.update": {
+    "mean": 0.192,
+    "p95": 0.5,
+    "p99": 1.4,
+    "max": 7.5
+   },
+   "total_update": {
+    "mean": 7.5,
+    "p95": 18.1,
+    "p99": 32.8,
+    "max": 163.3
+   },
+   "rays": {
+    "mean": 51.813,
+    "p95": 95,
+    "p99": 126,
+    "max": 259
+   },
+   "nav.isConnected": {
+    "mean": 0.069,
+    "p95": 0.1,
+    "p99": 0.2,
+    "max": 15.9,
+    "calls": 0
+   },
+   "nav.findPath": {
+    "mean": 0.993,
+    "p95": 6,
+    "p99": 16.2,
+    "max": 31.3,
+    "calls": 0
+   },
+   "combat.raycast": {
+    "mean": 0.065,
+    "p95": 0.3,
+    "p99": 1,
+    "max": 3
+   }
+  },
+  "renderMs": {
+   "mean": 19.35,
+   "p95": 27.3,
+   "max": 4721.8
+  },
+  "pathStats": {
+   "count": 285,
+   "totalMs": 1290.8000001907349,
+   "maxMs": 32.89999997615814
+  },
+  "botCount": 8
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

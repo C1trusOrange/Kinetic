@@ -1,0 +1,87 @@
+{
+ "0": {
+  "base": {
+   "mean": 117.5,
+   "clip%": 0.0,
+   "dark%": 2.2
+  },
+  "tweak": {
+   "mean": 118.1,
+   "clip%": 0.0,
+   "dark%": 5.8
+  },
+  "grade": {
+   "mean": 111.9,
+   "clip%": 0.0,
+   "dark%": 20.9
+  }
+ },
+ "1": {
+  "base": {
+   "mean": 137.1,
+   "clip%": 0.0,
+   "dark%": 0.4
+  },
+  "tweak": {
+   "mean": 138.1,
+   "clip%": 0.0,
+   "dark%": 1.1
+  },
+  "grade": {
+   "mean": 134.1,
+   "clip%": 0.0,
+   "dark%": 8.0
+  }
+ },
+ "2": {
+  "base": {
+   "mean": 140.5,
+   "clip%": 0.0,
+   "dark%": 0.3
+  },
+  "tweak": {
+   "mean": 144.4,
+   "clip%": 0.0,
+   "dark%": 0.9
+  },
+  "grade": {
+   "mean": 141.8,
+   "clip%": 0.0,
+   "dark%": 5.4
+  }
+ },
+ "3": {
+  "base": {
+   "mean": 127.4,
+   "clip%": 0.0,
+   "dark%": 0.6
+  },
+  "tweak": {
+   "mean": 127.0,
+   "clip%": 0.0,
+   "dark%": 0.5
+  },
+  "grade": {
+   "mean": 121.7,
+   "clip%": 0.0,
+   "dark%": 5.9
+  }
+ },
+ "4": {
+  "base": {
+   "mean": 98.9,
+   "clip%": 0.2,
+   "dark%": 2.7
+  },
+  "tweak": {
+   "mean": 91.0,
+   "clip%": 0.2,
+   "dark%": 10.0
+  },
+  "grade": {
+   "mean": 80.8,
+   "clip%": 0.3,
+   "dark%": 33.8
+  }
+ }
+}

@@ -1,0 +1,279 @@
+[run] http://127.0.0.1:58377/index.html?autotest=1&bots=2&duration=1&god=1&script=idle&map=ruins&scenario=tools/out/audit/verify-aibrain-1/scen_snipe.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 147.21,
+ "frames": 46,
+ "fps": {
+  "avg": 0,
+  "min": 10.235414534288672,
+  "max": 172.41379310342765
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 736,
+   "pos": [
+    14,
+    0,
+    42.8
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    12,
+    0.1,
+    -46
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 120,
+  "triangles": 71964,
+  "geometries": 111,
+  "textures": 98,
+  "programs": 88
+ },
+ "custom": {
+  "trials": [
+   {
+    "spot": [
+     -5.5,
+     14,
+     38.5
+    ],
+    "from": [
+     -27.5,
+     -0.2,
+     10.5
+    ],
+    "repickAfter": 21.3,
+    "minHorizDist": 0.5,
+    "stuckEvents": 4,
+    "mode": "idle",
+    "unreach": true,
+    "log": [
+     "1|28.8|-1.6|direct|U|0",
+     "3|15.1|-0.9|direct|U|0",
+     "5|15.4|-1.6|direct|U|0",
+     "7|14.2|-1.6|direct|U|0",
+     "9|14.8|-1.6|direct|U|0",
+     "11|14.4|-1.6|direct|U|0",
+     "13|14.6|-1.6|direct|U|0",
+     "15|9.3|1.2|direct|U|1",
+     "17|0.5|0.1|direct|U|1",
+     "19|0.9|0|direct|U|2",
+     "21|0.8|0|direct|U|3"
+    ]
+   },
+   {
+    "spot": [
+     -3.5,
+     14,
+     40.5
+    ],
+    "from": [
+     19.5,
+     0,
+     19.5
+    ],
+    "repickAfter": ">25",
+    "minHorizDist": 16.8,
+    "stuckEvents": 0,
+    "mode": "direct",
+    "unreach": true,
+    "log": [
+     "1|24.6|0|direct|U|0",
+     "3|17.6|0|direct|U|0",
+     "5|18|0|direct|U|0",
+     "7|18.3|0|direct|U|0",
+     "9|17.8|0|direct|U|0",
+     "11|17.5|0|direct|U|0",
+     "13|17.4|0|direct|U|0",
+     "15|17.6|0|direct|U|0",
+     "17|17.7|0|direct|U|0",
+     "19|17.9|0|direct|U|0",
+     "21|18.2|0|direct|U|0",
+     "23|17.9|0|direct|U|0"
+    ]
+   },
+   {
+    "spot": [
+     -50.5,
+     14.2,
+     9.5
+    ],
+    "from": [
+     -24.5,
+     0.1,
+     1.5
+    ],
+    "repickAfter": ">25",
+    "minHorizDist": 12.9,
+    "stuckEvents": 0,
+    "mode": "direct",
+    "unreach": true,
+    "log": [
+     "1|20.6|0|direct|U|0",
+     "3|13.2|0|direct|U|0",
+     "5|13.3|0|direct|U|0",
+     "7|13.2|0|direct|U|0",
+     "9|13.4|0|direct|U|0",
+     "11|13.2|0.1|direct|U|0",
+     "13|13.4|0|direct|U|0",
+     "15|13.7|0|direct|U|0",
+     "17|13.6|0|direct|U|0",
+     "19|13.3|0|direct|U|0",
+     "21|13.3|0|direct|U|0",
+     "23|13.4|0|direct|U|0"
+    ]
+   },
+   {
+    "spot": [
+     -33.5,
+     13.4,
+     -29.5
+    ],
+    "from": [
+     -10.5,
+     0,
+     -22.5
+    ],
+    "repickAfter": ">25",
+    "minHorizDist": 0,
+    "stuckEvents": 12,
+    "mode": "direct",
+    "unreach": true,
+    "log": [
+     "1|17.5|0|direct|U|0",
+     "3|4.1|0|direct|U|0",
+     "5|0.1|1.3|direct|U|1",
+     "7|0.3|0|direct|U|2",
+     "9|0.4|0.1|direct|U|3",
+     "11|0.1|0|direct|U|4",
+     "13|0|0|direct|U|5",
+     "15|0|0|direct|U|6",
+     "17|2.5|0|direct|U|8",
+     "19|0.1|0|direct|U|8",
+     "21|2.7|0|direct|U|10",
+     "23|0.1|1.2|direct|U|11"
+    ]
+   },
+   {
+    "spot": [
+     -30.5,
+     10,
+     -9.5
+    ],
+    "from": [
+     -7.5,
+     0,
+     -16.5
+    ],
+    "repickAfter": ">25",
+    "minHorizDist": 0,
+    "stuckEvents": 11,
+    "mode": "direct",
+    "unreach": true,
+    "log": [
+     "1|17.5|0|direct|U|0",
+     "3|3.1|0|direct|U|0",
+     "5|0.1|1.2|direct|U|1",
+     "7|0.2|0|direct|U|2",
+     "9|0.1|0|direct|U|3",
+     "11|0.8|0|direct|U|4",
+     "13|0|1.1|direct|U|5",
+     "15|0.1|0|direct|U|6",
+     "17|0.1|0|direct|U|7",
+     "19|0.1|0|direct|U|8",
+     "21|0|0|direct|U|9",
+     "23|0|0|direct|U|10"
+    ]
+   },
+   {
+    "spot": [
+     -1.5,
+     14,
+     39.5
+    ],
+    "from": [
+     29.5,
+     0,
+     48.5
+    ],
+    "repickAfter": ">25",
+    "minHorizDist": 15.3,
+    "stuckEvents": 0,
+    "mode": "direct",
+    "unreach": true,
+    "log": [
+     "1|26.8|0|direct|U|0",
+     "3|15.3|0|direct|U|0",
+     "5|15.5|0|direct|U|0",
+     "7|15.4|0|direct|U|0",
+     "9|15.7|0|direct|U|0",
+     "11|15.9|0|direct|U|0",
+     "13|15.8|0|direct|U|0",
+     "15|15.7|0|direct|U|0",
+     "17|15.6|0|direct|U|0",
+     "19|15.4|0|direct|U|0",
+     "21|15.5|0|direct|U|0",
+     "23|15.8|0|direct|U|0"
+    ]
+   }
+  ],
+  "map": "ruins",
+  "snipe": 24,
+  "unreachable": 10,
+  "main": 14
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

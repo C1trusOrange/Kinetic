@@ -1,0 +1,109 @@
+[run] http://127.0.0.1:60397/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-player/v_nest.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 1.03,
+ "frames": 30,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 4.7876264003854345,
+  "maxSpeed": 4.335,
+  "minY": 7.1,
+  "maxY": 10.005,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isMantling": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "feet": [
+   6.1,
+   10,
+   -31.88
+  ],
+  "state": "ground",
+  "shotsAtPlayer": [
+   {
+    "name": "arena_low",
+    "from": [
+     6.1,
+     10.5,
+     -10
+    ],
+    "hitEntity": null,
+    "hitDist": 21.01,
+    "dist": 21.89,
+    "canSee": false
+   },
+   {
+    "name": "arena_high",
+    "from": [
+     6.1,
+     25,
+     -5
+    ],
+    "hitEntity": null,
+    "hitDist": 29.26,
+    "dist": 30.26,
+    "canSee": false
+   },
+   {
+    "name": "arena_ground",
+    "from": [
+     6.1,
+     1.7,
+     -20
+    ],
+    "hitEntity": null,
+    "hitDist": 5.03,
+    "dist": 15.16,
+    "canSee": false
+   },
+   {
+    "name": "above",
+    "from": [
+     6.1,
+     40,
+     -31.5
+    ],
+    "hitEntity": null,
+    "hitDist": 10,
+    "dist": 28.89,
+    "canSee": false
+   }
+  ],
+  "playerShootsOut": {
+   "dist": 62.96,
+   "surface": "concrete",
+   "point": [
+    6.1,
+    8.52,
+    31
+   ]
+  },
+  "canSeeOut": true
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

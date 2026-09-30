@@ -1,0 +1,6 @@
+foundry_tdm15 exit=0
+ruins_ffa0 exit=0
+skyline_ffa15 exit=0
+sandbox_tdm0 exit=0
+ruins_tdm15_god exit=0
+ALLDONE

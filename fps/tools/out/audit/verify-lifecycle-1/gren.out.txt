@@ -1,0 +1,132 @@
+[run] http://127.0.0.1:52759/index.html?autotest=1&map=sandbox&bots=2&mode=ffa&scenario=tools/out/audit/verify-lifecycle-1/gren.js&duration=8
+[log] [autotest] finished {"ok":true,"errors":0,"fps":22.8}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.04,
+ "frames": 218,
+ "fps": {
+  "avg": 22.8,
+  "min": 7.5,
+  "max": 161.3
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 5.3,
+  "maxSpeed": 9.99,
+  "minY": -5.551115123125783e-17,
+  "maxY": 4.965336572594804,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 150
+ },
+ "bots": [
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "chase",
+   "distance": 31.2,
+   "pos": [
+    -0.2,
+    4.5,
+    -11.1
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 45.2,
+   "pos": [
+    0,
+    3.1,
+    10.7
+   ]
+  }
+ ],
+ "events": {
+  "damage": 5,
+  "death": 2,
+  "spawn": 5,
+  "pickup": 3,
+  "fire": 6
+ },
+ "renderer": {
+  "calls": 227,
+  "triangles": 47362,
+  "geometries": 171,
+  "textures": 121,
+  "programs": 99
+ },
+ "custom": {
+  "gren": {
+   "done": true,
+   "ownerWhileFlying": "Player",
+   "ev": {
+    "death": [
+     {
+      "victim": "Rivet",
+      "attacker": null
+     },
+     {
+      "victim": "Player",
+      "attacker": "Axle"
+     }
+    ],
+    "explosion": [
+     {
+      "owner": null
+     }
+    ],
+    "damage": [
+     {
+      "t": "Player",
+      "a": null,
+      "amt": 79
+     },
+     {
+      "t": "Rivet",
+      "a": null,
+      "amt": 40
+     },
+     {
+      "t": "Player",
+      "a": "Axle",
+      "amt": 25
+     },
+     {
+      "t": "Player",
+      "a": "Axle",
+      "amt": 25
+     },
+     {
+      "t": "Player",
+      "a": "Axle",
+      "amt": 20
+     }
+    ]
+   },
+   "playerKills": 0,
+   "targetKills": 0,
+   "targetDeaths": 1
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

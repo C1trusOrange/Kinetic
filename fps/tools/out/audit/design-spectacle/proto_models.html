@@ -1,0 +1,161 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>proto models</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#1b1e24}</style></head>
+<body>
+<script type="module">
+import * as THREE from 'three';
+import { ModelBuilder, instantiate, chamferPoly, rectProfile } from '/src/weapons/models/ModelKit.js';
+import { gripFrame, pistolGrip, triggerGuard, holoSight, screws } from '/src/weapons/models/parts.js';
+import { labelMaterial } from '/src/weapons/models/WeaponMaterials.js';
+
+const P = new URLSearchParams(location.search);
+const which = P.get('id') || 'arc';
+const yaw = parseFloat(P.get('yaw') || '0.7');
+
+// ============================================================== TEMPEST (arc caster) seed builder
+const AX = 0.112;                 // bore axis height
+const A_G = gripFrame(0.3, [-0.02, 0.0]);
+function buildTempest(b) {
+  b.use('body');
+  // ceramic receiver shell + dark inner frame
+  b.box('paintWhite', [0.074, 0.088, 0.34], [0, 0.104, -0.03], { bevel: 0.007 });
+  b.box('steelDark', [0.056, 0.03, 0.36], [0, 0.048, -0.03], { bevel: 0.004 });
+  b.box('paintWhite', [0.05, 0.05, 0.16], [0, 0.152, -0.05], { bevel: 0.006 });                 // dorsal hump
+  b.cube('glowCyan', [0.0014, 0.006, 0.20], [-0.0378, 0.108, -0.03]);                            // side light strips
+  b.cube('glowCyan', [0.0014, 0.006, 0.20], [0.0378, 0.108, -0.03]);
+  b.cube('glowViolet', [0.0014, 0.014, 0.03], [-0.0378, 0.078, 0.08]);
+  b.decal(labelMaterial('arc-name', 'TEMPEST', { w: 320, h: 72, size: 54, color: '#e8f4ff', weight: '800', spacing: 5, opacity: 0.95 }), [0.12, 0.028], [-0.0382, 0.128, -0.06], { face: 'left' });
+  // ammo gauge on the dorsal hump: 8 cells
+  for (let i = 0; i < 8; i++) b.cube(i < 6 ? 'glowCyan' : 'glowAmber', [0.022, 0.004, 0.011], [0, 0.1785, -0.105 + i * 0.0135]);
+  // plasma tube (glass) with violet core, held by two collars
+  b.cyl('lens', { r: 0.03, len: 0.30, pos: [0, AX, -0.34], seg: 12 });
+  b.cyl('glowViolet', { r: 0.011, len: 0.30, pos: [0, AX, -0.34], seg: 8 });
+  for (const z of [-0.19, -0.49]) b.cyl('steelBlack', { r: 0.036, len: 0.03, pos: [0, AX, z], seg: 12 });
+  // tesla coil rings (animated part: spins + pulses)
+  b.part('coil', [0, AX, -0.34]);
+  for (const z of [-0.25, -0.34, -0.43]) {
+    b.torus('steelDark', 0.041, 0.0065, [0, AX, z], { rot: [0, Math.PI / 2, 0], ts: 5, rs: 16 });
+    b.torus('glowCyan', 0.0415, 0.0028, [0, AX, z], { rot: [0, Math.PI / 2, 0], ts: 4, rs: 16 });
+    for (let k = 0; k < 4; k++) {
+      const a = k * Math.PI / 2 + 0.4;
+      b.cube('glowCyan', [0.008, 0.008, 0.012], [Math.cos(a) * 0.046, AX + Math.sin(a) * 0.046, z]);
+    }
+  }
+  b.use('body');
+  // forked emitter: two curved prongs with glowing tips and an arc gap between them
+  for (const s of [1, -1]) {
+    b.beam('steelDark', [0, AX + s * 0.03, -0.50], [0, AX + s * 0.062, -0.575], { w: 0.016, h: 0.012, up: [1, 0, 0], bevel: 0.002 });
+    b.beam('steelDark', [0, AX + s * 0.062, -0.575], [0, AX + s * 0.058, -0.665], { w: 0.014, h: 0.011, up: [1, 0, 0], bevel: 0.002 });
+    b.sphere('glowCyan', 0.0095, [0, AX + s * 0.052, -0.672], { ws: 8, hs: 6 });
+  }
+  b.cyl('glowViolet', { r: 0.006, len: 0.06, axis: 'y', pos: [0, AX, -0.64], seg: 6 });         // spark gap column
+  // rear capacitor drum with hazard band
+  b.cyl('steelDark', { r: 0.052, len: 0.15, pos: [0, AX - 0.004, 0.19], seg: 14 });
+  b.cyl('hazard', { r: 0.0525, len: 0.03, pos: [0, AX - 0.004, 0.155], seg: 14 });
+  b.cyl('glowCyan', { r: 0.0528, len: 0.004, pos: [0, AX - 0.004, 0.128], seg: 14, cap: false });
+  b.cyl('steelBlack', { r: 0.03, len: 0.03, pos: [0, AX - 0.004, 0.278], seg: 10 });
+  b.cyl('glowViolet', { r: 0.02, len: 0.004, pos: [0, AX - 0.004, 0.294], seg: 10 });
+  // ADS sight: compact holo
+  holoSight(b, { baseY: 0.1845, z: -0.02, depth: 0.05, w: 0.034, h: 0.03, accent: 'glowCyan' });
+  // grip, guard, fore-grip
+  pistolGrip(b, A_G, { t0: -0.065, t1: 0.075, halfDepth: 0.0215, width: 0.034, mat: 'polyGrey', panel: 'grip' });
+  triggerGuard(b, 0.012, 0.064, 0.036, 0.008, 0.0065, 0.008, 'steelDark');
+  b.part('trigger', [0, 0.034, -0.038]);
+  b.box('paintCyan', [0.0055, 0.03, 0.0075], [0, 0.02, -0.038], { bevel: 0.0014, rot: [0.22, 0, 0] });
+  b.use('body');
+  b.box('steelBlack', [0.04, 0.02, 0.07], [0, 0.036, -0.2], { bevel: 0.003 });
+  b.cyl('polyGrey', { r: 0.0195, len: 0.11, axis: 'y', pos: [0, -0.02, -0.2], seg: 10 });
+  b.cube('glowCyan', [0.003, 0.003, 0.003], [0, -0.078, -0.2]);
+  // energy cell magazine (slides down on reload)
+  b.part('mag', [0, 0.04, -0.03]);
+  b.box('steelDark', [0.046, 0.02, 0.07], [0, 0.03, -0.03], { bevel: 0.003 });
+  b.box('cellBody', [0.038, 0.075, 0.056], [0, -0.02, -0.03], { bevel: 0.004 });
+  b.box('paintCyan', [0.042, 0.008, 0.06], [0, -0.062, -0.03], { bevel: 0.002 });
+  b.marker('muzzle', [0, AX, -0.69]).marker('sight', [0, 0.2, -0.02]);
+}
+
+// ============================================================== JAVELIN (rail) seed builder
+const R_AX = 0.115;
+const R_G = gripFrame(0.32, [-0.02, 0.0]);
+function buildJavelin(b) {
+  b.use('body');
+  // receiver (profile extrusion like the Longbow, white ceramic)
+  const rec = [[-0.12, 0.15], [-0.12, 0.06], [-0.06, 0.05], [0.16, 0.05], [0.24, 0.07], [0.24, 0.15]];
+  b.ext('paintWhite', chamferPoly(rec, [0.006, 0.004, 0.004, 0.004, 0.006, 0.006]), { width: 0.06, bevel: 0.003 });
+  b.box('steelBlack', [0.062, 0.02, 0.22], [0, 0.14, 0.02], { bevel: 0.003 });
+  b.cube('glowAmber', [0.0014, 0.006, 0.16], [-0.0308, 0.11, 0.04]);
+  b.cube('glowAmber', [0.0014, 0.006, 0.16], [0.0308, 0.11, 0.04]);
+  b.decal(labelMaterial('rail-name', 'JAVELIN  RG-2', { w: 384, h: 40, size: 26, color: '#f4ead0', weight: '800', spacing: 3 }), [0.12, 0.0125], [-0.0308, 0.09, 0.03], { face: 'left' });
+  // twin rails with a glowing channel between them
+  b.box('steelBlack', [0.026, 0.017, 0.82], [0, R_AX + 0.016, -0.46], { bevel: 0.0024 });
+  b.box('steelBlack', [0.026, 0.017, 0.82], [0, R_AX - 0.016, -0.46], { bevel: 0.0024 });
+  b.cube('glowCyan', [0.016, 0.006, 0.80], [0, R_AX, -0.46]);
+  b.cube('void', [0.03, 0.05, 0.02], [0, R_AX, -0.055]);
+  // accelerator rings (animated part: glow ramps with charge)
+  b.part('rings', [0, R_AX, -0.5]);
+  [-0.26, -0.42, -0.58, -0.74].forEach((z, i) => {
+    const s = 0.078 - i * 0.006;
+    b.box('paintWhite', [s, 0.016, 0.034], [0, R_AX + s / 2, z], { bevel: 0.003 });
+    b.box('paintWhite', [s, 0.016, 0.034], [0, R_AX - s / 2, z], { bevel: 0.003 });
+    b.box('paintWhite', [0.016, s, 0.034], [-s / 2, R_AX, z], { bevel: 0.003 });
+    b.box('paintWhite', [0.016, s, 0.034], [s / 2, R_AX, z], { bevel: 0.003 });
+    b.cube('glowAmber', [s - 0.02, 0.003, 0.03], [0, R_AX + s / 2 - 0.0095, z]);
+    b.cube('glowAmber', [s - 0.02, 0.003, 0.03], [0, R_AX - s / 2 + 0.0095, z]);
+    b.cube('glowAmber', [0.003, s - 0.02, 0.03], [-s / 2 + 0.0095, R_AX, z]);
+    b.cube('glowAmber', [0.003, s - 0.02, 0.03], [s / 2 - 0.0095, R_AX, z]);
+  });
+  b.use('body');
+  // flared muzzle
+  b.cyl('steelBlack', { r: 0.03, r2: 0.05, len: 0.06, pos: [0, R_AX, -0.90], seg: 12 });
+  b.cyl('glowCyan', { r: 0.0505, len: 0.004, pos: [0, R_AX, -0.93], seg: 12, cap: false });
+  b.cyl('void', { r: 0.024, len: 0.002, pos: [0, R_AX, -0.931], seg: 10 });
+  // top optic: long folding holo
+  holoSight(b, { baseY: 0.15, z: -0.04, depth: 0.06, w: 0.04, h: 0.036, accent: 'glowAmber' });
+  // fusion cell (rear)
+  b.cyl('steelDark', { r: 0.045, len: 0.13, pos: [0, 0.098, 0.30], seg: 12 });
+  b.cyl('cellBody', { r: 0.03, len: 0.10, pos: [0, 0.098, 0.30], seg: 10 });
+  b.cyl('paintWhite', { r: 0.047, len: 0.03, pos: [0, 0.098, 0.245], seg: 12 });
+  // stock: skeletal
+  const stock = [[0.24, 0.14], [0.36, 0.14], [0.44, 0.15], [0.47, 0.06], [0.42, 0.03], [0.36, 0.05], [0.24, 0.05]];
+  b.ext('paintWhite', chamferPoly(stock.map(p => [-p[0], p[1]]), [0.004, 0.004, 0.005, 0.005, 0.004, 0.004, 0.004]), { width: 0.04, bevel: 0.0025 });
+  b.box('rubber', [0.042, 0.11, 0.014], [0, 0.098, 0.47], { bevel: 0.002 });
+  // grip / guard / trigger
+  pistolGrip(b, R_G, { t0: -0.07, t1: 0.078, halfDepth: 0.0215, width: 0.034, mat: 'poly', panel: 'grip' });
+  triggerGuard(b, 0.01, 0.062, 0.056, 0.026, 0.0065, 0.008, 'steelDark');
+  b.part('trigger', [0, 0.054, -0.038]);
+  b.box('paintOrange', [0.0055, 0.03, 0.0075], [0, 0.038, -0.038], { bevel: 0.0014, rot: [0.22, 0, 0] });
+  b.use('body');
+  // underslung slug magazine
+  b.part('mag', [0, 0.04, -0.12]);
+  b.box('steelDark', [0.034, 0.08, 0.07], [0, 0.0, -0.12], { bevel: 0.0024 });
+  b.box('paintOrange', [0.038, 0.008, 0.074], [0, -0.044, -0.12], { bevel: 0.002 });
+  b.cube('glowAmber', [0.0012, 0.05, 0.02], [-0.0176, 0.0, -0.12]);
+  b.marker('muzzle', [0, R_AX, -0.94]).marker('sight', [0, 0.2, -0.04]);
+}
+
+// ============================================================== render
+import { getMaterials } from '/src/weapons/models/WeaponMaterials.js';
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x2a2f3a);
+const camera = new THREE.PerspectiveCamera(30, innerWidth / innerHeight, 0.05, 50);
+scene.add(new THREE.HemisphereLight(0xc8d6ff, 0x504030, 1.2));
+const sun = new THREE.DirectionalLight(0xfff0dd, 2.4); sun.position.set(2, 3, 2); scene.add(sun);
+const fill = new THREE.DirectionalLight(0x7090ff, 0.8); fill.position.set(-2, 1, -1); scene.add(fill);
+getMaterials();
+const b = new ModelBuilder({ hi: true });
+const tpl = (which === 'arc' ? (buildTempest(b), b.build()) : (buildJavelin(b), b.build()));
+const { root } = instantiate(tpl, { view: true });
+const holder = new THREE.Group(); holder.add(root); holder.rotation.y = yaw; scene.add(holder);
+const box = new THREE.Box3().setFromObject(root); const c = box.getCenter(new THREE.Vector3()); const s = box.getSize(new THREE.Vector3());
+root.position.sub(c);
+const dist = Math.max(s.x, s.z) * 1.9 + 0.3;
+camera.position.set(dist * 0.3, s.y * 0.6 + 0.05, dist); camera.lookAt(0, 0, 0);
+window.__INFO__ = { tris: tpl.tris, size: s.toArray().map(v => +v.toFixed(3)), parts: Object.keys(tpl.parts) };
+requestAnimationFrame(() => { renderer.render(scene, camera); requestAnimationFrame(() => { renderer.render(scene, camera); window.__PROTO_READY__ = true; }); });
+</script>
+</body></html>

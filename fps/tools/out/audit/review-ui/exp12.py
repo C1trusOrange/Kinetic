@@ -1,0 +1,17 @@
+import sys, json, base64, os
+from common import *
+s = Session(1280, 720)
+print('state', start_match(s, bots=3, score=25, mode='tdm'))
+s.run("__GAME__.bots.update = () => {}; ")
+s.wait(2.0)
+s.run("const g = __GAME__; g.bots.list[0].name = 'MMMMMMMMMMMMMMMM'; g.combat.applyDamage(g.player, {amount: 40, attacker: g.bots.list[0], weapon: 'shotgun'});")
+s.wait(0.25)
+s.shot('exp12_damage.png')
+s.run("const g = __GAME__; g.combat.kill(g.player, {attacker: g.bots.list[0], weapon: 'shotgun', headshot: true});")
+s.wait(1.6)
+s.shot('exp12_death.png')
+s.wait(2.5)
+s.run("__GAME__.pause();")
+s.wait(0.8)
+s.shot('exp12_pause.png')
+s.close()

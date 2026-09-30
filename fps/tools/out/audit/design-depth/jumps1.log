@@ -1,0 +1,109 @@
+[run] http://127.0.0.1:52082/index.html?autotest=1&mapfile=tools/out/audit/design-depth/void_map.js&bots=0&script=idle&scenario=tools/out/audit/design-depth/jumps.js&duration=17&quality=low
+[warning] [world] map 'voidtest' has 1 warning(s):
+ - only 4 spawn point(s): 14-18 recommended
+[log] [autotest] finished {"ok":true,"errors":0,"fps":142.9}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 17.13,
+ "frames": 1998,
+ "fps": {
+  "avg": 142.9,
+  "min": 4,
+  "max": 294.11764705889436
+ },
+ "errors": [],
+ "map": "voidtest",
+ "player": {
+  "distance": 64.6,
+  "maxSpeed": 10.68,
+  "minY": 0,
+  "maxY": 6.731319939092554,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 39,
+  "triangles": 5486,
+  "geometries": 52,
+  "textures": 39,
+  "programs": 42
+ },
+ "custom": {
+  "res": [
+   {
+    "name": "rocket_at_feet_0.3m",
+    "v0": [
+     -4.4,
+     18.1,
+     0
+    ],
+    "apexY": 6.73,
+    "reachX": 7.1,
+    "hp": 100
+   },
+   {
+    "name": "rocket_at_feet_1.0m",
+    "v0": [
+     -9.9,
+     12.9,
+     0
+    ],
+    "apexY": 3.39,
+    "reachX": 11.6,
+    "hp": 100
+   },
+   {
+    "name": "charge_20x0.7_at_feet_0.3m",
+    "v0": [
+     -4.2,
+     16.9,
+     0
+    ],
+    "apexY": 5.86,
+    "reachX": 6.2,
+    "hp": 100
+   },
+   {
+    "name": "charge_20x0.7_at_1.0m",
+    "v0": [
+     -9.5,
+     12.4,
+     0
+    ],
+    "apexY": 3.17,
+    "reachX": 10.9,
+    "hp": 100
+   },
+   {
+    "name": "charge_20x0.7_at_2.5m",
+    "v0": [
+     -10.7,
+     6.6,
+     0
+    ],
+    "apexY": 0.89,
+    "reachX": 7.1,
+    "hp": 100
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

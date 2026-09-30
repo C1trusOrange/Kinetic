@@ -1,0 +1,346 @@
+[run] http://127.0.0.1:65441/index.html?autotest=1&map=sandbox&bots=3&duration=9&god=1&script=idle&scenario=tools/out/audit/review-aibody/scen_hear.js
+[log] [autotest] finished {"ok":true,"errors":0,"fps":34.7}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 9.03,
+ "frames": 252,
+ "fps": {
+  "avg": 34.7,
+  "min": 4,
+  "max": 178.6
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": -5.551115123125783e-17,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 1.3,
+   "pos": [
+    29,
+    0,
+    28.4
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 1000,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    -10,
+    0,
+    29
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "roam",
+   "distance": 1.1,
+   "pos": [
+    28.3,
+    0,
+    29.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 4,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 213,
+  "triangles": 45616,
+  "geometries": 186,
+  "textures": 125,
+  "programs": 103
+ },
+ "custom": {
+  "pair": {
+   "i": 6,
+   "j": 9,
+   "d": 38
+  },
+  "Apos": [
+   28,
+   0,
+   29
+  ],
+  "Bpos": [
+   -10,
+   0,
+   29
+  ],
+  "samples": [
+   {
+    "t": 0.08,
+    "recPos": [
+     20.8,
+     1.5,
+     31.1
+    ],
+    "Apos": [
+     28.5,
+     0,
+     28.5
+    ],
+    "Bhp": 1000,
+    "dExplVsB": 0,
+    "known": true,
+    "hurtAt": -999,
+    "heardAt": 0.86
+   },
+   {
+    "t": 0.1,
+    "recPos": [
+     20.8,
+     1.5,
+     31.1
+    ],
+    "Apos": [
+     28.6,
+     0,
+     28.5
+    ],
+    "Bhp": 1000,
+    "dExplVsB": 0,
+    "known": true,
+    "hurtAt": -999,
+    "heardAt": 0.86
+   },
+   {
+    "t": 0.15,
+    "recPos": [
+     20.8,
+     1.5,
+     31.1
+    ],
+    "Apos": [
+     28.7,
+     0,
+     28.4
+    ],
+    "Bhp": 1000,
+    "dExplVsB": 0,
+    "known": true,
+    "hurtAt": -999,
+    "heardAt": 0.86
+   },
+   {
+    "t": 0.16,
+    "recPos": [
+     20.8,
+     1.5,
+     31.1
+    ],
+    "Apos": [
+     28.9,
+     0,
+     28.4
+    ],
+    "Bhp": 1000,
+    "dExplVsB": 0,
+    "known": true,
+    "hurtAt": -999,
+    "heardAt": 0.86
+   },
+   {
+    "t": 0.17,
+    "recPos": [
+     20.8,
+     1.5,
+     31.1
+    ],
+    "Apos": [
+     28.9,
+     0,
+     28.4
+    ],
+    "Bhp": 1000,
+    "dExplVsB": 0,
+    "known": true,
+    "hurtAt": -999,
+    "heardAt": 0.86
+   },
+   {
+    "t": 0.22,
+    "recPos": [
+     20.8,
+     1.5,
+     31.1
+    ],
+    "Apos": [
+     28.9,
+     0,
+     28.4
+    ],
+    "Bhp": 1000,
+    "dExplVsB": 0,
+    "known": true,
+    "hurtAt": -999,
+    "heardAt": 0.86
+   },
+   {
+    "t": 0.27,
+    "recPos": [
+     20.8,
+     1.5,
+     31.1
+    ],
+    "Apos": [
+     29,
+     0,
+     28.4
+    ],
+    "Bhp": 1000,
+    "dExplVsB": 0,
+    "known": true,
+    "hurtAt": -999,
+    "heardAt": 0.86
+   },
+   {
+    "t": 0.32,
+    "recPos": [
+     20.8,
+     1.5,
+     31.1
+    ],
+    "Apos": [
+     29,
+     0,
+     28.4
+    ],
+    "Bhp": 1000,
+    "dExplVsB": 0,
+    "known": true,
+    "hurtAt": -999,
+    "heardAt": 0.86
+   },
+   {
+    "t": 0.35,
+    "recPos": [
+     20.8,
+     1.5,
+     31.1
+    ],
+    "Apos": [
+     29,
+     0,
+     28.4
+    ],
+    "Bhp": 1000,
+    "dExplVsB": 0,
+    "known": true,
+    "hurtAt": -999,
+    "heardAt": 0.86
+   },
+   {
+    "t": 0.4,
+    "recPos": [
+     20.8,
+     1.5,
+     31.1
+    ],
+    "Apos": [
+     29,
+     0,
+     28.4
+    ],
+    "Bhp": 1000,
+    "dExplVsB": 0,
+    "known": true,
+    "hurtAt": -999,
+    "heardAt": 0.86
+   },
+   {
+    "t": 0.45,
+    "recPos": [
+     20.8,
+     1.5,
+     31.1
+    ],
+    "Apos": [
+     29,
+     0,
+     28.4
+    ],
+    "Bhp": 1000,
+    "dExplVsB": 0,
+    "known": true,
+    "hurtAt": -999,
+    "heardAt": 0.86
+   },
+   {
+    "t": 0.5,
+    "recPos": [
+     20.8,
+     1.5,
+     31.1
+    ],
+    "Apos": [
+     29,
+     0,
+     28.4
+    ],
+    "Bhp": 1000,
+    "dExplVsB": 0,
+    "known": true,
+    "hurtAt": -999,
+    "heardAt": 0.86
+   },
+   {
+    "t": 0.53,
+    "recPos": [
+     20.8,
+     1.5,
+     31.1
+    ],
+    "Apos": [
+     29,
+     0,
+     28.4
+    ],
+    "Bhp": 1000,
+    "dExplVsB": 0,
+    "known": true,
+    "hurtAt": -999,
+    "heardAt": 0.86
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

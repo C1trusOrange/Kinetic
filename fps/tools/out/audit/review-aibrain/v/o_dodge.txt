@@ -1,0 +1,96 @@
+[run] http://127.0.0.1:60242/index.html?autotest=1&map=foundry&bots=2&duration=3&god=1&script=idle&scenario=tools/out/audit/review-aibrain/v/t_dodge.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":31.8}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 3.31,
+ "frames": 124,
+ "fps": {
+  "avg": 31.8,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 6.7,
+   "pos": [
+    22,
+    -3.5,
+    26
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    17,
+    0,
+    -36
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 129,
+  "triangles": 102532,
+  "geometries": 112,
+  "textures": 87,
+  "programs": 89
+ },
+ "custom": {
+  "anglesTried": {
+   "first1": [
+    0,
+    0.7,
+    0.7,
+    1.4,
+    1.4
+   ],
+   "firstM1": [
+    0,
+    -0.7,
+    -0.7,
+    -1.4,
+    -1.4
+   ]
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

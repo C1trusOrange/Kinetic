@@ -1,0 +1,26 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>rows</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><script type="module">
+import * as THREE from 'three';
+window.__DONE__ = false; window.__RES__ = {};
+try {
+  const T = await import('/src/world/Textures.js');
+  const renderer = new THREE.WebGLRenderer();
+  T.initTextures(renderer);
+  const q = new URLSearchParams(location.search);
+  const name = q.get('name'), slot = q.get('slot'), ch = +(q.get('ch') || 1);
+  const m = T.getMaterial(name);
+  const c = m[slot].image; const S = c.width;
+  const d = c.getContext('2d').getImageData(0, 0, S, S).data;
+  const px = (x, y) => d[(y * S + x) * 4 + ch];
+  const bad = [];
+  for (let y = 0; y < S; y++) {
+    const dd = Math.abs(px(0, y) - px(S - 1, y));
+    const nb = 0.5 * (Math.abs(px(S - 1, y) - px(S - 2, y)) + Math.abs(px(1, y) - px(0, y)));
+    if (dd > 8 && dd > 3 * nb) bad.push(`y${y}: ${[S-3,S-2,S-1,0,1,2].map(x=>px(x,y)).join(',')}`);
+  }
+  window.__RES__ = { n: bad.length, first: bad.slice(0, 25) };
+} catch (e) { window.__RES__ = { fatal: String(e && e.stack || e) }; }
+window.__DONE__ = true;
+</script></body></html>

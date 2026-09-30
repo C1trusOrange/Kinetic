@@ -1,0 +1,307 @@
+[run] http://127.0.0.1:56008/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-weapons/state.js&duration=40
+[error] [run] timed out after 200s waiting for: window.__TEST__ && window.__TEST__.done
+[result] {
+ "done": false,
+ "started": true,
+ "t": 20.47,
+ "frames": 10863,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 227.27272727252293
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": 4.5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 3,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 3,
+  "spawn": 4,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "log": [
+   [
+    "scoped",
+    {
+     "id": "sniper",
+     "ads": 1,
+     "scoped": true,
+     "fov": 0.27,
+     "look": 0.3,
+     "reloading": false,
+     "cooking": false,
+     "gState": 0,
+     "alive": true,
+     "state": "playing",
+     "prevDots": false,
+     "prevRing": false,
+     "camFov": 18.3,
+     "vmVisible": false,
+     "ammo": 5,
+     "reserve": 10,
+     "grenades": 2,
+     "cookTime": 0,
+     "sw": 0,
+     "eq": 1
+    }
+   ],
+   [
+    "dead+0.3",
+    {
+     "id": "sniper",
+     "ads": 0,
+     "scoped": false,
+     "fov": 1,
+     "look": 1,
+     "reloading": false,
+     "cooking": false,
+     "gState": 0,
+     "alive": false,
+     "state": "playing",
+     "prevDots": false,
+     "prevRing": false,
+     "camFov": 65.2,
+     "vmVisible": true,
+     "ammo": 5,
+     "reserve": 10,
+     "grenades": 2,
+     "cookTime": 0,
+     "sw": 0,
+     "eq": 1
+    }
+   ],
+   [
+    "respawned",
+    {
+     "id": "rifle",
+     "ads": 0,
+     "scoped": false,
+     "fov": 1,
+     "look": 1,
+     "reloading": false,
+     "cooking": false,
+     "gState": 0,
+     "alive": true,
+     "state": "playing",
+     "prevDots": false,
+     "prevRing": false,
+     "camFov": 67.7,
+     "vmVisible": true,
+     "ammo": 32,
+     "reserve": 96,
+     "grenades": 2,
+     "cookTime": 0,
+     "sw": 2,
+     "eq": 0
+    }
+   ],
+   [
+    "reloading",
+    {
+     "id": "rifle",
+     "ads": 0,
+     "scoped": false,
+     "fov": 1,
+     "look": 1,
+     "reloading": true,
+     "cooking": false,
+     "gState": 0,
+     "alive": true,
+     "state": "playing",
+     "prevDots": false,
+     "prevRing": false,
+     "camFov": 67.7,
+     "vmVisible": true,
+     "ammo": 5,
+     "reserve": 96,
+     "grenades": 2,
+     "cookTime": 0,
+     "sw": 0,
+     "eq": 1
+    }
+   ],
+   [
+    "respawn2",
+    {
+     "id": "rifle",
+     "ads": 0,
+     "scoped": false,
+     "fov": 1,
+     "look": 1,
+     "reloading": false,
+     "cooking": false,
+     "gState": 0,
+     "alive": true,
+     "state": "playing",
+     "prevDots": false,
+     "prevRing": false,
+     "camFov": 67.7,
+     "vmVisible": true,
+     "ammo": 32,
+     "reserve": 96,
+     "grenades": 2,
+     "cookTime": 0,
+     "sw": 2,
+     "eq": 0
+    }
+   ],
+   [
+    "cooking",
+    {
+     "id": "rifle",
+     "ads": 0,
+     "scoped": false,
+     "fov": 1,
+     "look": 1,
+     "reloading": false,
+     "cooking": true,
+     "gState": 2,
+     "alive": true,
+     "state": "playing",
+     "prevDots": true,
+     "prevRing": true,
+     "camFov": 67.7,
+     "vmVisible": true,
+     "ammo": 32,
+     "reserve": 96,
+     "grenades": 1,
+     "cookTime": 0.77,
+     "sw": 0,
+     "eq": 1
+    }
+   ],
+   [
+    "proj before death",
+    0
+   ],
+   [
+    "dead cook",
+    {
+     "id": "rifle",
+     "ads": 0,
+     "scoped": false,
+     "fov": 1,
+     "look": 1,
+     "reloading": false,
+     "cooking": false,
+     "gState": 0,
+     "alive": false,
+     "state": "playing",
+     "prevDots": false,
+     "prevRing": false,
+     "camFov": 65.9,
+     "vmVisible": true,
+     "ammo": 32,
+     "reserve": 96,
+     "grenades": 1,
+     "cookTime": 0,
+     "sw": 0,
+     "eq": 1
+    }
+   ],
+   [
+    "proj after death",
+    [
+     {
+      "fuse": 1.63,
+      "owner": true
+     }
+    ]
+   ],
+   [
+    "respawn3",
+    {
+     "id": "rifle",
+     "ads": 0,
+     "scoped": false,
+     "fov": 1,
+     "look": 1,
+     "reloading": false,
+     "cooking": false,
+     "gState": 0,
+     "alive": true,
+     "state": "playing",
+     "prevDots": false,
+     "prevRing": false,
+     "camFov": 67.7,
+     "vmVisible": true,
+     "ammo": 32,
+     "reserve": 96,
+     "grenades": 2,
+     "cookTime": 0,
+     "sw": 2,
+     "eq": 0
+    }
+   ],
+   [
+    "scoped2",
+    {
+     "id": "rifle",
+     "ads": 1,
+     "scoped": false,
+     "fov": 0.78,
+     "look": 0.78,
+     "reloading": false,
+     "cooking": false,
+     "gState": 0,
+     "alive": true,
+     "state": "playing",
+     "prevDots": false,
+     "prevRing": false,
+     "camFov": 52.8,
+     "vmVisible": true,
+     "ammo": 32,
+     "reserve": 96,
+     "grenades": 2,
+     "cookTime": 0,
+     "sw": 0,
+     "eq": 1
+    }
+   ],
+   [
+    "endscreen",
+    {
+     "id": "rifle",
+     "ads": 0,
+     "scoped": false,
+     "fov": 0.78,
+     "look": 0.78,
+     "reloading": false,
+     "cooking": false,
+     "gState": 0,
+     "alive": true,
+     "state": "ended",
+     "prevDots": false,
+     "prevRing": false,
+     "camFov": 52.8,
+     "vmVisible": true,
+     "ammo": 32,
+     "reserve": 96,
+     "grenades": 2,
+     "cookTime": 0,
+     "sw": 0,
+     "eq": 1
+    }
+   ]
+  ]
+ },
+ "errorCount": 0
+}
+[run] done: wait=TIMEOUT console_errors=1 warnings=0

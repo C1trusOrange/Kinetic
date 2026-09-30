@@ -1,0 +1,155 @@
+[run] http://127.0.0.1:55246/index.html?autotest=1&map=foundry&bots=0&script=idle&scenario=tools/out/audit/review-player/v_wallmantle.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 7,
+ "frames": 35,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 24.00407856863842,
+  "maxSpeed": 7.391500000000001,
+  "minY": 0,
+  "maxY": 14.339999999999996,
+  "states": {
+   "airborne": true,
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "log": [
+   [
+    0,
+    "air",
+    0,
+    13.1,
+    -43
+   ],
+   [
+    0.5,
+    "air",
+    0,
+    12.84,
+    -43.6
+   ],
+   [
+    1,
+    "air",
+    0,
+    14.31,
+    -41.21
+   ],
+   [
+    1.5,
+    "air",
+    0,
+    10.76,
+    -39.54
+   ],
+   [
+    2,
+    "air",
+    0,
+    1.22,
+    -39.77
+   ],
+   [
+    2.5,
+    "ground",
+    0,
+    0,
+    -42.57
+   ],
+   [
+    3,
+    "ground",
+    0,
+    0,
+    -43.6
+   ],
+   [
+    3.5,
+    "ground",
+    0,
+    0,
+    -43.6
+   ],
+   [
+    4,
+    "ground",
+    0,
+    0,
+    -43.6
+   ],
+   [
+    4.5,
+    "ground",
+    0,
+    0,
+    -43.6
+   ],
+   [
+    5,
+    "ground",
+    0,
+    0,
+    -43.6
+   ],
+   [
+    5.5,
+    "ground",
+    0,
+    0,
+    -43.6
+   ],
+   [
+    6,
+    "ground",
+    0,
+    0,
+    -43.6
+   ],
+   [
+    6.5,
+    "ground",
+    0,
+    0,
+    -43.6
+   ]
+  ],
+  "map": "foundry",
+  "final": {
+   "pos": [
+    0,
+    0,
+    -43.6
+   ],
+   "alive": true,
+   "deaths": 0,
+   "inBounds": true
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

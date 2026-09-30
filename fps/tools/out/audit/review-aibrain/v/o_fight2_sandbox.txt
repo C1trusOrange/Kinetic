@@ -1,0 +1,694 @@
+[run] http://127.0.0.1:64339/index.html?autotest=1&map=sandbox&bots=10&duration=1&god=1&script=idle&test=fight&simtime=400&scenario=tools/out/audit/review-aibrain/sim.js
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 406.6,
+ "frames": 200,
+ "fps": {
+  "avg": 0,
+  "min": 20.70393374741305,
+  "max": 40.98360655737709
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 188.1,
+  "maxSpeed": 13.35,
+  "minY": -4,
+  "maxY": 8.810514078798844,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 24,
+   "deaths": 34,
+   "health": 23,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 1599.6,
+   "pos": [
+    -0.4,
+    5.7,
+    -24.5
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 31,
+   "deaths": 32,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 1673.5,
+   "pos": [
+    -7.9,
+    0,
+    -23.6
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 28,
+   "deaths": 31,
+   "health": 75,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 1504.2,
+   "pos": [
+    15.5,
+    0,
+    -20.2
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 34,
+   "deaths": 28,
+   "health": 75,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 1715.7,
+   "pos": [
+    5.4,
+    5.4,
+    -30.7
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": false,
+   "kills": 34,
+   "deaths": 30,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 1679.5,
+   "pos": [
+    16.3,
+    0,
+    -10.3
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 18,
+   "deaths": 28,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 1602.9,
+   "pos": [
+    7.7,
+    0,
+    9.2
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 31,
+   "deaths": 28,
+   "health": 49,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 1707.6,
+   "pos": [
+    -5.4,
+    0,
+    -13.8
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": false,
+   "kills": 33,
+   "deaths": 32,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 1756.2,
+   "pos": [
+    17.9,
+    0,
+    -0.2
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": false,
+   "kills": 38,
+   "deaths": 31,
+   "health": 0,
+   "weapon": "shotgun",
+   "state": "retreat",
+   "distance": 1609.7,
+   "pos": [
+    -1.5,
+    4.5,
+    -25.6
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 26,
+   "deaths": 33,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 1579.3,
+   "pos": [
+    24.1,
+    0,
+    15
+   ]
+  }
+ ],
+ "events": {
+  "damage": 1963,
+  "death": 307,
+  "spawn": 315,
+  "pickup": 100,
+  "fire": 4481
+ },
+ "renderer": {
+  "calls": 368,
+  "triangles": 65996,
+  "geometries": 220,
+  "textures": 142,
+  "programs": 102
+ },
+ "custom": {
+  "fight": {
+   "stuckRecover": 13,
+   "stuckList": [
+    {
+     "t": 6,
+     "bot": "Diode",
+     "st": "engage",
+     "mode": "path",
+     "pos": "-0.0,4.5,-17.7",
+     "wp": "-1.5,4.5,-24.5:walk",
+     "idx": 1,
+     "len": 5,
+     "goal": "5.0,4.5,5.0",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 28,
+     "bot": "Servo",
+     "st": "engage",
+     "mode": "idle",
+     "pos": "-24.8,0.0,29.3",
+     "wp": null,
+     "idx": 0,
+     "len": 0,
+     "goal": "-3.2,2.7,19.5",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 51,
+     "bot": "Flux",
+     "st": "chase",
+     "mode": "direct",
+     "pos": "4.3,4.5,-28.9",
+     "wp": null,
+     "idx": 1,
+     "len": 0,
+     "goal": "6.7,6.2,-30.1",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 52,
+     "bot": "Glitch",
+     "st": "engage",
+     "mode": "path",
+     "pos": "23.5,0.0,29.9",
+     "wp": "21.5,0.0,29.5:walk",
+     "idx": 0,
+     "len": 2,
+     "goal": "-20.3,0.0,27.4",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 76,
+     "bot": "Flux",
+     "st": "engage",
+     "mode": "idle",
+     "pos": "-4.6,4.5,-25.3",
+     "wp": null,
+     "idx": 0,
+     "len": 0,
+     "goal": "-8.2,1.7,-22.7",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 114,
+     "bot": "Gasket",
+     "st": "engage",
+     "mode": "path",
+     "pos": "-0.0,4.5,-22.1",
+     "wp": "0.5,4.5,-23.5:walk",
+     "idx": 1,
+     "len": 8,
+     "goal": "19.5,0.0,7.1",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 178,
+     "bot": "Glitch",
+     "st": "engage",
+     "mode": "path",
+     "pos": "-0.3,4.5,-15.7",
+     "wp": "0.5,4.5,-7.5:walk",
+     "idx": 0,
+     "len": 2,
+     "goal": "9.1,4.0,2.7",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 293,
+     "bot": "Gasket",
+     "st": "engage",
+     "mode": "path",
+     "pos": "10.6,4.3,-28.1",
+     "wp": "12.5,3.1,-26.7:walk",
+     "idx": 0,
+     "len": 8,
+     "goal": "5.8,4.5,-1.2",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 313,
+     "bot": "Axle",
+     "st": "engage",
+     "mode": "path",
+     "pos": "-1.7,0.0,28.9",
+     "wp": "-27.5,0.0,27.5:walk",
+     "idx": 0,
+     "len": 2,
+     "goal": "-28.7,0.0,26.1",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 323,
+     "bot": "Glitch",
+     "st": "engage",
+     "mode": "idle",
+     "pos": "-26.9,0.0,-22.3",
+     "wp": null,
+     "idx": 0,
+     "len": 0,
+     "goal": "-36.9,-3.8,19.0",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 352,
+     "bot": "Sprocket",
+     "st": "chase",
+     "mode": "direct",
+     "pos": "4.7,4.5,-28.2",
+     "wp": null,
+     "idx": 0,
+     "len": 0,
+     "goal": "14.7,3.9,-28.5",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 390,
+     "bot": "Axle",
+     "st": "engage",
+     "mode": "idle",
+     "pos": "-8.9,5.2,-29.8",
+     "wp": null,
+     "idx": 0,
+     "len": 0,
+     "goal": "-7.8,4.5,-25.5",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 406,
+     "bot": "Gasket",
+     "st": "engage",
+     "mode": "idle",
+     "pos": "5.2,4.5,-30.7",
+     "wp": null,
+     "idx": 0,
+     "len": 0,
+     "goal": "0.9,4.5,-25.0",
+     "stage": 1,
+     "tgt": "vis"
+    }
+   ],
+   "rescue": [],
+   "ignoredSets": [
+    {
+     "t": 25.8,
+     "bot": "Cog",
+     "pickup": "health",
+     "dur": 90,
+     "air": true,
+     "gap": 5.2,
+     "state": "retreat",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 122.5,
+     "bot": "Servo",
+     "pickup": "health",
+     "dur": 90,
+     "air": true,
+     "gap": 4.1,
+     "state": "retreat",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 122.5,
+     "bot": "Servo",
+     "pickup": "health",
+     "dur": 90,
+     "air": true,
+     "gap": 4.1,
+     "state": "retreat",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 229.2,
+     "bot": "Glitch",
+     "pickup": "health",
+     "dur": 90,
+     "air": true,
+     "gap": 9.9,
+     "state": "retreat",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 229.2,
+     "bot": "Glitch",
+     "pickup": "health",
+     "dur": 90,
+     "air": true,
+     "gap": 9.8,
+     "state": "retreat",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 385,
+     "bot": "Servo",
+     "pickup": "health",
+     "dur": 90,
+     "air": true,
+     "gap": 7,
+     "state": "retreat",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 395.1,
+     "bot": "Flux",
+     "pickup": "health",
+     "dur": 90,
+     "air": true,
+     "gap": 10,
+     "state": "retreat",
+     "navmode": "direct",
+     "unreachable": true
+    }
+   ],
+   "stateTime": {
+    "collect": 39.5,
+    "engage": 2126,
+    "chase": 532,
+    "retreat": 362.5,
+    "roam": 76.5
+   },
+   "idleStuck": [],
+   "findPathNull": [],
+   "repath": 0,
+   "pathReq": 3298,
+   "stateFlips": 2103,
+   "kills": 297,
+   "deaths": 307,
+   "falls": 0,
+   "stuckClusters": [
+    {
+     "cell": "0,5,-18",
+     "n": 1,
+     "ex": {
+      "t": 6,
+      "bot": "Diode",
+      "st": "engage",
+      "mode": "path",
+      "pos": "-0.0,4.5,-17.7",
+      "wp": "-1.5,4.5,-24.5:walk",
+      "idx": 1,
+      "len": 5,
+      "goal": "5.0,4.5,5.0",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    },
+    {
+     "cell": "-24,0,30",
+     "n": 1,
+     "ex": {
+      "t": 28,
+      "bot": "Servo",
+      "st": "engage",
+      "mode": "idle",
+      "pos": "-24.8,0.0,29.3",
+      "wp": null,
+      "idx": 0,
+      "len": 0,
+      "goal": "-3.2,2.7,19.5",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    },
+    {
+     "cell": "3,5,-30",
+     "n": 1,
+     "ex": {
+      "t": 51,
+      "bot": "Flux",
+      "st": "chase",
+      "mode": "direct",
+      "pos": "4.3,4.5,-28.9",
+      "wp": null,
+      "idx": 1,
+      "len": 0,
+      "goal": "6.7,6.2,-30.1",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "24,0,30",
+     "n": 1,
+     "ex": {
+      "t": 52,
+      "bot": "Glitch",
+      "st": "engage",
+      "mode": "path",
+      "pos": "23.5,0.0,29.9",
+      "wp": "21.5,0.0,29.5:walk",
+      "idx": 0,
+      "len": 2,
+      "goal": "-20.3,0.0,27.4",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    },
+    {
+     "cell": "-6,5,-24",
+     "n": 1,
+     "ex": {
+      "t": 76,
+      "bot": "Flux",
+      "st": "engage",
+      "mode": "idle",
+      "pos": "-4.6,4.5,-25.3",
+      "wp": null,
+      "idx": 0,
+      "len": 0,
+      "goal": "-8.2,1.7,-22.7",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    },
+    {
+     "cell": "0,5,-21",
+     "n": 1,
+     "ex": {
+      "t": 114,
+      "bot": "Gasket",
+      "st": "engage",
+      "mode": "path",
+      "pos": "-0.0,4.5,-22.1",
+      "wp": "0.5,4.5,-23.5:walk",
+      "idx": 1,
+      "len": 8,
+      "goal": "19.5,0.0,7.1",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    },
+    {
+     "cell": "0,5,-15",
+     "n": 1,
+     "ex": {
+      "t": 178,
+      "bot": "Glitch",
+      "st": "engage",
+      "mode": "path",
+      "pos": "-0.3,4.5,-15.7",
+      "wp": "0.5,4.5,-7.5:walk",
+      "idx": 0,
+      "len": 2,
+      "goal": "9.1,4.0,2.7",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "12,4,-27",
+     "n": 1,
+     "ex": {
+      "t": 293,
+      "bot": "Gasket",
+      "st": "engage",
+      "mode": "path",
+      "pos": "10.6,4.3,-28.1",
+      "wp": "12.5,3.1,-26.7:walk",
+      "idx": 0,
+      "len": 8,
+      "goal": "5.8,4.5,-1.2",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    },
+    {
+     "cell": "-3,0,30",
+     "n": 1,
+     "ex": {
+      "t": 313,
+      "bot": "Axle",
+      "st": "engage",
+      "mode": "path",
+      "pos": "-1.7,0.0,28.9",
+      "wp": "-27.5,0.0,27.5:walk",
+      "idx": 0,
+      "len": 2,
+      "goal": "-28.7,0.0,26.1",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    },
+    {
+     "cell": "-27,0,-21",
+     "n": 1,
+     "ex": {
+      "t": 323,
+      "bot": "Glitch",
+      "st": "engage",
+      "mode": "idle",
+      "pos": "-26.9,0.0,-22.3",
+      "wp": null,
+      "idx": 0,
+      "len": 0,
+      "goal": "-36.9,-3.8,19.0",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    },
+    {
+     "cell": "6,5,-27",
+     "n": 1,
+     "ex": {
+      "t": 352,
+      "bot": "Sprocket",
+      "st": "chase",
+      "mode": "direct",
+      "pos": "4.7,4.5,-28.2",
+      "wp": null,
+      "idx": 0,
+      "len": 0,
+      "goal": "14.7,3.9,-28.5",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "-9,5,-30",
+     "n": 1,
+     "ex": {
+      "t": 390,
+      "bot": "Axle",
+      "st": "engage",
+      "mode": "idle",
+      "pos": "-8.9,5.2,-29.8",
+      "wp": null,
+      "idx": 0,
+      "len": 0,
+      "goal": "-7.8,4.5,-25.5",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    }
+   ]
+  },
+  "pathStats": {
+   "count": 3251,
+   "totalMs": 5969.900000095367,
+   "maxMs": 25.5
+  },
+  "navStats": {
+   "nodes": 4091,
+   "links": 29699,
+   "components": 5,
+   "largestComponent": 4087,
+   "buildMs": 159,
+   "traps": 0,
+   "strongComponents": 26,
+   "largestStrong": 3885,
+   "cells": 4096
+  },
+  "wallMs": 48055,
+  "simTime": 406.5
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

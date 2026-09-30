@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KINETIC</title>
+<link rel="stylesheet" href="/style.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "/vendor/three/build/three.module.js",
+    "three/addons/": "/vendor/three/examples/jsm/",
+    "/src/weapons/WeaponModels.js": "/tools/out/ai/shim/WeaponModels.js"
+  }
+}
+</script>
+</head>
+<body>
+<div id="game"></div>
+<div id="ui"></div>
+<div id="boot-message" class="boot-message">Loading KINETIC&hellip;</div>
+<script>
+  // Plain (non-module) watchdog: explains the two most common failure modes.
+  (function () {
+    var box = document.getElementById('boot-message');
+    if (location.protocol === 'file:') {
+      box.innerHTML = 'KINETIC must be served over HTTP.<br>Run <b>play.bat</b> (or <code>python tools/serve.py</code>) and open <b>http://localhost:8000</b>.';
+      return;
+    }
+    setTimeout(function () {
+      if (!window.__GAME__) {
+        box.innerHTML = 'The game failed to start. Open the browser console (F12) for details.';
+      }
+    }, 15000);
+  })();
+</script>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

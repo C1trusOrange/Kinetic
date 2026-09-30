@@ -1,0 +1,70 @@
+[run] http://127.0.0.1:52852/index.html?autotest=1&map=foundry&bots=15&mode=ffa&duration=9000&diff=hard&god=1&scenario=tools/out/audit/review-lifecycle/alloc2.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "rows": [
+  {
+   "label": "all subsystems",
+   "kbPerFrame": 446.4
+  },
+  {
+   "label": "without bots.update",
+   "kbPerFrame": 259.8
+  },
+  {
+   "label": "without projectiles.update",
+   "kbPerFrame": 397.9
+  },
+  {
+   "label": "without world.update",
+   "kbPerFrame": 354.7
+  },
+  {
+   "label": "without effects.update",
+   "kbPerFrame": 295.5
+  },
+  {
+   "label": "without hud.update",
+   "kbPerFrame": 376.9
+  },
+  {
+   "label": "without audio.update",
+   "kbPerFrame": 284.4
+  },
+  {
+   "label": "without weapons.update",
+   "kbPerFrame": 344.1
+  },
+  {
+   "label": "without weapons.updateViewModel",
+   "kbPerFrame": 387.1
+  },
+  {
+   "label": "without player.update",
+   "kbPerFrame": 340.9
+  },
+  {
+   "label": "without player.updateCamera",
+   "kbPerFrame": 351.2
+  },
+  {
+   "label": "without game.render",
+   "kbPerFrame": 64.9
+  },
+  {
+   "label": "without game._updateMatch",
+   "kbPerFrame": 218.8
+  },
+  {
+   "label": "only render (all updates stubbed)",
+   "kbPerFrame": 69.8
+  },
+  {
+   "label": "nothing (loop only)",
+   "kbPerFrame": 1
+  }
+ ],
+ "errors": []
+}
+[run] done: wait=ok console_errors=0 warnings=1

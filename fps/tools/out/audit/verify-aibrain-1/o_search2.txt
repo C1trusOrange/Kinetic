@@ -1,0 +1,225 @@
+[run] http://127.0.0.1:55602/index.html?autotest=1&map=sandbox&bots=2&duration=1&god=1&script=idle&scenario=tools/out/audit/verify-aibrain-1/scen_search2.js
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 4.05,
+ "frames": 32,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 44.24778761062521
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 9.8,
+   "pos": [
+    1.9,
+    0,
+    -7.7
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    20.5,
+    0,
+    -7.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 99,
+  "triangles": 32964,
+  "geometries": 82,
+  "textures": 85,
+  "programs": 87
+ },
+ "custom": {
+  "log": [
+   {
+    "el": 0.52,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "moved": 0.71,
+    "navHasGoal": false,
+    "hurtAt": -999,
+    "known": true
+   },
+   {
+    "el": 0.75,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "moved": 0.71,
+    "navHasGoal": false,
+    "hurtAt": -999,
+    "known": true
+   },
+   {
+    "el": 1,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "moved": 0.71,
+    "navHasGoal": false,
+    "hurtAt": 1,
+    "known": true
+   },
+   {
+    "el": 1.25,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "moved": 0.71,
+    "navHasGoal": false,
+    "hurtAt": 1,
+    "known": true
+   },
+   {
+    "el": 1.52,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "moved": 0.71,
+    "navHasGoal": false,
+    "hurtAt": 1,
+    "known": true
+   },
+   {
+    "el": 1.77,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "moved": 0.71,
+    "navHasGoal": false,
+    "hurtAt": 1,
+    "known": true
+   },
+   {
+    "el": 2.02,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "moved": 0.71,
+    "navHasGoal": false,
+    "hurtAt": 1,
+    "known": true
+   },
+   {
+    "el": 2.27,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "moved": 0.71,
+    "navHasGoal": false,
+    "hurtAt": 1,
+    "known": true
+   },
+   {
+    "el": 2.52,
+    "state": "chase",
+    "searching": true,
+    "hasTarget": true,
+    "moved": 0.71,
+    "navHasGoal": false,
+    "hurtAt": 1,
+    "known": true
+   },
+   {
+    "el": 2.77,
+    "state": "collect",
+    "searching": false,
+    "hasTarget": false,
+    "moved": 1.21,
+    "navHasGoal": true,
+    "hurtAt": -999,
+    "known": false
+   },
+   {
+    "el": 3.02,
+    "state": "collect",
+    "searching": false,
+    "hasTarget": false,
+    "moved": 3.19,
+    "navHasGoal": true,
+    "hurtAt": -999,
+    "known": false
+   },
+   {
+    "el": 3.27,
+    "state": "collect",
+    "searching": false,
+    "hasTarget": false,
+    "moved": 5.36,
+    "navHasGoal": true,
+    "hurtAt": -999,
+    "known": false
+   }
+  ],
+  "start": {
+   "state": "chase",
+   "searching": true,
+   "searchLeft": 2.6
+  },
+  "hitAt": 1,
+  "afterHit": {
+   "hurtAt": 1,
+   "known": true,
+   "searching": true,
+   "state": "chase",
+   "recPos": [
+    21.36,
+    0,
+    -9.13
+   ]
+  },
+  "end": {
+   "state": "collect",
+   "searching": false,
+   "targetRec": false,
+   "known": false,
+   "hurtAt": -999,
+   "moved": 6.52
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

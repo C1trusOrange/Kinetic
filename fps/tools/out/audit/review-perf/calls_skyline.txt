@@ -1,0 +1,211 @@
+[run] http://127.0.0.1:49811/index.html?autotest=1&map=skyline&bots=8&duration=34&scenario=tools/out/audit/review-perf/scenario_calls.js
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 34.07,
+ "frames": 1066,
+ "fps": {
+  "avg": 33.4,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "skyline",
+ "player": {
+  "distance": 159.59480208593396,
+  "maxSpeed": 16.44,
+  "minY": 0,
+  "maxY": 13.3,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isWallRunning": true
+  },
+  "shots": 20,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 3,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 178.9,
+   "pos": [
+    8.8,
+    6.4,
+    -26.3
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 168,
+   "pos": [
+    -21.9,
+    16,
+    -29.3
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 15,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 173.1,
+   "pos": [
+    12.1,
+    0,
+    -18.9
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 3,
+   "deaths": 2,
+   "health": 2,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 191.6,
+   "pos": [
+    23.8,
+    9.6,
+    5.9
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 1,
+   "deaths": 2,
+   "health": 96,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 178,
+   "pos": [
+    15.6,
+    1.2,
+    20
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 1,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 178.2,
+   "pos": [
+    -30.4,
+    9.6,
+    32.4
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 3,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 174.9,
+   "pos": [
+    -0.5,
+    0,
+    -38.5
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 2,
+   "deaths": 0,
+   "health": 75,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 121.2,
+   "pos": [
+    -9,
+    0.1,
+    0.6
+   ]
+  }
+ ],
+ "events": {
+  "damage": 104,
+  "death": 13,
+  "spawn": 22,
+  "pickup": 5,
+  "fire": 257
+ },
+ "renderer": {
+  "calls": 387,
+  "triangles": 93216,
+  "geometries": 288,
+  "textures": 176,
+  "programs": 112
+ },
+ "custom": {
+  "map": "skyline",
+  "n": 976,
+  "calls": {
+   "p5": 307,
+   "p50": 349,
+   "p95": 430,
+   "max": 457
+  },
+  "tris": {
+   "p5": 85958,
+   "p50": 90148,
+   "p95": 100448,
+   "max": 101420
+  },
+  "renderCpuMs": {
+   "p50": 7.7,
+   "p95": 15.1
+  },
+  "updateCpuMs": {
+   "p50": 3.4,
+   "p95": 8.4
+  },
+  "mapStats": {
+   "drawCalls": 41,
+   "triangles": 28470,
+   "solids": 1452,
+   "collisionTriangles": 6304,
+   "materials": 34,
+   "navBuildMs": 292
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

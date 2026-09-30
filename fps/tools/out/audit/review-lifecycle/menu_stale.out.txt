@@ -1,0 +1,65 @@
+[run] http://127.0.0.1:61796/index.html?autotest=1&map=sandbox&bots=2&duration=900&scenario=tools/out/audit/review-lifecycle/menu_stale.js
+[run] screenshot -> tools\out\audit\review-lifecycle\menu_stale.png
+[result] {
+ "done": true,
+ "rows": [
+  {
+   "label": "playing: grapple + cook",
+   "state": "playing",
+   "grState": "idle",
+   "grVisible": false,
+   "ropeVisible": true,
+   "clawPos": {
+    "x": 0.98,
+    "y": -0.22,
+    "z": 1,
+    "onScreen": true
+   },
+   "anchor": null,
+   "previewDots": true,
+   "previewRing": true,
+   "previewCount": 44,
+   "ringPos": {
+    "x": 0,
+    "y": -0.35,
+    "z": 1,
+    "onScreen": true
+   },
+   "camPos": [
+    7,
+    6.2,
+    -29
+   ]
+  },
+  {
+   "label": "menu after quit",
+   "state": "menu",
+   "grState": "idle",
+   "grVisible": false,
+   "ropeVisible": true,
+   "clawPos": {
+    "x": -0.16,
+    "y": 0.21,
+    "z": 1,
+    "onScreen": true
+   },
+   "anchor": null,
+   "previewDots": true,
+   "previewRing": true,
+   "previewCount": 44,
+   "ringPos": {
+    "x": 0.03,
+    "y": -0.04,
+    "z": 1,
+    "onScreen": true
+   },
+   "camPos": [
+    32.6,
+    38,
+    44.3
+   ]
+  }
+ ],
+ "errors": []
+}
+[run] done: wait=ok console_errors=0 warnings=0

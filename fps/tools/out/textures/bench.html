@@ -1,0 +1,23 @@
+<!doctype html><meta charset="utf-8">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { Field, makeCanvas, canvasTexture } from '/src/core/procgen.js';
+const S = 512, out = {};
+function t(name, fn, n = 5) { fn(); const s = performance.now(); for (let i = 0; i < n; i++) fn(); out[name] = +((performance.now() - s) / n).toFixed(1); }
+const H = new Field(S); H.apply((u, v) => Math.sin(u * 40) * Math.cos(v * 33) * 0.5 + 0.5);
+t('normalCanvas', () => H.toNormalCanvas(3));
+t('blur', () => H.clone().blur(3, 2));
+t('clone', () => H.clone());
+t('makeCanvas', () => makeCanvas(S));
+const c = makeCanvas(S); const img = c.ctx.createImageData(S, S);
+t('createImageData', () => c.ctx.createImageData(S, S));
+t('putImageData', () => c.ctx.putImageData(img, 0, 0));
+const sc = new Float32Array(8);
+t('passLoop', () => { const a = img.data; for (let y = 0, i = 0; y < S; y++) for (let x = 0; x < S; x++, i++) { sc[0] = x / S; sc[1] = y / S; sc[2] = 0.5; const j = i << 2; a[j] = sc[0] * 255; a[j + 1] = sc[1] * 255; a[j + 2] = sc[2] * 255; a[j + 3] = 255; } });
+t('canvasTexture', () => canvasTexture(c.canvas, { srgb: true }));
+const u8 = new Uint8Array(S * S * 4);
+t('passLoopU8', () => { const a = u8; for (let y = 0, i = 0; y < S; y++) for (let x = 0; x < S; x++, i++) { sc[0] = x / S; sc[1] = y / S; sc[2] = 0.5; const j = i << 2; a[j] = sc[0] * 255; a[j + 1] = sc[1] * 255; a[j + 2] = sc[2] * 255; a[j + 3] = 255; } });
+window.__B__ = out;
+window.__R__ = true;
+</script>

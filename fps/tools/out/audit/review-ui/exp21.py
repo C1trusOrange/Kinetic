@@ -1,0 +1,26 @@
+import sys, json
+from common import *
+s = Session(1280, 720)
+print('state', start_match(s, bots=2, score=25))
+s.run("__GAME__.bots.update = () => {}; __GAME__.player.god = true;")
+s.run("__GAME__.pause();"); s.wait(0.7)
+s.click('[data-act=quit]'); s.wait(0.3)
+print('armed', s.js("document.querySelector('[data-r=quitlbl]').textContent"))
+s.wait(3.6)
+print('after timeout', s.js("document.querySelector('[data-r=quitlbl]').textContent"), s.js("__GAME__.state"))
+s.click('[data-act=quit]'); s.wait(0.3)
+s.click('[data-act=settings]'); s.wait(0.5)
+print('after settings', s.js("document.querySelector('[data-r=quitlbl]').textContent"), s.js("__GAME__.menu.screen"))
+s.click('.s-settings [data-act=back]'); s.wait(0.6)
+print('back', s.js("__GAME__.menu.screen"))
+s.click('[data-act=quit]'); s.wait(0.3); s.click('[data-act=quit]'); s.wait(1.0)
+print('quit', s.js("({state: __GAME__.state, screen: __GAME__.menu.screen, hud: __GAME__.hud.visible, match: !!__GAME__.match, ents: __GAME__.entities.length, lock: __GAME__.input.locked})"))
+s.shot('exp21_menu.png')
+# start again quick play via click and verify HUD
+s.click('[data-act=quick]')
+t0 = time.time()
+while time.time() - t0 < 100 and s.js("__GAME__.state") != 'playing':
+    s.wait(0.4)
+s.wait(1.0)
+print('quick', s.js("({state: __GAME__.state, hud: __GAME__.hud.visible, deathOn: document.querySelector('.hud-death').classList.contains('on'), scope: document.querySelector('.hud-scope').classList.contains('on')})"))
+s.close()

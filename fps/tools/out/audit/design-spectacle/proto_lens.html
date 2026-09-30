@@ -1,0 +1,92 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>proto lens</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#000}</style></head>
+<body>
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+const P = new URLSearchParams(location.search);
+const lensOn = P.get('lens') !== '0';
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x3a2a5e);
+scene.fog = new THREE.Fog(0x3a2a5e, 40, 300);
+const camera = new THREE.PerspectiveCamera(80, innerWidth / innerHeight, 0.05, 700);
+
+// grid floor + pillars so the warp is readable
+const cv = document.createElement('canvas'); cv.width = cv.height = 256;
+const g = cv.getContext('2d'); g.fillStyle = '#9aa3b8'; g.fillRect(0, 0, 256, 256);
+g.strokeStyle = '#2c3348'; g.lineWidth = 6; g.strokeRect(0, 0, 256, 256); g.lineWidth = 2; for (let i = 1; i < 4; i++) { g.beginPath(); g.moveTo(i * 64, 0); g.lineTo(i * 64, 256); g.moveTo(0, i * 64); g.lineTo(256, i * 64); g.stroke(); }
+const tex = new THREE.CanvasTexture(cv); tex.wrapS = tex.wrapT = THREE.RepeatWrapping; tex.repeat.set(40, 40); tex.colorSpace = THREE.SRGBColorSpace;
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.6 })); floor.rotation.x = -Math.PI / 2; scene.add(floor);
+const pm = new THREE.MeshStandardMaterial({ color: 0xdfe6ee, roughness: 0.4 });
+for (let i = -4; i <= 4; i++) for (const z of [-30, -18, -8]) { const p = new THREE.Mesh(new THREE.BoxGeometry(1.2, 6 + (i & 1) * 3, 1.2), pm); p.position.set(i * 6, 3, z); scene.add(p); }
+const neon = new THREE.MeshBasicMaterial({ color: new THREE.Color(0.2, 2.0, 3.0) });
+for (let i = -4; i <= 4; i++) { const n = new THREE.Mesh(new THREE.BoxGeometry(6, 0.15, 0.15), neon); n.position.set(i * 6, 9.5, -30); scene.add(n); }
+scene.add(new THREE.HemisphereLight(0xb0a0ff, 0x402030, 0.9));
+const sun = new THREE.DirectionalLight(0xffb27a, 2.2); sun.position.set(-30, 20, 30); scene.add(sun);
+
+// ---- the vortex object (core + additive rings)
+const V = new THREE.Vector3(2, 2.2, -12);
+const core = new THREE.Mesh(new THREE.SphereGeometry(0.42, 20, 14), new THREE.MeshBasicMaterial({ color: 0x000000 })); core.position.copy(V); scene.add(core);
+const ringMat = c => new THREE.MeshBasicMaterial({ color: new THREE.Color(c).multiplyScalar(2.2), transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide });
+[[0.9, 0x9a5cff, 0.4, 0.0], [1.5, 0x5cf2ff, -0.5, 0.9], [2.2, 0xc07aff, 1.0, 1.9]].forEach(([r, c, rx, rz]) => {
+  const m = new THREE.Mesh(new THREE.TorusGeometry(r, 0.035, 8, 64), ringMat(c)); m.position.copy(V); m.rotation.set(rx, 0.5, rz); scene.add(m);
+});
+// spiralling streak particles
+const pts = [];
+for (let i = 0; i < 220; i++) { const a = i * 2.399, r = 1.2 + (i % 40) * 0.18; pts.push(V.x + Math.cos(a) * r, V.y + Math.sin(a * 1.3) * r * 0.5, V.z + Math.sin(a) * r); }
+const pg = new THREE.BufferGeometry(); pg.setAttribute('position', new THREE.Float32BufferAttribute(pts, 3));
+scene.add(new THREE.Points(pg, new THREE.PointsMaterial({ size: 0.12, color: new THREE.Color(1.5, 0.9, 2.6), blending: THREE.AdditiveBlending, depthWrite: false })));
+const pl = new THREE.PointLight(0xa070ff, 60, 20, 2); pl.position.copy(V); scene.add(pl);
+
+camera.position.set(0, 1.7, 2); camera.lookAt(V.x, 2.0, V.z);
+camera.updateMatrixWorld();
+
+// ---- gravitational lens pass (proposed src/fx/Distortion.js)
+const LensShader = {
+  uniforms: { tDiffuse: { value: null }, uLens: { value: new THREE.Vector4(0.5, 0.5, 0.2, 0.6) }, uAspect: { value: innerWidth / innerHeight } },
+  vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+  fragmentShader: `
+    uniform sampler2D tDiffuse; uniform vec4 uLens; uniform float uAspect; varying vec2 vUv;
+    vec3 sampleAt(vec2 uv, float s){
+      vec2 d = uv - uLens.xy; d.x *= uAspect; float r = length(d);
+      float R = uLens.z;
+      float w = r < R ? pow(1.0 - r / R, 2.0) : 0.0;
+      float r2 = r + s * uLens.w * R * w;               // sample from further out => content is dragged into the hole
+      vec2 dir = r > 1e-5 ? d / r : vec2(0.0);
+      vec2 o = dir * r2; o.x /= uAspect;
+      return texture2D(tDiffuse, clamp(uLens.xy + o, 0.001, 0.999)).rgb;
+    }
+    void main(){
+      vec2 d = vUv - uLens.xy; d.x *= uAspect; float r = length(d);
+      vec3 c;
+      c.r = sampleAt(vUv, 0.92).r; c.g = sampleAt(vUv, 1.0).g; c.b = sampleAt(vUv, 1.10).b;   // chromatic dispersion
+      float hole = smoothstep(0.0, 0.16 * uLens.z, r);
+      c *= mix(0.15, 1.0, hole);
+      gl_FragColor = vec4(c, 1.0);
+    }`,
+};
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+if (lensOn) {
+  const lp = new ShaderPass(LensShader);
+  const ndc = V.clone().project(camera);
+  lp.uniforms.uLens.value.set(ndc.x * 0.5 + 0.5, ndc.y * 0.5 + 0.5, 0.20, 0.55);
+  composer.addPass(lp);
+}
+composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.6, 0.5, 0.85));
+composer.addPass(new OutputPass());
+requestAnimationFrame(() => { composer.render(); requestAnimationFrame(() => { composer.render(); window.__PROTO_READY__ = true; }); });
+</script>
+</body></html>

@@ -1,0 +1,18 @@
+<!doctype html><meta charset="utf-8"><title>pl</title>
+<body style="background:#123"><canvas id="c" width="200" height="100"></canvas>
+<script>
+window.__log = [];
+const c = document.getElementById('c');
+document.addEventListener('pointerlockerror', () => window.__log.push({ev: 'pointerlockerror', t: Math.round(performance.now())}));
+document.addEventListener('pointerlockchange', () => window.__log.push({ev: 'pointerlockchange', locked: !!document.pointerLockElement}));
+window.addEventListener('keydown', e => {
+  const ua = navigator.userActivation;
+  const rec = {ev: 'keydown', code: e.code, trusted: e.isTrusted, activeAtHandlerStart: ua.isActive, been: ua.hasBeenActive, t: Math.round(performance.now())};
+  window.__log.push(rec);
+  try {
+    const p = c.requestPointerLock({unadjustedMovement: true});
+    p.then(() => window.__log.push({ev: 'lock-resolved', code: e.code}), err => window.__log.push({ev: 'lock-rejected', code: e.code, name: err.name, msg: String(err.message).slice(0, 140)}));
+  } catch (err) { window.__log.push({ev: 'lock-threw', code: e.code, name: err.name, msg: String(err.message).slice(0, 140)}); }
+});
+window.addEventListener('click', () => window.__log.push({ev: 'click', active: navigator.userActivation.isActive}));
+</script>

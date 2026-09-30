@@ -1,0 +1,104 @@
+[run] http://127.0.0.1:61635/index.html?autotest=1&map=sandbox&bots=1&scenario=tools/out/audit/verify-fxaudio-1/v1.js&mode=grenade&duration=6&script=idle
+[log] [autotest] finished {"ok":true,"errors":0,"fps":36.3}
+[run] screenshot -> tools\out\audit\verify-fxaudio-1\gren.png
+[result] {
+ "done": true,
+ "started": true,
+ "t": 6.95,
+ "frames": 261,
+ "fps": {
+  "avg": 36.3,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "collect",
+   "distance": 40.7,
+   "pos": [
+    10.9,
+    2.9,
+    0.7
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 2,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 153,
+  "triangles": 39638,
+  "geometries": 149,
+  "textures": 124,
+  "programs": 100
+ },
+ "custom": {
+  "mode": "grenade",
+  "eventsBefore": 0,
+  "tHit": 1.1113999999999848,
+  "grenadesLeft": 0,
+  "decals": [
+   {
+    "i": 150,
+    "scorch": true,
+    "pos": [
+     10,
+     4.86,
+     20
+    ],
+    "n": [
+     0,
+     1,
+     0
+    ],
+    "size": 8.7,
+    "coverage": 0
+   }
+  ],
+  "stats": {
+   "smoke": 50,
+   "glow": 73,
+   "tracers": 0,
+   "decals": 1,
+   "gibs": 0,
+   "dropped": 0
+  },
+  "effStats": {
+   "smoke": 0,
+   "glow": 0,
+   "tracers": 0,
+   "decals": 1,
+   "gibs": 0,
+   "dropped": 0
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

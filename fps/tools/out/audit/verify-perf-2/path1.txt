@@ -1,0 +1,243 @@
+[run] http://127.0.0.1:57932/index.html?autotest=1&map=foundry&bots=8&duration=40&scenario=tools/out/audit/verify-perf-2/sc_path.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 40.08,
+ "frames": 1078,
+ "fps": {
+  "avg": 28,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 102.2,
+  "maxSpeed": 12.55,
+  "minY": -4,
+  "maxY": 3.7949999999999995,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Piston",
+   "alive": false,
+   "kills": 7,
+   "deaths": 3,
+   "health": 0,
+   "weapon": "sniper",
+   "state": "retreat",
+   "distance": 214.9,
+   "pos": [
+    -46.8,
+    0,
+    6.7
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 3,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 198.4,
+   "pos": [
+    -44.5,
+    0,
+    -18.7
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 49,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 224.4,
+   "pos": [
+    29.6,
+    0,
+    -3.8
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 72,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 213.7,
+   "pos": [
+    40.6,
+    0,
+    16.6
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 3,
+   "health": 86,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 197.8,
+   "pos": [
+    34.4,
+    0,
+    0.5
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 213.5,
+   "pos": [
+    -30,
+    0,
+    33
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": false,
+   "kills": 3,
+   "deaths": 2,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 230.2,
+   "pos": [
+    -19.9,
+    0,
+    9.8
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 2,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "collect",
+   "distance": 165,
+   "pos": [
+    8.7,
+    0,
+    -39.6
+   ]
+  }
+ ],
+ "events": {
+  "damage": 91,
+  "death": 17,
+  "spawn": 24,
+  "pickup": 3,
+  "fire": 201
+ },
+ "renderer": {
+  "calls": 353,
+  "triangles": 129016,
+  "geometries": 211,
+  "textures": 127,
+  "programs": 103
+ },
+ "custom": {
+  "map": "foundry",
+  "n": 303,
+  "inGame": {
+   "p50": 1.8,
+   "p90": 7.4,
+   "p99": 21.6,
+   "max": 23.9,
+   "over8": 28,
+   "over16": 14
+  },
+  "minOf5": {
+   "p50": 1,
+   "p90": 5.2,
+   "p99": 17,
+   "max": 18.3,
+   "over8": 27,
+   "over16": 6
+  },
+  "connMinOf5": {
+   "p50": 0,
+   "max": 0
+  },
+  "worst": [
+   [
+    213,
+    18.3,
+    20.8,
+    12,
+    19
+   ],
+   [
+    216,
+    18,
+    20.7,
+    9,
+    37
+   ],
+   [
+    156,
+    17.4,
+    22.6,
+    13,
+    34.3
+   ],
+   [
+    151,
+    17,
+    17.6,
+    13,
+    34.4
+   ],
+   [
+    290,
+    16.5,
+    18.9,
+    15,
+    13.3
+   ],
+   [
+    210,
+    16.1,
+    17.2,
+    13,
+    20.2
+   ]
+  ],
+  "pathStats": {
+   "count": 318,
+   "totalMs": 1188.8000005483627,
+   "maxMs": 24.399999976158142
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

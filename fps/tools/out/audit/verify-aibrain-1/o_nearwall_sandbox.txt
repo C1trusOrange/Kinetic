@@ -1,0 +1,89 @@
+[run] http://127.0.0.1:50134/index.html?autotest=1&bots=2&duration=1&god=1&script=idle&map=sandbox&scenario=tools/out/audit/verify-aibrain-1/scen_nearwall.js
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0.1,
+ "frames": 32,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    28,
+    0,
+    29
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    28,
+    0,
+    -8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 99,
+  "triangles": 32964,
+  "geometries": 82,
+  "textures": 85,
+  "programs": 51
+ },
+ "custom": {
+  "map": "sandbox",
+  "sampled": 6000,
+  "valid": 5011,
+  "nearestBlocked": 0,
+  "blockedFarther1_2": 0,
+  "noNode": 0,
+  "pctBlocked": 0,
+  "topCells": [],
+  "examples": []
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

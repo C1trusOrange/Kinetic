@@ -1,0 +1,75 @@
+[run] http://127.0.0.1:53974/index.html?autotest=1&map=sandbox&bots=0&god=1&script=idle&mode=end&scenario=tools/out/audit/review-fxaudio/s2g_grapple.js&duration=12
+[result] {
+ "mode": "end",
+ "samples": [
+  {
+   "tag": "attached",
+   "state": "playing",
+   "endTimer": 0,
+   "grapple": "attached",
+   "loops": 1,
+   "loopGain": 1,
+   "muffleHz": 20000,
+   "ctx": "running",
+   "ropeLen": 24.2
+  },
+  {
+   "tag": "after-600",
+   "state": "ended",
+   "endTimer": 1.59,
+   "grapple": "attached",
+   "loops": 1,
+   "loopGain": 1,
+   "muffleHz": 20000,
+   "ctx": "running",
+   "ropeLen": 23.7
+  },
+  {
+   "tag": "after-1500",
+   "state": "ended",
+   "endTimer": 0.7,
+   "grapple": "attached",
+   "loops": 1,
+   "loopGain": 1,
+   "muffleHz": 20000,
+   "ctx": "running",
+   "ropeLen": 21.5
+  },
+  {
+   "tag": "after-3000",
+   "state": "ended",
+   "endTimer": -0.02,
+   "grapple": "attached",
+   "loops": 1,
+   "loopGain": 1,
+   "muffleHz": 20000,
+   "ctx": "running",
+   "ropeLen": 18.8
+  },
+  {
+   "tag": "after-5000",
+   "state": "ended",
+   "endTimer": -0.02,
+   "grapple": "attached",
+   "loops": 1,
+   "loopGain": 1,
+   "muffleHz": 20000,
+   "ctx": "running",
+   "ropeLen": 18.8
+  }
+ ],
+ "gev": [
+  {
+   "s": "fire",
+   "t": 0.66,
+   "st": "playing"
+  },
+  {
+   "s": "attach",
+   "t": 0.85,
+   "st": "playing"
+  }
+ ],
+ "anchorDist": 24.6
+}
+[run] done: wait=ok console_errors=0 warnings=0

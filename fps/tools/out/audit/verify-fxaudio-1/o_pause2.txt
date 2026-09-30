@@ -1,0 +1,62 @@
+[run] http://127.0.0.1:57786/index.html?autotest=1&map=sandbox&bots=1&script=idle&scenario=tools/out/audit/verify-fxaudio-1/v3.js&mode=pause2&duration=30
+[result] {
+ "mode": "pause2",
+ "samples": [
+  {
+   "tag": "attached",
+   "state": "playing",
+   "endTimer": 0,
+   "grapple": "attached",
+   "loops": 1,
+   "loopGain": 1,
+   "muffleHz": 20000,
+   "ctx": "running",
+   "slide": false
+  },
+  {
+   "tag": "after-600",
+   "state": "paused",
+   "endTimer": 0,
+   "grapple": "attached",
+   "loops": 1,
+   "loopGain": 1,
+   "muffleHz": 20000,
+   "ctx": "running",
+   "slide": false
+  },
+  {
+   "tag": "after-1500",
+   "state": "paused",
+   "endTimer": 0,
+   "grapple": "attached",
+   "loops": 1,
+   "loopGain": 1,
+   "muffleHz": 20000,
+   "ctx": "running",
+   "slide": false
+  },
+  {
+   "tag": "after-3000",
+   "state": "paused",
+   "endTimer": 0,
+   "grapple": "attached",
+   "loops": 1,
+   "loopGain": 1,
+   "muffleHz": 20000,
+   "ctx": "running",
+   "slide": false
+  },
+  {
+   "tag": "after-5000",
+   "state": "paused",
+   "endTimer": 0,
+   "grapple": "attached",
+   "loops": 1,
+   "loopGain": 1,
+   "muffleHz": 20000,
+   "ctx": "running",
+   "slide": false
+  }
+ ]
+}
+[run] done: wait=ok console_errors=0 warnings=0

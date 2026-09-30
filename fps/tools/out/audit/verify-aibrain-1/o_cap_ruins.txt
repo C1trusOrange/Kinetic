@@ -1,0 +1,133 @@
+[run] http://127.0.0.1:57283/index.html?autotest=1&map=ruins&bots=2&duration=1&god=1&script=idle&scenario=tools/out/audit/verify-aibrain-1/scen_cap.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0.1,
+ "frames": 26,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 4.5,
+  "maxY": 4.5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    30,
+    0,
+    -26
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    26,
+    0,
+    50
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 93,
+  "triangles": 69906,
+  "geometries": 81,
+  "textures": 70,
+  "programs": 48
+ },
+ "custom": {
+  "map": "ruins",
+  "walkLinks": 37697,
+  "ceilBlocked": 37,
+  "wallBlocked": 309,
+  "examples": [
+   "27.51 0 -11.49 -> 27.51 0 -10.49",
+   "27.51 0 -9.49 -> 28.51 0 -8.49",
+   "-38.49 4.5 1.51 -> -38.49 4.5 2.51",
+   "-39.49 4.5 2.51 -> -38.49 4.5 2.51",
+   "-39.49 4.5 2.51 -> -39.49 4.5 3.51",
+   "-38.49 4.5 2.51 -> -39.49 4.5 3.51",
+   "-40.49 4.5 3.51 -> -39.49 4.5 4.51",
+   "-39.49 4.5 3.51 -> -39.49 4.5 4.51",
+   "-39.49 4.5 3.51 -> -40.49 4.5 4.51",
+   "-39.49 4.5 4.51 -> -39.49 4.5 5.51",
+   "-39.49 4.5 5.51 -> -38.49 4.5 6.51",
+   "-39.49 4.5 5.51 -> -39.49 4.5 6.51",
+   "-39.49 4.5 6.51 -> -38.49 4.5 6.51",
+   "-19.49 -1.6 11.51 -> -19.49 -1.6 12.51",
+   "-32.49 -1.6 21.51 -> -31.49 -1.6 21.51",
+   "-32.49 -1.6 21.51 -> -31.49 -1.6 22.51",
+   "-31.49 -1.6 21.51 -> -30.49 -1.6 21.51",
+   "-31.49 -1.6 21.51 -> -30.49 -1.6 22.51",
+   "-31.49 -1.6 21.51 -> -31.49 -1.6 22.51",
+   "-31.49 -1.6 21.51 -> -32.49 -1.6 22.51",
+   "-30.49 -1.6 21.51 -> -30.49 -1.6 22.51",
+   "-30.49 -1.6 21.51 -> -31.49 -1.6 22.51",
+   "-23.49 -1.6 21.51 -> -22.49 -1.6 21.51",
+   "-23.49 -1.6 21.51 -> -22.49 -1.6 22.51",
+   "-23.49 -1.6 21.51 -> -23.49 -1.6 22.51",
+   "-22.49 -1.6 21.51 -> -21.49 -1.6 21.51",
+   "-22.49 -1.6 21.51 -> -21.49 -1.6 22.51",
+   "-22.49 -1.6 21.51 -> -22.49 -1.6 22.51",
+   "-22.49 -1.6 21.51 -> -23.49 -1.6 22.51",
+   "-21.49 -1.6 21.51 -> -22.49 -1.6 22.51",
+   "-32.49 -1.6 22.51 -> -31.49 -1.6 22.51",
+   "-31.49 -1.6 22.51 -> -30.49 -1.6 22.51",
+   "-23.49 -1.6 22.51 -> -22.49 -1.6 22.51",
+   "-22.49 -1.6 22.51 -> -21.49 -1.6 22.51",
+   "-30.49 5 43.51 -> -29.49 5.24 44.51",
+   "-30.49 5 43.51 -> -31.49 5.27 44.51",
+   "-29.49 5.24 44.51 -> -28.49 5 44.51"
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

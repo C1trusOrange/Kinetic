@@ -1,0 +1,76 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>flow</title>
+<link rel="stylesheet" href="/style.css">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body>
+<div id="game"></div><div id="ui"></div>
+<script type="module">
+// Real user flow (no autotest): boot -> menu backdrop -> Play -> playing. Records frame stalls per state.
+const Q = new URLSearchParams(location.search);
+const R = window.__RES__ = { errors: [], marks: [], frames: [] };
+const t00 = performance.now();
+const mark = (n, extra) => R.marks.push([n, +(performance.now() - t00).toFixed(0), extra]);
+const origErr = console.error.bind(console);
+console.error = (...a) => { R.errors.push(a.map(String).join(' ').slice(0, 300)); origErr(...a); };
+window.addEventListener('error', e => R.errors.push(String(e.message)));
+window.addEventListener('unhandledrejection', e => R.errors.push('rej ' + String(e.reason && e.reason.stack || e.reason)));
+try {
+  const { Game } = await import('/src/core/Game.js');
+  mark('imports done');
+  const game = new Game(document.getElementById('game'), document.getElementById('ui'), new URLSearchParams(Q.get('quality') ? 'quality=' + Q.get('quality') : ''));
+  window.__GAME__ = game;
+  mark('new Game');
+  // wrap update/render for timings
+  const ou = game.update.bind(game), orr = game.render.bind(game);
+  let cu = 0, cr = 0;
+  game.update = function (dt) { const t = performance.now(); ou(dt); cu = performance.now() - t; };
+  game.render = function () { const t = performance.now(); orr(); cr = performance.now() - t; };
+  let last = performance.now(), lastProg = 0;
+  (function tick() {
+    requestAnimationFrame(tick);
+    const now = performance.now(); const dt = now - last; last = now;
+    const progs = game.renderer.info.programs.length;
+    R.frames.push({ t: +(now - t00).toFixed(0), st: game.state, dt: +dt.toFixed(1), upd: +cu.toFixed(1), ren: +cr.toFixed(1), np: progs - lastProg, gt: +game.time.toFixed(2) });
+    lastProg = progs; cu = 0; cr = 0;
+  })();
+  // time each init
+  const orig = game.boot.bind(game);
+  for (const k of ['audio', 'effects', 'world', 'projectiles', 'player', 'weapons', 'bots', 'hud', 'menu']) {
+    const s = game[k], oi = s.init && s.init.bind(s);
+    if (oi) s.init = async function () { const t = performance.now(); const r = await oi(); mark('init ' + k, +(performance.now() - t).toFixed(0)); return r; };
+  }
+  const wl = game.world.load.bind(game.world);
+  game.world.load = async function (...a) { const t = performance.now(); const r = await wl(...a); mark('world.load ' + a[0].id, +(performance.now() - t).toFixed(0)); return r; };
+  const wrapT = (obj, name, label) => { const o = obj[name].bind(obj); obj[name] = function (...a) { const t = performance.now(); const r = o(...a); const fin = v => { R.marks.push(['T ' + label, +(performance.now() - t).toFixed(0)]); return v; }; return (r && r.then) ? r.then(fin) : fin(r); }; };
+  wrapT(game.bots, 'prepare', 'bots.prepare'); wrapT(game.bots, 'spawnBots', 'bots.spawnBots'); wrapT(game.bots, 'clear', 'bots.clear');
+  wrapT(game.weapons, 'onMatchStart', 'weapons.onMatchStart'); wrapT(game.weapons, '_compileViewmodels', 'weapons._compileViewmodels');
+  wrapT(game.world, 'reset', 'world.reset'); wrapT(game.hud, 'onMatchStart', 'hud.onMatchStart'); wrapT(game, 'respawnEntity', 'respawnEntity');
+  wrapT(game.projectiles, '_warm', 'projectiles._warm'); wrapT(game.effects, 'clear', 'effects.clear'); wrapT(game.player, 'reset', 'player.reset');
+  wrapT(game.menu, 'hideLoading', 'menu.hideLoading'); wrapT(game.menu, 'hide', 'menu.hide'); wrapT(game.hud, 'show', 'hud.show');
+  await game.boot();
+  mark('boot done, state=' + game.state);
+  R.worldStats = game.world.stats;
+  await new Promise(r => setTimeout(r, +(Q.get('menuMs') || 3000)));
+  mark('menu idle done');
+  if (Q.get('hide') === '1') document.getElementById('ui').style.display = 'none';
+  const tPlay = performance.now();
+  mark('click Play');
+  await game.startMatch({ mapId: Q.get('map') || 'foundry', mode: 'ffa', botCount: +(Q.get('bots') || 5), difficulty: 'normal', scoreLimit: 0, timeLimit: 0 });
+  mark('startMatch resolved', +(performance.now() - tPlay).toFixed(0));
+  game.player.god = true;
+  // play: sprint + fire + look for a few seconds
+  const inp = game.input;
+  const t1 = performance.now();
+  while (performance.now() - t1 < +(Q.get('playMs') || 9000)) {
+    const s = (performance.now() - t1) / 1000;
+    inp.setVirtual('forward', s > 1); inp.setVirtual('sprint', s > 1.2);
+    inp.setVirtual('fire', s > 3 && s < 5.5);
+    inp.addLook(2, 0);
+    await new Promise(r => setTimeout(r, 16));
+  }
+  mark('play done');
+  R.programs = game.renderer.info.programs.length;
+  R.renderer = { calls: game.renderer.info.render.calls, tris: game.renderer.info.render.triangles };
+} catch (e) { R.errors.push('FATAL ' + (e && e.stack || e)); }
+window.__DONE__ = true;
+</script></body></html>

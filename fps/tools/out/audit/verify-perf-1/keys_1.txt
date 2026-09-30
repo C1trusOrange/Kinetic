@@ -1,0 +1,142 @@
+[run] http://127.0.0.1:57456/index.html?autotest=1&map=foundry&bots=5&duration=12&scenario=tools/out/audit/verify-perf-1/keys.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 12.23,
+ "frames": 336,
+ "fps": {
+  "avg": 25.8,
+  "min": 4,
+  "max": 125
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Gasket",
+   "alive": false,
+   "kills": 2,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 69.8,
+   "pos": [
+    -7.4,
+    0,
+    16.9
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 50.7,
+   "pos": [
+    30.1,
+    0,
+    39.8
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 39,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 83.7,
+   "pos": [
+    -17.2,
+    0,
+    10.6
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 66.4,
+   "pos": [
+    -39.8,
+    0,
+    -10.4
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 58.4,
+   "pos": [
+    24.1,
+    0,
+    -26.9
+   ]
+  }
+ ],
+ "events": {
+  "damage": 24,
+  "death": 3,
+  "spawn": 8,
+  "pickup": 0,
+  "fire": 79
+ },
+ "renderer": {
+  "calls": 338,
+  "triangles": 127594,
+  "geometries": 195,
+  "textures": 130,
+  "programs": 103
+ },
+ "custom": {
+  "frames": 192,
+  "totalCalls": 7420,
+  "perFrame": 38.6,
+  "medianPerFrame": 38,
+  "materialsSeen": 25,
+  "sharedMaterials": 14,
+  "sharedCalls": 6608,
+  "nonSharedCalls": 812,
+  "sharedPerFramePerMaterial": [
+   2,
+   8.42
+  ],
+  "sharedShare": 0.89,
+  "sceneMats": 95,
+  "viewMats": 50,
+  "quality": "high"
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

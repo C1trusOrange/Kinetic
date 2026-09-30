@@ -1,0 +1,184 @@
+{
+ "eval": {
+  "slow": [
+   {
+    "label": "play:impact_stone",
+    "ms": 8.9,
+    "t": 2.24,
+    "state": "running",
+    "voice": true,
+    "positional": true,
+    "voices": 14
+   },
+   {
+    "label": "createBiquadFilter",
+    "ms": 4.8,
+    "t": 7.46,
+    "state": "running",
+    "extra": ""
+   },
+   {
+    "label": "play:rifle_fire",
+    "ms": 11.4,
+    "t": 7.46,
+    "state": "running",
+    "voice": true,
+    "positional": true,
+    "voices": 18
+   },
+   {
+    "label": "createPanner",
+    "ms": 6.9,
+    "t": 14.52,
+    "state": "running",
+    "extra": ""
+   },
+   {
+    "label": "play:pistol_fire",
+    "ms": 18.4,
+    "t": 14.52,
+    "state": "running",
+    "voice": true,
+    "positional": true,
+    "voices": 19
+   },
+   {
+    "label": "connect",
+    "ms": 4.3,
+    "t": 17.49,
+    "state": "running",
+    "extra": ""
+   },
+   {
+    "label": "createPanner",
+    "ms": 6.9,
+    "t": 17.61,
+    "state": "running",
+    "extra": ""
+   },
+   {
+    "label": "play:impact_robot",
+    "ms": 11.5,
+    "t": 18.18,
+    "state": "running",
+    "voice": true,
+    "positional": true,
+    "voices": 11
+   },
+   {
+    "label": "connect",
+    "ms": 7.6,
+    "t": 18.23,
+    "state": "running",
+    "extra": ""
+   },
+   {
+    "label": "play:impact_robot",
+    "ms": 9.1,
+    "t": 18.23,
+    "state": "running",
+    "voice": true,
+    "positional": true,
+    "voices": 10
+   },
+   {
+    "label": "createBufferSource",
+    "ms": 4.2,
+    "t": 19.16,
+    "state": "running",
+    "extra": ""
+   },
+   {
+    "label": "createPanner",
+    "ms": 5.1,
+    "t": 20.42,
+    "state": "running",
+    "extra": ""
+   },
+   {
+    "label": "createBufferSource",
+    "ms": 10.2,
+    "t": 20.42,
+    "state": "running",
+    "extra": ""
+   },
+   {
+    "label": "play:bot_death",
+    "ms": 13.7,
+    "t": 20.42,
+    "state": "running",
+    "voice": true,
+    "positional": true,
+    "voices": 11
+   },
+   {
+    "label": "createBufferSource",
+    "ms": 4.7,
+    "t": 22.1,
+    "state": "running",
+    "extra": ""
+   }
+  ],
+  "ctxState": [
+   [
+    0,
+    "running"
+   ],
+   [
+    0.1,
+    "running"
+   ],
+   [
+    1.1,
+    "running"
+   ],
+   [
+    3.5,
+    "running"
+   ],
+   [
+    5.9,
+    "running"
+   ],
+   [
+    8.1,
+    "running"
+   ],
+   [
+    10.7,
+    "running"
+   ],
+   [
+    13.2,
+    "running"
+   ],
+   [
+    15.7,
+    "running"
+   ],
+   [
+    18.1,
+    "running"
+   ],
+   [
+    20.3,
+    "running"
+   ],
+   [
+    22.3,
+    "running"
+   ]
+  ],
+  "firstPlay": {
+   "name": "rocket_fire",
+   "ms": 3.9,
+   "t": 1.26,
+   "state": "running",
+   "positional": true
+  },
+  "plays": 711,
+  "playsWithVoice": 654,
+  "state0": "running"
+ },
+ "errors": []
+}

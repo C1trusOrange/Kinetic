@@ -1,0 +1,1017 @@
+{
+ "eval": {
+  "frames": 410,
+  "cpuMs": {
+   "p50": 13.7,
+   "p90": 26.2,
+   "p99": 219.7,
+   "max": 695.8
+  },
+  "intervalMs": {
+   "p50": 36.2,
+   "p90": 66.6,
+   "p99": 291.1,
+   "max": 709.1
+  },
+  "totalNewPrograms": 113,
+  "slow": [
+   {
+    "i": 41,
+    "ts": 37868,
+    "gap": 0,
+    "heap": 152.1,
+    "heapEnd": 152.7,
+    "t": 0.05,
+    "dur": 31.9,
+    "interval": 0,
+    "newProg": "48 programs",
+    "users": {
+     "52": [
+      "S:body:paintOlive/MeshStandardMaterial@rocket",
+      "S:body:hazard/MeshStandardMaterial@rocket",
+      "S:body:paintOlive/MeshStandardMaterial@rocket",
+      "+21"
+     ],
+     "55": [
+      "S:Mesh/MeshBasicMaterial@flame",
+      "S:Mesh/MeshBasicMaterial@flame",
+      "S:Mesh/MeshBasicMaterial@flame",
+      "+5"
+     ],
+     "57": [
+      "S:Mesh/MeshBasicMaterial@flame",
+      "S:Mesh/MeshBasicMaterial@flame",
+      "S:Mesh/MeshBasicMaterial@flame",
+      "+9"
+     ],
+     "58": [
+      "S:Sprite/SpriteMaterial",
+      "S:Sprite/SpriteMaterial",
+      "S:Sprite/SpriteMaterial",
+      "+3"
+     ],
+     "59": [
+      "S:Mesh/MeshBasicMaterial[inst]"
+     ],
+     "61": [
+      "S:Mesh/MeshBasicMaterial"
+     ],
+     "66": [
+      "S:grapple-rope/MeshBasicMaterial@grapple"
+     ],
+     "67": [
+      "S:Mesh/MeshStandardMaterial@grapple-claw"
+     ],
+     "68": [
+      "S:Mesh/MeshBasicMaterial@grapple-claw"
+     ],
+     "69": [
+      "S:Sprite/SpriteMaterial@grapple-claw"
+     ],
+     "79": [
+      "S:body:custom:772fdfbf-e709-4916-badb-b790a3c043a6/MeshStandardMaterial@weapon_pistol",
+      "V:slide:custom:772fdfbf-e709-4916-badb-b790a3c043a6/MeshStandardMaterial@slide"
+     ],
+     "85": [
+      "S:pelvis/MeshStandardMaterial(bot_ff4a3d)@BotModel",
+      "S:torso/MeshStandardMaterial(bot_ff4a3d)@pelvis",
+      "S:head/MeshStandardMaterial(bot_ff4a3d)@torso",
+      "+49"
+     ],
+     "87": [
+      "S:body:paintOrange/MeshStandardMaterial@rocket",
+      "S:body:paintOrange/MeshStandardMaterial@rocket",
+      "S:body:paintOrange/MeshStandardMaterial@rocket",
+      "+8"
+     ],
+     "88": [
+      "S:body:wood/MeshStandardMaterial@weapon_shotgun",
+      "S:body:wood/MeshStandardMaterial@weapon_shotgun",
+      "S:body:wood/MeshStandardMaterial@weapon_shotgun",
+      "+2"
+     ],
+     "89": [
+      "S:pelvis/MeshStandardMaterial(bot_ff5fb0)@BotModel",
+      "S:torso/MeshStandardMaterial(bot_ff5fb0)@pelvis",
+      "S:head/MeshStandardMaterial(bot_ff5fb0)@torso",
+      "+10"
+     ],
+     "90": [
+      "S:Mesh/ShaderMaterial"
+     ],
+     "91": [
+      "S:Mesh/ShaderMaterial"
+     ],
+     "92": [
+      "S:body:steelBlack/MeshStandardMaterial@rocket",
+      "S:body:steelDark/MeshStandardMaterial@rocket",
+      "S:body:steelBlack/MeshStandardMaterial@rocket",
+      "+72"
+     ],
+     "93": [
+      "S:body:polyGrey/MeshStandardMaterial@weapon_rocket",
+      "S:body:poly/MeshStandardMaterial@weapon_rocket",
+      "S:body:grip/MeshStandardMaterial@weapon_rocket",
+      "+56"
+     ],
+     "94": [
+      "S:body:void/MeshStandardMaterial@weapon_rocket",
+      "S:body:void/MeshStandardMaterial@weapon_shotgun",
+      "S:body:void/MeshStandardMaterial@weapon_shotgun",
+      "+31"
+     ],
+     "95": [
+      "V:body:cellBody/MeshStandardMaterial@weapon_rifle_view",
+      "V:mag:cellBody/MeshStandardMaterial@mag"
+     ],
+     "96": [
+      "V:body:custom:1200f241-e554-4853-bfb2-8a1fcd253f18/MeshStandardMaterial@weapon_rifle_view",
+      "V:body:custom:aa230e28-c2ac-438f-bd94-58b24a792dc4/MeshStandardMaterial@weapon_rifle_view",
+      "V:body:custom:aa230e28-c2ac-438f-bd94-58b24a792dc4/MeshStandardMaterial@weapon_rocket_view"
+     ],
+     "98": [
+      "S:Mesh/MeshBasicMaterial",
+      "S:body:reticleRing/MeshBasicMaterial@weapon_rocket",
+      "V:body:reticleRing/MeshBasicMaterial@weapon_rifle_view",
+      "+1"
+     ],
+     "99": [
+      "S:Mesh/MeshStandardMaterial",
+      "S:body:lens/MeshStandardMaterial@weapon_rocket",
+      "V:body:lens/MeshStandardMaterial@weapon_rifle_view",
+      "+1"
+     ]
+    },
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "player.update": 1.6,
+     "bots.update": 3.2,
+     "player.updateCamera": 1.3,
+     "render": 22.2
+    },
+    "gl": {}
+   },
+   {
+    "i": 42,
+    "ts": 38543,
+    "gap": 643,
+    "heap": 124.4,
+    "heapEnd": 126.2,
+    "t": 0.1,
+    "dur": 52.4,
+    "interval": 691.1,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "bots.update": 18.8,
+     "render": 30.6
+    },
+    "gl": {}
+   },
+   {
+    "i": 47,
+    "ts": 38744,
+    "gap": 13,
+    "heap": 128.9,
+    "heapEnd": 129.9,
+    "t": 0.3,
+    "dur": 56.3,
+    "interval": 36.4,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "player.update": 16.4,
+     "bots.update": 10.5,
+     "render": 27
+    },
+    "gl": {}
+   },
+   {
+    "i": 50,
+    "ts": 38868,
+    "gap": 6,
+    "heap": 131.1,
+    "heapEnd": 131.6,
+    "t": 0.41,
+    "dur": 53.4,
+    "interval": 24.1,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "bots.update": 9.4,
+     "render": 41.8
+    },
+    "gl": {
+     "uniformMatrix4fv": {
+      "n": 298,
+      "ms": 1.3
+     }
+    }
+   },
+   {
+    "i": 149,
+    "ts": 42900,
+    "gap": 36,
+    "heap": 138.9,
+    "heapEnd": 139.5,
+    "t": 4.15,
+    "dur": 222.3,
+    "interval": 48.7,
+    "newProg": [
+     "#100",
+     "#101"
+    ],
+    "users": {
+     "101": [
+      "S:Mesh/MeshBasicMaterial@flame",
+      "S:Mesh/MeshBasicMaterial@flame",
+      "S:Mesh/MeshBasicMaterial@flame",
+      "+5"
+     ]
+    },
+    "keys": [
+     "|basic,highp,srgb-linear,false,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,2049,5123,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+     "|basic,highp,srgb-linear,false,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,2049,1027,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}"
+    ],
+    "dTex": 1,
+    "dGeo": 4,
+    "parts": {
+     "bots.update": 2.2,
+     "render": 216.8
+    },
+    "gl": {
+     "getProgramInfoLog": {
+      "n": 2,
+      "ms": 192.1
+     },
+     "getProgramParameter": {
+      "n": 6,
+      "ms": 1.5
+     }
+    }
+   },
+   {
+    "i": 150,
+    "ts": 43130,
+    "gap": 8,
+    "heap": 139.6,
+    "heapEnd": 139.8,
+    "t": 4.2,
+    "dur": 13.9,
+    "interval": 223.9,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "bots.update": 1.6,
+     "render": 9.7
+    },
+    "gl": {}
+   },
+   {
+    "i": 163,
+    "ts": 43710,
+    "gap": 35,
+    "heap": 146.7,
+    "heapEnd": 149.2,
+    "t": 4.76,
+    "dur": 321.7,
+    "interval": 42.2,
+    "newProg": [
+     "#102",
+     "#103",
+     "#104",
+     "#105"
+    ],
+    "users": {
+     "102": [
+      "V:Mesh/MeshStandardMaterial@viewmodel",
+      "V:Mesh/MeshStandardMaterial@viewmodel",
+      "V:Mesh/MeshStandardMaterial@viewmodel",
+      "+7"
+     ],
+     "104": [
+      "V:Mesh/MeshBasicMaterial",
+      "V:Mesh/MeshBasicMaterial"
+     ],
+     "105": [
+      "V:Sprite/SpriteMaterial"
+     ]
+    },
+    "keys": [
+     "|physical,STANDARD,,highp,srgb-linear,306,1024,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,false,false,0,,1,1,0,0,1,0,0,0,0,0,0,2,0,0,0,0,33,131074,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+     "|basic,highp,srgb-linear,false,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,false,false,0,,1,1,0,0,1,0,0,0,0,0,0,2,0,0,0,0,1,4096,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+     "|basic,highp,srgb-linear,false,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,false,false,0,,1,1,0,0,1,0,0,0,0,0,0,2,0,0,0,0,1,0,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+     "|sprite,highp,srgb-linear,false,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,false,true,0,,1,1,0,0,1,0,0,0,0,0,0,2,0,0,0,0,1,0,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}"
+    ],
+    "dTex": 2,
+    "dGeo": 4,
+    "parts": {
+     "weapons.update": 3.9,
+     "effects.update": 2.1,
+     "render": 312.3
+    },
+    "gl": {
+     "bufferData": {
+      "n": 14,
+      "ms": 1.7
+     },
+     "getProgramInfoLog": {
+      "n": 4,
+      "ms": 279.2
+     },
+     "getProgramParameter": {
+      "n": 12,
+      "ms": 1.4
+     }
+    }
+   },
+   {
+    "i": 164,
+    "ts": 44043,
+    "gap": 12,
+    "heap": 149.3,
+    "heapEnd": 149.5,
+    "t": 4.8,
+    "dur": 14.4,
+    "interval": 333,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "render": 12
+    },
+    "gl": {}
+   },
+   {
+    "i": 170,
+    "ts": 44279,
+    "gap": 30,
+    "heap": 150.8,
+    "heapEnd": 151,
+    "t": 5.02,
+    "dur": 43,
+    "interval": 54.6,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "render": 39.3
+    },
+    "gl": {}
+   },
+   {
+    "i": 206,
+    "ts": 46203,
+    "gap": 108,
+    "heap": 134.1,
+    "heapEnd": 134.3,
+    "t": 6.63,
+    "dur": 16.6,
+    "interval": 139.1,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "player.update": 1.4,
+     "render": 12.5
+    },
+    "gl": {}
+   },
+   {
+    "i": 210,
+    "ts": 46309,
+    "gap": 14,
+    "heap": 135,
+    "heapEnd": 140.7,
+    "t": 6.76,
+    "dur": 40.9,
+    "interval": 24.2,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 14,
+    "parts": {
+     "bots.update": 1.7,
+     "updateMatch": 24.6,
+     "render": 11.3
+    },
+    "gl": {}
+   },
+   {
+    "i": 233,
+    "ts": 47365,
+    "gap": 23,
+    "heap": 145.9,
+    "heapEnd": 146.1,
+    "t": 7.64,
+    "dur": 382.3,
+    "interval": 36.4,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "bots.update": 2.6,
+     "effects.update": 1.6,
+     "render": 376.2
+    },
+    "gl": {
+     "useProgram": {
+      "n": 54,
+      "ms": 1.7
+     },
+     "drawArrays": {
+      "n": 196,
+      "ms": 5.5
+     }
+    }
+   },
+   {
+    "i": 234,
+    "ts": 47974,
+    "gap": 227,
+    "heap": 146.1,
+    "heapEnd": 146.3,
+    "t": 7.67,
+    "dur": 9,
+    "interval": 612,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "render": 6.9
+    },
+    "gl": {}
+   },
+   {
+    "i": 235,
+    "ts": 47985,
+    "gap": 3,
+    "heap": 146.3,
+    "heapEnd": 146.5,
+    "t": 7.72,
+    "dur": 219.7,
+    "interval": 12.1,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "weapons.update": 1.1,
+     "render": 215.8
+    },
+    "gl": {}
+   },
+   {
+    "i": 236,
+    "ts": 48278,
+    "gap": 73,
+    "heap": 146.5,
+    "heapEnd": 146.7,
+    "t": 7.74,
+    "dur": 38.5,
+    "interval": 291.1,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "player.update": 5.2,
+     "bots.update": 1.1,
+     "render": 30.5
+    },
+    "gl": {}
+   },
+   {
+    "i": 283,
+    "ts": 50288,
+    "gap": 82,
+    "heap": 133.6,
+    "heapEnd": 133.8,
+    "t": 9.47,
+    "dur": 16.4,
+    "interval": 103.1,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "bots.update": 2.5,
+     "render": 12.6
+    },
+    "gl": {}
+   },
+   {
+    "i": 331,
+    "ts": 52075,
+    "gap": 6,
+    "heap": 144.7,
+    "heapEnd": 145.3,
+    "t": 11.21,
+    "dur": 69.2,
+    "interval": 24.2,
+    "newProg": [
+     "#106",
+     "#107",
+     "#108"
+    ],
+    "users": {
+     "107": [
+      "S:Mesh/MeshBasicMaterial"
+     ],
+     "108": [
+      "S:Mesh/MeshBasicMaterial[inst]"
+     ]
+    },
+    "keys": [
+     "|basic,highp,srgb-linear,false,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,1,5121,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+     "|basic,highp,srgb-linear,false,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,1,1025,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+     "|basic,highp,srgb-linear,false,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,3,1025,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}"
+    ],
+    "dTex": 0,
+    "dGeo": 2,
+    "parts": {
+     "render": 66.5
+    },
+    "gl": {
+     "bufferSubData": {
+      "n": 24,
+      "ms": 4.1
+     },
+     "getProgramInfoLog": {
+      "n": 3,
+      "ms": 38.2
+     },
+     "getProgramParameter": {
+      "n": 9,
+      "ms": 1.2
+     }
+    }
+   },
+   {
+    "i": 334,
+    "ts": 52186,
+    "gap": 7,
+    "heap": 145.8,
+    "heapEnd": 146,
+    "t": 11.3,
+    "dur": 45.4,
+    "interval": 24.2,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "bots.update": 1.7,
+     "effects.update": 3,
+     "render": 37.9
+    },
+    "gl": {}
+   },
+   {
+    "i": 353,
+    "ts": 52629,
+    "gap": 4,
+    "heap": 150.3,
+    "heapEnd": 150.6,
+    "t": 11.75,
+    "dur": 39.3,
+    "interval": 18.1,
+    "newProg": [
+     "#109"
+    ],
+    "users": {
+     "109": [
+      "S:Sprite/SpriteMaterial",
+      "S:Sprite/SpriteMaterial",
+      "S:Sprite/SpriteMaterial",
+      "+3"
+     ]
+    },
+    "keys": [
+     "|sprite,highp,srgb-linear,false,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,true,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,1,1025,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}"
+    ],
+    "dTex": 1,
+    "dGeo": 0,
+    "parts": {
+     "weapons.update": 2.2,
+     "bots.update": 1.8,
+     "render": 33.1
+    },
+    "gl": {
+     "getProgramInfoLog": {
+      "n": 1,
+      "ms": 16.6
+     }
+    }
+   },
+   {
+    "i": 379,
+    "ts": 53188,
+    "gap": 2,
+    "heap": 131,
+    "heapEnd": 133.2,
+    "t": 12.31,
+    "dur": 695.8,
+    "interval": 12,
+    "newProg": [
+     "#110",
+     "#111",
+     "#112",
+     "#113"
+    ],
+    "users": {
+     "110": [
+      "S:grapple-rope/MeshBasicMaterial@grapple"
+     ],
+     "111": [
+      "S:Mesh/MeshStandardMaterial@grapple-claw"
+     ],
+     "112": [
+      "S:Mesh/MeshBasicMaterial@grapple-claw"
+     ],
+     "113": [
+      "S:Sprite/SpriteMaterial@grapple-claw"
+     ]
+    },
+    "keys": [
+     "|basic,highp,srgb-linear,false,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,1,134147,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+     "|physical,STANDARD,,highp,srgb-linear,306,1024,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,33,132099,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+     "|basic,highp,srgb-linear,false,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,1,132099,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+     "|sprite,highp,srgb-linear,false,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,true,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,1,1027,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}"
+    ],
+    "dTex": 2,
+    "dGeo": 3,
+    "parts": {
+     "player.update": 2.9,
+     "updateMatch": 1.7,
+     "render": 689.1
+    },
+    "gl": {
+     "getProgramInfoLog": {
+      "n": 4,
+      "ms": 667.4
+     },
+     "getProgramParameter": {
+      "n": 12,
+      "ms": 1.5
+     }
+    }
+   },
+   {
+    "i": 380,
+    "ts": 53895,
+    "gap": 12,
+    "heap": 133.2,
+    "heapEnd": 133.6,
+    "t": 12.32,
+    "dur": 12.4,
+    "interval": 709.1,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "player.update": 1.3,
+     "bots.update": 2.2,
+     "render": 7.3
+    },
+    "gl": {}
+   },
+   {
+    "i": 381,
+    "ts": 54027,
+    "gap": 120,
+    "heap": 133.6,
+    "heapEnd": 133.8,
+    "t": 12.37,
+    "dur": 9.7,
+    "interval": 133.6,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "bots.update": 1.5,
+     "render": 6.5
+    },
+    "gl": {}
+   },
+   {
+    "i": 440,
+    "ts": 55427,
+    "gap": 98,
+    "heap": 147.6,
+    "heapEnd": 147.8,
+    "t": 13.71,
+    "dur": 11.2,
+    "interval": 109.1,
+    "newProg": [],
+    "dTex": 0,
+    "dGeo": 0,
+    "parts": {
+     "render": 8.7
+    },
+    "gl": {}
+   }
+  ],
+  "longtasks": [
+   {
+    "start": 2006,
+    "dur": 2413,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 4598,
+    "dur": 58,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 6396,
+    "dur": 60,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 8151,
+    "dur": 1821,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 9975,
+    "dur": 542,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 10715,
+    "dur": 8240,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 18974,
+    "dur": 180,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 19155,
+    "dur": 574,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 19735,
+    "dur": 131,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 19867,
+    "dur": 176,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 20044,
+    "dur": 146,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 20190,
+    "dur": 185,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 20378,
+    "dur": 137,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 20516,
+    "dur": 169,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 20688,
+    "dur": 131,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 20822,
+    "dur": 78,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 20938,
+    "dur": 133,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 21101,
+    "dur": 220,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 21323,
+    "dur": 160,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 21485,
+    "dur": 196,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 21681,
+    "dur": 130,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 21812,
+    "dur": 53,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 21944,
+    "dur": 60,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 22084,
+    "dur": 73,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 22216,
+    "dur": 134,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 22351,
+    "dur": 981,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 23333,
+    "dur": 1101,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 24442,
+    "dur": 3396,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 27856,
+    "dur": 238,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 28094,
+    "dur": 3795,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 31942,
+    "dur": 673,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 32615,
+    "dur": 5240,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 38542,
+    "dur": 68,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 38744,
+    "dur": 63,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 38867,
+    "dur": 56,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 42900,
+    "dur": 227,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 43522,
+    "dur": 50,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 43710,
+    "dur": 332,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 44278,
+    "dur": 68,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 46548,
+    "dur": 56,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 47365,
+    "dur": 608,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 47985,
+    "dur": 291,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 48277,
+    "dur": 65,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 49902,
+    "dur": 82,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 50531,
+    "dur": 56,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 52075,
+    "dur": 71,
+    "name": "self",
+    "attr": "window"
+   },
+   {
+    "start": 53188,
+    "dur": 706,
+    "name": "self",
+    "attr": "window"
+   }
+  ],
+  "glTotalMs": {
+   "compileShader": 2.5,
+   "linkProgram": 2.4,
+   "bufferSubData": 54.9,
+   "bufferData": 42.1,
+   "useProgram": 48,
+   "drawElements": 48.9,
+   "uniformMatrix4fv": 188.4,
+   "drawArrays": 123.6,
+   "getProgramInfoLog": 4920.5,
+   "getProgramParameter": 12.1,
+   "getActiveUniform": 1.8,
+   "getUniformLocation": 2.5,
+   "texSubImage2D": 24.9,
+   "drawElementsInstanced": 11
+  }
+ },
+ "errors": []
+}

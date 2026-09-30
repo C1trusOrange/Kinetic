@@ -1,0 +1,62 @@
+[run] http://127.0.0.1:57864/index.html?autotest=1&map=sandbox&bots=0&scenario=tools/out/audit/feel-movement/shots.js&pose=land&after=0.05&duration=30
+[run] screenshot -> tools\out\audit\feel-movement\img\land.png
+[result] {
+ "done": true,
+ "started": true,
+ "t": 4.01,
+ "frames": 127,
+ "fps": {
+  "avg": 16.9,
+  "min": 4,
+  "max": 55.6
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 28.4,
+  "maxSpeed": 0,
+  "minY": -19.366666666666617,
+  "maxY": 9,
+  "states": {
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 1,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 77,
+  "triangles": 26548,
+  "geometries": 117,
+  "textures": 114,
+  "programs": 90
+ },
+ "custom": {
+  "pose": "land",
+  "state": {
+   "why": "land-timeout",
+   "speed": 0,
+   "fov": 63.68,
+   "roll": -60.16,
+   "pitch": -13.79,
+   "sliding": false,
+   "wall": false,
+   "grappling": false,
+   "eye": 1.66,
+   "camY": 0.34
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

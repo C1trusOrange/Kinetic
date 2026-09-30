@@ -1,0 +1,45 @@
+[run] http://127.0.0.1:58488/index.html?autotest=1&map=testmap3&mapfile=tools/out/audit/review-player/testmap3.js&bots=0&script=idle&scenario=tools/out/audit/review-player/canstand3.js
+[warning] [world] map 'testmap3' has 1 warning(s):
+ - only 4 spawn point(s): 14-18 recommended
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0,
+ "frames": 16,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 82.64462809917204
+ },
+ "errors": [],
+ "map": "testmap3",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "total": 64,
+  "clearWrong": 0,
+  "standWrong": 0,
+  "rows": []
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

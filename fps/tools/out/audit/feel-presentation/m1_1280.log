@@ -1,0 +1,10 @@
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[shot] tools\out\audit\feel-presentation\m_main_1280.png
+[shot] tools\out\audit\feel-presentation\m_setup_1280.png
+[shot] tools\out\audit\feel-presentation\m_setup_ruins_tdm_1280.png
+[shot] tools\out\audit\feel-presentation\m_settings_1280.png
+[shot] tools\out\audit\feel-presentation\m_controls_1280.png
+[shot] tools\out\audit\feel-presentation\m_loading_1280.png
+{'fps': 28.740125797934528, 'info': {'calls': 106, 'tris': 100002}}
+[sess] console errors=0 warnings=1

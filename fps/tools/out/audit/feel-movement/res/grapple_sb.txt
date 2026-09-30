@@ -1,0 +1,6 @@
+fps {'avg': 32.1, 'min': 4, 'max': 185.2} errors 0 [] t 32.58
+sb_tower_pitch_0.95 {"fireT":0.29,"attachDelay":0.13,"missT":null,"pullDur":1.23,"releaseReason":"reached","speed3dSeries_0_2":[0,6.77,12.51,18.18,19.83,15.75,12.11],"ySeries_0_2":[0,0.56,1.91,4.06,6.94,9.64,11.98],"peak3d":21.35,"releaseSpeed3d":11.91,"releaseVel":[3.77,11.29,0],"releasePos":[18.8,12.26,-16],"distanceCovered":16.34,"postRelease_speed3d":[11.91,4.47,7.2,12,16.8,21.6],"postRelease_y":[12.26,13.17,12.19,10.25,7.35,3.49],"postRelease_hs":[3.77,3.77,0,0,0,0],"final":[30.6,0,-16],"events":["fire@0.29","attach@0.43","release:reached@1.66"],"mantles":1,"chargeEnd":1}
+sb_tower_pitch_1.05 {"fireT":0.31,"attachDelay":null,"missT":0.68,"final":[26.54,16,-16],"events":["fire@0.31","miss@0.68"],"mantles":0,"chargeEnd":1}
+sb_tower_pitch_1.15 {"fireT":0.33,"attachDelay":null,"missT":0.73,"final":[26.54,16,-16],"events":["fire@0.33","miss@0.73"],"mantles":0,"chargeEnd":1}
+sb_tower_pitch_1.25 {"fireT":0.3,"attachDelay":null,"missT":0.7,"final":[26.54,16,-16],"events":["fire@0.3","miss@0.7"],"mantles":0,"chargeEnd":1}
+[run] done: wait=ok console_errors=0 warnings=0

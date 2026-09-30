@@ -1,0 +1,151 @@
+[run] http://127.0.0.1:53981/index.html?autotest=1&map=sandbox&bots=3&scenario=tools/out/audit/verify-core-2/misc.js&duration=6&variant=plain
+[error] [game] frame error (x1): Error: probe: hud.update fault
+    at game.hud.update (http://127.0.0.1:53981/tools/out/audit/verify-core-2/misc.js:35:37)
+    at Game.update (http://127.0.0.1:53981/src/core/Game.js:633:14)
+    at Game._loop (http://127.0.0.1:53981/src/core/Game.js:592:16)
+[error] [game] frame error (x2): Error: probe: hud.update fault
+    at game.hud.update (http://127.0.0.1:53981/tools/out/audit/verify-core-2/misc.js:35:37)
+    at Game.update (http://127.0.0.1:53981/src/core/Game.js:633:14)
+    at Game._loop (http://127.0.0.1:53981/src/core/Game.js:592:16)
+[error] [game] frame error (x3): Error: probe: hud.update fault
+    at game.hud.update (http://127.0.0.1:53981/tools/out/audit/verify-core-2/misc.js:35:37)
+    at Game.update (http://127.0.0.1:53981/src/core/Game.js:633:14)
+    at Game._loop (http://127.0.0.1:53981/src/core/Game.js:592:16)
+[error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done
+[result] {
+ "done": false,
+ "started": true,
+ "t": 3.19,
+ "frames": 2291,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 196.0784313731426
+ },
+ "errors": [
+  "[game] frame error (x1): Error: probe: hud.update fault\n    at game.hud.update (http://127.0.0.1:53981/tools/out/audit/verify-core-2/misc.js:35:37)\n    at Game.update (http://127.0.0.1:53981/src/core/Game.js:633:14)\n    at Game._loop (http://127.0.0.1:53981/src/core/Game.js:592:16)",
+  "[game] frame error (x2): Error: probe: hud.update fault\n    at game.hud.update (http://127.0.0.1:53981/tools/out/audit/verify-core-2/misc.js:35:37)\n    at Game.update (http://127.0.0.1:53981/src/core/Game.js:633:14)\n    at Game._loop (http://127.0.0.1:53981/src/core/Game.js:592:16)",
+  "[game] frame error (x3): Error: probe: hud.update fault\n    at game.hud.update (http://127.0.0.1:53981/tools/out/audit/verify-core-2/misc.js:35:37)\n    at Game.update (http://127.0.0.1:53981/src/core/Game.js:633:14)\n    at Game._loop (http://127.0.0.1:53981/src/core/Game.js:592:16)"
+ ],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 1,
+  "deaths": 0,
+  "damageDealt": 150,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 3,
+  "death": 2,
+  "spawn": 4,
+  "pickup": 2,
+  "fire": 4
+ },
+ "renderer": {},
+ "custom": {
+  "mouse": {
+   "x300": 300,
+   "x699": 699,
+   "x701": 0,
+   "x900": 0,
+   "x1500": 0,
+   "two450": 900
+  },
+  "frameError": {
+   "rendersDuringFault": 0,
+   "framesAdvanced": 131,
+   "simAdvanced": 0.996,
+   "baselineRenders500ms": 8,
+   "rendersAfterRestore500ms": 16
+  },
+  "lock": [
+   [
+    "start",
+    {
+     "state": "playing",
+     "failures": 0,
+     "unavailable": false,
+     "errEvents": 0
+    }
+   ],
+   [
+    "esc1 (pause)",
+    {
+     "state": "paused",
+     "failures": 0,
+     "unavailable": false,
+     "errEvents": 0
+    }
+   ],
+   [
+    "esc2 (resume)",
+    {
+     "state": "playing",
+     "failures": 2,
+     "unavailable": false,
+     "errEvents": 2
+    }
+   ],
+   [
+    "esc3 (pause)",
+    {
+     "state": "paused",
+     "failures": 2,
+     "unavailable": false,
+     "errEvents": 2
+    }
+   ],
+   [
+    "esc4 (resume)",
+    {
+     "state": "playing",
+     "failures": 4,
+     "unavailable": true,
+     "errEvents": 4
+    }
+   ],
+   [
+    "click after flag",
+    {
+     "requestLockCalls": 0,
+     "state": "playing",
+     "failures": 4,
+     "unavailable": true,
+     "errEvents": 4
+    }
+   ],
+   [
+    "click when flag clear",
+    {
+     "requestLockCalls": 1
+    }
+   ]
+  ],
+  "staleCredit": {
+   "attackerKillsDelta": 1,
+   "victimDeathsDelta": 1,
+   "lastAttackerName": "Torque",
+   "timeSinceAttackerHit": 20
+  },
+  "banner": {
+   "variant": "plain",
+   "state": "ended",
+   "over": true,
+   "playerWon": true,
+   "title": "VICTORY",
+   "sub": "YOU WIN",
+   "kind": "win"
+  }
+ },
+ "errorCount": 3
+}
+[run] done: wait=TIMEOUT console_errors=4 warnings=0

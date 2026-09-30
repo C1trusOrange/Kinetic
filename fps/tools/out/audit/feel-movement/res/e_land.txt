@@ -1,0 +1,7 @@
+attempt 0 failed: 
+attempt 1 failed: .0.0.1:64436/src/world/Textures.js] | [error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:64436/src/world/MapBuilder.js] | [error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done | [result] null | [run] done: wait=TIMEOUT console_errors=9 warnings=0 | 
+fps {'avg': 58.2, 'min': 4, 'max': 172.4} errors 0 [] t 9.98
+land_from_3 {"impact":12,"dipMin":-0.037,"overshoot":0.003,"pitchDipDeg":-24.23,"landImpact":0.27,"trauma":0,"recoverT":0.19,"dipSeries":[0,-0.037,-0.017,-0.007,0,0.003,0.003,0.002,0.001,0,0,0,0,0],"speedAfter":0}
+land_from_8 {"impact":19.6,"dipMin":-0.083,"overshoot":0.004,"pitchDipDeg":-1.65,"landImpact":0.65,"trauma":0.23,"recoverT":0.22,"dipSeries":[0,-0.083,-0.064,-0.049,-0.011,0.001,0.004,0.004,0.002,0.001,0,0,0,0],"speedAfter":0}
+land_from_15 {"impact":26.8,"dipMin":-0.116,"overshoot":0.01,"pitchDipDeg":-2.32,"landImpact":0.87,"trauma":0.3,"recoverT":0.25,"dipSeries":[0,-0.116,-0.107,-0.048,-0.011,0.001,0.01,0.01,0.004,0.002,0,-0.001,-0.001,0],"speedAfter":0}
+[run] done: wait=ok console_errors=0 warnings=1

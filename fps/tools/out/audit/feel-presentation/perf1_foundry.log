@@ -1,0 +1,25 @@
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+canvas {'w': 1920, 'h': 1080, 'pr': 1, 'msaa': 4, 'bloom': True}
+high (msaa4, bloom)                {'med': 4.1, 'p10': 3.1, 'p90': 5.4, 'n': 76}
+high, bloom pass disabled          {'med': 2.8, 'p10': 2.3, 'p90': 3.4, 'n': 75}
+high + vignette/grade pass         {'med': 3.7, 'p10': 3.1, 'p90': 4.4, 'n': 75}
+high (msaa4, bloom)                {'med': 3.2, 'p10': 2.6, 'p90': 3.9, 'n': 75}
+high, bloom pass disabled          {'med': 2.8, 'p10': 2.1, 'p90': 3.7, 'n': 75}
+high + vignette/grade pass         {'med': 4.2, 'p10': 3.4, 'p90': 5.9, 'n': 75}
+{"high": [{"med": 4.1, "p10": 3.1, "p90": 5.4, "n": 76}, {"med": 3.2, "p10": 2.6, "p90": 3.9, "n": 75}], "high-nobloom": [{"med": 2.8, "p10": 2.3, "p90": 3.4, "n": 75}, {"med": 2.8, "p10": 2.1, "p90": 3.7, "n": 75}], "high+grade": [{"med": 3.7, "p10": 3.1, "p90": 4.4, "n": 75}, {"med": 4.2, "p10": 3.4, "p90": 5.9, "n": 75}]}
+medium {'w': 1920, 'h': 1080, 'composer': True}
+quality medium                     {'med': 4.4, 'p10': 3.1, 'p90': 7.1, 'n': 75}
+[warning] THREE.WebGLProgram: Program Info Log: (50,12-96): warning X4713: Sample Bias value is limited to the range [-16.00, 15.99], using -16.000000 instead of -100.000000
+(50,12-96): warning X4713: Sample Bias value is limited to the range [-16.00, 15.99], using -16.000000 instead of -100.000000
+(50,12-96): warning X4713: Sample Bias value is limited to the range [-16.00, 15.99], using -16.000000 instead of -100.000000
+(50,12-96): warning X4713: Sample Bias value is limited to the range [-16.00, 15.99], using -16.000000 instead of -100.000000
+(50,12-96): warning X4713: Sample Bias value is limited to the range [-16.00, 15.99], using -16.000000 instead of -100.000000
+(50,12-96): warning X4713: Sample Bias value is limited to the range [-16.00, 15.99], using -16.000000 instead of -100.000000
+(50,12-96): warning X4713: Sample Bias value is limited to the range [-16.00, 15.99], using -16.000000 instead of -100.000000
+medium + FXAA                      {'med': 4.2, 'p10': 3.1, 'p90': 6.9, 'n': 75}
+low {'w': 1440, 'h': 810, 'composer': False}
+quality low                        {'med': 3.3, 'p10': 2.6, 'p90': 4.7, 'n': 77}
+high {'w': 1920, 'h': 1080, 'composer': True}
+quality high                       {'med': 3.4, 'p10': 2.5, 'p90': 4.8, 'n': 75}
+[sess] console errors=0 warnings=2

@@ -1,0 +1,22 @@
+hasFocus True
+A: fresh page, no activation -> Esc
+A [{"ev": "keydown", "code": "Escape", "trusted": true, "activeAtHandlerStart": false, "been": false, "t": 1946}, {"ev": "lock-rejected", "code": "Escape", "name": "NotAllowedError", "msg": "A user gesture is required to request Pointer Lock."}, {"ev": "pointerlockerror", "t": 1948}]
+   isActive now: False
+   isActive after Esc: False hasBeenActive False
+B: KeyP
+B [{"ev": "keydown", "code": "KeyP", "trusted": true, "activeAtHandlerStart": true, "been": true, "t": 2494}, {"ev": "lock-resolved", "code": "KeyP"}, {"ev": "pointerlockchange", "locked": true}]
+   isActive now: True
+C: wait 6.5s then Esc (activation expired)
+   isActive before: False
+C [{"ev": "pointerlockchange", "locked": false}]
+   isActive now: False
+D: wait 6.5 s then KeyP
+D [{"ev": "keydown", "code": "KeyP", "trusted": true, "activeAtHandlerStart": true, "been": true, "t": 16691}, {"ev": "lock-resolved", "code": "KeyP"}, {"ev": "pointerlockchange", "locked": true}]
+   isActive now: True
+E: mouse click activation then immediate Esc
+E [{"ev": "click", "active": true}, {"ev": "pointerlockchange", "locked": false}]
+   isActive now: True
+F: wait 6.5s then Esc again
+F [{"ev": "keydown", "code": "Escape", "trusted": true, "activeAtHandlerStart": false, "been": true, "t": 24486}, {"ev": "lock-rejected", "code": "Escape", "name": "NotAllowedError", "msg": "A user gesture is required to request Pointer Lock."}, {"ev": "pointerlockerror", "t": 24487}]
+   isActive now: False
+[sess] console errors=0 warnings=0

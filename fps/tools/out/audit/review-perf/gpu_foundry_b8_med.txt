@@ -1,0 +1,236 @@
+[run] http://127.0.0.1:54078/index.html?autotest=1&map=foundry&bots=8&duration=25&quality=medium&scenario=tools/out/audit/review-perf/scenario_gpu.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 25.15,
+ "frames": 957,
+ "fps": {
+  "avg": 45.3,
+  "min": 4,
+  "max": 188.7
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 92.1917682462555,
+  "maxSpeed": 10.5,
+  "minY": -4,
+  "maxY": 5.551115123125783e-17,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isWallRunning": true
+  },
+  "shots": 32,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 90,
+   "weapon": "sniper",
+   "state": "chase",
+   "distance": 108,
+   "pos": [
+    -18.4,
+    0,
+    -0.8
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 88,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 149.3,
+   "pos": [
+    5.5,
+    0,
+    -11.7
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 150.4,
+   "pos": [
+    -13.5,
+    0,
+    24.4
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 24,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 132.5,
+   "pos": [
+    12.5,
+    6.2,
+    -8.2
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 162,
+   "pos": [
+    5.1,
+    0,
+    37.7
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 149.4,
+   "pos": [
+    -33.8,
+    0,
+    -29.3
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 83,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 128.8,
+   "pos": [
+    -7.1,
+    0,
+    -29
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 24,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 139.7,
+   "pos": [
+    5.1,
+    1.2,
+    -22.4
+   ]
+  }
+ ],
+ "events": {
+  "damage": 52,
+  "death": 7,
+  "spawn": 16,
+  "pickup": 2,
+  "fire": 170
+ },
+ "renderer": {
+  "calls": 353,
+  "triangles": 126884,
+  "geometries": 222,
+  "textures": 139,
+  "programs": 107
+ },
+ "custom": {
+  "hasTimer": true,
+  "names": [
+   "0:RenderPass",
+   "1:RenderPass",
+   "2:UnrealBloomPass",
+   "3:OutputPass"
+  ],
+  "passes": {
+   "0:RenderPass [shadowSkip]": {
+    "n": 500,
+    "median": 3.168,
+    "mean": 11.306,
+    "p90": 6.98
+   },
+   "1:RenderPass [shadowSkip]": {
+    "n": 500,
+    "median": 0.256,
+    "mean": 2.38,
+    "p90": 0.575
+   },
+   "2:UnrealBloomPass [shadowSkip]": {
+    "n": 500,
+    "median": 1.084,
+    "mean": 1.739,
+    "p90": 1.269
+   },
+   "3:OutputPass [shadowSkip]": {
+    "n": 500,
+    "median": 0.659,
+    "mean": 0.663,
+    "p90": 0.706
+   },
+   "0:RenderPass [shadowUpdate]": {
+    "n": 419,
+    "median": 4.108,
+    "mean": 7.496,
+    "p90": 18.163
+   },
+   "1:RenderPass [shadowUpdate]": {
+    "n": 419,
+    "median": 0.258,
+    "mean": 1.023,
+    "p90": 0.458
+   },
+   "2:UnrealBloomPass [shadowUpdate]": {
+    "n": 418,
+    "median": 1.059,
+    "mean": 1.515,
+    "p90": 1.295
+   },
+   "3:OutputPass [shadowUpdate]": {
+    "n": 418,
+    "median": 0.649,
+    "mean": 0.659,
+    "p90": 0.706
+   }
+  },
+  "size": [
+   1920,
+   1080
+  ],
+  "quality": "medium",
+  "bots": 8
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

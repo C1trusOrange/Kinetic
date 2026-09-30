@@ -1,0 +1,111 @@
+[run] http://127.0.0.1:49374/index.html?autotest=1&map=sandbox&bots=1&script=idle&scenario=tools/out/audit/verify-fxaudio-1/v1.js&mode=pillar&duration=5
+[log] [autotest] finished {"ok":true,"errors":0,"fps":27.5}
+[run] screenshot -> tools\out\audit\verify-fxaudio-1\pillar.png
+[result] {
+ "done": true,
+ "started": true,
+ "t": 6.39,
+ "frames": 177,
+ "fps": {
+  "avg": 27.5,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 11.6,
+  "maxSpeed": 8.61,
+  "minY": 0,
+  "maxY": 3.0736445511237758,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 23.3,
+   "pos": [
+    -9.9,
+    0,
+    28.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 2,
+  "pickup": 0,
+  "fire": 4
+ },
+ "renderer": {
+  "calls": 128,
+  "triangles": 36174,
+  "geometries": 158,
+  "textures": 124,
+  "programs": 101
+ },
+ "custom": {
+  "mode": "pillar",
+  "tHit": 0.6816000000000024,
+  "decals": [
+   {
+    "i": 150,
+    "scorch": true,
+    "pos": [
+     6.5,
+     1.5,
+     7.15
+    ],
+    "n": [
+     0,
+     0.02,
+     1
+    ],
+    "size": 6.9,
+    "coverage": 0.06
+   },
+   {
+    "i": 151,
+    "scorch": true,
+    "pos": [
+     6.5,
+     0.29,
+     7.3
+    ],
+    "n": [
+     0,
+     1,
+     0
+    ],
+    "size": 7.95,
+    "coverage": 0.06
+   }
+  ],
+  "effStats": {
+   "smoke": 136,
+   "glow": 57,
+   "tracers": 0,
+   "decals": 9,
+   "gibs": 0,
+   "dropped": 0
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

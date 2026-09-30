@@ -1,0 +1,88 @@
+[run] http://127.0.0.1:60420/index.html?autotest=1&map=sandbox&bots=0&god=1&script=idle&scenario=tools/out/audit/verify-weapons-1/rate.js&duration=12
+[log] [autotest] finished {"ok":true,"errors":0,"fps":54.8}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 12.19,
+ "frames": 575,
+ "fps": {
+  "avg": 54.8,
+  "min": 4,
+  "max": 181.8
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 790,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 790
+ },
+ "renderer": {
+  "calls": 127,
+  "triangles": 34622,
+  "geometries": 121,
+  "textures": 116,
+  "programs": 98
+ },
+ "custom": {
+  "real": {
+   "shots": 59,
+   "sim": 6.017,
+   "perSec": 9.806,
+   "frames": 280,
+   "hz": 46.5
+  },
+  "sim": {
+   "30": {
+    "shots": 100,
+    "perSec": 10
+   },
+   "60": {
+    "shots": 100,
+    "perSec": 10
+   },
+   "75": {
+    "shots": 108,
+    "perSec": 10.8
+   },
+   "90": {
+    "shots": 100,
+    "perSec": 10
+   },
+   "120": {
+    "shots": 110,
+    "perSec": 11
+   },
+   "144": {
+    "shots": 103,
+    "perSec": 10.3
+   },
+   "240": {
+    "shots": 110,
+    "perSec": 11
+   }
+  },
+  "rifleFireRate": 11,
+  "curId": "rifle"
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

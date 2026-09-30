@@ -1,0 +1,80 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>audiolab</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<style>html,body{margin:0;background:#111;color:#ccc;font:10px monospace}canvas{display:block}</style></head>
+<body><canvas id="c"></canvas>
+<script type="module">
+import { AudioSystem, SOUND_LIST, LOOP_SOUNDS } from '/src/core/Audio.js';
+const params = new URLSearchParams(location.search);
+const only = params.get('names') ? params.get('names').split(',') : null;
+const game = { camera: { position: { x: 0, y: 0, z: 0 } } };
+const audio = new AudioSystem(game);
+const t0 = performance.now();
+await audio.init();
+const initMs = performance.now() - t0;
+
+function fft(re, im) {
+  const n = re.length;
+  for (let i = 1, j = 0; i < n; i++) { let bit = n >> 1; for (; j & bit; bit >>= 1) j ^= bit; j ^= bit; if (i < j) { [re[i], re[j]] = [re[j], re[i]]; [im[i], im[j]] = [im[j], im[i]]; } }
+  for (let len = 2; len <= n; len <<= 1) {
+    const ang = -2 * Math.PI / len, wr = Math.cos(ang), wi = Math.sin(ang);
+    for (let i = 0; i < n; i += len) { let cr = 1, ci = 0; for (let j = 0; j < len / 2; j++) {
+      const ur = re[i + j], ui = im[i + j], vr = re[i + j + len / 2] * cr - im[i + j + len / 2] * ci, vi = re[i + j + len / 2] * ci + im[i + j + len / 2] * cr;
+      re[i + j] = ur + vr; im[i + j] = ui + vi; re[i + j + len / 2] = ur - vr; im[i + j + len / 2] = ui - vi;
+      const t = cr * wr - ci * wi; ci = cr * wi + ci * wr; cr = t; } }
+  }
+}
+const names = only || SOUND_LIST;
+const CW = 300, CH = 92, COLS = 4;
+const rows = Math.ceil(names.length / COLS);
+const cv = document.getElementById('c'); cv.width = CW * COLS; cv.height = CH * rows;
+const g = cv.getContext('2d'); g.fillStyle = '#111'; g.fillRect(0, 0, cv.width, cv.height);
+const info = { initMs: Math.round(initMs), stats: audio.stats, sounds: {} };
+const N = 512, HOP = 256;
+names.forEach((name, idx) => {
+  const buf = audio.getBuffers(name)[0];
+  if (!buf) return;
+  const x0 = (idx % COLS) * CW, y0 = Math.floor(idx / COLS) * CH;
+  const d = buf.getChannelData(0), n = buf.length, sr = buf.sampleRate;
+  const loopN = LOOP_SOUNDS.includes(name) ? Math.floor(n * 0) + n : n;
+  // stats
+  let peak = 0, sum = 0, nan = 0;
+  for (let i = 0; i < n; i++) { const v = d[i]; if (v !== v) nan++; const a = Math.abs(v); if (a > peak) peak = a; sum += v * v; }
+  // spectral bands (energy): <200, 200-2k, >2k, and centroid
+  const bands = [0, 0, 0]; let cnum = 0, cden = 0;
+  const win = new Float32Array(N); for (let i = 0; i < N; i++) win[i] = 0.5 - 0.5 * Math.cos(2 * Math.PI * i / (N - 1));
+  const frames = Math.max(1, Math.floor((n - N) / HOP));
+  const gx = CW - 4, gy = 56, oy = 34;
+  const spec = [];
+  for (let f = 0; f < gx; f++) {
+    const s0 = Math.floor(f / gx * frames) * HOP;
+    const re = new Float64Array(N), im = new Float64Array(N);
+    for (let i = 0; i < N; i++) re[i] = (d[s0 + i] || 0) * win[i];
+    fft(re, im);
+    const col = new Float32Array(N / 2);
+    for (let k = 0; k < N / 2; k++) { const m = Math.hypot(re[k], im[k]); col[k] = m; const fr = k * sr / N; const f2 = fr * fr; const ra = fr < 10 ? 0 : (148840000 * f2 * f2) / ((f2 + 424.4) * Math.sqrt((f2 + 11600) * (f2 + 544500)) * (f2 + 148840000)); const e = m * m * ra * ra; bands[fr < 250 ? 0 : fr < 2500 ? 1 : 2] += e; cnum += fr * e; cden += e; }
+    spec.push(col);
+  }
+  // waveform
+  g.fillStyle = '#1c2230'; g.fillRect(x0 + 2, y0 + 12, CW - 4, 22);
+  g.fillStyle = '#5cf';
+  for (let px = 0; px < CW - 4; px++) {
+    const a = Math.floor(px / (CW - 4) * n), b = Math.floor((px + 1) / (CW - 4) * n);
+    let mx = 0; for (let i = a; i < b; i++) { const v = Math.abs(d[i]); if (v > mx) mx = v; }
+    const h = mx * 11; g.fillRect(x0 + 2 + px, y0 + 23 - h, 1, Math.max(1, h * 2));
+  }
+  // spectrogram (log freq 60..20k)
+  const img = g.createImageData(gx, gy);
+  for (let f = 0; f < gx; f++) for (let yy = 0; yy < gy; yy++) {
+    const fr = 60 * Math.pow(20000 / 60, 1 - yy / gy); const k = Math.min(N / 2 - 1, Math.floor(fr * N / sr));
+    const v = Math.log10(1 + spec[f][k] * 1.2) / 1.25; const c = Math.min(255, v * 255);
+    const o = (yy * gx + f) * 4; img.data[o] = c; img.data[o + 1] = c * 0.75; img.data[o + 2] = 255 - c * 0.6 > 40 ? Math.max(0, 140 - c * 0.5) : 0; img.data[o + 3] = 255;
+  }
+  g.putImageData(img, x0 + 2, y0 + oy);
+  g.fillStyle = '#fff'; g.fillText(`${name}  ${(n / sr).toFixed(2)}s x${audio.getBuffers(name).length} ch${buf.numberOfChannels}`, x0 + 3, y0 + 9);
+  const tot = bands[0] + bands[1] + bands[2] || 1;
+  info.sounds[name] = { dur: +(n / sr).toFixed(2), rawPeak: +(buf.__peak || 0).toFixed(2), peak: +peak.toFixed(2), rms: +Math.sqrt(sum / n).toFixed(3), nan,
+    lo: +(bands[0] / tot).toFixed(2), mid: +(bands[1] / tot).toFixed(2), hi: +(bands[2] / tot).toFixed(2), centroid: Math.round(cnum / (cden || 1)) };
+});
+window.__LAB__ = info; window.__LAB_READY__ = true;
+</script></body></html>

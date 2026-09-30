@@ -1,0 +1,83 @@
+[run] http://127.0.0.1:62230/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-player/v_restart.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 1.77,
+ "frames": 91,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 83.33333333333017
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 7.645650147794013,
+  "maxSpeed": 16.584063818802488,
+  "minY": 0,
+  "maxY": 9,
+  "states": {
+   "onGround": true,
+   "isGrappling": true,
+   "airborne": true,
+   "isCrouching": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 2,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "before": {
+   "state": "playing",
+   "sliding": false,
+   "grapple": "attached",
+   "loops": 1,
+   "loopBusGain": 1,
+   "ready": true,
+   "ctx": "running",
+   "gvis": true,
+   "speed": 16.58
+  },
+  "afterSwitch": {
+   "state": "playing",
+   "map": "ruins",
+   "pstate": "ground",
+   "sliding": false,
+   "grapple": "idle",
+   "gvis": false,
+   "loops": 0,
+   "loopBusGain": 0.67,
+   "ready": true,
+   "ctx": "running",
+   "alive": true,
+   "anchor": false,
+   "charge": 1,
+   "crouched": false,
+   "h": 1.8,
+   "fov": 80.36035023901302
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

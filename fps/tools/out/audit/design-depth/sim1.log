@@ -1,0 +1,9 @@
+[run] http://127.0.0.1:60712/index.html?autotest=1&mapfile=tools/out/audit/design-depth/aerie_proto.js&bots=7&script=idle&scenario=tools/out/audit/design-depth/sim.js&duration=60&diff=normal&quality=low
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:60712/src/world/World.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:60712/src/world/maps/index.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:60712/src/core/Game.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:60712/src/player/Player.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:60712/src/weapons/WeaponSystem.js]
+[error] [run] timed out after 400s waiting for: window.__TEST__ && window.__TEST__.done
+[result] null
+[run] done: wait=TIMEOUT console_errors=6 warnings=0

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="icon" href="data:,"><meta name="viewport" content="width=device-width, initial-scale=1"><title>atfix</title>
+<link rel="stylesheet" href="/style.css">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><div id="game"></div><div id="ui"></div>
+<script type="module">
+const errors = []; window.__ERRORS__ = errors;
+const oce = console.error.bind(console);
+console.error = (...a) => { try { errors.push(a.map(x => (x && x.stack) ? x.stack : String(x)).join(' ')); } catch {} oce(...a); };
+window.addEventListener('error', e => errors.push(`${e.message} @ ${e.filename}:${e.lineno}`));
+window.addEventListener('unhandledrejection', e => errors.push('rej ' + (e.reason && e.reason.stack || e.reason)));
+const { Game } = await import('/tools/out/audit/verify-perf-2/GameFix.js');
+const params = new URLSearchParams(location.search);
+const game = new Game(document.getElementById('game'), document.getElementById('ui'), params);
+window.__GAME__ = game;
+if ((params.get('fix') || 'async') !== 'none') {
+  game.projectiles._warm = function () { this._warmed = true; };
+  game.weapons._compileViewmodels = function () { this._compiled = true; };
+}
+await game.boot();
+</script></body></html>

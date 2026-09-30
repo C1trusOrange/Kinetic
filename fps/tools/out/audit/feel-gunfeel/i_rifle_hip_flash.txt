@@ -1,0 +1,6 @@
+[run] http://127.0.0.1:63715/index.html?autotest=1&map=gunfeel&mapfile=tools/out/audit/feel-gunfeel/testmap.js&bots=1&god=1&scenario=tools/out/audit/feel-gunfeel/fire.js&duration=90&w=rifle&t=wall&pz=0&n=2
+[run] screenshot -> tools\out\audit\feel-gunfeel\i_rifle_hip_flash.png
+[result] {
+ "tFire": 2.5031000000000043
+}
+[run] done: wait=ok console_errors=0 warnings=0

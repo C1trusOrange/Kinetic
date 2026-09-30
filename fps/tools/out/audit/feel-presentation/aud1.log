@@ -1,0 +1,4 @@
+59 sounds; audio.enabled= True {'sounds': 59, 'buffers': 151, 'bytes': 18257928, 'ms': 2386}
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[sess] console errors=0 warnings=1

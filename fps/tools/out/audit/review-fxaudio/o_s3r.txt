@@ -1,0 +1,129 @@
+[run] http://127.0.0.1:65180/index.html?autotest=1&map=sandbox&bots=1&diff=easy&god=1&script=idle&mode=rocket&scenario=tools/out/audit/review-fxaudio/s3_decal.js&duration=8
+[run] screenshot -> tools\out\audit\review-fxaudio\s3_rocket2.png
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.8,
+ "frames": 276,
+ "fps": {
+  "avg": 32.7,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 4.5,
+  "maxY": 4.5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 5.1,
+   "pos": [
+    -21,
+    0.1,
+    7
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 2,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 138,
+  "triangles": 38188,
+  "geometries": 168,
+  "textures": 127,
+  "programs": 101
+ },
+ "custom": {
+  "mode": "rocket",
+  "lights0": 10,
+  "spot": [
+   -21,
+   0.05,
+   7
+  ],
+  "botPos": [
+   -21,
+   0.1,
+   7
+  ],
+  "before": 0,
+  "decals": [
+   {
+    "i": 150,
+    "scorch": true,
+    "pos": [
+     -21,
+     1.05,
+     7.39
+    ],
+    "n": [
+     0,
+     0,
+     1
+    ],
+    "size": 8.09,
+    "onSurface": false
+   },
+   {
+    "i": 151,
+    "scorch": true,
+    "pos": [
+     -21,
+     0.01,
+     7.53
+    ],
+    "n": [
+     0,
+     1,
+     0
+    ],
+    "size": 6.92,
+    "onSurface": true
+   }
+  ],
+  "explosions": {
+   "smoke": 0,
+   "glow": 0,
+   "tracers": 0,
+   "decals": 2,
+   "gibs": 0,
+   "dropped": 0
+  },
+  "lights1": 10,
+  "effStats": {
+   "smoke": 0,
+   "glow": 0,
+   "tracers": 0,
+   "decals": 2,
+   "gibs": 0,
+   "dropped": 0
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

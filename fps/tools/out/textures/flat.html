@@ -1,0 +1,37 @@
+<!doctype html>
+<meta charset="utf-8">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<body style="margin:0;background:#1a1a1a"><canvas id="c"></canvas>
+<script type="module">
+import * as T from '/src/world/Textures.js';
+const P = new URLSearchParams(location.search);
+const names = P.get('names') === 'all' ? T.MATERIAL_NAMES.slice() : (P.get('names') || 'concrete').split(',');
+const chs = (P.get('ch') || 'map').split(',');
+const cell = parseInt(P.get('cell') || '512');
+const tile = parseInt(P.get('tile') || '1');
+const cols = parseInt(P.get('cols') || String(Math.max(1, Math.floor(1600 / cell))));
+const items = [];
+for (const n of names) for (const ch of chs) items.push([n, ch]);
+const rows = Math.ceil(items.length / cols);
+const c = document.getElementById('c');
+c.width = cols * cell; c.height = rows * cell;
+const ctx = c.getContext('2d');
+const t0 = performance.now();
+const ms = {};
+items.forEach(([n, ch], i) => {
+  const s = performance.now();
+  const m = T.getMaterial(n);
+  ms[n] = Math.round(performance.now() - s);
+  let tex = m[ch];
+  if (ch === 'rmap' ) tex = m.roughnessMap;
+  const x = (i % cols) * cell, y = Math.floor(i / cols) * cell;
+  if (!tex) { ctx.fillStyle = '#400'; ctx.fillRect(x, y, cell, cell); return; }
+  const img = tex.image;
+  const ts = cell / tile;
+  for (let a = 0; a < tile; a++) for (let b = 0; b < tile; b++) ctx.drawImage(img, x + a * ts, y + b * ts, ts, ts);
+  ctx.fillStyle = 'rgba(0,0,0,.6)'; ctx.fillRect(x, y, 130, 16);
+  ctx.fillStyle = '#fff'; ctx.font = '12px monospace'; ctx.fillText(n + ':' + ch, x + 4, y + 12);
+});
+window.__FLAT_INFO__ = { total: Math.round(performance.now() - t0), ms };
+window.__FLAT_READY__ = true;
+</script>

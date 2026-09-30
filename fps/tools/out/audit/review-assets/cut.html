@@ -1,0 +1,50 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>cut audit</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><script type="module">
+import * as THREE from 'three';
+window.__DONE__ = false; window.__RES__ = {};
+try {
+  const T = await import('/src/world/Textures.js');
+  const renderer = new THREE.WebGLRenderer();
+  T.initTextures(renderer);
+  const names = T.MATERIAL_NAMES;
+  const slots = ['map','normalMap','roughnessMap','emissiveMap','alphaMap'];
+  const rows = [];
+  function cut(tex, chs) {
+    const c = tex.image; const S = c.width, H = c.height;
+    const d = c.getContext('2d').getImageData(0, 0, S, H).data;
+    const px = (x, y, k) => d[(y * S + x) * 4 + k];
+    let sx = 0, l0 = 0, l1 = 0, sy = 0, m0 = 0, m1 = 0;
+    for (const k of chs) {
+      for (let y = 0; y < H; y++) {
+        sx += Math.abs(px(0, y, k) - px(S - 1, y, k));
+        l0 += Math.abs(px(S - 1, y, k) - px(S - 2, y, k));
+        l1 += Math.abs(px(1, y, k) - px(0, y, k));
+      }
+      for (let x = 0; x < S; x++) {
+        sy += Math.abs(px(x, 0, k) - px(x, H - 1, k));
+        m0 += Math.abs(px(x, H - 1, k) - px(x, H - 2, k));
+        m1 += Math.abs(px(x, 1, k) - px(x, 0, k));
+      }
+    }
+    const n = chs.length * H;
+    return { cutX: +(sx / Math.max(0.5 * (l0 + l1), 1)).toFixed(2), cutY: +(sy / Math.max(0.5 * (m0 + m1), 1)).toFixed(2), sx: +(sx / n).toFixed(2), sy: +(sy / n).toFixed(2), nbX: +((l0 + l1) / 2 / n).toFixed(2), nbY: +((m0 + m1) / 2 / n).toFixed(2) };
+  }
+  for (const name of names) {
+    const m = T.getMaterial(name);
+    for (const s of slots) {
+      const tx = m[s]; if (!tx) continue;
+      const chs = s === 'roughnessMap' ? [1] : (s === 'alphaMap' ? [1] : [0, 1, 2]);
+      const r = cut(tx, chs);
+      rows.push(`${name}.${s} cutX=${r.cutX} cutY=${r.cutY} seam=${r.sx}/${r.sy} nb=${r.nbX}/${r.nbY}`);
+    }
+    if (m.metalnessMap && m.metalnessMap === m.roughnessMap) {
+      const r = cut(m.metalnessMap, [2]);
+      rows.push(`${name}.metal cutX=${r.cutX} cutY=${r.cutY} seam=${r.sx}/${r.sy} nb=${r.nbX}/${r.nbY}`);
+    }
+  }
+  window.__RES__ = rows;
+} catch (e) { window.__RES__ = { fatal: String(e && e.stack || e) }; }
+window.__DONE__ = true;
+</script></body></html>

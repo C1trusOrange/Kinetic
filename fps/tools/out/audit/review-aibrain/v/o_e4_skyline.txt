@@ -1,0 +1,8 @@
+[run] http://127.0.0.1:53520/index.html?autotest=1&map=skyline&bots=1&duration=999&script=idle&god=1
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:53520/src/core/utils.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:53520/src/core/Game.js
+[error] [run] timed out after 400s waiting for: window.__GAME__ && window.__GAME__.state==='playing' && window.__GAME__.world.nav.nodes.length>0
+[result] {
+ "__eval_error__": "TypeError: Cannot read properties of undefined (reading 'world')\n    at <anonymous>:2:36\n    at <anonymous>:36:3\n    at <anonymous>:36:73"
+}
+[run] done: wait=TIMEOUT console_errors=3 warnings=0

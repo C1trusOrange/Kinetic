@@ -1,0 +1,5 @@
+[run] http://127.0.0.1:62347/tools/viewer.html?kind=map&id=../../../tools/out/world/night&cam=0,3,20,0.5,0.9&markers=0
+[warning] [world] map 'night' has 1 warning(s):
+ - only 1 spawn point(s): 14-18 recommended
+[run] screenshot -> tools\out\world\l_night2.png
+[run] done: wait=ok console_errors=0 warnings=1

@@ -1,0 +1,200 @@
+[run] http://127.0.0.1:62656/index.html?autotest=1&map=sandbox&bots=8&duration=34&scenario=tools/out/audit/review-perf/scenario_calls.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 34.16,
+ "frames": 982,
+ "fps": {
+  "avg": 30.6,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 59.7,
+  "maxSpeed": 9.88,
+  "minY": 4.5,
+  "maxY": 4.5,
+  "states": {
+   "onGround": true,
+   "isSprinting": true
+  },
+  "shots": 15,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 1,
+   "deaths": 2,
+   "health": 67,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 127.6,
+   "pos": [
+    -9.3,
+    0,
+    -15
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "collect",
+   "distance": 157.8,
+   "pos": [
+    -15,
+    0,
+    -24
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 2,
+   "deaths": 3,
+   "health": 88,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 140.3,
+   "pos": [
+    3.9,
+    0,
+    -4.5
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": false,
+   "kills": 2,
+   "deaths": 2,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 120.8,
+   "pos": [
+    -12.1,
+    0,
+    -18.7
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 24,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 180.6,
+   "pos": [
+    -0.3,
+    2.3,
+    12.1
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 3,
+   "deaths": 1,
+   "health": 75,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 134.1,
+   "pos": [
+    -13.2,
+    0,
+    26
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 3,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "roam",
+   "distance": 185.2,
+   "pos": [
+    28,
+    0,
+    29
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 1,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 123.4,
+   "pos": [
+    10.2,
+    1.2,
+    -4.6
+   ]
+  }
+ ],
+ "events": {
+  "damage": 111,
+  "death": 15,
+  "spawn": 23,
+  "pickup": 12,
+  "fire": 319
+ },
+ "renderer": {
+  "calls": 345,
+  "triangles": 62106,
+  "geometries": 277,
+  "textures": 143,
+  "programs": 111
+ },
+ "custom": {
+  "map": "sandbox",
+  "n": 895,
+  "calls": {
+   "p5": 311,
+   "p50": 355,
+   "p95": 445,
+   "max": 508
+  },
+  "tris": {
+   "p5": 57556,
+   "p50": 62392,
+   "p95": 71248,
+   "max": 74606
+  },
+  "renderCpuMs": {
+   "p50": 9.2,
+   "p95": 21.1
+  },
+  "updateCpuMs": {
+   "p50": 4,
+   "p95": 9.4
+  },
+  "mapStats": {
+   "drawCalls": 23,
+   "triangles": 6426,
+   "solids": 118,
+   "collisionTriangles": 1628,
+   "materials": 22,
+   "navBuildMs": 156
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

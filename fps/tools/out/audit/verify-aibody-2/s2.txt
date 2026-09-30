@@ -1,0 +1,184 @@
+[run] http://127.0.0.1:64026/index.html?autotest=1&map=foundry&bots=8&diff=insane&script=idle&god=1&scenario=tools/out/audit/verify-aibody-2/s2.js&duration=40
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":28.2}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 40.2,
+ "frames": 1086,
+ "fps": {
+  "avg": 28.2,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 26.1,
+  "maxSpeed": 10.47,
+  "minY": 0,
+  "maxY": 4.923755437280299,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 2,
+   "deaths": 2,
+   "health": 74,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 249,
+   "pos": [
+    -20.6,
+    0,
+    -11
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 2,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 181.4,
+   "pos": [
+    -44.5,
+    0,
+    -24.8
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 1,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 165.6,
+   "pos": [
+    21.9,
+    0,
+    8.5
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 4,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 244.1,
+   "pos": [
+    -16.9,
+    0,
+    -12.9
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 1,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 235.8,
+   "pos": [
+    35.6,
+    0,
+    0.3
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": false,
+   "kills": 1,
+   "deaths": 5,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 234.9,
+   "pos": [
+    0.4,
+    0,
+    17
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 5,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 171.4,
+   "pos": [
+    -18.4,
+    0,
+    32.8
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": false,
+   "kills": 7,
+   "deaths": 2,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 239.1,
+   "pos": [
+    -26.7,
+    0,
+    -11.3
+   ]
+  }
+ ],
+ "events": {
+  "damage": 109,
+  "death": 23,
+  "spawn": 30,
+  "pickup": 5,
+  "fire": 305
+ },
+ "renderer": {
+  "calls": 460,
+  "triangles": 141484,
+  "geometries": 225,
+  "textures": 142,
+  "programs": 104
+ },
+ "custom": {
+  "D": {
+   "n": 186,
+   "skippedLod": 119,
+   "ds": null,
+   "byFrameDt": {},
+   "p50": 0.047,
+   "p90": 0.172,
+   "p99": 0.667,
+   "max": 0.824,
+   "fps": 29.5712418789674
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

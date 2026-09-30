@@ -1,0 +1,263 @@
+[run] http://127.0.0.1:55146/index.html?autotest=1&map=foundry&bots=5&duration=20&warm=0&scenario=tools/out/audit/review-perf/scenario_warm.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 20.15,
+ "frames": 783,
+ "fps": {
+  "avg": 44.2,
+  "min": 4,
+  "max": 238.1
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 109.14480372551986,
+  "maxSpeed": 23.76,
+  "minY": -3.3306690738754696e-15,
+  "maxY": 6.874999999999999,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "isMantling": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isWallRunning": true,
+   "isGrappling": true
+  },
+  "shots": 19,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 25,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 108.6,
+   "pos": [
+    -34.9,
+    0,
+    13.1
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": false,
+   "kills": 2,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 111.8,
+   "pos": [
+    10.9,
+    0,
+    0.1
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": false,
+   "kills": 0,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 140.9,
+   "pos": [
+    28.1,
+    0,
+    0.1
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 77,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 92.3,
+   "pos": [
+    -29.5,
+    0,
+    -10.5
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 2,
+   "deaths": 0,
+   "health": 57,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 133.6,
+   "pos": [
+    3.1,
+    0,
+    8.7
+   ]
+  }
+ ],
+ "events": {
+  "damage": 28,
+  "death": 5,
+  "spawn": 8,
+  "pickup": 2,
+  "fire": 114
+ },
+ "renderer": {
+  "calls": 237,
+  "triangles": 115976,
+  "geometries": 356,
+  "textures": 141,
+  "programs": 115
+ },
+ "custom": {
+  "warm": "0",
+  "warmMs": 0,
+  "warmNewProgs": 0,
+  "startProgs": 51,
+  "endProgs": 115,
+  "firstFrame": {
+   "n": 1,
+   "gt": 0.05,
+   "dt": 5466.7,
+   "upd": 244.5,
+   "ren": 4201.6,
+   "newProgs": 62
+  },
+  "second": {
+   "n": 2,
+   "gt": 0.1,
+   "dt": 185.5,
+   "upd": 6.3,
+   "ren": 21.9,
+   "newProgs": 0
+  },
+  "stallCount": 9,
+  "stallSumMs": 2629,
+  "stalls": [
+   {
+    "n": 2,
+    "gt": 0.1,
+    "dt": 185.5,
+    "upd": 6.3,
+    "ren": 21.9,
+    "newProgs": 0
+   },
+   {
+    "n": 3,
+    "gt": 0.15,
+    "dt": 671.7,
+    "upd": 20.8,
+    "ren": 20.4,
+    "newProgs": 0
+   },
+   {
+    "n": 162,
+    "gt": 4.49,
+    "dt": 160.9,
+    "upd": 6,
+    "ren": 105.4,
+    "newProgs": 2
+   },
+   {
+    "n": 176,
+    "gt": 4.81,
+    "dt": 334.7,
+    "upd": 11.9,
+    "ren": 317.8,
+    "newProgs": 4
+   },
+   {
+    "n": 351,
+    "gt": 9.66,
+    "dt": 149.6,
+    "upd": 20.2,
+    "ren": 111.3,
+    "newProgs": 0
+   },
+   {
+    "n": 352,
+    "gt": 9.66,
+    "dt": 187.9,
+    "upd": 3.2,
+    "ren": 7.3,
+    "newProgs": 0
+   },
+   {
+    "n": 409,
+    "gt": 11.21,
+    "dt": 125,
+    "upd": 5.4,
+    "ren": 103.6,
+    "newProgs": 3
+   },
+   {
+    "n": 450,
+    "gt": 12.36,
+    "dt": 671.4,
+    "upd": 8,
+    "ren": 636.1,
+    "newProgs": 4
+   },
+   {
+    "n": 465,
+    "gt": 12.75,
+    "dt": 142.3,
+    "upd": 5.2,
+    "ren": 7.8,
+    "newProgs": 0
+   }
+  ],
+  "midGameNewProgFrames": [
+   {
+    "gt": 4.49,
+    "n": 2,
+    "dt": 160.9,
+    "ren": 105.4
+   },
+   {
+    "gt": 4.81,
+    "n": 4,
+    "dt": 334.7,
+    "ren": 317.8
+   },
+   {
+    "gt": 11.21,
+    "n": 3,
+    "dt": 125,
+    "ren": 103.6
+   },
+   {
+    "gt": 11.79,
+    "n": 1,
+    "dt": 93.7,
+    "ren": 83.8
+   },
+   {
+    "gt": 12.36,
+    "n": 4,
+    "dt": 671.4,
+    "ren": 636.1
+   }
+  ],
+  "p50": 24.6,
+  "frames": 747
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

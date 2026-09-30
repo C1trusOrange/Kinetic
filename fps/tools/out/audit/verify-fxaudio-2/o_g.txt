@@ -1,0 +1,93 @@
+[run] http://127.0.0.1:64366/index.html?autotest=1&map=sandbox&bots=1&diff=easy&god=1&script=idle&mode=grenade&scenario=tools/out/audit/verify-fxaudio-2/v1_decal.js&duration=6
+[run] screenshot -> tools\out\audit\verify-fxaudio-2\g1_2s.png
+[log] [autotest] finished {"ok":true,"errors":0,"fps":23.7}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 6.01,
+ "frames": 167,
+ "fps": {
+  "avg": 23.7,
+  "min": 4,
+  "max": 82.6
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 67.2,
+   "pos": [
+    23.7,
+    0,
+    -1
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 2,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 153,
+  "triangles": 39638,
+  "geometries": 148,
+  "textures": 123,
+  "programs": 99
+ },
+ "custom": {
+  "mode": "grenade",
+  "decals": [
+   {
+    "i": 150,
+    "scorch": true,
+    "pos": [
+     10,
+     4.89,
+     20
+    ],
+    "n": [
+     0,
+     1,
+     0
+    ],
+    "size": 8.57,
+    "coverage": 0
+   }
+  ],
+  "stats": {
+   "smoke": 50,
+   "glow": 73,
+   "tracers": 0,
+   "decals": 1,
+   "gibs": 0,
+   "dropped": 0
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

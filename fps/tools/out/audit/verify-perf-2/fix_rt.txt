@@ -1,0 +1,447 @@
+[run] http://127.0.0.1:54937/index.html?autotest=1&map=foundry&bots=5&duration=20&fix=rt&scenario=tools/out/audit/verify-perf-2/sc_fix.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 20.26,
+ "frames": 519,
+ "fps": {
+  "avg": 25.2,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 67.8,
+  "maxSpeed": 17.19,
+  "minY": 0,
+  "maxY": 2.2983333333333325,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "isMantling": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "isWallRunning": true,
+   "isGrappling": true
+  },
+  "shots": 18,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 100
+ },
+ "bots": [
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 89.2,
+   "pos": [
+    45.9,
+    0,
+    26
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 37,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 137.4,
+   "pos": [
+    -3.4,
+    0,
+    14.9
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 4,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 134.1,
+   "pos": [
+    13.8,
+    4.9,
+    -11.5
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 138.6,
+   "pos": [
+    14.5,
+    0,
+    -40.4
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": false,
+   "kills": 1,
+   "deaths": 2,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 115.3,
+   "pos": [
+    23.3,
+    0,
+    13.7
+   ]
+  }
+ ],
+ "events": {
+  "damage": 23,
+  "death": 5,
+  "spawn": 10,
+  "pickup": 3,
+  "fire": 62
+ },
+ "renderer": {
+  "calls": 387,
+  "triangles": 133594,
+  "geometries": 376,
+  "textures": 145,
+  "programs": 67
+ },
+ "custom": {
+  "warmMs": 81.89999997615814,
+  "warmProgs": 65,
+  "total": 67,
+  "dead": 28,
+  "scr": 1,
+  "rt": 66,
+  "scrLive": 0,
+  "scrDead": 1,
+  "quality": {
+   "name": "high",
+   "pixelRatio": 1.5,
+   "shadows": true,
+   "shadowMapSize": 2048,
+   "bloom": true,
+   "msaa": 4,
+   "maxDecals": 150,
+   "particleScale": 1
+  },
+  "big": [
+   {
+    "f": 0,
+    "dt": 514,
+    "u": 0,
+    "r": 3,
+    "st": "loading",
+    "np": 13,
+    "progs": 13,
+    "gt": 0
+   },
+   {
+    "f": 2,
+    "dt": 195,
+    "u": 0,
+    "r": 2,
+    "st": "loading",
+    "np": 0,
+    "progs": 13,
+    "gt": 0
+   },
+   {
+    "f": 3,
+    "dt": 553,
+    "u": 0,
+    "r": 2,
+    "st": "loading",
+    "np": 0,
+    "progs": 13,
+    "gt": 0
+   },
+   {
+    "f": 4,
+    "dt": 190,
+    "u": 0,
+    "r": 2,
+    "st": "loading",
+    "np": 0,
+    "progs": 13,
+    "gt": 0
+   },
+   {
+    "f": 5,
+    "dt": 140,
+    "u": 0,
+    "r": 1,
+    "st": "loading",
+    "np": 0,
+    "progs": 13,
+    "gt": 0
+   },
+   {
+    "f": 8,
+    "dt": 135,
+    "u": 0,
+    "r": 12,
+    "st": "loading",
+    "np": 0,
+    "progs": 13,
+    "gt": 0
+   },
+   {
+    "f": 9,
+    "dt": 177,
+    "u": 0,
+    "r": 2,
+    "st": "loading",
+    "np": 0,
+    "progs": 13,
+    "gt": 0
+   },
+   {
+    "f": 10,
+    "dt": 142,
+    "u": 0,
+    "r": 2,
+    "st": "loading",
+    "np": 0,
+    "progs": 13,
+    "gt": 0
+   },
+   {
+    "f": 13,
+    "dt": 135,
+    "u": 0,
+    "r": 2,
+    "st": "loading",
+    "np": 0,
+    "progs": 13,
+    "gt": 0
+   },
+   {
+    "f": 15,
+    "dt": 189,
+    "u": 0,
+    "r": 2,
+    "st": "loading",
+    "np": 0,
+    "progs": 13,
+    "gt": 0
+   },
+   {
+    "f": 16,
+    "dt": 123,
+    "u": 0,
+    "r": 4,
+    "st": "loading",
+    "np": 0,
+    "progs": 13,
+    "gt": 0
+   },
+   {
+    "f": 17,
+    "dt": 175,
+    "u": 0,
+    "r": 1,
+    "st": "loading",
+    "np": 0,
+    "progs": 13,
+    "gt": 0
+   },
+   {
+    "f": 18,
+    "dt": 129,
+    "u": 0,
+    "r": 3,
+    "st": "loading",
+    "np": 0,
+    "progs": 13,
+    "gt": 0
+   },
+   {
+    "f": 25,
+    "dt": 128,
+    "u": 0,
+    "r": 2,
+    "st": "loading",
+    "np": 0,
+    "progs": 13,
+    "gt": 0
+   },
+   {
+    "f": 26,
+    "dt": 1614,
+    "u": 0,
+    "r": 708,
+    "st": "loading",
+    "np": 4,
+    "progs": 17,
+    "gt": 0
+   },
+   {
+    "f": 27,
+    "dt": 3345,
+    "u": 0,
+    "r": 3006,
+    "st": "loading",
+    "np": 10,
+    "progs": 27,
+    "gt": 0
+   },
+   {
+    "f": 29,
+    "dt": 3356,
+    "u": 0,
+    "r": 3132,
+    "st": "loading",
+    "np": 12,
+    "progs": 39,
+    "gt": 0
+   },
+   {
+    "f": 30,
+    "dt": 2558,
+    "u": 54,
+    "r": 1430,
+    "st": "playing",
+    "np": 27,
+    "progs": 66,
+    "gt": 0.05
+   },
+   {
+    "f": 31,
+    "dt": 226,
+    "u": 6,
+    "r": 26,
+    "st": "playing",
+    "np": 0,
+    "progs": 66,
+    "gt": 0.1
+   },
+   {
+    "f": 32,
+    "dt": 805,
+    "u": 23,
+    "r": 33,
+    "st": "playing",
+    "np": 0,
+    "progs": 66,
+    "gt": 0.15
+   },
+   {
+    "f": 60,
+    "dt": 270,
+    "u": 21,
+    "r": 177,
+    "st": "playing",
+    "np": 0,
+    "progs": 66,
+    "gt": 1.25
+   },
+   {
+    "f": 95,
+    "dt": 133,
+    "u": 4,
+    "r": 10,
+    "st": "playing",
+    "np": 0,
+    "progs": 66,
+    "gt": 2.91
+   },
+   {
+    "f": 132,
+    "dt": 133,
+    "u": 3,
+    "r": 10,
+    "st": "playing",
+    "np": 0,
+    "progs": 66,
+    "gt": 4.56
+   },
+   {
+    "f": 138,
+    "dt": 177,
+    "u": 13,
+    "r": 134,
+    "st": "playing",
+    "np": 0,
+    "progs": 66,
+    "gt": 4.82
+   },
+   {
+    "f": 192,
+    "dt": 124,
+    "u": 4,
+    "r": 10,
+    "st": "playing",
+    "np": 0,
+    "progs": 66,
+    "gt": 7.16
+   }
+  ],
+  "first": [
+   {
+    "f": 30,
+    "dt": 2558,
+    "u": 54,
+    "r": 1430,
+    "st": "playing",
+    "np": 27,
+    "progs": 66,
+    "gt": 0.05
+   },
+   {
+    "f": 31,
+    "dt": 226,
+    "u": 6,
+    "r": 26,
+    "st": "playing",
+    "np": 0,
+    "progs": 66,
+    "gt": 0.1
+   },
+   {
+    "f": 32,
+    "dt": 805,
+    "u": 23,
+    "r": 33,
+    "st": "playing",
+    "np": 0,
+    "progs": 66,
+    "gt": 0.15
+   }
+  ],
+  "newProgFramesPlaying": [
+   [
+    0.05,
+    27,
+    2558
+   ],
+   [
+    19.78,
+    1,
+    742
+   ]
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

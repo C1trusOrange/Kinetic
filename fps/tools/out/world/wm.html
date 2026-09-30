@@ -1,0 +1,25 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>wm</title>
+<script type="importmap">{ "imports": { "three": "/vendor/three/build/three.module.js", "three/addons/": "/vendor/three/examples/jsm/" } }</script></head>
+<body><script type="module">
+import * as THREE from 'three';
+const WM = await import('/src/weapons/WeaponModels.js');
+const out = {};
+for (const id of ['pistol', 'rifle', 'shotgun', 'sniper', 'rocket']) {
+  const m = WM.createWeaponModel(id, { view: false });
+  m.root.updateMatrixWorld(true);
+  const box = new THREE.Box3().setFromObject(m.root);
+  const size = box.getSize(new THREE.Vector3());
+  const meshes = [];
+  m.root.traverse(o => {
+    if (o.isMesh) {
+      o.geometry.computeBoundingBox();
+      const b = o.geometry.boundingBox;
+      meshes.push({ n: o.name, type: o.geometry.type, mat: o.material && o.material.type, size: b.getSize(new THREE.Vector3()).toArray().map(v => +v.toFixed(2)), vis: o.visible, scale: o.scale.toArray().map(v => +v.toFixed(2)) });
+    }
+  });
+  out[id] = { size: size.toArray().map(v => +v.toFixed(2)), min: box.min.toArray().map(v => +v.toFixed(2)), max: box.max.toArray().map(v => +v.toFixed(2)), count: meshes.length, biggest: meshes.sort((a, b) => Math.max(...b.size) - Math.max(...a.size)).slice(0, 3) };
+}
+window.__OUT__ = out;
+window.__DONE__ = true;
+</script></body></html>

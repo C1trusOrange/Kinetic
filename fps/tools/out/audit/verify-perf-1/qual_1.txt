@@ -1,0 +1,254 @@
+[run] http://127.0.0.1:51761/index.html?autotest=1&map=sandbox&bots=2&duration=25&scenario=tools/out/audit/verify-perf-1/qual.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 25.17,
+ "frames": 1232,
+ "fps": {
+  "avg": 71.6,
+  "min": 4,
+  "max": 434.8
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": -5.551115123125783e-17,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 133.1,
+   "pos": [
+    -21.1,
+    -3.5,
+    16.9
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 96.5,
+   "pos": [
+    5.3,
+    0,
+    12.9
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 1,
+  "fire": 121
+ },
+ "renderer": {
+  "calls": 137,
+  "triangles": 33666,
+  "geometries": 161,
+  "textures": 176,
+  "programs": 127
+ },
+ "custom": {
+  "rows": [
+   {
+    "label": "start",
+    "gt": 0,
+    "tex": 85,
+    "geo": 82,
+    "progs": 51,
+    "composer": true
+   },
+   {
+    "label": "before medium",
+    "gt": 3,
+    "tex": 124,
+    "geo": 161,
+    "progs": 101,
+    "composer": true
+   },
+   {
+    "label": "set medium",
+    "gt": 3,
+    "tex": 121,
+    "geo": 161,
+    "progs": 101,
+    "composer": true,
+    "syncMs": 4
+   },
+   {
+    "label": "before high",
+    "gt": 6,
+    "tex": 135,
+    "geo": 161,
+    "progs": 101,
+    "composer": true
+   },
+   {
+    "label": "set high",
+    "gt": 6,
+    "tex": 132,
+    "geo": 161,
+    "progs": 101,
+    "composer": true,
+    "syncMs": 2
+   },
+   {
+    "label": "before medium",
+    "gt": 9,
+    "tex": 146,
+    "geo": 161,
+    "progs": 101,
+    "composer": true
+   },
+   {
+    "label": "set medium",
+    "gt": 9,
+    "tex": 143,
+    "geo": 161,
+    "progs": 101,
+    "composer": true,
+    "syncMs": 3
+   },
+   {
+    "label": "before high",
+    "gt": 12,
+    "tex": 157,
+    "geo": 161,
+    "progs": 101,
+    "composer": true
+   },
+   {
+    "label": "set high",
+    "gt": 12,
+    "tex": 154,
+    "geo": 161,
+    "progs": 101,
+    "composer": true,
+    "syncMs": 2
+   },
+   {
+    "label": "before low",
+    "gt": 15,
+    "tex": 168,
+    "geo": 161,
+    "progs": 101,
+    "composer": true
+   },
+   {
+    "label": "set low",
+    "gt": 15,
+    "tex": 165,
+    "geo": 161,
+    "progs": 101,
+    "composer": false,
+    "syncMs": 55
+   },
+   {
+    "label": "before high",
+    "gt": 18,
+    "tex": 165,
+    "geo": 161,
+    "progs": 127,
+    "composer": false
+   },
+   {
+    "label": "set high",
+    "gt": 18,
+    "tex": 165,
+    "geo": 161,
+    "progs": 127,
+    "composer": true,
+    "syncMs": 30
+   },
+   {
+    "label": "before low",
+    "gt": 21,
+    "tex": 179,
+    "geo": 161,
+    "progs": 127,
+    "composer": true
+   },
+   {
+    "label": "set low",
+    "gt": 21,
+    "tex": 176,
+    "geo": 161,
+    "progs": 127,
+    "composer": false,
+    "syncMs": 88
+   },
+   {
+    "label": "end",
+    "gt": 25,
+    "tex": 176,
+    "geo": 161,
+    "progs": 127,
+    "composer": false
+   }
+  ],
+  "stalls": [
+   {
+    "gt": 0.57,
+    "dt": 577,
+    "ren": 98,
+    "np": 0
+   },
+   {
+    "gt": 1.83,
+    "dt": 255,
+    "ren": 242,
+    "np": 0
+   },
+   {
+    "gt": 1.88,
+    "dt": 407,
+    "ren": 256,
+    "np": 0
+   },
+   {
+    "gt": 6.12,
+    "dt": 250,
+    "ren": 9,
+    "np": 0
+   },
+   {
+    "gt": 9.11,
+    "dt": 204,
+    "ren": 11,
+    "np": 0
+   },
+   {
+    "gt": 15.02,
+    "dt": 6844,
+    "ren": 6754,
+    "np": 26
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

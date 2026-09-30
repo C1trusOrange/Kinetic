@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<title>KINETIC player harness</title>
+<link rel="stylesheet" href="/style.css">
+<script>
+  // Same as index.html, but ?stub=WeaponModels,... swaps modules for test stubs via a generated import map.
+  (function () {
+    var q = new URLSearchParams(location.search);
+    var imports = { 'three': '/vendor/three/build/three.module.js', 'three/addons/': '/vendor/three/examples/jsm/' };
+    var map = { WeaponModels: ['/src/weapons/WeaponModels.js', '/tools/out/player/stubs/WeaponModels.js'] };
+    (q.get('stub') || '').split(',').forEach(function (n) { if (map[n]) imports[map[n][0]] = map[n][1]; });
+    var s = document.createElement('script');
+    s.type = 'importmap';
+    s.textContent = JSON.stringify({ imports: imports });
+    document.head.appendChild(s);
+  })();
+</script>
+</head>
+<body>
+<div id="game"></div>
+<div id="ui"></div>
+<div id="boot-message" class="boot-message">Loading&hellip;</div>
+<script>
+  window.addEventListener('load', function () {
+    var s = document.createElement('script');
+    s.type = 'module';
+    s.src = '/src/main.js';
+    document.body.appendChild(s);
+  });
+</script>
+</body>
+</html>

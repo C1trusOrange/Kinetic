@@ -1,0 +1,408 @@
+[run] http://127.0.0.1:64292/index.html?autotest=1&map=foundry&bots=5&duration=4&warm=1&css=h&scenario=tools/out/audit/review-perf/frames/scenario.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 4.02,
+ "frames": 165,
+ "fps": {
+  "avg": 35.8,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 19.9,
+  "maxSpeed": 12.01,
+  "minY": 0,
+  "maxY": 2.299999999999999,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "isMantling": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 64,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 37.4,
+   "pos": [
+    -14.2,
+    0,
+    17
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 17.6,
+   "pos": [
+    31.4,
+    0,
+    19
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 32,
+   "pos": [
+    -44.6,
+    0,
+    -6
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 37.8,
+   "pos": [
+    27.2,
+    10.7,
+    -35.8
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 87,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 20.3,
+   "pos": [
+    5.4,
+    0,
+    32.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 4,
+  "death": 0,
+  "spawn": 6,
+  "pickup": 0,
+  "fire": 22
+ },
+ "renderer": {
+  "calls": 384,
+  "triangles": 128050,
+  "geometries": 194,
+  "textures": 128,
+  "programs": 79
+ },
+ "custom": {
+  "warmMs": 828.6,
+  "warmNewProgs": 28,
+  "startProgs": 79,
+  "prof": {
+   "frames": 126,
+   "cpuMs": {
+    "p50": 17.9,
+    "p90": 28.4,
+    "p99": 48.1,
+    "max": 86.3
+   },
+   "intervalMs": {
+    "p50": 30.3,
+    "p90": 48.5,
+    "p99": 60.7,
+    "max": 84.9
+   },
+   "totalNewPrograms": 79,
+   "slow": [
+    {
+     "i": 40,
+     "ts": 21932,
+     "gap": 15,
+     "heap": 121.3,
+     "heapEnd": 123.1,
+     "t": 0.14,
+     "dur": 48.1,
+     "interval": 36.4,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 15.4,
+      "render": 30.2
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 449,
+       "ms": 1.1
+      },
+      "drawElements": {
+       "n": 47,
+       "ms": 2.7
+      }
+     }
+    },
+    {
+     "i": 97,
+     "ts": 23761,
+     "gap": 39,
+     "heap": 128.6,
+     "heapEnd": 129.3,
+     "t": 1.91,
+     "dur": 86.3,
+     "interval": 54.5,
+     "newProg": [],
+     "dTex": 1,
+     "dGeo": 11,
+     "parts": {
+      "bots.update": 9.2,
+      "projectiles.update": 1.4,
+      "render": 73.7
+     },
+     "gl": {
+      "uniformMatrix4fv": {
+       "n": 506,
+       "ms": 1.1
+      },
+      "getProgramInfoLog": {
+       "n": 2,
+       "ms": 51.1
+      }
+     }
+    }
+   ],
+   "longtasks": [
+    {
+     "start": 1785,
+     "dur": 396,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 3499,
+     "dur": 1593,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 5096,
+     "dur": 526,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 5715,
+     "dur": 1673,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 7399,
+     "dur": 160,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 7560,
+     "dur": 568,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 8129,
+     "dur": 123,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 8273,
+     "dur": 178,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 8451,
+     "dur": 167,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 8627,
+     "dur": 126,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 8754,
+     "dur": 134,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 8889,
+     "dur": 213,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 9103,
+     "dur": 157,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 9270,
+     "dur": 72,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 9382,
+     "dur": 289,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 9672,
+     "dur": 226,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 9898,
+     "dur": 184,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 10083,
+     "dur": 229,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 10314,
+     "dur": 175,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 10489,
+     "dur": 60,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 10627,
+     "dur": 93,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 10860,
+     "dur": 144,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 11005,
+     "dur": 1012,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 12019,
+     "dur": 884,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 12905,
+     "dur": 3254,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 16168,
+     "dur": 237,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 16405,
+     "dur": 3655,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 20118,
+     "dur": 1406,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 21524,
+     "dur": 335,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 21931,
+     "dur": 51,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 23761,
+     "dur": 87,
+     "name": "self",
+     "attr": "window"
+    }
+   ],
+   "glTotalMs": {
+    "bufferSubData": 14.5,
+    "bufferData": 6.5,
+    "useProgram": 20.8,
+    "drawElements": 14.8,
+    "uniformMatrix4fv": 92.1,
+    "drawArrays": 47.1,
+    "getProgramInfoLog": 240.6,
+    "getActiveUniform": 1.9,
+    "getUniformLocation": 1.9,
+    "texSubImage2D": 30,
+    "drawElementsInstanced": 3.3
+   }
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

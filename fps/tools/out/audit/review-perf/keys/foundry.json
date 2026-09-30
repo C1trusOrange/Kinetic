@@ -1,0 +1,132 @@
+{
+ "eval": {
+  "frames": 117,
+  "startFrame": 179,
+  "totalGetProgramCalls": 3979,
+  "perFrame": 34,
+  "materialsTotal": 114,
+  "sharedMaterials": 30,
+  "sharedCalls": 3744,
+  "sOnly": 64,
+  "vOnly": 20,
+  "matsWithCalls": 16,
+  "top": [
+   {
+    "name": "MeshBasicMaterial",
+    "type": "MeshBasicMaterial",
+    "scenes": "SV",
+    "calls": 702,
+    "perFrame": 6
+   },
+   {
+    "name": "MeshStandardMaterial",
+    "type": "MeshStandardMaterial",
+    "scenes": "SV",
+    "calls": 234,
+    "perFrame": 2
+   },
+   {
+    "name": "MeshStandardMaterial",
+    "type": "MeshStandardMaterial",
+    "scenes": "SV",
+    "calls": 234,
+    "perFrame": 2
+   },
+   {
+    "name": "MeshStandardMaterial",
+    "type": "MeshStandardMaterial",
+    "scenes": "SV",
+    "calls": 234,
+    "perFrame": 2
+   },
+   {
+    "name": "MeshStandardMaterial",
+    "type": "MeshStandardMaterial",
+    "scenes": "SV",
+    "calls": 234,
+    "perFrame": 2
+   },
+   {
+    "name": "MeshBasicMaterial",
+    "type": "MeshBasicMaterial",
+    "scenes": "S",
+    "calls": 234,
+    "perFrame": 2
+   },
+   {
+    "name": "MeshStandardMaterial",
+    "type": "MeshStandardMaterial",
+    "scenes": "SV",
+    "calls": 234,
+    "perFrame": 2
+   },
+   {
+    "name": "MeshStandardMaterial",
+    "type": "MeshStandardMaterial",
+    "scenes": "SV",
+    "calls": 234,
+    "perFrame": 2
+   },
+   {
+    "name": "MeshStandardMaterial",
+    "type": "MeshStandardMaterial",
+    "scenes": "SV",
+    "calls": 234,
+    "perFrame": 2
+   },
+   {
+    "name": "MeshStandardMaterial",
+    "type": "MeshStandardMaterial",
+    "scenes": "SV",
+    "calls": 234,
+    "perFrame": 2
+   },
+   {
+    "name": "MeshStandardMaterial",
+    "type": "MeshStandardMaterial",
+    "scenes": "SV",
+    "calls": 234,
+    "perFrame": 2
+   },
+   {
+    "name": "MeshStandardMaterial",
+    "type": "MeshStandardMaterial",
+    "scenes": "SV",
+    "calls": 234,
+    "perFrame": 2
+   },
+   {
+    "name": "MeshStandardMaterial",
+    "type": "MeshStandardMaterial",
+    "scenes": "SV",
+    "calls": 234,
+    "perFrame": 2
+   },
+   {
+    "name": "MeshStandardMaterial",
+    "type": "MeshStandardMaterial",
+    "scenes": "SV",
+    "calls": 234,
+    "perFrame": 2
+   },
+   {
+    "name": "MeshStandardMaterial",
+    "type": "MeshStandardMaterial",
+    "scenes": "SV",
+    "calls": 234,
+    "perFrame": 2
+   },
+   {
+    "name": "bot_ffb020",
+    "type": "MeshStandardMaterial",
+    "scenes": "S",
+    "calls": 1,
+    "perFrame": 0.01
+   }
+  ],
+  "info": {
+   "lights": 4
+  }
+ },
+ "errors": []
+}

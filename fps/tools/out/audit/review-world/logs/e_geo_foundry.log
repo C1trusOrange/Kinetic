@@ -1,0 +1,5 @@
+[run] http://127.0.0.1:64585/index.html?autotest=1&map=foundry&bots=0&duration=3&script=idle
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] "{\"map\":\"foundry\",\"tris\":40212,\"bad\":0,\"nan\":0,\"degen\":0,\"uvBad\":0,\"maxUV\":74.3,\"badBy\":{},\"draw\":27,\"ctris\":8852}"
+[run] done: wait=ok console_errors=0 warnings=1

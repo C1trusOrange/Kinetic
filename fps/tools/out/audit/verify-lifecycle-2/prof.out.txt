@@ -1,0 +1,58 @@
+frames sampled: 282, total sampled alloc: 138758 KB, per frame: 492.1 KB
+--- by file
+   175.6 KB/frame  three.module.js
+    65.6 KB/frame  (native)
+    65.2 KB/frame  NavGraph.js
+    45.2 KB/frame  Collision.js
+    26.6 KB/frame  BotBrain.js
+    24.8 KB/frame  BotModel.js
+    13.8 KB/frame  Effects.js
+    13.4 KB/frame  Octree.js
+    11.7 KB/frame  Bot.js
+     9.8 KB/frame  Particles.js
+     5.8 KB/frame  Combat.js
+     5.4 KB/frame  WeaponSystem.js
+     4.5 KB/frame  Pickups.js
+     3.9 KB/frame  PlayerController.js
+     2.9 KB/frame  Input.js
+     2.7 KB/frame  Audio.js
+     2.5 KB/frame  BotNav.js
+     2.4 KB/frame  CameraRig.js
+     2.3 KB/frame  utils.js
+     1.4 KB/frame  Entity.js
+     1.4 KB/frame  World.js
+     1.0 KB/frame  Player.js
+     1.0 KB/frame  BotManager.js
+     0.9 KB/frame  HUD.js
+     0.9 KB/frame  Game.js
+--- by function
+    68.6 KB/frame  setValueM4 @ three.module.js:18481
+    36.5 KB/frame  _clearLine @ NavGraph.js:857
+    34.4 KB/frame  raycast @ Collision.js:130
+    26.8 KB/frame  setValueV3f @ three.module.js:18356
+    20.5 KB/frame  findPath @ NavGraph.js:738
+    19.4 KB/frame  join @ ?:0
+    18.7 KB/frame  update @ BotModel.js:1249
+    13.4 KB/frame  triangleCapsuleIntersect @ Octree.js:226
+    13.4 KB/frame  getParameters @ three.module.js:20573
+    12.6 KB/frame  replace @ ?:0
+    12.6 KB/frame  hypot @ ?:0
+    11.9 KB/frame  getProgramCacheKeyParameters @ three.module.js:20939
+    10.2 KB/frame  setValueM3 @ three.module.js:18454
+     8.5 KB/frame  update @ Particles.js:345
+     7.8 KB/frame  rayBoxEntry @ Collision.js:12
+     5.9 KB/frame  updateAim @ BotBrain.js:1491
+     5.7 KB/frame  _updateModel @ Bot.js:703
+     5.4 KB/frame  _reaches @ NavGraph.js:671
+     5.2 KB/frame  boneQuat @ BotModel.js:933
+     4.6 KB/frame  _move @ Bot.js:355
+     4.6 KB/frame  _updateGibs @ Effects.js:814
+     4.5 KB/frame  WebGLRenderer.renderBufferDirect @ three.module.js:29463
+     4.3 KB/frame  determinant @ three.module.js:6315
+     4.1 KB/frame  push @ ?:0
+     4.0 KB/frame  raycast @ Combat.js:75
+     4.0 KB/frame  perceive @ BotBrain.js:275
+     3.9 KB/frame  random @ ?:0
+     3.7 KB/frame  moveEngage @ BotBrain.js:1305
+     3.5 KB/frame  setProgram @ three.module.js:30501
+     3.1 KB/frame  _animate @ Pickups.js:628

@@ -1,0 +1,975 @@
+[run] http://127.0.0.1:61942/index.html?autotest=1&map=skyline&bots=8&duration=1&god=1&script=idle&scenario=tools/out/audit/verify-aibrain-1/scen_nat.js&secs=300&sfps=30
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 303.06,
+ "frames": 105,
+ "fps": {
+  "avg": 0,
+  "min": 33.11258278145622,
+  "max": 83.33333333333017
+ },
+ "errors": [],
+ "map": "skyline",
+ "player": {
+  "distance": 114.8,
+  "maxSpeed": 15.6,
+  "minY": 0,
+  "maxY": 10.21293622694408,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Servo",
+   "alive": false,
+   "kills": 18,
+   "deaths": 20,
+   "health": 0,
+   "weapon": "sniper",
+   "state": "retreat",
+   "distance": 1543.5,
+   "pos": [
+    -15.7,
+    0,
+    -14.8
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 16,
+   "deaths": 14,
+   "health": 87,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 1536.1,
+   "pos": [
+    10.2,
+    0,
+    9.3
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 15,
+   "deaths": 17,
+   "health": 40,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 1540.8,
+   "pos": [
+    -35.7,
+    0,
+    12.4
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": false,
+   "kills": 13,
+   "deaths": 19,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 1155.4,
+   "pos": [
+    -1.7,
+    0,
+    -11.3
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 14,
+   "deaths": 17,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 1382,
+   "pos": [
+    -20.7,
+    12.8,
+    -7.5
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 16,
+   "deaths": 18,
+   "health": 90,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 1449.5,
+   "pos": [
+    17,
+    0,
+    -34.1
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 24,
+   "deaths": 17,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 1514.6,
+   "pos": [
+    26,
+    9.6,
+    -29.9
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": false,
+   "kills": 17,
+   "deaths": 17,
+   "health": 0,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 1508.7,
+   "pos": [
+    15,
+    0,
+    -22.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 691,
+  "death": 139,
+  "spawn": 145,
+  "pickup": 44,
+  "fire": 2194
+ },
+ "renderer": {
+  "calls": 355,
+  "triangles": 96482,
+  "geometries": 232,
+  "textures": 173,
+  "programs": 104
+ },
+ "custom": {
+  "ign": [
+   {
+    "t": 0.3,
+    "bot": "Diode",
+    "what": "weapon:sniper",
+    "air": false,
+    "gap": 0,
+    "y": 12.8,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 999.3,
+    "hp": 100
+   },
+   {
+    "t": 21.1,
+    "bot": "Diode",
+    "what": "health",
+    "air": true,
+    "gap": 4.3,
+    "y": 4.4,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 3.6,
+    "hp": 24
+   },
+   {
+    "t": 21.1,
+    "bot": "Diode",
+    "what": "health",
+    "air": true,
+    "gap": 4.4,
+    "y": 4.4,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 3.6,
+    "hp": 24
+   },
+   {
+    "t": 33,
+    "bot": "Rivet",
+    "what": "health",
+    "air": true,
+    "gap": 3.4,
+    "y": 3.4,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 1032,
+    "hp": 19
+   },
+   {
+    "t": 33,
+    "bot": "Rivet",
+    "what": "health",
+    "air": true,
+    "gap": 2.7,
+    "y": 2.7,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 1032,
+    "hp": 19
+   },
+   {
+    "t": 33,
+    "bot": "Rivet",
+    "what": "health",
+    "air": true,
+    "gap": 1.9,
+    "y": 2,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 1032,
+    "hp": 19
+   },
+   {
+    "t": 109.5,
+    "bot": "Nimbus",
+    "what": "health",
+    "air": true,
+    "gap": 6,
+    "y": 6,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 19.6,
+    "hp": 20
+   },
+   {
+    "t": 109.6,
+    "bot": "Nimbus",
+    "what": "health",
+    "air": true,
+    "gap": 6,
+    "y": 6,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 19.6,
+    "hp": 20
+   },
+   {
+    "t": 109.6,
+    "bot": "Nimbus",
+    "what": "health",
+    "air": true,
+    "gap": 5.9,
+    "y": 5.9,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 19.7,
+    "hp": 20
+   },
+   {
+    "t": 119,
+    "bot": "Nimbus",
+    "what": "weapon:sniper",
+    "air": false,
+    "gap": 0,
+    "y": 12.8,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 29.1,
+    "hp": 100
+   },
+   {
+    "t": 120.1,
+    "bot": "Diode",
+    "what": "health",
+    "air": true,
+    "gap": 3,
+    "y": 3,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 0.2,
+    "hp": 30
+   },
+   {
+    "t": 120.1,
+    "bot": "Diode",
+    "what": "health",
+    "air": true,
+    "gap": 3.7,
+    "y": 3.7,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 0.2,
+    "hp": 30
+   },
+   {
+    "t": 120.1,
+    "bot": "Diode",
+    "what": "health",
+    "air": true,
+    "gap": 4.4,
+    "y": 4.4,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 0.2,
+    "hp": 30
+   },
+   {
+    "t": 120.2,
+    "bot": "Diode",
+    "what": "health",
+    "air": true,
+    "gap": 5,
+    "y": 5,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 0.3,
+    "hp": 30
+   },
+   {
+    "t": 121.6,
+    "bot": "Piston",
+    "what": "weapon:shotgun",
+    "air": true,
+    "gap": 4.6,
+    "y": 4.6,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 5.8,
+    "hp": 100
+   },
+   {
+    "t": 126.6,
+    "bot": "Rivet",
+    "what": "weapon:sniper",
+    "air": false,
+    "gap": 0,
+    "y": 12.8,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 46.3,
+    "hp": 100
+   },
+   {
+    "t": 128.9,
+    "bot": "Axle",
+    "what": "health",
+    "air": true,
+    "gap": 4.4,
+    "y": 4.4,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 0.2,
+    "hp": 10
+   },
+   {
+    "t": 129,
+    "bot": "Axle",
+    "what": "health",
+    "air": true,
+    "gap": 5,
+    "y": 5,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 0.3,
+    "hp": 10
+   },
+   {
+    "t": 129,
+    "bot": "Axle",
+    "what": "health",
+    "air": true,
+    "gap": 5.6,
+    "y": 5.6,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 0.3,
+    "hp": 10
+   },
+   {
+    "t": 129,
+    "bot": "Axle",
+    "what": "health",
+    "air": true,
+    "gap": 6.2,
+    "y": 6.2,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 0.3,
+    "hp": 10
+   },
+   {
+    "t": 149.6,
+    "bot": "Gasket",
+    "what": "weapon:sniper",
+    "air": false,
+    "gap": 0,
+    "y": 12.8,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 40.4,
+    "hp": 100
+   },
+   {
+    "t": 152.2,
+    "bot": "Nimbus",
+    "what": "weapon:sniper",
+    "air": false,
+    "gap": 0,
+    "y": 0,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 23.1,
+    "hp": 100
+   },
+   {
+    "t": 181.7,
+    "bot": "Relay",
+    "what": "health",
+    "air": true,
+    "gap": 4.7,
+    "y": 4.7,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 0.3,
+    "hp": 9
+   },
+   {
+    "t": 181.7,
+    "bot": "Relay",
+    "what": "health",
+    "air": true,
+    "gap": 5.6,
+    "y": 5.6,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 0.3,
+    "hp": 9
+   },
+   {
+    "t": 182,
+    "bot": "Rivet",
+    "what": "health",
+    "air": true,
+    "gap": 7.1,
+    "y": 7.1,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 44.1,
+    "hp": 18
+   },
+   {
+    "t": 182,
+    "bot": "Rivet",
+    "what": "health",
+    "air": true,
+    "gap": 6.5,
+    "y": 6.6,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 44.2,
+    "hp": 18
+   },
+   {
+    "t": 214.5,
+    "bot": "Axle",
+    "what": "weapon:sniper",
+    "air": false,
+    "gap": 0,
+    "y": 12.8,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 85.8,
+    "hp": 100
+   },
+   {
+    "t": 278.5,
+    "bot": "Diode",
+    "what": "armor",
+    "air": false,
+    "gap": 0,
+    "y": 0,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 145.2,
+    "hp": 100
+   },
+   {
+    "t": 289.1,
+    "bot": "Nimbus",
+    "what": "health",
+    "air": true,
+    "gap": 5,
+    "y": 5,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 2.5,
+    "hp": 26
+   },
+   {
+    "t": 289.2,
+    "bot": "Nimbus",
+    "what": "health",
+    "air": true,
+    "gap": 4.5,
+    "y": 4.5,
+    "state": "retreat",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "health",
+    "lastLaunchAgo": 2.5,
+    "hp": 26
+   }
+  ],
+  "rescue": [],
+  "launches": [
+   {
+    "t": 8.6,
+    "bot": "Nimbus",
+    "state": "engage",
+    "mode": "path",
+    "idx": 1,
+    "len": 6
+   },
+   {
+    "t": 11.8,
+    "bot": "Servo",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 3
+   },
+   {
+    "t": 17.5,
+    "bot": "Diode",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 6
+   },
+   {
+    "t": 22.3,
+    "bot": "Relay",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 1
+   },
+   {
+    "t": 27.4,
+    "bot": "Relay",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 6
+   },
+   {
+    "t": 36.2,
+    "bot": "Servo",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 8
+   },
+   {
+    "t": 37.6,
+    "bot": "Relay",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 0,
+    "len": 3
+   },
+   {
+    "t": 38.7,
+    "bot": "Servo",
+    "state": "engage",
+    "mode": "path",
+    "idx": 1,
+    "len": 7
+   },
+   {
+    "t": 38.7,
+    "bot": "Nimbus",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 0,
+    "len": 5
+   },
+   {
+    "t": 51.5,
+    "bot": "Piston",
+    "state": "engage",
+    "mode": "idle",
+    "idx": 0,
+    "len": 0
+   },
+   {
+    "t": 53.7,
+    "bot": "Gasket",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 1,
+    "len": 4
+   },
+   {
+    "t": 80.3,
+    "bot": "Rivet",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 2,
+    "len": 7
+   },
+   {
+    "t": 89.9,
+    "bot": "Nimbus",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 0,
+    "len": 3
+   },
+   {
+    "t": 102.5,
+    "bot": "Piston",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 3,
+    "len": 8
+   },
+   {
+    "t": 103.4,
+    "bot": "Diode",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 1,
+    "len": 6
+   },
+   {
+    "t": 109.2,
+    "bot": "Gasket",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 0,
+    "len": 5
+   },
+   {
+    "t": 115.8,
+    "bot": "Piston",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 4,
+    "len": 7
+   },
+   {
+    "t": 119.9,
+    "bot": "Diode",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 2,
+    "len": 5
+   },
+   {
+    "t": 128.7,
+    "bot": "Axle",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 2,
+    "len": 3
+   },
+   {
+    "t": 129.1,
+    "bot": "Nimbus",
+    "state": "chase",
+    "mode": "path",
+    "idx": 0,
+    "len": 6
+   },
+   {
+    "t": 130.7,
+    "bot": "Piston",
+    "state": "engage",
+    "mode": "idle",
+    "idx": 0,
+    "len": 0
+   },
+   {
+    "t": 133.3,
+    "bot": "Diode",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 0,
+    "len": 3
+   },
+   {
+    "t": 137.9,
+    "bot": "Rivet",
+    "state": "chase",
+    "mode": "path",
+    "idx": 3,
+    "len": 6
+   },
+   {
+    "t": 181.4,
+    "bot": "Relay",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 0,
+    "len": 3
+   },
+   {
+    "t": 189.9,
+    "bot": "Gasket",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 0,
+    "len": 6
+   },
+   {
+    "t": 192,
+    "bot": "Servo",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 2
+   },
+   {
+    "t": 196.5,
+    "bot": "Servo",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 9
+   },
+   {
+    "t": 207.5,
+    "bot": "Rivet",
+    "state": "engage",
+    "mode": "path",
+    "idx": 1,
+    "len": 4
+   },
+   {
+    "t": 215.4,
+    "bot": "Servo",
+    "state": "chase",
+    "mode": "path",
+    "idx": 0,
+    "len": 4
+   },
+   {
+    "t": 225.9,
+    "bot": "Rivet",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 0,
+    "len": 3
+   },
+   {
+    "t": 260.5,
+    "bot": "Gasket",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 0,
+    "len": 5
+   },
+   {
+    "t": 275.3,
+    "bot": "Nimbus",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 0,
+    "len": 6
+   },
+   {
+    "t": 276.1,
+    "bot": "Servo",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 6
+   },
+   {
+    "t": 286.6,
+    "bot": "Nimbus",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 1
+   },
+   {
+    "t": 289.7,
+    "bot": "Nimbus",
+    "state": "retreat",
+    "mode": "direct",
+    "idx": 0,
+    "len": 0
+   }
+  ],
+  "stuck": [
+   {
+    "t": 23.6,
+    "bot": "Axle",
+    "pos": [
+     -16.6,
+     0,
+     3.1
+    ],
+    "state": "engage",
+    "mode": "path",
+    "wp": "-17.5,0,2.5,walk",
+    "stage": 1
+   },
+   {
+    "t": 32.4,
+    "bot": "Relay",
+    "pos": [
+     16.9,
+     0,
+     -4.8
+    ],
+    "state": "engage",
+    "mode": "path",
+    "wp": "16.5,0,-1.5,walk",
+    "stage": 1
+   },
+   {
+    "t": 192.9,
+    "bot": "Piston",
+    "pos": [
+     8.3,
+     0.1,
+     -4.2
+    ],
+    "state": "engage",
+    "mode": "path",
+    "wp": "10.5,0,-7.5,walk",
+    "stage": 1
+   },
+   {
+    "t": 232.9,
+    "bot": "Gasket",
+    "pos": [
+     -10.4,
+     -0.1,
+     -18.4
+    ],
+    "state": "chase",
+    "mode": "direct",
+    "wp": null,
+    "stage": 1
+   },
+   {
+    "t": 234,
+    "bot": "Gasket",
+    "pos": [
+     -10.4,
+     -0.1,
+     -18.4
+    ],
+    "state": "chase",
+    "mode": "direct",
+    "wp": null,
+    "stage": 2
+   },
+   {
+    "t": 299.5,
+    "bot": "Diode",
+    "pos": [
+     -31.9,
+     0,
+     16.8
+    ],
+    "state": "engage",
+    "mode": "idle",
+    "wp": null,
+    "stage": 1
+   }
+  ],
+  "roamFail": [],
+  "simSeconds": 300,
+  "summary": {
+   "ign": 30,
+   "ignAir": 23,
+   "rescue": 0,
+   "rescueAir": 0,
+   "launches": 35,
+   "stuck": 6
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

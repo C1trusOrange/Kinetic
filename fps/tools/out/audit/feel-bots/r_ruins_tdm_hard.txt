@@ -1,0 +1,1102 @@
+[run] http://127.0.0.1:50869/index.html?autotest=1&scenario=tools/out/audit/feel-bots/telemetry.js&map=ruins&bots=8&mode=tdm&diff=hard&spectate=1&duration=120
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 120.05,
+ "frames": 6252,
+ "fps": {
+  "avg": 66.1,
+  "min": 4,
+  "max": 192.3
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 9,
+   "deaths": 9,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "collect",
+   "distance": 499.9,
+   "pos": [
+    -45.2,
+    8.9,
+    -15.4
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": false,
+   "kills": 3,
+   "deaths": 7,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 696.4,
+   "pos": [
+    -17.1,
+    -0.8,
+    22.9
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 3,
+   "deaths": 5,
+   "health": 2,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 717.5,
+   "pos": [
+    -38.4,
+    4.3,
+    4.4
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 9,
+   "deaths": 5,
+   "health": 60,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 751.7,
+   "pos": [
+    -4.5,
+    0,
+    -23.5
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 2,
+   "deaths": 10,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 718.9,
+   "pos": [
+    -13,
+    0,
+    -25.3
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 5,
+   "deaths": 6,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 703.4,
+   "pos": [
+    49,
+    9,
+    16
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 7,
+   "deaths": 5,
+   "health": 20,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 680.1,
+   "pos": [
+    -25.7,
+    -1.4,
+    16.4
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 9,
+   "deaths": 6,
+   "health": 65,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 769.5,
+   "pos": [
+    37.2,
+    0.1,
+    2.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 266,
+  "death": 53,
+  "spawn": 60,
+  "pickup": 24,
+  "fire": 635
+ },
+ "renderer": {
+  "calls": 372,
+  "triangles": 101568,
+  "geometries": 185,
+  "textures": 113,
+  "programs": 92
+ },
+ "custom": {
+  "navY": {
+   "0": 6587,
+   "3": 1845,
+   "6": 549,
+   "9": 1775,
+   "12": 374,
+   "15": 40,
+   "-3": 373
+  },
+  "navClass": {
+   "0": {
+    "n": 6587,
+    "main": 6372,
+    "fromOnly": 0,
+    "unreachable": 215
+   },
+   "3": {
+    "n": 1845,
+    "main": 1774,
+    "fromOnly": 0,
+    "unreachable": 71
+   },
+   "6": {
+    "n": 549,
+    "main": 288,
+    "fromOnly": 0,
+    "unreachable": 261
+   },
+   "9": {
+    "n": 1775,
+    "main": 1598,
+    "fromOnly": 0,
+    "unreachable": 177
+   },
+   "12": {
+    "n": 374,
+    "main": 124,
+    "fromOnly": 0,
+    "unreachable": 250
+   },
+   "15": {
+    "n": 40,
+    "main": 28,
+    "fromOnly": 0,
+    "unreachable": 12
+   },
+   "-3": {
+    "n": 373,
+    "main": 371,
+    "fromOnly": 0,
+    "unreachable": 2
+   }
+  },
+  "pickupNav": [
+   "rocket@0,10,0:main",
+   "sniper@-49,9,24:main",
+   "sniper@0,9,-46:main",
+   "shotgun@18,0,30:main",
+   "health@-27,-0,20:main",
+   "health@0,0,-41:main",
+   "health@42,5,4:main",
+   "health@-22,0,36:main",
+   "armor@0,0,-50:main",
+   "armor@49,9,-4:main",
+   "ammo@-42,5,-18:main",
+   "ammo@-11,5,-11:NO",
+   "ammo@34,0,24:main",
+   "ammo@-6,0,46:main",
+   "grenades@-1,0,36:main",
+   "grenades@42,5,-26:main"
+  ],
+  "spawnNav": "mmmmXmmmmmmmmmmmmm",
+  "spawnY": "0,0,0,0,1,0,0,0,0,1,0,0,5,5,9,9,6,5",
+  "navStats": {
+   "nodes": 11543,
+   "links": 81899,
+   "components": 26,
+   "largestComponent": 11490,
+   "buildMs": 476,
+   "traps": 0,
+   "strongComponents": 119,
+   "largestStrong": 10555,
+   "cells": 11664
+  },
+  "spots": {
+   "cover": 97,
+   "snipe": 24
+  },
+  "mode": "tdm",
+  "diff": "hard",
+  "map": "ruins",
+  "bots": 8,
+  "simSeconds": 120,
+  "aliveBotSec": 829,
+  "stateShare": {
+   "roam": 0.031,
+   "engage": 0.389,
+   "chase": 0.209,
+   "retreat": 0.092,
+   "collect": 0.279
+  },
+  "stuck": {
+   "sec": 9.5,
+   "share": 0.0115,
+   "anySec": 14,
+   "recoverCalls": 4,
+   "rescues": 0
+  },
+  "flap": {
+   "transitionsPerMin": 35.4,
+   "fastFlips": 168,
+   "revsPerMin": 0.3,
+   "revNavPerMin": 0.2,
+   "spinSec": 0,
+   "strafeFlipsPerEngageMin": 51.6
+  },
+  "roamIdleShare": 1.25,
+  "combat": {
+   "kills": 53,
+   "kpm": 26.5,
+   "firstDamageAt": 1.9,
+   "firstKillAt": 4.4,
+   "botShots": 635,
+   "botPelletHits": 250,
+   "botDamage": 5485,
+   "grenadesThrown": 8,
+   "grenadeHits": 0,
+   "grenadeKills": 0,
+   "visShare": 0.339,
+   "triggerShareOfVis": 0.255,
+   "fireByWeapon": {
+    "rocket": 26,
+    "rifle": 390,
+    "sniper": 11,
+    "pistol": 208
+   },
+   "dmgByWeapon": {
+    "rifle": 2313,
+    "rocket": 412,
+    "pistol": 2578,
+    "sniper": 183
+   },
+   "killsByWeapon": {
+    "rifle": 20,
+    "pistol": 24,
+    "sniper": 3,
+    "rocket": 3
+   },
+   "suicides": 0,
+   "falls": 0,
+   "friendlyDmg": 0,
+   "spawnKills": 2,
+   "deathNearSpawn": 1,
+   "killDist": {
+    "n": 50,
+    "med": 21.4,
+    "p10": 13.5,
+    "p90": 30.1
+   },
+   "lifeSpan": {
+    "n": 45,
+    "med": 11.9,
+    "p10": 4.6,
+    "p90": 29
+   },
+   "reactDelay": {
+    "n": 117,
+    "med": 0.59,
+    "p10": 0.1,
+    "p90": 3.65
+   },
+   "blockedFireShare": 0.1213,
+   "nonVisibleFire": 0
+  },
+  "accuracy": {
+   "rifle": {
+    "35-60": "13/67 (19%) cover 10 past 44 other 0 miss 0",
+    "20-35": "75/202 (37%) cover 25 past 101 other 1 miss 0",
+    "12-20": "53/102 (52%) cover 8 past 35 other 6 miss 0",
+    "6-12": "6/8 (75%) cover 0 past 2 other 0 miss 0",
+    "60+": "0/11 (0%) cover 6 past 5 other 0 miss 0"
+   },
+   "sniper": {
+    "35-60": "1/8 (13%) cover 0 past 7 other 0 miss 0",
+    "60+": "1/1 (100%) cover 0 past 0 other 0 miss 0",
+    "20-35": "1/2 (50%) cover 1 past 0 other 0 miss 0"
+   },
+   "pistol": {
+    "6-12": "7/12 (58%) cover 1 past 4 other 0 miss 0",
+    "12-20": "21/45 (47%) cover 5 past 19 other 0 miss 0",
+    "20-35": "54/119 (45%) cover 7 past 56 other 2 miss 0",
+    "35-60": "5/28 (18%) cover 6 past 17 other 0 miss 0",
+    "<6": "4/4 (100%) cover 0 past 0 other 0 miss 0"
+   }
+  },
+  "playerPel": {
+   "n": 0,
+   "ent": 0
+  },
+  "engageRangeSec": {
+   "rocket": [
+    0.7,
+    1.5,
+    3.6,
+    25.4,
+    10.4,
+    1
+   ],
+   "rifle": [
+    0,
+    1.5,
+    20.3,
+    47.1,
+    21.5,
+    3.7
+   ],
+   "sniper": [
+    0,
+    0.1,
+    0.4,
+    16.2,
+    25.1,
+    6.8
+   ],
+   "pistol": [
+    0.9,
+    4,
+    17.3,
+    37,
+    25.5,
+    4.8
+   ],
+   "shotgun": [
+    0,
+    0,
+    0,
+    1.3,
+    3.1,
+    2
+   ]
+  },
+  "rangeMismatch": {
+   "visSec": 281.3,
+   "badSec": 25.1,
+   "byWeapon": {
+    "rifle": 3.7464999999999833,
+    "rocket": 1.440699999999995,
+    "pistol": 13.011600000000005,
+    "shotgun": 6.4230999999999545,
+    "sniper": 0.4848999999999961
+   }
+  },
+  "los": {
+   "totalBotSec": 260.7,
+   "engaged": 200.7,
+   "ignoredInFov": 29.3,
+   "behind": 30.7
+  },
+  "clump": {
+   "withNeighborShare": 0.067,
+   "pairSamples": 124,
+   "samples": 3148
+  },
+  "pickups": {
+   "bot:weapon:sniper": 4,
+   "bot:grenades": 3,
+   "bot:health": 11,
+   "bot:armor": 3,
+   "bot:weapon:shotgun": 2,
+   "bot:ammo": 1
+  },
+  "coverage": {
+   "cells4m": 494
+  },
+  "botTimeByY": {
+   "0": 0.581,
+   "2": 0.084,
+   "4": 0.165,
+   "6": 0.04,
+   "8": 0.079,
+   "10": 0.011,
+   "12": 0.003,
+   "14": 0,
+   "16": 0.001,
+   "-2": 0.035
+  },
+  "timeline": [
+   {
+    "t": 5,
+    "alive": 7,
+    "roam": 0,
+    "engage": 1,
+    "chase": 4,
+    "retreat": 1,
+    "collect": 1
+   },
+   {
+    "t": 10,
+    "alive": 8,
+    "roam": 0,
+    "engage": 4,
+    "chase": 3,
+    "retreat": 0,
+    "collect": 1
+   },
+   {
+    "t": 15,
+    "alive": 8,
+    "roam": 0,
+    "engage": 4,
+    "chase": 3,
+    "retreat": 0,
+    "collect": 1
+   },
+   {
+    "t": 20,
+    "alive": 5,
+    "roam": 0,
+    "engage": 0,
+    "chase": 2,
+    "retreat": 1,
+    "collect": 2
+   },
+   {
+    "t": 25,
+    "alive": 7,
+    "roam": 0,
+    "engage": 4,
+    "chase": 1,
+    "retreat": 2,
+    "collect": 0
+   },
+   {
+    "t": 30,
+    "alive": 7,
+    "roam": 0,
+    "engage": 2,
+    "chase": 0,
+    "retreat": 1,
+    "collect": 4
+   },
+   {
+    "t": 35,
+    "alive": 8,
+    "roam": 0,
+    "engage": 2,
+    "chase": 2,
+    "retreat": 0,
+    "collect": 4
+   },
+   {
+    "t": 40,
+    "alive": 7,
+    "roam": 0,
+    "engage": 1,
+    "chase": 4,
+    "retreat": 0,
+    "collect": 2
+   },
+   {
+    "t": 45,
+    "alive": 7,
+    "roam": 0,
+    "engage": 2,
+    "chase": 2,
+    "retreat": 0,
+    "collect": 3
+   },
+   {
+    "t": 50,
+    "alive": 6,
+    "roam": 0,
+    "engage": 1,
+    "chase": 3,
+    "retreat": 1,
+    "collect": 1
+   },
+   {
+    "t": 55,
+    "alive": 6,
+    "roam": 0,
+    "engage": 3,
+    "chase": 1,
+    "retreat": 0,
+    "collect": 2
+   },
+   {
+    "t": 60,
+    "alive": 8,
+    "roam": 0,
+    "engage": 5,
+    "chase": 1,
+    "retreat": 1,
+    "collect": 1
+   },
+   {
+    "t": 65,
+    "alive": 8,
+    "roam": 0,
+    "engage": 0,
+    "chase": 0,
+    "retreat": 0,
+    "collect": 8
+   },
+   {
+    "t": 70,
+    "alive": 7,
+    "roam": 0,
+    "engage": 3,
+    "chase": 3,
+    "retreat": 1,
+    "collect": 0
+   },
+   {
+    "t": 75,
+    "alive": 8,
+    "roam": 1,
+    "engage": 1,
+    "chase": 2,
+    "retreat": 2,
+    "collect": 2
+   },
+   {
+    "t": 80,
+    "alive": 6,
+    "roam": 0,
+    "engage": 0,
+    "chase": 2,
+    "retreat": 1,
+    "collect": 3
+   },
+   {
+    "t": 85,
+    "alive": 8,
+    "roam": 0,
+    "engage": 3,
+    "chase": 3,
+    "retreat": 1,
+    "collect": 1
+   },
+   {
+    "t": 90,
+    "alive": 8,
+    "roam": 0,
+    "engage": 4,
+    "chase": 2,
+    "retreat": 0,
+    "collect": 2
+   },
+   {
+    "t": 95,
+    "alive": 6,
+    "roam": 2,
+    "engage": 2,
+    "chase": 0,
+    "retreat": 0,
+    "collect": 2
+   },
+   {
+    "t": 100,
+    "alive": 7,
+    "roam": 0,
+    "engage": 4,
+    "chase": 3,
+    "retreat": 0,
+    "collect": 0
+   },
+   {
+    "t": 105,
+    "alive": 7,
+    "roam": 1,
+    "engage": 3,
+    "chase": 2,
+    "retreat": 0,
+    "collect": 1
+   },
+   {
+    "t": 110,
+    "alive": 6,
+    "roam": 0,
+    "engage": 4,
+    "chase": 2,
+    "retreat": 0,
+    "collect": 0
+   },
+   {
+    "t": 115,
+    "alive": 7,
+    "roam": 0,
+    "engage": 3,
+    "chase": 2,
+    "retreat": 1,
+    "collect": 1
+   },
+   {
+    "t": 120,
+    "alive": 7,
+    "roam": 1,
+    "engage": 2,
+    "chase": 0,
+    "retreat": 2,
+    "collect": 2
+   }
+  ],
+  "deathCtx": {
+   "n": 50,
+   "unaware": 0,
+   "behind": 2,
+   "retreating": 39,
+   "engaging": 11,
+   "visTarget": 0,
+   "lowHpNoRetreat": 0,
+   "hpAtDeathTargetOther": 9,
+   "byState": {
+    "retreat": 39,
+    "engage": 11
+   }
+  },
+  "transitions": {
+   "roam>collect": 50,
+   "roam>engage": 14,
+   "collect>engage": 49,
+   "engage>chase": 122,
+   "collect>chase": 26,
+   "chase>engage": 136,
+   "engage>retreat": 43,
+   "engage>collect": 23,
+   "chase>collect": 10,
+   "chase>retreat": 4,
+   "retreat>chase": 2,
+   "collect>roam": 6,
+   "retreat>engage": 3,
+   "roam>chase": 1
+  },
+  "chaseDurMedByExit": {
+   "engage": {
+    "n": 136,
+    "med": 0.7
+   },
+   "collect": {
+    "n": 10,
+    "med": 1.2
+   },
+   "retreat": {
+    "n": 4,
+    "med": 1.2
+   }
+  },
+  "retreatEpisodes": {
+   "all": {
+    "n": 47,
+    "dead": 39,
+    "alive": 5
+   },
+   "enemyHpLEmine": {
+    "n": 1,
+    "dead": 1,
+    "alive": 0
+   },
+   "enemyHpGTmine": {
+    "n": 46,
+    "dead": 38,
+    "alive": 5
+   },
+   "visibleAtStart": {
+    "n": 45,
+    "dead": 38,
+    "alive": 4
+   },
+   "kinds": {
+    "health": 37,
+    "cover": 7,
+    "?": 3
+   },
+   "sample": [
+    {
+     "hp": 21,
+     "ehp": 72,
+     "d": 23,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 25,
+     "ehp": 100,
+     "d": 16,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 13,
+     "ehp": 100,
+     "d": 28,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 8,
+     "ehp": 68,
+     "d": 18,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 24,
+     "ehp": 86,
+     "d": 30,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 4,
+     "ehp": 26,
+     "d": 15,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 3,
+     "ehp": 100,
+     "d": 33,
+     "vis": false,
+     "kind": "health",
+     "out": "alive"
+    },
+    {
+     "hp": 11,
+     "ehp": 100,
+     "d": 23,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 24,
+     "ehp": 100,
+     "d": 37,
+     "vis": true,
+     "kind": "health",
+     "out": "alive"
+    },
+    {
+     "hp": 13,
+     "ehp": 20,
+     "d": 24,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 20,
+     "ehp": 72,
+     "d": 24,
+     "vis": true,
+     "kind": "health",
+     "out": "dead"
+    },
+    {
+     "hp": 16,
+     "ehp": 100,
+     "d": 29,
+     "vis": true,
+     "kind": "cover",
+     "out": "dead"
+    }
+   ]
+  },
+  "nullAttacker": {
+   "dmg": {
+    "grenade": 543
+   },
+   "deaths": {
+    "grenade": 3
+   },
+   "explosions": {
+    "rocket:owner:bot": 26,
+    "grenade:NOOWNER": 8
+   }
+  },
+  "grenadeExplosions": [],
+  "collect": {
+   "trips": 83,
+   "ok": 11,
+   "fail": 70,
+   "secTotal": 223,
+   "secFailed": 171
+  },
+  "retreat": {
+   "enter": 47,
+   "exit": 5,
+   "deaths": 39,
+   "medDistToThreatAtEnter": 23,
+   "medDur": 8.6,
+   "medSecToDeath": 0.3
+  },
+  "weaponShare": {
+   "rifle": 0.325,
+   "sniper": 0.151,
+   "rocket": 0.15,
+   "pistol": 0.339,
+   "shotgun": 0.036
+  },
+  "pistolHeld": {
+   "withOtherOwnedShare": 0.221,
+   "primaryDepletedShare": 0
+  },
+  "retreatKinds": {
+   "health": 73.6,
+   "cover": 2.8
+  },
+  "coverReloadSec": 2.3,
+  "engage": {
+   "visSec": 250.1,
+   "blindSec": 71.9,
+   "stillShare": 0.134,
+   "meanLatSpeed": 2.84,
+   "meanRadialSpeed": 2.38,
+   "crouchShare": 0.224,
+   "airShare": 0.159
+  },
+  "yawRate": {
+   "n": 15736,
+   "p50": 0.17,
+   "p95": 4.12,
+   "p99": 11.45
+  },
+  "aimErrMetersAtFire": {
+   "n": 635,
+   "p50": 0.52,
+   "p90": 0.96
+  },
+  "pickupAvailShare": {
+   "weapon:rocket": 1,
+   "weapon:sniper": 0.6,
+   "weapon:shotgun": 0.58,
+   "health": 0.61,
+   "armor": 0.73,
+   "ammo": 0.98,
+   "grenades": 0.75
+  },
+  "pickupCounts": {
+   "weapon:rocket": 1,
+   "weapon:sniper": 2,
+   "weapon:shotgun": 1,
+   "health": 4,
+   "armor": 2,
+   "ammo": 4,
+   "grenades": 2
+  },
+  "per": [
+   {
+    "n": "Tesla",
+    "k": 9,
+    "d": 9,
+    "w": "sniper",
+    "dmg": 735,
+    "shots": 89,
+    "hits": 33,
+    "stuck": 2.5,
+    "rec": 2,
+    "resc": 0,
+    "y": [
+     -1,
+     10
+    ],
+    "tr": 66,
+    "ff": 22,
+    "revs": 0,
+    "spin": 0
+   },
+   {
+    "n": "Glitch",
+    "k": 3,
+    "d": 7,
+    "w": "rifle",
+    "dmg": 820,
+    "shots": 100,
+    "hits": 42,
+    "stuck": 0,
+    "rec": 0,
+    "resc": 0,
+    "y": [
+     -2,
+     12
+    ],
+    "tr": 60,
+    "ff": 25,
+    "revs": 0,
+    "spin": 0
+   },
+   {
+    "n": "Byte",
+    "k": 3,
+    "d": 5,
+    "w": "rifle",
+    "dmg": 379,
+    "shots": 64,
+    "hits": 17,
+    "stuck": 1,
+    "rec": 0,
+    "resc": 0,
+    "y": [
+     -2,
+     12
+    ],
+    "tr": 61,
+    "ff": 20,
+    "revs": 0,
+    "spin": 0
+   },
+   {
+    "n": "Rivet",
+    "k": 9,
+    "d": 5,
+    "w": "rocket",
+    "dmg": 831,
+    "shots": 118,
+    "hits": 42,
+    "stuck": 2.5,
+    "rec": 2,
+    "resc": 0,
+    "y": [
+     0,
+     17
+    ],
+    "tr": 59,
+    "ff": 17,
+    "revs": 1,
+    "spin": 0
+   },
+   {
+    "n": "Torque",
+    "k": 2,
+    "d": 10,
+    "w": "pistol",
+    "dmg": 551,
+    "shots": 73,
+    "hits": 25,
+    "stuck": 0,
+    "rec": 0,
+    "resc": 0,
+    "y": [
+     0,
+     12
+    ],
+    "tr": 63,
+    "ff": 24,
+    "revs": 0,
+    "spin": 0
+   },
+   {
+    "n": "Gasket",
+    "k": 5,
+    "d": 6,
+    "w": "rifle",
+    "dmg": 434,
+    "shots": 50,
+    "hits": 22,
+    "stuck": 1,
+    "rec": 0,
+    "resc": 0,
+    "y": [
+     -1,
+     12
+    ],
+    "tr": 52,
+    "ff": 17,
+    "revs": 1,
+    "spin": 0
+   },
+   {
+    "n": "Cog",
+    "k": 7,
+    "d": 5,
+    "w": "rifle",
+    "dmg": 597,
+    "shots": 42,
+    "hits": 20,
+    "stuck": 2,
+    "rec": 0,
+    "resc": 0,
+    "y": [
+     -2,
+     12
+    ],
+    "tr": 67,
+    "ff": 23,
+    "revs": 1,
+    "spin": 0
+   },
+   {
+    "n": "Axle",
+    "k": 9,
+    "d": 6,
+    "w": "pistol",
+    "dmg": 1140,
+    "shots": 99,
+    "hits": 49,
+    "stuck": 0.5,
+    "rec": 0,
+    "resc": 0,
+    "y": [
+     -2,
+     10
+    ],
+    "tr": 61,
+    "ff": 20,
+    "revs": 1,
+    "spin": 0
+   }
+  ],
+  "grenadeThrows": 8,
+  "weaponSwitches": 71,
+  "rocketSelf": 0,
+  "player": {
+   "kills": 0,
+   "deaths": 0
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1
+exit attempt=1

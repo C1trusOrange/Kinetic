@@ -1,0 +1,3 @@
+fps {'avg': 22.8, 'min': 4, 'max': 163.9} errors 0 [] t 8.44
+strafe_jump_chain {"jumps":11,"speedAtJump":[9.6,9.66,9.63,9.8,9.71,9.6,9.61,9.6,9.6,9.6,9.62],"max":10.23}
+[run] done: wait=ok console_errors=0 warnings=1

@@ -1,0 +1,6 @@
+[run] http://127.0.0.1:54575/index.html
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[warning] [pickups] createWeaponModel('rocket') failed: boom
+[result] "{\"null\":{\"meshes\":2,\"tris\":24},\"empty\":{\"meshes\":2,\"tris\":24},\"throws\":{\"meshes\":2,\"tris\":24},\"real_pistol\":{\"meshes\":4,\"tris\":626},\"real_rifle\":{\"meshes\":7,\"tris\":882},\"real_shotgun\":{\"meshes\":4,\"tris\":1126},\"real_sniper\":{\"meshes\":6,\"tris\":1176},\"real_rocket\":{\"meshes\":9,\"tris\":932}}"
+[run] done: wait=ok console_errors=0 warnings=2

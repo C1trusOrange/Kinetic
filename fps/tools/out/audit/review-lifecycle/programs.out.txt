@@ -1,0 +1,42 @@
+[run] http://127.0.0.1:51617/index.html?autotest=1&map=foundry&bots=15&mode=ffa&duration=9000&diff=hard&god=1&scenario=tools/out/audit/review-lifecycle/programs.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "events": [
+  {
+   "seg": "match 1 (t=0..45s)",
+   "t": 5.4,
+   "programs": 103,
+   "added": 2,
+   "frameMs": 54
+  },
+  {
+   "seg": "match 1 (t=0..45s)",
+   "t": 19.7,
+   "programs": 104,
+   "added": 1,
+   "frameMs": 73
+  }
+ ],
+ "segs": [
+  {
+   "label": "match 1 (t=0..45s)",
+   "seconds": 45,
+   "programsStart": 101,
+   "programsEnd": 104,
+   "worstFrameMs": 824,
+   "frames": 660
+  },
+  {
+   "label": "after restart (45s)",
+   "seconds": 45,
+   "programsStart": 104,
+   "programsEnd": 104,
+   "worstFrameMs": 400,
+   "frames": 752
+  }
+ ],
+ "errors": []
+}
+[run] done: wait=ok console_errors=0 warnings=1

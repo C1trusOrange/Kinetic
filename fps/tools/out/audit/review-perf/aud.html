@@ -1,0 +1,32 @@
+<!doctype html><html><head><meta charset="utf-8"><title>aud</title></head><body>
+<script>
+window.__RES__ = { steps: [] };
+const T = (label, fn) => { const t = performance.now(); const r = fn(); window.__RES__.steps.push([label, +(performance.now() - t).toFixed(1)]); return r; };
+(async () => {
+  try {
+    const ctx = T('new AudioContext', () => new AudioContext({ latencyHint: 'interactive' }));
+    await ctx.resume();
+    window.__RES__.state = ctx.state;
+    const buf = ctx.createBuffer(1, 4410, 44100);
+    for (let i = 0; i < 6; i++) {
+      T('create+connect HRTF panner #' + i, () => {
+        const src = ctx.createBufferSource(); src.buffer = buf;
+        const g = ctx.createGain();
+        const p = ctx.createPanner(); p.panningModel = 'HRTF'; p.distanceModel = 'inverse';
+        p.positionX.value = 3 + i; p.positionY.value = 1; p.positionZ.value = -4;
+        src.connect(g); g.connect(p); p.connect(ctx.destination); src.start();
+      });
+      await new Promise(r => setTimeout(r, 120));
+    }
+    for (let i = 0; i < 3; i++) {
+      T('create+connect equalpower panner #' + i, () => {
+        const src = ctx.createBufferSource(); src.buffer = buf;
+        const p = ctx.createPanner(); p.panningModel = 'equalpower';
+        p.positionX.value = 3; src.connect(p); p.connect(ctx.destination); src.start();
+      });
+      await new Promise(r => setTimeout(r, 60));
+    }
+  } catch (e) { window.__RES__.err = String(e); }
+  window.__DONE__ = true;
+})();
+</script></body></html>

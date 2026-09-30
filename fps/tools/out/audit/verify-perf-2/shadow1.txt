@@ -1,0 +1,256 @@
+[run] http://127.0.0.1:49675/index.html?autotest=1&map=foundry&bots=8&duration=20&scenario=tools/out/audit/verify-perf-2/sc_shadow.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":37.8}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 20.15,
+ "frames": 671,
+ "fps": {
+  "avg": 37.8,
+  "min": 4,
+  "max": 135.1351351350608
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 104.7,
+  "maxSpeed": 12.33,
+  "minY": -4,
+  "maxY": 1.2267147639952984,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "isGrappling": true,
+   "isWallRunning": true
+  },
+  "shots": 18,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 50,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 134.6,
+   "pos": [
+    3.4,
+    0,
+    -20.5
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 121.2,
+   "pos": [
+    12.8,
+    0,
+    -29.3
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 111.1,
+   "pos": [
+    40.4,
+    0,
+    -8
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 112.8,
+   "pos": [
+    -33.5,
+    0,
+    18.2
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 101.4,
+   "pos": [
+    -45.8,
+    0,
+    2.3
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 2,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "collect",
+   "distance": 88.5,
+   "pos": [
+    16.3,
+    -4,
+    26
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 45,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 127.3,
+   "pos": [
+    -17.6,
+    5,
+    16.3
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 76.2,
+   "pos": [
+    -21.8,
+    0,
+    -24.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 37,
+  "death": 7,
+  "spawn": 16,
+  "pickup": 2,
+  "fire": 102
+ },
+ "renderer": {
+  "calls": 329,
+  "triangles": 126504,
+  "geometries": 376,
+  "textures": 146,
+  "programs": 115
+ },
+ "custom": {
+  "rocket": {
+   "meshes": 12,
+   "castShadow": 0
+  },
+  "grenade": {
+   "meshes": 6,
+   "castShadow": 0
+  },
+  "botWeapon": [
+   {
+    "meshes": 14,
+    "castShadow": 14
+   },
+   {
+    "meshes": 13,
+    "castShadow": 13
+   },
+   {
+    "meshes": 14,
+    "castShadow": 14
+   },
+   {
+    "meshes": 14,
+    "castShadow": 14
+   },
+   {
+    "meshes": 18,
+    "castShadow": 18
+   },
+   {
+    "meshes": 14,
+    "castShadow": 14
+   },
+   {
+    "meshes": 13,
+    "castShadow": 13
+   },
+   {
+    "meshes": 18,
+    "castShadow": 18
+   }
+  ],
+  "botBody": {
+   "meshes": 27,
+   "castShadow": 27
+  },
+  "sum": {
+   "warm": {
+    "n": 111,
+    "calls": 532,
+    "tris": 145066,
+    "r": 11.5
+   },
+   "A": {
+    "n": 148,
+    "calls": 376,
+    "tris": 130188,
+    "r": 11.1
+   },
+   "noAutoUpdate": {
+    "n": 170,
+    "calls": 127,
+    "tris": 67058,
+    "r": 8
+   },
+   "weaponNoShadow": {
+    "n": 173,
+    "calls": 238,
+    "tris": 119364,
+    "r": 9.1
+   },
+   "A2": {
+    "n": 61,
+    "calls": 320,
+    "tris": 126828,
+    "r": 9.2
+   }
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

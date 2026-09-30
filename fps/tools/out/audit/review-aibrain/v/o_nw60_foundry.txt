@@ -1,0 +1,109 @@
+[run] http://127.0.0.1:52616/index.html?autotest=1&map=foundry&bots=2&duration=1&god=1&script=idle&test=navwalk&trials=40&fps=60&scenario=tools/out/audit/review-aibrain/sim.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 421.72,
+ "frames": 134,
+ "fps": {
+  "avg": 0,
+  "min": 27.322404371582074,
+  "max": 158.73015873017061
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 2715.8,
+   "pos": [
+    -39.1,
+    0,
+    -20.5
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    -45,
+    0,
+    -38
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 5,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 129,
+  "triangles": 102532,
+  "geometries": 112,
+  "textures": 113,
+  "programs": 93
+ },
+ "custom": {
+  "navwalk": {
+   "trials": 40,
+   "ok": 39,
+   "fail": 1,
+   "pathNull": 0,
+   "stuckEvents": 8,
+   "rescues": 0,
+   "failures": [
+    {
+     "k": 23,
+     "A": "48.5,0.0,3.5",
+     "B": "6.5,9.5,-20.5",
+     "pathLen": 114.6,
+     "pathNull": false,
+     "arrived": false,
+     "t": -1,
+     "distEnd": 2.5,
+     "dyEnd": 0,
+     "stuck": 2,
+     "modeFlips": 61,
+     "minDy": 0,
+     "types": "walk,walk,walk,walk,jump,walk,walk,walk,walk",
+     "unreachable": false
+    }
+   ],
+   "slow": []
+  },
+  "wallMs": 12104,
+  "simTime": 421.6
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

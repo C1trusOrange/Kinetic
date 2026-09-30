@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\caleb\Desktop\AiProject\fps\tools\run.py", line 416, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\caleb\Desktop\AiProject\fps\tools\run.py", line 339, in main
+    cdp.call('Runtime.enable')
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\caleb\Desktop\AiProject\fps\tools\run.py", line 149, in call
+    raise TimeoutError(f'CDP call timed out: {method}')
+TimeoutError: CDP call timed out: Runtime.enable

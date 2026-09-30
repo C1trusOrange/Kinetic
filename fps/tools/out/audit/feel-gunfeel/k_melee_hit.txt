@@ -1,0 +1,6 @@
+[run] http://127.0.0.1:57945/index.html?autotest=1&map=gunfeel&mapfile=tools/out/audit/feel-gunfeel/testmap.js&bots=1&god=1&scenario=tools/out/audit/feel-gunfeel/fire.js&duration=90&w=rifle&t=bot&d=1.7&hp=1000&act=melee&actAt=0.2
+[run] screenshot -> tools\out\audit\feel-gunfeel\k_melee_hit.png
+[result] {
+ "meleeT": 0.20609999999999928
+}
+[run] done: wait=ok console_errors=0 warnings=0

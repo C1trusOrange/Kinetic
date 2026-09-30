@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<title>bot-model dev</title>
+<script type="importmap">
+{ "imports": { "three": "/vendor/three/build/three.module.js", "three/addons/": "/vendor/three/examples/jsm/" } }
+</script>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #1b1e24; font: 12px Consolas, monospace; color: #dde3ee; }
+  #info { position: fixed; left: 8px; top: 8px; background: rgba(0,0,0,.55); padding: 6px 8px; white-space: pre; }
+  canvas.atlas { image-rendering: pixelated; }
+</style>
+</head>
+<body>
+<div id="info"></div>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { setMaxAnisotropy } from '/src/core/procgen.js';
+
+const P = new URLSearchParams(location.search);
+const INFO = (window.__VIEWER_INFO__ = {});
+const infoEl = document.getElementById('info');
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(1);
+renderer.setSize(innerWidth, innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+setMaxAnisotropy(renderer.capabilities.getMaxAnisotropy());
+
+const BM = await import('/src/ai/BotModel.js');
+const { BotModel } = BM;
+
+if (P.get('atlas')) {
+  const t0 = performance.now();
+  const d = BM.debugAtlas();
+  const m = new BotModel({ color: parseInt(P.get('color') || 'ff4a3d', 16) });
+  const which = P.get('atlas');
+  const tex = which === 'albedo' ? m._set.mat.map : which === 'normal' ? d.normalMap : which === 'rough' ? d.roughnessMap : which === 'metal' ? d.metalnessMap : d.emissiveMap;
+  const c = tex.image;
+  c.className = 'atlas';
+  c.style.width = '704px'; c.style.height = '704px';
+  c.style.position = 'fixed'; c.style.left = '300px'; c.style.top = '8px';
+  document.body.appendChild(c);
+  INFO.atlasMs = Math.round(d.buildMs);
+  INFO.totalMs = Math.round(performance.now() - t0);
+  infoEl.textContent = 'atlas ' + which + ' build ' + INFO.atlasMs + 'ms';
+  window.__VIEWER_READY__ = true;
+} else {
+  document.body.appendChild(renderer.domElement);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(parseFloat(P.get('fov') || '35'), innerWidth / innerHeight, 0.02, 200);
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+  scene.environmentIntensity = parseFloat(P.get('env') || '0.7');
+  scene.background = new THREE.Color(P.get('bg') || '#2b3038');
+  const hemi = new THREE.HemisphereLight(0xdfe8ff, 0x302a24, 0.7);
+  const sun = new THREE.DirectionalLight(0xfff2e0, 2.4);
+  sun.position.set(4, 7, 5);
+  sun.castShadow = true;
+  sun.shadow.mapSize.set(2048, 2048);
+  sun.shadow.camera.left = sun.shadow.camera.bottom = -6;
+  sun.shadow.camera.right = sun.shadow.camera.top = 6;
+  sun.shadow.bias = -0.0004;
+  sun.shadow.normalBias = 0.02;
+  scene.add(hemi, sun);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(60, 60).rotateX(-Math.PI / 2), new THREE.MeshStandardMaterial({ color: 0x3a3f48, roughness: 0.92 }));
+  floor.receiveShadow = true;
+  scene.add(floor);
+
+  let WM = null;
+  try { WM = await import('/src/weapons/WeaponModels.js'); } catch (e) { console.warn('no WeaponModels', e.message); }
+
+  const S = (o) => Object.assign({ forwardSpeed: 0, strafeSpeed: 0, speed: 0, onGround: true, crouch: 0, aimPitch: 0, aimYawOffset: 0, firing: false, reloading: false, alive: true }, o);
+  const POSES = {
+    idle: S({}),
+    walk: S({ forwardSpeed: 3.5, speed: 3.5 }),
+    jog: S({ forwardSpeed: 5.2, speed: 5.2 }),
+    run: S({ forwardSpeed: 8, speed: 8 }),
+    back: S({ forwardSpeed: -3.5, speed: 3.5 }),
+    strafe: S({ strafeSpeed: 5, speed: 5 }),
+    strafel: S({ strafeSpeed: -5, speed: 5 }),
+    aim: S({ aimPitch: 0.35, aimYawOffset: 0.3, firing: true }),
+    aimw: S({ forwardSpeed: 3.5, speed: 3.5, aimPitch: 0.1, firing: true }),
+    air: S({ forwardSpeed: 5, speed: 5, onGround: false, aimPitch: -0.2 }),
+    crouch: S({ crouch: 1 }),
+    crouchw: S({ crouch: 1, forwardSpeed: 2.2, speed: 2.2 }),
+    reload: S({ reloading: true }),
+    dead: S({ alive: false }),
+    twist: S({ aimYawOffset: 1.0, aimPitch: -0.1 }),
+  };
+  const colors = [0xff4a3d, 0x3d9bff, 0x6ee05a, 0xffb020, 0xb45cff, 0x2ee6d6, 0xf2f2f2, 0xff7a1a];
+  const specs = P.get('bots') ? JSON.parse(P.get('bots')) : (P.get('pose') || 'idle,walk,run,aim,air,crouch').split(',').map(p => ({ pose: p }));
+  const spacing = parseFloat(P.get('spacing') || '1.4');
+  const yawDefault = parseFloat(P.get('yaw') || '3.14');
+  const bots = [];
+  specs.forEach((sp, i) => {
+    const color = sp.color != null ? (typeof sp.color === 'string' ? parseInt(sp.color, 16) : sp.color) : colors[i % colors.length];
+    const bot = new BotModel({ color, team: 1, phase: 0 });
+    const w = sp.weapon || P.get('weapon') || 'rifle';
+    if (WM && w !== 'none') bot.setWeapon(WM.createWeaponModel(w, { view: false }));
+    const off = (i - (specs.length - 1) / 2) * spacing;
+    if (P.get('layout') === 'z') bot.root.position.set(0, 0, -off); else bot.root.position.set(off, 0, 0);
+    bot.root.rotation.y = sp.yaw != null ? sp.yaw : yawDefault;
+    const st = Object.assign({}, POSES[sp.pose] || POSES.idle, sp.state || {});
+    const t = sp.t != null ? sp.t : parseFloat(P.get('t') || '0.35');
+    const steps = Math.max(1, Math.round(t * 60));
+    for (let k = 0; k < steps; k++) bot.update(1 / 60, st);
+    scene.add(bot.root);
+    bots.push({ bot, st });
+    if (sp.flash) bot.flashHit();
+  });
+  if (P.get('gibs')) { const pcs = bots[0].bot.breakApart(); bots[0].bot.setVisible(false); pcs.forEach((m, i) => { m.rotateX(0.9 + i * 0.3); m.rotateY(i * 0.7); scene.add(m); }); INFO.gibs = pcs.map(m => m.name + ' r=' + m.geometry.boundingSphere.radius.toFixed(2)); }
+  scene.updateMatrixWorld(true);
+  // camera
+  const box = new THREE.Box3();
+  bots.forEach(b => box.expandByObject(b.bot.root));
+  const focus = P.get('focus');
+  const size = box.getSize(new THREE.Vector3()), ctr = box.getCenter(new THREE.Vector3());
+  let look = ctr.clone(), dist = Math.max(size.x, size.y * 1.3) / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2))) * 1.15;
+  if (focus === 'full') { look.set(ctr.x, 0.92, 0); dist = 3.8; }
+  else if (focus === 'head') { look.set(ctr.x, 1.62, 0); dist = 1.3; }
+  else if (focus === 'torso') { look.set(ctr.x, 1.25, 0); dist = 2.0; }
+  else if (focus === 'legs') { look.set(ctr.x, 0.5, 0); dist = 2.0; }
+  else if (focus === 'upper') { look.set(ctr.x, 1.2, 0); dist = 3.2; }
+  if (P.get('dist')) dist = parseFloat(P.get('dist'));
+  const az = THREE.MathUtils.degToRad(parseFloat(P.get('az') || '0'));
+  const el = THREE.MathUtils.degToRad(parseFloat(P.get('el') || '8'));
+  camera.position.set(look.x + Math.sin(az) * Math.cos(el) * dist, look.y + Math.sin(el) * dist, look.z + Math.cos(az) * Math.cos(el) * dist);
+  camera.lookAt(look);
+  let tris = 0;
+  bots[0].bot.root.traverse(o => { if (o.isMesh && o.geometry && !(bots[0].bot.weapon && bots[0].bot.weapon.root.getObjectById(o.id))) tris += (o.geometry.attributes.position.count) / 3; });
+  INFO.bodyTris = Math.round(tris);
+  INFO.perMesh = {};
+  bots[0].bot._meshes.forEach(m => { INFO.perMesh[m.name] = m.geometry.attributes.position.count / 3; });
+  INFO.atlasMs = Math.round(BM.debugAtlas().buildMs);
+  INFO.eye = bots[0].bot.eye.position.toArray().map(v => +v.toFixed(3));
+  const bb = new THREE.Box3().setFromObject(bots[0].bot.hips);
+  let frame = 0, P0 = 0;
+  const loop = () => {
+    requestAnimationFrame(loop);
+    frame++;
+    if (P.get('flashtest')) {
+      if (frame === 30) { P0 = renderer.info.programs.length; bots[0].bot.flashHit(); }
+      if (frame === 40) INFO.flashTest = { programsBefore: P0, programsAfter: renderer.info.programs.length, level: bots[0].bot._matLevel };
+      if (frame === 60) INFO.flashTest2 = { level: bots[0].bot._matLevel };
+      if (frame > 30 && frame < 70) bots[0].bot.update(1 / 60, bots[0].st);
+    }
+    renderer.render(scene, camera);
+    window.__VIEWER_READY__ = true;
+  };
+  loop();
+  // expose for tests
+  window.__bots = bots;
+  window.__renderer = renderer;
+  window.__scene = scene;
+  window.__THREE = THREE;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+[run] http://127.0.0.1:53739/index.html?autotest=1&map=foundry&bots=0&script=idle&scenario=tools/out/audit/review-player/v_grapple_top.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 7,
+ "frames": 39,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 63.54805165186133,
+  "maxSpeed": 10.408682702521393,
+  "minY": -24.964999999999954,
+  "maxY": 16.005,
+  "states": {
+   "onGround": true,
+   "isGrappling": true,
+   "airborne": true,
+   "isMantling": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 1,
+  "spawn": 2,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "log": [
+   [
+    0,
+    "ground/idle",
+    0.12,
+    0,
+    -38
+   ],
+   [
+    0.22,
+    "ground/flying",
+    0.12,
+    0,
+    -38
+   ],
+   [
+    0.33,
+    "grapple/attached",
+    0.12,
+    0.01,
+    -38.04
+   ],
+   [
+    1,
+    "grapple/attached",
+    0.12,
+    6,
+    -42.6
+   ],
+   [
+    1.42,
+    "air/retract",
+    0.12,
+    12.17,
+    -43.6
+   ],
+   [
+    1.58,
+    "air/idle",
+    0.12,
+    13.73,
+    -43.6
+   ],
+   [
+    1.6,
+    "mantle/idle",
+    0.12,
+    13.94,
+    -43.6
+   ],
+   [
+    1.92,
+    "ground/idle",
+    0.12,
+    16,
+    -44.51
+   ],
+   [
+    2,
+    "ground/idle",
+    0.12,
+    16,
+    -44.98
+   ],
+   [
+    2.05,
+    "air/idle",
+    0.12,
+    15.92,
+    -45.33
+   ],
+   [
+    3,
+    "air/idle",
+    0.12,
+    4.8,
+    -51.62
+   ],
+   [
+    4,
+    "air/idle",
+    0.12,
+    -30.31,
+    -57.82
+   ],
+   [
+    5,
+    "air/idle",
+    0.12,
+    -84.04,
+    -64.02
+   ],
+   [
+    6,
+    "air/idle",
+    0.12,
+    -139.04,
+    -70.22
+   ],
+   [
+    6.92,
+    "ground/idle",
+    -30,
+    0,
+    33
+   ]
+  ],
+  "map": "foundry",
+  "probe": {
+   "z": -45.5,
+   "y": 36,
+   "n": [
+    0,
+    1,
+    0
+   ]
+  },
+  "aim": {
+   "yaw": 0,
+   "pitch": 1.15,
+   "dist": 14.72
+  },
+  "anchor": [
+   0.12,
+   15.1,
+   -43.97
+  ],
+  "final": {
+   "pos": [
+    -29.88,
+    0,
+    32.95
+   ],
+   "alive": true,
+   "deaths": 1,
+   "state": "ground"
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

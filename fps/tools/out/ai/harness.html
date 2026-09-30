@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<title>AI harness</title>
+<script>
+  // Import map. ?mock=1 swaps WeaponModels / BotModel for light mocks (isolation from parallel work).
+  (function () {
+    var q = new URLSearchParams(location.search);
+    var imports = {
+      'three': '/vendor/three/build/three.module.js',
+      'three/addons/': '/vendor/three/examples/jsm/',
+    };
+    if (q.has('mockweapons')) imports['/src/weapons/WeaponModels.js'] = '/tools/out/ai/mock/WeaponModels.js';
+    if (q.has('mockbot')) imports['/src/ai/BotModel.js'] = '/tools/out/ai/mock/BotModel.js';
+    document.write('<script type="importmap">' + JSON.stringify({ imports: imports }) + '<\/script>');
+  })();
+</script>
+<style>html,body{margin:0;background:#111;color:#ddd;font:12px monospace}</style>
+</head>
+<body>
+<pre id="out">running...</pre>
+<script type="module" src="./harness.js"></script>
+</body>
+</html>

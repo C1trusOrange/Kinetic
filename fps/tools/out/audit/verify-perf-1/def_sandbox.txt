@@ -1,0 +1,126 @@
+[run] http://127.0.0.1:64235/index.html?autotest=1&map=sandbox&bots=5&duration=8
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.12,
+ "frames": 339,
+ "fps": {
+  "avg": 48.6,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 39.4,
+  "maxSpeed": 10.92,
+  "minY": 0,
+  "maxY": 6.1819177852854645,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true
+  },
+  "shots": 18,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 100
+ },
+ "bots": [
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 92,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 39.3,
+   "pos": [
+    11.6,
+    0,
+    5.6
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 37.9,
+   "pos": [
+    -11.6,
+    0,
+    30.2
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": false,
+   "kills": 1,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 43.7,
+   "pos": [
+    -9.2,
+    0,
+    -14.6
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 26.1,
+   "pos": [
+    -24.9,
+    0,
+    -26.8
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 37.8,
+   "pos": [
+    8.3,
+    0,
+    -20.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 21,
+  "death": 3,
+  "spawn": 7,
+  "pickup": 3,
+  "fire": 94
+ },
+ "renderer": {
+  "calls": 246,
+  "triangles": 49910,
+  "geometries": 196,
+  "textures": 124,
+  "programs": 105
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

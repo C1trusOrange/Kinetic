@@ -1,0 +1,115 @@
+[run] http://127.0.0.1:59554/index.html?autotest=1&map=sandbox&bots=1&god=1&script=idle&mode=rocket&hide=0&scenario=tools/out/audit/verify-fxaudio-2/v1_decal.js&duration=9
+[log] [autotest] finished {"ok":true,"errors":0,"fps":23.5}
+[run] screenshot -> tools\out\audit\verify-fxaudio-2\v1_rock_h0.png
+[result] {
+ "done": true,
+ "started": true,
+ "t": 9.96,
+ "frames": 261,
+ "fps": {
+  "avg": 23.5,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 5.9,
+   "pos": [
+    0,
+    0.1,
+    20
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 2,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 180,
+  "triangles": 43142,
+  "geometries": 157,
+  "textures": 126,
+  "programs": 99
+ },
+ "custom": {
+  "mode": "rocket",
+  "hide": false,
+  "botPos": [
+   0,
+   0.05,
+   20
+  ],
+  "decals": [
+   {
+    "i": 150,
+    "scorch": true,
+    "pos": [
+     0,
+     1.05,
+     24.26
+    ],
+    "n": [
+     0,
+     0,
+     1
+    ],
+    "size": 7.61,
+    "onSurface": true
+   },
+   {
+    "i": 151,
+    "scorch": true,
+    "pos": [
+     0,
+     0.01,
+     24.4
+    ],
+    "n": [
+     0,
+     1,
+     0
+    ],
+    "size": 8.1,
+    "onSurface": true
+   }
+  ],
+  "stats": {
+   "smoke": 0,
+   "glow": 0,
+   "tracers": 0,
+   "decals": 2,
+   "gibs": 0,
+   "dropped": 0
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

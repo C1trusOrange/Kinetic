@@ -1,0 +1,8 @@
+i_rifle_hit_hip: [run] done: wait=ok console_errors=0 warnings=0
+i_rifle_head_hip: [run] done: wait=ok console_errors=0 warnings=0
+i_rifle_ads_flash: [run] done: wait=ok console_errors=0 warnings=0
+i_pistol_ads_flash: [run] done: wait=ok console_errors=0 warnings=0
+i_pistol_hip_flash: [run] done: wait=ok console_errors=0 warnings=0
+i_rifle_hip_flash: [run] done: wait=ok console_errors=0 warnings=0
+i_sniper_hip: [run] done: wait=ok console_errors=0 warnings=0
+ALLDONE

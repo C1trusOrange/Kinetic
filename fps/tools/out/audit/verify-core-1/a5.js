@@ -1,0 +1,20 @@
+const res = {};
+await sleep(800);
+const bot = game.bots.list.find(b => b.alive);
+res.hasBot = !!bot;
+game.match.scoreLimit = 2;
+const el = () => document.querySelector('.hud-announce, #hud-announce, [class*=announce]');
+res.announceElem = el() ? el().className : null;
+const readAnn = () => { const e = game.hud.e; return { title: e.atitle.textContent, sub: e.asub.textContent, kind: e.announce.dataset.kind }; };
+const kill = (headshot) => {
+  const b = game.bots.list.find(x => x.alive); b.spawnProtectedUntil = 0; b.armor = 0;
+  game.combat.applyDamage(b, { amount: 9999, attacker: game.player, weapon: 'rifle', headshot, point: b.position.clone(), direction: new THREE.Vector3(0, 0, -1) });
+};
+kill(false);
+res.afterKill1 = { state: game.state, ann: readAnn(), kills: game.player.kills };
+await sleep(300);
+kill(true);
+res.afterKill2 = { state: game.state, over: game.match.over, playerWon: game.match.playerWon, ann: readAnn(), kills: game.player.kills };
+await sleep(200);
+res.later = readAnn();
+return res;

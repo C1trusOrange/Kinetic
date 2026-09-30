@@ -1,0 +1,191 @@
+[run] http://127.0.0.1:56373/index.html?autotest=1&map=testmap&mapfile=tools/out/audit/review-player/testmap.js&bots=0&script=idle&scenario=tools/out/audit/review-player/clearcheck.js
+[warning] [world] map 'testmap' has 1 warning(s):
+ - only 4 spawn point(s): 14-18 recommended
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0,
+ "frames": 18,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 82.64462809917204
+ },
+ "errors": [],
+ "map": "testmap",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "lowSlabLedge_0.47in": {
+   "clear": true,
+   "penetrationBefore": 0.02,
+   "contacts": [
+    [
+     0,
+     -1,
+     0,
+     0.82
+    ],
+    [
+     0,
+     1,
+     0,
+     0.8
+    ],
+    [
+     0,
+     -1,
+     0,
+     0.8
+    ],
+    [
+     0,
+     1,
+     0,
+     0.8
+    ]
+   ],
+   "startDelta": [
+    0,
+    -0.02,
+    0
+   ]
+  },
+  "lowSlabLedge_1.5in": {
+   "clear": true,
+   "penetrationBefore": 0.02,
+   "contacts": [
+    [
+     0,
+     -1,
+     0,
+     0.82
+    ],
+    [
+     0,
+     1,
+     0,
+     0.8
+    ],
+    [
+     0,
+     -1,
+     0,
+     0.8
+    ],
+    [
+     0,
+     1,
+     0,
+     0.8
+    ]
+   ],
+   "startDelta": [
+    0,
+    -0.02,
+    0
+   ]
+  },
+  "lowSlabLedge_3in": {
+   "clear": true,
+   "penetrationBefore": 0.02,
+   "contacts": [
+    [
+     0,
+     -1,
+     0,
+     0.82
+    ],
+    [
+     0,
+     1,
+     0,
+     0.8
+    ],
+    [
+     0,
+     -1,
+     0,
+     0.8
+    ],
+    [
+     0,
+     1,
+     0,
+     0.8
+    ]
+   ],
+   "startDelta": [
+    0,
+    -0.02,
+    0
+   ]
+  },
+  "thickSlabLedge": {
+   "clear": true,
+   "penetrationBefore": 0.02,
+   "contacts": [
+    [
+     0,
+     -1,
+     0,
+     0.82
+    ],
+    [
+     0,
+     1,
+     0,
+     0.8
+    ],
+    [
+     0,
+     -1,
+     0,
+     0.8
+    ],
+    [
+     0,
+     1,
+     0,
+     0.8
+    ]
+   ],
+   "startDelta": [
+    0,
+    -0.02,
+    0
+   ]
+  },
+  "highCeilLedge": {
+   "clear": true,
+   "penetrationBefore": 0,
+   "contacts": [],
+   "startDelta": [
+    0,
+    0,
+    0
+   ]
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

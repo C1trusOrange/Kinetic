@@ -1,0 +1,181 @@
+[run] http://127.0.0.1:62385/index.html?autotest=1&map=foundry&bots=2&duration=1000&god=1&n=4&lim=25&scenario=tools/out/audit/verify-aibrain-2/snipe.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 7.82,
+ "frames": 32,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 45.4,
+   "pos": [
+    -30.9,
+    0,
+    12.4
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    14,
+    0,
+    40
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 2
+ },
+ "renderer": {
+  "calls": 106,
+  "triangles": 100002,
+  "geometries": 86,
+  "textures": 86,
+  "programs": 86
+ },
+ "custom": {
+  "trials": [
+   {
+    "spot": [
+     0.51,
+     25.3,
+     -6.49
+    ],
+    "cls": "unreach",
+    "from": [
+     -48.49,
+     0,
+     -43.49
+    ],
+    "mode": "path",
+    "unr": false,
+    "repickAt": 3.47,
+    "maxStage": 0,
+    "dmin": 45.37,
+    "track": [
+     [
+      -44.09,
+      0,
+      -28.66
+     ]
+    ]
+   },
+   {
+    "spot": [
+     9.51,
+     13.5,
+     -11.49
+    ],
+    "cls": "unreach",
+    "from": [
+     -15.49,
+     0,
+     -22.49
+    ],
+    "mode": "path",
+    "unr": false,
+    "repickAt": 0.08,
+    "maxStage": 0,
+    "dmin": 29.79,
+    "track": []
+   },
+   {
+    "spot": [
+     13.51,
+     13.85,
+     7.51
+    ],
+    "cls": "unreach",
+    "from": [
+     -26.49,
+     0,
+     -5.49
+    ],
+    "mode": "path",
+    "unr": false,
+    "repickAt": 0.02,
+    "maxStage": 0,
+    "dmin": 43.23,
+    "track": []
+   },
+   {
+    "spot": [
+     -1.49,
+     12.45,
+     -14.49
+    ],
+    "cls": "unreach",
+    "from": [
+     -26.49,
+     0,
+     6.51
+    ],
+    "mode": "path",
+    "unr": false,
+    "repickAt": 2.08,
+    "maxStage": 0,
+    "dmin": 35.1,
+    "track": [
+     [
+      -31,
+      0,
+      12.04
+     ]
+    ]
+   }
+  ],
+  "reach": {
+   "snipe": {
+    "unreach": 24
+   },
+   "cover": {
+    "main": 97,
+    "unreach": 9
+   }
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

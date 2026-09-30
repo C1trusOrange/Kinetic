@@ -1,0 +1,145 @@
+[run] http://127.0.0.1:63656/index.html?autotest=1&map=foundry&bots=5&duration=17&warm=1&scenario=tools/out/audit/verify-perf-1/mid.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 17.16,
+ "frames": 635,
+ "fps": {
+  "avg": 41,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 118.1,
+  "maxSpeed": 22.19,
+  "minY": -4,
+  "maxY": 4.068004406166869,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "isGrappling": true,
+   "isWallRunning": true
+  },
+  "shots": 19,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 14.079720516450687,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 86,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 65,
+   "pos": [
+    38.8,
+    0,
+    30.1
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 20,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 109,
+   "pos": [
+    -30.8,
+    0,
+    -3
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 95.5,
+   "pos": [
+    -3.4,
+    0,
+    11.5
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 25,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 108.8,
+   "pos": [
+    -19,
+    0,
+    19.4
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 33,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 105.5,
+   "pos": [
+    -19.4,
+    0,
+    6.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 14,
+  "death": 1,
+  "spawn": 7,
+  "pickup": 1,
+  "fire": 85
+ },
+ "renderer": {
+  "calls": 262,
+  "triangles": 117398,
+  "geometries": 363,
+  "textures": 144,
+  "programs": 79
+ },
+ "custom": {
+  "warm": "1",
+  "events": [],
+  "stallsOver120": 5,
+  "stallSumMs": 1568,
+  "first": {
+   "n": 1,
+   "gt": 0.05,
+   "dt": 1553.4,
+   "upd": 258.7,
+   "ren": 523.5
+  },
+  "frames": 598,
+  "endProgs": 79
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

@@ -1,0 +1,363 @@
+[run] http://127.0.0.1:64490/index.html?autotest=1&map=foundry&bots=5&duration=4&warm=1&css=f&scenario=tools/out/audit/review-perf/frames/scenario.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 4.03,
+ "frames": 243,
+ "fps": {
+  "avg": 60.4,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 28.871337889680767,
+  "maxSpeed": 11.83,
+  "minY": -0.15499999999999994,
+  "maxY": 1.9033333333333307,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 18.3,
+   "pos": [
+    -44.3,
+    0,
+    -19.9
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 20.2,
+   "pos": [
+    43.5,
+    0,
+    -2
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 25.4,
+   "pos": [
+    -45.2,
+    0,
+    4.5
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 26.4,
+   "pos": [
+    -3.5,
+    0,
+    -17.7
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 27.4,
+   "pos": [
+    -1.7,
+    0,
+    4.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 6,
+  "pickup": 2,
+  "fire": 6
+ },
+ "renderer": {
+  "calls": 371,
+  "triangles": 129328,
+  "geometries": 196,
+  "textures": 131,
+  "programs": 79
+ },
+ "custom": {
+  "warmMs": 719.5,
+  "warmNewProgs": 28,
+  "startProgs": 79,
+  "prof": {
+   "frames": 208,
+   "cpuMs": {
+    "p50": 13.3,
+    "p90": 18.3,
+    "p99": 29.7,
+    "max": 32
+   },
+   "intervalMs": {
+    "p50": 18.2,
+    "p90": 30.3,
+    "p99": 48.5,
+    "max": 582.2
+   },
+   "totalNewPrograms": 79,
+   "slow": [
+    {
+     "i": 34,
+     "ts": 34490,
+     "gap": 556,
+     "heap": 154.2,
+     "heapEnd": 154.2,
+     "t": 0.1,
+     "dur": 32,
+     "interval": 582.2,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 12.5,
+      "render": 17.5
+     },
+     "gl": {}
+    }
+   ],
+   "longtasks": [
+    {
+     "start": 9629,
+     "dur": 583,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 13029,
+     "dur": 150,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 14103,
+     "dur": 1639,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 15742,
+     "dur": 586,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 16355,
+     "dur": 4314,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 20680,
+     "dur": 236,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 20917,
+     "dur": 524,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 21442,
+     "dur": 125,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 21583,
+     "dur": 174,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 21765,
+     "dur": 215,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 21981,
+     "dur": 105,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 22087,
+     "dur": 118,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 22243,
+     "dur": 244,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 22488,
+     "dur": 89,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 22584,
+     "dur": 86,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 22671,
+     "dur": 241,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 22996,
+     "dur": 294,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 23291,
+     "dur": 164,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 23455,
+     "dur": 168,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 23625,
+     "dur": 117,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 23759,
+     "dur": 50,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 23947,
+     "dur": 59,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 24050,
+     "dur": 144,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 24195,
+     "dur": 919,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 25137,
+     "dur": 871,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 26012,
+     "dur": 3036,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 29056,
+     "dur": 165,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 29221,
+     "dur": 3222,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 32445,
+     "dur": 1159,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 33604,
+     "dur": 305,
+     "name": "self",
+     "attr": "window"
+    }
+   ],
+   "glTotalMs": {
+    "bufferSubData": 23.2,
+    "bufferData": 1.3,
+    "useProgram": 25.8,
+    "drawElements": 17.8,
+    "uniformMatrix4fv": 123.3,
+    "drawArrays": 71.2,
+    "getProgramInfoLog": 63.6,
+    "getActiveUniform": 1.7,
+    "texSubImage2D": 23,
+    "drawElementsInstanced": 3.9
+   }
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

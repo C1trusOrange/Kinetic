@@ -1,0 +1,232 @@
+[run] http://127.0.0.1:50372/index.html?autotest=1&map=foundry&scenario=tools/out/audit/verify-player-1/v_seam.js&duration=10&aimy=8
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 5,
+ "frames": 35,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 43.763665149293146,
+  "maxSpeed": 12.498388137080982,
+  "minY": -24.559999999999953,
+  "maxY": 6.005,
+  "states": {
+   "onGround": true,
+   "isGrappling": true,
+   "airborne": true,
+   "isMantling": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 10,
+  "death": 2,
+  "spawn": 6,
+  "pickup": 1,
+  "fire": 16
+ },
+ "renderer": {},
+ "custom": {
+  "log": [
+   [
+    0,
+    "ground/idle",
+    0.12,
+    0,
+    -38
+   ],
+   [
+    0.22,
+    "ground/flying",
+    0.12,
+    0,
+    -38
+   ],
+   [
+    0.28,
+    "grapple/attached",
+    0.12,
+    0.01,
+    -38.01
+   ],
+   [
+    0.5,
+    "grapple/attached",
+    0.12,
+    0.6,
+    -38.91
+   ],
+   [
+    0.92,
+    "mantle/retract",
+    0.12,
+    3.83,
+    -43.12
+   ],
+   [
+    1,
+    "mantle/retract",
+    0.12,
+    5.4,
+    -43.12
+   ],
+   [
+    1.08,
+    "mantle/idle",
+    0.12,
+    6,
+    -43.19
+   ],
+   [
+    1.23,
+    "ground/idle",
+    0.12,
+    6,
+    -44.51
+   ],
+   [
+    1.33,
+    "air/idle",
+    0.12,
+    6,
+    -45.45
+   ],
+   [
+    1.5,
+    "air/idle",
+    0.12,
+    5.62,
+    -46.49
+   ],
+   [
+    2,
+    "air/idle",
+    0.12,
+    0.47,
+    -49.59
+   ],
+   [
+    2.5,
+    "air/idle",
+    0.12,
+    -10.68,
+    -52.69
+   ],
+   [
+    3,
+    "air/idle",
+    0.12,
+    -27.84,
+    -55.78
+   ],
+   [
+    3.5,
+    "air/idle",
+    0.12,
+    -51.04,
+    -58.88
+   ],
+   [
+    4,
+    "air/idle",
+    0.12,
+    -78.4,
+    -61.98
+   ],
+   [
+    4.5,
+    "air/idle",
+    0.12,
+    -105.9,
+    -65.08
+   ]
+  ],
+  "map": "foundry",
+  "anchor": [
+   0.12,
+   8.11,
+   -43.97
+  ],
+  "mantleTo": [
+   0.12,
+   6.01,
+   -44.47
+  ],
+  "shots": [
+   {
+    "from": [
+     0.12,
+     5.5,
+     -30
+    ],
+    "hitEntity": null,
+    "hitDist": 14.09,
+    "dist": 14.6,
+    "canSee": false
+   },
+   {
+    "from": [
+     0.12,
+     1.7,
+     -20
+    ],
+    "hitEntity": null,
+    "hitDist": 24.58,
+    "dist": 25.1,
+    "canSee": false
+   },
+   {
+    "from": [
+     5.12,
+     12,
+     -25
+    ],
+    "hitEntity": null,
+    "hitDist": 20.18,
+    "dist": 20.72,
+    "canSee": false
+   }
+  ],
+  "playerShootsInto": {
+   "dist": 33.56,
+   "point": [
+    0.12,
+    5.98,
+    -10.98
+   ]
+  },
+  "afterMantle": {
+   "t": 1.23,
+   "feet": [
+    0.12,
+    6,
+    -44.51
+   ],
+   "grounded": true
+  },
+  "final": {
+   "pos": [
+    0.12,
+    -132.48,
+    -68.08
+   ],
+   "alive": false,
+   "deaths": 1
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

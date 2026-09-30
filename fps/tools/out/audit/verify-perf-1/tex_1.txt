@@ -1,0 +1,39 @@
+[run] http://127.0.0.1:64699/tools/out/audit/verify-perf-1/tex.html
+[result] {
+ "errors": [],
+ "cal0": 128,
+ "genTotal": 6523,
+ "genAvg": 152,
+ "genMedian": 131,
+ "genOver120": 24,
+ "count": 43,
+ "worst": [
+  [
+   "brick_dark",
+   643
+  ],
+  [
+   "concrete",
+   572
+  ],
+  [
+   "stone_blocks",
+   307
+  ],
+  [
+   "sandstone_dark",
+   272
+  ],
+  [
+   "plaster",
+   258
+  ],
+  [
+   "grass",
+   242
+  ]
+ ],
+ "cal1": 129,
+ "uploadMapsMs": 403
+}
+[run] done: wait=ok console_errors=0 warnings=0

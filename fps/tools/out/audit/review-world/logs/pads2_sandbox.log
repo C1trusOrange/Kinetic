@@ -1,0 +1,109 @@
+[run] http://127.0.0.1:61529/index.html?autotest=1&map=sandbox&bots=0&duration=40&scenario=tools/out/audit/review-world/pads.js&god=1
+[result] {
+ "done": true,
+ "started": true,
+ "t": 40.71,
+ "frames": 1596,
+ "fps": {
+  "avg": 46.8,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 45.6,
+  "maxSpeed": 11.87,
+  "minY": -4,
+  "maxY": 19.865559023637697,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 131,
+  "triangles": 36384,
+  "geometries": 117,
+  "textures": 114,
+  "programs": 94
+ },
+ "custom": {
+  "pads": [
+   {
+    "i": 0,
+    "pos": [
+     12,
+     0,
+     -16
+    ],
+    "target": [
+     19.5,
+     16,
+     -16
+    ],
+    "land": [
+     19.46,
+     16,
+     -16
+    ],
+    "errH": 0.04,
+    "errY": 0,
+    "apexRel": 19.87,
+    "vel": [
+     4.01,
+     30.98,
+     0
+    ],
+    "air": 1.84,
+    "onGround": true
+   },
+   {
+    "i": 1,
+    "pos": [
+     -25,
+     -4,
+     20
+    ],
+    "target": [
+     -25,
+     0,
+     5
+    ],
+    "land": [
+     -25,
+     0,
+     5.06
+    ],
+    "errH": 0.06,
+    "errY": 0,
+    "apexRel": 6.92,
+    "vel": [
+     0,
+     18.33,
+     -11.87
+    ],
+    "air": 1.23,
+    "onGround": true
+   }
+  ],
+  "count": 2,
+  "finished": true
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

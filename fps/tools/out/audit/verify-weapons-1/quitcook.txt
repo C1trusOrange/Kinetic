@@ -1,0 +1,38 @@
+[run] http://127.0.0.1:49678/index.html?autotest=1&map=sandbox&bots=0&god=1&scenario=tools/out/audit/verify-weapons-1/quitcook.js&duration=8
+[run] screenshot -> tools\out\audit\verify-weapons-1\quitcook_5s.png
+[result] {
+ "done": false,
+ "started": false,
+ "t": 0,
+ "frames": 8,
+ "fps": {
+  "avg": 0,
+  "min": 1000000000,
+  "max": 0
+ },
+ "errors": [],
+ "map": null,
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 0,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

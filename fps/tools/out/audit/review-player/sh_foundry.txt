@@ -1,0 +1,60 @@
+[run] http://127.0.0.1:58168/index.html?autotest=1&map=foundry&bots=0&script=idle&scenario=tools/out/audit/review-player/skyhook.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0.5,
+ "frames": 37,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0.45067865294997195,
+  "maxSpeed": 4.47556912662891,
+  "minY": 0,
+  "maxY": 0.2383007981549703,
+  "states": {
+   "onGround": true,
+   "isGrappling": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "map": "foundry",
+  "att": true,
+  "anchor": [
+   0,
+   24.93,
+   -43.97
+  ],
+  "eye": [
+   0,
+   1.67,
+   -20.01
+  ],
+  "anchorDist": 33.39,
+  "firstVisibleHit": null,
+  "visibleHitsBeforeAnchor": 0
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

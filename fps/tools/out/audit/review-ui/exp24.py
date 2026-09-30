@@ -1,0 +1,23 @@
+import sys, json
+from common import *
+s = Session(1280, 720)
+print('state', start_match(s, bots=0, score=0, timelim=0))
+print(s.js("({cfg: __GAME__.lastMatchConfig, ents: __GAME__.entities.length, tsub: document.querySelector('[data-r=tsub]').textContent, time: document.querySelector('[data-r=time]').textContent, trname: document.querySelector('[data-r=trname]').textContent, trscore: document.querySelector('[data-r=trscore]').textContent, tlname: document.querySelector('[data-r=tlname]').textContent})"))
+s.wait(2.0)
+print('time', s.js("document.querySelector('[data-r=time]').textContent"))
+s.run("const g = __GAME__; g.combat.kill(g.player, {attacker: null, weapon: 'fall'});")
+s.wait(0.9)
+print('death', s.js("({tag: document.querySelector('[data-r=dtag]').textContent, by: document.querySelector('[data-r=dby]').innerHTML, hp: document.querySelector('[data-r=dhp]').textContent, count: document.querySelector('[data-r=dcount]').textContent, feed: document.querySelector('[data-r=feed]').innerText})"))
+s.wait(3.0)
+# resize
+s.resize(1920, 1080); s.wait(1.0)
+print('resize hud_h', s.js("__GAME__.hud._h"), s.js("document.querySelector('.k-hud').style.getPropertyValue('--gap')"))
+s.shot('exp24_1080.png')
+s.resize(1024, 768); s.wait(1.0)
+s.shot('exp24_1024.png')
+s.resize(1280, 720); s.wait(0.5)
+s.run("__GAME__.endMatch('time');")
+s.wait(4.0)
+print('end', s.js("({state: __GAME__.state, title: document.querySelector('[data-r=endtitle]').textContent, sub: document.querySelector('[data-r=endsub]').textContent, stats: document.querySelector('[data-r=endstats]').innerText, rows: document.querySelectorAll('[data-r=endboard] .sb-row').length})"))
+s.shot('exp24_end.png')
+s.close()

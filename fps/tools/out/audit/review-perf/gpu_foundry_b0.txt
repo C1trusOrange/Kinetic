@@ -1,0 +1,113 @@
+[run] http://127.0.0.1:61845/index.html?autotest=1&map=foundry&bots=0&duration=25&scenario=tools/out/audit/review-perf/scenario_gpu.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 25.08,
+ "frames": 620,
+ "fps": {
+  "avg": 24.4,
+  "min": 4,
+  "max": 172.4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 113.27493846750217,
+  "maxSpeed": 7.44,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 31,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 1,
+  "fire": 31
+ },
+ "renderer": {
+  "calls": 124,
+  "triangles": 87018,
+  "geometries": 125,
+  "textures": 117,
+  "programs": 98
+ },
+ "custom": {
+  "hasTimer": true,
+  "names": [
+   "0:RenderPass",
+   "1:RenderPass",
+   "2:UnrealBloomPass",
+   "3:OutputPass"
+  ],
+  "passes": {
+   "0:RenderPass [shadowSkip]": {
+    "n": 324,
+    "median": 18.001,
+    "mean": 20.513,
+    "p90": 34.598
+   },
+   "1:RenderPass [shadowSkip]": {
+    "n": 324,
+    "median": 2.42,
+    "mean": 8.685,
+    "p90": 17.647
+   },
+   "2:UnrealBloomPass [shadowSkip]": {
+    "n": 324,
+    "median": 3.608,
+    "mean": 6.32,
+    "p90": 11.389
+   },
+   "3:OutputPass [shadowSkip]": {
+    "n": 324,
+    "median": 0.656,
+    "mean": 0.807,
+    "p90": 0.705
+   },
+   "0:RenderPass [shadowUpdate]": {
+    "n": 261,
+    "median": 16.747,
+    "mean": 20.58,
+    "p90": 32.322
+   },
+   "1:RenderPass [shadowUpdate]": {
+    "n": 261,
+    "median": 2.423,
+    "mean": 6.105,
+    "p90": 20.33
+   },
+   "2:UnrealBloomPass [shadowUpdate]": {
+    "n": 261,
+    "median": 3.663,
+    "mean": 7.994,
+    "p90": 18.875
+   },
+   "3:OutputPass [shadowUpdate]": {
+    "n": 261,
+    "median": 0.655,
+    "mean": 0.685,
+    "p90": 0.709
+   }
+  },
+  "size": [
+   1920,
+   1080
+  ],
+  "quality": "high",
+  "bots": 0
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

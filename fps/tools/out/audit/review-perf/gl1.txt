@@ -1,0 +1,896 @@
+[run] http://127.0.0.1:52505/index.html?autotest=1&map=foundry&bots=5&duration=12&scenario=tools/out/audit/review-perf/scenario_gl.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":21.1}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 12.19,
+ "frames": 302,
+ "fps": {
+  "avg": 21.1,
+  "min": 4,
+  "max": 82
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 49,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 67.4,
+   "pos": [
+    5.6,
+    0,
+    -22.8
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 78.7,
+   "pos": [
+    -10,
+    0,
+    -11.2
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 55.8,
+   "pos": [
+    -33.4,
+    0,
+    20.4
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 88.1,
+   "pos": [
+    -8.5,
+    0,
+    4.7
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": false,
+   "kills": 0,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 58.9,
+   "pos": [
+    -2.6,
+    0,
+    -19.4
+   ]
+  }
+ ],
+ "events": {
+  "damage": 14,
+  "death": 2,
+  "spawn": 7,
+  "pickup": 0,
+  "fire": 29
+ },
+ "renderer": {
+  "calls": 379,
+  "triangles": 130538,
+  "geometries": 205,
+  "textures": 134,
+  "programs": 103
+ },
+ "custom": {
+  "slow": [
+   {
+    "f": 28,
+    "dt": 6072.3,
+    "upd": 520.1,
+    "ren": 4433.4,
+    "st": "playing",
+    "newProgs": 62,
+    "gl": [
+     [
+      "getProgramInfoLog",
+      14,
+      4183.6,
+      779.6
+     ],
+     [
+      "shaderSource",
+      124,
+      311,
+      208.2
+     ],
+     [
+      "getShaderInfoLog",
+      28,
+      87.2,
+      67.8
+     ],
+     [
+      "texSubImage2D",
+      45,
+      27.8,
+      3.9
+     ],
+     [
+      "getProgramParameter",
+      42,
+      9.1,
+      1
+     ],
+     [
+      "linkProgram",
+      62,
+      2.9,
+      1
+     ]
+    ]
+   },
+   {
+    "f": 29,
+    "dt": 245.8,
+    "upd": 6.4,
+    "ren": 25.2,
+    "st": "playing",
+    "newProgs": 0,
+    "gl": [
+     [
+      "bindVertexArray",
+      390,
+      1,
+      0.1
+     ],
+     [
+      "uniformMatrix4fv",
+      533,
+      0.8,
+      0.1
+     ],
+     [
+      "bindTexture",
+      224,
+      0.7,
+      0.3
+     ],
+     [
+      "bindFramebuffer",
+      32,
+      0.5,
+      0.5
+     ],
+     [
+      "useProgram",
+      79,
+      0.4,
+      0.1
+     ],
+     [
+      "enable",
+      19,
+      0.4,
+      0.1
+     ]
+    ]
+   },
+   {
+    "f": 30,
+    "dt": 712.4,
+    "upd": 4.9,
+    "ren": 20.9,
+    "st": "playing",
+    "newProgs": 0,
+    "gl": [
+     [
+      "uniformMatrix4fv",
+      536,
+      0.9,
+      0.1
+     ],
+     [
+      "bindVertexArray",
+      391,
+      0.6,
+      0.1
+     ],
+     [
+      "drawArrays",
+      322,
+      0.6,
+      0.1
+     ],
+     [
+      "bindTexture",
+      224,
+      0.4,
+      0.1
+     ],
+     [
+      "activeTexture",
+      184,
+      0.3,
+      0.1
+     ],
+     [
+      "uniform3f",
+      176,
+      0.3,
+      0.1
+     ]
+    ]
+   },
+   {
+    "f": 34,
+    "dt": 66.3,
+    "upd": 11.3,
+    "ren": 14.1,
+    "st": "playing",
+    "newProgs": 0,
+    "gl": [
+     [
+      "uniformMatrix4fv",
+      535,
+      0.7,
+      0.1
+     ],
+     [
+      "bindVertexArray",
+      390,
+      0.7,
+      0.1
+     ],
+     [
+      "bindTexture",
+      224,
+      0.6,
+      0.1
+     ],
+     [
+      "drawArrays",
+      322,
+      0.3,
+      0.1
+     ],
+     [
+      "uniform3f",
+      176,
+      0.2,
+      0.1
+     ],
+     [
+      "uniform1fv",
+      11,
+      0.2,
+      0.1
+     ]
+    ]
+   },
+   {
+    "f": 35,
+    "dt": 79.8,
+    "upd": 12.2,
+    "ren": 25.9,
+    "st": "playing",
+    "newProgs": 0,
+    "gl": [
+     [
+      "uniformMatrix4fv",
+      535,
+      1,
+      0.1
+     ],
+     [
+      "uniformMatrix3fv",
+      143,
+      1,
+      0.6
+     ],
+     [
+      "bindVertexArray",
+      390,
+      0.8,
+      0.1
+     ],
+     [
+      "activeTexture",
+      184,
+      0.5,
+      0.2
+     ],
+     [
+      "uniform3f",
+      176,
+      0.3,
+      0.1
+     ],
+     [
+      "bindFramebuffer",
+      32,
+      0.2,
+      0.1
+     ]
+    ]
+   },
+   {
+    "f": 39,
+    "dt": 101.2,
+    "upd": 2.7,
+    "ren": 13.6,
+    "st": "playing",
+    "newProgs": 0,
+    "gl": [
+     [
+      "uniformMatrix4fv",
+      536,
+      0.6,
+      0.1
+     ],
+     [
+      "activeTexture",
+      184,
+      0.3,
+      0.1
+     ],
+     [
+      "drawArrays",
+      322,
+      0.3,
+      0.1
+     ],
+     [
+      "bindTexture",
+      224,
+      0.2,
+      0.1
+     ],
+     [
+      "bindVertexArray",
+      390,
+      0.2,
+      0.1
+     ],
+     [
+      "uniform3f",
+      176,
+      0.2,
+      0.1
+     ]
+    ]
+   },
+   {
+    "f": 41,
+    "dt": 72.2,
+    "upd": 3,
+    "ren": 15.7,
+    "st": "playing",
+    "newProgs": 0,
+    "gl": [
+     [
+      "uniformMatrix4fv",
+      535,
+      0.7,
+      0.1
+     ],
+     [
+      "bindVertexArray",
+      389,
+      0.4,
+      0.1
+     ],
+     [
+      "uniform3f",
+      170,
+      0.4,
+      0.1
+     ],
+     [
+      "activeTexture",
+      184,
+      0.2,
+      0.1
+     ],
+     [
+      "clear",
+      16,
+      0.1,
+      0.1
+     ],
+     [
+      "bufferSubData",
+      22,
+      0.1,
+      0.1
+     ]
+    ]
+   },
+   {
+    "f": 42,
+    "dt": 76.8,
+    "upd": 1.7,
+    "ren": 9.5,
+    "st": "playing",
+    "newProgs": 0,
+    "gl": [
+     [
+      "uniformMatrix4fv",
+      536,
+      0.6,
+      0.1
+     ],
+     [
+      "bindVertexArray",
+      390,
+      0.4,
+      0.1
+     ],
+     [
+      "drawArrays",
+      322,
+      0.4,
+      0.1
+     ],
+     [
+      "bindTexture",
+      224,
+      0.2,
+      0.1
+     ],
+     [
+      "uniformMatrix3fv",
+      143,
+      0.2,
+      0.1
+     ],
+     [
+      "uniform3f",
+      176,
+      0.1,
+      0.1
+     ]
+    ]
+   },
+   {
+    "f": 43,
+    "dt": 61.9,
+    "upd": 3.3,
+    "ren": 20.4,
+    "st": "playing",
+    "newProgs": 0,
+    "gl": [
+     [
+      "depthMask",
+      10,
+      0.8,
+      0.8
+     ],
+     [
+      "uniformMatrix4fv",
+      536,
+      0.7,
+      0.1
+     ],
+     [
+      "activeTexture",
+      184,
+      0.5,
+      0.1
+     ],
+     [
+      "bindFramebuffer",
+      32,
+      0.4,
+      0.3
+     ],
+     [
+      "bindVertexArray",
+      390,
+      0.4,
+      0.1
+     ],
+     [
+      "useProgram",
+      79,
+      0.3,
+      0.1
+     ]
+    ]
+   },
+   {
+    "f": 46,
+    "dt": 60.6,
+    "upd": 3,
+    "ren": 15.3,
+    "st": "playing",
+    "newProgs": 0,
+    "gl": [
+     [
+      "uniformMatrix4fv",
+      536,
+      0.8,
+      0.2
+     ],
+     [
+      "bindVertexArray",
+      389,
+      0.6,
+      0.1
+     ],
+     [
+      "uniform3f",
+      176,
+      0.3,
+      0.1
+     ],
+     [
+      "activeTexture",
+      184,
+      0.2,
+      0.1
+     ],
+     [
+      "enable",
+      19,
+      0.2,
+      0.1
+     ],
+     [
+      "bufferSubData",
+      22,
+      0.1,
+      0.1
+     ]
+    ]
+   },
+   {
+    "f": 51,
+    "dt": 77.4,
+    "upd": 2.5,
+    "ren": 14.1,
+    "st": "playing",
+    "newProgs": 0,
+    "gl": [
+     [
+      "bindVertexArray",
+      374,
+      0.8,
+      0.1
+     ],
+     [
+      "uniformMatrix4fv",
+      522,
+      0.4,
+      0.1
+     ],
+     [
+      "drawArrays",
+      314,
+      0.3,
+      0.1
+     ],
+     [
+      "bindTexture",
+      220,
+      0.2,
+      0.1
+     ],
+     [
+      "uniformMatrix3fv",
+      137,
+      0.2,
+      0.1
+     ],
+     [
+      "bindFramebuffer",
+      32,
+      0.1,
+      0.1
+     ]
+    ]
+   },
+   {
+    "f": 55,
+    "dt": 65,
+    "upd": 3.2,
+    "ren": 16.1,
+    "st": "playing",
+    "newProgs": 0,
+    "gl": [
+     [
+      "uniformMatrix4fv",
+      522,
+      0.9,
+      0.1
+     ],
+     [
+      "bindVertexArray",
+      373,
+      0.6,
+      0.1
+     ],
+     [
+      "activeTexture",
+      182,
+      0.4,
+      0.1
+     ],
+     [
+      "bindFramebuffer",
+      32,
+      0.2,
+      0.1
+     ],
+     [
+      "bindTexture",
+      220,
+      0.2,
+      0.1
+     ],
+     [
+      "drawArrays",
+      314,
+      0.2,
+      0.1
+     ]
+    ]
+   },
+   {
+    "f": 59,
+    "dt": 85.1,
+    "upd": 3.2,
+    "ren": 25.4,
+    "st": "playing",
+    "newProgs": 0,
+    "gl": [
+     [
+      "drawArrays",
+      314,
+      1.9,
+      0.8
+     ],
+     [
+      "bindVertexArray",
+      372,
+      1.2,
+      0.2
+     ],
+     [
+      "uniformMatrix4fv",
+      522,
+      0.9,
+      0.2
+     ],
+     [
+      "bindTexture",
+      220,
+      0.5,
+      0.2
+     ],
+     [
+      "uniformMatrix3fv",
+      137,
+      0.4,
+      0.3
+     ],
+     [
+      "scissor",
+      11,
+      0.2,
+      0.1
+     ]
+    ]
+   },
+   {
+    "f": 64,
+    "dt": 61.6,
+    "upd": 3,
+    "ren": 14.2,
+    "st": "playing",
+    "newProgs": 0,
+    "gl": [
+     [
+      "uniformMatrix4fv",
+      521,
+      1.2,
+      0.1
+     ],
+     [
+      "bindVertexArray",
+      374,
+      0.5,
+      0.1
+     ],
+     [
+      "uniform1f",
+      57,
+      0.5,
+      0.4
+     ],
+     [
+      "activeTexture",
+      181,
+      0.4,
+      0.1
+     ],
+     [
+      "drawArrays",
+      314,
+      0.4,
+      0.1
+     ],
+     [
+      "bindTexture",
+      220,
+      0.3,
+      0.1
+     ]
+    ]
+   }
+  ],
+  "longtasks": [
+   [
+    7449,
+    112
+   ],
+   [
+    7565,
+    136
+   ],
+   [
+    7739,
+    127
+   ],
+   [
+    7878,
+    114
+   ],
+   [
+    8037,
+    115
+   ],
+   [
+    8152,
+    199
+   ],
+   [
+    8352,
+    73
+   ],
+   [
+    8469,
+    53
+   ],
+   [
+    8557,
+    190
+   ],
+   [
+    8781,
+    191
+   ],
+   [
+    8973,
+    155
+   ],
+   [
+    9128,
+    167
+   ],
+   [
+    9298,
+    118
+   ],
+   [
+    9428,
+    57
+   ],
+   [
+    9545,
+    59
+   ],
+   [
+    9764,
+    67
+   ],
+   [
+    9832,
+    130
+   ],
+   [
+    9963,
+    831
+   ],
+   [
+    10795,
+    888
+   ],
+   [
+    11684,
+    2989
+   ],
+   [
+    14684,
+    182
+   ],
+   [
+    14867,
+    3565
+   ],
+   [
+    18434,
+    628
+   ],
+   [
+    19062,
+    5161
+   ],
+   [
+    24230,
+    76
+   ],
+   [
+    24982,
+    53
+   ],
+   [
+    31214,
+    139
+   ],
+   [
+    37010,
+    295
+   ],
+   [
+    37731,
+    154
+   ],
+   [
+    37890,
+    52
+   ]
+  ],
+  "frames": 294
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

@@ -1,0 +1,252 @@
+[run] http://127.0.0.1:50337/index.html?autotest=1&map=foundry&bots=2&duration=1&god=1&script=idle&scenario=tools/out/audit/review-aibrain/v/padtest.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 351.47,
+ "frames": 108,
+ "fps": {
+  "avg": 0,
+  "min": 8.237232289950489,
+  "max": 163.93442622960382
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "roam",
+   "distance": 3278.5,
+   "pos": [
+    42,
+    10,
+    -35.9
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    2,
+    0,
+    -40
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 2,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 117,
+  "triangles": 101100,
+  "geometries": 106,
+  "textures": 107,
+  "programs": 91
+ },
+ "custom": {
+  "pads": 4,
+  "unpatched": {
+   "label": "unpatched",
+   "n": 15,
+   "ok": 9,
+   "avgT": 13.4,
+   "totalInv": 59,
+   "fails": [
+    {
+     "pad": 0,
+     "ok": false,
+     "t": 20,
+     "inv": 9,
+     "air": 10.1,
+     "a": [
+      -29.5,
+      -4,
+      22.5
+     ],
+     "g": [
+      -11.5,
+      5,
+      16.5
+     ]
+    },
+    {
+     "pad": 0,
+     "ok": false,
+     "t": 20,
+     "inv": 7,
+     "air": 11.5,
+     "a": [
+      -29.5,
+      -4,
+      28.5
+     ],
+     "g": [
+      -6.5,
+      5,
+      15.5
+     ]
+    },
+    {
+     "pad": 0,
+     "ok": false,
+     "t": 20,
+     "inv": 8,
+     "air": 11.7,
+     "a": [
+      -30.5,
+      -3.8,
+      25.5
+     ],
+     "g": [
+      -6.5,
+      5,
+      16.5
+     ]
+    },
+    {
+     "pad": 0,
+     "ok": false,
+     "t": 20,
+     "inv": 6,
+     "air": 10.5,
+     "a": [
+      -11.5,
+      -4,
+      28.5
+     ],
+     "g": [
+      -8.5,
+      5,
+      16.5
+     ]
+    },
+    {
+     "pad": 0,
+     "ok": false,
+     "t": 20,
+     "inv": 9,
+     "air": 9.9,
+     "a": [
+      -30.5,
+      -3.8,
+      23.5
+     ],
+     "g": [
+      -11.5,
+      5,
+      16.5
+     ]
+    },
+    {
+     "pad": 1,
+     "ok": false,
+     "t": 20,
+     "inv": 7,
+     "air": 9.7,
+     "a": [
+      26.5,
+      -4,
+      28.5
+     ],
+     "g": [
+      30.5,
+      5,
+      13.5
+     ]
+    }
+   ],
+   "all": [
+    "0:FAIL:20s:inv9",
+    "0:FAIL:20s:inv7",
+    "0:FAIL:20s:inv8",
+    "0:FAIL:20s:inv6",
+    "0:FAIL:20s:inv9",
+    "1:ok:3.3s:inv0",
+    "1:FAIL:20s:inv7",
+    "1:ok:7.3s:inv3",
+    "1:ok:16.9s:inv3",
+    "1:ok:13s:inv5",
+    "2:ok:11.4s:inv0",
+    "2:ok:8.7s:inv0",
+    "2:ok:7.3s:inv0",
+    "2:ok:4.2s:inv2",
+    "2:ok:8.4s:inv0"
+   ]
+  },
+  "patched": {
+   "label": "patched",
+   "n": 15,
+   "ok": 14,
+   "avgT": 9.3,
+   "totalInv": 12,
+   "fails": [
+    {
+     "pad": 1,
+     "ok": false,
+     "t": 20,
+     "inv": 3,
+     "air": 9.4,
+     "a": [
+      29.5,
+      -4,
+      27.5
+     ],
+     "g": [
+      10.5,
+      5,
+      5.5
+     ]
+    }
+   ],
+   "all": [
+    "0:ok:8.8s:inv1",
+    "0:ok:9.7s:inv1",
+    "0:ok:10.1s:inv1",
+    "0:ok:12.6s:inv1",
+    "0:ok:8.8s:inv1",
+    "1:ok:3.3s:inv0",
+    "1:ok:9.9s:inv1",
+    "1:ok:8.1s:inv1",
+    "1:FAIL:20s:inv3",
+    "1:ok:7.7s:inv1",
+    "2:ok:11.6s:inv0",
+    "2:ok:9.5s:inv1",
+    "2:ok:7.3s:inv0",
+    "2:ok:3.1s:inv0",
+    "2:ok:8.3s:inv0"
+   ]
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

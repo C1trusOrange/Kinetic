@@ -1,0 +1,16 @@
+[run] http://127.0.0.1:49841/index.html?autotest=1&map=foundry&bots=0&duration=45&scenario=tools/out/audit/review-world/pads.js&god=1
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:49841/src/world/Collision.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:49841/src/core/Game.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:49841/src/world/Textures.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:49841/src/world/MapBuilder.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:49841/src/world/NavGraph.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:49841/src/core/Entity.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:49841/src/player/MoveConfig.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:49841/src/fx/Atlas.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:49841/src/fx/Particles.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:49841/src/ui/dom.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:49841/src/ui/Icons.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:49841/src/ui/Scoreboard.js]
+[error] [run] timed out after 240s waiting for: window.__TEST__ && window.__TEST__.done
+[result] null
+[run] done: wait=TIMEOUT console_errors=13 warnings=0

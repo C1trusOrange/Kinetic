@@ -1,0 +1,173 @@
+[run] http://127.0.0.1:50175/index.html?autotest=1&map=sandbox&bots=3&duration=8&hide=0&scenario=tools/out/audit/verify-perf-2/sc_hud.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.08,
+ "frames": 325,
+ "fps": {
+  "avg": 44.4,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 50.81333335182496,
+  "maxSpeed": 10.34,
+  "minY": 0,
+  "maxY": 2.0233333333333303,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true
+  },
+  "shots": 18,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 44.9,
+   "pos": [
+    -5.5,
+    0,
+    22.3
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 53,
+   "pos": [
+    10.5,
+    0,
+    6.2
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 27,
+   "weapon": "sniper",
+   "state": "retreat",
+   "distance": 25.5,
+   "pos": [
+    -23,
+    -4,
+    12.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 3,
+  "death": 0,
+  "spawn": 4,
+  "pickup": 3,
+  "fire": 38
+ },
+ "renderer": {
+  "calls": 193,
+  "triangles": 42458,
+  "geometries": 194,
+  "textures": 127,
+  "programs": 103
+ },
+ "custom": {
+  "hide": "0",
+  "firstPlay": 27,
+  "firstFrame": {
+   "f": 27,
+   "dt": 5051,
+   "js": 4330,
+   "gt": 0.05,
+   "st": "playing"
+  },
+  "next8": [
+   {
+    "f": 28,
+    "dt": 215,
+    "js": 30,
+    "gt": 0.1,
+    "st": "playing"
+   },
+   {
+    "f": 29,
+    "dt": 773,
+    "js": 19,
+    "gt": 0.15,
+    "st": "playing"
+   },
+   {
+    "f": 30,
+    "dt": 90,
+    "js": 78,
+    "gt": 0.18,
+    "st": "playing"
+   },
+   {
+    "f": 31,
+    "dt": 67,
+    "js": 62,
+    "gt": 0.23,
+    "st": "playing"
+   },
+   {
+    "f": 32,
+    "dt": 23,
+    "js": 20,
+    "gt": 0.28,
+    "st": "playing"
+   },
+   {
+    "f": 33,
+    "dt": 18,
+    "js": 16,
+    "gt": 0.3,
+    "st": "playing"
+   },
+   {
+    "f": 34,
+    "dt": 12,
+    "js": 10,
+    "gt": 0.32,
+    "st": "playing"
+   },
+   {
+    "f": 35,
+    "dt": 45,
+    "js": 18,
+    "gt": 0.36,
+    "st": "playing"
+   }
+  ],
+  "maxGapAfter": 773,
+  "maxGapAfterJs": {
+   "f": 29,
+   "dt": 773,
+   "js": 19,
+   "gt": 0.15,
+   "st": "playing"
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

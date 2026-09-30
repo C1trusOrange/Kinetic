@@ -1,0 +1,3 @@
+foundry_tdm15_insane exit=0
+skyline_ffa15_hard exit=0
+ALLDONE

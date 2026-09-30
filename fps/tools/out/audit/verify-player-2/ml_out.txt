@@ -1,0 +1,108 @@
+[run] http://127.0.0.1:62491/index.html?autotest=1&mapfile=tools/out/audit/verify-player-2/testmap4.js&bots=0&script=idle&scenario=tools/out/audit/verify-player-2/mantle_low.js
+[warning] [world] map 'testmap4' has 1 warning(s):
+ - only 4 spawn point(s): 14-18 recommended
+[result] {
+ "done": true,
+ "started": true,
+ "t": 17.5,
+ "frames": 16,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "testmap4",
+ "player": {
+  "distance": 85.66459250299582,
+  "maxSpeed": 6.885871126158929,
+  "minY": 0,
+  "maxY": 1.505,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isMantling": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "cases": [
+   {
+    "x": -1.5,
+    "feet": [
+     -1.5,
+     1.5,
+     20.51
+    ],
+    "h": 1.8,
+    "eyeY": 3.16,
+    "headTop": 3.3,
+    "st": "ground"
+   },
+   {
+    "x": -0.5,
+    "feet": [
+     -0.5,
+     1.5,
+     20.51
+    ],
+    "h": 1.8,
+    "eyeY": 3.16,
+    "headTop": 3.3,
+    "st": "ground"
+   },
+   {
+    "x": 0.3,
+    "feet": [
+     0.3,
+     1.5,
+     20.51
+    ],
+    "h": 1.8,
+    "eyeY": 3.16,
+    "headTop": 3.3,
+    "st": "ground"
+   },
+   {
+    "x": 1.2,
+    "feet": [
+     1.2,
+     1.5,
+     20.51
+    ],
+    "h": 1.8,
+    "eyeY": 3.16,
+    "headTop": 3.3,
+    "st": "ground"
+   },
+   {
+    "x": 2.2,
+    "feet": [
+     2.2,
+     1.5,
+     20.51
+    ],
+    "h": 1.8,
+    "eyeY": 3.16,
+    "headTop": 3.3,
+    "st": "ground"
+   }
+  ],
+  "cur": null
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

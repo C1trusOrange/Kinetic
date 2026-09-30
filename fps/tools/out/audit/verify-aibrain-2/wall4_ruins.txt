@@ -1,0 +1,441 @@
+[run] http://127.0.0.1:64778/index.html?autotest=1&map=ruins&bots=2&duration=1000&god=1&scenario=tools/out/audit/verify-aibrain-2/wall4.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 40.25,
+ "frames": 36,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 81.96721311475417
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 147.8,
+   "pos": [
+    -29.3,
+    -1.6,
+    24.7
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    0,
+    0.8,
+    49
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 184,
+  "triangles": 79270,
+  "geometries": 142,
+  "textures": 104,
+  "programs": 97
+ },
+ "custom": {
+  "trials": [
+   {
+    "a": [
+     -23.5,
+     -1.6,
+     19.5
+    ],
+    "g": [
+     -23.5,
+     -1.6,
+     25.5
+    ],
+    "pathStr": [
+     "-23.5,-1.6,25.5:walk"
+    ],
+    "ok": true,
+    "t": 5.08,
+    "minD": 0.99,
+    "samples": [
+     [
+      -23.43,
+      -0.56,
+      21.15,
+      "path",
+      0
+     ],
+     [
+      -23.08,
+      -0.61,
+      21.15,
+      "path",
+      0
+     ],
+     [
+      -23.58,
+      -0.83,
+      21.15,
+      "path",
+      0
+     ],
+     [
+      -18.41,
+      -1.24,
+      21.26,
+      "path",
+      0
+     ],
+     [
+      -22.3,
+      -1.6,
+      24.68,
+      "path",
+      0
+     ]
+    ],
+    "recoveries": 0
+   },
+   {
+    "a": [
+     -26.5,
+     -1.6,
+     20
+    ],
+    "g": [
+     -23.5,
+     -1.6,
+     25
+    ],
+    "pathStr": [
+     "-24.49,-0.75,20.51:walk",
+     "-23.49,-1.6,21.51:drop",
+     "-23.5,-1.6,25:walk"
+    ],
+    "ok": true,
+    "t": 4.97,
+    "minD": 1.05,
+    "samples": [
+     [
+      -22.53,
+      -1.6,
+      21.21,
+      "path",
+      2
+     ],
+     [
+      -23.58,
+      -0.72,
+      21.15,
+      "path",
+      2
+     ],
+     [
+      -23.53,
+      -1.05,
+      21.15,
+      "path",
+      2
+     ],
+     [
+      -21.43,
+      -1.6,
+      21.23,
+      "path",
+      2
+     ]
+    ],
+    "recoveries": 0
+   },
+   {
+    "a": [
+     -22.5,
+     -1.6,
+     25.5
+    ],
+    "g": [
+     -24.5,
+     -1.6,
+     19.5
+    ],
+    "pathStr": [
+     "-24.5,-1.6,19.5:walk"
+    ],
+    "ok": false,
+    "t": 15,
+    "minD": 3.35,
+    "samples": [
+     [
+      -23.57,
+      -0.94,
+      22.85,
+      "path",
+      0
+     ],
+     [
+      -24.53,
+      0.52,
+      22.85,
+      "path",
+      0
+     ],
+     [
+      -24.5,
+      -0.75,
+      22.85,
+      "path",
+      0
+     ],
+     [
+      -29.74,
+      -0.75,
+      22.9,
+      "path",
+      0
+     ],
+     [
+      -25.57,
+      -0.75,
+      22.85,
+      "path",
+      0
+     ],
+     [
+      -24.52,
+      0.38,
+      22.85,
+      "path",
+      0
+     ],
+     [
+      -24.48,
+      0.48,
+      22.85,
+      "path",
+      0
+     ],
+     [
+      -25.33,
+      0.51,
+      22.85,
+      "path",
+      0
+     ],
+     [
+      -28.86,
+      -0.75,
+      22.85,
+      "path",
+      0
+     ],
+     [
+      -25.06,
+      -0.75,
+      22.85,
+      "path",
+      0
+     ],
+     [
+      -24.42,
+      0.22,
+      22.85,
+      "path",
+      0
+     ],
+     [
+      -24.59,
+      -0.39,
+      22.85,
+      "path",
+      0
+     ],
+     [
+      -27.72,
+      -0.62,
+      22.85,
+      "path",
+      0
+     ],
+     [
+      -25.16,
+      -0.75,
+      22.85,
+      "path",
+      0
+     ],
+     [
+      -24.43,
+      0.38,
+      22.85,
+      "path",
+      0
+     ]
+    ],
+    "recoveries": 0
+   },
+   {
+    "a": [
+     -28.5,
+     -1.6,
+     19.5
+    ],
+    "g": [
+     -28.5,
+     -1.6,
+     25.5
+    ],
+    "pathStr": [
+     "-29.49,-0.75,19.51:walk",
+     "-29.49,-0.75,20.51:walk",
+     "-30.49,-1.6,21.51:drop",
+     "-30.49,-1.6,23.51:walk",
+     "-28.5,-1.6,25.5:walk"
+    ],
+    "ok": true,
+    "t": 13.62,
+    "minD": 1.08,
+    "samples": [
+     [
+      -30.92,
+      -1.6,
+      21.21,
+      "path",
+      2
+     ],
+     [
+      -30.77,
+      -1.54,
+      21.17,
+      "path",
+      2
+     ],
+     [
+      -30.67,
+      -1.6,
+      21.21,
+      "path",
+      2
+     ],
+     [
+      -28.2,
+      -0.3,
+      21.15,
+      "path",
+      2
+     ],
+     [
+      -31.13,
+      -1.6,
+      21.21,
+      "path",
+      2
+     ],
+     [
+      -30.81,
+      -0.83,
+      21.15,
+      "path",
+      2
+     ],
+     [
+      -30.62,
+      -1.6,
+      21.2,
+      "path",
+      2
+     ],
+     [
+      -27.94,
+      -0.3,
+      21.1,
+      "path",
+      2
+     ],
+     [
+      -29.77,
+      -0.55,
+      21.15,
+      "path",
+      2
+     ],
+     [
+      -30.64,
+      -1.6,
+      21.21,
+      "path",
+      2
+     ],
+     [
+      -30.65,
+      -1.6,
+      21.21,
+      "path",
+      2
+     ],
+     [
+      -30.62,
+      -1.6,
+      21.21,
+      "path",
+      2
+     ],
+     [
+      -32.34,
+      -1.61,
+      22.43,
+      "path",
+      2
+     ]
+    ],
+    "recoveries": 0
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

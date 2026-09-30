@@ -1,0 +1,120 @@
+[run] http://127.0.0.1:58069/index.html?autotest=1&map=sandbox&bots=1&god=1&script=idle&mode=rocket&hide=0&scenario=tools/out/audit/verify-fxaudio-2/v1_decal.js&duration=9
+[log] [autotest] finished {"ok":true,"errors":0,"fps":28.2}
+[run] screenshot -> tools\out\audit\verify-fxaudio-2\v1_rock2_h0.png
+[result] {
+ "done": true,
+ "started": true,
+ "t": 10.12,
+ "frames": 293,
+ "fps": {
+  "avg": 28.2,
+  "min": 4,
+  "max": 163.9
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 5.2,
+   "pos": [
+    -15,
+    0.1,
+    -2
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 2,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 184,
+  "triangles": 43048,
+  "geometries": 163,
+  "textures": 127,
+  "programs": 101
+ },
+ "custom": {
+  "mode": "rocket",
+  "hide": false,
+  "spot": [
+   -15,
+   0.05,
+   -2
+  ],
+  "botPos": [
+   -15,
+   0.05,
+   -2
+  ],
+  "decals": [
+   {
+    "i": 150,
+    "scorch": true,
+    "pos": [
+     -15,
+     1.05,
+     -1.61
+    ],
+    "n": [
+     0,
+     0,
+     1
+    ],
+    "size": 7,
+    "onSurface": false
+   },
+   {
+    "i": 151,
+    "scorch": true,
+    "pos": [
+     -15,
+     0.01,
+     -1.47
+    ],
+    "n": [
+     0,
+     1,
+     0
+    ],
+    "size": 7.95,
+    "onSurface": true
+   }
+  ],
+  "stats": {
+   "smoke": 0,
+   "glow": 0,
+   "tracers": 0,
+   "decals": 2,
+   "gibs": 0,
+   "dropped": 0
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

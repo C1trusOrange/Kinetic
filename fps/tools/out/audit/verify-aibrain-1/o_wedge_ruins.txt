@@ -1,0 +1,226 @@
+[run] http://127.0.0.1:50564/index.html?autotest=1&bots=2&duration=1&god=1&script=idle&map=ruins&scenario=tools/out/audit/verify-aibrain-1/scen_wedge.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 25.27,
+ "frames": 32,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 54.34782608696776
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 89.7,
+   "pos": [
+    -25.1,
+    -1.6,
+    24
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    -49,
+    9,
+    -18
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 111,
+  "triangles": 68462,
+  "geometries": 103,
+  "textures": 71,
+  "programs": 84
+ },
+ "custom": {
+  "tests": [
+   {
+    "name": "bath wall S->N",
+    "placed": [
+     -23.5,
+     -1.6,
+     20.3
+    ],
+    "nearest": [
+     -23.49,
+     -1.6,
+     20.51
+    ],
+    "nearestDist": 0.21,
+    "losBlockedAt": null,
+    "path0": [
+     "-23.5 -1.6 24.5 walk"
+    ],
+    "connected": true,
+    "ok": true,
+    "t": 6.8,
+    "minD": 1.51,
+    "stuckEvents": 3,
+    "stuckStages": "1@2.03,2@3.07,2@6.17",
+    "rescues": 0,
+    "end": [
+     -22.34,
+     -1.6,
+     23.53
+    ],
+    "trace": [
+     "0.52|-23.49,-1.49,21.16|path",
+     "1.52|-23.34,-1.02,21.14|path",
+     "2.52|-23.12,-1.07,21.15|path",
+     "3.52|-24.33,-0.35,20.98|path",
+     "4.52|-23.39,-1.6,21.21|path",
+     "5.52|-23.55,-1.6,21.21|path",
+     "6.52|-20.84,-1.6,22.21|path"
+    ]
+   },
+   {
+    "name": "bath wall N->S",
+    "placed": [
+     -23.5,
+     -1.6,
+     24.3
+    ],
+    "nearest": [
+     -23.49,
+     -1.6,
+     24.51
+    ],
+    "nearestDist": 0.21,
+    "losBlockedAt": null,
+    "path0": [
+     "-23.5 -1.6 19.5 walk"
+    ],
+    "connected": true,
+    "ok": true,
+    "t": 4.35,
+    "minD": 1.48,
+    "stuckEvents": 2,
+    "stuckStages": "1@9.25,2@10.75",
+    "rescues": 0,
+    "end": [
+     -22.28,
+     -1.6,
+     20.35
+    ],
+    "trace": [
+     "0.52|-23.35,-1.6,22.79|path",
+     "1.52|-23.48,-1.6,22.79|path",
+     "2.52|-23.27,-1.49,22.84|path",
+     "3.52|-20.94,-1.6,22.8|path"
+    ]
+   },
+   {
+    "name": "bath wall x-26 S->N",
+    "placed": [
+     -26.5,
+     -0.3,
+     20.3
+    ],
+    "nearest": [
+     -26.49,
+     -0.3,
+     20.51
+    ],
+    "nearestDist": 0.21,
+    "losBlockedAt": null,
+    "path0": [
+     "-24.49 -0.75 20.51 walk",
+     "-23.49 -1.6 21.51 drop",
+     "-23.49 -1.6 22.51 walk"
+    ],
+    "connected": true,
+    "ok": true,
+    "t": 12.62,
+    "minD": 1.54,
+    "stuckEvents": 5,
+    "stuckStages": "1@14.55,2@15.55,1@17.6,2@18.63,2@21.73",
+    "rescues": 0,
+    "end": [
+     -25.06,
+     -1.6,
+     23.95
+    ],
+    "trace": [
+     "0.52|-23.15,-1,21.12|path",
+     "1.52|-23.54,-1.6,21.21|path",
+     "2.52|-23.62,-0.75,21.15|path",
+     "3.52|-24.6,-0.75,20.86|path",
+     "4.52|-23.47,-1.6,21.21|path",
+     "5.52|-23.46,-1.19,21.13|path",
+     "6.52|-23.6,-1.6,21.08|path",
+     "7.52|-22.48,-1.6,21.2|path",
+     "8.5|-23.38,-0.66,21.15|path",
+     "9.5|-22.46,-0.55,21.02|path",
+     "10.5|-21.59,-1.6,21.92|path",
+     "11.5|-21.6,-0.9,22.25|path",
+     "12.5|-24.34,-1.6,23.64|path"
+    ]
+   }
+  ],
+  "xsec": {
+   "x-23.5 y-1.0 +z from 19": [],
+   "x-23.5 y-0.2 +z from 19": [],
+   "x-23.5 y0.1 +z from 19": [
+    {
+     "at": 2.55,
+     "n": [
+      0,
+      0,
+      -1
+     ]
+    }
+   ]
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

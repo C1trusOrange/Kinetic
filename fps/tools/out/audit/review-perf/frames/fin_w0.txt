@@ -1,0 +1,633 @@
+[run] http://127.0.0.1:53568/index.html?autotest=1&map=foundry&bots=5&duration=8&warm=0&fin=1&scenario=tools/out/audit/review-perf/frames/scenario.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.24,
+ "frames": 470,
+ "fps": {
+  "avg": 60.9,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 41.71902151552605,
+  "maxSpeed": 11.83,
+  "minY": 0,
+  "maxY": 2.09333333333333,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true
+  },
+  "shots": 18,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 83,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 42.6,
+   "pos": [
+    -30.1,
+    0,
+    -8.1
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "collect",
+   "distance": 29.3,
+   "pos": [
+    -8.4,
+    5,
+    5.8
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 61,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 43.9,
+   "pos": [
+    -36.5,
+    0,
+    6.5
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 47.8,
+   "pos": [
+    2.7,
+    0,
+    -39.7
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 55.4,
+   "pos": [
+    10.1,
+    1.1,
+    20
+   ]
+  }
+ ],
+ "events": {
+  "damage": 14,
+  "death": 2,
+  "spawn": 8,
+  "pickup": 0,
+  "fire": 51
+ },
+ "renderer": {
+  "calls": 286,
+  "triangles": 121138,
+  "geometries": 231,
+  "textures": 134,
+  "programs": 105
+ },
+ "custom": {
+  "startProgs": 51,
+  "prof": {
+   "frames": 419,
+   "cpuMs": {
+    "p50": 12.5,
+    "p90": 19.3,
+    "p99": 29.8,
+    "max": 255.6
+   },
+   "intervalMs": {
+    "p50": 18.2,
+    "p90": 30.1,
+    "p99": 60.6,
+    "max": 648.5
+   },
+   "totalNewPrograms": 105,
+   "slow": [
+    {
+     "i": 37,
+     "finish": 0,
+     "ts": 29436,
+     "gap": 0,
+     "heap": 146.8,
+     "heapEnd": 146.8,
+     "t": 0.05,
+     "dur": 21.4,
+     "interval": 0,
+     "newProg": "48 programs",
+     "users": {
+      "52": [
+       "S:body:frag/MeshStandardMaterial@grenade",
+       "S:body:frag/MeshStandardMaterial@grenade",
+       "S:body:frag/MeshStandardMaterial@grenade",
+       "+8"
+      ],
+      "55": [
+       "S:Mesh/MeshBasicMaterial@flame",
+       "S:Mesh/MeshBasicMaterial@flame",
+       "S:Mesh/MeshBasicMaterial@flame",
+       "+5"
+      ],
+      "57": [
+       "S:Mesh/MeshBasicMaterial@flame",
+       "S:Mesh/MeshBasicMaterial@flame",
+       "S:Mesh/MeshBasicMaterial@flame",
+       "+9"
+      ],
+      "58": [
+       "S:Sprite/SpriteMaterial",
+       "S:Sprite/SpriteMaterial",
+       "S:Sprite/SpriteMaterial",
+       "+3"
+      ],
+      "59": [
+       "S:Mesh/MeshBasicMaterial[inst]"
+      ],
+      "61": [
+       "S:Mesh/MeshBasicMaterial"
+      ],
+      "66": [
+       "S:grapple-rope/MeshBasicMaterial@grapple"
+      ],
+      "67": [
+       "S:Mesh/MeshStandardMaterial@grapple-claw"
+      ],
+      "68": [
+       "S:Mesh/MeshBasicMaterial@grapple-claw"
+      ],
+      "69": [
+       "S:Sprite/SpriteMaterial@grapple-claw"
+      ],
+      "79": [
+       "S:body:custom:9e4e05c1-2e4a-48cc-bc8f-009fb547ad7a/MeshStandardMaterial@weapon_pistol",
+       "V:slide:custom:9e4e05c1-2e4a-48cc-bc8f-009fb547ad7a/MeshStandardMaterial@slide"
+      ],
+      "85": [
+       "S:pelvis/MeshStandardMaterial(bot_ff4a3d)@BotModel",
+       "S:torso/MeshStandardMaterial(bot_ff4a3d)@pelvis",
+       "S:head/MeshStandardMaterial(bot_ff4a3d)@torso",
+       "+36"
+      ],
+      "87": [
+       "S:body:paintOlive/MeshStandardMaterial@rocket",
+       "S:body:hazard/MeshStandardMaterial@rocket",
+       "S:body:paintOrange/MeshStandardMaterial@rocket",
+       "+23"
+      ],
+      "88": [
+       "S:body:wood/MeshStandardMaterial@weapon_shotgun",
+       "S:body:wood/MeshStandardMaterial@weapon_shotgun",
+       "V:body:wood/MeshStandardMaterial@weapon_shotgun_view",
+       "+1"
+      ],
+      "89": [
+       "S:pelvis/MeshStandardMaterial(bot_ffb020)@BotModel",
+       "S:torso/MeshStandardMaterial(bot_ffb020)@pelvis",
+       "S:head/MeshStandardMaterial(bot_ffb020)@torso",
+       "+23"
+      ],
+      "90": [
+       "S:Mesh/ShaderMaterial"
+      ],
+      "91": [
+       "S:Mesh/ShaderMaterial"
+      ],
+      "92": [
+       "S:body:steelBlack/MeshStandardMaterial@rocket",
+       "S:body:steelDark/MeshStandardMaterial@rocket",
+       "S:body:steelBlack/MeshStandardMaterial@rocket",
+       "+72"
+      ],
+      "93": [
+       "S:body:poly/MeshStandardMaterial@weapon_shotgun",
+       "S:body:poly/MeshStandardMaterial@weapon_shotgun",
+       "S:body:poly/MeshStandardMaterial@weapon_pistol",
+       "+58"
+      ],
+      "94": [
+       "S:body:void/MeshStandardMaterial@weapon_shotgun",
+       "S:body:void/MeshStandardMaterial@weapon_shotgun",
+       "S:body:void/MeshStandardMaterial@weapon_rocket",
+       "+31"
+      ],
+      "95": [
+       "V:body:cellBody/MeshStandardMaterial@weapon_rifle_view",
+       "V:mag:cellBody/MeshStandardMaterial@mag"
+      ],
+      "96": [
+       "V:body:custom:d767fb1b-2ee2-4123-8aa1-f564eb011f68/MeshStandardMaterial@weapon_rifle_view",
+       "V:body:custom:8ff9da97-097b-4902-88c6-88a2f8adb417/MeshStandardMaterial@weapon_rifle_view",
+       "V:body:custom:8ff9da97-097b-4902-88c6-88a2f8adb417/MeshStandardMaterial@weapon_rocket_view"
+      ],
+      "98": [
+       "S:Mesh/MeshBasicMaterial",
+       "S:body:reticleRing/MeshBasicMaterial@weapon_rocket",
+       "S:body:reticleRing/MeshBasicMaterial@weapon_rocket",
+       "+2"
+      ],
+      "99": [
+       "S:Mesh/MeshStandardMaterial",
+       "S:body:lens/MeshStandardMaterial@weapon_rocket",
+       "S:body:lens/MeshStandardMaterial@weapon_rocket",
+       "+2"
+      ]
+     },
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 2.3,
+      "render": 16.3
+     },
+     "gl": {}
+    },
+    {
+     "i": 38,
+     "finish": 0,
+     "ts": 30076,
+     "gap": 618,
+     "heap": 147.7,
+     "heapEnd": 147.7,
+     "t": 0.1,
+     "dur": 26.2,
+     "interval": 648.5,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 8.6,
+      "render": 14.8
+     },
+     "gl": {}
+    },
+    {
+     "i": 223,
+     "finish": 0.9,
+     "ts": 33759,
+     "gap": 3,
+     "heap": 151.1,
+     "heapEnd": 152.1,
+     "t": 3.81,
+     "dur": 67.5,
+     "interval": 12.4,
+     "newProg": [
+      "#100",
+      "#101"
+     ],
+     "users": {
+      "101": [
+       "S:Mesh/MeshBasicMaterial@flame",
+       "S:Mesh/MeshBasicMaterial@flame",
+       "S:Mesh/MeshBasicMaterial@flame",
+       "+5"
+      ]
+     },
+     "keys": [
+      "|basic,highp,srgb-linear,false,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,2049,5123,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+      "|basic,highp,srgb-linear,false,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,,1,8,0,0,1,0,1,0,0,0,0,2,0,0,0,0,2049,1027,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}"
+     ],
+     "dTex": 1,
+     "dGeo": 4,
+     "parts": {
+      "bots.update": 4.4,
+      "projectiles.update": 1.2,
+      "render": 60.4
+     },
+     "gl": {
+      "getProgramInfoLog": {
+       "n": 2,
+       "ms": 33.1
+      },
+      "getProgramParameter": {
+       "n": 6,
+       "ms": 2.6
+      }
+     }
+    },
+    {
+     "i": 278,
+     "finish": 0,
+     "ts": 34766,
+     "gap": 5,
+     "heap": 141.7,
+     "heapEnd": 144.3,
+     "t": 4.79,
+     "dur": 255.6,
+     "interval": 18.2,
+     "newProg": [
+      "#102",
+      "#103",
+      "#104",
+      "#105"
+     ],
+     "users": {
+      "102": [
+       "V:Mesh/MeshStandardMaterial@viewmodel",
+       "V:Mesh/MeshStandardMaterial@viewmodel",
+       "V:Mesh/MeshStandardMaterial@viewmodel",
+       "+7"
+      ],
+      "104": [
+       "V:Mesh/MeshBasicMaterial",
+       "V:Mesh/MeshBasicMaterial"
+      ],
+      "105": [
+       "V:Sprite/SpriteMaterial"
+      ]
+     },
+     "keys": [
+      "|physical,STANDARD,,highp,srgb-linear,306,1024,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,false,false,0,,1,1,0,0,1,0,0,0,0,0,0,2,0,0,0,0,33,131074,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+      "|basic,highp,srgb-linear,false,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,false,false,0,,1,1,0,0,1,0,0,0,0,0,0,2,0,0,0,0,1,4096,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+      "|basic,highp,srgb-linear,false,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,false,false,0,,1,1,0,0,1,0,0,0,0,0,0,2,0,0,0,0,1,0,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}",
+      "|sprite,highp,srgb-linear,false,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,false,true,0,,1,1,0,0,1,0,0,0,0,0,0,2,0,0,0,0,1,0,srgb,onBeforeCompile( /* shaderobject, renderer */ ) {}"
+     ],
+     "dTex": 2,
+     "dGeo": 4,
+     "parts": {
+      "weapons.update": 3.6,
+      "effects.update": 1.1,
+      "render": 248.5
+     },
+     "gl": {
+      "getProgramInfoLog": {
+       "n": 4,
+       "ms": 223.5
+      },
+      "getProgramParameter": {
+       "n": 12,
+       "ms": 1.3
+      }
+     }
+    },
+    {
+     "i": 279,
+     "finish": 0.1,
+     "ts": 35031,
+     "gap": 9,
+     "heap": 144.3,
+     "heapEnd": 144.3,
+     "t": 4.81,
+     "dur": 18.3,
+     "interval": 260.7,
+     "newProg": [],
+     "dTex": 0,
+     "dGeo": 0,
+     "parts": {
+      "bots.update": 4.3,
+      "render": 11.6
+     },
+     "gl": {}
+    }
+   ],
+   "longtasks": [
+    {
+     "start": 2959,
+     "dur": 413,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 6152,
+     "dur": 2225,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 8382,
+     "dur": 644,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 9079,
+     "dur": 2895,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 11986,
+     "dur": 159,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 12147,
+     "dur": 630,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 12778,
+     "dur": 123,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 12903,
+     "dur": 136,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 13057,
+     "dur": 129,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 13187,
+     "dur": 115,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 13303,
+     "dur": 126,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 13430,
+     "dur": 210,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 13640,
+     "dur": 152,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 13795,
+     "dur": 84,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 13894,
+     "dur": 61,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 13960,
+     "dur": 216,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 14179,
+     "dur": 293,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 14481,
+     "dur": 163,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 14645,
+     "dur": 617,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 15264,
+     "dur": 429,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 15694,
+     "dur": 58,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 15933,
+     "dur": 59,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 16035,
+     "dur": 126,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 16162,
+     "dur": 913,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 17075,
+     "dur": 882,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 17960,
+     "dur": 2995,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 20967,
+     "dur": 225,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 21192,
+     "dur": 3321,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 24565,
+     "dur": 558,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 25124,
+     "dur": 4305,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 33759,
+     "dur": 71,
+     "name": "self",
+     "attr": "window"
+    },
+    {
+     "start": 34766,
+     "dur": 263,
+     "name": "self",
+     "attr": "window"
+    }
+   ],
+   "glTotalMs": {
+    "compileShader": 1.2,
+    "linkProgram": 2.3,
+    "bufferSubData": 55,
+    "bufferData": 4.8,
+    "useProgram": 48.3,
+    "drawElements": 35.7,
+    "uniformMatrix4fv": 190.4,
+    "drawArrays": 105.2,
+    "getProgramInfoLog": 3633.5,
+    "getProgramParameter": 10.3,
+    "getActiveUniform": 1.1,
+    "getUniformLocation": 1.4,
+    "texSubImage2D": 24.9,
+    "drawElementsInstanced": 9.8,
+    "finish": 12.6
+   }
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

@@ -1,0 +1,275 @@
+[run] http://127.0.0.1:65172/index.html?autotest=1&mapfile=tools/out/audit/review-aibody/testmap.js&map=bot_phys&bots=8&duration=14&god=1&script=idle&scenario=tools/out/audit/review-aibody/scen_phys.js
+[warning] [world] map 'bot_phys' has 2 warning(s):
+ - solid #17 (ramp): slope 35 deg is steeper than 33 (players cannot walk it)
+ - solid #19 (ramp): slope 40 deg is steeper than 33 (players cannot walk it)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":49.4}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 14.28,
+ "frames": 603,
+ "fps": {
+  "avg": 49.4,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "bot_phys",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 81.5,
+   "pos": [
+    39.6,
+    0,
+    6
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 81.9,
+   "pos": [
+    39.6,
+    0,
+    11
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 85,
+   "pos": [
+    39.6,
+    0,
+    16
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 84.9,
+   "pos": [
+    39.6,
+    0,
+    21
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 32.9,
+   "pos": [
+    -30,
+    0,
+    -31
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 33.5,
+   "pos": [
+    -30,
+    0,
+    -30
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 31.9,
+   "pos": [
+    -30,
+    0,
+    -29
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 8.9,
+   "pos": [
+    -30,
+    0,
+    -28
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 9,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 394,
+  "triangles": 41872,
+  "geometries": 131,
+  "textures": 87,
+  "programs": 78
+ },
+ "custom": {
+  "curbs": [
+   {
+    "h": 0.15,
+    "maxX": 23.47,
+    "crossedAt": 1.93,
+    "stuckT": 0,
+    "jumps": 0,
+    "y": 0
+   },
+   {
+    "h": 0.25,
+    "maxX": 22.53,
+    "crossedAt": 2.05,
+    "stuckT": 0.04,
+    "jumps": 0,
+    "y": 0
+   },
+   {
+    "h": 0.32,
+    "maxX": 23.58,
+    "crossedAt": 1.89,
+    "stuckT": 0,
+    "jumps": 1,
+    "y": 0
+   },
+   {
+    "h": 0.38,
+    "maxX": 23.58,
+    "crossedAt": 1.89,
+    "stuckT": 0,
+    "jumps": 1,
+    "y": 0
+   },
+   {
+    "h": 0.5,
+    "maxX": 23.58,
+    "crossedAt": 1.89,
+    "stuckT": 0,
+    "jumps": 1,
+    "y": 0
+   },
+   {
+    "h": 0.8,
+    "maxX": 23.57,
+    "crossedAt": 1.89,
+    "stuckT": 0,
+    "jumps": 1,
+    "y": 0
+   },
+   {
+    "h": 1.1,
+    "maxX": 22.56,
+    "crossedAt": 2.05,
+    "stuckT": 0.04,
+    "jumps": 1,
+    "y": 0
+   },
+   {
+    "h": 1.25,
+    "maxX": -0.4,
+    "crossedAt": null,
+    "stuckT": 3.35,
+    "jumps": 0,
+    "y": 0
+   }
+  ],
+  "ramps": [
+   {
+    "angle": 25,
+    "maxY": 2.83,
+    "maxX": 22.25,
+    "stuckT": 0,
+    "jumps": 0,
+    "expectedTop": 2.8
+   },
+   {
+    "angle": 30,
+    "maxY": 3.49,
+    "maxX": 21.47,
+    "stuckT": 0,
+    "jumps": 0,
+    "expectedTop": 3.46
+   },
+   {
+    "angle": 35,
+    "maxY": 4.2,
+    "maxX": 19.86,
+    "stuckT": 0,
+    "jumps": 0,
+    "expectedTop": 4.2
+   },
+   {
+    "angle": 40,
+    "maxY": 5.03,
+    "maxX": 18.41,
+    "stuckT": 0,
+    "jumps": 0,
+    "expectedTop": 5.03
+   }
+  ],
+  "phase": 4,
+  "t0": 5.0321
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

@@ -1,0 +1,48 @@
+[run] http://127.0.0.1:57937/index.html?autotest=1&mapfile=tools/out/audit/design-depth/aerie_proto2.js&bots=0&script=idle&cam=-30,14,60,-0.464,-0.206&duration=24&quality=medium
+[run] screenshot -> tools\out\audit\design-depth\hero2_16s.png
+[log] [autotest] finished {"ok":true,"errors":0,"fps":112}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 24.05,
+ "frames": 1789,
+ "fps": {
+  "avg": 112,
+  "min": 4,
+  "max": 208.3
+ },
+ "errors": [],
+ "map": "aerie2",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 5,
+  "maxY": 5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 83,
+  "triangles": 37510,
+  "geometries": 77,
+  "textures": 61,
+  "programs": 83
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

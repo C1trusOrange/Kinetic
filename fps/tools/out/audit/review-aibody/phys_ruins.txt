@@ -1,0 +1,474 @@
+[run] http://127.0.0.1:60347/index.html?autotest=1&map=ruins&bots=10&diff=hard&duration=50&god=1&script=idle&scenario=tools/out/audit/review-aibody/physwatch.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":32}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 50.01,
+ "frames": 1461,
+ "fps": {
+  "avg": 32,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 87.6,
+  "maxSpeed": 13.72,
+  "minY": 1.3807509718958646,
+  "maxY": 8.823072608432694,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 2,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 271.6,
+   "pos": [
+    -13.9,
+    0.1,
+    -42.8
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 1,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 245.8,
+   "pos": [
+    -40.4,
+    4.5,
+    9.2
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 2,
+   "deaths": 2,
+   "health": 85,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 184,
+   "pos": [
+    17.3,
+    0,
+    15.3
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 2,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 198.2,
+   "pos": [
+    2.5,
+    0.8,
+    48.3
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 6,
+   "deaths": 3,
+   "health": 20,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 278.8,
+   "pos": [
+    34.5,
+    0,
+    -5.2
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": false,
+   "kills": 7,
+   "deaths": 5,
+   "health": 0,
+   "weapon": "sniper",
+   "state": "retreat",
+   "distance": 213,
+   "pos": [
+    -12,
+    4.5,
+    14.1
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 2,
+   "deaths": 2,
+   "health": 60,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 234.2,
+   "pos": [
+    -39.7,
+    4.5,
+    -9.1
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 4,
+   "deaths": 3,
+   "health": 73,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 249.1,
+   "pos": [
+    -22.4,
+    0,
+    -10.2
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 1,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 286,
+   "pos": [
+    -9,
+    0.7,
+    31
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": false,
+   "kills": 2,
+   "deaths": 7,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 188.8,
+   "pos": [
+    3.6,
+    0,
+    36.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 172,
+  "death": 33,
+  "spawn": 42,
+  "pickup": 10,
+  "fire": 545
+ },
+ "renderer": {
+  "calls": 525,
+  "triangles": 117696,
+  "geometries": 220,
+  "textures": 128,
+  "programs": 100
+ },
+ "custom": {
+  "anomalies": [
+   {
+    "kind": "penetration",
+    "name": "Voltage",
+    "t": 0.05,
+    "pos": [
+     -49,
+     9,
+     -18
+    ],
+    "depth": 0.4,
+    "n": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "kind": "penetration",
+    "name": "Glitch",
+    "t": 0.05,
+    "pos": [
+     -9,
+     0.7,
+     31
+    ],
+    "depth": 0.7,
+    "n": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "kind": "flicker",
+    "name": "Flux",
+    "t": 0.53,
+    "pos": [
+     -10.43,
+     4.51,
+     10.33
+    ],
+    "air": 0.092,
+    "vy": 0
+   },
+   {
+    "kind": "penetration",
+    "name": "Flux",
+    "t": 8.85,
+    "pos": [
+     -9,
+     0.7,
+     31
+    ],
+    "depth": 0.7,
+    "n": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "kind": "penetration",
+    "name": "Piston",
+    "t": 16.05,
+    "pos": [
+     -49,
+     9,
+     -18
+    ],
+    "depth": 0.4,
+    "n": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "kind": "penetration",
+    "name": "Relay",
+    "t": 18.96,
+    "pos": [
+     -49,
+     9,
+     -18
+    ],
+    "depth": 0.4,
+    "n": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "kind": "penetration",
+    "name": "Piston",
+    "t": 27.88,
+    "pos": [
+     -9,
+     0.7,
+     31
+    ],
+    "depth": 0.7,
+    "n": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "kind": "flicker",
+    "name": "Tesla",
+    "t": 28.42,
+    "pos": [
+     14.45,
+     0.06,
+     -39.09
+    ],
+    "air": 0.067,
+    "vy": 0
+   },
+   {
+    "kind": "flicker",
+    "name": "Piston",
+    "t": 28.42,
+    "pos": [
+     -8.59,
+     1.4,
+     30.35
+    ],
+    "air": 0.067,
+    "vy": 0
+   },
+   {
+    "kind": "penetration",
+    "name": "Servo",
+    "t": 30.57,
+    "pos": [
+     -49,
+     9,
+     -18
+    ],
+    "depth": 0.4,
+    "n": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "kind": "flicker",
+    "name": "Tesla",
+    "t": 32.44,
+    "pos": [
+     5.89,
+     0.22,
+     -40.46
+    ],
+    "air": 0.024,
+    "vy": 0
+   },
+   {
+    "kind": "penetration",
+    "name": "Tesla",
+    "t": 32.55,
+    "pos": [
+     5.45,
+     0.06,
+     -40.84
+    ],
+    "depth": 0.16,
+    "n": [
+     0,
+     0.75,
+     -0.66
+    ]
+   },
+   {
+    "kind": "flicker",
+    "name": "Tesla",
+    "t": 33.88,
+    "pos": [
+     3.11,
+     0.14,
+     -40.99
+    ],
+    "air": 0.03,
+    "vy": 0
+   },
+   {
+    "kind": "penetration",
+    "name": "Voltage",
+    "t": 39.47,
+    "pos": [
+     -9,
+     0.7,
+     31
+    ],
+    "depth": 0.7,
+    "n": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "kind": "penetration",
+    "name": "Glitch",
+    "t": 40.23,
+    "pos": [
+     -49,
+     9,
+     -18
+    ],
+    "depth": 0.4,
+    "n": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "kind": "penetration",
+    "name": "Axle",
+    "t": 44.82,
+    "pos": [
+     -49,
+     9,
+     -18
+    ],
+    "depth": 0.4,
+    "n": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "kind": "penetration",
+    "name": "Relay",
+    "t": 50.01,
+    "pos": [
+     -9,
+     0.7,
+     31
+    ],
+    "depth": 0.7,
+    "n": [
+     0,
+     1,
+     0
+    ]
+   }
+  ],
+  "tele": [],
+  "frames": 1437,
+  "flicker": 5,
+  "liftoffs": 78,
+  "maxAir": 1.5636999999999688,
+  "capMismatch": 0,
+  "maxPen": 0.6999999999999997,
+  "hover": 0,
+  "teleports": 0
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

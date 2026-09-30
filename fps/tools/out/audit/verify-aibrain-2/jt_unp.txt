@@ -1,0 +1,313 @@
+[run] http://127.0.0.1:49197/index.html?autotest=1&map=foundry&bots=2&duration=1000&god=1&n=5&lim=25&jit=1&routes=%5B%5B-12.5%2C5%2C-4.4%2C-3.5%2C9.5%2C-20.5%5D%5D&scenario=tools/out/audit/verify-aibrain-2/jt.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 58.06,
+ "frames": 47,
+ "fps": {
+  "avg": 0,
+  "min": 4.008016032064167,
+  "max": 64.10256410255292
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 29.5,
+  "maxSpeed": 12.17,
+  "minY": -4,
+  "maxY": 7.767488678682664,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "roam",
+   "distance": 296.2,
+   "pos": [
+    -4.4,
+    9.5,
+    -20.1
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    -45,
+    0,
+    -38
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 140
+ },
+ "renderer": {
+  "calls": 164,
+  "triangles": 106592,
+  "geometries": 155,
+  "textures": 120,
+  "programs": 101
+ },
+ "custom": {
+  "trials": [
+   {
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "raw": [
+     "-13.49,6.05,-3.49:jump",
+     "-14.49,6.78,-4.49:walk",
+     "-14.49,9.5,-10.49:walk",
+     "-14.49,9.5,-18.49:walk",
+     "-13.49,9.5,-19.49:walk",
+     "-3.5,9.5,-20.5:walk"
+    ],
+    "pulled": [
+     "-14.07,6.32,-3.57:jump",
+     "-14.49,6.78,-4.49:walk",
+     "-14.49,9.5,-10.49:walk",
+     "-14.49,9.5,-18.49:walk",
+     "-13.49,9.5,-19.69:walk",
+     "-3.5,9.5,-20.5:walk"
+    ],
+    "ok": true,
+    "t": 11.16,
+    "inv": 14,
+    "flips": 29,
+    "maxStage": 1,
+    "inv0": [
+     {
+      "t": 0.5,
+      "g": true,
+      "pos": [
+       -12.73,
+       5,
+       -4.87
+      ],
+      "idx": 2,
+      "wp": "-14.49 9.5 -10.49 walk"
+     },
+     {
+      "t": 1.01,
+      "g": true,
+      "pos": [
+       -12.52,
+       5,
+       -4.18
+      ],
+      "idx": 2,
+      "wp": "-14.49 6.78 -4.49 walk"
+     }
+    ]
+   },
+   {
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "ok": true,
+    "t": 10.31,
+    "inv": 9,
+    "flips": 19,
+    "maxStage": 0,
+    "inv0": [
+     {
+      "t": 12.04,
+      "g": true,
+      "pos": [
+       -12.67,
+       5,
+       -4.81
+      ],
+      "idx": 2,
+      "wp": "-14.49 9.5 -10.49 walk"
+     },
+     {
+      "t": 12.54,
+      "g": true,
+      "pos": [
+       -12.51,
+       5,
+       -4.16
+      ],
+      "idx": 2,
+      "wp": "-14.49 6.78 -4.49 walk"
+     }
+    ]
+   },
+   {
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "ok": true,
+    "t": 10,
+    "inv": 11,
+    "flips": 23,
+    "maxStage": 0,
+    "inv0": [
+     {
+      "t": 22.69,
+      "g": true,
+      "pos": [
+       -12.7,
+       5,
+       -4.91
+      ],
+      "idx": 2,
+      "wp": "-14.49 9.5 -10.49 walk"
+     },
+     {
+      "t": 23.23,
+      "g": true,
+      "pos": [
+       -12.5,
+       5,
+       -4.26
+      ],
+      "idx": 2,
+      "wp": "-14.49 6.78 -4.49 walk"
+     }
+    ]
+   },
+   {
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "ok": true,
+    "t": 11.61,
+    "inv": 11,
+    "flips": 23,
+    "maxStage": 0,
+    "inv0": [
+     {
+      "t": 32.94,
+      "g": true,
+      "pos": [
+       -12.71,
+       5,
+       -4.82
+      ],
+      "idx": 2,
+      "wp": "-14.49 9.5 -10.49 walk"
+     },
+     {
+      "t": 33.47,
+      "g": true,
+      "pos": [
+       -12.5,
+       5,
+       -4.26
+      ],
+      "idx": 2,
+      "wp": "-14.49 6.78 -4.49 walk"
+     }
+    ]
+   },
+   {
+    "a": [
+     -12.5,
+     5,
+     -4.4
+    ],
+    "g": [
+     -3.5,
+     9.5,
+     -20.5
+    ],
+    "ok": true,
+    "t": 12.79,
+    "inv": 15,
+    "flips": 31,
+    "maxStage": 1,
+    "inv0": [
+     {
+      "t": 45.08,
+      "g": true,
+      "pos": [
+       -12.73,
+       5,
+       -4.89
+      ],
+      "idx": 2,
+      "wp": "-14.49 9.5 -10.49 walk"
+     },
+     {
+      "t": 45.6,
+      "g": true,
+      "pos": [
+       -12.49,
+       5,
+       -4.32
+      ],
+      "idx": 2,
+      "wp": "-14.49 6.78 -4.49 walk"
+     }
+    ]
+   }
+  ],
+  "summary": [
+   "ok:11.16s inv14 flips29 stage1",
+   "ok:10.31s inv9 flips19 stage0",
+   "ok:10s inv11 flips23 stage0",
+   "ok:11.61s inv11 flips23 stage0",
+   "ok:12.79s inv15 flips31 stage1"
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

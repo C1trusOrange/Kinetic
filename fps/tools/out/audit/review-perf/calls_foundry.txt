@@ -1,0 +1,203 @@
+[run] http://127.0.0.1:55944/index.html?autotest=1&map=foundry&bots=8&duration=34&scenario=tools/out/audit/review-perf/scenario_calls.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 34.05,
+ "frames": 1005,
+ "fps": {
+  "avg": 31.8,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 109.44401395526664,
+  "maxSpeed": 11.63,
+  "minY": 0,
+  "maxY": 0.05169769828813858,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true
+  },
+  "shots": 20,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 2,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 160.1,
+   "pos": [
+    42.2,
+    0,
+    23.5
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 2,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 191.8,
+   "pos": [
+    0.2,
+    0,
+    2.3
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 203.8,
+   "pos": [
+    -1.8,
+    0,
+    -36.7
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 3,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 178.1,
+   "pos": [
+    46,
+    0,
+    -21
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 178.6,
+   "pos": [
+    25.4,
+    8.4,
+    -34.5
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 2,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 184.1,
+   "pos": [
+    -16.6,
+    0,
+    -13.1
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 3,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "collect",
+   "distance": 181.2,
+   "pos": [
+    -44.6,
+    0,
+    -8.1
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 3,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 227.1,
+   "pos": [
+    -19.2,
+    3.6,
+    21.4
+   ]
+  }
+ ],
+ "events": {
+  "damage": 117,
+  "death": 17,
+  "spawn": 26,
+  "pickup": 3,
+  "fire": 307
+ },
+ "renderer": {
+  "calls": 425,
+  "triangles": 136448,
+  "geometries": 274,
+  "textures": 142,
+  "programs": 111
+ },
+ "custom": {
+  "map": "foundry",
+  "n": 931,
+  "calls": {
+   "p5": 305,
+   "p50": 360,
+   "p95": 459,
+   "max": 497
+  },
+  "tris": {
+   "p5": 124072,
+   "p50": 128936,
+   "p95": 138428,
+   "max": 141618
+  },
+  "renderCpuMs": {
+   "p50": 10,
+   "p95": 20.6
+  },
+  "updateCpuMs": {
+   "p50": 3.8,
+   "p95": 10.8
+  },
+  "mapStats": {
+   "drawCalls": 27,
+   "triangles": 40212,
+   "solids": 800,
+   "collisionTriangles": 8852,
+   "materials": 23,
+   "navBuildMs": 436
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

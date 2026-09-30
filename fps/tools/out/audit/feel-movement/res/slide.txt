@@ -1,0 +1,13 @@
+attempt 0 failed: hader.js] | [error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:55674/vendor/three/examples/jsm/shaders/OutputShader.js] | [error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done | [result] null | [run] done: wait=TIMEOUT console_errors=5 warnings=0 | 
+fps {'avg': 50.4, 'min': 4, 'max': 208.3} errors 0 [] t 47.4
+slide_basic {"speedBefore":9.6,"slideStartT":0.01,"speedAtStart":12.1,"speedSeries_every0_2s":[9.6,10.02,8.37,6.98,5.83,4.87,4.06,3.2,3.2,3.2,3.2,3.2,3.2,3.2],"slideDur":1.37,"endSpeed":3.49,"slideDist":9.49,"peakSpeed":12.01,"camEyeY":[1.66,1.26,1.05,1.02,1.01,1.01,1.01,1.01],"fovSeries":[72.67,74.67,75.39,75.58,75.65,75.66,75.67,75.67]}
+crouch_walk_no_slide {"slid":0}
+slide_from_walk_speed_with_sprint_release {"slid":false,"speedAtStart":null}
+slide_from_stand_still_sprint_press {"slid":false,"at":null,"crouchedWalkSpeed":3.2}
+slide_hop_chain {"peak":11.65,"slides":[{"t":1.32,"hs":12.1},{"t":2.48,"hs":7.7}],"jumps":[{"t":1.82,"type":"slide","hs":7.7},{"t":2.99,"type":"slide","hs":4.87}],"lands":[{"t":2.47,"imp":8,"hs":7.7},{"t":3.65,"imp":8,"hs":4.87}],"speedEvery0_3":[0,9.6,9.6,9.6,9.6,10.1,7.7,7.7,7.7,6.24,4.87,4.87,4.87,3.2,3.2,3.2,3.2,3.2,3.2,3.2,3.2,3.2,3.2,3.2,3.2,3.2,3.2,3.2,3.2,3.2,3.2]}
+slide_downhill_24 {"slideStartSpeed":11.25,"peak":13.51,"slideDur":2.82,"series":[8.75,11.28,11.62,11.89,12.11,12.29,11.36,9.07,7.23,5.77,4.6,3.67,3.2,3.2],"lastY":0,"lastX":89.45}
+slide_cooldown {"slides":[{"t":0.98,"a":true,"hs":12.1},{"t":2.08,"a":false,"hs":9.6},{"t":4.19,"a":true,"hs":12.1}]}
+slide_steer_dbg [[0,-10.49,1],[-1.13,-9.44,1],[-1.97,-8.46,1],[-2.64,-7.49,1],[-3.15,-6.53,1],[-3.51,-5.62,1],[-3.76,-4.75,1],[-3.89,-3.93,1],[-3.57,-3.57,1],[-3.26,-3.26,1],[0,-3.37,0],[0,-3.47,0]]
+slide_steer {"headingChangeDeg":0,"overSeconds":0.93,"degPerSec":0}
+landing_slide {"slid":[{"hs":12.1}],"lands":[{"imp":8}]}
+[run] done: wait=ok console_errors=0 warnings=1

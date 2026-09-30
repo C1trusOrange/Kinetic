@@ -1,0 +1,9 @@
+[run] http://127.0.0.1:59809/index.html?autotest=1&map=gunfeel&mapfile=tools/out/audit/feel-gunfeel/testmap.js&bots=1&god=1&scenario=tools/out/audit/feel-gunfeel/fire.js&duration=90&w=rocket&t=wall&pz=0&n=1&after=0.12
+[run] screenshot -> tools\out\audit\feel-gunfeel\g_rocket_wall.png
+[result] {
+ "tFire": 2.4620999999999995,
+ "shots": 1,
+ "flashT": 0.05790000000000334,
+ "spread": 0.012
+}
+[run] done: wait=ok console_errors=0 warnings=0

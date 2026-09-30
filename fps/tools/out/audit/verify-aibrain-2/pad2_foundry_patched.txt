@@ -1,0 +1,140 @@
+[run] http://127.0.0.1:63613/index.html?autotest=1&map=foundry&bots=2&duration=1000&god=1&far=1&nt=3&pads=0,2,3&patch=1&scenario=tools/out/audit/verify-aibrain-2/pad2.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 54.59,
+ "frames": 44,
+ "fps": {
+  "avg": 0,
+  "min": 11.001100110011272,
+  "max": 161.29032258046652
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 433.8,
+   "pos": [
+    32,
+    10,
+    -40.5
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    46,
+    0,
+    -21
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 1,
+  "fire": 38
+ },
+ "renderer": {
+  "calls": 163,
+  "triangles": 105966,
+  "geometries": 160,
+  "textures": 120,
+  "programs": 101
+ },
+ "custom": {
+  "trials": [
+   {
+    "pad": 0,
+    "ok": true,
+    "t": 11.6,
+    "air": 2.9,
+    "inv": 1,
+    "launches": 1
+   },
+   {
+    "pad": 0,
+    "ok": true,
+    "t": 13.8,
+    "air": 6.5,
+    "inv": 2,
+    "launches": 3
+   },
+   {
+    "pad": 0,
+    "ok": true,
+    "t": 12.1,
+    "air": 3.6,
+    "inv": 1,
+    "launches": 1
+   },
+   {
+    "pad": 2,
+    "ok": true,
+    "t": 3.3,
+    "air": 1.5,
+    "inv": 0,
+    "launches": 1
+   },
+   {
+    "pad": 2,
+    "ok": true,
+    "t": 8.3,
+    "air": 1.6,
+    "inv": 0,
+    "launches": 1
+   },
+   {
+    "pad": 2,
+    "ok": true,
+    "t": 3.2,
+    "air": 1.7,
+    "inv": 0,
+    "launches": 1
+   }
+  ],
+  "summary": [
+   "0:ok:11.6s air2.9 inv1 launches1",
+   "0:ok:13.8s air6.5 inv2 launches3",
+   "0:ok:12.1s air3.6 inv1 launches1",
+   "2:ok:3.3s air1.5 inv0 launches1",
+   "2:ok:8.3s air1.6 inv0 launches1",
+   "2:ok:3.2s air1.7 inv0 launches1"
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

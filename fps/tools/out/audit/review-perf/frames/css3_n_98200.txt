@@ -1,0 +1,7 @@
+[run] http://127.0.0.1:50173/index.html?autotest=1&map=foundry&bots=5&duration=3&warm=1&css=n&scenario=tools/out/audit/review-perf/frames/scenario.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:50173/src/ai/BotModel.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:50173/src/ai/BotBrain.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:50173/src/core/Game.js
+[error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done
+[result] null
+[run] done: wait=TIMEOUT console_errors=4 warnings=0

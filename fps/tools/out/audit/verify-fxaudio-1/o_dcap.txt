@@ -1,0 +1,78 @@
+[run] http://127.0.0.1:62741/index.html?autotest=1&map=sandbox&bots=1&script=idle&scenario=tools/out/audit/verify-fxaudio-1/v678.js&mode=decalcap&duration=2
+[log] [autotest] finished {"ok":true,"errors":0,"fps":75.3}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 2.13,
+ "frames": 142,
+ "fps": {
+  "avg": 75.3,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "collect",
+   "distance": 14,
+   "pos": [
+    21.8,
+    0,
+    16.4
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 2,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 132,
+  "triangles": 33914,
+  "geometries": 142,
+  "textures": 116,
+  "programs": 86
+ },
+ "custom": {
+  "mode": "decalcap",
+  "highMax": 150,
+  "highLive": 120,
+  "lowMax": 40,
+  "lowLive": 120,
+  "effStats": {
+   "smoke": 0,
+   "glow": 0,
+   "tracers": 0,
+   "decals": 120,
+   "gibs": 0,
+   "dropped": 0
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

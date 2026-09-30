@@ -1,0 +1,143 @@
+[run] http://127.0.0.1:50397/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-weapons/melee.js&duration=13
+[log] [autotest] finished {"ok":true,"errors":0,"fps":60.8}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 13.06,
+ "frames": 616,
+ "fps": {
+  "avg": 60.8,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 4.5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 330,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 6,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 129,
+  "triangles": 36380,
+  "geometries": 117,
+  "textures": 114,
+  "programs": 94
+ },
+ "custom": {
+  "trials": [
+   {
+    "k": 0,
+    "d": 0.6,
+    "dmg": [
+     {
+      "w": "melee",
+      "a": 55,
+      "head": true
+     }
+    ],
+    "hp0": 0,
+    "hp": 45,
+    "meleeT": -1
+   },
+   {
+    "k": 1,
+    "d": 1,
+    "dmg": [
+     {
+      "w": "melee",
+      "a": 55,
+      "head": true
+     }
+    ],
+    "hp0": 0,
+    "hp": 45,
+    "meleeT": -1
+   },
+   {
+    "k": 2,
+    "d": 1.8,
+    "dmg": [
+     {
+      "w": "melee",
+      "a": 55,
+      "head": false
+     }
+    ],
+    "hp0": 0,
+    "hp": 45,
+    "meleeT": -1
+   },
+   {
+    "k": 3,
+    "d": 2,
+    "dmg": [
+     {
+      "w": "melee",
+      "a": 55,
+      "head": false
+     }
+    ],
+    "hp0": 0,
+    "hp": 45,
+    "meleeT": -1
+   },
+   {
+    "k": 4,
+    "d": 2.15,
+    "dmg": [
+     {
+      "w": "melee",
+      "a": 55,
+      "head": false
+     }
+    ],
+    "hp0": 0,
+    "hp": 45,
+    "meleeT": -1
+   },
+   {
+    "k": 5,
+    "d": 2.3,
+    "dmg": [
+     {
+      "w": "melee",
+      "a": 55,
+      "head": false
+     }
+    ],
+    "hp0": 0,
+    "hp": 45,
+    "meleeT": -1
+   },
+   {
+    "k": 6,
+    "d": 2.6,
+    "dmg": [],
+    "hp0": 0,
+    "hp": 100,
+    "meleeT": -1
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

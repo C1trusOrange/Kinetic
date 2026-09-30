@@ -1,0 +1,27 @@
+export default {
+  id: 'auditrail', name: 'AuditRail', subtitle: 'test', description: 'audit',
+  colors: ['#222', '#888'],
+  bounds: { min: [-30, -6, -30], max: [30, 30, 30] },
+  killY: -20,
+  previewCamera: { pos: [10, 8, 10], lookAt: [0, 0, 0] },
+  theme: {
+    sky: { top: '#3f7fd6', horizon: '#bcd7ee', bottom: '#4f5560', sunColor: '#fff1d6' },
+    sun: { dir: [-0.4, 0.8, 0.45], color: '#fff0dc', intensity: 2.7 },
+    hemi: { sky: '#bcd7ee', ground: '#3a3128', intensity: 0.7 },
+    fog: { color: '#c7dcf0', near: 90, far: 330 },
+    exposure: 1.0, envIntensity: 0.7,
+    bloom: { strength: 0.3, radius: 0.4, threshold: 0.9 },
+  },
+  solids: [
+    { type: 'box', min: [-30, -1, -30], max: [30, 0, 30], mat: 'concrete_floor' },
+    { type: 'railing', from: [0, 0, -3], to: [0, 0, 3] },
+    { type: 'railing', from: [-6, 0, -3], to: [-6, 0, 3], mat: 'metal_dark' },
+    { type: 'railing', from: [8, 0, -4], to: [8, 4, 4] },
+    { type: 'box', pos: [12, 1.0, 0], size: [2, 2, 2] },
+    { type: 'catwalk', from: [16, 0, -6], to: [16, 4, 6], width: 2.5, railings: 'both' },
+  ],
+  lights: [{ pos: [0, 6, 0], color: '#ffffff', intensity: 40, distance: 30 }],
+  spawns: [{ pos: [-10, 0, -10], yaw: 0 }, { pos: [10, 0, -10], yaw: 0 }, { pos: [-10, 0, 10], yaw: 0 }, { pos: [10, 0, 10], yaw: 0 }, { pos: [-14, 0, 0], yaw: 0 }, { pos: [14, 0, 14], yaw: 0 }, { pos: [-14, 0, 14], yaw: 0 }, { pos: [14, 0, -14], yaw: 0 }],
+  pickups: [{ type: 'health', pos: [-3, 0, 6], amount: 50 }],
+  jumpPads: [],
+};

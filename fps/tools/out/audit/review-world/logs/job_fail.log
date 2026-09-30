@@ -1,0 +1,5 @@
+[run] http://127.0.0.1:59872/index.html
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] "{\"err\":\"Cannot read properties of null (reading 'top')\",\"mapId\":\"sandbox-broken\",\"hasDef\":true,\"hasSun\":false,\"hasLighting\":false,\"groupInScene\":true,\"navNodes\":0,\"spawns\":0,\"sceneEnv\":false,\"pickups\":0}"
+[run] done: wait=ok console_errors=0 warnings=1

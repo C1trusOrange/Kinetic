@@ -1,0 +1,675 @@
+[run] http://127.0.0.1:65135/index.html?autotest=1&map=foundry&bots=8&duration=1&god=1&script=idle&scenario=tools/out/audit/verify-aibrain-1/scen_nat.js&secs=300&sfps=30
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 303.19,
+ "frames": 108,
+ "fps": {
+  "avg": 0,
+  "min": 27.548209366393376,
+  "max": 41.152263374491255
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 51.1,
+  "maxSpeed": 19.92,
+  "minY": 0,
+  "maxY": 9.282321530463337,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Voltage",
+   "alive": false,
+   "kills": 17,
+   "deaths": 16,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 1627.1,
+   "pos": [
+    14.7,
+    0,
+    18.3
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 12,
+   "deaths": 18,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "collect",
+   "distance": 1584.7,
+   "pos": [
+    36,
+    0,
+    -30.2
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 14,
+   "deaths": 15,
+   "health": 41,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 1449.2,
+   "pos": [
+    -29.9,
+    0,
+    -19.2
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 10,
+   "deaths": 15,
+   "health": 36,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 1594.6,
+   "pos": [
+    -25.7,
+    0,
+    -9.4
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 13,
+   "deaths": 19,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 1473.8,
+   "pos": [
+    -28.1,
+    0,
+    4.7
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 13,
+   "deaths": 14,
+   "health": 73,
+   "weapon": "shotgun",
+   "state": "chase",
+   "distance": 1560.2,
+   "pos": [
+    4.7,
+    0,
+    12.3
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 14,
+   "deaths": 16,
+   "health": 53,
+   "weapon": "sniper",
+   "state": "retreat",
+   "distance": 1527.7,
+   "pos": [
+    -19,
+    1.6,
+    22.6
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 24,
+   "deaths": 12,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 1605.3,
+   "pos": [
+    -12.8,
+    0,
+    -23.6
+   ]
+  }
+ ],
+ "events": {
+  "damage": 692,
+  "death": 125,
+  "spawn": 133,
+  "pickup": 30,
+  "fire": 1699
+ },
+ "renderer": {
+  "calls": 415,
+  "triangles": 132638,
+  "geometries": 218,
+  "textures": 137,
+  "programs": 103
+ },
+ "custom": {
+  "ign": [
+   {
+    "t": 1.3,
+    "bot": "Relay",
+    "what": "weapon:sniper",
+    "air": true,
+    "gap": 5.1,
+    "y": 5.1,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 0.3,
+    "hp": 100
+   },
+   {
+    "t": 34.7,
+    "bot": "Torque",
+    "what": "weapon:sniper",
+    "air": true,
+    "gap": 6.3,
+    "y": 6.3,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 0.3,
+    "hp": 100
+   },
+   {
+    "t": 56.9,
+    "bot": "Torque",
+    "what": "weapon:sniper",
+    "air": true,
+    "gap": 6.3,
+    "y": 6.3,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 0.3,
+    "hp": 100
+   },
+   {
+    "t": 112.4,
+    "bot": "Cog",
+    "what": "weapon:sniper",
+    "air": true,
+    "gap": 7.9,
+    "y": 7.9,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 0.4,
+    "hp": 100
+   },
+   {
+    "t": 139.8,
+    "bot": "Glitch",
+    "what": "weapon:sniper",
+    "air": true,
+    "gap": 5.1,
+    "y": 5.1,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 0.3,
+    "hp": 100
+   },
+   {
+    "t": 164.9,
+    "bot": "Axle",
+    "what": "weapon:sniper",
+    "air": true,
+    "gap": 6.3,
+    "y": 6.3,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 0.3,
+    "hp": 100
+   },
+   {
+    "t": 223.6,
+    "bot": "Gasket",
+    "what": "weapon:sniper",
+    "air": true,
+    "gap": 6.9,
+    "y": 6.9,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 0.4,
+    "hp": 100
+   },
+   {
+    "t": 232.3,
+    "bot": "Glitch",
+    "what": "weapon:sniper",
+    "air": true,
+    "gap": 6.9,
+    "y": 6.9,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 0.4,
+    "hp": 100
+   },
+   {
+    "t": 234.2,
+    "bot": "Glitch",
+    "what": "armor",
+    "air": true,
+    "gap": 5.4,
+    "y": 5.4,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 2.3,
+    "hp": 100
+   },
+   {
+    "t": 291.2,
+    "bot": "Relay",
+    "what": "weapon:sniper",
+    "air": true,
+    "gap": 5.7,
+    "y": 5.7,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 0.3,
+    "hp": 100
+   },
+   {
+    "t": 291.5,
+    "bot": "Relay",
+    "what": "armor",
+    "air": true,
+    "gap": 10.1,
+    "y": 10.1,
+    "state": "collect",
+    "mode": "direct",
+    "unreach": true,
+    "kind": "flee",
+    "lastLaunchAgo": 0.6,
+    "hp": 100
+   }
+  ],
+  "rescue": [],
+  "launches": [
+   {
+    "t": 0.6,
+    "bot": "Gasket",
+    "state": "collect",
+    "mode": "path",
+    "idx": 0,
+    "len": 9
+   },
+   {
+    "t": 1.1,
+    "bot": "Relay",
+    "state": "collect",
+    "mode": "idle",
+    "idx": 2,
+    "len": 0
+   },
+   {
+    "t": 3.6,
+    "bot": "Torque",
+    "state": "engage",
+    "mode": "path",
+    "idx": 1,
+    "len": 4
+   },
+   {
+    "t": 14.6,
+    "bot": "Glitch",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 0,
+    "len": 16
+   },
+   {
+    "t": 18.4,
+    "bot": "Torque",
+    "state": "chase",
+    "mode": "path",
+    "idx": 1,
+    "len": 5
+   },
+   {
+    "t": 22.5,
+    "bot": "Torque",
+    "state": "chase",
+    "mode": "path",
+    "idx": 1,
+    "len": 2
+   },
+   {
+    "t": 34.4,
+    "bot": "Torque",
+    "state": "collect",
+    "mode": "idle",
+    "idx": 4,
+    "len": 0
+   },
+   {
+    "t": 39,
+    "bot": "Axle",
+    "state": "chase",
+    "mode": "path",
+    "idx": 0,
+    "len": 7
+   },
+   {
+    "t": 54,
+    "bot": "Rivet",
+    "state": "chase",
+    "mode": "path",
+    "idx": 0,
+    "len": 5
+   },
+   {
+    "t": 56.6,
+    "bot": "Torque",
+    "state": "collect",
+    "mode": "path",
+    "idx": 0,
+    "len": 3
+   },
+   {
+    "t": 96.1,
+    "bot": "Gasket",
+    "state": "collect",
+    "mode": "path",
+    "idx": 1,
+    "len": 4
+   },
+   {
+    "t": 112,
+    "bot": "Cog",
+    "state": "collect",
+    "mode": "path",
+    "idx": 1,
+    "len": 4
+   },
+   {
+    "t": 124.1,
+    "bot": "Cog",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 8
+   },
+   {
+    "t": 125.7,
+    "bot": "Voltage",
+    "state": "collect",
+    "mode": "path",
+    "idx": 3,
+    "len": 6
+   },
+   {
+    "t": 139.5,
+    "bot": "Glitch",
+    "state": "collect",
+    "mode": "path",
+    "idx": 0,
+    "len": 3
+   },
+   {
+    "t": 142.4,
+    "bot": "Voltage",
+    "state": "collect",
+    "mode": "path",
+    "idx": 0,
+    "len": 9
+   },
+   {
+    "t": 143.2,
+    "bot": "Glitch",
+    "state": "engage",
+    "mode": "path",
+    "idx": 2,
+    "len": 8
+   },
+   {
+    "t": 146.6,
+    "bot": "Glitch",
+    "state": "chase",
+    "mode": "path",
+    "idx": 0,
+    "len": 7
+   },
+   {
+    "t": 164.6,
+    "bot": "Axle",
+    "state": "collect",
+    "mode": "path",
+    "idx": 1,
+    "len": 4
+   },
+   {
+    "t": 211.6,
+    "bot": "Glitch",
+    "state": "collect",
+    "mode": "idle",
+    "idx": 4,
+    "len": 0
+   },
+   {
+    "t": 213.7,
+    "bot": "Cog",
+    "state": "chase",
+    "mode": "path",
+    "idx": 0,
+    "len": 5
+   },
+   {
+    "t": 223.2,
+    "bot": "Gasket",
+    "state": "collect",
+    "mode": "path",
+    "idx": 0,
+    "len": 3
+   },
+   {
+    "t": 231.9,
+    "bot": "Glitch",
+    "state": "collect",
+    "mode": "path",
+    "idx": 0,
+    "len": 3
+   },
+   {
+    "t": 234.3,
+    "bot": "Voltage",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 0,
+    "len": 16
+   },
+   {
+    "t": 235,
+    "bot": "Glitch",
+    "state": "roam",
+    "mode": "direct",
+    "idx": 0,
+    "len": 0
+   },
+   {
+    "t": 243.8,
+    "bot": "Axle",
+    "state": "engage",
+    "mode": "idle",
+    "idx": 0,
+    "len": 0
+   },
+   {
+    "t": 248.6,
+    "bot": "Axle",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 6
+   },
+   {
+    "t": 265.8,
+    "bot": "Voltage",
+    "state": "engage",
+    "mode": "path",
+    "idx": 0,
+    "len": 9
+   },
+   {
+    "t": 290.9,
+    "bot": "Relay",
+    "state": "collect",
+    "mode": "path",
+    "idx": 1,
+    "len": 4
+   },
+   {
+    "t": 302.9,
+    "bot": "Gasket",
+    "state": "retreat",
+    "mode": "path",
+    "idx": 0,
+    "len": 16
+   }
+  ],
+  "stuck": [
+   {
+    "t": 110.6,
+    "bot": "Gasket",
+    "pos": [
+     21.4,
+     0,
+     31.5
+    ],
+    "state": "engage",
+    "mode": "path",
+    "wp": "24.5,0,31.5,walk",
+    "stage": 1
+   },
+   {
+    "t": 112.2,
+    "bot": "Gasket",
+    "pos": [
+     22,
+     0,
+     31.4
+    ],
+    "state": "engage",
+    "mode": "path",
+    "wp": "24.5,0,31.5,walk",
+    "stage": 2
+   },
+   {
+    "t": 118.8,
+    "bot": "Axle",
+    "pos": [
+     7.6,
+     0,
+     -8.3
+    ],
+    "state": "engage",
+    "mode": "path",
+    "wp": "6.5,0.2,-7.5,walk",
+    "stage": 1
+   },
+   {
+    "t": 148.7,
+    "bot": "Relay",
+    "pos": [
+     -39.8,
+     0,
+     -13
+    ],
+    "state": "engage",
+    "mode": "path",
+    "wp": "-27.5,0,-0.5,walk",
+    "stage": 1
+   },
+   {
+    "t": 152.4,
+    "bot": "Torque",
+    "pos": [
+     -36.8,
+     -1.3,
+     23.3
+    ],
+    "state": "engage",
+    "mode": "path",
+    "wp": "-38.5,-0.6,22.7,walk",
+    "stage": 1
+   },
+   {
+    "t": 170.2,
+    "bot": "Cog",
+    "pos": [
+     16.6,
+     0.9,
+     -18.5
+    ],
+    "state": "chase",
+    "mode": "path",
+    "wp": "18.5,0,-18.5,walk",
+    "stage": 1
+   },
+   {
+    "t": 171.3,
+    "bot": "Cog",
+    "pos": [
+     16.6,
+     1.2,
+     -18.5
+    ],
+    "state": "chase",
+    "mode": "path",
+    "wp": "18.5,0,-18.5,walk",
+    "stage": 2
+   }
+  ],
+  "roamFail": [],
+  "simSeconds": 300,
+  "summary": {
+   "ign": 11,
+   "ignAir": 11,
+   "rescue": 0,
+   "rescueAir": 0,
+   "launches": 30,
+   "stuck": 7
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

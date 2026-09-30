@@ -1,0 +1,41 @@
+ "custom": {
+  "log": [
+   [
+    "melee running",
+    0.02
+   ],
+   [
+    "giveWeapon(sniper) returned",
+    true
+   ],
+   [
+    "after give",
+    {
+     "pending": null,
+     "queued": null,
+     "cur": "rifle"
+    }
+   ],
+   [
+    "1.5s later",
+    {
+     "cur": "rifle",
+     "owned": "pistol,rifle,shotgun,sniper",
+     "pending": null,
+     "sw": 0
+    }
+   ],
+   [
+    "control give rocket",
+    true
+   ],
+   [
+    "control after",
+    {
+     "cur": "rocket",
+     "owned": "pistol,rifle,shotgun,sniper,rocket"
+    }
+   ]
+  ]
+ },
+ "ok": true,

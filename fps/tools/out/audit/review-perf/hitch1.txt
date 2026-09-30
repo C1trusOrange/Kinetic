@@ -1,0 +1,711 @@
+[run] http://127.0.0.1:52785/index.html?autotest=1&map=foundry&bots=5&duration=20&scenario=tools/out/audit/review-perf/scenario_hitch.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":47.5}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 20.25,
+ "frames": 874,
+ "fps": {
+  "avg": 47.5,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 45,
+  "maxSpeed": 6.2,
+  "minY": 5,
+  "maxY": 5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 51
+ },
+ "bots": [
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 125.8,
+   "pos": [
+    -41.9,
+    0,
+    11.3
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 54.2,
+   "pos": [
+    -46.2,
+    0,
+    25.4
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 56,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 116.5,
+   "pos": [
+    28,
+    0,
+    -2.7
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 24,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 131.2,
+   "pos": [
+    14.9,
+    0,
+    0.2
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 127,
+   "pos": [
+    34.2,
+    3.8,
+    -23.1
+   ]
+  }
+ ],
+ "events": {
+  "damage": 30,
+  "death": 3,
+  "spawn": 9,
+  "pickup": 2,
+  "fire": 66
+ },
+ "renderer": {
+  "calls": 262,
+  "triangles": 117708,
+  "geometries": 211,
+  "textures": 127,
+  "programs": 103
+ },
+ "custom": {
+  "marks": [
+   [
+    "module",
+    7385.6
+   ],
+   [
+    "world.load start",
+    7709.2
+   ],
+   [
+    "world.load end",
+    19656.9
+   ],
+   [
+    "bots.prepare start",
+    19657.1
+   ],
+   [
+    "bots.prepare end",
+    19784.9
+   ]
+  ],
+  "frames": 858,
+  "p50": 21,
+  "p95": 57.2,
+  "p99": 205.8,
+  "max": 6251.4,
+  "hitches": [
+   {
+    "f": 0,
+    "t": 7709,
+    "dt": 323.3,
+    "upd": 0,
+    "ren": 2.8,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 13,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 2,
+    "t": 7925,
+    "dt": 208.9,
+    "upd": 0,
+    "ren": 9.8,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 3,
+    "t": 8557,
+    "dt": 632.4,
+    "upd": 0,
+    "ren": 1.9,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 4,
+    "t": 8712,
+    "dt": 154.6,
+    "upd": 0,
+    "ren": 3,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 5,
+    "t": 8905,
+    "dt": 193.6,
+    "upd": 0,
+    "ren": 1.7,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 6,
+    "t": 9039,
+    "dt": 133.9,
+    "upd": 0,
+    "ren": 2.4,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 7,
+    "t": 9160,
+    "dt": 121.1,
+    "upd": 0,
+    "ren": 6.7,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 8,
+    "t": 9305,
+    "dt": 144.5,
+    "upd": 0,
+    "ren": 3.2,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 9,
+    "t": 9518,
+    "dt": 212.8,
+    "upd": 0,
+    "ren": 4.2,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 10,
+    "t": 9600,
+    "dt": 82.2,
+    "upd": 0,
+    "ren": 1.7,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 11,
+    "t": 9673,
+    "dt": 73.2,
+    "upd": 0,
+    "ren": 2.3,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 13,
+    "t": 9887,
+    "dt": 176.9,
+    "upd": 0,
+    "ren": 3.3,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 14,
+    "t": 9943,
+    "dt": 56.1,
+    "upd": 0,
+    "ren": 2.7,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 15,
+    "t": 10156,
+    "dt": 213.3,
+    "upd": 0,
+    "ren": 2.6,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 16,
+    "t": 10319,
+    "dt": 162.4,
+    "upd": 0,
+    "ren": 8.2,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 17,
+    "t": 10486,
+    "dt": 167.6,
+    "upd": 0,
+    "ren": 1.5,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 18,
+    "t": 10593,
+    "dt": 106.7,
+    "upd": 0,
+    "ren": 2.5,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 19,
+    "t": 10676,
+    "dt": 82.5,
+    "upd": 0,
+    "ren": 2.3,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 22,
+    "t": 10811,
+    "dt": 52.9,
+    "upd": 0,
+    "ren": 1.8,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 23,
+    "t": 10883,
+    "dt": 71.5,
+    "upd": 0,
+    "ren": 2,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 24,
+    "t": 10955,
+    "dt": 71.7,
+    "upd": 0,
+    "ren": 1.6,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 25,
+    "t": 11103,
+    "dt": 148,
+    "upd": 0,
+    "ren": 1.5,
+    "st": "loading",
+    "progs": 13,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 14,
+    "tris": 14
+   },
+   {
+    "f": 26,
+    "t": 12634,
+    "dt": 1531.8,
+    "upd": 0,
+    "ren": 637.2,
+    "st": "loading",
+    "progs": 17,
+    "newProgs": 4,
+    "gt": 0,
+    "calls": 41,
+    "tris": 40226
+   },
+   {
+    "f": 27,
+    "t": 15901,
+    "dt": 3266.9,
+    "upd": 0,
+    "ren": 3036.5,
+    "st": "loading",
+    "progs": 27,
+    "newProgs": 10,
+    "gt": 0,
+    "calls": 61,
+    "tris": 79902
+   },
+   {
+    "f": 29,
+    "t": 19197,
+    "dt": 3285.6,
+    "upd": 0,
+    "ren": 3056.9,
+    "st": "loading",
+    "progs": 39,
+    "newProgs": 12,
+    "gt": 0,
+    "calls": 106,
+    "tris": 100002
+   },
+   {
+    "f": 30,
+    "t": 19774,
+    "dt": 577.3,
+    "upd": 0,
+    "ren": 9.7,
+    "st": "loading",
+    "progs": 39,
+    "newProgs": 0,
+    "gt": 0,
+    "calls": 106,
+    "tris": 100002
+   },
+   {
+    "f": 31,
+    "t": 26026,
+    "dt": 6251.4,
+    "upd": 666.6,
+    "ren": 4471.3,
+    "st": "playing",
+    "progs": 101,
+    "newProgs": 62,
+    "gt": 0.05,
+    "calls": 352,
+    "tris": 127334
+   },
+   {
+    "f": 32,
+    "t": 26231,
+    "dt": 205.8,
+    "upd": 7,
+    "ren": 20.7,
+    "st": "playing",
+    "progs": 101,
+    "newProgs": 0,
+    "gt": 0.1,
+    "calls": 352,
+    "tris": 127334
+   },
+   {
+    "f": 33,
+    "t": 27007,
+    "dt": 775.2,
+    "upd": 38.6,
+    "ren": 19.1,
+    "st": "playing",
+    "progs": 101,
+    "newProgs": 0,
+    "gt": 0.15,
+    "calls": 352,
+    "tris": 127334
+   },
+   {
+    "f": 38,
+    "t": 27181,
+    "dt": 59.6,
+    "upd": 13.8,
+    "ren": 18.7,
+    "st": "playing",
+    "progs": 101,
+    "newProgs": 0,
+    "gt": 0.34,
+    "calls": 352,
+    "tris": 127334
+   },
+   {
+    "f": 47,
+    "t": 27410,
+    "dt": 50.9,
+    "upd": 3.9,
+    "ren": 13.8,
+    "st": "playing",
+    "progs": 101,
+    "newProgs": 0,
+    "gt": 0.58,
+    "calls": 352,
+    "tris": 127334
+   },
+   {
+    "f": 48,
+    "t": 27459,
+    "dt": 49,
+    "upd": 16.2,
+    "ren": 19.9,
+    "st": "playing",
+    "progs": 101,
+    "newProgs": 0,
+    "gt": 0.61,
+    "calls": 352,
+    "tris": 127334
+   },
+   {
+    "f": 51,
+    "t": 27545,
+    "dt": 45.3,
+    "upd": 6.6,
+    "ren": 9.9,
+    "st": "playing",
+    "progs": 101,
+    "newProgs": 0,
+    "gt": 0.72,
+    "calls": 352,
+    "tris": 127334
+   },
+   {
+    "f": 59,
+    "t": 27775,
+    "dt": 46.9,
+    "upd": 2.7,
+    "ren": 10.6,
+    "st": "playing",
+    "progs": 101,
+    "newProgs": 0,
+    "gt": 0.95,
+    "calls": 352,
+    "tris": 127334
+   },
+   {
+    "f": 61,
+    "t": 27842,
+    "dt": 46.5,
+    "upd": 13,
+    "ren": 8.8,
+    "st": "playing",
+    "progs": 101,
+    "newProgs": 0,
+    "gt": 1.01,
+    "calls": 350,
+    "tris": 126834
+   },
+   {
+    "f": 63,
+    "t": 27929,
+    "dt": 46.9,
+    "upd": 13.6,
+    "ren": 11.2,
+    "st": "playing",
+    "progs": 101,
+    "newProgs": 0,
+    "gt": 1.09,
+    "calls": 346,
+    "tris": 125834
+   },
+   {
+    "f": 68,
+    "t": 28082,
+    "dt": 54.9,
+    "upd": 1.8,
+    "ren": 7,
+    "st": "playing",
+    "progs": 101,
+    "newProgs": 0,
+    "gt": 1.25,
+    "calls": 346,
+    "tris": 125834
+   },
+   {
+    "f": 69,
+    "t": 28139,
+    "dt": 57.3,
+    "upd": 3.6,
+    "ren": 9.7,
+    "st": "playing",
+    "progs": 101,
+    "newProgs": 0,
+    "gt": 1.3,
+    "calls": 346,
+    "tris": 125834
+   },
+   {
+    "f": 71,
+    "t": 28221,
+    "dt": 53.2,
+    "upd": 5,
+    "ren": 10.4,
+    "st": "playing",
+    "progs": 101,
+    "newProgs": 0,
+    "gt": 1.38,
+    "calls": 346,
+    "tris": 125834
+   },
+   {
+    "f": 73,
+    "t": 28288,
+    "dt": 46,
+    "upd": 2.4,
+    "ren": 12,
+    "st": "playing",
+    "progs": 101,
+    "newProgs": 0,
+    "gt": 1.45,
+    "calls": 346,
+    "tris": 125834
+   }
+  ],
+  "gl": {
+   "link": 7,
+   "linkN": 91,
+   "compile": 1,
+   "compileN": 182,
+   "getParam": 26,
+   "gpp": []
+  },
+  "finalProgs": 103,
+  "worldStats": {
+   "solids": 800,
+   "drawCalls": 27,
+   "triangles": 40212,
+   "collisionTriangles": 8852,
+   "materials": 23,
+   "navNodes": 10303,
+   "navBuildMs": 456,
+   "geometryMs": 200,
+   "textureMs": 4080,
+   "lightingMs": 838,
+   "itemsMs": 3310,
+   "navMs": 457,
+   "totalMs": 11947
+  },
+  "navStats": {
+   "nodes": 10303,
+   "links": 73261,
+   "components": 2,
+   "largestComponent": 10297,
+   "buildMs": 456,
+   "traps": 0,
+   "strongComponents": 91,
+   "largestStrong": 8266,
+   "cells": 9000
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

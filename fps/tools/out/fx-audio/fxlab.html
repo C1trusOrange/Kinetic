@@ -1,0 +1,125 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>fxlab</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#000}canvas{display:block}</style></head>
+<body><script type="module">
+// Isolated effects/audio lab: mock game with a real renderer + bloom composer, collision world and the real Effects/AudioSystem.
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { CollisionWorld } from '/src/world/Collision.js';
+import { QUALITY_PRESETS } from '/src/core/constants.js';
+import { Effects } from '/src/fx/Effects.js';
+import { AudioSystem } from '/src/core/Audio.js';
+
+const errors = [];
+const origErr = console.error.bind(console);
+console.error = (...a) => { errors.push(a.map(x => (x && x.stack) || String(x)).join(' ')); origErr(...a); };
+window.addEventListener('error', e => errors.push(e.message));
+window.addEventListener('unhandledrejection', e => errors.push('rejection ' + (e.reason && e.reason.stack || e.reason)));
+
+const P = new URLSearchParams(location.search);
+const W = innerWidth, H = innerHeight;
+const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance', stencil: false });
+renderer.setPixelRatio(1);
+renderer.setSize(W, H);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+const night = P.get('sky') === 'night';
+scene.background = new THREE.Color(night ? 0x0a1024 : 0x6f8fb5);
+scene.fog = new THREE.Fog(night ? 0x141a30 : 0x6f8fb5, 60, 200);
+const camera = new THREE.PerspectiveCamera(70, W / H, 0.05, 700);
+camera.rotation.order = 'YXZ';
+scene.add(camera);
+const sunDir = new THREE.Vector3(-0.5, 0.8, 0.3).normalize();
+const sun = new THREE.DirectionalLight(night ? 0x8899ff : 0xffffff, night ? 0.6 : 2.2);
+sun.position.copy(sunDir).multiplyScalar(60); sun.castShadow = true;
+Object.assign(sun.shadow.camera, { left: -40, right: 40, top: 40, bottom: -40, far: 200 });
+sun.shadow.mapSize.set(2048, 2048); sun.shadow.bias = -0.0005;
+scene.add(sun, new THREE.HemisphereLight(night ? 0x4a5a9a : 0xbfd4ff, 0x3a3025, night ? 0.35 : 0.8));
+
+// scenery + collision
+const collision = new CollisionWorld();
+function canvasTex(seedHue, base) {
+  const c = document.createElement('canvas'); c.width = c.height = 256; const g = c.getContext('2d');
+  g.fillStyle = base; g.fillRect(0, 0, 256, 256);
+  for (let i = 0; i < 2500; i++) { const v = Math.random() * 40 - 20; g.fillStyle = `rgba(${128 + v},${128 + v},${128 + v},0.09)`; g.fillRect(Math.random() * 256, Math.random() * 256, 3, 3); }
+  g.strokeStyle = 'rgba(0,0,0,0.25)'; g.lineWidth = 2; for (let i = 0; i <= 256; i += 64) { g.beginPath(); g.moveTo(i, 0); g.lineTo(i, 256); g.moveTo(0, i); g.lineTo(256, i); g.stroke(); }
+  const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+function box(pos, size, base, rep, surface = 'concrete') {
+  const geo = new THREE.BoxGeometry(...size);
+  const tex = canvasTex(0, base); tex.repeat.set(rep, rep);
+  const m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ map: tex, roughness: 0.85, metalness: 0.05 }));
+  m.position.set(...pos); m.castShadow = m.receiveShadow = true; scene.add(m); m.updateMatrixWorld();
+  collision.addGeometry(geo, m.matrixWorld, surface);
+}
+box([0, -0.5, 0], [80, 1, 80], '#7a7770', 14);
+box([0, 4, 12], [16, 8, 1], '#8d8f93', 3, 'metal');
+box([-9, 1.5, 4], [3, 3, 3], '#6b6d72', 1);
+box([9, 1, 3], [4, 2, 2], '#5a5147', 1);
+box([-20, 6, -10], [1, 12, 30], '#77797e', 5);
+box([22, 3, -6], [6, 6, 6], '#6e6a62', 2);
+collision.build();
+
+const game = {
+  renderer, scene, camera, time: 0, timeScale: 1, state: 'playing', params: P,
+  quality: QUALITY_PRESETS[P.get('quality') || 'high'],
+  world: {
+    mapId: 'lab', lighting: { sunDirection: sunDir, sunColor: sun.color, sunIntensity: sun.intensity, hemiSky: new THREE.Color(night ? 0x4a5a9a : 0xbfd4ff), hemiGround: new THREE.Color(0x3a3025), hemiIntensity: night ? 0.35 : 0.8 },
+    raycast: (o, d, m) => collision.raycast(o, d, m),
+  },
+  player: { alive: true, shake: 0, addShake(v) { this.shake = Math.max(this.shake, v); } },
+  events: { on() {}, emit() {} },
+};
+game.audio = new AudioSystem(game);
+game.effects = new Effects(game);
+await game.audio.init();
+game.effects.init();
+window.__GAME__ = game;
+
+const composer = new EffectComposer(renderer, new THREE.WebGLRenderTarget(W, H, { type: THREE.HalfFloatType, samples: 4 }));
+composer.setSize(W, H);
+composer.addPass(new RenderPass(scene, camera));
+composer.addPass(new UnrealBloomPass(new THREE.Vector2(W, H), night ? 0.7 : 0.45, 0.4, night ? 0.75 : 0.88));
+composer.addPass(new OutputPass());
+
+const report = { done: false, started: false, t: 0, fps: { avg: 0, min: 1e9 }, errors, custom: {} };
+window.__TEST__ = report;
+const cam = (P.get('cam') || '0,1.7,22,0,-0.05').split(',').map(Number);
+const scenario = P.get('scenario') ? await import('/' + P.get('scenario')) : null;
+if (scenario && scenario.setup) await scenario.setup(game, report);
+const duration = parseFloat(P.get('duration') || '8');
+let t = 0, last = performance.now(), fpsSum = 0, fpsN = 0, frames = 0;
+report.started = true;
+function loop(now) {
+  requestAnimationFrame(loop);
+  const raw = Math.min((now - last) / 1000, 0.25); last = now;
+  const dt = Math.min(raw, 0.05) * game.timeScale;
+  game.time += dt; t += dt;
+  report.t = +t.toFixed(2);
+  if (scenario && scenario.drive) scenario.drive(t, dt, game, report);
+  game.effects.update(dt);
+  game.audio.update(dt);
+  // camera (with trauma shake)
+  const sh = game.player.shake; game.player.shake = Math.max(0, sh - dt * 1.2);
+  camera.position.set(cam[0], cam[1], cam[2]);
+  camera.rotation.set(cam[4] + (Math.random() - 0.5) * sh * sh * 0.05, cam[3] + (Math.random() - 0.5) * sh * sh * 0.05, 0);
+  if (P.get('bloom') === '0') { renderer.setRenderTarget(null); renderer.clear(); renderer.render(scene, camera); } else composer.render();
+  frames++;
+  if (frames > 15 && raw > 0 && game.timeScale > 0) { const f = 1 / raw; fpsSum += f; fpsN++; report.fps.min = Math.min(report.fps.min, f); }
+  if (t >= duration && !report.done) {
+    if (scenario && scenario.finish) scenario.finish(game, report);
+    report.fps.avg = +(fpsSum / Math.max(1, fpsN)).toFixed(1); report.fps.min = +report.fps.min.toFixed(1);
+    report.info = { calls: renderer.info.render.calls, tris: renderer.info.render.triangles, programs: renderer.info.programs.length };
+    report.done = true;
+  }
+}
+requestAnimationFrame(loop);
+</script></body></html>

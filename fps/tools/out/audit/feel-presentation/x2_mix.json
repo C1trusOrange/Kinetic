@@ -1,0 +1,101 @@
+{
+ "S1": {
+  "rifleOnly_peak_dB": -3.5,
+  "rms_dB": -12.3,
+  "peak_dB_all": -3.1,
+  "clip": 0
+ },
+ "S2": {
+  "duck": [
+   {
+    "t": 1.46,
+    "noExplosion_dB": -3.9,
+    "withExplosion_dB": -3.9
+   },
+   {
+    "t": 2.28,
+    "noExplosion_dB": -4.3,
+    "withExplosion_dB": -3
+   },
+   {
+    "t": 2.65,
+    "noExplosion_dB": -4.3,
+    "withExplosion_dB": -3.7
+   },
+   {
+    "t": 3.01,
+    "noExplosion_dB": -4.5,
+    "withExplosion_dB": -4.1
+   },
+   {
+    "t": 3.46,
+    "noExplosion_dB": -4,
+    "withExplosion_dB": -3.9
+   },
+   {
+    "t": 4.01,
+    "noExplosion_dB": -3.8,
+    "withExplosion_dB": -3.7
+   },
+   {
+    "t": 4.46,
+    "noExplosion_dB": -4.3,
+    "withExplosion_dB": -4.3
+   },
+   {
+    "t": 5.01,
+    "noExplosion_dB": -4.1,
+    "withExplosion_dB": -4.1
+   }
+  ],
+  "peak_dB_all": -2.3,
+  "clip": 0,
+  "explosion_window_peak_dB": -2.3
+ },
+ "S3": {
+  "compressed_peak_dB": -1.7,
+  "compressed_rms_dB": -11.8,
+  "clip_with_comp": 0,
+  "uncompressed_peak_dB": 3.5,
+  "uncompressed_rms_dB": -11.5,
+  "clip_no_comp": 0.14341517857142858
+ },
+ "levels": {
+  "hitmarker": {
+   "peak_dB": -10.7,
+   "rms100_dB": -27.3
+  },
+  "headshot": {
+   "peak_dB": -7.7,
+   "rms100_dB": -22.7
+  },
+  "kill_confirm": {
+   "peak_dB": -7.2,
+   "rms100_dB": -17.1
+  },
+  "hurt": {
+   "peak_dB": -5.7,
+   "rms100_dB": -15.2
+  },
+  "footstep": {
+   "peak_dB": -10.9,
+   "rms100_dB": -22.7
+  },
+  "rifle_fire": {
+   "peak_dB": -6.3,
+   "rms100_dB": -15.6
+  },
+  "pistol_fire": {
+   "peak_dB": -5.2,
+   "rms100_dB": -12.5
+  },
+  "shotgun_fire": {
+   "peak_dB": -4.3,
+   "rms100_dB": -9.3
+  },
+  "explosion": {
+   "peak_dB": -3.8,
+   "rms100_dB": -9.7
+  }
+ }
+}

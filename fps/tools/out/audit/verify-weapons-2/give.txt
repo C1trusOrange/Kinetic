@@ -1,0 +1,127 @@
+[run] http://127.0.0.1:52860/index.html?autotest=1&map=sandbox&bots=2&scenario=tools/out/audit/verify-weapons-2/give.js&duration=8
+[log] [autotest] finished {"ok":true,"errors":0,"fps":44.3}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.08,
+ "frames": 309,
+ "fps": {
+  "avg": 44.3,
+  "min": 4,
+  "max": 178.6
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": -5.551115123125783e-17,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "collect",
+   "distance": 24.1,
+   "pos": [
+    -21.4,
+    0,
+    -25.2
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 35,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 45.2,
+   "pos": [
+    10.8,
+    0,
+    12.2
+   ]
+  }
+ ],
+ "events": {
+  "damage": 7,
+  "death": 1,
+  "spawn": 4,
+  "pickup": 1,
+  "fire": 20
+ },
+ "renderer": {
+  "calls": 288,
+  "triangles": 53364,
+  "geometries": 253,
+  "textures": 134,
+  "programs": 108
+ },
+ "custom": {
+  "log": [
+   [
+    "melee running",
+    {
+     "meleeT": 0.06
+    }
+   ],
+   [
+    "give sniper during melee",
+    true
+   ],
+   [
+    "after melee",
+    {
+     "cur": "rifle",
+     "owned": "pistol,rifle,shotgun,sniper",
+     "pending": null,
+     "queued": null,
+     "sw": 0
+    }
+   ],
+   [
+    "cooking",
+    {
+     "g": 2,
+     "cook": true
+    }
+   ],
+   [
+    "give rocket during cook",
+    true
+   ],
+   [
+    "queued",
+    "rocket"
+   ],
+   [
+    "after cook",
+    {
+     "cur": "rocket",
+     "owned": "pistol,rifle,shotgun,sniper,rocket",
+     "queued": null,
+     "sw": 0,
+     "g": 0
+    }
+   ]
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

@@ -1,0 +1,113 @@
+{
+ "eval": {
+  "weaponWorld": {
+   "pistol": [
+    6.2,
+    0.2,
+    0.3
+   ],
+   "rifle": [
+    16.8,
+    0.2,
+    0.1
+   ],
+   "shotgun": [
+    0.1,
+    0.1,
+    0.1
+   ],
+   "sniper": [
+    0.2,
+    0.1,
+    0.2
+   ],
+   "rocket": [
+    0.2,
+    0.1,
+    0.2
+   ]
+  },
+  "weaponView": {
+   "pistol": [
+    0.8,
+    0.6
+   ],
+   "rifle": [
+    0.7,
+    0.3
+   ],
+   "shotgun": [
+    0.3,
+    0.3
+   ],
+   "sniper": [
+    0.4,
+    0.2
+   ],
+   "rocket": [
+    0.3,
+    0.3
+   ]
+  },
+  "weaponStats": {
+   "pistol": {
+    "meshes": 8,
+    "geos": 8,
+    "mats": 8,
+    "texs": 15
+   },
+   "rifle": {
+    "meshes": 14,
+    "geos": 14,
+    "mats": 14,
+    "texs": 22
+   },
+   "shotgun": {
+    "meshes": 10,
+    "geos": 10,
+    "mats": 10,
+    "texs": 15
+   },
+   "sniper": {
+    "meshes": 13,
+    "geos": 13,
+    "mats": 13,
+    "texs": 20
+   },
+   "rocket": {
+    "meshes": 18,
+    "geos": 18,
+    "mats": 18,
+    "texs": 25
+   }
+  },
+  "botModel": [
+   {
+    "constructMs": 344.9,
+    "breakApartMs": 2.6,
+    "meshes": 13,
+    "geos": 12,
+    "mats": 1,
+    "texs": 5
+   },
+   {
+    "constructMs": 8.4,
+    "breakApartMs": 0.2,
+    "meshes": 13,
+    "geos": 12,
+    "mats": 1,
+    "texs": 5
+   },
+   {
+    "constructMs": 6.2,
+    "breakApartMs": 0.1,
+    "meshes": 13,
+    "geos": 12,
+    "mats": 1,
+    "texs": 5
+   }
+  ],
+  "botModelWarmup": "function"
+ },
+ "errors": []
+}

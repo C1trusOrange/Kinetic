@@ -1,0 +1,7 @@
+h_rifle_hitmarker: [run] done: wait=ok console_errors=0 warnings=0
+h_rifle_head: [run] done: wait=ok console_errors=0 warnings=0
+h_rifle_kill: [run] done: wait=ok console_errors=0 warnings=0
+h_shotgun_kill: [run] done: wait=ok console_errors=0 warnings=0
+h_rifle_ads_flash: [run] done: wait=ok console_errors=0 warnings=0
+h_pistol_night: [run] done: wait=ok console_errors=0 warnings=0
+ALLDONE

@@ -1,0 +1,52 @@
+[run] http://127.0.0.1:61046/index.html?autotest=1&map=sandbox&bots=0&mode=tdm&duration=15
+[result] {
+ "done": true,
+ "started": true,
+ "t": 15.22,
+ "frames": 591,
+ "fps": {
+  "avg": 47.8,
+  "min": 4,
+  "max": 227.3
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 67.62347637440699,
+  "maxSpeed": 11.65,
+  "minY": -4,
+  "maxY": 2.098333333333334,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "isGrappling": true,
+   "isWallRunning": true
+  },
+  "shots": 18,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 39.66160164973327
+ },
+ "bots": [],
+ "events": {
+  "damage": 1,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 18
+ },
+ "renderer": {
+  "calls": 132,
+  "triangles": 36464,
+  "geometries": 275,
+  "textures": 132,
+  "programs": 105
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

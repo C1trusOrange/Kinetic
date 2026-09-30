@@ -1,0 +1,27 @@
+[run] http://127.0.0.1:53936/index.html?autotest=1&map=sandbox&bots=2&duration=2&script=idle
+[log] [autotest] finished {"ok":true,"errors":0,"fps":26.7}
+[result] {
+ "map": "sandbox",
+ "cover": 106,
+ "snipe": 22,
+ "snipeHigh": 15,
+ "snipeY": [
+  19.6,
+  16,
+  16,
+  16,
+  16,
+  16
+ ],
+ "nodes": 4091,
+ "coverNear": [
+  3,
+  3,
+  3,
+  5,
+  3
+ ],
+ "errorCount": 0,
+ "errors": []
+}
+[run] done: wait=ok console_errors=0 warnings=0

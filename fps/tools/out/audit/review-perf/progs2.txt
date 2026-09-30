@@ -1,0 +1,165 @@
+[run] http://127.0.0.1:64872/index.html?autotest=1&map=foundry&bots=5&duration=8&scenario=tools/out/audit/review-perf/scenario_progs2.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.21,
+ "frames": 227,
+ "fps": {
+  "avg": 22.5,
+  "min": 4,
+  "max": 83.3
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 33.7,
+  "maxSpeed": 6.8,
+  "minY": -4,
+  "maxY": 0,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isGrappling": true
+  },
+  "shots": 6,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 60.7,
+   "pos": [
+    20.1,
+    0,
+    -12.9
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 4,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 52.2,
+   "pos": [
+    -45,
+    0,
+    -9.7
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 36,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 38.1,
+   "pos": [
+    -45.4,
+    0,
+    -22.9
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 20,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 32.8,
+   "pos": [
+    30.6,
+    0,
+    6.9
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 24,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 48.8,
+   "pos": [
+    7.7,
+    0,
+    -0.3
+   ]
+  }
+ ],
+ "events": {
+  "damage": 13,
+  "death": 0,
+  "spawn": 6,
+  "pickup": 3,
+  "fire": 40
+ },
+ "renderer": {
+  "calls": 307,
+  "triangles": 122282,
+  "geometries": 273,
+  "textures": 142,
+  "programs": 115
+ },
+ "custom": {
+  "total": 115,
+  "dead": 71,
+  "rows": {
+   "0 | linear(RT) | dead": 1,
+   "2 | linear(RT) | dead": 2,
+   "4 | linear(RT) | dead": 1,
+   "6 | linear(RT) | dead": 1,
+   "8 | linear(RT) | dead": 6,
+   "11 | linear(RT) | dead": 1,
+   "13 | ? | dead": 1,
+   "physical | linear(RT) | dead": 5,
+   "17 | linear(RT) | dead": 1,
+   "depth | linear(RT) | dead": 2,
+   "19 | linear(RT) | live": 1,
+   "physical | linear(RT) | live": 20,
+   "0 | linear(RT) | live": 1,
+   "2 | linear(RT) | live": 2,
+   "basic | linear(RT) | live": 12,
+   "basic | linear(RT) | dead": 6,
+   "physical | srgb(screen) | dead": 17,
+   "physical | srgb(screen) | live": 4,
+   "basic | srgb(screen) | dead": 19,
+   "sprite | srgb(screen) | dead": 3,
+   "0 | srgb(screen) | dead": 1,
+   "2 | srgb(screen) | dead": 2,
+   "4 | srgb(screen) | dead": 1,
+   "19 | srgb(screen) | dead": 1,
+   "4 | linear(RT) | live": 1,
+   "sprite | linear(RT) | live": 3
+  },
+  "lights": {
+   "world": 4
+  },
+  "ext": {
+   "parallel": true,
+   "timer2": true
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

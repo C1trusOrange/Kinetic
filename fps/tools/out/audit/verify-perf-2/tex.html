@@ -1,0 +1,40 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>tex perf</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><canvas id="c" width="64" height="64"></canvas>
+<script type="module">
+import * as THREE from 'three';
+window.__RES__ = { errors: [] };
+window.addEventListener('error', e => window.__RES__.errors.push(String(e.message)));
+try {
+  const T = await import('/src/world/Textures.js');
+  const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('c') });
+  T.initTextures(renderer);
+  const names = T.MATERIAL_NAMES;
+  const rows = [];
+  const t00 = performance.now();
+  for (const n of names) {
+    const t0 = performance.now();
+    await T.preloadMaterials([n], () => {});
+    const m = T.getMaterial(n);
+    rows.push([n, +(performance.now() - t0).toFixed(0), m.map ? m.map.image && m.map.image.width : 0]);
+  }
+  window.__RES__.total = +(performance.now() - t00).toFixed(0);
+  window.__RES__.count = names.length;
+  rows.sort((a, b) => b[1] - a[1]);
+  window.__RES__.rows = rows;
+  window.__RES__.avg = +(window.__RES__.total / names.length).toFixed(0);
+  // upload cost: render a quad per material once
+  const scene = new THREE.Scene(); const cam = new THREE.PerspectiveCamera();
+  scene.add(new THREE.AmbientLight(0xffffff, 1));
+  const geo = new THREE.PlaneGeometry(1, 1);
+  const tUp0 = performance.now();
+  for (const n of names) { const mesh = new THREE.Mesh(geo, T.getMaterial(n)); scene.add(mesh); }
+  renderer.compile(scene, cam);
+  renderer.render(scene, cam);
+  renderer.getContext().finish();
+  window.__RES__.compileAndUploadAllMs = +(performance.now() - tUp0).toFixed(0);
+  window.__RES__.textures = renderer.info.memory.textures;
+} catch (e) { window.__RES__.errors.push(String(e && e.stack || e)); }
+window.__DONE__ = true;
+</script></body></html>

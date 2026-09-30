@@ -1,0 +1,22 @@
+[run] http://127.0.0.1:52101/index.html?autotest=1&map=sandbox&bots=6&diff=insane&script=idle&seed=3&scenario=tools/out/audit/review-weapons/fuzz.js&duration=60
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/src/core/constants.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:52101/src/core/Game.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/src/core/utils.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/src/world/World.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/src/world/maps/index.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/src/player/Player.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/src/weapons/WeaponSystem.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/src/weapons/Projectiles.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/src/ai/BotManager.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/src/fx/Effects.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/src/ui/HUD.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/src/ui/Menu.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/vendor/three/examples/jsm/shaders/CopyShader.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/vendor/three/examples/jsm/postprocessing/ShaderPass.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/vendor/three/examples/jsm/postprocessing/MaskPass.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/vendor/three/examples/jsm/postprocessing/Pass.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/vendor/three/examples/jsm/shaders/OutputShader.js]
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:52101/vendor/three/examples/jsm/shaders/LuminosityHighPassShader.js]
+[error] [run] timed out after 300s waiting for: window.__TEST__ && window.__TEST__.done
+[result] null
+[run] done: wait=TIMEOUT console_errors=19 warnings=0

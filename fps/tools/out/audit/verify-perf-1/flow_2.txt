@@ -1,0 +1,95 @@
+[run] http://127.0.0.1:64651/tools/out/audit/verify-perf-1/flow.html?map=foundry&bots=5&playMs=5000
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "errors": [],
+ "marks": [
+  [
+   "world.load foundry",
+   18461,
+   11394
+  ],
+  [
+   "T menu.hideLoading",
+   0
+  ],
+  [
+   "boot done, state=menu",
+   18462,
+   null
+  ],
+  [
+   "click Play",
+   21470,
+   null
+  ],
+  [
+   "T weapons._compileViewmodels",
+   52
+  ],
+  [
+   "T menu.hideLoading",
+   0
+  ],
+  [
+   "startMatch resolved",
+   22725,
+   1255
+  ],
+  [
+   "T projectiles._warm",
+   206
+  ]
+ ],
+ "firstPlaying": [
+  {
+   "t": 22725,
+   "st": "playing",
+   "dt": 681.9,
+   "upd": 0,
+   "ren": 22.7,
+   "np": 12,
+   "gt": 0
+  },
+  {
+   "t": 27547,
+   "st": "playing",
+   "dt": 4822.2,
+   "upd": 257.2,
+   "ren": 4419.1,
+   "np": 50,
+   "gt": 0.05
+  },
+  {
+   "t": 27584,
+   "st": "playing",
+   "dt": 36.6,
+   "upd": 4.4,
+   "ren": 20.1,
+   "np": 0,
+   "gt": 0.1
+  }
+ ],
+ "lastLoadingAfterClick": [
+  {
+   "t": 21930,
+   "st": "loading",
+   "dt": 533,
+   "upd": 0,
+   "ren": 3.6,
+   "np": 0,
+   "gt": 0
+  },
+  {
+   "t": 22043,
+   "st": "loading",
+   "dt": 113.1,
+   "upd": 0,
+   "ren": 3.6,
+   "np": 0,
+   "gt": 0
+  }
+ ],
+ "programs": 101
+}
+[run] done: wait=ok console_errors=0 warnings=1

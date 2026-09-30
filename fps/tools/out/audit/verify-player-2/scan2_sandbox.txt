@@ -1,0 +1,43 @@
+[run] http://127.0.0.1:58621/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/verify-player-2/scan2.js&step=0.6
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0,
+ "frames": 36,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "map": "sandbox",
+  "spots": 34,
+  "wrongClear": 0,
+  "examples": []
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

@@ -1,0 +1,744 @@
+[run] http://127.0.0.1:51047/index.html?autotest=1&map=ruins&bots=10&mode=tdm&duration=1&god=1&script=idle&test=fight&simtime=300&scenario=tools/out/audit/review-aibrain/sim.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 304.93,
+ "frames": 145,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 55.55555555555345
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 7.8,
+  "maxSpeed": 14.68,
+  "minY": 9,
+  "maxY": 9.495059618918226,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Gasket",
+   "alive": false,
+   "kills": 13,
+   "deaths": 7,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 1606.4,
+   "pos": [
+    4.2,
+    0,
+    -24.8
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": false,
+   "kills": 10,
+   "deaths": 11,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 1733.7,
+   "pos": [
+    13.3,
+    0,
+    -14.6
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 9,
+   "deaths": 13,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 1614.7,
+   "pos": [
+    -12.9,
+    0,
+    36.2
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": false,
+   "kills": 5,
+   "deaths": 13,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 1671.9,
+   "pos": [
+    -15.3,
+    -0.1,
+    22.4
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 9,
+   "deaths": 14,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "engage",
+   "distance": 1567.9,
+   "pos": [
+    -7.4,
+    0.1,
+    -39.2
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 11,
+   "deaths": 14,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "engage",
+   "distance": 1750.3,
+   "pos": [
+    41.1,
+    4.5,
+    4.5
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 8,
+   "deaths": 9,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 1660.2,
+   "pos": [
+    -1.2,
+    0,
+    -28.6
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 11,
+   "deaths": 9,
+   "health": 80,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 1713.6,
+   "pos": [
+    -31,
+    0,
+    -12.2
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 10,
+   "deaths": 11,
+   "health": 31,
+   "weapon": "sniper",
+   "state": "chase",
+   "distance": 1490.7,
+   "pos": [
+    9.5,
+    0,
+    -36.5
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 6,
+   "deaths": 12,
+   "health": 4,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 1801.5,
+   "pos": [
+    27.8,
+    0,
+    -8.5
+   ]
+  }
+ ],
+ "events": {
+  "damage": 615,
+  "death": 113,
+  "spawn": 121,
+  "pickup": 57,
+  "fire": 1908
+ },
+ "renderer": {
+  "calls": 566,
+  "triangles": 130356,
+  "geometries": 220,
+  "textures": 120,
+  "programs": 100
+ },
+ "custom": {
+  "fight": {
+   "stuckRecover": 15,
+   "stuckList": [
+    {
+     "t": 13,
+     "bot": "Gasket",
+     "st": "chase",
+     "mode": "direct",
+     "pos": "-19.5,1.7,2.7",
+     "wp": null,
+     "idx": 0,
+     "len": 0,
+     "goal": "-7.8,1.2,33.9",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 63,
+     "bot": "Tesla",
+     "st": "chase",
+     "mode": "path",
+     "pos": "-30.5,-1.6,22.8",
+     "wp": "-30.5,-1.6,16.5:walk",
+     "idx": 0,
+     "len": 3,
+     "goal": "-27.4,0.0,14.0",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 64,
+     "bot": "Tesla",
+     "st": "chase",
+     "mode": "path",
+     "pos": "-30.5,-0.9,22.8",
+     "wp": "-30.5,-1.6,16.5:walk",
+     "idx": 0,
+     "len": 3,
+     "goal": "-27.4,0.0,14.0",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 69,
+     "bot": "Tesla",
+     "st": "collect",
+     "mode": "path",
+     "pos": "-29.9,-0.8,22.8",
+     "wp": "-28.5,-0.3,20.5:walk",
+     "idx": 0,
+     "len": 2,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 1,
+     "tgt": "-"
+    },
+    {
+     "t": 72,
+     "bot": "Tesla",
+     "st": "collect",
+     "mode": "path",
+     "pos": "-28.5,-0.3,22.8",
+     "wp": "-28.5,-0.3,20.5:walk",
+     "idx": 0,
+     "len": 2,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 1,
+     "tgt": "-"
+    },
+    {
+     "t": 73,
+     "bot": "Tesla",
+     "st": "collect",
+     "mode": "path",
+     "pos": "-28.5,0.1,22.8",
+     "wp": "-28.5,-0.3,20.5:walk",
+     "idx": 0,
+     "len": 2,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 2,
+     "tgt": "-"
+    },
+    {
+     "t": 76,
+     "bot": "Tesla",
+     "st": "collect",
+     "mode": "path",
+     "pos": "-28.5,-0.8,22.8",
+     "wp": "-28.5,-0.3,20.5:walk",
+     "idx": 0,
+     "len": 2,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 1,
+     "tgt": "-"
+    },
+    {
+     "t": 105,
+     "bot": "Piston",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.5,-1.6,22.8",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 7,
+     "len": 11,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 106,
+     "bot": "Piston",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.4,-1.0,22.8",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 7,
+     "len": 11,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 110,
+     "bot": "Piston",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "-23.4,-1.2,22.9",
+     "wp": "-23.5,-1.6,21.5:walk",
+     "idx": 7,
+     "len": 11,
+     "goal": "-27.0,-0.3,20.0",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 147,
+     "bot": "Torque",
+     "st": "chase",
+     "mode": "direct",
+     "pos": "-37.6,0.1,4.2",
+     "wp": null,
+     "idx": 0,
+     "len": 0,
+     "goal": "-32.2,5.8,15.1",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 148,
+     "bot": "Torque",
+     "st": "chase",
+     "mode": "direct",
+     "pos": "-37.6,0.1,4.2",
+     "wp": null,
+     "idx": 0,
+     "len": 0,
+     "goal": "-32.2,5.8,15.1",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 162,
+     "bot": "Gasket",
+     "st": "engage",
+     "mode": "idle",
+     "pos": "-6.6,0.0,-22.5",
+     "wp": null,
+     "idx": 0,
+     "len": 0,
+     "goal": "6.6,1.7,-25.0",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 274,
+     "bot": "Flux",
+     "st": "collect",
+     "mode": "path",
+     "pos": "32.5,0.0,-9.5",
+     "wp": "31.5,0.3,-9.5:walk",
+     "idx": 0,
+     "len": 11,
+     "goal": "0.0,9.7,0.0",
+     "stage": 1,
+     "tgt": "-"
+    },
+    {
+     "t": 284,
+     "bot": "Tesla",
+     "st": "collect",
+     "mode": "path",
+     "pos": "-1.5,9.0,2.7",
+     "wp": "-1.5,9.3,1.5:walk",
+     "idx": 4,
+     "len": 7,
+     "goal": "0.0,9.7,0.0",
+     "stage": 1,
+     "tgt": "-"
+    }
+   ],
+   "rescue": [],
+   "ignoredSets": [
+    {
+     "t": 39,
+     "bot": "Servo",
+     "pickup": "weapon:sniper",
+     "dur": 90,
+     "air": true,
+     "gap": 5.6,
+     "state": "collect",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 40,
+     "bot": "Torque",
+     "pickup": "weapon:sniper",
+     "dur": 90,
+     "air": true,
+     "gap": 6.8,
+     "state": "collect",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 118.7,
+     "bot": "Diode",
+     "pickup": "weapon:sniper",
+     "dur": 90,
+     "air": true,
+     "gap": 4.7,
+     "state": "collect",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 123.4,
+     "bot": "Glitch",
+     "pickup": "weapon:sniper",
+     "dur": 90,
+     "air": true,
+     "gap": 5.3,
+     "state": "collect",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 125,
+     "bot": "Glitch",
+     "pickup": "weapon:rocket",
+     "dur": 90,
+     "air": true,
+     "gap": 4.5,
+     "state": "collect",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 128,
+     "bot": "Flux",
+     "pickup": "ammo",
+     "dur": 90,
+     "air": false,
+     "gap": 0,
+     "state": "collect",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 128.8,
+     "bot": "Cog",
+     "pickup": "weapon:sniper",
+     "dur": 90,
+     "air": true,
+     "gap": 7,
+     "state": "collect",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 198.9,
+     "bot": "Cog",
+     "pickup": "ammo",
+     "dur": 90,
+     "air": false,
+     "gap": 0,
+     "state": "collect",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 228.9,
+     "bot": "Tesla",
+     "pickup": "weapon:rocket",
+     "dur": 90,
+     "air": true,
+     "gap": 7.5,
+     "state": "collect",
+     "navmode": "direct",
+     "unreachable": true
+    }
+   ],
+   "stateTime": {
+    "collect": 468.5,
+    "engage": 1243,
+    "chase": 543.5,
+    "retreat": 296,
+    "roam": 87
+   },
+   "idleStuck": [],
+   "findPathNull": [],
+   "repath": 0,
+   "pathReq": 2674,
+   "stateFlips": 1414,
+   "kills": 92,
+   "deaths": 113,
+   "falls": 0,
+   "selfDamage": {
+    "rocket": 46
+   },
+   "friendlyAttempts": 11,
+   "shotsAtProtected": 0,
+   "suicides": {},
+   "chaseUnreach": 80,
+   "chaseTime": 543.5,
+   "grenadesThrown": 21,
+   "stuckClusters": [
+    {
+     "cell": "-30,-1,24",
+     "n": 2,
+     "ex": {
+      "t": 64,
+      "bot": "Tesla",
+      "st": "chase",
+      "mode": "path",
+      "pos": "-30.5,-0.9,22.8",
+      "wp": "-30.5,-1.6,16.5:walk",
+      "idx": 0,
+      "len": 3,
+      "goal": "-27.4,0.0,14.0",
+      "stage": 2,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "-27,0,24",
+     "n": 2,
+     "ex": {
+      "t": 72,
+      "bot": "Tesla",
+      "st": "collect",
+      "mode": "path",
+      "pos": "-28.5,-0.3,22.8",
+      "wp": "-28.5,-0.3,20.5:walk",
+      "idx": 0,
+      "len": 2,
+      "goal": "-27.0,-0.3,20.0",
+      "stage": 1,
+      "tgt": "-"
+     }
+    },
+    {
+     "cell": "-24,-1,24",
+     "n": 2,
+     "ex": {
+      "t": 106,
+      "bot": "Piston",
+      "st": "retreat",
+      "mode": "path",
+      "pos": "-23.4,-1.0,22.8",
+      "wp": "-23.5,-1.6,21.5:walk",
+      "idx": 7,
+      "len": 11,
+      "goal": "-27.0,-0.3,20.0",
+      "stage": 2,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "-39,0,3",
+     "n": 2,
+     "ex": {
+      "t": 147,
+      "bot": "Torque",
+      "st": "chase",
+      "mode": "direct",
+      "pos": "-37.6,0.1,4.2",
+      "wp": null,
+      "idx": 0,
+      "len": 0,
+      "goal": "-32.2,5.8,15.1",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "-18,2,3",
+     "n": 1,
+     "ex": {
+      "t": 13,
+      "bot": "Gasket",
+      "st": "chase",
+      "mode": "direct",
+      "pos": "-19.5,1.7,2.7",
+      "wp": null,
+      "idx": 0,
+      "len": 0,
+      "goal": "-7.8,1.2,33.9",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "-30,-2,24",
+     "n": 1,
+     "ex": {
+      "t": 63,
+      "bot": "Tesla",
+      "st": "chase",
+      "mode": "path",
+      "pos": "-30.5,-1.6,22.8",
+      "wp": "-30.5,-1.6,16.5:walk",
+      "idx": 0,
+      "len": 3,
+      "goal": "-27.4,0.0,14.0",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "-27,-1,24",
+     "n": 1,
+     "ex": {
+      "t": 76,
+      "bot": "Tesla",
+      "st": "collect",
+      "mode": "path",
+      "pos": "-28.5,-0.8,22.8",
+      "wp": "-28.5,-0.3,20.5:walk",
+      "idx": 0,
+      "len": 2,
+      "goal": "-27.0,-0.3,20.0",
+      "stage": 1,
+      "tgt": "-"
+     }
+    },
+    {
+     "cell": "-24,-2,24",
+     "n": 1,
+     "ex": {
+      "t": 105,
+      "bot": "Piston",
+      "st": "retreat",
+      "mode": "path",
+      "pos": "-23.5,-1.6,22.8",
+      "wp": "-23.5,-1.6,21.5:walk",
+      "idx": 7,
+      "len": 11,
+      "goal": "-27.0,-0.3,20.0",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "-6,0,-21",
+     "n": 1,
+     "ex": {
+      "t": 162,
+      "bot": "Gasket",
+      "st": "engage",
+      "mode": "idle",
+      "pos": "-6.6,0.0,-22.5",
+      "wp": null,
+      "idx": 0,
+      "len": 0,
+      "goal": "6.6,1.7,-25.0",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    },
+    {
+     "cell": "33,0,-9",
+     "n": 1,
+     "ex": {
+      "t": 274,
+      "bot": "Flux",
+      "st": "collect",
+      "mode": "path",
+      "pos": "32.5,0.0,-9.5",
+      "wp": "31.5,0.3,-9.5:walk",
+      "idx": 0,
+      "len": 11,
+      "goal": "0.0,9.7,0.0",
+      "stage": 1,
+      "tgt": "-"
+     }
+    },
+    {
+     "cell": "0,9,3",
+     "n": 1,
+     "ex": {
+      "t": 284,
+      "bot": "Tesla",
+      "st": "collect",
+      "mode": "path",
+      "pos": "-1.5,9.0,2.7",
+      "wp": "-1.5,9.3,1.5:walk",
+      "idx": 4,
+      "len": 7,
+      "goal": "0.0,9.7,0.0",
+      "stage": 1,
+      "tgt": "-"
+     }
+    }
+   ]
+  },
+  "pathStats": {
+   "count": 2611,
+   "totalMs": 6902.499997973442,
+   "maxMs": 43.700000047683716
+  },
+  "navStats": {
+   "nodes": 11543,
+   "links": 81899,
+   "components": 26,
+   "largestComponent": 11490,
+   "buildMs": 496,
+   "traps": 0,
+   "strongComponents": 119,
+   "largestStrong": 10555,
+   "cells": 11664
+  },
+  "wallMs": 36917,
+  "simTime": 304.8
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

@@ -1,0 +1,318 @@
+[run] http://127.0.0.1:60307/index.html?autotest=1&map=foundry&bots=0&script=idle&scenario=tools/out/audit/verify-player-1/probe_col.js&px=-12.75&pz=-19
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0,
+ "frames": 36,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "hits": [
+   [
+    13,
+    [
+     0,
+     1,
+     0
+    ],
+    "metal"
+   ],
+   [
+    12.89,
+    [
+     0,
+     1,
+     0
+    ],
+    "metal"
+   ],
+   [
+    12.45,
+    [
+     0,
+     1,
+     0
+    ],
+    "metal"
+   ],
+   [
+    12.41,
+    [
+     0,
+     1,
+     0
+    ],
+    "metal"
+   ],
+   [
+    10.55,
+    [
+     0,
+     1,
+     0
+    ],
+    "metal"
+   ],
+   [
+    9.5,
+    [
+     0,
+     1,
+     0
+    ],
+    "metal"
+   ],
+   [
+    5,
+    [
+     0,
+     1,
+     0
+    ],
+    "metal"
+   ],
+   [
+    0,
+    [
+     0,
+     1,
+     0
+    ],
+    "metal"
+   ]
+  ],
+  "solids": [
+   [
+    "box",
+    [
+     -18,
+     -5,
+     -22
+    ],
+    [
+     18,
+     0,
+     10
+    ],
+    true
+   ],
+   [
+    "box",
+    [
+     -18,
+     12,
+     -22
+    ],
+    [
+     18,
+     12.45,
+     -12
+    ],
+    true
+   ],
+   [
+    "box",
+    [
+     -18.6,
+     12.888,
+     -19.275
+    ],
+    [
+     18.6,
+     13,
+     -18.725
+    ],
+    true
+   ],
+   [
+    "box",
+    [
+     -18.6,
+     12.3,
+     -19.275
+    ],
+    [
+     18.6,
+     12.412,
+     -18.725
+    ],
+    true
+   ],
+   [
+    "box",
+    [
+     -18.6,
+     12.412,
+     -19.088
+    ],
+    [
+     18.6,
+     12.888,
+     -18.912
+    ],
+    true
+   ]
+  ],
+  "nonbox": [
+   [
+    "panel",
+    [
+     -18.17,
+     8.25,
+     -16
+    ],
+    [
+     7.6,
+     0.22
+    ],
+    null
+   ],
+   [
+    "panel",
+    [
+     -16.83,
+     8.25,
+     -16
+    ],
+    [
+     7.6,
+     0.22
+    ],
+    null
+   ],
+   [
+    "panel",
+    [
+     -10,
+     11.2,
+     -22.03
+    ],
+    [
+     5,
+     0.3
+    ],
+    null
+   ],
+   [
+    "pillar",
+    [
+     -12,
+     2.3,
+     -18
+    ],
+    null,
+    null
+   ],
+   [
+    "pillar",
+    [
+     -15,
+     4.5,
+     -15
+    ],
+    null,
+    null
+   ],
+   [
+    "pillar",
+    [
+     -15,
+     4.5,
+     -20.4
+    ],
+    null,
+    null
+   ],
+   [
+    "cylinder",
+    [
+     -11.5,
+     11.3,
+     -16
+    ],
+    null,
+    null
+   ],
+   [
+    "cylinder",
+    [
+     -11.5,
+     11.9,
+     -16
+    ],
+    null,
+    null
+   ],
+   [
+    "cylinder",
+    [
+     -14,
+     13.049999999999999,
+     -20
+    ],
+    null,
+    null
+   ],
+   [
+    "cylinder",
+    [
+     -14,
+     13.75,
+     -20
+    ],
+    null,
+    null
+   ],
+   [
+    "cylinder",
+    [
+     -9.5,
+     0.55,
+     -19
+    ],
+    null,
+    null
+   ],
+   [
+    "cylinder",
+    [
+     -10.4,
+     0.55,
+     -19.4
+    ],
+    null,
+    null
+   ]
+  ]
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

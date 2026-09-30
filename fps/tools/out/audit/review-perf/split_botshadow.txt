@@ -1,0 +1,230 @@
+[run] http://127.0.0.1:54491/index.html?autotest=1&map=foundry&bots=8&duration=30&toggle=botshadow&scenario=tools/out/audit/review-perf/scenario_split.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 30.26,
+ "frames": 1053,
+ "fps": {
+  "avg": 40.4,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 117.6,
+  "maxSpeed": 9.6,
+  "minY": -4,
+  "maxY": 4.371626093505725,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true
+  },
+  "shots": 32,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 143.9,
+   "pos": [
+    48,
+    0,
+    -3.8
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 77,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 158,
+   "pos": [
+    -14.1,
+    0,
+    12.2
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 63,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 159.9,
+   "pos": [
+    16.7,
+    0,
+    12
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": false,
+   "kills": 2,
+   "deaths": 2,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 167.4,
+   "pos": [
+    23.5,
+    0,
+    4.6
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 73,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 159.6,
+   "pos": [
+    -35,
+    0,
+    -3.5
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 4,
+   "deaths": 1,
+   "health": 49,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 113.9,
+   "pos": [
+    9.9,
+    0,
+    4.7
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "collect",
+   "distance": 153.2,
+   "pos": [
+    24.6,
+    0,
+    -20.9
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 148.1,
+   "pos": [
+    -40.8,
+    0,
+    18.3
+   ]
+  }
+ ],
+ "events": {
+  "damage": 61,
+  "death": 9,
+  "spawn": 17,
+  "pickup": 5,
+  "fire": 217
+ },
+ "renderer": {
+  "calls": 379,
+  "triangles": 129490,
+  "geometries": 222,
+  "textures": 134,
+  "programs": 107
+ },
+ "custom": {
+  "toggle": "botshadow",
+  "n": {
+   "A": 465,
+   "B": 464
+  },
+  "A": {
+   "renderMedian": 8.8,
+   "renderMean": 10.95,
+   "shadowMedian": 2,
+   "shadowMean": 2.58,
+   "callsMedian": 343,
+   "trisMedian": 126060
+  },
+  "B": {
+   "renderMedian": 7.5,
+   "renderMean": 9.48,
+   "shadowMedian": 0.6,
+   "shadowMean": 0.82,
+   "callsMedian": 160,
+   "trisMedian": 105802
+  },
+  "pass": {
+   "0:RenderPass A": {
+    "median": 6.9,
+    "mean": 13.88
+   },
+   "1:RenderPass A": {
+    "median": 1.6,
+    "mean": 4.68
+   },
+   "2:UnrealBloomPass A": {
+    "median": 0.4,
+    "mean": 0.68
+   },
+   "3:OutputPass A": {
+    "median": 0.1,
+    "mean": 0.07
+   },
+   "0:RenderPass B": {
+    "median": 5.2,
+    "mean": 6.26
+   },
+   "1:RenderPass B": {
+    "median": 1.5,
+    "mean": 2.58
+   },
+   "2:UnrealBloomPass B": {
+    "median": 0.4,
+    "mean": 0.52
+   },
+   "3:OutputPass B": {
+    "median": 0,
+    "mean": 0.06
+   }
+  },
+  "bots": 8,
+  "map": "foundry"
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

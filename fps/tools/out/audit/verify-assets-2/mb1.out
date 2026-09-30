@@ -1,0 +1,195 @@
+[run] http://127.0.0.1:60698/index.html?autotest=1&map=foundry&bots=8&god=1&script=idle&scenario=tools/out/audit/verify-assets-2/mb.js&duration=14
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":27.7}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 14.29,
+ "frames": 402,
+ "fps": {
+  "avg": 27.7,
+  "min": 4,
+  "max": 163.9
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 66,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 86.5,
+   "pos": [
+    -8.4,
+    0,
+    19.9
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 87.2,
+   "pos": [
+    -5.9,
+    1.4,
+    -5.2
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 56.2,
+   "pos": [
+    44,
+    0,
+    5
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": false,
+   "kills": 0,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 70.5,
+   "pos": [
+    3.2,
+    0,
+    11.5
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 82,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 67.4,
+   "pos": [
+    13.6,
+    0,
+    34.2
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 32,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 93.7,
+   "pos": [
+    12.9,
+    0,
+    -6.9
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 48,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 81.7,
+   "pos": [
+    3.4,
+    0.5,
+    10
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 69,
+   "pos": [
+    -44.8,
+    0,
+    -25.7
+   ]
+  }
+ ],
+ "events": {
+  "damage": 28,
+  "death": 3,
+  "spawn": 12,
+  "pickup": 1,
+  "fire": 108
+ },
+ "renderer": {
+  "calls": 501,
+  "triangles": 146312,
+  "geometries": 205,
+  "textures": 137,
+  "programs": 103
+ },
+ "custom": {
+  "res": {
+   "A": [
+    8.898,
+    8.377,
+    8.198,
+    7.48,
+    19.95,
+    9.287
+   ],
+   "B": [
+    8.373,
+    7.625,
+    7.553,
+    7.295,
+    11.037,
+    8.307
+   ]
+  },
+  "calls": 373030,
+  "meanA": 10.365,
+  "meanB": 8.365,
+  "diff": 2,
+  "botWeaponMeshes": 98
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

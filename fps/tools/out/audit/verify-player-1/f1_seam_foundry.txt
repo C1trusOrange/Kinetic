@@ -1,0 +1,155 @@
+[run] http://127.0.0.1:56454/index.html?autotest=1&map=foundry&scenario=tools/out/audit/verify-player-1/seam.js&duration=10&aimy=8
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 5,
+ "frames": 37,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 43.763665149293146,
+  "maxSpeed": 12.498388137080982,
+  "minY": -24.559999999999953,
+  "maxY": 6.005,
+  "states": {
+   "onGround": true,
+   "isGrappling": true,
+   "airborne": true,
+   "isMantling": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 4,
+  "death": 1,
+  "spawn": 6,
+  "pickup": 2,
+  "fire": 16
+ },
+ "renderer": {},
+ "custom": {
+  "log": [
+   [
+    0,
+    "ground/idle",
+    0.12,
+    0,
+    -38
+   ],
+   [
+    0.22,
+    "ground/flying",
+    0.12,
+    0,
+    -38
+   ],
+   [
+    0.28,
+    "grapple/attached",
+    0.12,
+    0.01,
+    -38.01
+   ],
+   [
+    0.92,
+    "mantle/retract",
+    0.12,
+    3.83,
+    -43.12
+   ],
+   [
+    1.08,
+    "mantle/idle",
+    0.12,
+    6,
+    -43.19
+   ],
+   [
+    1.23,
+    "ground/idle",
+    0.12,
+    6,
+    -44.51
+   ],
+   [
+    1.33,
+    "air/idle",
+    0.12,
+    6,
+    -45.45
+   ]
+  ],
+  "map": "foundry",
+  "mantleTo": [
+   0.12,
+   6.01,
+   -44.47
+  ],
+  "shots": [
+   {
+    "from": [
+     0.12,
+     5.5,
+     -30
+    ],
+    "hitEntity": "wall@14.09",
+    "dist": 14.6,
+    "canSee": false
+   },
+   {
+    "from": [
+     0.12,
+     1.7,
+     -20
+    ],
+    "hitEntity": "wall@24.58",
+    "dist": 25.1,
+    "canSee": false
+   },
+   {
+    "from": [
+     5.12,
+     12,
+     -25
+    ],
+    "hitEntity": "wall@20.18",
+    "dist": 20.72,
+    "canSee": false
+   }
+  ],
+  "capIntersect": "none",
+  "afterMantle": {
+   "t": 1.23,
+   "feet": [
+    0.12,
+    6,
+    -44.51
+   ],
+   "grounded": true
+  },
+  "final": {
+   "pos": [
+    0.12,
+    -132.48,
+    -68.08
+   ],
+   "alive": false,
+   "deaths": 1
+  },
+  "solidsAtMantle": "has def"
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

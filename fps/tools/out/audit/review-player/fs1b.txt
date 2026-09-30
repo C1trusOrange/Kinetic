@@ -1,0 +1,205 @@
+[run] http://127.0.0.1:57865/index.html?autotest=1&map=sandbox&bots=0&script=idle&secs=13&seed=1&trace=0.25&scenario=tools/out/audit/review-player/fastsim.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 13,
+ "frames": 54,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 175.4385964913089
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 114.41300124984117,
+  "maxSpeed": 16.71539051673493,
+  "minY": -3.7192471324942744e-15,
+  "maxY": 11.60833333333333,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSprinting": true,
+   "isSliding": true,
+   "isMantling": true,
+   "isGrappling": true,
+   "isWallRunning": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "seed": 1,
+  "viol": {},
+  "samples": {
+   "embedded": {
+    "t": 8.17,
+    "pos": [
+     -5.75,
+     1.22,
+     20.31
+    ],
+    "vel": [
+     3.76,
+     0,
+     0.29
+    ],
+    "state": "ground",
+    "grounded": true,
+    "crouched": true,
+    "h": 1.15,
+    "keys": "forward+back+right+crouch+sprint",
+    "gr": "idle",
+    "depth": 0.08
+   },
+   "outOfBounds": {
+    "t": 12.28,
+    "pos": [
+     7.17,
+     9.92,
+     -32.08
+    ],
+    "vel": [
+     -0.34,
+     0,
+     -4.23
+    ],
+    "state": "ground",
+    "grounded": true,
+    "crouched": false,
+    "h": 1.8,
+    "keys": "forward+back+sprint",
+    "gr": "idle"
+   }
+  },
+  "counts": {
+   "embedded": 1,
+   "outOfBounds": 44
+  },
+  "ring": {},
+  "trace": [
+   {
+    "t": 11.62,
+    "d": 1.36,
+    "from": [
+     7.16,
+     6.14,
+     -30.23
+    ],
+    "to": [
+     7.16,
+     7.5,
+     -30.23
+    ],
+    "n": 1,
+    "normals": [
+     [
+      0,
+      1,
+      0,
+      1.36
+     ]
+    ],
+    "stack": "at CollisionWorld.moveCapsule (src/world/Collision.js:236:22) | at PlayerController._airStep (src/player/PlayerController.js:691:22) | at PlayerController.step (src/player/PlayerController.js:228:15) | at Player.update (src/player/Player.js:178:12)"
+   },
+   {
+    "t": 12.07,
+    "d": 0.27,
+    "from": [
+     7.23,
+     10.41,
+     -30.87
+    ],
+    "to": [
+     7.23,
+     10.41,
+     -30.6
+    ],
+    "n": 1,
+    "normals": [
+     [
+      0,
+      0,
+      1,
+      0.27
+     ]
+    ],
+    "stack": "at PlayerController._stepMantle (src/player/PlayerController.js:1021:15) | at PlayerController.step (src/player/PlayerController.js:212:12) | at Player.update (src/player/Player.js:178:12) | at Game.update (src/core/Game.js:622:19)"
+   },
+   {
+    "t": 12.08,
+    "d": 0.34,
+    "from": [
+     7.23,
+     10.41,
+     -30.94
+    ],
+    "to": [
+     7.23,
+     10.41,
+     -30.6
+    ],
+    "n": 1,
+    "normals": [
+     [
+      0,
+      0,
+      1,
+      0.34
+     ]
+    ],
+    "stack": "at PlayerController._stepMantle (src/player/PlayerController.js:1021:15) | at PlayerController.step (src/player/PlayerController.js:212:12) | at Player.update (src/player/Player.js:178:12) | at Game.update (src/core/Game.js:622:19)"
+   },
+   {
+    "t": 12.55,
+    "d": 0.38,
+    "from": [
+     7.1,
+     11.23,
+     -33.02
+    ],
+    "to": [
+     7.1,
+     11.23,
+     -33.4
+    ],
+    "n": 1,
+    "normals": [
+     [
+      0,
+      0,
+      -1,
+      0.38
+     ]
+    ],
+    "stack": "at CollisionWorld.moveCapsule (src/world/Collision.js:236:22) | at PlayerController._airStep (src/player/PlayerController.js:691:22) | at PlayerController.step (src/player/PlayerController.js:228:15) | at Player.update (src/player/Player.js:178:12)"
+   }
+  ],
+  "maxSpeed": 16.71539051673493,
+  "states": {
+   "ground": 89,
+   "air": 609,
+   "slide": 9,
+   "mantle": 35,
+   "grapple": 36,
+   "wallrun": 2
+  },
+  "simSeconds": 13,
+  "dt": 0.016666666666666666
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

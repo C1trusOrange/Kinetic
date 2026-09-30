@@ -1,0 +1,112 @@
+[run] http://127.0.0.1:52515/index.html?autotest=1&bots=2&duration=1&god=1&script=idle&map=foundry&scenario=tools/out/audit/verify-aibrain-1/scen_stair.js&sfps=30&np=2&a=-12.49,5,-4.49&g=-3.5,9.5,-20.5
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 37.13,
+ "frames": 36,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 5.500550055005421
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "roam",
+   "distance": 189.8,
+   "pos": [
+    -4.9,
+    9.5,
+    -20.1
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    -46,
+    0,
+    26
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 147,
+  "triangles": 105214,
+  "geometries": 106,
+  "textures": 107,
+  "programs": 91
+ },
+ "custom": {
+  "variants": {
+   "unpatched": {
+    "n": 2,
+    "ok": 2,
+    "avgT": 12,
+    "totalInv": 30,
+    "totalStuck": 0,
+    "slow": [
+     "ok t12 inv15 stuck0 -12.49,5,-4.49->-3.5,9.5,-20.5",
+     "ok t12 inv15 stuck0 -12.49,5,-4.49->-3.5,9.5,-20.5"
+    ],
+    "all": [
+     "ok:12:i15:s0",
+     "ok:12:i15:s0"
+    ]
+   },
+   "jumpExempt": {
+    "n": 2,
+    "ok": 2,
+    "avgT": 5.87,
+    "totalInv": 0,
+    "totalStuck": 0,
+    "slow": [],
+    "all": [
+     "ok:5.87:i0:s0",
+     "ok:5.87:i0:s0"
+    ]
+   }
+  },
+  "map": "foundry",
+  "pairs": 2,
+  "dt": 0.03333333333333333
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

@@ -1,0 +1,19 @@
+weapon rocket ammo 4
+exp {'t': 3.0744000000000082, 'effT': 3.038000000000008, 'd': 1.629634013282927} iters 0
+[shot] tools\out\audit\feel-presentation\r_sandbox_feet_1280_002.png
+{'mean': 230.9, 'clip%': 78.9, 'dark%': 0.1, 't': 0.02, 'glow': 74, 'smoke': 50}
+[shot] tools\out\audit\feel-presentation\r_sandbox_feet_1280_010.png
+{'mean': 222.9, 'clip%': 59.7, 'dark%': 0.1, 't': 0.1, 'glow': 73, 'smoke': 50}
+[shot] tools\out\audit\feel-presentation\r_sandbox_feet_1280_025.png
+{'mean': 172.1, 'clip%': 14.3, 'dark%': 0.1, 't': 0.25, 'glow': 73, 'smoke': 50}
+[shot] tools\out\audit\feel-presentation\r_sandbox_feet_1280_050.png
+{'mean': 108.2, 'clip%': 0.4, 'dark%': 0.4, 't': 0.5, 'glow': 69, 'smoke': 50}
+[shot] tools\out\audit\feel-presentation\r_sandbox_feet_1280_090.png
+{'mean': 73.9, 'clip%': 0.1, 'dark%': 0.7, 't': 0.9, 'glow': 46, 'smoke': 49}
+[shot] tools\out\audit\feel-presentation\r_sandbox_feet_1280_150.png
+{'mean': 67.3, 'clip%': 0.1, 'dark%': 0.5, 't': 1.5, 'glow': 21, 'smoke': 40}
+[shot] tools\out\audit\feel-presentation\r_sandbox_feet_1280_229.png
+{'mean': 66.1, 'clip%': 0.1, 'dark%': 0.5, 't': 2.3, 'glow': 6, 'smoke': 20}
+[shot] tools\out\audit\feel-presentation\r_sandbox_feet_1280_340.png
+{'mean': 66.1, 'clip%': 0.1, 'dark%': 0.5, 't': 3.4, 'glow': 0, 'smoke': 3}
+[sess] console errors=0 warnings=0

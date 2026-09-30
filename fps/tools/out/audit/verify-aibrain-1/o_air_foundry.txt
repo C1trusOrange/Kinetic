@@ -1,0 +1,256 @@
+[run] http://127.0.0.1:64702/index.html?autotest=1&bots=2&duration=1&god=1&script=idle&map=foundry&scenario=tools/out/audit/verify-aibrain-1/scen_air.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 51.7,
+ "frames": 33,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 45,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 528.8,
+   "pos": [
+    32,
+    4.7,
+    20
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    17,
+    0,
+    -36
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 3,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 106,
+  "triangles": 100002,
+  "geometries": 86,
+  "textures": 86,
+  "programs": 86
+ },
+ "custom": {
+  "trials": [
+   {
+    "k": 0,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect>roam",
+    "blacklistedWhileFlying": 3,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 1.5,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 1,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 12.8,
+    "states": "collect>roam",
+    "blacklistedWhileFlying": 3,
+    "teleports": 1,
+    "rescueCalls": 1,
+    "landedAt": 1.5,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 2,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect>roam",
+    "blacklistedWhileFlying": 3,
+    "teleports": 1,
+    "rescueCalls": 1,
+    "landedAt": 1.5,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 3,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect",
+    "blacklistedWhileFlying": 0,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 1.5,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 4,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect",
+    "blacklistedWhileFlying": 0,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 1.8,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 5,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect>roam",
+    "blacklistedWhileFlying": 2,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 1.8,
+    "roamFailuresEnd": 1
+   },
+   {
+    "k": 6,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect",
+    "blacklistedWhileFlying": 0,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 1.9,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 7,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect",
+    "blacklistedWhileFlying": 0,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 1.8,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 8,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect",
+    "blacklistedWhileFlying": 0,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 1.5,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 9,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect>roam",
+    "blacklistedWhileFlying": 3,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 1.8,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 10,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect>roam",
+    "blacklistedWhileFlying": 3,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": 1.8,
+    "roamFailuresEnd": 0
+   },
+   {
+    "k": 11,
+    "pre": {
+     "state": "collect",
+     "hasGoal": true
+    },
+    "maxGap": 9.9,
+    "states": "collect",
+    "blacklistedWhileFlying": 0,
+    "teleports": 0,
+    "rescueCalls": 0,
+    "landedAt": -1,
+    "roamFailuresEnd": 0
+   }
+  ],
+  "summary": {
+   "n": 12,
+   "withBlacklist": 6,
+   "withRescueCall": 2,
+   "withTeleport": 2
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

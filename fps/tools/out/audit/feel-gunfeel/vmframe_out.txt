@@ -1,0 +1,339 @@
+[run] http://127.0.0.1:63974/index.html?autotest=1&map=gunfeel&mapfile=tools/out/audit/feel-gunfeel/testmap.js&bots=0&god=1&script=idle&scenario=tools/out/audit/feel-gunfeel/vmframe.js&duration=40
+[log] [autotest] finished {"ok":true,"errors":0,"fps":104.7}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 15.51,
+ "frames": 1176,
+ "fps": {
+  "avg": 104.7,
+  "min": 4,
+  "max": 256.4
+ },
+ "errors": [],
+ "map": "gunfeel",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 71,
+  "triangles": 6508,
+  "geometries": 188,
+  "textures": 94,
+  "programs": 68
+ },
+ "custom": {
+  "pistol_hip": {
+   "bbox": [
+    0,
+    0,
+    1280,
+    720
+   ],
+   "coverPct": 100,
+   "muzzlePx": [
+    800,
+    439
+   ],
+   "muzzleOffsetFromCenter": [
+    160,
+    79
+   ],
+   "muzzleCamXYZ": [
+    0.096,
+    -0.047,
+    -0.462
+   ],
+   "sightPx": [
+    943,
+    410
+   ],
+   "sightDist": 0.244,
+   "scoped": false,
+   "adsAmount": 0
+  },
+  "pistol_ads": {
+   "bbox": [
+    0,
+    0,
+    1280,
+    720
+   ],
+   "coverPct": 100,
+   "muzzlePx": [
+    640,
+    419
+   ],
+   "muzzleOffsetFromCenter": [
+    0,
+    59
+   ],
+   "muzzleCamXYZ": [
+    0,
+    -0.032,
+    -0.418
+   ],
+   "sightPx": [
+    640,
+    361
+   ],
+   "sightDist": 0.2,
+   "scoped": false,
+   "adsAmount": 1
+  },
+  "rifle_hip": {
+   "bbox": [
+    161,
+    46,
+    1280,
+    720
+   ],
+   "coverPct": 81.8,
+   "muzzlePx": [
+    746,
+    428
+   ],
+   "muzzleOffsetFromCenter": [
+    106,
+    68
+   ],
+   "muzzleCamXYZ": [
+    0.139,
+    -0.09,
+    -1.015
+   ],
+   "sightPx": [
+    874,
+    414
+   ],
+   "sightDist": 0.46,
+   "scoped": false,
+   "adsAmount": 0
+  },
+  "rifle_ads": {
+   "bbox": [
+    0,
+    0,
+    1280,
+    720
+   ],
+   "coverPct": 100,
+   "muzzlePx": [
+    640,
+    419
+   ],
+   "muzzleOffsetFromCenter": [
+    0,
+    59
+   ],
+   "muzzleCamXYZ": [
+    0,
+    -0.059000000000000004,
+    -0.765
+   ],
+   "sightPx": [
+    640,
+    360
+   ],
+   "sightDist": 0.21,
+   "scoped": false,
+   "adsAmount": 1
+  },
+  "shotgun_hip": {
+   "bbox": [
+    125,
+    57,
+    1280,
+    720
+   ],
+   "coverPct": 83,
+   "muzzlePx": [
+    744,
+    430
+   ],
+   "muzzleOffsetFromCenter": [
+    104,
+    70
+   ],
+   "muzzleCamXYZ": [
+    0.14,
+    -0.094,
+    -1.04
+   ],
+   "sightPx": [
+    950,
+    490
+   ],
+   "sightDist": 0.35,
+   "scoped": false,
+   "adsAmount": 0
+  },
+  "shotgun_ads": {
+   "bbox": [
+    0,
+    0,
+    1280,
+    720
+   ],
+   "coverPct": 100,
+   "muzzlePx": [
+    640,
+    392
+   ],
+   "muzzleOffsetFromCenter": [
+    0,
+    32
+   ],
+   "muzzleCamXYZ": [
+    0,
+    -0.036000000000000004,
+    -0.86
+   ],
+   "sightPx": [
+    641,
+    359
+   ],
+   "sightDist": 0.17,
+   "scoped": false,
+   "adsAmount": 1
+  },
+  "sniper_hip": {
+   "bbox": [
+    0,
+    164,
+    1280,
+    720
+   ],
+   "coverPct": 77.3,
+   "muzzlePx": [
+    734,
+    441
+   ],
+   "muzzleOffsetFromCenter": [
+    94,
+    81
+   ],
+   "muzzleCamXYZ": [
+    0.17,
+    -0.147,
+    -1.39
+   ],
+   "sightPx": [
+    999,
+    508
+   ],
+   "sightDist": 0.365,
+   "scoped": false,
+   "adsAmount": 0
+  },
+  "sniper_ads": {
+   "bbox": [
+    0,
+    71,
+    1280,
+    720
+   ],
+   "coverPct": 90.1,
+   "muzzlePx": [
+    640,
+    411
+   ],
+   "muzzleOffsetFromCenter": [
+    0,
+    51
+   ],
+   "muzzleCamXYZ": [
+    0,
+    -0.076,
+    -1.135
+   ],
+   "sightPx": [
+    639,
+    359
+   ],
+   "sightDist": 0.11,
+   "scoped": true,
+   "adsAmount": 1
+  },
+  "rocket_hip": {
+   "bbox": [
+    0,
+    90,
+    1280,
+    720
+   ],
+   "coverPct": 87.6,
+   "muzzlePx": [
+    778,
+    454
+   ],
+   "muzzleOffsetFromCenter": [
+    138,
+    94
+   ],
+   "muzzleCamXYZ": [
+    0.19,
+    -0.129,
+    -1.06
+   ],
+   "sightPx": [
+    921,
+    419
+   ],
+   "sightDist": 0.52,
+   "scoped": false,
+   "adsAmount": 0
+  },
+  "rocket_ads": {
+   "bbox": [
+    0,
+    0,
+    1280,
+    720
+   ],
+   "coverPct": 100,
+   "muzzlePx": [
+    640,
+    452
+   ],
+   "muzzleOffsetFromCenter": [
+    0,
+    92
+   ],
+   "muzzleCamXYZ": [
+    0,
+    -0.08800000000000001,
+    -0.74
+   ],
+   "sightPx": [
+    640,
+    360
+   ],
+   "sightDist": 0.2,
+   "scoped": false,
+   "adsAmount": 1
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

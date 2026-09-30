@@ -1,0 +1,174 @@
+[run] http://127.0.0.1:55052/index.html?autotest=1&map=sandbox&bots=6&diff=easy&god=1&script=idle&scenario=tools/out/audit/review-fxaudio/s8_perf.js&duration=10
+[result] {
+ "done": true,
+ "started": true,
+ "t": 10.08,
+ "frames": 369,
+ "fps": {
+  "avg": 38.4,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 6,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 34.2,
+   "pos": [
+    -3.6,
+    0,
+    -20
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 69,
+   "weapon": "shotgun",
+   "state": "engage",
+   "distance": 25.7,
+   "pos": [
+    -3.1,
+    0,
+    27.1
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": false,
+   "kills": 0,
+   "deaths": 2,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 27.5,
+   "pos": [
+    16.7,
+    0,
+    -5.6
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 23.8,
+   "pos": [
+    3.4,
+    4.5,
+    2.7
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 23.6,
+   "pos": [
+    -20.1,
+    0,
+    29.3
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 16.6,
+   "pos": [
+    13.6,
+    2.6,
+    -27.2
+   ]
+  }
+ ],
+ "events": {
+  "damage": 11,
+  "death": 7,
+  "spawn": 13,
+  "pickup": 4,
+  "fire": 58
+ },
+ "renderer": {
+  "calls": 362,
+  "triangles": 62342,
+  "geometries": 214,
+  "textures": 134,
+  "programs": 103
+ },
+ "custom": {
+  "phases": {
+   "idle": {
+    "avgMs": 0.118,
+    "maxMs": 1.7,
+    "frames": 28
+   },
+   "gibs": {
+    "avgMs": 2.439,
+    "maxMs": 14,
+    "frames": 23
+   },
+   "gibs-late": {
+    "avgMs": 0.681,
+    "maxMs": 3.3,
+    "frames": 93
+   },
+   "rockets": {
+    "avgMs": 0.563,
+    "maxMs": 5.2,
+    "frames": 120
+   },
+   "idle2": {
+    "avgMs": 0.221,
+    "maxMs": 1.7,
+    "frames": 71
+   }
+  },
+  "stats": {
+   "smoke": 45,
+   "glow": 39,
+   "tracers": 0,
+   "decals": 59,
+   "gibs": 12,
+   "dropped": 486
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

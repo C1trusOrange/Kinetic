@@ -1,0 +1,210 @@
+[run] http://127.0.0.1:53524/index.html?autotest=1&map=foundry&bots=2&duration=1&god=1&script=idle&n=5&scenario=tools/out/audit/review-aibrain/v/jumptest.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 83.99,
+ "frames": 55,
+ "fps": {
+  "avg": 0,
+  "min": 16.528925619834407,
+  "max": 163.93442622960382
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 427.6,
+   "pos": [
+    -4.7,
+    9.5,
+    -20.1
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    -45,
+    0,
+    -38
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 133,
+  "triangles": 102866,
+  "geometries": 112,
+  "textures": 113,
+  "programs": 93
+ },
+ "custom": {
+  "unpatched": {
+   "label": "unpatched",
+   "ok": 5,
+   "N": 5,
+   "avgT": 8.26,
+   "avgInv": 6.2,
+   "avgReq": 7.2,
+   "out": [
+    {
+     "ok": true,
+     "t": 9.5,
+     "inv": 9,
+     "req": 10,
+     "end": [
+      -4.64,
+      9.5,
+      -20.16
+     ]
+    },
+    {
+     "ok": true,
+     "t": 8.48,
+     "inv": 7,
+     "req": 8,
+     "end": [
+      -4.73,
+      9.5,
+      -20.21
+     ]
+    },
+    {
+     "ok": true,
+     "t": 7.78,
+     "inv": 5,
+     "req": 6,
+     "end": [
+      -4.7,
+      9.5,
+      -20.15
+     ]
+    },
+    {
+     "ok": true,
+     "t": 7.77,
+     "inv": 5,
+     "req": 6,
+     "end": [
+      -4.71,
+      9.5,
+      -20.15
+     ]
+    },
+    {
+     "ok": true,
+     "t": 7.77,
+     "inv": 5,
+     "req": 6,
+     "end": [
+      -4.73,
+      9.5,
+      -20.21
+     ]
+    }
+   ]
+  },
+  "patchedJumpNotMoved": {
+   "label": "jump waypoints exempt from pullFromEdges",
+   "ok": 5,
+   "N": 5,
+   "avgT": 7.77,
+   "avgInv": 5,
+   "avgReq": 6,
+   "out": [
+    {
+     "ok": true,
+     "t": 7.77,
+     "inv": 5,
+     "req": 6,
+     "end": [
+      -4.74,
+      9.5,
+      -20.2
+     ]
+    },
+    {
+     "ok": true,
+     "t": 7.77,
+     "inv": 5,
+     "req": 6,
+     "end": [
+      -4.69,
+      9.5,
+      -20.15
+     ]
+    },
+    {
+     "ok": true,
+     "t": 7.77,
+     "inv": 5,
+     "req": 6,
+     "end": [
+      -4.71,
+      9.5,
+      -20.15
+     ]
+    },
+    {
+     "ok": true,
+     "t": 7.77,
+     "inv": 5,
+     "req": 6,
+     "end": [
+      -4.71,
+      9.5,
+      -20.15
+     ]
+    },
+    {
+     "ok": true,
+     "t": 7.77,
+     "inv": 5,
+     "req": 6,
+     "end": [
+      -4.71,
+      9.5,
+      -20.15
+     ]
+    }
+   ]
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

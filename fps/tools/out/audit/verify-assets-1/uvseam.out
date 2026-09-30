@@ -1,0 +1,313 @@
+[run] http://127.0.0.1:64692/tools/out/audit/verify-assets-1/uvseam.html
+[result] {
+ "iso": {
+  "cyl seg8 axisz": {
+   "tris": 32,
+   "bad": 2,
+   "worst": 7.3,
+   "badAreaPct": 10.8
+  },
+  "cyl seg8 axisy": {
+   "tris": 32,
+   "bad": 2,
+   "worst": 7.3,
+   "badAreaPct": 10.8
+  },
+  "cyl seg8 axisx": {
+   "tris": 32,
+   "bad": 2,
+   "worst": 7.3,
+   "badAreaPct": 10.8
+  },
+  "cyl seg10 axisz": {
+   "tris": 40,
+   "bad": 2,
+   "worst": 9.3,
+   "badAreaPct": 8.6
+  },
+  "cyl seg10 axisy": {
+   "tris": 40,
+   "bad": 2,
+   "worst": 9.3,
+   "badAreaPct": 8.6
+  },
+  "cyl seg10 axisx": {
+   "tris": 40,
+   "bad": 2,
+   "worst": 9.3,
+   "badAreaPct": 8.6
+  },
+  "cyl seg12 axisz": {
+   "tris": 48,
+   "bad": 2,
+   "worst": 11.3,
+   "badAreaPct": 7.2
+  },
+  "cyl seg12 axisy": {
+   "tris": 48,
+   "bad": 2,
+   "worst": 11.3,
+   "badAreaPct": 7.2
+  },
+  "cyl seg12 axisx": {
+   "tris": 48,
+   "bad": 2,
+   "worst": 11.3,
+   "badAreaPct": 7.2
+  },
+  "cyl seg14 axisz": {
+   "tris": 56,
+   "bad": 2,
+   "worst": 13.4,
+   "badAreaPct": 6.1
+  },
+  "cyl seg14 axisy": {
+   "tris": 56,
+   "bad": 2,
+   "worst": 13.4,
+   "badAreaPct": 6.1
+  },
+  "cyl seg14 axisx": {
+   "tris": 56,
+   "bad": 2,
+   "worst": 13.4,
+   "badAreaPct": 6.1
+  }
+ },
+ "seamCentroids": [
+  [
+   -0.049,
+   -0.004,
+   -0.05,
+   1.86
+  ],
+  [
+   -0.049,
+   0.004,
+   0.05,
+   1.86
+  ]
+ ],
+ "real": {
+  "pistol:view": {
+   "tris": 2368,
+   "bad": 138,
+   "worst": 60.5,
+   "list": [
+    "body:steelDark: bad 30/104 worst 60.5 area% 10.6",
+    "body:custom:52ce502f-82fe-4756-ac00-ee398419e105: bad 2/2 worst 35.7 area% 100",
+    "slide:steel: bad 20/132 worst 32.4 area% 2.1",
+    "slide:void: bad 16/152 worst 53.2 area% 0.2",
+    "slide:custom:16150fff-3a66-4481-a0c8-88f668f4454c: bad 2/2 worst 20.4 area% 100",
+    "rightArm:armor: bad 2/92 worst 5.4 area% 7.2",
+    "rightArm:glowArm: bad 2/52 worst 7.3 area% 6.8",
+    "rightArm:sleeve: bad 2/24 worst 10.6 area% 12",
+    "rightHand:glove: bad 28/286 worst 6.8 area% 7.9",
+    "leftArm:armor: bad 2/92 worst 5.4 area% 7.2",
+    "leftArm:glowArm: bad 2/52 worst 7.3 area% 6.8",
+    "leftArm:sleeve: bad 2/24 worst 10.6 area% 11.9",
+    "leftHand:glove: bad 28/286 worst 6.8 area% 8.5"
+   ]
+  },
+  "pistol:world": {
+   "tris": 626,
+   "bad": 22,
+   "worst": 32.4,
+   "list": [
+    "body:steel: bad 20/132 worst 32.4 area% 2.1",
+    "body:custom:16150fff-3a66-4481-a0c8-88f668f4454c: bad 2/2 worst 20.4 area% 100"
+   ]
+  },
+  "rifle:view": {
+   "tris": 3632,
+   "bad": 168,
+   "worst": 51.8,
+   "list": [
+    "body:steelDark: bad 68/496 worst 51.8 area% 1.7",
+    "body:steel: bad 2/108 worst 22.2 area% 1.4",
+    "body:steelBlack: bad 4/388 worst 14.1 area% 2.3",
+    "body:void: bad 16/116 worst 33.6 area% 0.2",
+    "body:glowCyan: bad 2/136 worst 16.9 area% 0.7",
+    "body:custom:58c98162-eed9-404a-974c-ea2b1c271ce9: bad 2/2 worst 14.8 area% 100",
+    "body:lens: bad 2/2 worst 7.2 area% 100",
+    "body:reticleRing: bad 2/2 worst 7.1 area% 100",
+    "body:custom:27490463-a074-466d-8634-3b6e05a23c91: bad 2/2 worst 40 area% 100",
+    "rightArm:armor: bad 2/92 worst 5.4 area% 7.2",
+    "rightArm:glowArm: bad 2/52 worst 7.3 area% 6.8",
+    "rightArm:sleeve: bad 2/24 worst 10.6 area% 12.1",
+    "rightHand:glove: bad 28/286 worst 6.8 area% 7.9",
+    "leftArm:armor: bad 2/92 worst 5.4 area% 7.2",
+    "leftArm:glowArm: bad 2/52 worst 7.3 area% 6.8",
+    "leftArm:sleeve: bad 2/24 worst 10.6 area% 12.2",
+    "leftHand:glove: bad 28/286 worst 6.8 area% 8.7"
+   ]
+  },
+  "rifle:world": {
+   "tris": 882,
+   "bad": 16,
+   "worst": 17.4,
+   "list": [
+    "body:steelDark: bad 2/136 worst 9.4 area% 2",
+    "body:steel: bad 2/64 worst 17.4 area% 1.8",
+    "body:steelBlack: bad 4/112 worst 11.1 area% 3.1",
+    "body:glowCyan: bad 2/104 worst 13.3 area% 0.9",
+    "body:custom:58c98162-eed9-404a-974c-ea2b1c271ce9: bad 2/2 worst 14.8 area% 100",
+    "body:lens: bad 2/2 worst 7.2 area% 100",
+    "body:reticleRing: bad 2/2 worst 7.1 area% 100"
+   ]
+  },
+  "shotgun:view": {
+   "tris": 3476,
+   "bad": 140,
+   "worst": 51.8,
+   "list": [
+    "body:steel: bad 2/148 worst 18.6 area% 3.7",
+    "body:paintOrange: bad 2/268 worst 14.7 area% 0.7",
+    "body:steelBlack: bad 2/472 worst 13.1 area% 0.8",
+    "body:custom:3e0e27e5-9377-47e1-8e68-591f2b9aa3b7: bad 2/2 worst 16 area% 100",
+    "body:steelDark: bad 42/288 worst 51.8 area% 7.5",
+    "body:void: bad 20/172 worst 29.7 area% 0.6",
+    "body:custom:ca238519-ebb0-453a-8e22-d23b77e0088b: bad 2/2 worst 23.5 area% 100",
+    "rightArm:armor: bad 2/92 worst 5.4 area% 7.2",
+    "rightArm:glowArm: bad 2/52 worst 7.3 area% 6.8",
+    "rightArm:sleeve: bad 2/24 worst 10.6 area% 12.1",
+    "rightHand:glove: bad 28/286 worst 6.8 area% 8",
+    "leftArm:armor: bad 2/92 worst 5.4 area% 7.2",
+    "leftArm:glowArm: bad 2/52 worst 7.3 area% 6.8",
+    "leftArm:sleeve: bad 2/24 worst 10.6 area% 12.2",
+    "leftHand:glove: bad 28/286 worst 6.8 area% 8.5"
+   ]
+  },
+  "shotgun:world": {
+   "tris": 1126,
+   "bad": 30,
+   "worst": 29.7,
+   "list": [
+    "body:steel: bad 2/148 worst 18.6 area% 3.7",
+    "body:paintOrange: bad 2/148 worst 14.7 area% 0.8",
+    "body:steelBlack: bad 2/212 worst 13.1 area% 0.8",
+    "body:custom:3e0e27e5-9377-47e1-8e68-591f2b9aa3b7: bad 2/2 worst 16 area% 100",
+    "body:steelDark: bad 2/160 worst 18.6 area% 4.2",
+    "body:void: bad 20/40 worst 29.7 area% 9.7"
+   ]
+  },
+  "sniper:view": {
+   "tris": 3884,
+   "bad": 256,
+   "worst": 51.8,
+   "list": [
+    "body:steelBlack: bad 18/676 worst 17.1 area% 2.7",
+    "body:void: bad 16/176 worst 25.4 area% 0.3",
+    "body:custom:d5fd2e57-fb13-40bd-8535-d7536cee3498: bad 2/2 worst 19 area% 100",
+    "body:glowViolet: bad 6/204 worst 15.5 area% 0.8",
+    "body:steelDark: bad 102/352 worst 51.8 area% 13.5",
+    "body:steel: bad 2/48 worst 20 area% 8.1",
+    "body:lensDark: bad 4/96 worst 19.5 area% 0.7",
+    "body:paintViolet: bad 20/84 worst 25.6 area% 1.9",
+    "body:custom:b161cc2a-e81a-49f5-b8b1-7ed29af9e246: bad 2/2 worst 26.7 area% 100",
+    "bolt:steelDark: bad 14/64 worst 19.7 area% 28.8",
+    "bolt:steelBlack: bad 2/40 worst 15.7 area% 5.9",
+    "rightArm:armor: bad 2/92 worst 5.4 area% 7.2",
+    "rightArm:glowArm: bad 2/52 worst 7.3 area% 6.8",
+    "rightArm:sleeve: bad 2/24 worst 10.6 area% 12.1",
+    "rightHand:glove: bad 28/286 worst 6.8 area% 8",
+    "leftArm:armor: bad 2/92 worst 5.4 area% 7.2",
+    "leftArm:glowArm: bad 2/52 worst 7.3 area% 6.8",
+    "leftArm:sleeve: bad 2/24 worst 10.6 area% 12.2",
+    "leftHand:glove: bad 28/286 worst 6.8 area% 8.6"
+   ]
+  },
+  "sniper:world": {
+   "tris": 1176,
+   "bad": 110,
+   "worst": 26.7,
+   "list": [
+    "body:steelBlack: bad 14/292 worst 12.4 area% 4.3",
+    "body:void: bad 16/56 worst 25.4 area% 0.6",
+    "body:custom:d5fd2e57-fb13-40bd-8535-d7536cee3498: bad 2/2 worst 19 area% 100",
+    "body:glowViolet: bad 6/156 worst 10 area% 1.3",
+    "body:steel: bad 2/32 worst 12.9 area% 12.2",
+    "body:steelDark: bad 48/204 worst 20.8 area% 11.6",
+    "body:lensDark: bad 4/64 worst 12.6 area% 1.1",
+    "body:paintViolet: bad 16/104 worst 20.1 area% 1",
+    "body:custom:b161cc2a-e81a-49f5-b8b1-7ed29af9e246: bad 2/2 worst 26.7 area% 100"
+   ]
+  },
+  "rocket:view": {
+   "tris": 3262,
+   "bad": 188,
+   "worst": 57.3,
+   "list": [
+    "body:paintOlive: bad 2/56 worst 11.9 area% 6.7",
+    "body:steelBlack: bad 6/388 worst 16.7 area% 1.6",
+    "body:void: bad 2/108 worst 11.4 area% 0.2",
+    "body:glowOrange: bad 2/40 worst 10.6 area% 7",
+    "body:steelDark: bad 50/560 worst 57.3 area% 1.3",
+    "body:hazard: bad 2/56 worst 13.2 area% 4.1",
+    "body:custom:aa1b29b8-a45c-468e-99d6-33fc0d0a2713: bad 2/2 worst 5.5 area% 100",
+    "body:custom:5663e1de-f72f-40d2-b109-28a7ca6d28d1: bad 2/2 worst 16.4 area% 100",
+    "body:lens: bad 2/2 worst 8.5 area% 100",
+    "body:reticleRing: bad 2/2 worst 7.1 area% 100",
+    "body:custom:27490463-a074-466d-8634-3b6e05a23c91: bad 2/2 worst 40 area% 100",
+    "body:poly: bad 2/100 worst 10.5 area% 3.6",
+    "body:grip: bad 2/160 worst 10.7 area% 3.7",
+    "mag:paintOlive: bad 40/144 worst 31.5 area% 13.2",
+    "mag:glowRed: bad 2/60 worst 14 area% 6.1",
+    "rightArm:armor: bad 2/92 worst 5.4 area% 7.2",
+    "rightArm:glowArm: bad 2/52 worst 7.3 area% 6.8",
+    "rightArm:sleeve: bad 2/24 worst 10.6 area% 12.1",
+    "rightHand:glove: bad 28/286 worst 6.8 area% 7.9",
+    "leftArm:armor: bad 2/92 worst 5.4 area% 7.2",
+    "leftArm:glowArm: bad 2/52 worst 7.3 area% 6.8",
+    "leftArm:sleeve: bad 2/24 worst 10.6 area% 12.2",
+    "leftHand:glove: bad 28/286 worst 6.8 area% 8.1"
+   ]
+  },
+  "rocket:world": {
+   "tris": 932,
+   "bad": 74,
+   "worst": 31.5,
+   "list": [
+    "body:paintOlive: bad 42/176 worst 31.5 area% 12",
+    "body:steelBlack: bad 2/124 worst 9.1 area% 3.2",
+    "body:void: bad 2/44 worst 7.4 area% 0.4",
+    "body:glowOrange: bad 2/16 worst 5.8 area% 12.5",
+    "body:steelDark: bad 10/212 worst 8.1 area% 2.4",
+    "body:hazard: bad 2/32 worst 7.2 area% 7.4",
+    "body:custom:aa1b29b8-a45c-468e-99d6-33fc0d0a2713: bad 2/2 worst 5.5 area% 100",
+    "body:custom:5663e1de-f72f-40d2-b109-28a7ca6d28d1: bad 2/2 worst 16.4 area% 100",
+    "body:lens: bad 2/2 worst 8.5 area% 100",
+    "body:reticleRing: bad 2/2 worst 7.1 area% 100",
+    "body:glowRed: bad 2/76 worst 9.1 area% 7.3",
+    "body:poly: bad 2/60 worst 8.2 area% 4.6",
+    "body:grip: bad 2/88 worst 8.4 area% 4.7"
+   ]
+  },
+  "grenade": {
+   "tris": 572,
+   "bad": 61,
+   "worst": 83.8,
+   "list": [
+    "body:frag: bad 29/192 worst 25.8 area% 11.2",
+    "body:glowOrange: bad 2/24 worst 8.8 area% 8.3",
+    "body:steelDark: bad 2/172 worst 12.6 area% 1.3",
+    "body:steel: bad 12/140 worst 83.8 area% 10.9",
+    "body:steelBlack: bad 16/32 worst 19.3 area% 40.6"
+   ]
+  },
+  "rocketProj": {
+   "tris": 490,
+   "bad": 26,
+   "worst": 21.2,
+   "list": [
+    "body:paintOlive: bad 2/40 worst 11.1 area% 8.6",
+    "body:steelBlack: bad 10/120 worst 21.2 area% 8.4",
+    "body:hazard: bad 2/40 worst 12.1 area% 5.5",
+    "body:paintOrange: bad 2/40 worst 10.8 area% 2.6",
+    "body:glowOrange: bad 2/40 worst 9.1 area% 1.2",
+    ": bad 8/16 worst 3.3 area% 33.3"
+   ]
+  }
+ }
+}
+[run] done: wait=ok console_errors=0 warnings=0

@@ -1,0 +1,300 @@
+[run] http://127.0.0.1:57796/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-weapons/rocket_wall.js&duration=13
+[log] [autotest] finished {"ok":true,"errors":0,"fps":49.7}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 13.15,
+ "frames": 531,
+ "fps": {
+  "avg": 49.7,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 19.8,
+  "maxSpeed": 12.79,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 6,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 175.67801981908033
+ },
+ "bots": [],
+ "events": {
+  "damage": 6,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 6
+ },
+ "renderer": {
+  "calls": 127,
+  "triangles": 35418,
+  "geometries": 130,
+  "textures": 118,
+  "programs": 99
+ },
+ "custom": {
+  "trials": [
+   {
+    "k": 0,
+    "d": 0.42,
+    "expl": [
+     {
+      "pos": [
+       20,
+       1.66,
+       -30.85
+      ],
+      "owner": "p"
+     }
+    ],
+    "dmg": [
+     {
+      "amt": 33.3,
+      "w": "rocket",
+      "att": "p"
+     }
+    ],
+    "spawn": null,
+    "wallZ": -31,
+    "health": 66.8,
+    "pre": {
+     "pos": [
+      20,
+      0,
+      -30.58
+     ],
+     "eye": [
+      20,
+      1.66,
+      -30.58
+     ],
+     "cur": "rocket",
+     "ammo": 4,
+     "alive": true,
+     "wallDist": 0.42
+    }
+   },
+   {
+    "k": 1,
+    "d": 0.5,
+    "expl": [
+     {
+      "pos": [
+       20,
+       1.66,
+       -30.85
+      ],
+      "owner": "p"
+     }
+    ],
+    "dmg": [
+     {
+      "amt": 33.3,
+      "w": "rocket",
+      "att": "p"
+     }
+    ],
+    "spawn": null,
+    "wallZ": -31,
+    "health": 66.8,
+    "pre": {
+     "pos": [
+      20,
+      0,
+      -30.5
+     ],
+     "eye": [
+      20,
+      1.66,
+      -30.5
+     ],
+     "cur": "rocket",
+     "ammo": 3,
+     "alive": true,
+     "wallDist": 0.5
+    }
+   },
+   {
+    "k": 2,
+    "d": 0.7,
+    "expl": [
+     {
+      "pos": [
+       20,
+       1.66,
+       -30.85
+      ],
+      "owner": "p"
+     }
+    ],
+    "dmg": [
+     {
+      "amt": 32.4,
+      "w": "rocket",
+      "att": "p"
+     }
+    ],
+    "spawn": null,
+    "wallZ": -31,
+    "health": 67.6,
+    "pre": {
+     "pos": [
+      20,
+      0,
+      -30.3
+     ],
+     "eye": [
+      20,
+      1.66,
+      -30.3
+     ],
+     "cur": "rocket",
+     "ammo": 3,
+     "alive": true,
+     "wallDist": 0.7
+    }
+   },
+   {
+    "k": 3,
+    "d": 1,
+    "expl": [
+     {
+      "pos": [
+       20.22,
+       1.51,
+       -30.85
+      ],
+      "owner": "p"
+     }
+    ],
+    "dmg": [
+     {
+      "amt": 30.4,
+      "w": "rocket",
+      "att": "p"
+     }
+    ],
+    "spawn": null,
+    "wallZ": -31,
+    "health": 69.6,
+    "pre": {
+     "pos": [
+      20,
+      0,
+      -30
+     ],
+     "eye": [
+      20,
+      1.66,
+      -30
+     ],
+     "cur": "rocket",
+     "ammo": 3,
+     "alive": true,
+     "wallDist": 1
+    }
+   },
+   {
+    "k": 4,
+    "d": 1.5,
+    "expl": [
+     {
+      "pos": [
+       20.22,
+       1.52,
+       -30.85
+      ],
+      "owner": "p"
+     }
+    ],
+    "dmg": [
+     {
+      "amt": 27.6,
+      "w": "rocket",
+      "att": "p"
+     }
+    ],
+    "spawn": [
+     20.22,
+     1.52,
+     -30.85
+    ],
+    "wallZ": -31,
+    "health": 72.4,
+    "pre": {
+     "pos": [
+      20,
+      0,
+      -29.5
+     ],
+     "eye": [
+      20,
+      1.66,
+      -29.5
+     ],
+     "cur": "rocket",
+     "ammo": 3,
+     "alive": true,
+     "wallDist": 1.5
+    }
+   },
+   {
+    "k": 5,
+    "d": 3,
+    "expl": [
+     {
+      "pos": [
+       19.99,
+       1.66,
+       -30.85
+      ],
+      "owner": "p"
+     }
+    ],
+    "dmg": [
+     {
+      "amt": 18.8,
+      "w": "rocket",
+      "att": "p"
+     }
+    ],
+    "spawn": [
+     20,
+     1.66,
+     -30.93
+    ],
+    "wallZ": -31,
+    "health": 81.2,
+    "pre": {
+     "pos": [
+      20,
+      0,
+      -28
+     ],
+     "eye": [
+      20,
+      1.66,
+      -28
+     ],
+     "cur": "rocket",
+     "ammo": 3,
+     "alive": true,
+     "wallDist": 3
+    }
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

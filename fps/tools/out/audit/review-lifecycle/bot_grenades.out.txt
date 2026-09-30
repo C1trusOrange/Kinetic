@@ -1,0 +1,28 @@
+[run] http://127.0.0.1:64560/index.html?autotest=1&map=foundry&bots=15&mode=tdm&duration=900&diff=insane&god=1&scenario=tools/out/audit/review-lifecycle/bot_grenades.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "deaths": 101,
+ "byWeapon": {
+  "pistol": 38,
+  "sniper": 7,
+  "rifle": 39,
+  "rocket": 15,
+  "grenade": 2
+ },
+ "noAttacker": 2,
+ "noAttackerByWeapon": {
+  "grenade": 2
+ },
+ "grenadeThrows": 5,
+ "explosions": 69,
+ "explosionsNoOwner": 5,
+ "grenadeDamageToTeammate": 0,
+ "grenadeDamageEvents": 7,
+ "sumKills": 97,
+ "errors": [],
+ "sumDeaths": 101,
+ "simSeconds": 90.6
+}
+[run] done: wait=ok console_errors=0 warnings=1

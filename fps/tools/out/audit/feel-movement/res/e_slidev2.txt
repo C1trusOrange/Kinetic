@@ -1,0 +1,6 @@
+attempt 0 failed: tools/out/audit/feel-movement/flatmap.js&scenario=tools/out/audit/feel-movement/chain.js&duration=60&exp=slide_v2&only=slide_basic_e,slide_hop_x3 | [error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done | [result] null | [run] done: wait=TIMEOUT console_errors=1 warnings=0 | 
+attempt 1 failed: 
+fps {'avg': 46.4, 'min': 4, 'max': 227.3} errors 0 [] t 13.41
+slide_basic_e {"start":12.6,"dur":1.99,"dist":14.78,"t_below_sprint":0.49,"speed_0_15":[9.6,11.58,10.67,9.82,9.01,8.25,7.54,6.87,6.23,5.64,5.08,4.55,4.05,3.58]}
+slide_hop_x3 {"jumps":[{"t":1.02,"ty":"slide","hs":12.43},{"t":1.76,"ty":"slide","hs":9.59},{"t":2.48,"ty":"slide","hs":12.27},{"t":3.25,"ty":"slide","hs":9.38},{"t":4,"ty":"slide","hs":12.38},{"t":4.72,"ty":"slide","hs":9.55},{"t":5.51,"ty":"slide","hs":12.33},{"t":6.3,"ty":"slide","hs":9.33},{"t":7.06,"ty":"slide","hs":12.38},{"t":7.83,"ty":"slide","hs":9.33}],"lands":[12.43,9.59,12.27,9.38,12.38,9.55,12.33,9.33,12.38],"speed_every0_3":[0,9.6,9.6,9.6,12.43,12.43,9.59,9.59,9.59,12.27,12.27,9.38,9.38,9.38,12.38,12.38,9.55,9.55,9.6,12.33,12.33,9.33,9.33,9.33,12.38,12.38],"dist":85.17}
+[run] done: wait=ok console_errors=0 warnings=1

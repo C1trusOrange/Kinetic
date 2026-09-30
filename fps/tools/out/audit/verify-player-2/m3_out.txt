@@ -1,0 +1,173 @@
+[run] http://127.0.0.1:59207/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/verify-player-2/m3.js&aimy=11.5&w=0&sz=-20&tz=-30.9
+[result] {
+ "done": true,
+ "started": true,
+ "t": 6,
+ "frames": 35,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 6.593779902222236,
+  "maxSpeed": 9.232114743332122,
+  "minY": 0,
+  "maxY": 2.272741998893295,
+  "states": {
+   "onGround": true,
+   "isGrappling": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "log": [
+   [
+    0,
+    "ground/idle",
+    0.12,
+    0,
+    -20
+   ],
+   [
+    0.22,
+    "ground/flying",
+    0.12,
+    0,
+    -20
+   ],
+   [
+    0.23,
+    "grapple/attached",
+    0.12,
+    0.01,
+    -20.01
+   ],
+   [
+    0.5,
+    "grapple/attached",
+    0.12,
+    0.81,
+    -21.17
+   ],
+   [
+    0.6,
+    "air/retract",
+    0.12,
+    1.43,
+    -22.03
+   ],
+   [
+    0.77,
+    "air/idle",
+    0.12,
+    2.16,
+    -23.56
+   ],
+   [
+    1,
+    "air/idle",
+    0.12,
+    2.05,
+    -23.6
+   ],
+   [
+    1.32,
+    "ground/idle",
+    0.12,
+    0,
+    -23.6
+   ],
+   [
+    1.5,
+    "ground/idle",
+    0.12,
+    0,
+    -23.6
+   ],
+   [
+    2,
+    "ground/idle",
+    0.12,
+    0,
+    -23.6
+   ],
+   [
+    2.5,
+    "ground/idle",
+    0.12,
+    0,
+    -23.6
+   ],
+   [
+    3,
+    "ground/idle",
+    0.12,
+    0,
+    -23.6
+   ],
+   [
+    3.5,
+    "ground/idle",
+    0.12,
+    0,
+    -23.6
+   ],
+   [
+    4,
+    "ground/idle",
+    0.12,
+    0,
+    -23.6
+   ],
+   [
+    4.5,
+    "ground/idle",
+    0.12,
+    0,
+    -23.6
+   ],
+   [
+    5,
+    "ground/idle",
+    0.12,
+    0,
+    -23.6
+   ],
+   [
+    5.5,
+    "ground/idle",
+    0.12,
+    0,
+    -23.6
+   ]
+  ],
+  "final": {
+   "pos": [
+    0.12,
+    0,
+    -23.6
+   ],
+   "alive": true,
+   "deaths": 0
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

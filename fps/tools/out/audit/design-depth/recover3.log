@@ -1,0 +1,143 @@
+[run] http://127.0.0.1:53647/index.html?autotest=1&mapfile=tools/out/audit/design-depth/aerie_proto.js&bots=0&script=idle&scenario=tools/out/audit/design-depth/recover2.js&duration=42&quality=low
+[log] [autotest] finished {"ok":true,"errors":0,"fps":124.3}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 42.22,
+ "frames": 3983,
+ "fps": {
+  "avg": 124.3,
+  "min": 4,
+  "max": 192.3
+ },
+ "errors": [],
+ "map": "aerie",
+ "player": {
+  "distance": 325.5,
+  "maxSpeed": 17.92,
+  "minY": -37.96666666666662,
+  "maxY": 5,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isGrappling": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 5,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 5,
+  "spawn": 5,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 99,
+  "triangles": 30234,
+  "geometries": 114,
+  "textures": 74,
+  "programs": 71
+ },
+ "custom": {
+  "runs": [
+   {
+    "name": "push14_grapple@0.35s",
+    "firedY": -0.8,
+    "anchor": [
+     10,
+     -0.1,
+     -30
+    ],
+    "minY": -38.1,
+    "alive": false,
+    "endPos": [
+     10,
+     -38.1,
+     -34
+    ],
+    "onGround": false,
+    "onShelf": false
+   },
+   {
+    "name": "push14_grapple@0.55s",
+    "firedY": -2.3,
+    "anchor": [
+     10,
+     -0.5,
+     -30
+    ],
+    "minY": -39.5,
+    "alive": false,
+    "endPos": [
+     10,
+     -39.5,
+     -47.6
+    ],
+    "onGround": false,
+    "onShelf": false
+   },
+   {
+    "name": "push14_grapple@0.75s",
+    "firedY": -5.3,
+    "anchor": [
+     10,
+     -1.9,
+     -30
+    ],
+    "minY": -38,
+    "alive": false,
+    "endPos": [
+     10,
+     -38,
+     -6.2
+    ],
+    "onGround": false,
+    "onShelf": false
+   },
+   {
+    "name": "push14_grapple@0.95s",
+    "firedY": -9,
+    "anchor": [
+     10,
+     -3,
+     -31.1
+    ],
+    "minY": -39,
+    "alive": false,
+    "endPos": [
+     10,
+     -39,
+     -42.4
+    ],
+    "onGround": false,
+    "onShelf": false
+   },
+   {
+    "name": "push14_grapple@1.20s",
+    "firedY": -14.8,
+    "anchor": [
+     10,
+     -3,
+     -31.6
+    ],
+    "minY": -38.3,
+    "alive": false,
+    "endPos": [
+     10,
+     -38.3,
+     -34.4
+    ],
+    "onGround": false,
+    "onShelf": false
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

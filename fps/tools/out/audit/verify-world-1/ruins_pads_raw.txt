@@ -1,0 +1,410 @@
+[run] http://127.0.0.1:52592/index.html?autotest=1&map=ruins&bots=0&god=1&scenario=tools/out/audit/verify-world-1/pads.js&duration=40
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":37.6}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 40.04,
+ "frames": 1292,
+ "fps": {
+  "avg": 37.6,
+  "min": 4,
+  "max": 172.4
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 109.6,
+  "maxSpeed": 13.1,
+  "minY": -1.5,
+  "maxY": 17.196414945191496,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 128,
+  "triangles": 73144,
+  "geometries": 116,
+  "textures": 99,
+  "programs": 90
+ },
+ "custom": {
+  "pads": [
+   {
+    "i": 0,
+    "pos": [
+     -31,
+     0.1,
+     0
+    ],
+    "target": [
+     -40,
+     4.5,
+     0
+    ],
+    "land": [
+     -40.08,
+     4.5,
+     0
+    ],
+    "errH": 0.08,
+    "errY": 0,
+    "air": 1.28,
+    "v0": [
+     -7,
+     18.85,
+     0
+    ],
+    "warn": []
+   },
+   {
+    "i": 1,
+    "pos": [
+     31,
+     0.1,
+     0
+    ],
+    "target": [
+     40,
+     4.5,
+     0
+    ],
+    "land": [
+     39.93,
+     4.5,
+     0
+    ],
+    "errH": 0.07,
+    "errY": 0,
+    "air": 1.27,
+    "v0": [
+     7,
+     18.85,
+     0
+    ],
+    "warn": []
+   },
+   {
+    "i": 2,
+    "pos": [
+     9.5,
+     4.6,
+     9.5
+    ],
+    "target": [
+     4.9,
+     14.3,
+     4.9
+    ],
+    "land": [
+     4.91,
+     14.3,
+     4.91
+    ],
+    "errH": 0.02,
+    "errY": 0,
+    "air": 1.53,
+    "v0": [
+     -3.01,
+     24.69,
+     -3.01
+    ],
+    "warn": []
+   },
+   {
+    "i": 3,
+    "pos": [
+     0,
+     0.1,
+     -34.5
+    ],
+    "target": [
+     0,
+     9,
+     -45
+    ],
+    "land": [
+     0,
+     0.05,
+     -37
+    ],
+    "errH": 8,
+    "errY": -8.95,
+    "air": 2.02,
+    "v0": [
+     0,
+     24.4,
+     -6.75
+    ],
+    "warn": []
+   },
+   {
+    "i": 4,
+    "pos": [
+     49,
+     9.1,
+     -14
+    ],
+    "target": [
+     44,
+     13.4,
+     -30
+    ],
+    "land": [
+     43.63,
+     13.4,
+     -30
+    ],
+    "errH": 0.37,
+    "errY": 0,
+    "air": 1.28,
+    "v0": [
+     -3.91,
+     18.72,
+     -12.5
+    ],
+    "warn": []
+   },
+   {
+    "i": 5,
+    "pos": [
+     -33,
+     -1.5,
+     26
+    ],
+    "target": [
+     -36.5,
+     8.5,
+     21
+    ],
+    "land": [
+     -36.57,
+     8.5,
+     20.83
+    ],
+    "errH": 0.19,
+    "errY": 0,
+    "air": 1.54,
+    "v0": [
+     -2.27,
+     24.98,
+     -3.24
+    ],
+    "warn": []
+   }
+  ],
+  "count": 6,
+  "map": "ruins",
+  "warnings": [],
+  "traj_3": [
+   [
+    0,
+    0,
+    0.1,
+    -34.5,
+    0,
+    24.4,
+    -6.7
+   ],
+   [
+    0.1,
+    0,
+    2.23,
+    -35.12,
+    0,
+    22.2,
+    -6.7
+   ],
+   [
+    0.2,
+    0,
+    4.32,
+    -35.79,
+    0,
+    19.8,
+    -6.7
+   ],
+   [
+    0.3,
+    0,
+    6.17,
+    -36.47,
+    0,
+    17.4,
+    -6.7
+   ],
+   [
+    0.38,
+    0,
+    7.78,
+    -37,
+    0,
+    15,
+    0
+   ],
+   [
+    0.41,
+    0,
+    8.26,
+    -37,
+    0,
+    14.2,
+    0
+   ],
+   [
+    0.48,
+    0,
+    9.25,
+    -37,
+    0,
+    12.4,
+    0
+   ],
+   [
+    0.51,
+    0,
+    9.55,
+    -37,
+    0,
+    11.8,
+    0
+   ],
+   [
+    0.61,
+    0,
+    10.52,
+    -37,
+    0,
+    9.6,
+    0
+   ],
+   [
+    0.69,
+    0,
+    11.16,
+    -37,
+    0,
+    7.8,
+    0
+   ],
+   [
+    0.72,
+    0,
+    11.46,
+    -37,
+    0,
+    6.8,
+    0
+   ],
+   [
+    0.78,
+    0,
+    11.9,
+    -37,
+    0,
+    5,
+    0
+   ],
+   [
+    0.81,
+    0,
+    11.98,
+    -37,
+    0,
+    4.6,
+    0
+   ],
+   [
+    0.88,
+    0,
+    12.2,
+    -37,
+    0,
+    3.2,
+    0
+   ],
+   [
+    0.91,
+    0,
+    12.31,
+    -37,
+    0,
+    2.2,
+    0
+   ],
+   [
+    0.98,
+    0,
+    12.4,
+    -37,
+    0,
+    0.2,
+    0
+   ],
+   [
+    1.02,
+    0,
+    12.4,
+    -37,
+    0,
+    -0.2,
+    0
+   ],
+   [
+    1.09,
+    0,
+    12.29,
+    -37,
+    0,
+    -2.2,
+    0
+   ],
+   [
+    1.12,
+    0,
+    12.22,
+    -37,
+    0,
+    -2.8,
+    0
+   ],
+   [
+    1.2,
+    0,
+    11.9,
+    -37,
+    0,
+    -4.8,
+    0
+   ]
+  ],
+  "finished": true
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

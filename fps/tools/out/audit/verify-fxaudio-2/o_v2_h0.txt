@@ -1,0 +1,83 @@
+[run] http://127.0.0.1:51835/index.html?autotest=1&map=sandbox&bots=0&god=1&script=idle&hide=0&scenario=tools/out/audit/verify-fxaudio-2/v2_pillar.js&duration=6
+[log] [autotest] finished {"ok":true,"errors":0,"fps":36.7}
+[run] screenshot -> tools\out\audit\verify-fxaudio-2\v2_pillar_h0.png
+[result] {
+ "done": true,
+ "started": true,
+ "t": 7.08,
+ "frames": 234,
+ "fps": {
+  "avg": 36.7,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 1.3,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 4.5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 97,
+  "triangles": 33260,
+  "geometries": 128,
+  "textures": 119,
+  "programs": 97
+ },
+ "custom": {
+  "hide": false,
+  "decals": [
+   {
+    "scorch": true,
+    "pos": [
+     6.5,
+     1.5,
+     7.15
+    ],
+    "n": [
+     0,
+     0.02,
+     1
+    ],
+    "size": 6.68,
+    "coverage": 0.06
+   },
+   {
+    "scorch": true,
+    "pos": [
+     6.5,
+     0.29,
+     7.3
+    ],
+    "n": [
+     0,
+     1,
+     0
+    ],
+    "size": 6.77,
+    "coverage": 0.06
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

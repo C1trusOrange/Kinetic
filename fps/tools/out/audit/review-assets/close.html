@@ -1,0 +1,37 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>close</title>
+<style>html,body{margin:0;background:#333;overflow:hidden}</style>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+window.__DONE__ = false;
+const q = new URLSearchParams(location.search);
+const id = q.get('id') || 'rocket';
+const view = q.get('view') === '1';
+const az = parseFloat(q.get('az') || '-90');   // camera azimuth around the model (deg): -90 = left side (-X)
+const dist = parseFloat(q.get('dist') || '0.5');
+const cx = parseFloat(q.get('cx') || '0'), cy = parseFloat(q.get('cy') || '0.118'), cz = parseFloat(q.get('cz') || '-0.2');
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+const pm = new THREE.PMREMGenerator(renderer);
+scene.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture; scene.environmentIntensity = 0.8;
+scene.background = new THREE.Color('#556');
+const sun = new THREE.DirectionalLight(0xffffff, 2.0); sun.position.set(-2, 3, 2); scene.add(sun);
+const T = await import('/src/world/Textures.js'); T.initTextures(renderer);
+const WM = await import('/src/weapons/WeaponModels.js');
+const m = WM.createWeaponModel(id, { view });
+scene.add(m.root);
+const cam = new THREE.PerspectiveCamera(40, innerWidth / innerHeight, 0.01, 50);
+const a = az * Math.PI / 180;
+cam.position.set(cx + Math.sin(a) * dist, cy, cz + Math.cos(a) * dist * 0 - 0);
+// az: angle in XZ plane from +X axis... use simple: az=-90 -> camera at -X
+cam.position.set(cx + Math.sin(a) * dist * -1 * -1, cy, cz);
+cam.position.set(cx + Math.sin(a) * dist, cy, cz + Math.cos(a) * dist);
+cam.lookAt(cx, cy, cz);
+renderer.render(scene, cam);
+window.__DONE__ = true;
+</script></body></html>

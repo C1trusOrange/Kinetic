@@ -1,0 +1,20 @@
+[run] http://127.0.0.1:49746/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-weapons/quitcook.js&duration=1000
+[run] screenshot -> tools\out\audit\review-weapons\quitcook.png
+[result] {
+ "state": "menu",
+ "dots": true,
+ "ring": true,
+ "cooking": true,
+ "log": [
+  [
+   "cooking",
+   {
+    "cooking": true,
+    "dots": true,
+    "ring": true,
+    "count": 23
+   }
+  ]
+ ]
+}
+[run] done: wait=ok console_errors=0 warnings=0

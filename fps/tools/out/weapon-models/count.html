@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:,">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script></head><body>
+<script type="module">
+import * as WM from '/src/weapons/WeaponModels.js';
+const out = {};
+const t0 = performance.now();
+for (const id of ['pistol', 'rifle', 'shotgun', 'sniper', 'rocket']) {
+  for (const view of [false, true]) {
+    try {
+      const t = performance.now();
+      const m = WM.createWeaponModel(id, { view });
+      let tris = 0, meshes = 0; m.root.traverse(o => { if (o.isMesh) { meshes++; tris += o.geometry.attributes.position.count / 3; } });
+      out[id + (view ? ':view' : ':world')] = { tris: Math.round(tris), meshes, ms: Math.round(performance.now() - t) };
+    } catch (e) { out[id + (view ? ':view' : ':world')] = 'ERR ' + e.message; }
+  }
+}
+if (WM.createGrenadeModel) { const g = WM.createGrenadeModel(); let tris = 0, meshes = 0; g.traverse(o => { if (o.isMesh) { meshes++; tris += o.geometry.attributes.position.count / 3; } }); out.grenade = { tris: Math.round(tris), meshes }; }
+if (WM.createRocketModel) { const g = WM.createRocketModel(); let tris = 0, meshes = 0; g.traverse(o => { if (o.isMesh) { meshes++; tris += o.geometry.attributes.position.count / 3; } }); out.rocketProj = { tris: Math.round(tris), meshes }; }
+out.totalMs = Math.round(performance.now() - t0);
+window.__VIEWER_INFO__ = out; window.__VIEWER_READY__ = true;
+</script></body></html>

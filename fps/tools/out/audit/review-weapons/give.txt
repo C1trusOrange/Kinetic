@@ -1,0 +1,96 @@
+[run] http://127.0.0.1:54696/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-weapons/give.js&duration=9
+[log] [autotest] finished {"ok":true,"errors":0,"fps":93.8}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 9.3,
+ "frames": 701,
+ "fps": {
+  "avg": 93.8,
+  "min": 4,
+  "max": 181.8
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 131,
+  "triangles": 36514,
+  "geometries": 177,
+  "textures": 123,
+  "programs": 100
+ },
+ "custom": {
+  "log": [
+   [
+    "melee running",
+    {
+     "meleeT": 0.09
+    }
+   ],
+   [
+    "give sniper during melee",
+    true
+   ],
+   [
+    "after melee",
+    {
+     "cur": "rifle",
+     "owned": "pistol,rifle,shotgun,sniper",
+     "pending": null,
+     "queued": null,
+     "sw": 0
+    }
+   ],
+   [
+    "cooking",
+    {
+     "g": 2,
+     "cook": true
+    }
+   ],
+   [
+    "give rocket during cook",
+    true
+   ],
+   [
+    "queued",
+    "rocket"
+   ],
+   [
+    "after cook",
+    {
+     "cur": "rocket",
+     "owned": "pistol,rifle,shotgun,sniper,rocket",
+     "queued": null,
+     "sw": 0,
+     "g": 0
+    }
+   ]
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

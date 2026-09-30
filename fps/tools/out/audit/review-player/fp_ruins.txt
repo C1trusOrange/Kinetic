@@ -1,0 +1,6 @@
+[run] http://127.0.0.1:65039/index.html?autotest=1&map=ruins&bots=0&script=idle&secs=150&seed=5&ring=pop&ringn=6&trace=0.35&scenario=tools/out/audit/review-player/fastsim.js
+[error] Failed to load resource: net::ERR_CONNECTION_REFUSED [http://127.0.0.1:65039/src/core/Combat.js]
+[error] TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:65039/src/core/Game.js
+[error] [run] timed out after 250s waiting for: window.__TEST__ && window.__TEST__.done
+[result] null
+[run] done: wait=TIMEOUT console_errors=3 warnings=0

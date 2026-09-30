@@ -1,0 +1,231 @@
+[run] http://127.0.0.1:50705/index.html?autotest=1&map=ruins&bots=10&duration=90&god=1&script=idle&diff=hard&scenario=tools/out/audit/review-aibody/scen_self.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":29.9}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 90.08,
+ "frames": 2375,
+ "fps": {
+  "avg": 29.9,
+  "min": 4,
+  "max": 172.4
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 0.7,
+  "maxSpeed": 0,
+  "minY": 0.7000000000000001,
+  "maxY": 1.4,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 5,
+   "deaths": 7,
+   "health": 24,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 453.7,
+   "pos": [
+    2.6,
+    0,
+    44.4
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 9,
+   "deaths": 5,
+   "health": 11,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 490.8,
+   "pos": [
+    -7.1,
+    0.1,
+    -39.6
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 8,
+   "deaths": 7,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 476.2,
+   "pos": [
+    6.5,
+    0.9,
+    49.3
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 5,
+   "deaths": 6,
+   "health": 60,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 435.1,
+   "pos": [
+    -33.7,
+    0,
+    -21.1
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": false,
+   "kills": 2,
+   "deaths": 6,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 446.4,
+   "pos": [
+    -2.8,
+    0.1,
+    -44.5
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": false,
+   "kills": 6,
+   "deaths": 8,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 454.5,
+   "pos": [
+    20,
+    0,
+    -15.7
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 4,
+   "deaths": 7,
+   "health": 63,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 405.6,
+   "pos": [
+    27.4,
+    0.1,
+    2
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": false,
+   "kills": 3,
+   "deaths": 7,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 530.5,
+   "pos": [
+    -3.5,
+    0.1,
+    24.7
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 8,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "collect",
+   "distance": 535.4,
+   "pos": [
+    -40.3,
+    4.5,
+    7.5
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 10,
+   "deaths": 6,
+   "health": 88,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 461.9,
+   "pos": [
+    46.9,
+    9,
+    9
+   ]
+  }
+ ],
+ "events": {
+  "damage": 304,
+  "death": 65,
+  "spawn": 72,
+  "pickup": 11,
+  "fire": 706
+ },
+ "renderer": {
+  "calls": 519,
+  "triangles": 120218,
+  "geometries": 220,
+  "textures": 128,
+  "programs": 100
+ },
+ "custom": {
+  "rockets": 62,
+  "grenades": 7,
+  "selfDmg": {
+   "rocket": 41
+  },
+  "selfDmgCount": {
+   "rocket": 4
+  },
+  "earlyBlast": [
+   {
+    "kind": "blast-near-owner",
+    "d": 1.38,
+    "bot": "Nimbus",
+    "state": "engage"
+   }
+  ],
+  "nearOwnerBlast": 1,
+  "selfKills": 0,
+  "kills": 65,
+  "rocketDirectSelf": 0,
+  "quick": 0
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

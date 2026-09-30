@@ -1,0 +1,483 @@
+[run] http://127.0.0.1:65232/index.html?autotest=1&map=foundry&bots=1&spectate=1&scenario=tools/out/audit/review-aibrain/scen_cascade.js&duration=8
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":51.1}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.06,
+ "frames": 406,
+ "fps": {
+  "avg": 51.1,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 12,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 74.4,
+   "pos": [
+    -22.7,
+    0,
+    17.1
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 168,
+  "triangles": 105828,
+  "geometries": 116,
+  "textures": 114,
+  "programs": 91
+ },
+ "custom": {
+  "log": [
+   {
+    "el": 0.1,
+    "y": 2.8,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 0.21,
+    "y": 4.7,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 0.32,
+    "y": 6,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 0.41,
+    "y": 7.3,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 0.51,
+    "y": 8.3,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 0.62,
+    "y": 9.2,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 0.71,
+    "y": 9.6,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 0.81,
+    "y": 9.9,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 0.92,
+    "y": 10,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.01,
+    "y": 9.8,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.13,
+    "y": 9.4,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.21,
+    "y": 8.9,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.31,
+    "y": 7.8,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.42,
+    "y": 6.8,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.51,
+    "y": 5.6,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 0,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 1.61,
+    "y": 4.3,
+    "ground": false,
+    "state": "retreat",
+    "kind": "health",
+    "ignored": 2,
+    "unreach": true,
+    "mode": "direct"
+   },
+   {
+    "el": 1.73,
+    "y": 2.8,
+    "ground": false,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": true,
+    "mode": "direct"
+   },
+   {
+    "el": 1.81,
+    "y": 1.2,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": true,
+    "mode": "direct"
+   },
+   {
+    "el": 1.92,
+    "y": 1.2,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": true,
+    "mode": "direct"
+   },
+   {
+    "el": 2,
+    "y": 1.2,
+    "ground": false,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": true,
+    "mode": "direct"
+   },
+   {
+    "el": 2.1,
+    "y": 1,
+    "ground": false,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": true,
+    "mode": "direct"
+   },
+   {
+    "el": 2.21,
+    "y": 0.7,
+    "ground": false,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": true,
+    "mode": "direct"
+   },
+   {
+    "el": 2.31,
+    "y": 0.4,
+    "ground": false,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": true,
+    "mode": "direct"
+   },
+   {
+    "el": 2.4,
+    "y": 0.2,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": true,
+    "mode": "direct"
+   },
+   {
+    "el": 2.51,
+    "y": 0.2,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": true,
+    "mode": "direct"
+   },
+   {
+    "el": 2.62,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": true,
+    "mode": "direct"
+   },
+   {
+    "el": 2.72,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": true,
+    "mode": "direct"
+   },
+   {
+    "el": 2.81,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": true,
+    "mode": "direct"
+   },
+   {
+    "el": 2.92,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": true,
+    "mode": "direct"
+   },
+   {
+    "el": 3.01,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.11,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.21,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.3,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.41,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.52,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.61,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.72,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.81,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 3.91,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": false,
+    "mode": "path"
+   },
+   {
+    "el": 4.01,
+    "y": 0,
+    "ground": true,
+    "state": "retreat",
+    "kind": "flee",
+    "ignored": 4,
+    "unreach": false,
+    "mode": "path"
+   }
+  ],
+  "healthPickups": 4,
+  "phase": "init",
+  "start": {
+   "pos": [
+    -5.4869,
+    0.2199999988079071,
+    -3.49269
+   ],
+   "health": 30
+  },
+  "marker": 1.0046000000000048,
+  "hurt": true,
+  "hurtAt": 0.32,
+  "hurtY": 6,
+  "ignoredHealthAtEnd": 4,
+  "state": "retreat"
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

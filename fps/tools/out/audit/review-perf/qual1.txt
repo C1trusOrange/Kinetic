@@ -1,0 +1,734 @@
+[run] http://127.0.0.1:63923/index.html?autotest=1&map=foundry&bots=5&duration=28&scenario=tools/out/audit/review-perf/scenario_qual.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 28.38,
+ "frames": 1278,
+ "fps": {
+  "avg": 59.3,
+  "min": 4,
+  "max": 178.6
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 79,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 70.3,
+   "pos": [
+    21,
+    0,
+    31.6
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 28,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 148.3,
+   "pos": [
+    -6.9,
+    -3.7,
+    22.4
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 53,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 181.5,
+   "pos": [
+    -15.1,
+    0,
+    15.4
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 24,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 204.2,
+   "pos": [
+    15.2,
+    1,
+    -19.3
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 25,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 158.3,
+   "pos": [
+    1.3,
+    0,
+    7.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 33,
+  "death": 4,
+  "spawn": 10,
+  "pickup": 3,
+  "fire": 107
+ },
+ "renderer": {
+  "calls": 399,
+  "triangles": 132100,
+  "geometries": 225,
+  "textures": 216,
+  "programs": 132
+ },
+ "custom": {
+  "marks": [
+   [
+    "set medium",
+    3.0282,
+    102
+   ],
+   [
+    "set high",
+    6.047999999999999,
+    275
+   ],
+   [
+    "set medium",
+    9.069299999999991,
+    370
+   ],
+   [
+    "set high",
+    12.07269999999999,
+    553
+   ],
+   [
+    "set medium",
+    15.07689999999997,
+    645
+   ],
+   [
+    "set high",
+    18.085999999999988,
+    832
+   ],
+   [
+    "set low",
+    21.11089999999999,
+    931
+   ],
+   [
+    "set high",
+    24.112399999999994,
+    1131
+   ]
+  ],
+  "setMs": [
+   4,
+   2,
+   2,
+   1,
+   2,
+   1,
+   13,
+   20
+  ],
+  "mem": [
+   {
+    "label": "start",
+    "tex": 86,
+    "geo": 86,
+    "progs": 51,
+    "heap": 141
+   },
+   {
+    "label": "after medium",
+    "tex": 144,
+    "geo": 207,
+    "progs": 103,
+    "heap": 149
+   },
+   {
+    "label": "after high",
+    "tex": 156,
+    "geo": 218,
+    "progs": 103,
+    "heap": 133
+   },
+   {
+    "label": "after medium",
+    "tex": 167,
+    "geo": 218,
+    "progs": 103,
+    "heap": 144
+   },
+   {
+    "label": "after high",
+    "tex": 178,
+    "geo": 218,
+    "progs": 103,
+    "heap": 131
+   },
+   {
+    "label": "after medium",
+    "tex": 189,
+    "geo": 218,
+    "progs": 103,
+    "heap": 142
+   },
+   {
+    "label": "after high",
+    "tex": 205,
+    "geo": 225,
+    "progs": 104,
+    "heap": 152
+   },
+   {
+    "label": "after low",
+    "tex": 202,
+    "geo": 225,
+    "progs": 132,
+    "heap": 160
+   },
+   {
+    "label": "after high",
+    "tex": 216,
+    "geo": 225,
+    "progs": 132,
+    "heap": 136
+   }
+  ],
+  "around": [
+   {
+    "mark": "set medium",
+    "frames": [
+     {
+      "gt": 2.99,
+      "dt": 20,
+      "upd": 1.9,
+      "ren": 9.4,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 3.03,
+      "dt": 46,
+      "upd": 8.8,
+      "ren": 16.8,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 3.05,
+      "dt": 13,
+      "upd": 1.9,
+      "ren": 8.6,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 3.06,
+      "dt": 12,
+      "upd": 1.8,
+      "ren": 8.2,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 3.11,
+      "dt": 127,
+      "upd": 2.8,
+      "ren": 10.2,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 3.14,
+      "dt": 27,
+      "upd": 5.9,
+      "ren": 11.1,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 3.15,
+      "dt": 22,
+      "upd": 2.8,
+      "ren": 15.5,
+      "np": 0,
+      "progs": 103
+     }
+    ]
+   },
+   {
+    "mark": "set high",
+    "frames": [
+     {
+      "gt": 6.02,
+      "dt": 19,
+      "upd": 2.3,
+      "ren": 7.7,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 6.05,
+      "dt": 37,
+      "upd": 4.5,
+      "ren": 11.5,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 6.07,
+      "dt": 16,
+      "upd": 2.2,
+      "ren": 11.4,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 6.09,
+      "dt": 21,
+      "upd": 1.7,
+      "ren": 10.7,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 6.14,
+      "dt": 105,
+      "upd": 3.1,
+      "ren": 7.3,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 6.19,
+      "dt": 93,
+      "upd": 2.3,
+      "ren": 8.3,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 6.24,
+      "dt": 80,
+      "upd": 6.2,
+      "ren": 10.7,
+      "np": 0,
+      "progs": 103
+     }
+    ]
+   },
+   {
+    "mark": "set medium",
+    "frames": [
+     {
+      "gt": 9.02,
+      "dt": 22,
+      "upd": 2.2,
+      "ren": 5.7,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 9.07,
+      "dt": 72,
+      "upd": 4.4,
+      "ren": 10.8,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 9.09,
+      "dt": 23,
+      "upd": 2.3,
+      "ren": 12.5,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 9.13,
+      "dt": 41,
+      "upd": 3.9,
+      "ren": 16,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 9.18,
+      "dt": 149,
+      "upd": 2.6,
+      "ren": 7.7,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 9.19,
+      "dt": 20,
+      "upd": 2.8,
+      "ren": 12.8,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 9.23,
+      "dt": 44,
+      "upd": 5.5,
+      "ren": 20,
+      "np": 0,
+      "progs": 103
+     }
+    ]
+   },
+   {
+    "mark": "set high",
+    "frames": [
+     {
+      "gt": 12.06,
+      "dt": 10,
+      "upd": 1.3,
+      "ren": 7.9,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 12.07,
+      "dt": 14,
+      "upd": 2.5,
+      "ren": 9.4,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 12.1,
+      "dt": 30,
+      "upd": 1.3,
+      "ren": 12.5,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 12.12,
+      "dt": 22,
+      "upd": 1.2,
+      "ren": 15.1,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 12.17,
+      "dt": 80,
+      "upd": 3.8,
+      "ren": 10.2,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 12.22,
+      "dt": 50,
+      "upd": 2.3,
+      "ren": 8.7,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 12.27,
+      "dt": 53,
+      "upd": 2,
+      "ren": 11.5,
+      "np": 0,
+      "progs": 103
+     }
+    ]
+   },
+   {
+    "mark": "set medium",
+    "frames": [
+     {
+      "gt": 15.05,
+      "dt": 32,
+      "upd": 1.4,
+      "ren": 13.3,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 15.08,
+      "dt": 51,
+      "upd": 5.2,
+      "ren": 33,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 15.13,
+      "dt": 26,
+      "upd": 2.3,
+      "ren": 9.6,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 15.18,
+      "dt": 155,
+      "upd": 1.4,
+      "ren": 8.2,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 15.21,
+      "dt": 42,
+      "upd": 2.4,
+      "ren": 10.4,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 15.25,
+      "dt": 30,
+      "upd": 1.2,
+      "ren": 8.6,
+      "np": 0,
+      "progs": 103
+     },
+     {
+      "gt": 15.26,
+      "dt": 10,
+      "upd": 1.1,
+      "ren": 7.5,
+      "np": 0,
+      "progs": 103
+     }
+    ]
+   },
+   {
+    "mark": "set high",
+    "frames": [
+     {
+      "gt": 18.07,
+      "dt": 18,
+      "upd": 2.9,
+      "ren": 13.7,
+      "np": 0,
+      "progs": 104
+     },
+     {
+      "gt": 18.09,
+      "dt": 16,
+      "upd": 3,
+      "ren": 11.7,
+      "np": 0,
+      "progs": 104
+     },
+     {
+      "gt": 18.1,
+      "dt": 13,
+      "upd": 1.8,
+      "ren": 8.8,
+      "np": 0,
+      "progs": 104
+     },
+     {
+      "gt": 18.15,
+      "dt": 106,
+      "upd": 4.2,
+      "ren": 6,
+      "np": 0,
+      "progs": 104
+     },
+     {
+      "gt": 18.2,
+      "dt": 40,
+      "upd": 1.8,
+      "ren": 7.1,
+      "np": 0,
+      "progs": 104
+     },
+     {
+      "gt": 18.25,
+      "dt": 76,
+      "upd": 1.7,
+      "ren": 8.2,
+      "np": 0,
+      "progs": 104
+     },
+     {
+      "gt": 18.27,
+      "dt": 35,
+      "upd": 2.1,
+      "ren": 15.5,
+      "np": 0,
+      "progs": 104
+     }
+    ]
+   },
+   {
+    "mark": "set low",
+    "frames": [
+     {
+      "gt": 21.07,
+      "dt": 36,
+      "upd": 3.4,
+      "ren": 27.9,
+      "np": 0,
+      "progs": 104
+     },
+     {
+      "gt": 21.11,
+      "dt": 7484,
+      "upd": 15.3,
+      "ren": 7463.8,
+      "np": 28,
+      "progs": 132
+     },
+     {
+      "gt": 21.16,
+      "dt": 24,
+      "upd": 1.4,
+      "ren": 8.3,
+      "np": 0,
+      "progs": 132
+     },
+     {
+      "gt": 21.18,
+      "dt": 7,
+      "upd": 1.1,
+      "ren": 4.2,
+      "np": 0,
+      "progs": 132
+     },
+     {
+      "gt": 21.19,
+      "dt": 9,
+      "upd": 1.2,
+      "ren": 4.7,
+      "np": 0,
+      "progs": 132
+     },
+     {
+      "gt": 21.2,
+      "dt": 16,
+      "upd": 1.7,
+      "ren": 6.9,
+      "np": 0,
+      "progs": 132
+     },
+     {
+      "gt": 21.22,
+      "dt": 16,
+      "upd": 2,
+      "ren": 8.6,
+      "np": 0,
+      "progs": 132
+     }
+    ]
+   },
+   {
+    "mark": "set high",
+    "frames": [
+     {
+      "gt": 24.11,
+      "dt": 8,
+      "upd": 1,
+      "ren": 5.7,
+      "np": 0,
+      "progs": 132
+     },
+     {
+      "gt": 24.11,
+      "dt": 46,
+      "upd": 23.9,
+      "ren": 20.6,
+      "np": 0,
+      "progs": 132
+     },
+     {
+      "gt": 24.16,
+      "dt": 10,
+      "upd": 1.9,
+      "ren": 7.2,
+      "np": 0,
+      "progs": 132
+     },
+     {
+      "gt": 24.17,
+      "dt": 9,
+      "upd": 2.8,
+      "ren": 5.5,
+      "np": 0,
+      "progs": 132
+     },
+     {
+      "gt": 24.22,
+      "dt": 423,
+      "upd": 1.6,
+      "ren": 9.4,
+      "np": 0,
+      "progs": 132
+     },
+     {
+      "gt": 24.27,
+      "dt": 80,
+      "upd": 3.7,
+      "ren": 12.9,
+      "np": 0,
+      "progs": 132
+     },
+     {
+      "gt": 24.32,
+      "dt": 131,
+      "upd": 2.6,
+      "ren": 9.3,
+      "np": 0,
+      "progs": 132
+     }
+    ]
+   }
+  ],
+  "finalProgs": 132
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

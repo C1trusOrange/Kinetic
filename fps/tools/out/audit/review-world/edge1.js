@@ -1,0 +1,25 @@
+export default {
+  id: 'edge1', name: 'Edge1',
+  solids: [
+    { type: 'box', min: [-20, -1, -20], max: [20, 0, 20], mat: 'nonexistent_mat', top: 'concrete' },
+    { type: 'box', pos: [0, 1, -5], size: [2, 2, 2], rot: 'bad' },
+    { type: 'bogus' },
+    null,
+    { type: 'wall', from: [0, 0], to: [0, 0] },
+    { type: 'ramp', pos: [5, 1, 5], size: [6, 2, 3], dir: '+q' },
+    { type: 'cylinder', pos: [0, 1, 5], radius: -1, height: 2 },
+    { type: 'container', pos: [10, 1.3, 10], color: 'purple' },
+    { type: 'panel', pos: [0, 2, -19.9], size: [4, 2], mat: 'neon_blue' },
+  ],
+  spawns: [{ pos: [0, 0, 0] }, { pos: [3, 0, 3], lookAt: [0, 0, 0] }, { pos: [NaN, 0, 0] }, { pos: [0, 0] }],
+  pickups: [
+    { type: 'health', pos: [1, 0, 1] },
+    { type: 'weapon', weapon: 'nonexistent', pos: [2, 0, 2] },
+    { type: 'nothing', pos: [2, 0, 2] },
+    { type: 'weapon', weapon: 'rocket', pos: [-3, 0, 3] },
+    { type: 'ammo', pos: [5, 0, -3] },
+    null,
+  ],
+  jumpPads: [{ pos: [8, 0, 0], target: [15, 0, 0] }, { pos: [8, 0, 4] }, { pos: [8, 0, -4], velocity: [5, 10, 0] }],
+  lights: [{ pos: [0, 5, 0] }, {}, { pos: [1, 2, 3], color: '#f00' }, { pos: [0, 5, 3] }, { pos: [0, 5, 4] }, { pos: [0, 5, 5] }],
+};

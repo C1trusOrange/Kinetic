@@ -1,0 +1,37 @@
+"custom": {
+  "result": {
+   "hasBot": true,
+   "announceElem": "hud-announce",
+   "afterKill1": {
+    "state": "playing",
+    "ann": {
+     "title": "FIRST BLOOD",
+     "sub": "",
+     "kind": "kill"
+    },
+    "kills": 1
+   },
+   "afterKill2": {
+    "state": "ended",
+    "over": true,
+    "playerWon": true,
+    "ann": {
+     "title": "DOUBLE KILL",
+     "sub": "HEADSHOT",
+     "kind": "kill"
+    },
+    "kills": 2
+   },
+   "later": {
+    "title": "DOUBLE KILL",
+    "sub": "HEADSHOT",
+    "kind": "kill"
+   }
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+
+[run] done: wait=ok console_errors=0 warnings=0
+

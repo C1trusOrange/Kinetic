@@ -1,0 +1,18 @@
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[shot] tools\out\audit\feel-presentation\b_skyline_tdm_enemy_8_1280.png
+enemy 8 Flux 2
+[shot] tools\out\audit\feel-presentation\b_skyline_tdm_enemy_20_1280.png
+enemy 20 Flux 2
+[shot] tools\out\audit\feel-presentation\b_skyline_tdm_enemy_40_1280.png
+enemy 40 Flux 2
+[shot] tools\out\audit\feel-presentation\b_skyline_tdm_ally_12_1280.png
+ally 12 Byte 1
+[sess] console errors=0 warnings=1

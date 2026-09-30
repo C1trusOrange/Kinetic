@@ -1,0 +1,91 @@
+[run] http://127.0.0.1:52048/index.html?autotest=1&map=gunfeel&mapfile=tools/out/audit/feel-gunfeel/testmap.js&bots=0&god=1&script=idle&scenario=tools/out/audit/feel-gunfeel/timing.js&only=rate&fix=1&duration=100
+[log] [autotest] finished {"ok":true,"errors":0,"fps":93.1}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 27.88,
+ "frames": 1888,
+ "fps": {
+  "avg": 93.1,
+  "min": 4,
+  "max": 204.1
+ },
+ "errors": [],
+ "map": "gunfeel",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 44,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 44
+ },
+ "renderer": {
+  "calls": 75,
+  "triangles": 7076,
+  "geometries": 174,
+  "textures": 95,
+  "programs": 78
+ },
+ "custom": {
+  "_fixApplied": true,
+  "_total": 27.5,
+  "rate_pistol": {
+   "defRate": 5.2,
+   "shots": 3,
+   "avgInterval_s": 0.913,
+   "achievedRate": 1.1,
+   "minI": 0.903,
+   "maxI": 0.923
+  },
+  "rate_rifle": {
+   "defRate": 11,
+   "shots": 22,
+   "avgInterval_s": 0.091,
+   "achievedRate": 10.96,
+   "minI": 0.061,
+   "maxI": 0.121
+  },
+  "rate_shotgun": {
+   "defRate": 1.15,
+   "shots": 7,
+   "avgInterval_s": 0.87,
+   "achievedRate": 1.15,
+   "minI": 0.866,
+   "maxI": 0.879
+  },
+  "rate_sniper": {
+   "defRate": 0.95,
+   "shots": 6,
+   "avgInterval_s": 1.053,
+   "achievedRate": 0.95,
+   "minI": 1.042,
+   "maxI": 1.058
+  },
+  "rate_rocket": {
+   "defRate": 1.1,
+   "shots": 6,
+   "avgInterval_s": 0.916,
+   "achievedRate": 1.09,
+   "minI": 0.897,
+   "maxI": 0.935
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

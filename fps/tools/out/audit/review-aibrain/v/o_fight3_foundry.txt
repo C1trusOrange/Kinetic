@@ -1,0 +1,858 @@
+[run] http://127.0.0.1:56666/index.html?autotest=1&map=foundry&bots=10&duration=1&god=1&script=idle&test=fight&simtime=300&scenario=tools/out/audit/review-aibrain/sim.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 305.13,
+ "frames": 157,
+ "fps": {
+  "avg": 0,
+  "min": 40.16064257027731,
+  "max": 43.29004329004431
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 96.2,
+  "maxSpeed": 9.46,
+  "minY": 0,
+  "maxY": 18.761302996215452,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Sprocket",
+   "alive": false,
+   "kills": 21,
+   "deaths": 15,
+   "health": 0,
+   "weapon": "shotgun",
+   "state": "retreat",
+   "distance": 1532.5,
+   "pos": [
+    -7,
+    0,
+    16.5
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 13,
+   "deaths": 15,
+   "health": 76,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 1534.6,
+   "pos": [
+    18.3,
+    0,
+    31.3
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 18,
+   "deaths": 17,
+   "health": 22,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 1674.9,
+   "pos": [
+    24,
+    0,
+    7.1
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 18,
+   "deaths": 16,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 1490.2,
+   "pos": [
+    12.3,
+    5,
+    -11.6
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 13,
+   "deaths": 17,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 1394.8,
+   "pos": [
+    -3.6,
+    0,
+    -27.3
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 16,
+   "deaths": 19,
+   "health": 65,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 1497.6,
+   "pos": [
+    19.1,
+    0,
+    -1.6
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 14,
+   "deaths": 15,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 1564.4,
+   "pos": [
+    41.4,
+    0,
+    -28.2
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 15,
+   "deaths": 18,
+   "health": 64,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 1473.2,
+   "pos": [
+    -10.8,
+    0,
+    32.3
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 9,
+   "deaths": 18,
+   "health": 42,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 1381.8,
+   "pos": [
+    -35.1,
+    0,
+    -7.9
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 21,
+   "deaths": 18,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "roam",
+   "distance": 1595.1,
+   "pos": [
+    -12,
+    5,
+    6
+   ]
+  }
+ ],
+ "events": {
+  "damage": 873,
+  "death": 168,
+  "spawn": 178,
+  "pickup": 25,
+  "fire": 2462
+ },
+ "renderer": {
+  "calls": 526,
+  "triangles": 153114,
+  "geometries": 225,
+  "textures": 144,
+  "programs": 104
+ },
+ "custom": {
+  "fight": {
+   "stuckRecover": 28,
+   "stuckList": [
+    {
+     "t": 13,
+     "bot": "Gasket",
+     "st": "engage",
+     "mode": "path",
+     "pos": "13.2,5.0,16.1",
+     "wp": "18.5,0.0,21.3:walk",
+     "idx": 0,
+     "len": 4,
+     "goal": "-17.7,0.0,14.9",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 14,
+     "bot": "Gasket",
+     "st": "engage",
+     "mode": "path",
+     "pos": "13.3,5.0,15.7",
+     "wp": "18.5,0.0,21.3:walk",
+     "idx": 0,
+     "len": 4,
+     "goal": "-17.7,0.0,14.9",
+     "stage": 2,
+     "tgt": "vis"
+    },
+    {
+     "t": 38,
+     "bot": "Cog",
+     "st": "engage",
+     "mode": "path",
+     "pos": "-22.6,5.0,15.2",
+     "wp": "-18.5,5.0,16.5:walk",
+     "idx": 0,
+     "len": 3,
+     "goal": "-18.4,0.0,-12.4",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 42,
+     "bot": "Sprocket",
+     "st": "chase",
+     "mode": "path",
+     "pos": "11.0,5.0,-8.1",
+     "wp": "9.5,0.0,-8.5:drop",
+     "idx": 1,
+     "len": 4,
+     "goal": "-13.1,1.7,-11.9",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 49,
+     "bot": "Gasket",
+     "st": "chase",
+     "mode": "path",
+     "pos": "6.8,0.2,-4.3",
+     "wp": "6.5,0.0,-9.5:walk",
+     "idx": 1,
+     "len": 8,
+     "goal": "15.4,2.6,-16.1",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 75,
+     "bot": "Diode",
+     "st": "chase",
+     "mode": "path",
+     "pos": "6.9,0.0,-4.0",
+     "wp": "6.5,0.0,-8.5:walk",
+     "idx": 0,
+     "len": 4,
+     "goal": "12.5,0.0,-19.4",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 102,
+     "bot": "Servo",
+     "st": "chase",
+     "mode": "path",
+     "pos": "16.9,0.0,-8.6",
+     "wp": "18.5,0.0,-8.5:walk",
+     "idx": 0,
+     "len": 16,
+     "goal": "10.4,4.5,-19.3",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 103,
+     "bot": "Servo",
+     "st": "chase",
+     "mode": "path",
+     "pos": "16.9,0.5,-8.6",
+     "wp": "18.5,0.0,-8.5:walk",
+     "idx": 0,
+     "len": 9,
+     "goal": "4.1,1.0,-15.0",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 105,
+     "bot": "Servo",
+     "st": "chase",
+     "mode": "path",
+     "pos": "16.9,0.0,-8.6",
+     "wp": "18.5,0.0,-8.5:walk",
+     "idx": 0,
+     "len": 9,
+     "goal": "4.1,1.0,-15.0",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 106,
+     "bot": "Servo",
+     "st": "chase",
+     "mode": "path",
+     "pos": "16.9,0.5,-8.6",
+     "wp": "18.5,0.0,-8.5:walk",
+     "idx": 0,
+     "len": 3,
+     "goal": "15.0,1.7,5.6",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 123,
+     "bot": "Diode",
+     "st": "chase",
+     "mode": "path",
+     "pos": "-16.9,0.7,-2.5",
+     "wp": "-18.5,0.0,-2.5:walk",
+     "idx": 0,
+     "len": 4,
+     "goal": "-37.0,1.7,-26.2",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 124,
+     "bot": "Diode",
+     "st": "chase",
+     "mode": "path",
+     "pos": "-16.9,1.0,-2.5",
+     "wp": "-18.5,0.0,-2.5:walk",
+     "idx": 0,
+     "len": 4,
+     "goal": "-38.0,1.7,-21.5",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 126,
+     "bot": "Diode",
+     "st": "chase",
+     "mode": "path",
+     "pos": "-16.9,0.0,-3.4",
+     "wp": "-18.5,0.0,-3.5:walk",
+     "idx": 0,
+     "len": 4,
+     "goal": "-35.8,1.7,-25.1",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 129,
+     "bot": "Diode",
+     "st": "chase",
+     "mode": "path",
+     "pos": "-16.9,0.0,-0.6",
+     "wp": "-18.5,0.0,-0.5:walk",
+     "idx": 0,
+     "len": 5,
+     "goal": "-37.5,1.7,-20.4",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 132,
+     "bot": "Diode",
+     "st": "chase",
+     "mode": "path",
+     "pos": "-16.9,1.2,0.4",
+     "wp": "-18.5,0.0,0.5:walk",
+     "idx": 0,
+     "len": 5,
+     "goal": "-33.9,2.6,-19.3",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 133,
+     "bot": "Diode",
+     "st": "chase",
+     "mode": "path",
+     "pos": "-16.9,0.0,0.7",
+     "wp": "-18.5,0.0,0.5:walk",
+     "idx": 0,
+     "len": 4,
+     "goal": "-40.9,2.2,-18.3",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 135,
+     "bot": "Diode",
+     "st": "chase",
+     "mode": "direct",
+     "pos": "-16.9,0.0,3.5",
+     "wp": null,
+     "idx": 0,
+     "len": 0,
+     "goal": "-36.2,2.7,-13.3",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 153,
+     "bot": "Piston",
+     "st": "engage",
+     "mode": "idle",
+     "pos": "6.2,0.0,-9.7",
+     "wp": null,
+     "idx": 0,
+     "len": 0,
+     "goal": "3.3,0.0,5.3",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 174,
+     "bot": "Flux",
+     "st": "chase",
+     "mode": "direct",
+     "pos": "23.4,0.0,-37.4",
+     "wp": null,
+     "idx": 1,
+     "len": 0,
+     "goal": "23.5,2.7,-37.4",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 225,
+     "bot": "Gasket",
+     "st": "engage",
+     "mode": "path",
+     "pos": "-15.1,0.0,22.4",
+     "wp": "-31.5,0.0,21.3:walk",
+     "idx": 1,
+     "len": 3,
+     "goal": "-36.4,0.0,18.0",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 227,
+     "bot": "Flux",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "16.9,0.0,-8.6",
+     "wp": "18.5,0.0,-8.5:walk",
+     "idx": 0,
+     "len": 17,
+     "goal": "-13.0,9.5,7.0",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 228,
+     "bot": "Flux",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "16.9,0.4,-8.6",
+     "wp": "18.5,0.0,-8.5:walk",
+     "idx": 0,
+     "len": 17,
+     "goal": "-13.0,9.5,7.0",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 231,
+     "bot": "Flux",
+     "st": "chase",
+     "mode": "path",
+     "pos": "16.6,1.3,-3.4",
+     "wp": "18.5,0.0,-3.5:walk",
+     "idx": 0,
+     "len": 6,
+     "goal": "31.6,1.7,-21.3",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 232,
+     "bot": "Flux",
+     "st": "chase",
+     "mode": "path",
+     "pos": "16.9,-0.0,-3.6",
+     "wp": "18.5,0.0,-3.5:walk",
+     "idx": 0,
+     "len": 6,
+     "goal": "31.6,1.7,-21.3",
+     "stage": 2,
+     "tgt": "mem"
+    },
+    {
+     "t": 246,
+     "bot": "Nimbus",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "6.3,0.0,-2.5",
+     "wp": "5.5,0.2,-2.5:walk",
+     "idx": 0,
+     "len": 12,
+     "goal": "-13.0,9.5,7.0",
+     "stage": 1,
+     "tgt": "mem"
+    },
+    {
+     "t": 257,
+     "bot": "Byte",
+     "st": "engage",
+     "mode": "idle",
+     "pos": "-11.4,5.0,-8.6",
+     "wp": null,
+     "idx": 0,
+     "len": 0,
+     "goal": "-12.4,1.3,-22.8",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 280,
+     "bot": "Piston",
+     "st": "retreat",
+     "mode": "path",
+     "pos": "5.4,0.0,-1.2",
+     "wp": "4.5,0.2,-1.5:walk",
+     "idx": 2,
+     "len": 16,
+     "goal": "-13.0,9.5,7.0",
+     "stage": 1,
+     "tgt": "vis"
+    },
+    {
+     "t": 302,
+     "bot": "Diode",
+     "st": "chase",
+     "mode": "path",
+     "pos": "-17.4,5.0,16.7",
+     "wp": "-17.5,0.0,17.5:drop",
+     "idx": 1,
+     "len": 4,
+     "goal": "-14.5,1.7,16.1",
+     "stage": 1,
+     "tgt": "mem"
+    }
+   ],
+   "rescue": [],
+   "ignoredSets": [
+    {
+     "t": 82,
+     "bot": "Byte",
+     "pickup": "weapon:sniper",
+     "dur": 90,
+     "air": true,
+     "gap": 5.4,
+     "state": "collect",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 82.2,
+     "bot": "Byte",
+     "pickup": "armor",
+     "dur": 90,
+     "air": true,
+     "gap": 9.4,
+     "state": "collect",
+     "navmode": "direct",
+     "unreachable": true
+    },
+    {
+     "t": 261.1,
+     "bot": "Servo",
+     "pickup": "weapon:sniper",
+     "dur": 90,
+     "air": true,
+     "gap": 5.8,
+     "state": "collect",
+     "navmode": "direct",
+     "unreachable": true
+    }
+   ],
+   "stateTime": {
+    "collect": 124.5,
+    "engage": 1383,
+    "retreat": 332.5,
+    "chase": 621.5,
+    "roam": 40
+   },
+   "idleStuck": [],
+   "findPathNull": [],
+   "repath": 0,
+   "pathReq": 2910,
+   "stateFlips": 1559,
+   "kills": 158,
+   "deaths": 168,
+   "falls": 0,
+   "selfDamage": {
+    "rocket": 175
+   },
+   "friendlyAttempts": 0,
+   "shotsAtProtected": 0,
+   "suicides": {
+    "rocket": 1
+   },
+   "chaseUnreach": 73,
+   "chaseTime": 621.5,
+   "grenadesThrown": 22,
+   "stuckClusters": [
+    {
+     "cell": "18,0,-9",
+     "n": 4,
+     "ex": {
+      "t": 102,
+      "bot": "Servo",
+      "st": "chase",
+      "mode": "path",
+      "pos": "16.9,0.0,-8.6",
+      "wp": "18.5,0.0,-8.5:walk",
+      "idx": 0,
+      "len": 16,
+      "goal": "10.4,4.5,-19.3",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "6,0,-3",
+     "n": 3,
+     "ex": {
+      "t": 49,
+      "bot": "Gasket",
+      "st": "chase",
+      "mode": "path",
+      "pos": "6.8,0.2,-4.3",
+      "wp": "6.5,0.0,-9.5:walk",
+      "idx": 1,
+      "len": 8,
+      "goal": "15.4,2.6,-16.1",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "12,5,15",
+     "n": 2,
+     "ex": {
+      "t": 13,
+      "bot": "Gasket",
+      "st": "engage",
+      "mode": "path",
+      "pos": "13.2,5.0,16.1",
+      "wp": "18.5,0.0,21.3:walk",
+      "idx": 0,
+      "len": 4,
+      "goal": "-17.7,0.0,14.9",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    },
+    {
+     "cell": "18,1,-9",
+     "n": 2,
+     "ex": {
+      "t": 103,
+      "bot": "Servo",
+      "st": "chase",
+      "mode": "path",
+      "pos": "16.9,0.5,-8.6",
+      "wp": "18.5,0.0,-8.5:walk",
+      "idx": 0,
+      "len": 9,
+      "goal": "4.1,1.0,-15.0",
+      "stage": 2,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "-18,1,-3",
+     "n": 2,
+     "ex": {
+      "t": 123,
+      "bot": "Diode",
+      "st": "chase",
+      "mode": "path",
+      "pos": "-16.9,0.7,-2.5",
+      "wp": "-18.5,0.0,-2.5:walk",
+      "idx": 0,
+      "len": 4,
+      "goal": "-37.0,1.7,-26.2",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "-18,0,0",
+     "n": 2,
+     "ex": {
+      "t": 129,
+      "bot": "Diode",
+      "st": "chase",
+      "mode": "path",
+      "pos": "-16.9,0.0,-0.6",
+      "wp": "-18.5,0.0,-0.5:walk",
+      "idx": 0,
+      "len": 5,
+      "goal": "-37.5,1.7,-20.4",
+      "stage": 2,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "-24,5,15",
+     "n": 1,
+     "ex": {
+      "t": 38,
+      "bot": "Cog",
+      "st": "engage",
+      "mode": "path",
+      "pos": "-22.6,5.0,15.2",
+      "wp": "-18.5,5.0,16.5:walk",
+      "idx": 0,
+      "len": 3,
+      "goal": "-18.4,0.0,-12.4",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    },
+    {
+     "cell": "12,5,-9",
+     "n": 1,
+     "ex": {
+      "t": 42,
+      "bot": "Sprocket",
+      "st": "chase",
+      "mode": "path",
+      "pos": "11.0,5.0,-8.1",
+      "wp": "9.5,0.0,-8.5:drop",
+      "idx": 1,
+      "len": 4,
+      "goal": "-13.1,1.7,-11.9",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "-18,0,-3",
+     "n": 1,
+     "ex": {
+      "t": 126,
+      "bot": "Diode",
+      "st": "chase",
+      "mode": "path",
+      "pos": "-16.9,0.0,-3.4",
+      "wp": "-18.5,0.0,-3.5:walk",
+      "idx": 0,
+      "len": 4,
+      "goal": "-35.8,1.7,-25.1",
+      "stage": 2,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "-18,1,0",
+     "n": 1,
+     "ex": {
+      "t": 132,
+      "bot": "Diode",
+      "st": "chase",
+      "mode": "path",
+      "pos": "-16.9,1.2,0.4",
+      "wp": "-18.5,0.0,0.5:walk",
+      "idx": 0,
+      "len": 5,
+      "goal": "-33.9,2.6,-19.3",
+      "stage": 1,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "-18,0,3",
+     "n": 1,
+     "ex": {
+      "t": 135,
+      "bot": "Diode",
+      "st": "chase",
+      "mode": "direct",
+      "pos": "-16.9,0.0,3.5",
+      "wp": null,
+      "idx": 0,
+      "len": 0,
+      "goal": "-36.2,2.7,-13.3",
+      "stage": 2,
+      "tgt": "mem"
+     }
+    },
+    {
+     "cell": "6,0,-9",
+     "n": 1,
+     "ex": {
+      "t": 153,
+      "bot": "Piston",
+      "st": "engage",
+      "mode": "idle",
+      "pos": "6.2,0.0,-9.7",
+      "wp": null,
+      "idx": 0,
+      "len": 0,
+      "goal": "3.3,0.0,5.3",
+      "stage": 1,
+      "tgt": "vis"
+     }
+    }
+   ]
+  },
+  "pathStats": {
+   "count": 2834,
+   "totalMs": 9718.69999396801,
+   "maxMs": 185.60000002384186
+  },
+  "navStats": {
+   "nodes": 10303,
+   "links": 73261,
+   "components": 2,
+   "largestComponent": 10297,
+   "buildMs": 420,
+   "traps": 0,
+   "strongComponents": 91,
+   "largestStrong": 8266,
+   "cells": 9000
+  },
+  "wallMs": 44178,
+  "simTime": 305.1
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

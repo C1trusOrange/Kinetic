@@ -1,0 +1,447 @@
+[run] http://127.0.0.1:60343/index.html?autotest=1&map=sandbox&bots=3&duration=8&god=1&scenario=tools/out/audit/review-aibody/scen_spawnpose.js
+[log] [autotest] finished {"ok":true,"errors":0,"fps":62}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.1,
+ "frames": 472,
+ "fps": {
+  "avg": 62,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": -5.551115123125783e-17,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 13.2,
+   "pos": [
+    7,
+    4.5,
+    -29
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 31.2,
+   "pos": [
+    10.5,
+    0,
+    -25
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 43.2,
+   "pos": [
+    28.7,
+    0.6,
+    -26.4
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 1,
+  "spawn": 6,
+  "pickup": 2,
+  "fire": 37
+ },
+ "renderer": {
+  "calls": 299,
+  "triangles": 53188,
+  "geometries": 191,
+  "textures": 128,
+  "programs": 103
+ },
+ "custom": {
+  "log": [],
+  "phase": 2,
+  "t0": 5.02,
+  "samples": [
+   {
+    "dt": 0.02,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.02,
+    "land": 0,
+    "airT": 0,
+    "hipY": 0.943
+   },
+   {
+    "dt": 0.04,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.02,
+    "land": 0,
+    "airT": 0,
+    "hipY": 0.943
+   },
+   {
+    "dt": 0.05,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0,
+    "land": 0,
+    "airT": 0.05,
+    "hipY": 0.948
+   },
+   {
+    "dt": 0.07,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0,
+    "land": 0,
+    "airT": 0.05,
+    "hipY": 0.948
+   },
+   {
+    "dt": 0.08,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0,
+    "land": 0,
+    "airT": 0.05,
+    "hipY": 0.948
+   },
+   {
+    "dt": 0.09,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0,
+    "land": 0,
+    "airT": 0.1,
+    "hipY": 0.948
+   },
+   {
+    "dt": 0.1,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0,
+    "land": 0,
+    "airT": 0.1,
+    "hipY": 0.948
+   },
+   {
+    "dt": 0.12,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0,
+    "land": 0,
+    "airT": 0.1,
+    "hipY": 0.948
+   },
+   {
+    "dt": 0.13,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.44,
+    "land": 0,
+    "airT": 0.13,
+    "hipY": 0.921
+   },
+   {
+    "dt": 0.15,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.44,
+    "land": 0,
+    "airT": 0.13,
+    "hipY": 0.921
+   },
+   {
+    "dt": 0.17,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.44,
+    "land": 0,
+    "airT": 0.13,
+    "hipY": 0.921
+   },
+   {
+    "dt": 0.19,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.77,
+    "land": 0,
+    "airT": 0.19,
+    "hipY": 0.901
+   },
+   {
+    "dt": 0.21,
+    "g": false,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.77,
+    "land": 0,
+    "airT": 0.19,
+    "hipY": 0.901
+   },
+   {
+    "dt": 0.22,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.77,
+    "land": 0,
+    "airT": 0.19,
+    "hipY": 0.901
+   },
+   {
+    "dt": 0.24,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.42,
+    "land": 0.037,
+    "airT": 0,
+    "hipY": 0.885
+   },
+   {
+    "dt": 0.26,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.42,
+    "land": 0.037,
+    "airT": 0,
+    "hipY": 0.885
+   },
+   {
+    "dt": 0.28,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.42,
+    "land": 0.037,
+    "airT": 0,
+    "hipY": 0.885
+   },
+   {
+    "dt": 0.3,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.23,
+    "land": 0.024,
+    "airT": 0,
+    "hipY": 0.909
+   },
+   {
+    "dt": 0.32,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.23,
+    "land": 0.024,
+    "airT": 0,
+    "hipY": 0.909
+   },
+   {
+    "dt": 0.33,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.23,
+    "land": 0.024,
+    "airT": 0,
+    "hipY": 0.909
+   },
+   {
+    "dt": 0.35,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.13,
+    "land": 0.015,
+    "airT": 0,
+    "hipY": 0.924
+   },
+   {
+    "dt": 0.37,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.13,
+    "land": 0.015,
+    "airT": 0,
+    "hipY": 0.924
+   },
+   {
+    "dt": 0.39,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.13,
+    "land": 0.015,
+    "airT": 0,
+    "hipY": 0.924
+   },
+   {
+    "dt": 0.41,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.07,
+    "land": 0.01,
+    "airT": 0,
+    "hipY": 0.932
+   },
+   {
+    "dt": 0.42,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.07,
+    "land": 0.01,
+    "airT": 0,
+    "hipY": 0.932
+   },
+   {
+    "dt": 0.44,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.07,
+    "land": 0.01,
+    "airT": 0,
+    "hipY": 0.932
+   },
+   {
+    "dt": 0.46,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.04,
+    "land": 0.006,
+    "airT": 0,
+    "hipY": 0.938
+   },
+   {
+    "dt": 0.48,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.04,
+    "land": 0.006,
+    "airT": 0,
+    "hipY": 0.938
+   },
+   {
+    "dt": 0.5,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.04,
+    "land": 0.006,
+    "airT": 0,
+    "hipY": 0.938
+   },
+   {
+    "dt": 0.52,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.02,
+    "land": 0.004,
+    "airT": 0,
+    "hipY": 0.941
+   },
+   {
+    "dt": 0.54,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.02,
+    "land": 0.004,
+    "airT": 0,
+    "hipY": 0.941
+   },
+   {
+    "dt": 0.56,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.02,
+    "land": 0.004,
+    "airT": 0,
+    "hipY": 0.941
+   },
+   {
+    "dt": 0.58,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.01,
+    "land": 0.003,
+    "airT": 0,
+    "hipY": 0.943
+   },
+   {
+    "dt": 0.59,
+    "g": true,
+    "vy": 0,
+    "py": 4.5,
+    "air": 0.01,
+    "land": 0.003,
+    "airT": 0,
+    "hipY": 0.943
+   }
+  ],
+  "deadVisible": false,
+  "afterSpawn": {
+   "visible": true,
+   "onGround": false,
+   "air": 0.01975962123663115,
+   "ready": false
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

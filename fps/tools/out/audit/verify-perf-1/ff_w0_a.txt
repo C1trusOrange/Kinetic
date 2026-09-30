@@ -1,0 +1,226 @@
+[run] http://127.0.0.1:57776/index.html?autotest=1&map=foundry&bots=5&duration=8&warm=0&scenario=tools/out/audit/verify-perf-1/ff.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 8.18,
+ "frames": 275,
+ "fps": {
+  "avg": 31.9,
+  "min": 4,
+  "max": 163.9
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -4,
+  "maxY": -4,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 77,
+   "pos": [
+    28.9,
+    0.5,
+    -34.3
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 63.6,
+   "pos": [
+    -29,
+    0,
+    11.6
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 57.5,
+   "pos": [
+    -15.4,
+    4.6,
+    0.1
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 54.1,
+   "pos": [
+    36.9,
+    0,
+    -0.2
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "engage",
+   "distance": 37.1,
+   "pos": [
+    -24.7,
+    -4,
+    25.4
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 6,
+  "pickup": 1,
+  "fire": 8
+ },
+ "renderer": {
+  "calls": 335,
+  "triangles": 123342,
+  "geometries": 169,
+  "textures": 130,
+  "programs": 99
+ },
+ "custom": {
+  "notes": {
+   "warm": "0",
+   "progsAtSetup": 51,
+   "quality": "high",
+   "hasComposer": true,
+   "projWarmed": false,
+   "wsCompiled": true,
+   "progsBeforeFirstRender": 86,
+   "materialsBefore": 114,
+   "classBefore": {
+    "screen": 33,
+    "rt": 0,
+    "other": 6
+   },
+   "progsAfterFirstRender": 99,
+   "materialsAfter": 114,
+   "materialsProgramChangedInFirstRender": 85,
+   "materialsFirstProgramInFirstRender": 0,
+   "classAfter": {
+    "screen": 17,
+    "rt": 27,
+    "other": 2
+   },
+   "firstRenderMs": 3748,
+   "progsEnd": 99,
+   "classEnd": {
+    "screen": 16,
+    "rt": 28,
+    "other": 2
+   }
+  },
+  "first5": [
+   {
+    "n": 1,
+    "gt": 0.05,
+    "dt": 4774.9,
+    "upd": 521.8,
+    "ren": 3747.5,
+    "np": 60
+   },
+   {
+    "n": 2,
+    "gt": 0.1,
+    "dt": 171.5,
+    "upd": 4.5,
+    "ren": 17.8,
+    "np": 0
+   },
+   {
+    "n": 3,
+    "gt": 0.14,
+    "dt": 53,
+    "upd": 23.3,
+    "ren": 19.6,
+    "np": 0
+   },
+   {
+    "n": 4,
+    "gt": 0.19,
+    "dt": 655.2,
+    "upd": 5,
+    "ren": 10,
+    "np": 0
+   },
+   {
+    "n": 5,
+    "gt": 0.21,
+    "dt": 28.6,
+    "upd": 3.3,
+    "ren": 13,
+    "np": 0
+   }
+  ],
+  "later": [
+   {
+    "n": 50,
+    "gt": 1.62,
+    "dt": 128.5,
+    "upd": 1.4,
+    "ren": 125.3,
+    "np": 0
+   },
+   {
+    "n": 56,
+    "gt": 1.86,
+    "dt": 137.8,
+    "upd": 21.9,
+    "ren": 113,
+    "np": 0
+   },
+   {
+    "n": 60,
+    "gt": 2.04,
+    "dt": 156.2,
+    "upd": 1.3,
+    "ren": 150,
+    "np": 0
+   }
+  ],
+  "frames": 241
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

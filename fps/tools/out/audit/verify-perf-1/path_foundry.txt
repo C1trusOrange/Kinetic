@@ -1,0 +1,216 @@
+[run] http://127.0.0.1:63050/index.html?autotest=1&map=foundry&bots=8&duration=30&scenario=tools/out/audit/verify-perf-1/path.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 30.05,
+ "frames": 1070,
+ "fps": {
+  "avg": 40.6,
+  "min": 4,
+  "max": 137
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 3,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 157.6,
+   "pos": [
+    16.7,
+    0,
+    -23.8
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 170.2,
+   "pos": [
+    -35.1,
+    0,
+    -10
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 15,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 165.6,
+   "pos": [
+    -29.1,
+    0,
+    -24.4
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": false,
+   "kills": 0,
+   "deaths": 2,
+   "health": 0,
+   "weapon": "sniper",
+   "state": "chase",
+   "distance": 156.2,
+   "pos": [
+    3.4,
+    0,
+    -23.1
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": false,
+   "kills": 2,
+   "deaths": 2,
+   "health": 0,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 156.1,
+   "pos": [
+    -30,
+    0,
+    7
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 3,
+   "deaths": 1,
+   "health": 81,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 163.5,
+   "pos": [
+    -24.8,
+    0,
+    5.3
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 121.2,
+   "pos": [
+    -45.1,
+    0,
+    -35.1
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "chase",
+   "distance": 161.3,
+   "pos": [
+    35.5,
+    0,
+    21.2
+   ]
+  }
+ ],
+ "events": {
+  "damage": 60,
+  "death": 12,
+  "spawn": 19,
+  "pickup": 4,
+  "fire": 181
+ },
+ "renderer": {
+  "calls": 516,
+  "triangles": 148080,
+  "geometries": 218,
+  "textures": 137,
+  "programs": 103
+ },
+ "custom": {
+  "map": "foundry",
+  "bots": 8,
+  "simSeconds": 30,
+  "requests": 224,
+  "reqPerSec": 7.5,
+  "p50": 2.3,
+  "p90": 10.5,
+  "p99": 24,
+  "max": 27.8,
+  "total": 898,
+  "over8": 28,
+  "over16": 13,
+  "frameUpdWithReqMedian": 6.6,
+  "frameUpdNoReqMedian": 2.9,
+  "frameUpdP99": 26.6,
+  "frameUpdMax": 49.4,
+  "framesWithReq": 209,
+  "frames": 1030,
+  "pathStats": {
+   "count": 224,
+   "totalMs": 897.6999998092651,
+   "maxMs": 27.799999952316284
+  },
+  "worst": [
+   {
+    "gt": 27.7,
+    "ms": 27.8
+   },
+   {
+    "gt": 12.2,
+    "ms": 26.6
+   },
+   {
+    "gt": 18.1,
+    "ms": 24
+   },
+   {
+    "gt": 10.9,
+    "ms": 23.7
+   },
+   {
+    "gt": 15.3,
+    "ms": 21.9
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

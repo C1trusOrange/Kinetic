@@ -1,0 +1,3 @@
+[run] http://127.0.0.1:52675/index.html?autotest=1&map=sandbox&bots=6&spectate=1&duration=200&diff=hard
+[run] screenshot -> tools\out\audit\review-aibody\spec_a9.png
+[run] done: wait=ok console_errors=0 warnings=0

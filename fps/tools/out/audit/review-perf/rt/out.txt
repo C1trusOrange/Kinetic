@@ -1,0 +1,170 @@
+[run] http://127.0.0.1:59683/index.html?autotest=1&map=foundry&bots=3&duration=6&script=idle&god=1&scenario=tools/out/audit/review-perf/rt/scenario.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 6.02,
+ "frames": 327,
+ "fps": {
+  "avg": 57.4,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 3,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 75,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 35.5,
+   "pos": [
+    -25,
+    0,
+    -9.5
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 43.3,
+   "pos": [
+    24.7,
+    0,
+    -8
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 36.9,
+   "pos": [
+    -24.1,
+    0,
+    14.9
+   ]
+  }
+ ],
+ "events": {
+  "damage": 1,
+  "death": 0,
+  "spawn": 4,
+  "pickup": 0,
+  "fire": 13
+ },
+ "renderer": {
+  "calls": 310,
+  "triangles": 121612,
+  "geometries": 174,
+  "textures": 131,
+  "programs": 105
+ },
+ "custom": {
+  "compileCalls": [
+   {
+    "t": 0.05,
+    "scene": "world",
+    "rtNull": true,
+    "newProgs": 35,
+    "outCS": "srgb",
+    "tm": 4
+   }
+  ],
+  "renderTargets": {
+   "world:rt": 296,
+   "view:rt": 296,
+   "other:rt": 3848,
+   "other:screen": 296
+  },
+  "dumps": [
+   {
+    "label": "setup",
+    "t": 0,
+    "programs": 51,
+    "byOutputCS": {
+     "srgb-linear": 38,
+     "?": 1,
+     "srgb": 12
+    },
+    "programsWithNoCurrentMaterial": 25
+   },
+   {
+    "label": "t0.5",
+    "t": 0.52,
+    "programs": 99,
+    "byOutputCS": {
+     "srgb-linear": 51,
+     "?": 1,
+     "srgb": 47
+    },
+    "programsWithNoCurrentMaterial": 54
+   },
+   {
+    "label": "t2",
+    "t": 2.02,
+    "programs": 99,
+    "byOutputCS": {
+     "srgb-linear": 51,
+     "?": 1,
+     "srgb": 47
+    },
+    "programsWithNoCurrentMaterial": 54
+   },
+   {
+    "label": "after-fire",
+    "t": 3.3,
+    "programs": 103,
+    "byOutputCS": {
+     "srgb-linear": 55,
+     "?": 1,
+     "srgb": 47
+    },
+    "programsWithNoCurrentMaterial": 58
+   },
+   {
+    "label": "end",
+    "t": 6,
+    "programs": 105,
+    "byOutputCS": {
+     "srgb-linear": 57,
+     "?": 1,
+     "srgb": 47
+    },
+    "programsWithNoCurrentMaterial": 60
+   }
+  ],
+  "startProgs": 51
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

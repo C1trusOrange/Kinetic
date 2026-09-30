@@ -1,0 +1,251 @@
+[run] http://127.0.0.1:61291/index.html?autotest=1&map=foundry&bots=12&diff=hard&duration=70&god=1&script=idle&scenario=tools/out/audit/review-aibody/deaths.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":26.3}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 70.04,
+ "frames": 1804,
+ "fps": {
+  "avg": 26.3,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 28.5,
+  "maxSpeed": 9.65,
+  "minY": 0,
+  "maxY": 3.9581757992441395,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 7,
+   "deaths": 7,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "chase",
+   "distance": 311.8,
+   "pos": [
+    -21.9,
+    0,
+    -22.9
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 3,
+   "deaths": 6,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 355.1,
+   "pos": [
+    37.1,
+    0,
+    -6.6
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 7,
+   "deaths": 4,
+   "health": 11,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 380,
+   "pos": [
+    14.6,
+    0,
+    0.2
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 3,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 331.9,
+   "pos": [
+    -2.3,
+    0,
+    -35.7
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 4,
+   "deaths": 7,
+   "health": 20,
+   "weapon": "shotgun",
+   "state": "retreat",
+   "distance": 305.4,
+   "pos": [
+    -34.9,
+    0,
+    -8.7
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": false,
+   "kills": 4,
+   "deaths": 5,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 361.3,
+   "pos": [
+    -21.8,
+    0,
+    2.1
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": false,
+   "kills": 5,
+   "deaths": 7,
+   "health": 0,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 352.1,
+   "pos": [
+    30.7,
+    0,
+    2.4
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 8,
+   "deaths": 3,
+   "health": 5,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 387.3,
+   "pos": [
+    15.2,
+    3.5,
+    -14.2
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 3,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 244.2,
+   "pos": [
+    34.5,
+    0,
+    13.4
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 9,
+   "deaths": 6,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "chase",
+   "distance": 352.7,
+   "pos": [
+    -22.2,
+    -4,
+    26
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 6,
+   "deaths": 5,
+   "health": 24,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 370.4,
+   "pos": [
+    21.4,
+    0,
+    -10.5
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": false,
+   "kills": 2,
+   "deaths": 4,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 326.9,
+   "pos": [
+    -36,
+    0,
+    -25.1
+   ]
+  }
+ ],
+ "events": {
+  "damage": 311,
+  "death": 63,
+  "spawn": 73,
+  "pickup": 8,
+  "fire": 806
+ },
+ "renderer": {
+  "calls": 622,
+  "triangles": 161510,
+  "geometries": 225,
+  "textures": 146,
+  "programs": 104
+ },
+ "custom": {
+  "D": {
+   "byWeapon": {
+    "rifle": 23,
+    "rocket": 13,
+    "pistol": 21,
+    "sniper": 1,
+    "shotgun": 4,
+    "grenade": 1
+   },
+   "fall": [],
+   "self": 0,
+   "tele": [],
+   "nan": 0,
+   "oob": 0,
+   "maxSpeed": 25.524171511433646,
+   "ticks": 1771,
+   "underY": 0
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

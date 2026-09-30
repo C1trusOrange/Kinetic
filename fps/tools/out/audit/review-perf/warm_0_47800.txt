@@ -1,0 +1,271 @@
+[run] http://127.0.0.1:51614/index.html?autotest=1&map=foundry&bots=5&duration=20&warm=0&scenario=tools/out/audit/review-perf/scenario_warm.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 20.15,
+ "frames": 474,
+ "fps": {
+  "avg": 19.7,
+  "min": 4,
+  "max": 83.3
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 118.70208377297573,
+  "maxSpeed": 12.54,
+  "minY": -3.3306690738754696e-15,
+  "maxY": 2.983333333333335,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "isGrappling": true,
+   "isWallRunning": true
+  },
+  "shots": 19,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Gasket",
+   "alive": false,
+   "kills": 0,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 109.8,
+   "pos": [
+    6.2,
+    0,
+    -11
+   ]
+  },
+  {
+   "name": "Sprocket",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 107.7,
+   "pos": [
+    -38.2,
+    0,
+    -5.8
+   ]
+  },
+  {
+   "name": "Servo",
+   "alive": false,
+   "kills": 1,
+   "deaths": 1,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 118.1,
+   "pos": [
+    1.6,
+    0,
+    17.2
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 2,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "collect",
+   "distance": 113.5,
+   "pos": [
+    4.7,
+    0.2,
+    -10.7
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 1,
+   "deaths": 1,
+   "health": 47,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 104.8,
+   "pos": [
+    -16.6,
+    0,
+    19.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 29,
+  "death": 5,
+  "spawn": 9,
+  "pickup": 0,
+  "fire": 127
+ },
+ "renderer": {
+  "calls": 236,
+  "triangles": 115886,
+  "geometries": 347,
+  "textures": 144,
+  "programs": 113
+ },
+ "custom": {
+  "warm": "0",
+  "warmMs": 0,
+  "warmNewProgs": 0,
+  "startProgs": 51,
+  "endProgs": 113,
+  "firstFrame": {
+   "n": 1,
+   "gt": 0.05,
+   "dt": 6257,
+   "upd": 725.9,
+   "ren": 4444.6,
+   "newProgs": 62
+  },
+  "second": {
+   "n": 2,
+   "gt": 0.1,
+   "dt": 229.6,
+   "upd": 5,
+   "ren": 16.5,
+   "newProgs": 0
+  },
+  "stallCount": 28,
+  "stallSumMs": 5844,
+  "stalls": [
+   {
+    "n": 2,
+    "gt": 0.1,
+    "dt": 229.6,
+    "upd": 5,
+    "ren": 16.5,
+    "newProgs": 0
+   },
+   {
+    "n": 3,
+    "gt": 0.15,
+    "dt": 801.7,
+    "upd": 15,
+    "ren": 13.4,
+    "newProgs": 0
+   },
+   {
+    "n": 32,
+    "gt": 1.56,
+    "dt": 127.6,
+    "upd": 3.6,
+    "ren": 9.8,
+    "newProgs": 0
+   },
+   {
+    "n": 66,
+    "gt": 3.25,
+    "dt": 142.3,
+    "upd": 2.6,
+    "ren": 11.9,
+    "newProgs": 0
+   },
+   {
+    "n": 73,
+    "gt": 3.58,
+    "dt": 121.2,
+    "upd": 12.4,
+    "ren": 26.4,
+    "newProgs": 0
+   },
+   {
+    "n": 74,
+    "gt": 3.63,
+    "dt": 144.3,
+    "upd": 7.5,
+    "ren": 10,
+    "newProgs": 0
+   },
+   {
+    "n": 92,
+    "gt": 4.51,
+    "dt": 128.8,
+    "upd": 2.3,
+    "ren": 6.6,
+    "newProgs": 0
+   },
+   {
+    "n": 99,
+    "gt": 4.84,
+    "dt": 468.6,
+    "upd": 8.4,
+    "ren": 424.1,
+    "newProgs": 1
+   },
+   {
+    "n": 102,
+    "gt": 4.93,
+    "dt": 183.6,
+    "upd": 3.4,
+    "ren": 174.7,
+    "newProgs": 3
+   },
+   {
+    "n": 113,
+    "gt": 5.34,
+    "dt": 122.1,
+    "upd": 1.8,
+    "ren": 6.8,
+    "newProgs": 0
+   }
+  ],
+  "midGameNewProgFrames": [
+   {
+    "gt": 4.84,
+    "n": 1,
+    "dt": 468.6,
+    "ren": 424.1
+   },
+   {
+    "gt": 4.93,
+    "n": 3,
+    "dt": 183.6,
+    "ren": 174.7
+   },
+   {
+    "gt": 11.25,
+    "n": 3,
+    "dt": 128.2,
+    "ren": 116.9
+   },
+   {
+    "gt": 11.8,
+    "n": 1,
+    "dt": 237.9,
+    "ren": 194.2
+   },
+   {
+    "gt": 12.33,
+    "n": 4,
+    "dt": 775.3,
+    "ren": 761.2
+   }
+  ],
+  "p50": 61.6,
+  "frames": 440
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

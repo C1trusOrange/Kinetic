@@ -1,0 +1,18 @@
+<!doctype html><meta charset="utf-8"><title>pl2</title>
+<body style="margin:0;background:#123"><canvas id="c" width="800" height="500" style="display:block"></canvas>
+<script>
+window.__log = [];
+const c = document.getElementById('c');
+const L = (m) => window.__log.push(Math.round(performance.now()) + ' ' + m);
+document.addEventListener('pointerlockchange', () => L('lockchange -> ' + (document.pointerLockElement ? 'locked' : 'unlocked')));
+document.addEventListener('pointerlockerror', () => L('lockERROR'));
+function tryLock(tag) {
+  L(tag + ' isActive=' + navigator.userActivation.isActive);
+  try {
+    const p = c.requestPointerLock({ unadjustedMovement: true });
+    if (p && p.then) p.then(() => L(tag + ' promise ok'), e => L(tag + ' promise REJECT ' + (e && e.name) + ': ' + (e && e.message)));
+  } catch (e) { L(tag + ' threw ' + e); }
+}
+window.addEventListener('keydown', e => tryLock('keydown ' + e.code));
+c.addEventListener('click', () => tryLock('click'));
+</script>

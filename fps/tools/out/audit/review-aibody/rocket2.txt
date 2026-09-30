@@ -1,0 +1,424 @@
+[run] http://127.0.0.1:59786/index.html?autotest=1&map=foundry&bots=10&duration=60&god=1&script=idle&diff=hard&scenario=tools/out/audit/review-aibody/scen_rocket.js
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":48.1}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 60.18,
+ "frames": 2382,
+ "fps": {
+  "avg": 48.1,
+  "min": 4,
+  "max": 188.7
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Diode",
+   "alive": false,
+   "kills": 4,
+   "deaths": 4,
+   "health": 0,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 351.1,
+   "pos": [
+    29.9,
+    0,
+    6.7
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 352.2,
+   "pos": [
+    -32,
+    0,
+    19.2
+   ]
+  },
+  {
+   "name": "Gasket",
+   "alive": true,
+   "kills": 2,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 308.2,
+   "pos": [
+    44.8,
+    0,
+    25.6
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 3,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 295,
+   "pos": [
+    32.4,
+    0,
+    4.4
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": false,
+   "kills": 2,
+   "deaths": 5,
+   "health": 0,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 346.6,
+   "pos": [
+    10.7,
+    5,
+    -16.9
+   ]
+  },
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 2,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 316,
+   "pos": [
+    9.1,
+    0,
+    -35.4
+   ]
+  },
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 1,
+   "deaths": 4,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 283.8,
+   "pos": [
+    45.4,
+    0,
+    -4.4
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 7,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 354.3,
+   "pos": [
+    23.3,
+    0,
+    8.8
+   ]
+  },
+  {
+   "name": "Flux",
+   "alive": true,
+   "kills": 3,
+   "deaths": 1,
+   "health": 4,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 357,
+   "pos": [
+    12.2,
+    5,
+    -8.2
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 8,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 319.6,
+   "pos": [
+    16,
+    0,
+    -22.6
+   ]
+  }
+ ],
+ "events": {
+  "damage": 89,
+  "death": 35,
+  "spawn": 43,
+  "pickup": 3,
+  "fire": 200
+ },
+ "renderer": {
+  "calls": 747,
+  "triangles": 164074,
+  "geometries": 181,
+  "textures": 136,
+  "programs": 101
+ },
+ "custom": {
+  "rockets": 166,
+  "short": [
+   {
+    "age": 0,
+    "travel": 0,
+    "ang": 0.096,
+    "losClear": true,
+    "losWall": -1,
+    "bot": "Relay",
+    "state": "engage",
+    "wallDist": 15.88,
+    "tgtDist": 15.5,
+    "tgtVis": true,
+    "org2eye": 0.93,
+    "spd": 4.1,
+    "pitch": -0.36
+   },
+   {
+    "age": 0.24,
+    "travel": 10.44,
+    "ang": 0.052,
+    "losClear": true,
+    "losWall": -1,
+    "bot": "Diode",
+    "state": "engage",
+    "wallDist": 11.36,
+    "tgtDist": 8.7,
+    "tgtVis": true,
+    "org2eye": 0.91,
+    "spd": 8.7,
+    "pitch": -0.53
+   },
+   {
+    "age": 0.18,
+    "travel": 6.37,
+    "ang": 0.09,
+    "losClear": true,
+    "losWall": -1,
+    "bot": "Glitch",
+    "state": "engage",
+    "wallDist": 9.24,
+    "tgtDist": 23.3,
+    "tgtVis": true,
+    "org2eye": 0.8,
+    "spd": 4.9,
+    "pitch": -0.01
+   },
+   {
+    "age": 0.1,
+    "travel": 4.2,
+    "ang": 0.108,
+    "losClear": true,
+    "losWall": -1,
+    "bot": "Diode",
+    "state": "engage",
+    "wallDist": 7.05,
+    "tgtDist": 24.4,
+    "tgtVis": true,
+    "org2eye": 0.9,
+    "spd": 8.6,
+    "pitch": -0.14
+   },
+   {
+    "age": 0.16,
+    "travel": 6.36,
+    "ang": 0.027,
+    "losClear": true,
+    "losWall": -1,
+    "bot": "Glitch",
+    "state": "engage",
+    "wallDist": 7.53,
+    "tgtDist": 45.4,
+    "tgtVis": true,
+    "org2eye": 0.82,
+    "spd": 5.5,
+    "pitch": -0.04
+   },
+   {
+    "age": 0.13,
+    "travel": 5.6,
+    "ang": 0.087,
+    "losClear": true,
+    "losWall": -1,
+    "bot": "Piston",
+    "state": "retreat",
+    "wallDist": 6.66,
+    "tgtDist": 8.3,
+    "tgtVis": true,
+    "org2eye": 0.62,
+    "spd": 4.8,
+    "pitch": 0.52
+   },
+   {
+    "age": 0.21,
+    "travel": 8.9,
+    "ang": 0.07,
+    "losClear": true,
+    "losWall": -1,
+    "bot": "Relay",
+    "state": "engage",
+    "wallDist": 10.41,
+    "tgtDist": 7.8,
+    "tgtVis": true,
+    "org2eye": 1.08,
+    "spd": 4.4,
+    "pitch": -0.67
+   },
+   {
+    "age": 0.07,
+    "travel": 3.05,
+    "ang": 0.085,
+    "losClear": true,
+    "losWall": -1,
+    "bot": "Flux",
+    "state": "engage",
+    "wallDist": 3.92,
+    "tgtDist": 15.6,
+    "tgtVis": true,
+    "org2eye": 0.66,
+    "spd": 4.4,
+    "pitch": 0.24
+   },
+   {
+    "age": 0.17,
+    "travel": 6.96,
+    "ang": 0.089,
+    "losClear": true,
+    "losWall": -1,
+    "bot": "Relay",
+    "state": "engage",
+    "wallDist": 8.19,
+    "tgtDist": 15.5,
+    "tgtVis": true,
+    "org2eye": 0.94,
+    "spd": 1.1,
+    "pitch": -0.42
+   },
+   {
+    "age": 0.08,
+    "travel": 3.31,
+    "ang": 0.047,
+    "losClear": false,
+    "losWall": 4.5,
+    "bot": "Diode",
+    "state": "engage",
+    "wallDist": 4.42,
+    "tgtDist": 34.3,
+    "tgtVis": true,
+    "org2eye": 0.84,
+    "spd": 7.5,
+    "pitch": -0.04
+   },
+   {
+    "age": 0.02,
+    "travel": 0.52,
+    "ang": 0.075,
+    "losClear": true,
+    "losWall": -1,
+    "bot": "Glitch",
+    "state": "engage",
+    "wallDist": 1.67,
+    "tgtDist": 19.6,
+    "tgtVis": true,
+    "org2eye": 0.69,
+    "spd": 6.7,
+    "pitch": -0.06
+   },
+   {
+    "age": 0.18,
+    "travel": 7.45,
+    "ang": 0.074,
+    "losClear": true,
+    "losWall": -1,
+    "bot": "Piston",
+    "state": "engage",
+    "wallDist": 10.36,
+    "tgtDist": 10.5,
+    "tgtVis": true,
+    "org2eye": 0.9,
+    "spd": 2.7,
+    "pitch": -0.16
+   },
+   {
+    "age": 0.07,
+    "travel": 3.06,
+    "ang": 0.061,
+    "losClear": false,
+    "losWall": 4.1,
+    "bot": "Nimbus",
+    "state": "engage",
+    "wallDist": 3.97,
+    "tgtDist": 25.8,
+    "tgtVis": true,
+    "org2eye": 0.85,
+    "spd": 4.9,
+    "pitch": -0.08
+   },
+   {
+    "age": 0.25,
+    "travel": 10.44,
+    "ang": 0.083,
+    "losClear": true,
+    "losWall": -1,
+    "bot": "Relay",
+    "state": "engage",
+    "wallDist": 11.48,
+    "tgtDist": 23.2,
+    "tgtVis": true,
+    "org2eye": 0.83,
+    "spd": 4.9,
+    "pitch": -0.07
+   }
+  ],
+  "selfDmg": 241,
+  "selfHits": 12,
+  "ageHist": {},
+  "wallFire": 0,
+  "stats": {},
+  "unsafe": {
+   "n": 6,
+   "total": 166
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

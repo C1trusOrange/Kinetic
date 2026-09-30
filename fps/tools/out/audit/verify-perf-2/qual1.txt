@@ -1,0 +1,163 @@
+[run] http://127.0.0.1:60808/index.html?autotest=1&map=sandbox&bots=2&duration=24&script=idle&scenario=tools/out/audit/verify-perf-2/sc_qual.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 24.07,
+ "frames": 1272,
+ "fps": {
+  "avg": 77.6,
+  "min": 4,
+  "max": 196.1
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 1,
+   "deaths": 0,
+   "health": 94,
+   "weapon": "rocket",
+   "state": "chase",
+   "distance": 137.9,
+   "pos": [
+    10.7,
+    0,
+    -4.4
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 198.7,
+   "pos": [
+    -8.9,
+    0,
+    -14.6
+   ]
+  }
+ ],
+ "events": {
+  "damage": 10,
+  "death": 1,
+  "spawn": 4,
+  "pickup": 4,
+  "fire": 29
+ },
+ "renderer": {
+  "calls": 244,
+  "triangles": 48074,
+  "geometries": 201,
+  "textures": 207,
+  "programs": 125
+ },
+ "custom": {
+  "switches": [
+   {
+    "q": "medium",
+    "texBefore": 123,
+    "texAfterSync": 120,
+    "composerRT": 1,
+    "f": 125,
+    "texNow": null,
+    "worst": 120,
+    "newProgs": 0
+   },
+   {
+    "q": "high",
+    "texBefore": 135,
+    "texAfterSync": 132,
+    "composerRT": 1,
+    "f": 281,
+    "texNow": null,
+    "worst": 106,
+    "newProgs": 0
+   },
+   {
+    "q": "medium",
+    "texBefore": 146,
+    "texAfterSync": 143,
+    "composerRT": 1,
+    "f": 360,
+    "texNow": null,
+    "worst": 215,
+    "newProgs": 0
+   },
+   {
+    "q": "high",
+    "texBefore": 157,
+    "texAfterSync": 154,
+    "composerRT": 1,
+    "f": 517,
+    "texNow": null,
+    "worst": 86,
+    "newProgs": 0
+   },
+   {
+    "q": "low",
+    "texBefore": 168,
+    "texAfterSync": 165,
+    "composerRT": 0,
+    "f": 609,
+    "texNow": null,
+    "worst": 6576,
+    "newProgs": 23
+   },
+   {
+    "q": "high",
+    "texBefore": 166,
+    "texAfterSync": 166,
+    "composerRT": 1,
+    "f": 852,
+    "texNow": null,
+    "worst": 93,
+    "newProgs": 0
+   },
+   {
+    "q": "medium",
+    "texBefore": 180,
+    "texAfterSync": 177,
+    "composerRT": 1,
+    "f": 973,
+    "texNow": null,
+    "worst": 106,
+    "newProgs": 0
+   },
+   {
+    "q": "high",
+    "texBefore": 195,
+    "texAfterSync": 192,
+    "composerRT": 1,
+    "f": 1164,
+    "texNow": null,
+    "worst": 101,
+    "newProgs": 0
+   }
+  ],
+  "finalTex": 207,
+  "hasDispose": "function"
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

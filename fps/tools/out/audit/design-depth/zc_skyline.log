@@ -1,0 +1,315 @@
+[run] http://127.0.0.1:61172/index.html?autotest=1&map=skyline&bots=0&script=idle&scenario=tools/out/audit/design-depth/zone_check.js&duration=1&quality=low
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":74.1}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 1.04,
+ "frames": 86,
+ "fps": {
+  "avg": 74.1,
+  "min": 4,
+  "max": 178.6
+ },
+ "errors": [],
+ "map": "skyline",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0.030000000000000027,
+  "maxY": 0.030000000000000027,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 121,
+  "triangles": 54024,
+  "geometries": 132,
+  "textures": 137,
+  "programs": 77
+ },
+ "custom": {
+  "map": "skyline",
+  "zones": [
+   {
+    "name": "plaza",
+    "at": [
+     0,
+     0,
+     0
+    ],
+    "r": 9,
+    "floorY": 1.12,
+    "head": 0.68,
+    "conn": false,
+    "navIn": 228,
+    "reachIn": 228
+   },
+   {
+    "name": "roofN",
+    "at": [
+     0,
+     6.4,
+     -28
+    ],
+    "r": 8,
+    "floorY": 6.4,
+    "head": 4,
+    "conn": true,
+    "navIn": 207,
+    "reachIn": 202
+   },
+   {
+    "name": "bridgeNE",
+    "at": [
+     28,
+     9.6,
+     -14
+    ],
+    "r": 6,
+    "floorY": 9.6,
+    "head": 4,
+    "conn": true,
+    "navIn": 36,
+    "reachIn": 36
+   },
+   {
+    "name": "roofE",
+    "at": [
+     28,
+     9.6,
+     0
+    ],
+    "r": 7,
+    "floorY": 9.6,
+    "head": 4,
+    "conn": true,
+    "navIn": 154,
+    "reachIn": 154
+   },
+   {
+    "name": "roofSE",
+    "at": [
+     26,
+     12.8,
+     28
+    ],
+    "r": 7,
+    "floorY": 12.8,
+    "head": 4,
+    "conn": true,
+    "navIn": 149,
+    "reachIn": 149
+   },
+   {
+    "name": "roofW",
+    "at": [
+     -28,
+     12.8,
+     -4
+    ],
+    "r": 7,
+    "floorY": 12.8,
+    "head": 4,
+    "conn": true,
+    "navIn": 99,
+    "reachIn": 96
+   },
+   {
+    "name": "roofNW",
+    "at": [
+     -28,
+     16,
+     -28
+    ],
+    "r": 6,
+    "floorY": 16.09,
+    "head": 4,
+    "conn": false,
+    "navIn": 112,
+    "reachIn": 0
+   },
+   {
+    "name": "streetW",
+    "at": [
+     -34,
+     0,
+     0
+    ],
+    "r": 7,
+    "floorY": 0,
+    "head": 3.1,
+    "conn": false,
+    "navIn": 18,
+    "reachIn": 12
+   },
+   {
+    "name": "streetE",
+    "at": [
+     34,
+     0,
+     0
+    ],
+    "r": 7,
+    "floorY": 0,
+    "head": 3.1,
+    "conn": false,
+    "navIn": 12,
+    "reachIn": 12
+   }
+  ],
+  "pads": [
+   {
+    "name": "pad0",
+    "at": [
+     8,
+     0,
+     8
+    ],
+    "r": 0,
+    "floorY": 0.75,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad1",
+    "at": [
+     -8,
+     0,
+     -8
+    ],
+    "r": 0,
+    "floorY": 0.75,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad2",
+    "at": [
+     -14,
+     0,
+     0
+    ],
+    "r": 0,
+    "floorY": 0.03,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad3",
+    "at": [
+     14,
+     0,
+     0
+    ],
+    "r": 0,
+    "floorY": 0.03,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad4",
+    "at": [
+     0,
+     0,
+     -22
+    ],
+    "r": 0,
+    "floorY": 0,
+    "head": 3.1,
+    "conn": false,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad5",
+    "at": [
+     0,
+     0,
+     22
+    ],
+    "r": 0,
+    "floorY": 0,
+    "head": 3.1,
+    "conn": false,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad6",
+    "at": [
+     4,
+     6.4,
+     -24
+    ],
+    "r": 0,
+    "floorY": 6.4,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad7",
+    "at": [
+     22,
+     9.6,
+     -20
+    ],
+    "r": 0,
+    "floorY": 9.6,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad8",
+    "at": [
+     -22,
+     9.6,
+     26
+    ],
+    "r": 0,
+    "floorY": 9.6,
+    "head": 4,
+    "conn": false,
+    "navIn": 0,
+    "reachIn": 0
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

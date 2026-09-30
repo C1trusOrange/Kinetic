@@ -1,0 +1,186 @@
+[run] http://127.0.0.1:59069/index.html?autotest=1&map=sandbox&bots=0&scenario=tools/out/audit/review-core/scenario.js&duration=2
+[result] {
+ "done": true,
+ "started": true,
+ "t": 2.23,
+ "frames": 248,
+ "fps": {
+  "avg": 121.6,
+  "min": 4,
+  "max": 169.5
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": -5.551115123125783e-17,
+  "maxY": -5.551115123125783e-17,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 2,
+  "deaths": 0,
+  "damageDealt": 538.95,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 12,
+  "death": 2,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 134,
+  "triangles": 36588,
+  "geometries": 117,
+  "textures": 114,
+  "programs": 94
+ },
+ "custom": {
+  "scanSegments": [
+   {
+    "part": "WORLD",
+    "y0": 0,
+    "y1": 0
+   },
+   {
+    "part": "legs",
+    "y0": 0.02,
+    "y1": 0.66
+   },
+   {
+    "part": "body",
+    "y0": 0.68,
+    "y1": 1.54
+   },
+   {
+    "part": "head",
+    "y0": 1.56,
+    "y1": 1.8
+   },
+   {
+    "part": "WORLD",
+    "y0": 1.82,
+    "y1": 1.88
+   }
+  ],
+  "rayCapsule": {
+   "tested": 3063,
+   "nHit": 1227,
+   "mismatchHit": 0,
+   "missedByRay": 0,
+   "falseHit": 0,
+   "maxErrM": 0.3246,
+   "meanErrM": 0.0112,
+   "worst": []
+  },
+  "bulletBody": {
+   "part": "body",
+   "dealt": 20,
+   "armor": 0,
+   "hitDist": 5.02
+  },
+  "bulletLegs": {
+   "part": "legs",
+   "dealt": 16,
+   "armor": 0,
+   "hitDist": 5.1
+  },
+  "bulletHead": {
+   "part": "head",
+   "dealt": 40,
+   "armor": 0,
+   "hitDist": 5.192
+  },
+  "falloffMid": {
+   "part": "body",
+   "dealt": 14.950000000000003,
+   "armor": 0,
+   "hitDist": 4.02
+  },
+  "falloffFar": {
+   "part": "body",
+   "dealt": 10,
+   "armor": 0,
+   "hitDist": 7.02
+  },
+  "armorHalf": {
+   "part": "body",
+   "dealt": 8,
+   "armor": 88,
+   "hitDist": 5.02
+  },
+  "armorLow": {
+   "part": "body",
+   "dealt": 15,
+   "armor": 0,
+   "hitDist": 5.02
+  },
+  "damageEvents": 7,
+  "radial": {
+   "adjacent": {
+    "hp": 18.69999999999999,
+    "v": [
+     0,
+     4.76,
+     -12.72
+    ]
+   },
+   "atEdge": {
+    "hp": 76.5,
+    "v": [
+     0,
+     0.65,
+     -6.22
+    ]
+   },
+   "outside": {
+    "hp": 100,
+    "v": [
+     0,
+     0,
+     0
+    ]
+   },
+   "under": {
+    "hp": 0,
+    "v": [
+     0,
+     18.75,
+     0
+    ]
+   },
+   "centerInside": {
+    "hp": 0,
+    "v": [
+     0,
+     18.75,
+     0
+    ]
+   },
+   "above": {
+    "hp": 6.799999999999997,
+    "v": [
+     0,
+     -10.77,
+     0
+    ]
+   }
+  },
+  "friendlyRadial": {
+   "hp": 100,
+   "v": [
+    0,
+    -10.77,
+    0
+   ]
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

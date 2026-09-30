@@ -1,0 +1,239 @@
+[run] http://127.0.0.1:60255/index.html?autotest=1&map=sandbox&bots=6&diff=easy&god=1&script=idle&scenario=tools/out/audit/review-fxaudio/s5_gibs.js&duration=13
+[result] {
+ "done": true,
+ "started": true,
+ "t": 13.16,
+ "frames": 566,
+ "fps": {
+  "avg": 49.1,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 12,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 44.1,
+   "pos": [
+    4.8,
+    0,
+    30.3
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 66,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 21.8,
+   "pos": [
+    -25.2,
+    0,
+    30.1
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 48,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 31.8,
+   "pos": [
+    17.2,
+    0,
+    -23.9
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 31,
+   "pos": [
+    16.4,
+    0,
+    0.9
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 43.5,
+   "pos": [
+    0.4,
+    4.5,
+    -10.8
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 2,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 29.2,
+   "pos": [
+    -16,
+    0,
+    -11.1
+   ]
+  }
+ ],
+ "events": {
+  "damage": 7,
+  "death": 12,
+  "spawn": 19,
+  "pickup": 3,
+  "fire": 43
+ },
+ "renderer": {
+  "calls": 365,
+  "triangles": 62542,
+  "geometries": 214,
+  "textures": 134,
+  "programs": 103
+ },
+ "custom": {
+  "log": [
+   {
+    "tag": "before-kill",
+    "gibs": 0,
+    "children": 20,
+    "base": 20,
+    "geoDispose": 80,
+    "matDispose": 2,
+    "gibMeshesInScene": 0,
+    "t": 1.01
+   },
+   {
+    "tag": "after-kill",
+    "gibs": 70,
+    "children": 90,
+    "base": 20,
+    "geoDispose": 80,
+    "matDispose": 2,
+    "gibMeshesInScene": 70,
+    "t": 1.01
+   },
+   {
+    "tag": "0.6s",
+    "gibs": 70,
+    "children": 90,
+    "base": 20,
+    "geoDispose": 80,
+    "matDispose": 2,
+    "gibMeshesInScene": 70,
+    "t": 1.63
+   },
+   {
+    "tag": "pre-clear",
+    "gibs": 70,
+    "children": 90,
+    "base": 20,
+    "geoDispose": 80,
+    "matDispose": 2,
+    "gibMeshesInScene": 70,
+    "t": 2.2
+   },
+   {
+    "tag": "post-clear",
+    "gibs": 0,
+    "children": 20,
+    "base": 20,
+    "geoDispose": 80,
+    "matDispose": 2,
+    "gibMeshesInScene": 0,
+    "t": 2.2
+   },
+   {
+    "tag": "3s",
+    "gibs": 0,
+    "children": 20,
+    "base": 20,
+    "geoDispose": 80,
+    "matDispose": 2,
+    "gibMeshesInScene": 0,
+    "t": 3
+   },
+   {
+    "tag": "wave2",
+    "gibs": 70,
+    "children": 90,
+    "base": 20,
+    "geoDispose": 80,
+    "matDispose": 2,
+    "gibMeshesInScene": 70,
+    "t": 6.02
+   },
+   {
+    "tag": "wave2+2s",
+    "gibs": 70,
+    "children": 90,
+    "base": 20,
+    "geoDispose": 80,
+    "matDispose": 2,
+    "gibMeshesInScene": 70,
+    "t": 8.01
+   },
+   {
+    "tag": "wave2+5s",
+    "gibs": 0,
+    "children": 20,
+    "base": 20,
+    "geoDispose": 80,
+    "matDispose": 2,
+    "gibMeshesInScene": 0,
+    "t": 11
+   }
+  ],
+  "stats": {
+   "smoke": 411,
+   "glow": 195,
+   "tracers": 2,
+   "decals": 39,
+   "gibs": 0,
+   "dropped": 0
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

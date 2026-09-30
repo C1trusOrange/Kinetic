@@ -1,0 +1,59 @@
+[run] http://127.0.0.1:63491/index.html?autotest=1&map=sandbox&bots=3&duration=900&scenario=tools/out/audit/review-lifecycle/endbanner.js
+[result] {
+ "done": true,
+ "rows": [
+  {
+   "run": "final kill = headshot",
+   "over": true,
+   "playerWon": true,
+   "before": {
+    "title": "FIRST BLOOD",
+    "sub": "",
+    "kind": "kill"
+   },
+   "afterEnd": {
+    "title": "HEADSHOT",
+    "sub": "",
+    "kind": "gold"
+   },
+   "streak": 2,
+   "multi": 1
+  },
+  {
+   "run": "final kill = body shot",
+   "over": true,
+   "playerWon": true,
+   "before": {
+    "title": "FIRST BLOOD",
+    "sub": "",
+    "kind": "kill"
+   },
+   "afterEnd": {
+    "title": "DOUBLE KILL",
+    "sub": "",
+    "kind": "kill"
+   },
+   "streak": 2,
+   "multi": 2
+  },
+  {
+   "run": "final kill = double kill (2nd within window)",
+   "over": true,
+   "playerWon": true,
+   "before": {
+    "title": "FIRST BLOOD",
+    "sub": "",
+    "kind": "kill"
+   },
+   "afterEnd": {
+    "title": "DOUBLE KILL",
+    "sub": "",
+    "kind": "kill"
+   },
+   "streak": 2,
+   "multi": 2
+  }
+ ],
+ "errors": []
+}
+[run] done: wait=ok console_errors=0 warnings=0

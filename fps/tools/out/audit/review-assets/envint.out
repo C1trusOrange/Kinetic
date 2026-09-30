@@ -1,0 +1,140 @@
+[run] http://127.0.0.1:63887/index.html?autotest=1&map=ruins&bots=2&god=1&script=idle&scenario=tools/out/audit/review-assets/envint.js&duration=10
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":25}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 10,
+ "frames": 249,
+ "fps": {
+  "avg": 25,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0.06000000000000005,
+  "maxY": 0.06000000000000005,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Torque",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 66.8,
+   "pos": [
+    20.1,
+    0,
+    11.5
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 66,
+   "weapon": "sniper",
+   "state": "engage",
+   "distance": 37.6,
+   "pos": [
+    -2.5,
+    0.1,
+    30.4
+   ]
+  }
+ ],
+ "events": {
+  "damage": 2,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 1,
+  "fire": 20
+ },
+ "renderer": {
+  "calls": 240,
+  "triangles": 86022,
+  "geometries": 155,
+  "textures": 106,
+  "programs": 97
+ },
+ "custom": {
+  "samples": [
+   {
+    "pass": "world",
+    "sceneEnvIntensity": 0.55,
+    "lensMatIntensity": 2.2,
+    "lensUniform": 0.55,
+    "goldMatIntensity": 1.5,
+    "goldUniform": 0.55
+   },
+   {
+    "pass": "view",
+    "sceneEnvIntensity": 0.55,
+    "lensMatIntensity": 2.2,
+    "lensUniform": 0.55,
+    "goldMatIntensity": 1.5,
+    "goldUniform": 0.55
+   },
+   {
+    "pass": "world",
+    "sceneEnvIntensity": 0.55,
+    "lensMatIntensity": 2.2,
+    "lensUniform": 0.55,
+    "goldMatIntensity": 1.5,
+    "goldUniform": 0.55
+   },
+   {
+    "pass": "view",
+    "sceneEnvIntensity": 0.55,
+    "lensMatIntensity": 2.2,
+    "lensUniform": 0.55,
+    "goldMatIntensity": 1.5,
+    "goldUniform": 0.55
+   },
+   {
+    "pass": "world",
+    "sceneEnvIntensity": 0.55,
+    "lensMatIntensity": 2.2,
+    "lensUniform": 0.55,
+    "goldMatIntensity": 1.5,
+    "goldUniform": 0.55
+   },
+   {
+    "pass": "view",
+    "sceneEnvIntensity": 0.55,
+    "lensMatIntensity": 2.2,
+    "lensUniform": 0.55,
+    "goldMatIntensity": 1.5,
+    "goldUniform": 0.55
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

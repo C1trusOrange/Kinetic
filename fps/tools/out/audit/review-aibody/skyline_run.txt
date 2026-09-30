@@ -1,0 +1,293 @@
+[run] http://127.0.0.1:60193/index.html?autotest=1&map=skyline&bots=8&duration=60&god=1&script=idle&scenario=tools/out/audit/review-aibody/scen_watch.js
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[error] [run] timed out after 90s waiting for: window.__TEST__ && window.__TEST__.done
+[result] {
+ "done": false,
+ "started": true,
+ "t": 55.27,
+ "frames": 1798,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 175.4385964913089
+ },
+ "errors": [],
+ "map": "skyline",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1.1,
+  "maxY": 1.1,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 159,
+  "death": 25,
+  "spawn": 32,
+  "pickup": 13,
+  "fire": 453
+ },
+ "renderer": {},
+ "custom": {
+  "stuck": {
+   "Rivet": 0.02410000000000423,
+   "Cog": 0.018099999999996896,
+   "Axle": 0.012200000000007094,
+   "Voltage": 0.15740000000000975,
+   "Gasket": 0.0660999999999845,
+   "Torque": 0.22570000000002038,
+   "Nimbus": 0.10930000000001172,
+   "Sprocket": 0.11059999999999377
+  },
+  "tele": 0,
+  "teleLog": [],
+  "nan": [],
+  "embedded": [],
+  "maxSpeed": 13.397163646127678,
+  "hopStats": {},
+  "groundFlicker": {
+   "Rivet": 36,
+   "Cog": 50,
+   "Axle": 24,
+   "Voltage": 28,
+   "Gasket": 35,
+   "Torque": 38,
+   "Nimbus": 16,
+   "Sprocket": 50
+  },
+  "lowY": [
+   {
+    "bot": "Nimbus",
+    "y": -4.800000000000001
+   },
+   {
+    "bot": "Nimbus",
+    "y": -5.068627680000036
+   },
+   {
+    "bot": "Nimbus",
+    "y": -5.36135448000007
+   },
+   {
+    "bot": "Nimbus",
+    "y": -5.671986480000042
+   },
+   {
+    "bot": "Nimbus",
+    "y": -6.079433520000048
+   },
+   {
+    "bot": "Nimbus",
+    "y": -6.365609760000007
+   },
+   {
+    "bot": "Nimbus",
+    "y": -6.590428320000003
+   },
+   {
+    "bot": "Nimbus",
+    "y": -7.26134832
+   },
+   {
+    "bot": "Nimbus",
+    "y": -7.428624959999899
+   },
+   {
+    "bot": "Nimbus",
+    "y": -7.775978879999948
+   },
+   {
+    "bot": "Nimbus",
+    "y": -8.326490159999896
+   },
+   {
+    "bot": "Nimbus",
+    "y": -8.71081943999989
+   },
+   {
+    "bot": "Nimbus",
+    "y": -9.107745359999948
+   },
+   {
+    "bot": "Nimbus",
+    "y": -9.624711839999884
+   },
+   {
+    "bot": "Nimbus",
+    "y": -10.158159839999898
+   },
+   {
+    "bot": "Nimbus",
+    "y": -10.378667519999896
+   },
+   {
+    "bot": "Nimbus",
+    "y": -11.311729919999973
+   },
+   {
+    "bot": "Nimbus",
+    "y": -12.043806719999825
+   },
+   {
+    "bot": "Nimbus",
+    "y": -12.681706559999963
+   },
+   {
+    "bot": "Nimbus",
+    "y": -13.46328095999983
+   },
+   {
+    "bot": "Nimbus",
+    "y": -14.429322959999913
+   },
+   {
+    "bot": "Nimbus",
+    "y": -15.144926159999821
+   },
+   {
+    "bot": "Nimbus",
+    "y": -15.577458239999913
+   },
+   {
+    "bot": "Nimbus",
+    "y": -16.790284799999927
+   },
+   {
+    "bot": "Nimbus",
+    "y": -17.568937439999747
+   },
+   {
+    "bot": "Nimbus",
+    "y": -18.36947903999976
+   },
+   {
+    "bot": "Nimbus",
+    "y": -19.368995039999646
+   },
+   {
+    "bot": "Sprocket",
+    "y": -4.898088000000005
+   },
+   {
+    "bot": "Sprocket",
+    "y": -5.218632000000027
+   },
+   {
+    "bot": "Sprocket",
+    "y": -5.391570000000063
+   },
+   {
+    "bot": "Sprocket",
+    "y": -5.695768560000005
+   },
+   {
+    "bot": "Sprocket",
+    "y": -5.885948880000052
+   },
+   {
+    "bot": "Sprocket",
+    "y": -6.229941839999973
+   },
+   {
+    "bot": "Sprocket",
+    "y": -6.438856320000116
+   },
+   {
+    "bot": "Sprocket",
+    "y": -7.061363519999993
+   },
+   {
+    "bot": "Sprocket",
+    "y": -7.384631279999857
+   },
+   {
+    "bot": "Sprocket",
+    "y": -7.723295760000173
+   },
+   {
+    "bot": "Sprocket",
+    "y": -7.899057839999916
+   },
+   {
+    "bot": "Sprocket",
+    "y": -8.447791920000046
+   },
+   {
+    "bot": "Sprocket",
+    "y": -8.831945520000051
+   },
+   {
+    "bot": "Sprocket",
+    "y": -9.332742960000058
+   },
+   {
+    "bot": "Sprocket",
+    "y": -9.956896560000093
+   },
+   {
+    "bot": "Sprocket",
+    "y": -10.8837765600001
+   },
+   {
+    "bot": "Sprocket",
+    "y": -11.342502960000123
+   },
+   {
+    "bot": "Sprocket",
+    "y": -11.825192159999906
+   },
+   {
+    "bot": "Sprocket",
+    "y": -12.870272159999912
+   },
+   {
+    "bot": "Sprocket",
+    "y": -13.525624800000157
+   },
+   {
+    "bot": "Sprocket",
+    "y": -14.063097120000014
+   },
+   {
+    "bot": "Sprocket",
+    "y": -14.75571599999987
+   },
+   {
+    "bot": "Sprocket",
+    "y": -15.962435999999874
+   },
+   {
+    "bot": "Sprocket",
+    "y": -17.03149799999998
+   },
+   {
+    "bot": "Sprocket",
+    "y": -17.815710479999908
+   },
+   {
+    "bot": "Sprocket",
+    "y": -19.169790479999918
+   }
+  ],
+  "gibs": 0,
+  "nextCheck": 55.407399999999754
+ },
+ "errorCount": 0
+}
+[run] done: wait=TIMEOUT console_errors=1 warnings=1

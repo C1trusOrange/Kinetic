@@ -1,0 +1,124 @@
+[run] http://127.0.0.1:60626/index.html?autotest=1&map=sandbox&bots=2&mode=tdm&script=idle&scenario=tools/out/audit/review-weapons/nade_owner2.js&duration=5
+[log] [autotest] finished {"ok":true,"errors":0,"fps":34.1}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 5.06,
+ "frames": 190,
+ "fps": {
+  "avg": 34.1,
+  "min": 4,
+  "max": 83.3
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 100
+ },
+ "bots": [
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "collect",
+   "distance": 31,
+   "pos": [
+    -0.3,
+    4.5,
+    3.7
+   ]
+  },
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 1,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "collect",
+   "distance": 14.4,
+   "pos": [
+    -23.3,
+    0,
+    -25.9
+   ]
+  }
+ ],
+ "events": {
+  "damage": 2,
+  "death": 2,
+  "spawn": 4,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 225,
+  "triangles": 50008,
+  "geometries": 178,
+  "textures": 129,
+  "programs": 100
+ },
+ "custom": {
+  "damage": [
+   {
+    "t": 1.86,
+    "step": 1,
+    "weapon": "grenade",
+    "amount": 100,
+    "attacker": null,
+    "target": "Diode",
+    "targetTeam": 1
+   },
+   {
+    "t": 2.47,
+    "step": 2,
+    "weapon": "grenade",
+    "amount": 100,
+    "attacker": null,
+    "target": "PLAYER",
+    "targetTeam": 1
+   }
+  ],
+  "deaths": [
+   {
+    "t": 1.86,
+    "step": 1,
+    "weapon": "grenade",
+    "attacker": null,
+    "victim": "Diode"
+   },
+   {
+    "t": 2.47,
+    "step": 2,
+    "weapon": "grenade",
+    "attacker": null,
+    "victim": "PLAYER"
+   }
+  ],
+  "info": {
+   "playerTeam": 1,
+   "mate": "Diode",
+   "mateHp0": 100,
+   "mateHp1": 0,
+   "playerHpAfterSelf": 0,
+   "playerAlive": false
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

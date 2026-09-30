@@ -1,0 +1,130 @@
+[run] http://127.0.0.1:51065/index.html?autotest=1&map=sandbox&bots=2&god=1&script=idle&scenario=tools/out/audit/review-assets/lazy.js&duration=3
+[log] [autotest] finished {"ok":true,"errors":0,"fps":41}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 3.15,
+ "frames": 142,
+ "fps": {
+  "avg": 41,
+  "min": 4,
+  "max": 166.7
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Glitch",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 86,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 17.5,
+   "pos": [
+    13,
+    0,
+    26.3
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 76,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 16.7,
+   "pos": [
+    -13.8,
+    0,
+    27.4
+   ]
+  }
+ ],
+ "events": {
+  "damage": 6,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 1,
+  "fire": 17
+ },
+ "renderer": {
+  "calls": 187,
+  "triangles": 42472,
+  "geometries": 161,
+  "textures": 123,
+  "programs": 100
+ },
+ "custom": {
+  "built": [
+   {
+    "id": "pistol",
+    "had": false,
+    "ms": 3.9
+   },
+   {
+    "id": "rifle",
+    "had": false,
+    "ms": 0.1
+   },
+   {
+    "id": "shotgun",
+    "had": true,
+    "ms": 0
+   },
+   {
+    "id": "sniper",
+    "had": false,
+    "ms": 0.2
+   },
+   {
+    "id": "rocket",
+    "had": false,
+    "ms": 0.1
+   }
+  ],
+  "botInitialWeapon": "shotgun",
+  "instance": [
+   {
+    "id": "pistol",
+    "ms": 0
+   },
+   {
+    "id": "rifle",
+    "ms": 0
+   },
+   {
+    "id": "shotgun",
+    "ms": 0.2
+   },
+   {
+    "id": "sniper",
+    "ms": 0.1
+   },
+   {
+    "id": "rocket",
+    "ms": 0.2
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

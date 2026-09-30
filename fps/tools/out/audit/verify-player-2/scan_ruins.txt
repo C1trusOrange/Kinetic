@@ -1,0 +1,157 @@
+[run] http://127.0.0.1:60886/index.html?autotest=1&map=ruins&bots=0&script=idle&scenario=tools/out/audit/verify-player-2/scan.js&step=0.6
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 0,
+ "frames": 29,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "map": "ruins",
+  "spots": 3425,
+  "wrongTrue": 6,
+  "wrongFalse": 0,
+  "examples": [
+   {
+    "x": 35.05,
+    "y": 0,
+    "z": -35.15,
+    "headroom": 1.76,
+    "depth": 0.03,
+    "ceilN": [
+     0,
+     -1,
+     0
+    ],
+    "floorN": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "x": 35.65,
+    "y": 0,
+    "z": -35.15,
+    "headroom": 1.76,
+    "depth": 0.03,
+    "ceilN": [
+     0,
+     -1,
+     0
+    ],
+    "floorN": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "x": 35.65,
+    "y": 0,
+    "z": -34.55,
+    "headroom": 1.76,
+    "depth": 0.03,
+    "ceilN": [
+     0,
+     -1,
+     0
+    ],
+    "floorN": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "x": 35.65,
+    "y": 0,
+    "z": -33.95,
+    "headroom": 1.76,
+    "depth": 0.03,
+    "ceilN": [
+     0,
+     -1,
+     0
+    ],
+    "floorN": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "x": 36.25,
+    "y": 0,
+    "z": -35.15,
+    "headroom": 1.76,
+    "depth": 0.03,
+    "ceilN": [
+     0,
+     -1,
+     0
+    ],
+    "floorN": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "x": 36.25,
+    "y": 0,
+    "z": -34.55,
+    "headroom": 1.76,
+    "depth": 0.03,
+    "ceilN": [
+     0,
+     -1,
+     0
+    ],
+    "floorN": [
+     0,
+     1,
+     0
+    ]
+   }
+  ]
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

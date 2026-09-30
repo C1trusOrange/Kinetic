@@ -1,0 +1,215 @@
+[run] http://127.0.0.1:57608/index.html?autotest=1&mapfile=tools/out/audit/design-depth/aerie_proto.js&bots=7&script=idle&scenario=tools/out/audit/design-depth/sim.js&duration=60&diff=normal&quality=low
+[log] [autotest] finished {"ok":true,"errors":0,"fps":107.3}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 60.09,
+ "frames": 5247,
+ "fps": {
+  "avg": 107.3,
+  "min": 4,
+  "max": 222.2
+ },
+ "errors": [],
+ "map": "aerie",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 5,
+  "maxY": 5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Servo",
+   "alive": false,
+   "kills": 3,
+   "deaths": 5,
+   "health": 0,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 306.1,
+   "pos": [
+    5.9,
+    0,
+    11.5
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 3,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 142.2,
+   "pos": [
+    1.1,
+    5,
+    49.4
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 3,
+   "deaths": 2,
+   "health": 3,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 259.3,
+   "pos": [
+    6.2,
+    0,
+    8.5
+   ]
+  },
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 3,
+   "deaths": 5,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 313.1,
+   "pos": [
+    33.2,
+    0,
+    2.2
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": true,
+   "kills": 5,
+   "deaths": 5,
+   "health": 24,
+   "weapon": "pistol",
+   "state": "retreat",
+   "distance": 294.3,
+   "pos": [
+    -13.9,
+    3,
+    -43.4
+   ]
+  },
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 3,
+   "deaths": 3,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 238.7,
+   "pos": [
+    -13,
+    0,
+    54.7
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 3,
+   "deaths": 2,
+   "health": 51,
+   "weapon": "rocket",
+   "state": "engage",
+   "distance": 385.2,
+   "pos": [
+    -27.2,
+    0,
+    -0.6
+   ]
+  }
+ ],
+ "events": {
+  "damage": 162,
+  "death": 25,
+  "spawn": 32,
+  "pickup": 13,
+  "fire": 588
+ },
+ "renderer": {
+  "calls": 249,
+  "triangles": 47220,
+  "geometries": 214,
+  "textures": 98,
+  "programs": 74
+ },
+ "custom": {
+  "deaths": {
+   "pistol": 8,
+   "rifle": 11,
+   "fall(no attacker)": 1,
+   "fall": 2,
+   "grenade(no attacker)": 1,
+   "shotgun": 1,
+   "rocket": 1
+  },
+  "falls": [
+   {
+    "victim": "Byte",
+    "attacker": null,
+    "t": 12.2,
+    "pos": [
+     -17,
+     -38,
+     -23
+    ]
+   },
+   {
+    "victim": "Axle",
+    "attacker": "Rivet",
+    "t": 23.7,
+    "pos": [
+     29,
+     -38,
+     44
+    ]
+   },
+   {
+    "victim": "Servo",
+    "attacker": "Axle",
+    "t": 32,
+    "pos": [
+     19,
+     -38,
+     -27
+    ]
+   }
+  ],
+  "zoneSecs": {
+   "yardE": 19.08489999999999,
+   "yardW": 13,
+   "yardN": 23,
+   "rimSW": 13,
+   "yardS": 18,
+   "rimNE": 8
+  },
+  "pickups": 13,
+  "byBot": {},
+  "botKD": [
+   "Servo:3/5",
+   "Relay:3/3",
+   "Nimbus:3/2",
+   "Piston:3/5",
+   "Byte:5/5",
+   "Rivet:3/3",
+   "Axle:3/2"
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

@@ -1,0 +1,1335 @@
+[run] http://127.0.0.1:64005/index.html?autotest=1&map=skyline&bots=0&script=idle&secs=90&seed=2&ring=cameraFarFromEye,embedded,loopMismatch,flagMismatch&ringn=30&scenario=tools/out/audit/review-player/fastsim.js
+[warning] [world] map 'skyline' has 8 warning(s):
+ - spawn #0 at [-28,0,-14] is inside or too close to solid geometry (depth 0.19)
+ - spawn #1 at [34, 0, -14]: floor is at y=1.10 (snapped)
+ - spawn #1 at [34,1.1,-14] is inside or too close to solid geometry (depth 0.35)
+ - spawn #2 at [-34, 0, 14]: floor is at y=1.10 (snapped)
+ - spawn #3 at [28, 0, 14]: floor is at y=1.10 (snapped)
+ - pickup (ammo) at [33, 12.8, 24]: floor is at y=13.15 (snapped)
+ - 1452 solids (budget ~700)
+ - bots cannot reach: spawn #15 (isolated area), spawn #17 (isolated area), pickup #1 (weapon:sniper, isolated area), pickup #4 (armor, isolated area) - add ramps/stairs (bots cannot grapple or wall-run)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 90,
+ "frames": 67,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 166.66666666666035
+ },
+ "errors": [],
+ "map": "skyline",
+ "player": {
+  "distance": 850.6998094434912,
+  "maxSpeed": 15.715731338699435,
+  "minY": -19.941666666666634,
+  "maxY": 19.280000000000012,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isSprinting": true,
+   "isGrappling": true,
+   "isMantling": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "isWallRunning": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 3,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 3,
+  "spawn": 4,
+  "pickup": 1,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "seed": 2,
+  "viol": {},
+  "samples": {
+   "cameraFarFromEye": {
+    "t": 3.2,
+    "pos": [
+     0.92,
+     6.4,
+     25.46
+    ],
+    "vel": [
+     -1.41,
+     5.4,
+     7.08
+    ],
+    "state": "air",
+    "grounded": false,
+    "crouched": false,
+    "h": 1.8,
+    "keys": "forward+back+right",
+    "gr": "idle",
+    "dcam": 1.43,
+    "so": [
+     0,
+     0,
+     0
+    ],
+    "alpha": 0,
+    "prev": [
+     0.93,
+     4.98,
+     25.4
+    ],
+    "eye": 1.12
+   },
+   "outOfBounds": {
+    "t": 29.12,
+    "pos": [
+     -3.55,
+     6.85,
+     -46.02
+    ],
+    "vel": [
+     1.59,
+     1.6,
+     -2.94
+    ],
+    "state": "air",
+    "grounded": false,
+    "crouched": false,
+    "h": 1.8,
+    "keys": "forward+right+sprint",
+    "gr": "idle"
+   },
+   "diedDuringFuzz": {
+    "t": 31.22,
+    "pos": [
+     -8.6,
+     -20.55,
+     -51.07
+    ],
+    "vel": [
+     -4.64,
+     -36.6,
+     0.32
+    ],
+    "state": "air",
+    "grounded": false,
+    "crouched": false,
+    "h": 1.8,
+    "keys": "forward+sprint",
+    "gr": "idle"
+   },
+   "slidingAirborne": {
+    "t": 32.95,
+    "pos": [
+     -3.06,
+     7.52,
+     -19.76
+    ],
+    "vel": [
+     -6.75,
+     0,
+     7.89
+    ],
+    "state": "slide",
+    "grounded": false,
+    "crouched": true,
+    "h": 1.15,
+    "keys": "forward+back+crouch",
+    "gr": "idle"
+   },
+   "embedded": {
+    "t": 41.63,
+    "pos": [
+     3.6,
+     6.4,
+     -34.75
+    ],
+    "vel": [
+     -4.33,
+     0,
+     -8.58
+    ],
+    "state": "ground",
+    "grounded": true,
+    "crouched": false,
+    "h": 1.8,
+    "keys": "forward+sprint",
+    "gr": "idle",
+    "depth": 0.09
+   }
+  },
+  "counts": {
+   "cameraFarFromEye": 2,
+   "outOfBounds": 354,
+   "diedDuringFuzz": 3,
+   "slidingAirborne": 1,
+   "embedded": 2
+  },
+  "ring": {
+   "cameraFarFromEye": [
+    {
+     "t": 2.72,
+     "pos": [
+      -1.16,
+      3.2,
+      23.21
+     ],
+     "vel": [
+      6.72,
+      0,
+      2.73
+     ],
+     "state": "slide",
+     "grounded": true,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 2.73,
+     "pos": [
+      -1.05,
+      3.2,
+      23.26
+     ],
+     "vel": [
+      6.57,
+      0,
+      2.81
+     ],
+     "state": "slide",
+     "grounded": true,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 2.75,
+     "pos": [
+      -0.94,
+      3.2,
+      23.31
+     ],
+     "vel": [
+      6.42,
+      0,
+      2.89
+     ],
+     "state": "slide",
+     "grounded": true,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 2.77,
+     "pos": [
+      -0.84,
+      3.2,
+      23.36
+     ],
+     "vel": [
+      6.27,
+      0,
+      2.96
+     ],
+     "state": "slide",
+     "grounded": true,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 2.78,
+     "pos": [
+      -0.73,
+      3.2,
+      23.41
+     ],
+     "vel": [
+      6.12,
+      0,
+      3.03
+     ],
+     "state": "slide",
+     "grounded": true,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 2.8,
+     "pos": [
+      -0.63,
+      3.33,
+      23.46
+     ],
+     "vel": [
+      6.06,
+      7.6,
+      3.15
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+jump+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 2.82,
+     "pos": [
+      -0.53,
+      3.45,
+      23.51
+     ],
+     "vel": [
+      6,
+      7.2,
+      3.26
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+jump+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 2.83,
+     "pos": [
+      -0.43,
+      3.57,
+      23.57
+     ],
+     "vel": [
+      5.94,
+      6.8,
+      3.38
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+jump+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 2.85,
+     "pos": [
+      -0.33,
+      3.67,
+      23.63
+     ],
+     "vel": [
+      5.87,
+      6.4,
+      3.49
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 2.87,
+     "pos": [
+      -0.24,
+      3.78,
+      23.69
+     ],
+     "vel": [
+      5.8,
+      6,
+      3.6
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 2.88,
+     "pos": [
+      -0.14,
+      3.87,
+      23.75
+     ],
+     "vel": [
+      5.73,
+      5.6,
+      3.71
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 2.9,
+     "pos": [
+      -0.05,
+      3.96,
+      23.81
+     ],
+     "vel": [
+      5.66,
+      5.2,
+      3.82
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 2.92,
+     "pos": [
+      0.05,
+      4.04,
+      23.88
+     ],
+     "vel": [
+      5.59,
+      4.8,
+      3.93
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 2.93,
+     "pos": [
+      0.14,
+      4.11,
+      23.94
+     ],
+     "vel": [
+      5.51,
+      4.4,
+      4.04
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 2.95,
+     "pos": [
+      0.23,
+      4.18,
+      24.01
+     ],
+     "vel": [
+      5.43,
+      4,
+      4.14
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 2.97,
+     "pos": [
+      0.32,
+      4.24,
+      24.08
+     ],
+     "vel": [
+      5.35,
+      3.6,
+      4.24
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 2.98,
+     "pos": [
+      0.41,
+      4.3,
+      24.15
+     ],
+     "vel": [
+      5.27,
+      3.2,
+      4.35
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 3,
+     "pos": [
+      0.49,
+      4.35,
+      24.23
+     ],
+     "vel": [
+      5.18,
+      2.8,
+      4.45
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 3.02,
+     "pos": [
+      0.58,
+      4.39,
+      24.3
+     ],
+     "vel": [
+      5.1,
+      2.4,
+      4.55
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 3.03,
+     "pos": [
+      0.66,
+      4.42,
+      24.38
+     ],
+     "vel": [
+      4.85,
+      2,
+      4.91
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+back+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 3.05,
+     "pos": [
+      0.74,
+      4.45,
+      24.47
+     ],
+     "vel": [
+      4.59,
+      1.6,
+      5.26
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+back+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 3.07,
+     "pos": [
+      0.81,
+      4.47,
+      24.56
+     ],
+     "vel": [
+      4.33,
+      1.2,
+      5.62
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+back+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 3.08,
+     "pos": [
+      0.88,
+      4.49,
+      24.66
+     ],
+     "vel": [
+      4.07,
+      0.8,
+      5.97
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+back+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 3.1,
+     "pos": [
+      0.95,
+      4.5,
+      24.76
+     ],
+     "vel": [
+      3.95,
+      0.4,
+      6.04
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+back+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 3.12,
+     "pos": [
+      1.01,
+      4.5,
+      24.86
+     ],
+     "vel": [
+      3.83,
+      0,
+      6.12
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+back+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 3.13,
+     "pos": [
+      1,
+      4.62,
+      24.98
+     ],
+     "vel": [
+      -0.86,
+      7,
+      7.17
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+back+right+jump+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 3.15,
+     "pos": [
+      0.98,
+      4.73,
+      25.1
+     ],
+     "vel": [
+      -1,
+      6.6,
+      7.15
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+back+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 3.17,
+     "pos": [
+      0.96,
+      4.83,
+      25.22
+     ],
+     "vel": [
+      -1.14,
+      6.2,
+      7.13
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+back+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 3.18,
+     "pos": [
+      0.94,
+      4.93,
+      25.34
+     ],
+     "vel": [
+      -1.27,
+      5.8,
+      7.11
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": true,
+     "h": 1.15,
+     "keys": "forward+back+right+crouch",
+     "gr": "idle"
+    },
+    {
+     "t": 3.2,
+     "pos": [
+      0.92,
+      6.4,
+      25.46
+     ],
+     "vel": [
+      -1.41,
+      5.4,
+      7.08
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+back+right",
+     "gr": "idle"
+    }
+   ],
+   "embedded": [
+    {
+     "t": 41.15,
+     "pos": [
+      -40.77,
+      0.03,
+      -29.15
+     ],
+     "vel": [
+      -8.66,
+      0,
+      -4.15
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.17,
+     "pos": [
+      -40.91,
+      0.03,
+      -29.22
+     ],
+     "vel": [
+      -8.64,
+      0,
+      -4.2
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.18,
+     "pos": [
+      -41.05,
+      0.03,
+      -29.29
+     ],
+     "vel": [
+      -8.62,
+      0,
+      -4.25
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.2,
+     "pos": [
+      -41.2,
+      0.03,
+      -29.36
+     ],
+     "vel": [
+      -8.59,
+      0,
+      -4.31
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.22,
+     "pos": [
+      -41.34,
+      0.03,
+      -29.43
+     ],
+     "vel": [
+      -8.57,
+      0,
+      -4.36
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.23,
+     "pos": [
+      -41.48,
+      0.03,
+      -29.5
+     ],
+     "vel": [
+      -8.54,
+      0,
+      -4.42
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.25,
+     "pos": [
+      -41.63,
+      0.03,
+      -29.58
+     ],
+     "vel": [
+      -8.51,
+      0,
+      -4.48
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.27,
+     "pos": [
+      -41.77,
+      0.03,
+      -29.65
+     ],
+     "vel": [
+      -8.47,
+      0,
+      -4.54
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.28,
+     "pos": [
+      -41.91,
+      0.03,
+      -29.73
+     ],
+     "vel": [
+      -8.44,
+      0,
+      -4.6
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.3,
+     "pos": [
+      -42.05,
+      0.03,
+      -29.81
+     ],
+     "vel": [
+      -8.41,
+      0,
+      -4.67
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.32,
+     "pos": [
+      -42.19,
+      0.16,
+      -29.89
+     ],
+     "vel": [
+      -8.32,
+      7.6,
+      -4.83
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+jump+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.33,
+     "pos": [
+      -42.32,
+      0.28,
+      -29.97
+     ],
+     "vel": [
+      -8.22,
+      7.2,
+      -4.98
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.35,
+     "pos": [
+      -42.46,
+      0.39,
+      -30.06
+     ],
+     "vel": [
+      -8.13,
+      6.8,
+      -5.14
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.37,
+     "pos": [
+      -42.59,
+      0.5,
+      -30.14
+     ],
+     "vel": [
+      -8.03,
+      6.4,
+      -5.3
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.38,
+     "pos": [
+      -42.73,
+      0.6,
+      -30.23
+     ],
+     "vel": [
+      -7.92,
+      6,
+      -5.45
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.4,
+     "pos": [
+      -42.86,
+      0.7,
+      -30.33
+     ],
+     "vel": [
+      -7.85,
+      5.6,
+      -5.56
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.42,
+     "pos": [
+      -42.99,
+      0.79,
+      -30.42
+     ],
+     "vel": [
+      -7.8,
+      5.2,
+      -5.62
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.43,
+     "pos": [
+      -43.12,
+      0.87,
+      -30.51
+     ],
+     "vel": [
+      -7.75,
+      4.8,
+      -5.69
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.45,
+     "pos": [
+      -43.25,
+      0.94,
+      -30.61
+     ],
+     "vel": [
+      -7.7,
+      4.4,
+      -5.76
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.47,
+     "pos": [
+      -43.37,
+      1.01,
+      -30.71
+     ],
+     "vel": [
+      -7.65,
+      4,
+      -5.82
+     ],
+     "state": "air",
+     "grounded": false,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.48,
+     "pos": [
+      -43.45,
+      1.07,
+      -30.81
+     ],
+     "vel": [
+      -1.2,
+      2.46,
+      -6.26
+     ],
+     "state": "wallrun",
+     "grounded": false,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.5,
+     "pos": [
+      -43.47,
+      1.11,
+      -30.92
+     ],
+     "vel": [
+      -1.2,
+      2.38,
+      -7.01
+     ],
+     "state": "wallrun",
+     "grounded": false,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.52,
+     "pos": [
+      -43.49,
+      1.14,
+      -31.05
+     ],
+     "vel": [
+      -1.2,
+      2.3,
+      -7.76
+     ],
+     "state": "wallrun",
+     "grounded": false,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.53,
+     "pos": [
+      3.96,
+      6.62,
+      -34.05
+     ],
+     "vel": [
+      -2.4,
+      0,
+      -3.49
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.55,
+     "pos": [
+      3.92,
+      6.62,
+      -34.13
+     ],
+     "vel": [
+      -2.88,
+      0,
+      -4.63
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.57,
+     "pos": [
+      3.86,
+      6.62,
+      -34.22
+     ],
+     "vel": [
+      -3.29,
+      0,
+      -5.64
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.58,
+     "pos": [
+      3.8,
+      6.62,
+      -34.32
+     ],
+     "vel": [
+      -3.64,
+      0,
+      -6.55
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.6,
+     "pos": [
+      3.74,
+      6.62,
+      -34.44
+     ],
+     "vel": [
+      -3.94,
+      0,
+      -7.36
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.62,
+     "pos": [
+      3.67,
+      6.54,
+      -34.59
+     ],
+     "vel": [
+      -4.19,
+      0,
+      -8.09
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    },
+    {
+     "t": 41.63,
+     "pos": [
+      3.6,
+      6.4,
+      -34.75
+     ],
+     "vel": [
+      -4.33,
+      0,
+      -8.58
+     ],
+     "state": "ground",
+     "grounded": true,
+     "crouched": false,
+     "h": 1.8,
+     "keys": "forward+sprint",
+     "gr": "idle"
+    }
+   ]
+  },
+  "trace": [],
+  "maxSpeed": 15.715731338699435,
+  "states": {
+   "ground": 787,
+   "air": 3929,
+   "grapple": 163,
+   "mantle": 270,
+   "slide": 73,
+   "wallrun": 178
+  },
+  "simSeconds": 90,
+  "dt": 0.016666666666666666
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

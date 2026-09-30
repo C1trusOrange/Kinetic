@@ -1,0 +1,87 @@
+[run] http://127.0.0.1:65265/index.html?autotest=1&map=sandbox&bots=0&script=idle&secs=150&seed=5&ring=pop&ringn=6&trace=0.35&scenario=tools/out/audit/review-player/fastsim.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 150,
+ "frames": 55,
+ "fps": {
+  "avg": 0,
+  "min": 8.250825082508374,
+  "max": 9.718172983478938
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 1310.66521427065,
+  "maxSpeed": 19.245847353364475,
+  "minY": -4,
+  "maxY": 18.47939503868917,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isGrappling": true,
+   "isSprinting": true,
+   "isWallRunning": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "isMantling": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 5,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "seed": 5,
+  "viol": {},
+  "samples": {
+   "slidingWhileGrappling": {
+    "t": 99.33,
+    "pos": [
+     -19.67,
+     0,
+     30.44
+    ],
+    "vel": [
+     -3.89,
+     0,
+     1.65
+    ],
+    "state": "grapple",
+    "grounded": true,
+    "crouched": true,
+    "h": 1.15,
+    "keys": "forward+back+left+right+crouch+sprint+grapple",
+    "gr": "attached"
+   }
+  },
+  "counts": {
+   "slidingWhileGrappling": 1
+  },
+  "ring": {},
+  "trace": [],
+  "maxSpeed": 19.245847353364475,
+  "states": {
+   "air": 6848,
+   "grapple": 216,
+   "ground": 1419,
+   "wallrun": 313,
+   "slide": 95,
+   "mantle": 109
+  },
+  "simSeconds": 150,
+  "dt": 0.016666666666666666
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

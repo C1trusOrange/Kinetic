@@ -1,0 +1,17 @@
+import sys, json
+from common import *
+s = Session(1280, 720)
+s.goto('index.html', "window.__GAME__ && window.__GAME__.state === 'menu'", timeout=180)
+s.wait(1.5)
+s.run("__GAME__.menu._go('settings');")
+s.wait(0.8)
+print('quality before', s.js("__GAME__.settings.get('quality')"), 'fov', s.js("__GAME__.settings.get('fov')"))
+pos = s.js("(() => { const b = document.querySelector('[data-set=quality]').closest('label').querySelector('.set-l').getBoundingClientRect(); return [b.x + 10, b.y + b.height/2]; })()")
+print('label pos', pos)
+s.cdp.call('Input.dispatchMouseEvent', {'type': 'mouseMoved', 'x': pos[0], 'y': pos[1]})
+s.cdp.call('Input.dispatchMouseEvent', {'type': 'mousePressed', 'x': pos[0], 'y': pos[1], 'button': 'left', 'clickCount': 1})
+s.cdp.call('Input.dispatchMouseEvent', {'type': 'mouseReleased', 'x': pos[0], 'y': pos[1], 'button': 'left', 'clickCount': 1})
+s.wait(1.5)
+print('quality after clicking label text', s.js("__GAME__.settings.get('quality')"), s.js("__GAME__.quality.name"))
+s.shot('exp4_settings_after.png')
+s.close()

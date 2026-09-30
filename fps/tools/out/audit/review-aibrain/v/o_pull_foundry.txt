@@ -1,0 +1,106 @@
+[run] http://127.0.0.1:60747/index.html?autotest=1&map=foundry&bots=2&duration=3&god=1&script=idle&scenario=tools/out/audit/review-aibrain/v/t_pull.js
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":23}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 3.14,
+ "frames": 105,
+ "fps": {
+  "avg": 23,
+  "min": 4,
+  "max": 82.6
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 5,
+  "maxY": 5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Servo",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "engage",
+   "distance": 22.7,
+   "pos": [
+    -14,
+    0,
+    23.5
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 21.9,
+   "pos": [
+    -42.6,
+    0,
+    -16.9
+   ]
+  }
+ ],
+ "events": {
+  "damage": 1,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 3
+ },
+ "renderer": {
+  "calls": 243,
+  "triangles": 114962,
+  "geometries": 155,
+  "textures": 122,
+  "programs": 101
+ },
+ "custom": {
+  "jumpWp": 55,
+  "moved": 0,
+  "movedFar": 0,
+  "lowered": 0,
+  "samples": [],
+  "route": {
+   "raw": [
+    "-13.49,6.05,-3.49,jump",
+    "-14.49,6.78,-4.49,walk",
+    "-14.49,9.5,-10.49,walk",
+    "-14.49,9.5,-18.49,walk",
+    "-13.49,9.5,-19.49,walk",
+    "-3.5,9.5,-20.5,walk"
+   ],
+   "pulled": [
+    "-14.07,6.32,-3.57,jump",
+    "-14.49,6.78,-4.49,walk",
+    "-14.49,9.5,-10.49,walk",
+    "-14.49,9.5,-18.49,walk",
+    "-13.49,9.5,-19.69,walk",
+    "-3.5,9.5,-20.5,walk"
+   ]
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=2

@@ -1,0 +1,91 @@
+<!doctype html><html><head><meta charset="utf-8">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><script type="module">
+import * as THREE from 'three';
+import { MapBuilder } from '/src/world/MapBuilder.js';
+import { CollisionWorld } from '/src/world/Collision.js';
+window.__DONE__ = false;
+window.__R__ = {};
+const rots = [0, 0.7, Math.PI / 2, 2.3];
+const solids = {
+  box: r => ({ type: 'box', pos: [3, 2, -4], size: [4, 3, 2], rot: r }),
+  boxbev: r => ({ type: 'box', pos: [3, 2, -4], size: [4, 3, 2], rot: r, bevel: 0.2 }),
+  boxminmax: r => ({ type: 'box', min: [1, 0, -6], max: [5, 3, -2], rot: r }),
+  wall: r => ({ type: 'wall', from: [0, 0], to: [6, 4], height: 3, thickness: 0.5 }),
+  ramp_px: r => ({ type: 'ramp', pos: [3, 1, -4], size: [6, 2, 3], dir: '+x', rot: r }),
+  ramp_mx: r => ({ type: 'ramp', pos: [3, 1, -4], size: [6, 2, 3], dir: '-x', rot: r }),
+  ramp_pz: r => ({ type: 'ramp', pos: [3, 1, -4], size: [3, 2, 6], dir: '+z', rot: r }),
+  ramp_mz: r => ({ type: 'ramp', pos: [3, 1, -4], size: [3, 2, 6], dir: '-z', rot: r }),
+  stairs_px: r => ({ type: 'stairs', pos: [3, 1, -4], size: [6, 2, 3], dir: '+x', rot: r }),
+  stairs_mz: r => ({ type: 'stairs', pos: [3, 1, -4], size: [3, 2, 6], dir: '-z', rot: r }),
+  cyl: r => ({ type: 'cylinder', pos: [3, 2, -4], radius: 1, height: 4, sides: 12, rot: r }),
+  cyl_cone: r => ({ type: 'cylinder', pos: [3, 2, -4], radius: 1, radiusTop: 0, height: 4, sides: 12, rot: r }),
+  cyl_x: r => ({ type: 'cylinder', pos: [3, 2, -4], radius: 0.5, height: 4, sides: 12, axis: 'x', rot: r }),
+  cyl_z: r => ({ type: 'cylinder', pos: [3, 2, -4], radius: 0.5, height: 4, sides: 12, axis: 'z', rot: r }),
+  pillar: r => ({ type: 'pillar', pos: [3, 2, -4], radius: 0.5, height: 4, rot: r }),
+  arch: r => ({ type: 'arch', pos: [3, 2, -4], size: [5, 4, 1.2], rot: r }),
+  container: r => ({ type: 'container', pos: [3, 1.3, -4], rot: r }),
+  crate: r => ({ type: 'crate', pos: [3, 0.6, -4], size: [1.2, 1.2, 1.2], rot: r }),
+  railing: r => ({ type: 'railing', from: [0, 2, 0], to: [6, 2, 4] }),
+  railing_slope: r => ({ type: 'railing', from: [0, 0, 0], to: [6, 3, 0] }),
+  catwalk: r => ({ type: 'catwalk', from: [0, 3, 0], to: [8, 3, 0], width: 2.5 }),
+  catwalk_z: r => ({ type: 'catwalk', from: [0, 3, 0], to: [0, 3, 8], width: 2.5 }),
+  panel: r => ({ type: 'panel', pos: [3, 2, -4], size: [2, 1], rot: r, collide: true }),
+};
+const out = {};
+function analyze(name, s) {
+  const warns = [];
+  const col = new CollisionWorld();
+  const b = new MapBuilder({ solids: [s] }, col, m => warns.push(m));
+  b.buildGeometry();
+  // visual analysis
+  let vbox = new THREE.Box3(), badN = 0, badWind = 0, tris = 0, flatBad = 0;
+  const c = new THREE.Vector3();
+  const A = new THREE.Vector3(), B = new THREE.Vector3(), C = new THREE.Vector3(), N = new THREE.Vector3(), E1 = new THREE.Vector3(), E2 = new THREE.Vector3();
+  const vn = new THREE.Vector3();
+  for (const bk of b.buckets.values()) {
+    for (let i = 0; i < bk.idx.length; i += 3) {
+      const ia = bk.idx[i], ib = bk.idx[i + 1], ic = bk.idx[i + 2];
+      A.set(bk.pos[ia * 3], bk.pos[ia * 3 + 1], bk.pos[ia * 3 + 2]);
+      B.set(bk.pos[ib * 3], bk.pos[ib * 3 + 1], bk.pos[ib * 3 + 2]);
+      C.set(bk.pos[ic * 3], bk.pos[ic * 3 + 1], bk.pos[ic * 3 + 2]);
+      E1.subVectors(B, A); E2.subVectors(C, A); N.crossVectors(E1, E2);
+      if (N.lengthSq() < 1e-14) continue;
+      N.normalize(); tris++;
+      vn.set(bk.nor[ia * 3], bk.nor[ia * 3 + 1], bk.nor[ia * 3 + 2]);
+      if (N.dot(vn) < 0.2) badN++;
+      vbox.expandByPoint(A); vbox.expandByPoint(B); vbox.expandByPoint(C);
+    }
+  }
+  col.build();
+  const cb = col.built ? col.octree.box : null;
+  const res = { warns, tris, ctris: col.triangleCount, badN, vbox: vbox.isEmpty() ? null : [vbox.min.toArray().map(v => +v.toFixed(2)), vbox.max.toArray().map(v => +v.toFixed(2))], cbox: cb ? [cb.min.toArray().map(v => +v.toFixed(2)), cb.max.toArray().map(v => +v.toFixed(2))] : null };
+  // collision winding check: raycast from far outside toward the collision box center along 6 dirs, expect hit; from center outward expect no hit for closed shapes (backfaces)
+  if (col.built) {
+    const cen = cb.getCenter(new THREE.Vector3());
+    const sz = cb.getSize(new THREE.Vector3());
+    const dirs = [[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
+    let miss = 0, insideHit = 0;
+    for (const d of dirs) {
+      const dv = new THREE.Vector3(...d);
+      const o = cen.clone().addScaledVector(dv, -50);
+      const h = col.raycast(o, dv, 200);
+      if (!h) miss++;
+      // from center outward: front-face hit means an inward-facing triangle (winding wrong) if center inside solid
+      const h2 = col.raycast(cen, dv, 200);
+      if (h2 && h2.normal.dot(dv) < 0) insideHit++;
+    }
+    res.rayMiss = miss; res.insideFrontHit = insideHit;
+  }
+  return res;
+}
+for (const [name, f] of Object.entries(solids)) {
+  out[name] = {};
+  for (const r of rots) {
+    try { out[name][r.toFixed(2)] = analyze(name, f(r)); }
+    catch (e) { out[name][r.toFixed(2)] = { error: String(e && e.stack || e) }; }
+  }
+}
+window.__R__ = out;
+window.__DONE__ = true;
+</script></body></html>

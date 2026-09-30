@@ -1,0 +1,7 @@
+[run] http://127.0.0.1:49947/index.html?autotest=1&map=gunfeel&mapfile=tools/out/audit/feel-gunfeel/testmap.js&bots=1&god=1&scenario=tools/out/audit/feel-gunfeel/fire.js&duration=90&t=wall&w=rifle&reloadAt=0.55
+[run] screenshot -> tools\out\audit\feel-gunfeel\r_rifle_55.png
+[result] {
+ "reloadProgress": 0.5695263157894733,
+ "reloadT": 1.0820999999999992
+}
+[run] done: wait=ok console_errors=0 warnings=0

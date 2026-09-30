@@ -1,0 +1,139 @@
+[run] http://127.0.0.1:61407/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-player/natural_escape.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 7,
+ "frames": 34,
+ "fps": {
+  "avg": 0,
+  "min": 5.896226415094495,
+  "max": 5.896226415094495
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 45.58040388553705,
+  "maxSpeed": 6.200000000000001,
+  "minY": -19.376666666666612,
+  "maxY": 10.005,
+  "states": {
+   "onGround": true,
+   "airborne": true,
+   "isMantling": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 1,
+  "spawn": 2,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "log": [
+   [
+    0,
+    "ground/idle",
+    6.1,
+    7.1,
+    -29.6
+   ],
+   [
+    0.32,
+    "air/idle",
+    6.1,
+    7.23,
+    -29.6
+   ],
+   [
+    0.55,
+    "mantle/idle",
+    6.1,
+    8.31,
+    -30.1
+   ],
+   [
+    0.85,
+    "ground/idle",
+    6.1,
+    10,
+    -31.51
+   ],
+   [
+    0.98,
+    "air/idle",
+    6.1,
+    9.92,
+    -32.33
+   ],
+   [
+    1,
+    "air/idle",
+    6.1,
+    9.91,
+    -32.44
+   ],
+   [
+    2,
+    "air/idle",
+    6.1,
+    -2.79,
+    -39.03
+   ],
+   [
+    3,
+    "air/idle",
+    6.1,
+    -39.53,
+    -45.23
+   ],
+   [
+    4,
+    "air/idle",
+    6.1,
+    -93.73,
+    -51.43
+   ],
+   [
+    5,
+    "air/idle",
+    6.1,
+    -148.73,
+    -57.63
+   ],
+   [
+    5.57,
+    "ground/idle",
+    14,
+    0,
+    -8
+   ],
+   [
+    6,
+    "ground/idle",
+    12,
+    0,
+    -6.86
+   ]
+  ],
+  "final": {
+   "pos": [
+    6.7,
+    0,
+    -3.83
+   ],
+   "alive": true,
+   "inBounds": true,
+   "deaths": 1
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

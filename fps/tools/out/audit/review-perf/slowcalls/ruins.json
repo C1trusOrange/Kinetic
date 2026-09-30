@@ -1,0 +1,488 @@
+{
+ "eval": {
+  "slow": [
+   {
+    "label": "Projectiles.update",
+    "ms": 472.2,
+    "t": 0.05,
+    "who": ""
+   },
+   {
+    "label": "Projectiles._warm",
+    "ms": 472,
+    "t": 0.05,
+    "who": ""
+   },
+   {
+    "label": "Bot._move",
+    "ms": 188.1,
+    "t": 21.46,
+    "who": "Piston"
+   },
+   {
+    "label": "Bot.update",
+    "ms": 188.1,
+    "t": 21.46,
+    "who": "Piston"
+   },
+   {
+    "label": "Effects.update",
+    "ms": 186,
+    "t": 25.39,
+    "who": ""
+   },
+   {
+    "label": "Effects._updateGibs",
+    "ms": 185.8,
+    "t": 25.39,
+    "who": ""
+   },
+   {
+    "label": "Audio.play",
+    "ms": 185.6,
+    "t": 25.39,
+    "who": ""
+   },
+   {
+    "label": "Bot.update",
+    "ms": 57.8,
+    "t": 21.51,
+    "who": "Voltage"
+   },
+   {
+    "label": "Brain.update",
+    "ms": 56.1,
+    "t": 21.51,
+    "who": ""
+   },
+   {
+    "label": "Brain.updateMovement",
+    "ms": 55.5,
+    "t": 21.51,
+    "who": ""
+   },
+   {
+    "label": "Effects.update",
+    "ms": 25.9,
+    "t": 25.49,
+    "who": ""
+   },
+   {
+    "label": "Effects._updateGibs",
+    "ms": 25.8,
+    "t": 25.49,
+    "who": ""
+   },
+   {
+    "label": "Bot.update",
+    "ms": 23.8,
+    "t": 0.2,
+    "who": "Axle"
+   },
+   {
+    "label": "Brain.update",
+    "ms": 23.6,
+    "t": 0.2,
+    "who": ""
+   },
+   {
+    "label": "BotNav._requestPath",
+    "ms": 23.3,
+    "t": 0.2,
+    "who": ""
+   },
+   {
+    "label": "BotNav.update",
+    "ms": 23.3,
+    "t": 0.2,
+    "who": ""
+   },
+   {
+    "label": "Brain.updateMovement",
+    "ms": 23.3,
+    "t": 0.2,
+    "who": ""
+   },
+   {
+    "label": "NavGraph.findPath",
+    "ms": 21.4,
+    "t": 0.2,
+    "who": ""
+   },
+   {
+    "label": "Bot.update",
+    "ms": 20.2,
+    "t": 21.28,
+    "who": "Axle"
+   },
+   {
+    "label": "Brain.updateFire",
+    "ms": 20.1,
+    "t": 21.28,
+    "who": ""
+   },
+   {
+    "label": "Brain.update",
+    "ms": 20.1,
+    "t": 21.28,
+    "who": ""
+   },
+   {
+    "label": "Bot.update",
+    "ms": 17.1,
+    "t": 1.08,
+    "who": "Sprocket"
+   },
+   {
+    "label": "Bot.update",
+    "ms": 16.7,
+    "t": 0.45,
+    "who": "Glitch"
+   },
+   {
+    "label": "Brain.update",
+    "ms": 16.4,
+    "t": 0.45,
+    "who": ""
+   },
+   {
+    "label": "Bot.update",
+    "ms": 15.9,
+    "t": 0.25,
+    "who": "Voltage"
+   },
+   {
+    "label": "Brain.update",
+    "ms": 15.8,
+    "t": 0.25,
+    "who": ""
+   },
+   {
+    "label": "Brain.updateMovement",
+    "ms": 15.6,
+    "t": 0.25,
+    "who": ""
+   },
+   {
+    "label": "BotNav.update",
+    "ms": 15.4,
+    "t": 0.25,
+    "who": ""
+   },
+   {
+    "label": "BotNav._requestPath",
+    "ms": 15.3,
+    "t": 0.25,
+    "who": ""
+   },
+   {
+    "label": "Bot.update",
+    "ms": 15,
+    "t": 2.83,
+    "who": "Servo"
+   },
+   {
+    "label": "Brain.updateMovement",
+    "ms": 14.9,
+    "t": 2.83,
+    "who": ""
+   },
+   {
+    "label": "Brain.update",
+    "ms": 14.9,
+    "t": 2.83,
+    "who": ""
+   },
+   {
+    "label": "BotNav.update",
+    "ms": 14.8,
+    "t": 2.83,
+    "who": ""
+   },
+   {
+    "label": "NavGraph.isConnected",
+    "ms": 14.7,
+    "t": 2.83,
+    "who": ""
+   },
+   {
+    "label": "BotNav._requestPath",
+    "ms": 14.7,
+    "t": 2.83,
+    "who": ""
+   },
+   {
+    "label": "Bot._handleWeaponIntent",
+    "ms": 14.6,
+    "t": 1.08,
+    "who": "Sprocket"
+   },
+   {
+    "label": "Bot.selectWeapon",
+    "ms": 14.5,
+    "t": 1.08,
+    "who": "Sprocket"
+   },
+   {
+    "label": "Brain.update",
+    "ms": 14,
+    "t": 23.97,
+    "who": ""
+   },
+   {
+    "label": "Bot.update",
+    "ms": 14,
+    "t": 23.97,
+    "who": "Sprocket"
+   },
+   {
+    "label": "BotNav.update",
+    "ms": 13.9,
+    "t": 23.97,
+    "who": ""
+   }
+  ],
+  "counts": {
+   "Player.update": 854,
+   "Weapons.update": 854,
+   "Brain.updateStuck": 7468,
+   "BotNav.update": 4538,
+   "Brain.updateMovement": 7468,
+   "Brain.updateAim": 7468,
+   "Brain.updateFire": 7468,
+   "Brain.update": 7468,
+   "Bot._move": 7468,
+   "Bot._updateWeaponState": 7468,
+   "Bot._handleWeaponIntent": 7468,
+   "BotModel.update": 2933,
+   "Bot._updateModel": 7468,
+   "Bot.update": 7468,
+   "Projectiles._warm": 1,
+   "Projectiles.update": 854,
+   "World.update": 854,
+   "Effects.update": 854,
+   "Game._updateMatch": 854,
+   "Player.updateCamera": 854,
+   "Weapons.updateViewModel": 854,
+   "Audio.update": 854,
+   "HUD.update": 854,
+   "Combat.canSee": 6152,
+   "Brain.perceive": 1603,
+   "Brain.selectTarget": 1750,
+   "Brain.checkGrenades": 1750,
+   "BotNav.clear": 196,
+   "BotNav.setGoal": 1923,
+   "Brain.chooseState": 1750,
+   "Brain.chooseWeapon": 1750,
+   "Brain.considerGrenade": 1750,
+   "Brain.think": 1750,
+   "NavGraph.nearestNode": 1194,
+   "NavGraph.isConnected": 307,
+   "NavGraph.findPath": 290,
+   "BotNav._requestPath": 337,
+   "BotNav._followPath": 4215,
+   "BotNav._direct": 154,
+   "BotNav.allowsDrop": 6936,
+   "Bot._getWeaponModel": 19,
+   "BotModel.setWeapon": 19,
+   "Bot.selectWeapon": 7,
+   "Audio.play": 827,
+   "Projectiles.spawnRocket": 34,
+   "Effects.flashLight": 327,
+   "Effects.muzzleFlash": 257,
+   "Bot._fire": 257,
+   "Combat.raycast": 806,
+   "Effects.trail": 456,
+   "Effects.tracer": 248,
+   "Effects.impact": 166,
+   "Combat.fireBullet": 266,
+   "Combat.radialDamage": 36,
+   "Effects.explosion": 36,
+   "Projectiles.explode": 36,
+   "BotModel.flashHit": 83,
+   "Effects.hitSpark": 100,
+   "HUD._onDamage": 95,
+   "Combat.applyDamage": 113,
+   "HUD._onPickup": 2,
+   "Brain.pickRetreatGoal": 13,
+   "Bot.startReload": 15,
+   "BotModel.breakApart": 15,
+   "Effects.gibs": 15,
+   "BotModel.setVisible": 27,
+   "Bot.onDeath": 15,
+   "HUD._onDeath": 15,
+   "Combat.kill": 15,
+   "Effects._updateGibs": 726,
+   "Game.pickSpawnPoint": 12,
+   "BotModel.reset": 12,
+   "Bot.spawn": 12,
+   "HUD._onSpawn": 12,
+   "Game.respawnEntity": 12,
+   "NavGraph.randomNode": 1,
+   "Brain.pickRoamGoal": 1,
+   "Projectiles.spawnGrenade": 2,
+   "Audio.playLoop": 1,
+   "Effects.dust": 4,
+   "Bot.throwGrenade": 1,
+   "Brain.findCover": 1
+  },
+  "slowByLabel": {
+   "Player.update": {
+    "n": 2,
+    "max": 8,
+    "sum": 15.4
+   },
+   "Bot.update": {
+    "n": 47,
+    "max": 188.1,
+    "sum": 689.6999999999999
+   },
+   "Bot._move": {
+    "n": 2,
+    "max": 188.1,
+    "sum": 198.9
+   },
+   "Projectiles._warm": {
+    "n": 1,
+    "max": 472,
+    "sum": 472
+   },
+   "Projectiles.update": {
+    "n": 4,
+    "max": 472.2,
+    "sum": 500.09999999999997
+   },
+   "Weapons.updateViewModel": {
+    "n": 1,
+    "max": 7.1,
+    "sum": 7.1
+   },
+   "Brain.update": {
+    "n": 30,
+    "max": 56.1,
+    "sum": 345.1
+   },
+   "NavGraph.findPath": {
+    "n": 15,
+    "max": 21.4,
+    "sum": 140.6
+   },
+   "BotNav._requestPath": {
+    "n": 23,
+    "max": 23.3,
+    "sum": 218.70000000000002
+   },
+   "BotNav.update": {
+    "n": 24,
+    "max": 23.3,
+    "sum": 225.4
+   },
+   "Brain.updateMovement": {
+    "n": 26,
+    "max": 55.5,
+    "sum": 289.5
+   },
+   "Bot._getWeaponModel": {
+    "n": 1,
+    "max": 12.7,
+    "sum": 12.7
+   },
+   "Bot.selectWeapon": {
+    "n": 1,
+    "max": 14.5,
+    "sum": 14.5
+   },
+   "Bot._handleWeaponIntent": {
+    "n": 7,
+    "max": 14.6,
+    "sum": 70.69999999999999
+   },
+   "HUD.update": {
+    "n": 1,
+    "max": 8.5,
+    "sum": 8.5
+   },
+   "Bot._fire": {
+    "n": 6,
+    "max": 12.5,
+    "sum": 55.3
+   },
+   "Effects.impact": {
+    "n": 1,
+    "max": 6.1,
+    "sum": 6.1
+   },
+   "Combat.fireBullet": {
+    "n": 2,
+    "max": 10,
+    "sum": 17.2
+   },
+   "Projectiles.explode": {
+    "n": 2,
+    "max": 8.7,
+    "sum": 16.5
+   },
+   "Audio.play": {
+    "n": 4,
+    "max": 185.6,
+    "sum": 210.1
+   },
+   "NavGraph.isConnected": {
+    "n": 4,
+    "max": 14.7,
+    "sum": 37.6
+   },
+   "Bot.onDeath": {
+    "n": 1,
+    "max": 6.8,
+    "sum": 6.8
+   },
+   "Combat.kill": {
+    "n": 1,
+    "max": 8.9,
+    "sum": 8.9
+   },
+   "Combat.applyDamage": {
+    "n": 1,
+    "max": 9,
+    "sum": 9
+   },
+   "Game.pickSpawnPoint": {
+    "n": 1,
+    "max": 6.2,
+    "sum": 6.2
+   },
+   "Game.respawnEntity": {
+    "n": 1,
+    "max": 9.3,
+    "sum": 9.3
+   },
+   "Game._updateMatch": {
+    "n": 1,
+    "max": 9.3,
+    "sum": 9.3
+   },
+   "Effects.update": {
+    "n": 3,
+    "max": 186,
+    "sum": 218.8
+   },
+   "Brain.updateFire": {
+    "n": 1,
+    "max": 20.1,
+    "sum": 20.1
+   },
+   "Effects.trail": {
+    "n": 1,
+    "max": 10.3,
+    "sum": 10.3
+   },
+   "Effects._updateGibs": {
+    "n": 2,
+    "max": 185.8,
+    "sum": 211.60000000000002
+   }
+  }
+ },
+ "errors": []
+}

@@ -1,0 +1,3 @@
+[run] http://127.0.0.1:54891/tools/out/audit/verify-perf-2/tex.html
+[result] "{\"total\":5825,\"avg\":135,\"count\":43,\"top\":[[\"concrete\",611,512],[\"concrete_floor\",286,512],[\"metal_dark\",262,512],[\"sandstone_dark\",242,512],[\"stone_blocks\",234,512],[\"glass_window\",216,512]],\"errs\":[],\"over120\":24,\"med\":127}"
+[run] done: wait=ok console_errors=0 warnings=0

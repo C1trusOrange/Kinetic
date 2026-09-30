@@ -1,0 +1,8 @@
+[run] http://127.0.0.1:51734/index.html
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[warning] [world] map 'bad' has 2 warning(s):
+ - only 1 spawn point(s): 14-18 recommended
+ - jumpPad #0: target [10,5] has no floor below it
+[result] "{\"padTarget2\":{\"warnings\":[\"jumpPad #0: target [10,5] has no floor below it\"],\"pads\":[{\"vel\":[6.076734353812341,19.595917942265423,-1.5191835884530853],\"tgt\":[10,5,0]}],\"spawns\":[{\"p\":[0,0,0],\"yaw\":0}]},\"padApexNaN\":{\"warnings\":[\"jumpPad #0: target [10,5,3] has no floor below it\"],\"pads\":[{\"vel\":[null,null,null],\"tgt\":[10,5,3]}],\"spawns\":[{\"p\":[0,0,0],\"yaw\":0}]},\"padVelShort\":{\"warnings\":[],\"pads\":[{\"vel\":[1,2,0],\"tgt\":[2.1666666666666665,0,2]}],\"spawns\":[{\"p\":[0,0,0],\"yaw\":0}]},\"noTheme\":{\"warnings\":[],\"pads\":[],\"spawns\":[{\"p\":[0,0,0],\"yaw\":0}]},\"spawnYawStr\":{\"warnings\":[],\"pads\":[],\"spawns\":[{\"p\":[0,0,0],\"yaw\":0},{\"p\":[3,0,3],\"yaw\":null}]}}"
+[run] done: wait=ok console_errors=0 warnings=2

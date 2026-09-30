@@ -1,0 +1,60 @@
+[run] http://127.0.0.1:55937/index.html?autotest=1&map=ruins&bots=0&mode=ffa&duration=15
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[result] {
+ "done": true,
+ "started": true,
+ "t": 15.11,
+ "frames": 1023,
+ "fps": {
+  "avg": 86.8,
+  "min": 4,
+  "max": 188.7
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 86.65199132028825,
+  "maxSpeed": 11.65,
+  "minY": -3.3306690738754696e-15,
+  "maxY": 5.078974242278841,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "airborne": true,
+   "isCrouching": true,
+   "isSliding": true
+  },
+  "shots": 20,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 20
+ },
+ "renderer": {
+  "calls": 128,
+  "triangles": 71798,
+  "geometries": 274,
+  "textures": 118,
+  "programs": 103
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

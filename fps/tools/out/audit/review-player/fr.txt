@@ -1,0 +1,227 @@
+[run] http://127.0.0.1:50481/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-player/framerate.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 22.5,
+ "frames": 36,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 173.3954076624026,
+  "maxSpeed": 12.00925,
+  "minY": 0,
+  "maxY": 2.059999999999997,
+  "states": {
+   "onGround": true,
+   "isSprinting": true,
+   "isCrouching": true,
+   "isSliding": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "runs": {
+   "20": {
+    "pos": [
+     7.6,
+     0,
+     0
+    ],
+    "v": [
+     0,
+     0,
+     0
+    ],
+    "maxV": 11.57,
+    "log": [
+     [
+      1.4,
+      -11.62,
+      0,
+      9.6,
+      "ground"
+     ],
+     [
+      2.4,
+      -3,
+      0,
+      9.6,
+      "ground"
+     ],
+     [
+      3.4,
+      6.6,
+      1.8,
+      9.6,
+      "air"
+     ]
+    ]
+   },
+   "30": {
+    "pos": [
+     7.6,
+     0,
+     0
+    ],
+    "v": [
+     0,
+     0,
+     0
+    ],
+    "maxV": 11.74,
+    "log": [
+     [
+      1.4,
+      -11.78,
+      0,
+      9.6,
+      "ground"
+     ],
+     [
+      2.4,
+      -3.16,
+      0,
+      9.6,
+      "ground"
+     ],
+     [
+      3.4,
+      6.44,
+      1.86,
+      9.6,
+      "air"
+     ]
+    ]
+   },
+   "60": {
+    "pos": [
+     7.6,
+     0,
+     0
+    ],
+    "v": [
+     0,
+     0,
+     0
+    ],
+    "maxV": 11.92,
+    "log": [
+     [
+      1.4,
+      -11.94,
+      0,
+      9.6,
+      "ground"
+     ],
+     [
+      2.4,
+      -3.32,
+      0,
+      9.6,
+      "ground"
+     ],
+     [
+      3.4,
+      6.28,
+      1.91,
+      9.6,
+      "air"
+     ]
+    ]
+   },
+   "120": {
+    "pos": [
+     7.6,
+     0,
+     0
+    ],
+    "v": [
+     0,
+     0,
+     0
+    ],
+    "maxV": 12.01,
+    "log": [
+     [
+      1.4,
+      -12.02,
+      0,
+      9.6,
+      "ground"
+     ],
+     [
+      2.4,
+      -3.4,
+      0,
+      9.6,
+      "ground"
+     ],
+     [
+      3.4,
+      6.2,
+      1.93,
+      9.6,
+      "air"
+     ]
+    ]
+   },
+   "240": {
+    "pos": [
+     7.6,
+     0,
+     0
+    ],
+    "v": [
+     0,
+     0,
+     0
+    ],
+    "maxV": 12.01,
+    "log": [
+     [
+      1.4,
+      -12.1,
+      0,
+      9.6,
+      "ground"
+     ],
+     [
+      2.4,
+      -3.48,
+      0,
+      9.6,
+      "ground"
+     ],
+     [
+      3.4,
+      6.12,
+      1.95,
+      9.6,
+      "air"
+     ]
+    ]
+   }
+  }
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

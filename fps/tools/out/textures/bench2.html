@@ -1,0 +1,19 @@
+<!doctype html><meta charset="utf-8">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<script type="module">
+const runs = parseInt(new URLSearchParams(location.search).get('runs') || '4');
+const best = {}; const totals = [];
+for (let r = 0; r < runs; r++) {
+  const T = await import('/src/world/Textures.js?v=' + r);
+  let tot = 0;
+  for (const n of T.MATERIAL_NAMES) {
+    const s = performance.now(); T.getMaterial(n); const d = performance.now() - s;
+    tot += d; if (!(n in best) || d < best[n]) best[n] = d;
+  }
+  totals.push(Math.round(tot));
+  await new Promise(r => setTimeout(r, 50));
+}
+const sorted = Object.entries(best).sort((a, b) => b[1] - a[1]).map(([k, v]) => k + ':' + Math.round(v));
+window.__RES__ = { totals, bestSum: Math.round(Object.values(best).reduce((a, b) => a + b, 0)), sorted };
+window.__R__ = true;
+</script>

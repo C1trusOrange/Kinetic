@@ -1,0 +1,41 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>tex perf v1</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><canvas id="c" width="64" height="64"></canvas>
+<script type="module">
+import * as THREE from 'three';
+window.__RES__ = { errors: [] };
+window.addEventListener('error', e => window.__RES__.errors.push(String(e.message)));
+try {
+  const T = await import('/src/world/Textures.js');
+  const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('c') });
+  T.initTextures(renderer);
+  // calibration loop: fixed CPU work
+  const cal = () => { const t = performance.now(); let s = 0; for (let i = 0; i < 30e6; i++) s += Math.sqrt(i); return [performance.now() - t, s]; };
+  window.__RES__.cal0 = +cal()[0].toFixed(0);
+  const names = T.MATERIAL_NAMES;
+  const gen = [];
+  const t00 = performance.now();
+  for (const n of names) {
+    const t0 = performance.now();
+    T.getMaterial(n);            // pure synchronous generation, no yield, no GPU upload
+    gen.push([n, +(performance.now() - t0).toFixed(0)]);
+  }
+  const total = performance.now() - t00;
+  window.__RES__.genTotal = +total.toFixed(0);
+  window.__RES__.genAvg = +(total / names.length).toFixed(0);
+  const vals = gen.map(g => g[1]).sort((a, b) => a - b);
+  window.__RES__.genMedian = vals[Math.floor(vals.length / 2)];
+  window.__RES__.genOver120 = vals.filter(v => v > 120).length;
+  window.__RES__.count = names.length;
+  gen.sort((a, b) => b[1] - a[1]);
+  window.__RES__.worst = gen.slice(0, 6);
+  window.__RES__.cal1 = +cal()[0].toFixed(0);
+  // upload cost separately
+  const t1 = performance.now();
+  const scene = new THREE.Scene(); const cam = new THREE.PerspectiveCamera();
+  for (const n of names) renderer.initTexture(T.getMaterial(n).map);
+  window.__RES__.uploadMapsMs = +(performance.now() - t1).toFixed(0);
+} catch (e) { window.__RES__.errors.push(String(e && e.stack || e)); }
+window.__DONE__ = true;
+</script></body></html>

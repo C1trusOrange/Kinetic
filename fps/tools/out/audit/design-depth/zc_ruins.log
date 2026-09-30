@@ -1,0 +1,316 @@
+[run] http://127.0.0.1:59631/index.html?autotest=1&map=ruins&bots=0&script=idle&scenario=tools/out/audit/design-depth/zone_check.js&duration=1&quality=low
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":71.3}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 1.15,
+ "frames": 76,
+ "fps": {
+  "avg": 71.3,
+  "min": 4,
+  "max": 175.4
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 0,
+  "maxY": 0,
+  "states": {
+   "onGround": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 103,
+  "triangles": 51654,
+  "geometries": 115,
+  "textures": 85,
+  "programs": 71
+ },
+ "custom": {
+  "map": "ruins",
+  "zones": [
+   {
+    "name": "ziggurat",
+    "at": [
+     0,
+     9,
+     0
+    ],
+    "r": 6,
+    "floorY": 9.68,
+    "head": 3.62,
+    "conn": true,
+    "navIn": 81,
+    "reachIn": 81
+   },
+   {
+    "name": "zigTerrace",
+    "at": [
+     0,
+     4.5,
+     0
+    ],
+    "r": 8,
+    "floorY": 4.5,
+    "head": 4,
+    "conn": false,
+    "navIn": 40,
+    "reachIn": 40
+   },
+   {
+    "name": "hall",
+    "at": [
+     0,
+     0,
+     -40
+    ],
+    "r": 8,
+    "floorY": 0.06,
+    "head": 4,
+    "conn": true,
+    "navIn": 195,
+    "reachIn": 190
+   },
+   {
+    "name": "courtyard",
+    "at": [
+     -27,
+     -1.6,
+     20
+    ],
+    "r": 7,
+    "floorY": -0.75,
+    "head": 4,
+    "conn": false,
+    "navIn": 142,
+    "reachIn": 142
+   },
+   {
+    "name": "bazaar",
+    "at": [
+     22,
+     0,
+     30
+    ],
+    "r": 8,
+    "floorY": 0.05,
+    "head": 4,
+    "conn": true,
+    "navIn": 148,
+    "reachIn": 144
+   },
+   {
+    "name": "shelfE",
+    "at": [
+     40,
+     4.5,
+     0
+    ],
+    "r": 7,
+    "floorY": 4.5,
+    "head": 4,
+    "conn": true,
+    "navIn": 98,
+    "reachIn": 97
+   },
+   {
+    "name": "shelfW",
+    "at": [
+     -40,
+     4.5,
+     0
+    ],
+    "r": 7,
+    "floorY": 4.5,
+    "head": 4,
+    "conn": true,
+    "navIn": 108,
+    "reachIn": 94
+   },
+   {
+    "name": "plazaS",
+    "at": [
+     0,
+     0,
+     40
+    ],
+    "r": 8,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 177,
+    "reachIn": 174
+   },
+   {
+    "name": "upperE",
+    "at": [
+     49,
+     9,
+     0
+    ],
+    "r": 6,
+    "floorY": 9,
+    "head": 4,
+    "conn": true,
+    "navIn": 82,
+    "reachIn": 82
+   }
+  ],
+  "pads": [
+   {
+    "name": "pad0",
+    "at": [
+     8,
+     0,
+     20
+    ],
+    "r": 0,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad1",
+    "at": [
+     -8,
+     0,
+     20
+    ],
+    "r": 0,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad2",
+    "at": [
+     24,
+     0,
+     -20
+    ],
+    "r": 0,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad3",
+    "at": [
+     -24,
+     0,
+     -20
+    ],
+    "r": 0,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad4",
+    "at": [
+     4,
+     4.5,
+     8
+    ],
+    "r": 0,
+    "floorY": 4.5,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad5",
+    "at": [
+     -40,
+     4.5,
+     6
+    ],
+    "r": 0,
+    "floorY": 4.5,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad6",
+    "at": [
+     40,
+     4.5,
+     -8
+    ],
+    "r": 0,
+    "floorY": 4.5,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad7",
+    "at": [
+     0,
+     0,
+     24
+    ],
+    "r": 0,
+    "floorY": 0.05,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   },
+   {
+    "name": "pad8",
+    "at": [
+     -14,
+     0,
+     40
+    ],
+    "r": 0,
+    "floorY": 0,
+    "head": 4,
+    "conn": true,
+    "navIn": 0,
+    "reachIn": 0
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

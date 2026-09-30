@@ -1,0 +1,62 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>tex audit</title>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><script type="module">
+import * as THREE from 'three';
+window.__DONE__ = false; window.__RES__ = {};
+try {
+  const T = await import('/src/world/Textures.js');
+  const renderer = new THREE.WebGLRenderer();
+  T.initTextures(renderer);
+  const names = T.MATERIAL_NAMES;
+  const required = ['concrete','concrete_dark','concrete_floor','asphalt','plaster','brick','brick_dark','tiles_white','stone_blocks','stone_tiles','sandstone','sandstone_dark','marble','rock','metal_panel','metal_dark','metal_rust','metal_grate','metal_corrugated','metal_painted_yellow','container_red','container_blue','container_green','container_yellow','container_white','container_orange','hazard','rubber','gold','crate','wood_planks','sand','dirt','grass','roof_gravel','glass_window','water','neon_blue','neon_pink','neon_orange','neon_green','light_panel','dev_grid'];
+  const out = { missingNames: required.filter(n => !names.includes(n)), extraNames: names.filter(n => !required.includes(n)), mats: {} };
+  const slots = ['map','normalMap','roughnessMap','metalnessMap','emissiveMap','alphaMap'];
+  function stats(tex) {
+    const c = tex.image; const S = c.width, H = c.height;
+    const d = c.getContext('2d').getImageData(0, 0, S, H).data;
+    let sumWrapX = 0, sumRefX = 0, nRefX = 0, sumWrapY = 0, sumRefY = 0, nRefY = 0;
+    const ch = 3;
+    for (let y = 0; y < H; y++) {
+      for (let c3 = 0; c3 < ch; c3++) {
+        sumWrapX += Math.abs(d[(y*S+0)*4+c3] - d[(y*S+S-1)*4+c3]);
+      }
+    }
+    for (let y = 0; y < H; y += 2) for (let x = 0; x < S - 1; x += 2) for (let c3 = 0; c3 < ch; c3++) { sumRefX += Math.abs(d[(y*S+x)*4+c3] - d[(y*S+x+1)*4+c3]); nRefX++; }
+    for (let x = 0; x < S; x++) for (let c3 = 0; c3 < ch; c3++) sumWrapY += Math.abs(d[(0*S+x)*4+c3] - d[((H-1)*S+x)*4+c3]);
+    for (let y = 0; y < H - 1; y += 2) for (let x = 0; x < S; x += 2) for (let c3 = 0; c3 < ch; c3++) { sumRefY += Math.abs(d[(y*S+x)*4+c3] - d[((y+1)*S+x)*4+c3]); nRefY++; }
+    const wx = sumWrapX / (H * ch), rx = sumRefX / nRefX, wy = sumWrapY / (S * ch), ry = sumRefY / nRefY;
+    // channel means/min/max
+    const mean = [0,0,0], mn = [255,255,255], mx = [0,0,0];
+    for (let i = 0; i < S*H; i++) for (let c3 = 0; c3 < 3; c3++) { const v = d[i*4+c3]; mean[c3] += v; if (v < mn[c3]) mn[c3] = v; if (v > mx[c3]) mx[c3] = v; }
+    return { size: S + 'x' + H, wrapX: +wx.toFixed(2), refX: +rx.toFixed(2), rX: +(wx / Math.max(rx, 0.05)).toFixed(2), wrapY: +wy.toFixed(2), refY: +ry.toFixed(2), rY: +(wy / Math.max(ry, 0.05)).toFixed(2), mean: mean.map(v => +(v / (S*H)).toFixed(1)), min: mn, max: mx };
+  }
+  let total = 0;
+  for (const name of names) {
+    const t0 = performance.now();
+    const m = T.getMaterial(name);
+    const ms = performance.now() - t0;
+    total += ms;
+    const info = T.getMaterialInfo(name);
+    const rec = { ms: Math.round(ms), info, metalness: m.metalness, roughness: m.roughness, emissive: m.emissive.getHex(), emissiveIntensity: m.emissiveIntensity, alphaTest: m.alphaTest, alphaToCoverage: m.alphaToCoverage, tex: {}, sameRM: m.roughnessMap === m.metalnessMap, surface: m.userData.surface, scale: m.userData.scale };
+    for (const s of slots) {
+      const tx = m[s]; if (!tx) continue;
+      rec.tex[s] = { cs: tx.colorSpace || 'none', wrap: tx.wrapS === THREE.RepeatWrapping && tx.wrapT === THREE.RepeatWrapping, aniso: tx.anisotropy, flipY: tx.flipY, ...stats(tx) };
+    }
+    out.mats[name] = rec;
+  }
+  out.totalMs = Math.round(total);
+  out.rows = Object.entries(out.mats).map(([n, m]) => {
+    const parts = Object.entries(m.tex).map(([k, t]) => `${k.slice(0,4)}[${t.cs},${t.size},rX${t.rX},rY${t.rY},w${t.wrapX}/${t.wrapY},ref${t.refX}/${t.refY},mean${t.mean.join('/')},min${t.min.join('/')},max${t.max.join('/')},an${t.aniso}]`);
+    return `${n} ms=${m.ms} surf=${m.surface} scale=${m.scale} met=${m.metalness} rough=${m.roughness} emI=${m.emissiveIntensity} emHex=${m.emissive.toString(16)} aT=${m.alphaTest} a2c=${m.alphaToCoverage} sameRM=${m.sameRM} :: ${parts.join(' ')}`;
+  });
+  delete out.mats;
+  // unknown handled
+  const before = console.warn; let warns = 0; console.warn = (...a) => { warns++; };
+  const u1 = T.getMaterial('nope_material'), u2 = T.getMaterial('nope_material');
+  console.warn = before;
+  out.unknown = { same: u1 === u2, name: u1.name, warns, info: T.getMaterialInfo('nope_material') };
+  window.__RES__ = out;
+} catch (e) { window.__RES__ = { fatal: String(e && e.stack || e) }; }
+window.__DONE__ = true;
+</script></body></html>

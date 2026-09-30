@@ -1,0 +1,308 @@
+[run] http://127.0.0.1:50939/index.html?autotest=1&map=sandbox&bots=0&script=idle&secs=120&seed=3&kill=1&scenario=tools/out/audit/review-player/fastsim.js
+[result] {
+ "done": true,
+ "started": true,
+ "t": 124.77,
+ "frames": 98,
+ "fps": {
+  "avg": 0,
+  "min": 4.852013585638057,
+  "max": 82.64462809919631
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 1062.8119046196373,
+  "maxSpeed": 20.343510003462484,
+  "minY": -3.7192471324942744e-15,
+  "maxY": 19.870962354396212,
+  "states": {
+   "onGround": true,
+   "isCrouching": true,
+   "airborne": true,
+   "isGrappling": true,
+   "isSprinting": true,
+   "isSliding": true,
+   "isWallRunning": true,
+   "isMantling": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 13,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 13,
+  "spawn": 14,
+  "pickup": 5,
+  "fire": 0
+ },
+ "renderer": {},
+ "custom": {
+  "seed": 3,
+  "viol": {},
+  "samples": {
+   "respawnStale": {
+    "st": "ground",
+    "cr": true,
+    "h": 1.15,
+    "loops": 0,
+    "g": "idle",
+    "cd": 1,
+    "fov": 67.67,
+    "base": 67.67,
+    "dj": true,
+    "wallRuns": 0,
+    "wj": 0,
+    "lock": 0,
+    "mc": -0.049999999999999996,
+    "so": [
+     0,
+     0,
+     0
+    ],
+    "tr": 0,
+    "vel": [
+     0.89,
+     0,
+     0
+    ],
+    "look": 1,
+    "fm": 1
+   }
+  },
+  "counts": {
+   "respawnStale": 3
+  },
+  "ring": {},
+  "trace": [],
+  "maxSpeed": 20.577129800620117,
+  "states": {
+   "ground": 1167,
+   "air": 5688,
+   "grapple": 225,
+   "slide": 59,
+   "wallrun": 32,
+   "mantle": 16
+  },
+  "kills": 13,
+  "deathSamples": {
+   "slide": {
+    "stKill": "slide",
+    "loops": 0,
+    "gstate": "idle",
+    "gvis": false,
+    "sl": false,
+    "wr": false,
+    "gp": false,
+    "mt": false,
+    "cr": false,
+    "anchor": false,
+    "sp": 0
+   },
+   "grapple": {
+    "stKill": "grapple",
+    "loops": 0,
+    "gstate": "idle",
+    "gvis": false,
+    "sl": false,
+    "wr": false,
+    "gp": false,
+    "mt": false,
+    "cr": false,
+    "anchor": false,
+    "sp": 0
+   },
+   "wallrun": {
+    "stKill": "wallrun",
+    "loops": 0,
+    "gstate": "idle",
+    "gvis": false,
+    "sl": false,
+    "wr": false,
+    "gp": false,
+    "mt": false,
+    "cr": false,
+    "anchor": false,
+    "sp": 0
+   }
+  },
+  "respawnSamples": [
+   {
+    "st": "ground",
+    "cr": true,
+    "h": 1.15,
+    "loops": 0,
+    "g": "idle",
+    "cd": 1,
+    "fov": 67.67,
+    "base": 67.67,
+    "dj": true,
+    "wallRuns": 0,
+    "wj": 0,
+    "lock": 0,
+    "mc": -0.049999999999999996,
+    "so": [
+     0,
+     0,
+     0
+    ],
+    "tr": 0,
+    "vel": [
+     0.89,
+     0,
+     0
+    ],
+    "look": 1,
+    "fm": 1
+   },
+   {
+    "st": "ground",
+    "cr": false,
+    "h": 1.8,
+    "loops": 0,
+    "g": "idle",
+    "cd": 1,
+    "fov": 67.67,
+    "base": 67.67,
+    "dj": true,
+    "wallRuns": 0,
+    "wj": 0,
+    "lock": 0,
+    "mc": -0.049999999999999996,
+    "so": [
+     0,
+     0,
+     0
+    ],
+    "tr": 0,
+    "vel": [
+     0,
+     0,
+     0
+    ],
+    "look": 1,
+    "fm": 1
+   },
+   {
+    "st": "ground",
+    "cr": false,
+    "h": 1.8,
+    "loops": 0,
+    "g": "idle",
+    "cd": 1,
+    "fov": 68.15,
+    "base": 67.67,
+    "dj": true,
+    "wallRuns": 0,
+    "wj": 0,
+    "lock": 0,
+    "mc": -0.049999999999999996,
+    "so": [
+     0,
+     0,
+     0
+    ],
+    "tr": 0,
+    "vel": [
+     -3.99,
+     0,
+     -1.77
+    ],
+    "look": 1,
+    "fm": 1
+   },
+   {
+    "st": "ground",
+    "cr": false,
+    "h": 1.8,
+    "loops": 0,
+    "g": "idle",
+    "cd": 1,
+    "fov": 67.67,
+    "base": 67.67,
+    "dj": true,
+    "wallRuns": 0,
+    "wj": 0,
+    "lock": 0,
+    "mc": -0.049999999999999996,
+    "so": [
+     0,
+     0,
+     0
+    ],
+    "tr": 0,
+    "vel": [
+     -2.4,
+     0,
+     -0.83
+    ],
+    "look": 1,
+    "fm": 1
+   },
+   {
+    "st": "ground",
+    "cr": false,
+    "h": 1.8,
+    "loops": 0,
+    "g": "idle",
+    "cd": 1,
+    "fov": 67.67,
+    "base": 67.67,
+    "dj": true,
+    "wallRuns": 0,
+    "wj": 0,
+    "lock": 0,
+    "mc": -0.049999999999999996,
+    "so": [
+     0,
+     0,
+     0
+    ],
+    "tr": 0,
+    "vel": [
+     1.26,
+     0,
+     2.2
+    ],
+    "look": 1,
+    "fm": 1
+   },
+   {
+    "st": "ground",
+    "cr": false,
+    "h": 1.8,
+    "loops": 0,
+    "g": "idle",
+    "cd": 1,
+    "fov": 68.15,
+    "base": 67.67,
+    "dj": true,
+    "wallRuns": 0,
+    "wj": 0,
+    "lock": 0,
+    "mc": -0.049999999999999996,
+    "so": [
+     0,
+     0,
+     0
+    ],
+    "tr": 0,
+    "vel": [
+     -1.91,
+     0,
+     -3.92
+    ],
+    "look": 1,
+    "fm": 1
+   }
+  ],
+  "simSeconds": 120,
+  "dt": 0.016666666666666666
+ },
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

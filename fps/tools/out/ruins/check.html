@@ -1,0 +1,51 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:,">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script></head>
+<body><script type="module">
+import * as THREE from 'three';
+import { World } from '/src/world/World.js';
+import { Events } from '/src/core/Events.js';
+import { Settings } from '/src/core/Settings.js';
+import { QUALITY_PRESETS } from '/src/core/constants.js';
+const renderer = new THREE.WebGLRenderer();
+const noop = () => {};
+const sys = new Proxy({}, { get: (t, k) => (k === 'playLoop' ? () => ({ stop: noop, setVolume: noop, setPitch: noop, setPosition: noop }) : noop) });
+const game = { renderer, scene: new THREE.Scene(), camera: new THREE.PerspectiveCamera(), viewScene: new THREE.Scene(), events: new Events(), settings: new Settings(),
+  quality: QUALITY_PRESETS.high, time: 0, entities: [], match: null, state: 'viewer', player: null, audio: sys, effects: sys, hud: sys, params: new URLSearchParams() };
+const id = new URLSearchParams(location.search).get('id') || 'ruins';
+const mod = await import(`/src/world/maps/${id}.js`);
+const world = new World(game);
+await world.init();
+await world.load(mod.default);
+const nav = world.nav;
+const V = (x, y, z) => new THREE.Vector3(x, y, z);
+const out = { warnings: world.warnings, stats: world.stats, nav: nav.stats };
+// probes
+const probes = mod.default.probes || {};
+out.probes = {};
+const s0 = world.spawnPoints[0].position;
+for (const [name, p] of Object.entries(probes)) {
+  const n = nav.nearestNode(V(...p), 2.5);
+  const path = n ? nav.findPath(s0, V(...p)) : null;
+  out.probes[name] = n ? (n.main ? (path ? 'ok len=' + path.length : 'main, NO PATH') : 'ISOLATED') : 'NO NODE';
+}
+// pickups + spawns reachability
+out.pickups = world.pickups.list.map(p => {
+  const n = nav.nearestNode(p.position, 2.5);
+  const path = n ? nav.findPath(s0, p.position) : null;
+  return `${p.type}${p.weapon ? ':' + p.weapon : ''} @${p.position.toArray().map(v => +v.toFixed(1))} ${n ? (n.main ? (path ? 'ok' : 'NOPATH') : 'ISO') : 'NONODE'}`;
+});
+out.spawns = world.spawnPoints.map((sp, i) => {
+  const n = nav.nearestNode(sp.position, 2.5);
+  const path = n ? nav.findPath(s0, sp.position) : null;
+  return `#${i} @${sp.position.toArray().map(v => +v.toFixed(1))} ${n ? (n.main ? (path || i === 0 ? 'ok' : 'NOPATH') : 'ISO') : 'NONODE'}`;
+});
+// isolated clusters
+const cl = new Map();
+for (const n of nav.nodes) { if (n.main) continue; const k = `${Math.floor(n.position.x / 4) * 4},${Math.round(n.position.y)},${Math.floor(n.position.z / 4) * 4}`; cl.set(k, (cl.get(k) || 0) + 1); }
+out.isolated = [...cl.entries()].map(([k, c]) => `${k}:${c}`).slice(0, 60);
+// nodes per tier
+const tiers = {};
+for (const n of nav.nodes) { const t = Math.round(n.position.y / 1.5) * 1.5; tiers[t] = (tiers[t] || 0) + 1; }
+out.tiers = tiers;
+window.__RESULT__ = out;
+</script></body></html>

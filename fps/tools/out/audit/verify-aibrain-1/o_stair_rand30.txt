@@ -1,0 +1,145 @@
+[run] http://127.0.0.1:54221/index.html?autotest=1&bots=2&duration=1&god=1&script=idle&map=foundry&scenario=tools/out/audit/verify-aibrain-1/scen_stair.js&sfps=30&np=16
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 407.49,
+ "frames": 81,
+ "fps": {
+  "avg": 0,
+  "min": 8.68809730668997,
+  "max": 172.41379310353327
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Diode",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 3058.2,
+   "pos": [
+    30.5,
+    5,
+    -9.5
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rocket",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    -46,
+    0,
+    26
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 161,
+  "triangles": 105732,
+  "geometries": 112,
+  "textures": 113,
+  "programs": 93
+ },
+ "custom": {
+  "variants": {
+   "unpatched": {
+    "n": 16,
+    "ok": 15,
+    "avgT": 12.4,
+    "totalInv": 29,
+    "totalStuck": 1,
+    "slow": [
+     "ok t21.27 inv1 stuck0 -34.49,0,7.51->1.51,9.5,8.51",
+     "ok t8.23 inv7 stuck0 -21.49,0,4.51->-17.49,5,15.51",
+     "FAIL t40 inv14 stuck0 -17.49,0,-26.49->-8.49,6.05,17.51"
+    ],
+    "all": [
+     "ok:21.27:i1:s0",
+     "ok:9.73:i0:s0",
+     "ok:6.77:i0:s0",
+     "ok:15.67:i3:s1",
+     "ok:13.17:i0:s0",
+     "ok:10.67:i0:s0",
+     "ok:12.63:i0:s0",
+     "ok:8.23:i7:s0",
+     "FAIL:40:i14:s0",
+     "ok:5.33:i0:s0",
+     "ok:6.77:i1:s0",
+     "ok:17.63:i3:s0",
+     "ok:7.27:i0:s0",
+     "ok:10.3:i0:s0",
+     "ok:7.3:i0:s0",
+     "ok:5.63:i0:s0"
+    ]
+   },
+   "jumpExempt": {
+    "n": 16,
+    "ok": 15,
+    "avgT": 12.36,
+    "totalInv": 30,
+    "totalStuck": 1,
+    "slow": [
+     "ok t21.47 inv1 stuck0 -34.49,0,7.51->1.51,9.5,8.51",
+     "ok t8.3 inv7 stuck0 -21.49,0,4.51->-17.49,5,15.51",
+     "FAIL t40 inv14 stuck0 -17.49,0,-26.49->-8.49,6.05,17.51"
+    ],
+    "all": [
+     "ok:21.47:i1:s0",
+     "ok:9.63:i0:s0",
+     "ok:6.77:i0:s0",
+     "ok:15.1:i4:s1",
+     "ok:13.03:i0:s0",
+     "ok:10.57:i0:s0",
+     "ok:12.63:i0:s0",
+     "ok:8.3:i7:s0",
+     "FAIL:40:i14:s0",
+     "ok:5.33:i0:s0",
+     "ok:6.77:i1:s0",
+     "ok:17.6:i3:s0",
+     "ok:7.27:i0:s0",
+     "ok:10.4:i0:s0",
+     "ok:7.3:i0:s0",
+     "ok:5.63:i0:s0"
+    ]
+   }
+  },
+  "map": "foundry",
+  "pairs": 16,
+  "dt": 0.03333333333333333
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

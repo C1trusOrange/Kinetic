@@ -1,0 +1,46 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>hands</title>
+<style>html,body{margin:0;background:#333;overflow:hidden}</style>
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+window.__DONE__ = false;
+const q = new URLSearchParams(location.search);
+const az = parseFloat(q.get('az') || '35'), el = parseFloat(q.get('el') || '20');
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.setScissorTest(true);
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+const pm = new THREE.PMREMGenerator(renderer);
+scene.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture; scene.environmentIntensity = 0.9;
+scene.background = new THREE.Color('#556');
+const sun = new THREE.DirectionalLight(0xffffff, 2.0); sun.position.set(-2, 3, 2); scene.add(sun);
+const T = await import('/src/world/Textures.js'); T.initTextures(renderer);
+const WM = await import('/src/weapons/WeaponModels.js');
+const ids = ['pistol', 'rifle', 'shotgun', 'sniper', 'rocket'];
+const cols = 3, rows = 2;
+const W = innerWidth / cols, H = innerHeight / rows;
+ids.forEach((id, k) => {
+  const m = WM.createWeaponModel(id, { view: true });
+  const holder = new THREE.Group(); holder.add(m.root); scene.add(holder);
+  const box = new THREE.Box3().setFromObject(m.root);
+  const c = box.getCenter(new THREE.Vector3()); const size = box.getSize(new THREE.Vector3());
+  // frame the front 0.6m region of the gun incl. arms: use model bbox limited to z<0.25
+  const cam = new THREE.PerspectiveCamera(35, W / H, 0.01, 20);
+  const a = az * Math.PI / 180, e = el * Math.PI / 180, d = Math.max(size.x, size.y, size.z) * 1.15;
+  const target = new THREE.Vector3(0, 0.0, -0.1);
+  cam.position.set(target.x + Math.sin(a) * Math.cos(e) * d, target.y + Math.sin(e) * d, target.z + Math.cos(a) * Math.cos(e) * d);
+  cam.lookAt(target);
+  const cx = (k % cols) * W, cy = (rows - 1 - Math.floor(k / cols)) * H;
+  renderer.setViewport(cx, cy, W, H); renderer.setScissor(cx, cy, W, H);
+  holder.visible = true;
+  ids.forEach((o, j) => { if (j !== k) { /* hide other holders */ } });
+  scene.children.forEach(ch => { if (ch.isGroup) ch.visible = false; });
+  holder.visible = true;
+  renderer.render(scene, cam);
+});
+window.__DONE__ = true;
+</script></body></html>

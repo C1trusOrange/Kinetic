@@ -1,0 +1,57 @@
+[run] http://127.0.0.1:62369/index.html?autotest=1&map=sandbox&bots=0&script=idle&scenario=tools/out/audit/review-weapons/realrate.js&duration=12
+[log] [autotest] finished {"ok":true,"errors":0,"fps":74.4}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 12.05,
+ "frames": 713,
+ "fps": {
+  "avg": 74.4,
+  "min": 4,
+  "max": 178.6
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 4.5,
+  "maxY": 4.5,
+  "states": {
+   "onGround": true
+  },
+  "shots": 78,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 78
+ },
+ "renderer": {
+  "calls": 136,
+  "triangles": 36946,
+  "geometries": 121,
+  "textures": 116,
+  "programs": 98
+ },
+ "custom": {
+  "shots": 78,
+  "t0": 1.0076,
+  "t1": 9.02870000000001,
+  "dts": 477,
+  "simSeconds": 8.021,
+  "perSec": 9.724,
+  "meanDt": 0.0169,
+  "hz": 59.2
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=0

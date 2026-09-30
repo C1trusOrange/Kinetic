@@ -1,0 +1,604 @@
+[run] http://127.0.0.1:64593/index.html?autotest=1&map=ruins&bots=8&duration=1000&sec=300&jit=1&scenario=tools/out/audit/verify-aibrain-2/nat3.js
+[warning] [world] map 'ruins' has 9 warning(s):
+ - spawn #4 at [-9, 0, 31]: floor is at y=0.70 (snapped)
+ - spawn #4 at [-9,0.7,31] is inside or too close to solid geometry (depth 0.65)
+ - spawn #9 at [0, 0, 49]: floor is at y=0.78 (snapped)
+ - spawn #14 at [-49,9,-18] is inside or too close to solid geometry (depth 0.40)
+ - spawn #16 at [10, 4.5, -10]: floor is at y=5.70 (snapped)
+ - pickup (health) at [42, 4.5, 4]: floor is at y=5.16 (snapped)
+ - pickup (ammo) at [-11, 4.5, -11]: floor is at y=4.78 (snapped)
+ - 777 solids (budget ~700)
+ - bots cannot reach: spawn #4 (isolated area), pickup #11 (ammo, isolated area), pickup #13 (ammo) - add ramps/stairs (bots cannot grapple or wall-run)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":21.3}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 304.01,
+ "frames": 129,
+ "fps": {
+  "avg": 21.3,
+  "min": 4,
+  "max": 64.10256410259672
+ },
+ "errors": [],
+ "map": "ruins",
+ "player": {
+  "distance": 21.4,
+  "maxSpeed": 6.75,
+  "minY": 5.551115123125783e-17,
+  "maxY": 9.079008447817138,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 1,
+  "damageDealt": 0,
+  "damageTaken": 100
+ },
+ "bots": [
+  {
+   "name": "Piston",
+   "alive": true,
+   "kills": 18,
+   "deaths": 15,
+   "health": 100,
+   "weapon": "sniper",
+   "state": "chase",
+   "distance": 1466.6,
+   "pos": [
+    -8.4,
+    0,
+    -23.8
+   ]
+  },
+  {
+   "name": "Tesla",
+   "alive": true,
+   "kills": 15,
+   "deaths": 17,
+   "health": 46,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 1656.6,
+   "pos": [
+    22.7,
+    0,
+    15.8
+   ]
+  },
+  {
+   "name": "Voltage",
+   "alive": true,
+   "kills": 18,
+   "deaths": 19,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "chase",
+   "distance": 1538.3,
+   "pos": [
+    -3.9,
+    0.1,
+    23.9
+   ]
+  },
+  {
+   "name": "Byte",
+   "alive": false,
+   "kills": 11,
+   "deaths": 20,
+   "health": 0,
+   "weapon": "rifle",
+   "state": "retreat",
+   "distance": 1442.9,
+   "pos": [
+    1.9,
+    0.1,
+    25.1
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": true,
+   "kills": 13,
+   "deaths": 18,
+   "health": 100,
+   "weapon": "shotgun",
+   "state": "collect",
+   "distance": 1433,
+   "pos": [
+    -29.7,
+    0,
+    43.7
+   ]
+  },
+  {
+   "name": "Cog",
+   "alive": true,
+   "kills": 12,
+   "deaths": 16,
+   "health": 4,
+   "weapon": "rocket",
+   "state": "retreat",
+   "distance": 1447.8,
+   "pos": [
+    22.9,
+    0,
+    -19.2
+   ]
+  },
+  {
+   "name": "Axle",
+   "alive": true,
+   "kills": 13,
+   "deaths": 16,
+   "health": 100,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 1469.7,
+   "pos": [
+    -36.6,
+    1.4,
+    -5.4
+   ]
+  },
+  {
+   "name": "Relay",
+   "alive": true,
+   "kills": 19,
+   "deaths": 13,
+   "health": 45,
+   "weapon": "pistol",
+   "state": "engage",
+   "distance": 1498.4,
+   "pos": [
+    8.6,
+    0,
+    -16.8
+   ]
+  }
+ ],
+ "events": {
+  "damage": 760,
+  "death": 136,
+  "spawn": 143,
+  "pickup": 33,
+  "fire": 1785
+ },
+ "renderer": {
+  "calls": 496,
+  "triangles": 120022,
+  "geometries": 220,
+  "textures": 126,
+  "programs": 100
+ },
+ "custom": {
+  "tele": [],
+  "launches": [
+   {
+    "t": 23.2,
+    "bot": "Voltage",
+    "st": "engage",
+    "dt": 122.2,
+    "pos": [
+     -32,
+     0.1,
+     0.2
+    ]
+   },
+   {
+    "t": 50.6,
+    "bot": "Byte",
+    "st": "retreat",
+    "dt": 149.6,
+    "pos": [
+     -30.7,
+     0.1,
+     -0.9
+    ]
+   },
+   {
+    "t": 57.4,
+    "bot": "Relay",
+    "st": "chase",
+    "dt": 156.4,
+    "pos": [
+     -32.5,
+     -1.5,
+     25.1
+    ]
+   },
+   {
+    "t": 69.6,
+    "bot": "Axle",
+    "st": "collect",
+    "dt": 168.6,
+    "pos": [
+     -0.5,
+     0.1,
+     -35.3
+    ]
+   },
+   {
+    "t": 77.9,
+    "bot": "Nimbus",
+    "st": "roam",
+    "dt": 176.9,
+    "pos": [
+     0,
+     0.1,
+     -35
+    ]
+   },
+   {
+    "t": 79.9,
+    "bot": "Voltage",
+    "st": "engage",
+    "dt": 56.7,
+    "pos": [
+     -31.7,
+     0.1,
+     -0.7
+    ]
+   },
+   {
+    "t": 81,
+    "bot": "Piston",
+    "st": "engage",
+    "dt": 180,
+    "pos": [
+     30.7,
+     0.8,
+     -1
+    ]
+   },
+   {
+    "t": 88.5,
+    "bot": "Axle",
+    "st": "collect",
+    "dt": 18.9,
+    "pos": [
+     0.1,
+     0.1,
+     -33.5
+    ]
+   },
+   {
+    "t": 93.9,
+    "bot": "Tesla",
+    "st": "retreat",
+    "dt": 192.9,
+    "pos": [
+     30.2,
+     0.1,
+     0.5
+    ]
+   },
+   {
+    "t": 100.1,
+    "bot": "Relay",
+    "st": "chase",
+    "dt": 42.7,
+    "pos": [
+     -0.9,
+     0.1,
+     -33.9
+    ]
+   },
+   {
+    "t": 118,
+    "bot": "Nimbus",
+    "st": "roam",
+    "dt": 40.1,
+    "pos": [
+     0,
+     0.1,
+     -35
+    ]
+   },
+   {
+    "t": 121,
+    "bot": "Nimbus",
+    "st": "engage",
+    "dt": 3,
+    "pos": [
+     -0.1,
+     0.1,
+     -35.6
+    ]
+   },
+   {
+    "t": 126,
+    "bot": "Relay",
+    "st": "retreat",
+    "dt": 25.9,
+    "pos": [
+     31.9,
+     0.1,
+     -0.5
+    ]
+   },
+   {
+    "t": 138.4,
+    "bot": "Nimbus",
+    "st": "engage",
+    "dt": 17.4,
+    "pos": [
+     30,
+     0.1,
+     -0.4
+    ]
+   },
+   {
+    "t": 142.3,
+    "bot": "Relay",
+    "st": "collect",
+    "dt": 16.4,
+    "pos": [
+     -1,
+     0.1,
+     -34.8
+    ]
+   },
+   {
+    "t": 145.1,
+    "bot": "Piston",
+    "st": "chase",
+    "dt": 64.1,
+    "pos": [
+     -33.5,
+     -1.5,
+     25.1
+    ]
+   },
+   {
+    "t": 159.2,
+    "bot": "Tesla",
+    "st": "collect",
+    "dt": 65.3,
+    "pos": [
+     -1,
+     0.1,
+     -34.5
+    ]
+   },
+   {
+    "t": 161.1,
+    "bot": "Tesla",
+    "st": "engage",
+    "dt": 1.9,
+    "pos": [
+     -0.1,
+     0.1,
+     -35.5
+    ]
+   },
+   {
+    "t": 183.9,
+    "bot": "Piston",
+    "st": "retreat",
+    "dt": 38.8,
+    "pos": [
+     0.8,
+     0.1,
+     -33.9
+    ]
+   },
+   {
+    "t": 189.5,
+    "bot": "Tesla",
+    "st": "retreat",
+    "dt": 28.4,
+    "pos": [
+     -0.2,
+     0.1,
+     -33.4
+    ]
+   },
+   {
+    "t": 192.1,
+    "bot": "Byte",
+    "st": "engage",
+    "dt": 141.4,
+    "pos": [
+     -31,
+     0.1,
+     1
+    ]
+   },
+   {
+    "t": 216.1,
+    "bot": "Piston",
+    "st": "retreat",
+    "dt": 32.2,
+    "pos": [
+     30,
+     0.1,
+     -0.4
+    ]
+   },
+   {
+    "t": 240.8,
+    "bot": "Nimbus",
+    "st": "collect",
+    "dt": 102.4,
+    "pos": [
+     -1,
+     0.1,
+     -34.9
+    ]
+   },
+   {
+    "t": 245.7,
+    "bot": "Tesla",
+    "st": "retreat",
+    "dt": 56.2,
+    "pos": [
+     30.5,
+     0.1,
+     0.7
+    ]
+   },
+   {
+    "t": 274.7,
+    "bot": "Nimbus",
+    "st": "engage",
+    "dt": 33.9,
+    "pos": [
+     -30,
+     0.1,
+     -0.2
+    ]
+   },
+   {
+    "t": 279.6,
+    "bot": "Tesla",
+    "st": "roam",
+    "dt": 33.8,
+    "pos": [
+     0,
+     0.1,
+     -35
+    ]
+   },
+   {
+    "t": 286.1,
+    "bot": "Piston",
+    "st": "roam",
+    "dt": 70,
+    "pos": [
+     0,
+     0.1,
+     -35
+    ]
+   },
+   {
+    "t": 287.1,
+    "bot": "Piston",
+    "st": "engage",
+    "dt": 1,
+    "pos": [
+     0.1,
+     0.5,
+     -35.1
+    ]
+   },
+   {
+    "t": 287.6,
+    "bot": "Byte",
+    "st": "retreat",
+    "dt": 95.5,
+    "pos": [
+     30.1,
+     0.1,
+     0.5
+    ]
+   },
+   {
+    "t": 290.5,
+    "bot": "Tesla",
+    "st": "retreat",
+    "dt": 10.9,
+    "pos": [
+     30.1,
+     0.1,
+     -0.4
+    ]
+   }
+  ],
+  "blk": [
+   {
+    "t": 58.5,
+    "bot": "Relay",
+    "st": "collect",
+    "kind": "health",
+    "onGround": false,
+    "gap": 0.9
+   },
+   {
+    "t": 69.9,
+    "bot": "Axle",
+    "st": "collect",
+    "kind": "weapon:sniper",
+    "onGround": false,
+    "gap": 5.9
+   },
+   {
+    "t": 118.4,
+    "bot": "Nimbus",
+    "st": "collect",
+    "kind": "weapon:sniper",
+    "onGround": false,
+    "gap": 6.2
+   },
+   {
+    "t": 118.6,
+    "bot": "Nimbus",
+    "st": "collect",
+    "kind": "armor",
+    "onGround": false,
+    "gap": 4.7
+   },
+   {
+    "t": 159.4,
+    "bot": "Tesla",
+    "st": "collect",
+    "kind": "weapon:sniper",
+    "onGround": false,
+    "gap": 4.2
+   },
+   {
+    "t": 160,
+    "bot": "Tesla",
+    "st": "collect",
+    "kind": "armor",
+    "onGround": false,
+    "gap": 2.9
+   },
+   {
+    "t": 241.2,
+    "bot": "Nimbus",
+    "st": "collect",
+    "kind": "weapon:sniper",
+    "onGround": false,
+    "gap": 6.9
+   },
+   {
+    "t": 285.3,
+    "bot": "Voltage",
+    "st": "retreat",
+    "kind": "health",
+    "onGround": false,
+    "gap": 8.4
+   },
+   {
+    "t": 286.5,
+    "bot": "Piston",
+    "st": "collect",
+    "kind": "weapon:sniper",
+    "onGround": false,
+    "gap": 6.2
+   }
+  ],
+  "invPad": 3,
+  "invTotal": 6,
+  "ping": [],
+  "summary": {
+   "launches": 30,
+   "relaunch12": 4,
+   "relaunch6": 3,
+   "tele": 0,
+   "teleFromRoamPick": 0,
+   "teleFromRoamPickAir": 0,
+   "teleAir": 0,
+   "blk": 9,
+   "blkAir": 9,
+   "invTotal": 6,
+   "invPad": 3
+  }
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

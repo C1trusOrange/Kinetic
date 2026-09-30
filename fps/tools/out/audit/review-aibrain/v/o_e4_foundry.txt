@@ -1,0 +1,41 @@
+[run] http://127.0.0.1:62192/index.html?autotest=1&map=foundry&bots=1&duration=999&script=idle&god=1
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[result] {
+ "pads": 4,
+ "paths": 400,
+ "nullPaths": 0,
+ "usesPad": 25,
+ "crossesPad": 7,
+ "perPad": [
+  0,
+  3,
+  2,
+  2
+ ],
+ "maxMs": 33,
+ "avgMs": 3.97,
+ "padPos": [
+  [
+   -19,
+   -4,
+   24.5
+  ],
+  [
+   19,
+   -4,
+   24.5
+  ],
+  [
+   24,
+   0,
+   -33
+  ],
+  [
+   38.5,
+   5,
+   -26.8
+  ]
+ ]
+}
+[run] done: wait=ok console_errors=0 warnings=1

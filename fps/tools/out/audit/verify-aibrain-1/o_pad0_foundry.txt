@@ -1,0 +1,426 @@
+[run] http://127.0.0.1:50420/index.html?autotest=1&map=foundry&bots=2&duration=1&god=1&script=idle&scenario=tools/out/audit/verify-aibrain-1/scen_pad.js&pad=0
+[warning] [world] map 'foundry' has 1 warning(s):
+ - 800 solids (budget ~700)
+[log] [autotest] finished {"ok":true,"errors":0,"fps":0}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 48.03,
+ "frames": 28,
+ "fps": {
+  "avg": 0,
+  "min": 4,
+  "max": 4
+ },
+ "errors": [],
+ "map": "foundry",
+ "player": {
+  "distance": 0,
+  "maxSpeed": 0,
+  "minY": 1000000000,
+  "maxY": -1000000000,
+  "states": {},
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [
+  {
+   "name": "Rivet",
+   "alive": true,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 397.7,
+   "pos": [
+    -23.6,
+    5.9,
+    15.2
+   ]
+  },
+  {
+   "name": "Nimbus",
+   "alive": false,
+   "kills": 0,
+   "deaths": 0,
+   "health": 100,
+   "weapon": "rifle",
+   "state": "roam",
+   "distance": 0,
+   "pos": [
+    46,
+    0,
+    26
+   ]
+  }
+ ],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 3,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 132,
+  "triangles": 102862,
+  "geometries": 112,
+  "textures": 113,
+  "programs": 93
+ },
+ "custom": {
+  "trials": [
+   {
+    "pad": 0,
+    "k": 0,
+    "ok": true,
+    "t": 2.95,
+    "air": 1.43,
+    "launched": 1,
+    "inv": 2,
+    "invSites": [
+     {
+      "t": 1.85,
+      "y": -4,
+      "g": false,
+      "idx": 2,
+      "wp": "-24.49 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 1.87,
+      "y": -3.61,
+      "g": false,
+      "idx": 2,
+      "wp": "-24.49 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 4,
+    "from": [
+     -30.49,
+     -3.81,
+     22.51
+    ],
+    "goal": [
+     -24.49,
+     5,
+     15.51
+    ],
+    "reqs": [
+     {
+      "t": 0.32,
+      "y": -3.89,
+      "g": true,
+      "vy": 0,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-19.49 -4 24.51 walk ",
+       "-19.49 5 15.51 jump P",
+       "-24.49 5 15.51 walk "
+      ]
+     },
+     {
+      "t": 1.87,
+      "y": -3.61,
+      "g": false,
+      "vy": 23.6,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-19.49 -4 24.51 walk ",
+       "-19.49 5 15.51 jump P",
+       "-24.49 5 15.51 walk "
+      ]
+     },
+     {
+      "t": 2.03,
+      "y": -0.04,
+      "g": false,
+      "vy": 19.6,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-20.49 0 21.31 walk ",
+       "-20.49 -4 22.51 drop ",
+       "-19.49 -4 24.51 walk ",
+       "-19.49 5 15.51 jump P"
+      ]
+     },
+     {
+      "t": 2.5,
+      "y": 6.4,
+      "g": false,
+      "vy": 8.4,
+      "unreach": false,
+      "mode": "path",
+      "path": [
+       "-22.49 6.05 17.51 walk ",
+       "-23.49 5 16.51 drop ",
+       "-24.49 5 15.51 walk "
+      ]
+     }
+    ],
+    "trace": [
+     "0.52 | -27.31,-4,23.42 | vy0 | G | path | i0/3 | -19.49 -4 24.51 walk ",
+     "0.75 | -25.65,-4,23.66 | vy0 | G | path | i0/3 | -19.49 -4 24.51 walk ",
+     "1 | -23.87,-4,23.9 | vy0 | G | path | i0/3 | -19.49 -4 24.51 walk ",
+     "1.25 | -22.09,-4,24.15 | vy0 | G | path | i0/3 | -19.49 -4 24.51 walk ",
+     "1.52 | -20.19,-4,24.41 | vy0 | G | path | i0/3 | -19.49 -4 24.51 walk ",
+     "1.77 | -20.26,0.9,22.72 | vy18.4 | A | path | i0/5 | -20.49 0 21.31 walk ",
+     "2.02 | -20.52,4.7,21.1 | vy12.4 | A | path | i1/5 | -20.49 -4 22.51 drop ",
+     "2.27 | -20.82,7,20.85 | vy6.4 | A | path | i0/3 | -22.49 6.05 17.51 walk ",
+     "2.52 | -21.67,7.8,19.75 | vy0.4 | A | path | i0/3 | -22.49 6.05 17.51 walk ",
+     "2.77 | -22.72,7.1,18.08 | vy-5.6 | A | path | i0/3 | -22.49 6.05 17.51 walk "
+    ]
+   },
+   {
+    "pad": 0,
+    "k": 1,
+    "ok": true,
+    "t": 7.67,
+    "air": 2.38,
+    "launched": 2,
+    "inv": 1,
+    "invSites": [
+     {
+      "t": 5.87,
+      "y": 1.49,
+      "g": false,
+      "idx": 1,
+      "wp": "-21.49 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 4,
+    "from": [
+     -14.49,
+     -4,
+     23.51
+    ],
+    "goal": [
+     -21.49,
+     5,
+     15.51
+    ]
+   },
+   {
+    "pad": 0,
+    "k": 2,
+    "ok": false,
+    "t": 20,
+    "air": 13.57,
+    "launched": 3,
+    "inv": 2,
+    "invSites": [
+     {
+      "t": 15.53,
+      "y": 1.83,
+      "g": false,
+      "idx": 2,
+      "wp": "-18.49 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 30.2,
+      "y": -4,
+      "g": false,
+      "idx": 2,
+      "wp": "-18.49 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 20,
+    "from": [
+     -11.49,
+     -4,
+     25.51
+    ],
+    "goal": [
+     -18.49,
+     5,
+     15.51
+    ]
+   },
+   {
+    "pad": 0,
+    "k": 3,
+    "ok": true,
+    "t": 12.68,
+    "air": 8.1,
+    "launched": 4,
+    "inv": 6,
+    "invSites": [
+     {
+      "t": 35.82,
+      "y": 0,
+      "g": true,
+      "idx": 2,
+      "wp": "-15.49 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 37.13,
+      "y": -1.84,
+      "g": false,
+      "idx": 4,
+      "wp": "-19.49 5 15.51 jump true",
+      "at": "BotNav.js:302:14)"
+     },
+     {
+      "t": 37.2,
+      "y": -2.52,
+      "g": false,
+      "idx": 1,
+      "wp": "-15.49 5 15.51 walk false",
+      "at": "BotNav.js:302:14)"
+     }
+    ],
+    "nreq": 11,
+    "from": [
+     -13.49,
+     -4,
+     27.51
+    ],
+    "goal": [
+     -15.49,
+     5,
+     15.51
+    ]
+   },
+   {
+    "pad": 0,
+    "k": 4,
+    "ok": true,
+    "t": 3.08,
+    "air": 1.48,
+    "launched": 2,
+    "inv": 0,
+    "invSites": [],
+    "nreq": 3,
+    "from": [
+     -8.49,
+     -4,
+     28.51
+    ],
+    "goal": [
+     -24.49,
+     5,
+     16.51
+    ]
+   }
+  ],
+  "pads": [
+   {
+    "pos": [
+     -19,
+     -4,
+     24.5
+    ],
+    "target": [
+     -19,
+     5,
+     16
+    ],
+    "vel": [
+     0,
+     24,
+     -5.67
+    ]
+   },
+   {
+    "pos": [
+     19,
+     -4,
+     24.5
+    ],
+    "target": [
+     19,
+     5,
+     16
+    ],
+    "vel": [
+     0,
+     24,
+     -5.67
+    ]
+   },
+   {
+    "pos": [
+     24,
+     0,
+     -33
+    ],
+    "target": [
+     31.5,
+     10,
+     -36
+    ],
+    "vel": [
+     4.87,
+     24.98,
+     -1.95
+    ]
+   },
+   {
+    "pos": [
+     38.5,
+     5,
+     -26.8
+    ],
+    "target": [
+     43.8,
+     10,
+     -34.8
+    ],
+    "vel": [
+     4.03,
+     19.6,
+     -6.08
+    ]
+   }
+  ],
+  "summary": [
+   {
+    "pad": 0,
+    "n": 5,
+    "ok": 4,
+    "avgT": 9.28,
+    "avgInv": 2.2,
+    "avgAir": 5.39
+   },
+   {
+    "pad": 1,
+    "n": 0,
+    "ok": 0,
+    "avgT": 0,
+    "avgInv": 0,
+    "avgAir": 0
+   },
+   {
+    "pad": 2,
+    "n": 0,
+    "ok": 0,
+    "avgT": 0,
+    "avgInv": 0,
+    "avgAir": 0
+   },
+   {
+    "pad": 3,
+    "n": 0,
+    "ok": 0,
+    "avgT": 0,
+    "avgInv": 0,
+    "avgAir": 0
+   }
+  ]
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1

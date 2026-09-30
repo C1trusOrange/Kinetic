@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head><body><script type="module">
+import { MAPS } from '/src/world/maps/index.js';
+window.__DONE__ = false;
+const P = new URLSearchParams(location.search);
+const id = P.get('map'), x0 = +P.get('x0'), x1 = +P.get('x1'), y0 = +P.get('y0'), y1 = +P.get('y1'), z0 = +P.get('z0'), z1 = +P.get('z1');
+const m = MAPS.find(m => m.id === id);
+const hits = [];
+m.solids.forEach((s, i) => {
+  let mn, mx;
+  if (s.min && s.max) { mn = s.min; mx = s.max; }
+  else if (s.pos && s.size && Array.isArray(s.size)) { const r = Math.max(...s.size) ; mn = s.pos.map((v, k) => v - (s.size[k] ?? r) / 2 - (s.rot ? r/2 : 0)); mx = s.pos.map((v, k) => v + (s.size[k] ?? r) / 2 + (s.rot ? r/2 : 0)); }
+  else if (s.pos && s.radius) { mn = [s.pos[0]-s.radius, s.pos[1]-(s.height||0)/2, s.pos[2]-s.radius]; mx = [s.pos[0]+s.radius, s.pos[1]+(s.height||0)/2, s.pos[2]+s.radius]; }
+  else if (s.from && s.to && s.from.length === 2) { const h = s.height || 3, yb = s.y0 || 0, t = (s.thickness||0.5)/2; mn = [Math.min(s.from[0], s.to[0])-t, yb, Math.min(s.from[1], s.to[1])-t]; mx = [Math.max(s.from[0], s.to[0])+t, yb+h, Math.max(s.from[1], s.to[1])+t]; }
+  else if (s.from && s.to) { mn = [Math.min(s.from[0], s.to[0])-1.5, Math.min(s.from[1], s.to[1]), Math.min(s.from[2], s.to[2])-1.5]; mx = [Math.max(s.from[0], s.to[0])+1.5, Math.max(s.from[1], s.to[1])+1.2, Math.max(s.from[2], s.to[2])+1.5]; }
+  else return;
+  if (mx[0] < x0 || mn[0] > x1 || mx[1] < y0 || mn[1] > y1 || mx[2] < z0 || mn[2] > z1) return;
+  hits.push({ i, ...s });
+});
+window.__R__ = hits;
+window.__DONE__ = true;
+</script></body></html>

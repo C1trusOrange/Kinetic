@@ -1,0 +1,83 @@
+[run] http://127.0.0.1:58808/index.html?autotest=1&map=sandbox&bots=0&god=1&scenario=tools/out/audit/verify-weapons-1/nade.js&duration=10
+[warning] wait poll failed: CDP call timed out: Runtime.evaluate
+[log] [autotest] finished {"ok":true,"errors":0,"fps":26.8}
+[result] {
+ "done": true,
+ "started": true,
+ "t": 10.25,
+ "frames": 288,
+ "fps": {
+  "avg": 26.8,
+  "min": 4,
+  "max": 120.5
+ },
+ "errors": [],
+ "map": "sandbox",
+ "player": {
+  "distance": 13.6,
+  "maxSpeed": 7.12,
+  "minY": -5.551115123125783e-17,
+  "maxY": 6.300000000000017,
+  "states": {
+   "onGround": true,
+   "airborne": true
+  },
+  "shots": 0,
+  "kills": 0,
+  "deaths": 0,
+  "damageDealt": 0,
+  "damageTaken": 0
+ },
+ "bots": [],
+ "events": {
+  "damage": 0,
+  "death": 0,
+  "spawn": 1,
+  "pickup": 0,
+  "fire": 0
+ },
+ "renderer": {
+  "calls": 134,
+  "triangles": 36900,
+  "geometries": 143,
+  "textures": 119,
+  "programs": 96
+ },
+ "custom": {
+  "explosions": [
+   {
+    "t": 3.64,
+    "weapon": "grenade",
+    "ownerIsPlayer": false,
+    "ownerIsBot": false,
+    "owner": null
+   },
+   {
+    "t": 6.63,
+    "weapon": "grenade",
+    "ownerIsPlayer": false,
+    "ownerIsBot": false,
+    "owner": null
+   }
+  ],
+  "phase": [
+   [
+    "hold",
+    1.0212999999999912
+   ],
+   [
+    "release",
+    1.5332999999999974
+   ],
+   [
+    "botnade at player",
+    6.547299999999987
+   ]
+  ],
+  "grenadesLive": 0,
+  "grenadesLive2": 1
+ },
+ "ok": true,
+ "errorCount": 0
+}
+[run] done: wait=ok console_errors=0 warnings=1
