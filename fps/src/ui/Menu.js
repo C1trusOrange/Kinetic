@@ -576,9 +576,10 @@ export class Menu {
     const c = this._cfg;
     const def = this._mapDef(c.mapId);
     const lim = c.mode === 'escalation' ? 'FINISH THE LADDER' : c.scoreLimit ? c.scoreLimit + (c.mode === 'koth' ? ' POINTS' : ' FRAGS') : 'NO SCORE LIMIT';
+    const lo = this.loadout.summary();   // spawn loadout rules ('' in Escalation)
     return `${(def.name || c.mapId).toUpperCase()} · ${modeShort(c.mode)} · ${c.botCount} BOT${c.botCount === 1 ? '' : 'S'} · ${c.difficulty.toUpperCase()}`
       + ` · ${lim} · ${c.timeLimit ? c.timeLimit + ' MIN' : 'NO TIME LIMIT'}`
-      + ` · ARSENAL: ${this._arsenalName().toUpperCase()} · ${this.loadout.summary()}`;
+      + ` · ARSENAL: ${this._arsenalName().toUpperCase()}${lo ? ' · ' + lo : ''}`;
   }
 
   _fillMain() {

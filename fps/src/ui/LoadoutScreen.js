@@ -137,10 +137,13 @@ export class LoadoutScreen {
   /** True when opened from the pause menu: the match rules are shown but cannot change. */
   get readOnly() { return this.from === 'pause'; }
 
-  /** The pool on screen: the running match's (pause menu) or the one being set up. */
-  _pool() {
+  /**
+   * The pool on screen: the running match's (pause menu) or the one being set up.
+   * @param {'setup'|'pause'} [from]
+   */
+  _pool(from = this.from) {
     const m = this.game.match;
-    if (this.readOnly && m) return sanitizePool(m.pool);
+    if (from === 'pause' && m) return sanitizePool(m.pool);
     const c = this.menu._cfg;
     return sanitizePool(c ? c.pool : this.game.settings.get('loadoutPool'));
   }
@@ -279,16 +282,17 @@ export class LoadoutScreen {
 
   // ================================================================== rendering
 
-  /** Refresh the setup card (and lock it in Escalation). */
+  /** Refresh the setup card (and lock it in Escalation). Always shows the set-up rules, wherever the screen was opened from. */
   syncCard() {
     const r = this.r;
     if (!this.card || !r.cardicons) return;
-    const esc_ = this._escalation();
-    const pool = this._pool();
-    const lo = resolveLoadout(pool, this._pick());
+    const esc_ = this._escalation('setup');
+    const pool = this._pool('setup');
+    const pick = this._pick();
+    const lo = resolveLoadout(pool, pick);
     this.card.disabled = esc_;
     this.card.classList.toggle('locked', esc_);
-    const standard = poolEquals(pool, DEFAULT_POOL) && pickEquals(this._pick(), DEFAULT_PICK);
+    const standard = poolEquals(pool, DEFAULT_POOL) && pickEquals(pick, DEFAULT_PICK);
     r.cardout.textContent = esc_ ? 'Ladder' : standard ? 'Standard' : 'Custom';
     r.cardicons.innerHTML = esc_ ? '' : lo.weapons.map(id =>
       `<i class="${id === lo.primary ? 'pri' : ''}" style="--wc:${color(id)}" title="${esc(weaponName(id))}">${weaponIcon(id)}</i>`).join('');
@@ -305,10 +309,13 @@ export class LoadoutScreen {
     if (em) em.textContent = esc_ ? 'Fixed: the weapon ladder' : 'Applies at your next respawn';
   }
 
-  /** Match Setup footer fragment (e.g. 'LOADOUTS: 3 SLOTS' or 'LOADOUTS: 2 SLOTS, 5 WEAPONS, FULL AMMO'). */
+  /**
+   * Match Setup footer fragment (e.g. 'LOADOUTS: 3 SLOTS' or 'LOADOUTS: 5 WEAPONS, 2 SLOTS, FULL AMMO'); '' in
+   * Escalation, whose summary already says 'FINISH THE LADDER'.
+   */
   summary() {
-    if (this._escalation()) return 'LOADOUTS: LADDER';
-    return 'LOADOUTS: ' + this._poolLine(this._pool(), false).toUpperCase().replace(/ · /g, ', ');
+    if (this._escalation('setup')) return '';
+    return 'LOADOUTS: ' + this._poolLine(this._pool('setup'), false).toUpperCase().replace(/ · /g, ', ');
   }
 
   /** Pool rules in a few words; `all` = mention 'All weapons' when nothing is excluded. */
