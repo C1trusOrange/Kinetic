@@ -72,11 +72,11 @@ export class PlayerController {
     this.rescueLog = [];
     /**
      * Per-frame input snapshot, filled by Player.update. jumpFresh / crouchFresh are press edges latched until a
-     * physics step consumes them; jumpPressT = input-clock time (s) of the latched jump press.
+     * physics step consumes them.
      */
     this.in = {
       wishX: 0, wishZ: 0, wishLen: 0, fwd: 0, strafe: 0,
-      forwardHeld: false, jumpHeld: false, jumpFresh: false, jumpPressT: 0,
+      forwardHeld: false, jumpHeld: false, jumpFresh: false,
       crouchHeld: false, crouchFresh: false, sprintHeld: false,
     };
     this.reset();
@@ -89,8 +89,6 @@ export class PlayerController {
     this.airTime = 0;
     this.coyote = 0;
     this.jumpBuffer = 0;
-    /** Input-clock time (s) of the jump press behind jumpBuffer. */
-    this.jumpPressT = 0;
     /** Effective crouch input of the current step: held, or a same-frame tap still inside CROUCH_TAP_HOLD. */
     this.crouchIn = false;
     this.crouchTapUntil = -99;
@@ -251,10 +249,8 @@ export class PlayerController {
     const P = this.p, inp = this.in;
     this.t += dt;
     this.mantleCooldown -= dt;
-    if (inp.jumpFresh) {
-      this.jumpBuffer = M.JUMP_BUFFER;
-      this.jumpPressT = inp.jumpPressT;
-    } else if (this.jumpBuffer > 0) this.jumpBuffer = Math.max(0, this.jumpBuffer - dt);
+    if (inp.jumpFresh) this.jumpBuffer = M.JUMP_BUFFER;
+    else if (this.jumpBuffer > 0) this.jumpBuffer = Math.max(0, this.jumpBuffer - dt);
     // crouch press: the input edge, or the held state turning on (virtual / latched inputs can lag an edge)
     if (inp.crouchFresh || (inp.crouchHeld && !this._crouchWas)) this.crouchPressedAt = this.t;
     this._crouchWas = inp.crouchHeld;
@@ -535,8 +531,9 @@ export class PlayerController {
     const fresh = inp.jumpFresh;
 
     if (gr.attached) {
-      // pressed before the hook attached (same frame window included): keep the new swing
-      if (!(this.jumpPressT >= gr.attachedAt)) return;
+      // only a fresh press jumps off the rope: a buffered one was made before this swing attached (had the rope been
+      // attached at its fresh step, that step would have released it) - keep the new swing
+      if (!fresh) return;
       gr.release('jump');
       if (this.grounded || this.coyote > 0) {
         this._groundJump();

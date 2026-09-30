@@ -68,7 +68,10 @@ export class Player extends Entity {
     this.grapple = new Grapple(this);
     this.rig = new CameraRig(this);
 
-    /** Input clock (s, see Input.time) of the last spawn: presses older than this belong to the previous life. */
+    /**
+     * Input clock (s, performance.now() based like Input.pressTime()) of the last spawn: a press older than this
+     * belongs to the previous life (the Javelin requires a trigger held through a respawn to be released first).
+     */
     this.spawnedAt = 0;
 
     this._acc = 0;
@@ -119,7 +122,7 @@ export class Player extends Entity {
   /** (Re)spawn at a feet position facing `yaw`. */
   spawn(position, yaw = 0) {
     super.spawn(position, yaw);
-    this.spawnedAt = this.game.input ? this.game.input.time : 0;
+    this.spawnedAt = this.game.input ? this.game.input.now() : 0;
     this._camSynced = false;
     this.reset();
     this.height = HUMANOID.height;
@@ -176,10 +179,7 @@ export class Player extends Entity {
     // press and release both landed in this frame's window is latched too (crouchFresh without crouchHeld: the
     // controller holds it for a moment, so it still starts a slide). Stale presses (input stale-press policy)
     // never show up here.
-    if (input.actionPressed('jump')) {
-      inp.jumpFresh = true;
-      inp.jumpPressT = input.pressTime('jump');
-    }
+    if (input.actionPressed('jump')) inp.jumpFresh = true;
     inp.crouchHeld = input.action('crouch');
     if (input.actionPressed('crouch')) inp.crouchFresh = true;
     inp.sprintHeld = input.action('sprint');
