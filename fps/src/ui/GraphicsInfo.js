@@ -27,7 +27,7 @@ export function mountGraphicsInfo(root, game) {
     const kind = KIND_LABEL[i.gpuKind] || '';
     const q = QUALITY_LABEL[i.quality] || i.quality;
     const res = `${i.width} × ${i.height}` + (i.width !== i.nativeWidth || i.height !== i.nativeHeight ? ` <em>of ${i.nativeWidth} × ${i.nativeHeight}</em>` : ' <em>native</em>');
-    let html = `<div><b>GPU</b>${esc(i.gpu)}${kind ? ` <em>· ${kind}</em>` : ''}</div>`
+    let html = `<div title="${esc(i.renderer)}"><b>GPU</b>${esc(i.gpu)}${kind ? ` <em>· ${kind}</em>` : ''}</div>`
       + `<div><b>Render</b>${res} · ${i.msaa ? i.msaa + '× MSAA' : 'no MSAA'}${i.auto ? ` · Auto picked ${q}` : ''}</div>`;
     if (i.gpuKind === 'integrated' && windows) {
       html += '<div class="set-tip">Dedicated GPU in this PC? Set your browser to <b>High performance</b> in Windows Settings &gt; '

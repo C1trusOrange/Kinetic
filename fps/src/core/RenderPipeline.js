@@ -109,6 +109,12 @@ export class KineticBloomPass extends UnrealBloomPass {
     return this.renderTargetsHorizontal[0].texture;
   }
 
+  /** Free every GPU resource (three's UnrealBloomPass.dispose leaves the high-pass material's program alive). */
+  dispose() {
+    super.dispose();
+    this.materialHighPassFilter.dispose();
+  }
+
   render(renderer, writeBuffer, readBuffer, deltaTime, maskActive) {
     if (!this.fold) {
       super.render(renderer, writeBuffer, readBuffer, deltaTime, maskActive);
@@ -202,25 +208,26 @@ const TONE_DEFINES = new Map([
 
 /**
  * three's OutputPass (exposure, the renderer's tone mapping and output colour space) that also adds a bloom texture
- * before tone mapping. Set `bloomTexture` every frame (null = no bloom); switching it on/off swaps between two
- * cached programs.
+ * before tone mapping. Set `bloomTexture` every frame (null = no bloom). With and without bloom are two materials
+ * (two programs that both stay compiled), so switching bloom on or off never rebuilds a shader.
+ * It never swaps the composer's buffers (it is always the last pass and writes to the canvas), so the frame stays in
+ * the composer's readBuffer and the composer's second HDR target is never allocated.
  */
 export class KineticOutputPass extends Pass {
   constructor() {
     super();
+    this.needsSwap = false;
     this.uniforms = { tDiffuse: { value: null }, tBloom: { value: null }, toneMappingExposure: { value: 1 } };
-    this.material = new RawShaderMaterial({
-      name: 'KineticOutput',
-      uniforms: this.uniforms,
-      vertexShader: OutputShader.vertexShader,
-      fragmentShader: OUTPUT_FRAG,
+    const make = name => new RawShaderMaterial({
+      name, uniforms: this.uniforms, vertexShader: OutputShader.vertexShader, fragmentShader: OUTPUT_FRAG,
     });
+    this.material = make('KineticOutput');
+    this.bloomMaterial = make('KineticOutputBloom');
     this.fsQuad = new FullScreenQuad(this.material);
     /** @type {import('three').Texture|null} bloom to add this frame */
     this.bloomTexture = null;
     this._colorSpace = null;
     this._toneMapping = null;
-    this._bloom = null;
   }
 
   render(renderer, writeBuffer, readBuffer) {
@@ -228,19 +235,19 @@ export class KineticOutputPass extends Pass {
     u.tDiffuse.value = readBuffer.texture;
     u.tBloom.value = this.bloomTexture;
     u.toneMappingExposure.value = renderer.toneMappingExposure;
-    const bloom = !!this.bloomTexture;
-    if (this._colorSpace !== renderer.outputColorSpace || this._toneMapping !== renderer.toneMapping || this._bloom !== bloom) {
+    if (this._colorSpace !== renderer.outputColorSpace || this._toneMapping !== renderer.toneMapping) {
       this._colorSpace = renderer.outputColorSpace;
       this._toneMapping = renderer.toneMapping;
-      this._bloom = bloom;
       const d = {};
       if (ColorManagement.getTransfer(this._colorSpace) === SRGBTransfer) d.SRGB_TRANSFER = '';
       const tm = TONE_DEFINES.get(this._toneMapping);
       if (tm) d[tm] = '';
-      if (bloom) d.USE_BLOOM = '';
       this.material.defines = d;
+      this.bloomMaterial.defines = { ...d, USE_BLOOM: '' };
       this.material.needsUpdate = true;
+      this.bloomMaterial.needsUpdate = true;
     }
+    this.fsQuad.material = this.bloomTexture ? this.bloomMaterial : this.material;
     if (this.renderToScreen) {
       renderer.setRenderTarget(null);
     } else {
@@ -252,6 +259,7 @@ export class KineticOutputPass extends Pass {
 
   dispose() {
     this.material.dispose();
+    this.bloomMaterial.dispose();
     this.fsQuad.dispose();
   }
 }

@@ -12,7 +12,7 @@ import { RESPAWN_DELAY, TEAM_BLUE, TEAM_COLORS, PLAYER_COLOR, QUALITY_PRESETS, i
 import { Modes } from './Modes.js';
 import { clamp, damp, nextFrame } from './utils.js';
 import { KineticBloomPass, KineticOutputPass } from './RenderPipeline.js';
-import { detectGpu, resolveQuality, presetPixelRatio } from './GraphicsQuality.js';
+import { detectGpu, resolveQuality, presetPixelRatio, presetsNeedRecompile } from './GraphicsQuality.js';
 import { FrameLimiter } from './FrameLimiter.js';
 
 import { World } from '../world/World.js';
@@ -157,8 +157,9 @@ export class Game {
       const rt = new THREE.WebGLRenderTarget(size.x, size.y, { type: THREE.HalfFloatType, samples: q.msaa, resolveDepthBuffer: false });
       rt.texture.name = 'Kinetic.frame';
       composer = new EffectComposer(r, rt);
-      // No pass swaps buffers, so the frame lives in readBuffer for good. Make that renderTarget1 (the target
-      // warmup() compiles into); renderTarget2 then stays unused and is never allocated on the GPU.
+      // No pass swaps buffers (the RenderPasses and the bloom pass have needsSwap false, the output pass writes to
+      // the canvas), so the frame lives in readBuffer for good. Make that renderTarget1 (the target warmup()
+      // compiles into); renderTarget2 then stays unused and is never allocated on the GPU.
       composer.swapBuffers();
       const worldPass = new RenderPass(this.scene, this.camera);
       const viewPass = new RenderPass(this.viewScene, this.viewCamera);
@@ -628,8 +629,9 @@ export class Game {
   }
 
   /**
-   * Switch to a quality preset. Resolution, MSAA, bloom and shadow-map size apply at once and need no shader work;
-   * turning shadows on or off changes the program of every lit material.
+   * Switch to a quality preset. Resolution, MSAA, bloom, shadow-map size and the decal / particle budgets apply at
+   * once and need no shader work (no material is touched); turning shadows on or off changes the program of every
+   * lit material (see presetsNeedRecompile), so those switches mark the scene's materials for a rebuild.
    * @param {string} name a QUALITY_PRESETS key, or 'auto' (preset picked from the GPU)
    * @returns {boolean} true when material programs must be rebuilt (see _applyQualitySetting)
    */
@@ -637,7 +639,7 @@ export class Game {
     const prev = this.quality;
     const q = resolveQuality(name, this.gpu);
     this.quality = q;
-    const recompile = !prev || prev.shadows !== q.shadows;
+    const recompile = presetsNeedRecompile(prev, q);
     this.renderer.shadowMap.enabled = q.shadows;
     if (recompile) {
       this.scene.traverse(o => {
@@ -646,19 +648,21 @@ export class Game {
       });
     }
     if (typeof this.world.applyQuality === 'function') this.world.applyQuality(q);
+    this._onResize();        // pixel ratio of the new preset first, so the composer is sized once
     this._setupComposer();
-    this._onResize();
     this.events.emit('quality', q);
     return recompile;
   }
 
   /**
-   * Settings listener for 'quality'. A switch that rebuilds shaders (shadows on/off) compiles them behind the loading
-   * overlay, like a map load; resolution / MSAA-only switches are instant.
+   * Settings listener for 'quality'. Resolution / MSAA / bloom switches are instant. A switch that rebuilds shaders
+   * (shadows on/off) runs behind the loading overlay like a map load: the new programs compile in parallel while no
+   * frame is drawn (a frame would block on them), then warmup() finishes them.
+   * @returns {Promise<void>}
    */
   async _applyQualitySetting() {
     const name = this.settings.get('quality');
-    if (resolveQuality(name, this.gpu).shadows === this.quality.shadows) {
+    if (!presetsNeedRecompile(this.quality, resolveQuality(name, this.gpu))) {
       this.setQuality(name);
       return;
     }
@@ -666,11 +670,23 @@ export class Game {
     if (overlay) {
       this._qualityJobs = (this._qualityJobs || 0) + 1;
       this.menu.showLoading('Applying graphics settings', null);
-      await nextFrame();   // let the overlay paint before the first frame blocks on the new programs
+      await nextFrame();   // let the overlay paint before the shader work starts
     }
     try {
       this.setQuality(this.settings.get('quality'));
+      const r = this.renderer;
+      this._holdRender = true;
+      try {
+        r.setRenderTarget(this.composer.renderTarget1);   // programs are keyed on the target type (see warmup)
+        const jobs = [r.compileAsync(this.scene, this.camera), r.compileAsync(this.viewScene, this.viewCamera)];
+        r.setRenderTarget(null);
+        await Promise.race([Promise.all(jobs), new Promise(resolve => setTimeout(resolve, 20000))]);
+      } finally {
+        this._holdRender = false;
+      }
       await this.warmup();
+    } catch (err) {
+      console.error('[game] applying the graphics quality failed', err);
     } finally {
       if (overlay && --this._qualityJobs === 0) this.menu.hideLoading();
     }
@@ -892,7 +908,12 @@ export class Game {
       && !this.spectate && !this.fixedCam && this.player.alive;
   }
 
+  /**
+   * Draw the frame: world -> viewmodel (depth cleared) -> bloom (when on) -> output pass (bloom added, exposure,
+   * tone mapping, sRGB) to the canvas. Skipped while a quality switch compiles new programs behind the overlay.
+   */
   render() {
+    if (this._holdRender) return;
     this.viewPass.enabled = this._showViewModel();
     const bp = this.bloomPass;
     this.outputPass.bloomTexture = bp && bp.enabled && bp.fold ? bp.outputTexture : null;

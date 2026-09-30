@@ -1,20 +1,28 @@
 // 'Low latency mode': a GPU frames-in-flight limiter for Game._loop.
 //
-// Chrome/ANGLE lets WebGL queue about three frames on the GPU. When the GPU is the bottleneck every input then waits
-// behind that queue: measured 120-170 ms from a key press to the GPU finishing the frame that reacted to it at 28 fps,
-// which feels like the game "eats" inputs and replays them later. The limiter puts a fence after each frame's draw
-// calls; a requestAnimationFrame callback is skipped (no input edges consumed, no simulation, no render) while
-// `maxFrames` earlier frames are still unfinished on the GPU, so input is sampled only when the GPU can take the frame.
+// Chrome lets WebGL frames pile up between the page and the display: the GPU process executes the page's commands
+// (ANGLE -> D3D11), then the GPU runs them, and each stage keeps accepting new frames while it is busy. When that
+// pipeline is the bottleneck every input waits behind the frames already queued in it - measured at 2560x1440 on the
+// Radeon 860M: 118-147 ms from a key press to the GPU finishing the frame that reacted to it, which feels like the
+// game "eats" inputs and replays them later. The limiter puts a fence after each frame's draw calls, and a
+// requestAnimationFrame callback is skipped (no input edges consumed, no simulation, no render) while `maxFrames`
+// earlier frames are still unfinished, so input is only sampled when the pipeline can take the frame.
 //
-// A skip streak is time-capped at about one frame (the oldest fence may be (maxFrames + 0.25) x the recent frame
-// interval old, 4..100 ms), so a slow GPU frame can hold the loop back by at most that much; after 120 consecutive
-// capped frames (a fence that never signals: driver bug, lost context) the limiter switches itself off with a warning.
+// maxFrames = 2 (default): a frame starts while at most one earlier frame is still in flight, so the GPU side always
+// has the next frame queued (no fps loss) but never more than that. maxFrames = 1 (start only once the previous frame
+// has finished) roughly halves the latency again but serialises the page and the GPU process: measured -27..-38 % fps
+// on this laptop at 1280x720 and 1932x1086 (see the render package report), so it is not the default.
+//
+// Waiting is time-capped: the oldest unfinished frame is waited for until it is (maxFrames + 0.5) x the recent frame
+// interval old (8..100 ms), so a slow GPU frame can hold the loop back by at most about one frame; after 120
+// consecutive capped frames (a fence that never signals: driver bug) the limiter switches itself off with a warning.
 
-const CAP_MIN_MS = 4;
+const CAP_MIN_MS = 8;
 const CAP_MAX_MS = 100;
 const MAX_CAPPED_RUN = 120;
 const RING = 4;
 
+/** Frames-in-flight limiter driven by WebGL2 fence syncs (see the file comment). */
 export class FrameLimiter {
   /** @param {WebGL2RenderingContext} gl the renderer's context */
   constructor(gl) {
@@ -23,8 +31,8 @@ export class FrameLimiter {
     this.supported = !!gl && typeof gl.fenceSync === 'function';
     /** Whether fences are issued (the 'lowLatency' setting); see setEnabled. */
     this.enabled = false;
-    /** Frames that may be in flight (submitted, not finished on the GPU) when a new one starts: 1..RING. */
-    this.maxFrames = 1;
+    /** A frame starts only while fewer than this many earlier frames are unfinished on the GPU (1..RING). */
+    this.maxFrames = 2;
     this._syncs = new Array(RING).fill(null);   // ring of pending fences, oldest at _head
     this._times = new Float64Array(RING);
     this._head = 0;
@@ -43,8 +51,8 @@ export class FrameLimiter {
   }
 
   /**
-   * Call at the top of every rAF callback, before anything else.
-   * @returns {boolean} true = the GPU still has maxFrames unfinished frames: return without doing anything this rAF
+   * Call at the top of every rAF callback, before anything else (only while frames are submitted each rAF).
+   * @returns {boolean} true = maxFrames earlier frames are still unfinished: return without doing anything this rAF
    */
   shouldSkip() {
     if (!this._count) return false;
@@ -56,31 +64,31 @@ export class FrameLimiter {
     }
     // retire finished frames (fences signal in submission order)
     while (this._count && gl.getSyncParameter(this._syncs[this._head], gl.SYNC_STATUS) === gl.SIGNALED) this._pop();
+    const s = this.stats;
     if (this._count < this.maxFrames) {
       this._cappedRun = 0;
-      this.stats.run = 0;
+      s.run = 0;
       return false;
     }
-    const cap = Math.min(CAP_MAX_MS, Math.max(CAP_MIN_MS, this._interval * (this.maxFrames + 0.25)));
+    const cap = Math.min(CAP_MAX_MS, Math.max(CAP_MIN_MS, this._interval * (this.maxFrames + 0.5)));
     if (performance.now() - this._times[this._head] < cap) {
-      const s = this.stats;
       s.skipped++;
       if (++s.run > s.maxRun) s.maxRun = s.run;
       return true;
     }
     // time cap: run this frame anyway and stop waiting for the oldest fence
     this._pop();
-    this.stats.capped++;
-    this.stats.run = 0;
+    s.capped++;
+    s.run = 0;
     if (++this._cappedRun >= MAX_CAPPED_RUN) {
-      this.stats.disabled = 'fence did not signal for ' + MAX_CAPPED_RUN + ' frames';
-      console.warn('[game] low latency mode switched off:', this.stats.disabled);
+      s.disabled = 'fence did not signal for ' + MAX_CAPPED_RUN + ' frames';
+      console.warn('[game] low latency mode switched off:', s.disabled);
       this.setEnabled(false);
     }
     return false;
   }
 
-  /** Call right after the frame's draw calls were issued (end of Game.render). */
+  /** Call right after the frame's draw calls were issued (after Game.render). */
   frameSubmitted() {
     const now = performance.now();
     if (this._lastFrameAt) {

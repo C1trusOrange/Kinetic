@@ -79,6 +79,18 @@ export function resolveQuality(name, gpu) {
 }
 
 /**
+ * Whether switching between two presets changes material programs: shadows on/off changes every lit material, and
+ * 'low' switches the sky to its cheaper shader. Resolution, MSAA, bloom, shadow-map size, decal and particle budgets
+ * need no shader work.
+ * @param {object|null} a previous preset
+ * @param {object} b next preset
+ * @returns {boolean}
+ */
+export function presetsNeedRecompile(a, b) {
+  return !a || !!a.shadows !== !!b.shadows || (a.name === 'low') !== (b.name === 'low');
+}
+
+/**
  * Drawing-buffer pixel ratio for a preset: min(devicePixelRatio, maxPixelRatio), lowered so the buffer holds at most
  * maxMegapixels million pixels (0 / missing = no budget), then multiplied by the Render scale setting (0.5..1).
  * @param {{maxPixelRatio?: number, maxMegapixels?: number}} q preset
