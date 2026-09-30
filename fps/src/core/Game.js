@@ -423,11 +423,11 @@ export class Game {
    * environment are part of the program key). Programs are keyed on the render target, so compile into the
    * composer target when there is one (that is what the frame draws into), otherwise the screen.
    *
-   * With `drawView` (match start) it also: adds the objects that subsystems otherwise create lazily mid-match
-   * (`prewarmObjects()` of projectiles / bots / effects: special grenade models, spare bot weapons, hit-flash
-   * materials, gibs) so their programs exist, finishes every program's lazy setup, uploads every texture, and draws
-   * one frame with every hidden / off-screen object visible (buffers, VAOs and the driver's per-draw state), all
-   * behind the loading overlay.
+   * It also compiles the objects that subsystems otherwise create lazily mid-match (`prewarmObjects()` of
+   * projectiles / bots / effects: special grenade models, spare bot weapons, hit-flash materials, gibs; added to the
+   * scenes as a hidden group for the compile only) and finishes every program's lazy setup (see _prefetchPrograms).
+   * With `drawView` (match start) it also uploads every texture and draws one frame with every hidden / off-screen
+   * object visible (buffers, VAOs and the driver's per-draw state), all behind the loading overlay.
    * @param {boolean} [drawView=false] also draw one composer frame that includes the viewmodel pass (match start
    *        only: the loading overlay hides it; in the menu the viewmodel would flash for a frame)
    * @returns {Promise<void>}
@@ -439,7 +439,7 @@ export class Game {
     // is forced below, behind the loading overlay - and off afterwards, except for test / debug runs (?autotest,
     // ?debug) where shader errors must surface as console errors.
     r.debug.checkShaderErrors = true;
-    const extra = drawView ? this._addPrewarmObjects() : [];
+    const extra = this._addPrewarmObjects();
     try {
       r.setRenderTarget(this.composer ? this.composer.renderTarget1 : null);
       const jobs = [r.compileAsync(this.scene, this.camera), r.compileAsync(this.viewScene, this.viewCamera)];
@@ -471,7 +471,9 @@ export class Game {
 
   /**
    * Temporarily add the subsystems' `prewarmObjects()` ({world?: Object3D[], view?: Object3D[]}) to the world scene /
-   * view camera. @returns {THREE.Group[]} the holder groups (Game.warmup removes them)
+   * view camera, in hidden groups: compile() includes hidden objects, a normal frame does not draw them (warmup may run
+   * mid-match after a quality change, without the loading overlay) and _drawEverythingOnce reveals them.
+   * @returns {THREE.Group[]} the holder groups (Game.warmup removes them)
    */
   _addPrewarmObjects() {
     const groups = [];
@@ -489,6 +491,7 @@ export class Game {
         if (!list || !list.length) continue;
         const g = new THREE.Group();
         g.name = 'prewarm';
+        g.visible = false;
         for (const o of list) g.add(o);
         parent.add(g);
         groups.push(g);

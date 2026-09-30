@@ -130,9 +130,10 @@ export class BotManager {
   }
 
   /**
-   * JIT warm-up of the path finder during loading: a few complete requests between random nodes of the main area,
-   * so the first requests of the match run optimised code (interpreted, one string-pulling line test alone can take
-   * milliseconds, which made the first path frame of a match the slowest one).
+   * JIT warm-up of the path finder during loading: a few complete requests between random nodes of the main area
+   * (plus the goal pickers the brain calls between them), so the first requests of the match run optimised code
+   * (interpreted, one string-pulling line test alone can take milliseconds, which made the first path frame of a
+   * match the slowest one).
    */
   _warmPaths(world) {
     const nav = world && world.nav;
@@ -146,6 +147,7 @@ export class BotManager {
       nav.stepPath(job, Infinity);
       if (job.result && world.collision) pullFromEdges(world.collision, job.result);
       nav.isConnected(a.position, b.position);
+      if (typeof nav.randomPointNear === 'function') nav.randomPointNear(a.position, 11);
     }
   }
 

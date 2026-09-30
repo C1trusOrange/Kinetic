@@ -802,5 +802,5 @@ kbd {
   visibility: visible !important;
   transition: none !important;
 }
-/* the speed bar is rewritten ~15 times/s (HUD READOUT_DT): ease between the steps on the compositor */
-.spd-bar i { transition: transform 0.07s linear; }
+/* the speed, spawn-shield and respawn bars are rewritten ~15 times/s (HUD READOUT_DT): ease between the steps */
+.spd-bar i, .hud-shield i, .d-prog i { transition: transform 0.07s linear; }
