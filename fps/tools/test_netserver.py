@@ -1147,6 +1147,83 @@ class ServerTests(unittest.TestCase):
             srv.shutdown()
             srv.server_close()
 
+    def stub(self, obj, name, value):
+        real = getattr(obj, name)
+        setattr(obj, name, value)
+        self.addCleanup(setattr, obj, name, real)
+
+    def test_lan_mode_asks_for_all_interfaces(self):
+        """--lan binds 0.0.0.0 and restricts other machines. Checked with the server class stubbed: tests never
+        bind a non-loopback address (that would pop the Windows Firewall prompt)."""
+        seen = []
+
+        class NoBind:
+            def __init__(self, address, handler, restrict_remote=False):
+                seen.append((address, restrict_remote))
+                self.server_address = address
+        self.stub(serve, 'ExclusiveServer', NoBind)
+        for kw, want in (({'lan': True}, (('0.0.0.0', 8000), True)), ({}, (('127.0.0.1', 8000), False)),
+                         ({'lan': True, 'bind': '127.0.0.1'}, (('127.0.0.1', 8000), True))):
+            srv = serve.make_server(8000, **kw)
+            srv.relay.stop()
+            self.assertEqual(seen.pop(), want, kw)
+
+    def test_lan_main_banner_and_open(self):
+        """The --lan start as host-lan.bat runs it: Friends address printed, this PC's browser on localhost."""
+        made = []
+
+        class FakeServer:
+            server_address = ('0.0.0.0', 8000)
+
+            def serve_forever(self):
+                pass                                             # return at once
+
+            def server_close(self):
+                made.append('closed')
+
+        def fake_make(port, **kw):
+            made.append((port, kw['bind'], kw['lan']))
+            return FakeServer()
+        self.stub(serve, 'make_server', fake_make)
+        self.stub(serve, 'probe_running', lambda port: None)     # nothing on the port yet
+        self.stub(serve, '_network_profile_warning', lambda: None)
+        self.stub(netserver, 'lan_ipv4s', lambda: ['192.168.1.20', '10.0.0.7'])
+        opened = self.stub_browser()
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            self.assertEqual(serve.main(['8000', '--lan', '--open', '--quiet']), 0)
+        text = out.getvalue()
+        self.assertEqual(made, [(8000, '0.0.0.0', True), 'closed'])
+        self.assertIn('You: http://localhost:8000  Friends: http://192.168.1.20:8000', text)
+        self.assertIn('http://10.0.0.7:8000', text)
+        self.assertIn('Firewall', text)
+        self.assertNotIn('bound to', text)
+        self.assertEqual(opened, ['http://localhost:8000/'])
+
+    def test_lan_start_next_to_a_running_server_never_binds(self):
+        """host-lan.bat while KINETIC already answers on the port: decided by asking the port, before any bind
+        (a wildcard bind might succeed next to 127.0.0.1:PORT and split this PC's browser from the friends)."""
+        def must_not_bind(*a, **kw):
+            raise AssertionError('--lan tried to bind although KINETIC already runs on the port')
+        srv, port = serve.serve_in_background(0)                  # single player (play.bat): 127.0.0.1 only
+        try:
+            self.stub(serve, 'make_server', must_not_bind)
+            opened = self.stub_browser()
+            out = io.StringIO()
+            with contextlib.redirect_stdout(out):
+                self.assertEqual(serve.main([str(port), '--lan', '--open', '--quiet']), 1)
+            self.assertIn('only for this PC', out.getvalue())
+            self.assertEqual(opened, [])
+            self.stub(serve, 'probe_running', lambda p: {'app': 'kinetic', 'lan': True})   # a LAN host runs already
+            out = io.StringIO()
+            with contextlib.redirect_stdout(out):
+                self.assertEqual(serve.main([str(port), '--lan', '--open', '--quiet']), 0)
+            self.assertIn('KINETIC is already running', out.getvalue())
+            self.assertEqual(opened, [f'http://localhost:{port}/'])
+        finally:
+            srv.shutdown()
+            srv.server_close()
+
     def test_lan_banner_and_restricted_serving(self):
         env = dict(os.environ, PYTHONDONTWRITEBYTECODE='1')
         proc = subprocess.Popen([sys.executable, '-u', os.path.join(TOOLS, 'serve.py'), '0', '--lan', '--bind', '127.0.0.1',

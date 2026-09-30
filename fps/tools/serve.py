@@ -253,6 +253,19 @@ def _network_profile_warning():
               '    (or Ethernet) > your network > Network profile type > Private network.', flush=True)
 
 
+def _already_running(args, info, open_path):
+    """KINETIC already owns the port (`info` from probe_running): explain, open it with --open. Exit code."""
+    if args.lan and not info.get('lan'):
+        print(f'KINETIC is already running on port {args.port}, but only for this PC (single player).\n'
+              'Close that KINETIC window (play.bat) and start host-lan.bat again to host for your network.', flush=True)
+        return 1
+    print(f'KINETIC is already running at http://localhost:{args.port}/ (in another window).', flush=True)
+    if args.open is not None:
+        print('Opening it in your browser...', flush=True)
+        webbrowser.open(f'http://localhost:{args.port}{open_path}')
+    return 0
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description='KINETIC static server + multiplayer relay')
     ap.add_argument('port', nargs='?', type=int, default=8000)
@@ -263,16 +276,22 @@ def main(argv=None):
     ap.add_argument('--quiet', action='store_true', help='do not print room / player events')
     args = ap.parse_args(argv)
     open_path = '/' + (args.open or '').lstrip('/')
+    bind = args.bind or ('0.0.0.0' if args.lan else '127.0.0.1')
 
+    if args.port and not netserver.is_loopback(bind):
+        # Ask the port before binding: a wildcard (or LAN address) bind may succeed next to a server that holds
+        # 127.0.0.1:PORT, and then this PC's browser would reach that server while friends reach this one.
+        info = probe_running(args.port)
+        if info is not None:
+            return _already_running(args, info, open_path)
     try:
         # console output from the relay goes through its own thread: a console window with selected text
         # (QuickEdit) blocks writes, and the relay loop must never wait for that
-        srv = make_server(args.port, bind=args.bind, lan=args.lan,
+        srv = make_server(args.port, bind=bind, lan=args.lan,
                           log=None if args.quiet else netserver.ConsoleLog(prefix_time=True),
                           error_log=netserver.ConsoleLog(sys.stderr, prefix_time=True))
     except OSError as err:
         info = probe_running(args.port)
-        url = f'http://localhost:{args.port}{open_path}'
         if info is None:
             if isinstance(err, PermissionError):             # WinError 10013
                 why = ('Windows does not allow this port right now: another program holds it, or it lies in a range\n'
@@ -283,15 +302,7 @@ def main(argv=None):
             print(f'Could not start KINETIC on port {args.port}: {err}\n{why}\n'
                   f'Another port: python tools\\serve.py {args.port + 1}', flush=True)
             return 1
-        if args.lan and not info.get('lan'):
-            print(f'KINETIC is already running on port {args.port}, but only for this PC (single player).\n'
-                  'Close that KINETIC window (play.bat) and start host-lan.bat again to host for your network.', flush=True)
-            return 1
-        print(f'KINETIC is already running at http://localhost:{args.port}/ (in another window).', flush=True)
-        if args.open is not None:
-            print('Opening it in your browser...', flush=True)
-            webbrowser.open(url)
-        return 0
+        return _already_running(args, info, open_path)
 
     host, port = srv.server_address[:2]
     if args.lan:
