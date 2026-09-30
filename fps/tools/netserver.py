@@ -105,9 +105,9 @@ DEFAULTS = {
 # peer-leave reasons that keep the slot reserved for a rejoin with the token
 RESERVED_REASONS = frozenset(('closed', 'disconnected', 'timeout', 'stalled', 'slow', 'protocol', 'error', 'replaced'))
 COUNTERS = ('connections', 'connections_closed', 'handshake_rejected', 'bad_origin', 'rooms_opened', 'rooms_closed',
-            'joins', 'rejoins', 'messages_in', 'control_in', 'packets_routed', 'packets_dropped', 'frames_out',
-            'bytes_in', 'bytes_out', 'conflated', 'slow_consumers', 'stalled', 'idle_timeouts', 'protocol_errors',
-            'internal_errors', 'kicks', 'expired')
+            'joins', 'rejoins', 'messages_in', 'fragments', 'control_in', 'packets_routed', 'packets_dropped',
+            'frames_out', 'bytes_in', 'bytes_out', 'conflated', 'slow_consumers', 'stalled', 'idle_timeouts',
+            'protocol_errors', 'internal_errors', 'kicks', 'expired')
 
 _PING_FRAME = bytes((0x80 | OP_PING, 0))
 _SEND_BATCH = 256 * 1024
@@ -731,6 +731,7 @@ class Relay:
         if op == OP_CONT:
             if not c.frag_op:
                 raise ProtocolError(CLOSE_PROTOCOL_ERROR, 'unexpected continuation frame')
+            self.counters['fragments'] += 1          # continuation frames (browsers split large messages)
             c.frag.append(payload)
             c.frag_len += len(payload)
             if not fin:

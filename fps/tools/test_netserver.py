@@ -395,6 +395,7 @@ class FramingTests(RelayCase):
     def test_fragmented_messages_with_interleaved_ping(self):
         h, code = self.host()
         a, ja = self.join(code, host=h)
+        fragments0 = self.relay.counters['fragments']
         text = json.dumps({'t': 'ping', 'c': 'frag' * 50}).encode()
         a.send_frame(0x1, text[:10], fin=False)
         a.send_frame(0x9, b'hello')                              # control frames may interleave
@@ -409,6 +410,7 @@ class FramingTests(RelayCase):
         a.send_frame(0x0, data[4000:], fin=True)
         got = h.recv_bin()
         self.assertEqual(got[1:], data[1:])
+        self.assertEqual(self.relay.counters['fragments'] - fragments0, 4)   # continuation frames, both messages
 
     def test_protocol_errors_close_1002(self):
         cases = [

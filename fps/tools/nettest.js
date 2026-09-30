@@ -378,6 +378,27 @@ async function runEdge() {
   E.clientKick = await expectReject(Promise.resolve().then(() => c.kick(0)), 'not-host', 'client kick');
   E.doubleJoin = await expectReject(c.join(hosted.code, 'edge', ''), 'already-in-room', 'second join');
 
+  // 300 KB each way: Chrome splits a large send into several frames, which the relay must reassemble
+  const counters = async () => (await (await fetch('/api/stats', { cache: 'no-store' })).json()).counters;
+  const before = await counters();
+  const big = new Uint8Array(300000);
+  for (let i = 2; i < big.length; i++) big[i] = (i * 7) & 0xff;
+  big[1] = PKT.EVENT;
+  let atHost = null;
+  let atClient = null;
+  h.onMessage = (from, u8) => { if (u8[1] === PKT.EVENT) atHost = { from, u8: u8.slice() }; };
+  c.onMessage = (from, u8) => { if (u8[1] === PKT.EVENT) atClient = u8.slice(); };
+  if (!c.sendToHost(big)) fail('sendToHost(300 KB) was refused');
+  await until(() => atHost, 5000, 'a 300 KB packet at the host');
+  if (!h.sendTo(joined.peer, big)) fail('sendTo(300 KB) was refused');
+  await until(() => atClient, 5000, 'a 300 KB packet at the client');
+  const after = await counters();
+  const intact = u8 => u8.length === big.length && u8[0] === joined.peer && u8.every((v, i) => i === 0 || v === big[i]);
+  if (atHost.from !== joined.peer || !intact(atHost.u8)) fail('the 300 KB packet arrived damaged at the host');
+  if (!intact(atClient)) fail('the 300 KB packet arrived damaged at the client');
+  E.bigFragments = after.fragments - before.fragments;
+  if (!(E.bigFragments >= 1)) fail(`the 300 KB send came as a single frame (fragments +${E.bigFragments}): reassembly untested`);
+
   // 3) a drop while the rejoin socket is still connecting must not start a second, parallel retry
   const open = c._openSocket.bind(c);
   let opens = 0;
