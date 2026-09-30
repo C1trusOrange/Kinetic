@@ -777,7 +777,7 @@ kbd {
   --gap: 3px;
   --xh-c: #fff;
   --xh-oc: rgba(0, 0, 0, 0.62);
-  --xh-th: 3px; --xh-h: 1px; --xh-len: 12px; --xh-dot: 4px; --xh-dp: -1px; --xh-ol: 1px; --xh-cr: 6px;
+  --xh-th: 3px; --xh-h: 1px; --xh-o: 1px; --xh-len: 12px; --xh-dot: 5px; --xh-dp: -2px; --xh-ol: 1px; --xh-cr: 6px;
   --xh-rb: 3px; --xh-rs: 0px; --xh-rbt: 2px; --xh-rst: 0px;
   --xh-rail: 10px; --xh-rocket: 30px; --xh-arc: 27px; --xh-gx: 72px; --xh-gh: 35px; --xh-gt: -17px;
   position: absolute;
@@ -790,14 +790,15 @@ kbd {
 }
 .xh > b { position: absolute; display: none; box-sizing: border-box; background: var(--xh-tc, var(--xh-c)); }
 .xh > b::before { content: ''; position: absolute; inset: calc(-1 * var(--xh-ol)); z-index: -1; background: var(--xh-oc); border-radius: inherit; }
-/* ticks (the centre square is [-h, t-h) on both axes) */
+/* ticks: the lines are [-h, t-h) wide on both axes, so the crosshair centre is c = (t - 2h) / 2 (0 or 0.5 px); a tick
+   starts --gap from c, like the original crosshair (the spread cone edge), rounded outward to whole pixels: --xh-o = t - 2h */
 .xh > .ch.t, .xh > .ch.b, .xh > .ch.l, .xh > .ch.r { display: block; }
 .xh > .ch.t, .xh > .ch.b { left: calc(-1 * var(--xh-h)); width: var(--xh-th); height: var(--xh-len); }
-.xh > .ch.t { top: calc(-1 * (var(--xh-h) + var(--gap) + var(--xh-len))); }
-.xh > .ch.b { top: calc(var(--xh-th) - var(--xh-h) + var(--gap)); }
+.xh > .ch.t { top: calc(-1 * (var(--gap) + var(--xh-len))); }
+.xh > .ch.b { top: calc(var(--gap) + var(--xh-o)); }
 .xh > .ch.l, .xh > .ch.r { top: calc(-1 * var(--xh-h)); width: var(--xh-len); height: var(--xh-th); }
-.xh > .ch.l { left: calc(-1 * (var(--xh-h) + var(--gap) + var(--xh-len))); }
-.xh > .ch.r { left: calc(var(--xh-th) - var(--xh-h) + var(--gap)); }
+.xh > .ch.l { left: calc(-1 * (var(--gap) + var(--xh-len))); }
+.xh > .ch.r { left: calc(var(--gap) + var(--xh-o)); }
 .xh > .ch.c { left: calc(-1 * var(--xh-h)); top: calc(-1 * var(--xh-h)); width: var(--xh-th); height: var(--xh-th); }
 .xh.g0 > .ch.c { display: block; }
 /* centre dot */
@@ -845,6 +846,7 @@ kbd {
 .k-hud > .hud-cross { transition: opacity 0.08s; }
 .k-hud > .hud-cross.off { display: none; }
 .k-hud > .hud-cross.xh-gone { visibility: hidden; }
+.k-hud > .hud-cross.xh-gone > b { animation: none; }   /* no Tempest flicker ticking while hidden at ADS */
 /* reload / cook / charge bar, Slipstream momentum, prompts and kill text: a full-width strip at the screen centre,
    moved down by HUD._updateCrosshair (translateY = what the crosshair draws below its centre) */
 .hud-below { left: 0; right: 0; top: 50%; height: 0; }
@@ -879,6 +881,8 @@ kbd {
 .xhs-l small.xhs-sub { display: block; margin: 0.25em 0 0; white-space: normal; line-height: 1.25; }
 .xhs-c { display: flex; align-items: center; justify-content: flex-end; gap: 0.6em; min-width: 0; }
 .xhs-row.sl .xhs-c { width: 13.5em; }
+/* a seg in an auto-sized grid column needs a definite width, or its labels get clipped */
+.xhs-row.xhs-wide .xhs-c { width: 16.5em; }
 .xhs-c .seg { width: 100%; }
 .xhs-c output { min-width: 2.7em; text-align: right; font: 700 0.95em var(--k-cond); letter-spacing: 0.06em; color: var(--k-cyan); }
 .xhs-row.dim .xhs-c { opacity: 0.4; }

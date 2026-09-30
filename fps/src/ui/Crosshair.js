@@ -300,7 +300,9 @@ export function crosshairMetrics(cfg, emPx, dpr) {
 /**
  * Apply a crosshair config to a crosshair element (`.xh`, children from crosshairMarkup()): colour, geometry (CSS
  * custom properties on the element itself - never on a large ancestor, which would restyle every descendant) and the
- * style / dot / tint data attributes. The per-frame gap (`--gap`) is written separately (see gapValue()).
+ * style / dot / tint data attributes. The spread gap (`--gap`, CSS px holding whole device pixels: the distance from
+ * the centre to where the ticks start) is written separately by its owner every time it changes (HUD._updateCrosshair,
+ * the Crosshair screen preview).
  * @param {HTMLElement} el
  * @param {ReturnType<typeof readCrosshair>} cfg
  * @param {{emPx:number, dpr:number}} env
@@ -315,6 +317,7 @@ export function applyCrosshair(el, cfg, env) {
   s.setProperty('--xh-oc', lum(cfg.color) < 0.3 ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.62)');
   s.setProperty('--xh-th', px(m.t));
   s.setProperty('--xh-h', px(m.h));
+  s.setProperty('--xh-o', px(m.t - 2 * m.h));
   s.setProperty('--xh-len', px(m.len));
   s.setProperty('--xh-dot', px(m.dot));
   s.setProperty('--xh-dp', px(Math.floor((m.t - m.dot) / 2) - m.h));
@@ -351,7 +354,7 @@ export function crosshairReach(m, shape, wstyle, gapDev) {
   else if (wstyle === 'cone') r = Math.ceil(m.galeH / 2);
   else if (shape === 'circle') r = gapDev + Math.round(m.len / 2) + m.t;
   else if (shape === 'dot') r = Math.ceil(m.dot / 2);
-  else r = m.t - m.h + gapDev + m.len;
+  else r = gapDev + (m.t - 2 * m.h) + m.len;   // bottom tick (style.css: top = gap + t - 2h)
   if (wstyle === 'rocket') r = Math.max(r, m.rocket + m.ringThin);
   else if (wstyle === 'arc') r = Math.max(r, m.arc + m.ringThin);
   return r + m.ol;

@@ -101,7 +101,7 @@ export class CrosshairScreen {
         </div>
         <div class="xhs-col xhs-b">
           <div class="k-sec">Appearance</div>
-          <div class="xhs-row"><span class="xhs-l">Style</span><span class="xhs-c">${seg('xhStyle', XH_STYLES, v => STYLE_LABEL[v])}</span></div>
+          <div class="xhs-row xhs-wide"><span class="xhs-l">Style</span><span class="xhs-c">${seg('xhStyle', XH_STYLES, v => STYLE_LABEL[v])}</span></div>
           <div class="xhs-row"><span class="xhs-l">Colour</span><span class="xhs-c xhs-cols">${swatches}<label class="xhs-pick" title="Custom colour"><input type="color" data-xh="xhColor" aria-label="Custom colour"><i></i></label></span></div>
           ${sliders}
           ${toggles}

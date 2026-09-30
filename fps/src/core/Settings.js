@@ -1,5 +1,5 @@
 import { DEFAULT_ARSENAL, sanitizeArsenal, arsenalEquals } from '../ai/BotConfig.js';
-import { XH_DEFAULTS, sanitizeCrosshairSettings, sanitizeAdsModes, adsModesEqual } from '../ui/Crosshair.js';
+import { XH_DEFAULTS, sanitizeCrosshairSettings, sanitizeCrosshairValue, sanitizeAdsModes, adsModesEqual } from '../ui/Crosshair.js';
 
 const STORAGE_KEY = 'kinetic.settings.v1';
 
@@ -37,7 +37,7 @@ function clampNum(v, lo, hi, fallback) {
 /** Persistent user settings (localStorage, failures ignored). */
 export class Settings {
   constructor() {
-    this.data = { ...DEFAULT_SETTINGS, botArsenal: { ...DEFAULT_ARSENAL } };
+    this.data = { ...DEFAULT_SETTINGS, botArsenal: { ...DEFAULT_ARSENAL }, xhAds: { ...DEFAULT_SETTINGS.xhAds } };
     this._listeners = [];
     this.load();
   }
@@ -76,6 +76,9 @@ export class Settings {
     } else if (key === 'xhAds') {
       value = sanitizeAdsModes(value);
       if (adsModesEqual(this.data.xhAds, value)) return;
+    } else if (Object.hasOwn(XH_DEFAULTS, key)) {
+      value = sanitizeCrosshairValue(key, value);   // crosshair: enums / colour / clamped slider ranges
+      if (this.data[key] === value) return;
     } else if (this.data[key] === value) return;
     this.data[key] = value;
     this.save();
