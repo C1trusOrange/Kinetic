@@ -242,6 +242,7 @@ export function spawnReserve(def, ammo) {
  * modes: Modes.loadoutFor handles Escalation and bots.
  * @param {object} game
  * @param {object} [entity]
+ * @returns {{weapons: string[], primary: string, secondary: string, ammo: string, grenades: string}}
  */
 export function resolveFor(game, entity) {
   const m = game && game.match;
