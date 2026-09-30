@@ -4,6 +4,8 @@ import { DIFFICULTIES, isTeamMode } from '../core/constants.js';
 import { Bot } from './Bot.js';
 import { asPos } from './BotConfig.js';
 import { pullFromEdges } from './BotNav.js';
+import { BotShadowCaster } from './BotModel.js';
+import { WEAPON_ORDER } from '../weapons/WeaponDefs.js';
 
 const _o = new THREE.Vector3();
 const SEPARATION_RADIUS = 0.95;
@@ -50,6 +52,8 @@ export class BotManager {
     this.camPos = new THREE.Vector3();
     this.camFwd = new THREE.Vector3(0, 0, -1);
     this._errors = new Map();
+    /** Every bot's shadow drawn as ~12 instanced meshes (see BotShadowCaster); added to the scene in spawnBots. */
+    this.shadows = new BotShadowCaster({ renderer: game.renderer });
   }
 
   /** Subscribe to the shared events bots react to. */
@@ -175,8 +179,19 @@ export class BotManager {
       }
       const name = i < names.length ? names[i] : `${names[i % names.length]} ${Math.floor(i / names.length) + 1}`;
       bot.setup({ name, color, team, difficulty: diff });
+      // every weapon model up front: a respawn / pickup never builds one mid-match
+      bot.prebuildWeaponModels();
+      if (bot.model) this.shadows.add(bot.model);
       this._bots.push(bot);
       out.push(bot);
+    }
+    if (out.length) {
+      for (const id of WEAPON_ORDER) {
+        const w = out[0].spareWeaponModel(id);
+        if (w) this.shadows.prepareWeapon(w.root);
+      }
+      // (re)added last: its matrix update copies the bots' part matrices, refreshed earlier in the same traversal
+      game.scene.add(this.shadows.root);
     }
     return out;
   }
@@ -184,11 +199,38 @@ export class BotManager {
   /** Remove every bot (models leave the scene, entities are unregistered). */
   clear() {
     this._pathQueue.length = 0;
+    this.shadows.clear();
     for (const bot of this._bots) {
       this.game.removeEntity(bot);
       bot.dispose();
     }
     this._bots.length = 0;
+  }
+
+  /**
+   * Objects Game.warmup adds to the world scene while the match loads, so their shader programs compile and their
+   * buffers / textures upload before play (removed again afterwards): one spare batched weapon model per weapon kind,
+   * the hit-flash materials of every bot colour and one set of death gibs.
+   * @returns {{world: THREE.Object3D[]}}
+   */
+  prewarmObjects() {
+    const world = [];
+    const bots = this._bots;
+    if (!bots.length) return { world };
+    for (const id of WEAPON_ORDER) {
+      for (const b of bots) {
+        const w = b.spareWeaponModel(id);
+        if (w) { world.push(w.root); break; }
+      }
+    }
+    const sets = new Set();
+    for (let i = 0; i < bots.length; i++) {
+      const m = bots[i].model;
+      if (!m || sets.has(m._set)) continue;
+      sets.add(m._set);
+      world.push(...m.prewarmMeshes(sets.size === 1));
+    }
+    return { world };
   }
 
   // ------------------------------------------------------------------ path budget

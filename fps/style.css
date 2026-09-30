@@ -787,3 +787,20 @@ kbd {
 .seg button:disabled { opacity: 0.4; cursor: default; pointer-events: none; }
 .seg.locked { opacity: 0.6; }
 .hud-hill.done { display: none; }
+
+/* ==========================================================================================
+   Hitch removal (perf package): HUD pre-raster + readout layers.
+   HUD.prewarm() adds .hud-prewarm for three frames at the end of loading: the HUD sits above the loading screen at
+   1 % opacity with every layer in its visible state, so the browser rasterizes (and compiles the GPU shaders for) the
+   gradients, masks, blurs, SVG and glyphs while loading instead of in the first frames of play / at the first scope-in.
+   ========================================================================================== */
+.k-hud.hud-prewarm { opacity: 0.01; z-index: 5; }
+.k-hud.hud-prewarm .hud-fx, .k-hud.hud-prewarm .hud-scope, .k-hud.hud-prewarm .di, .k-hud.hud-prewarm .hud-hit,
+.k-hud.hud-prewarm .hud-prog, .k-hud.hud-prewarm .hud-prompt, .k-hud.hud-prewarm .hud-killtext, .k-hud.hud-prewarm .hud-nums span,
+.k-hud.hud-prewarm .hud-death, .k-hud.hud-prewarm .hud-board, .k-hud.hud-prewarm .hud-hint, .k-hud.hud-prewarm .hud-shield {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: none !important;
+}
+/* the speed bar is rewritten ~15 times/s (HUD READOUT_DT): ease between the steps on the compositor */
+.spd-bar i { transition: transform 0.07s linear; }

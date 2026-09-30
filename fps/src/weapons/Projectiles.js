@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { createRocketModel, createGrenadeModel } from './WeaponModels.js';
-import { WEAPONS, GRENADE, GRENADE_TYPES } from './WeaponDefs.js';
+import { WEAPONS, GRENADE, GRENADE_TYPES, GRENADE_ORDER } from './WeaponDefs.js';
 import { GrenadeSystem } from './GrenadeTypes.js';
 import { GRAVITY } from '../core/constants.js';
 import { randRange } from '../core/utils.js';
@@ -72,7 +72,25 @@ export class Projectiles {
     });
     for (let i = 0; i < 4; i++) this._rocketPool.push(this._makeRocket());
     for (let i = 0; i < 6; i++) this._grenadePool.push(this._makeGrenade());
+    for (const t of GRENADE_ORDER) this._glowMatFor(t);
     this.types.init();
+  }
+
+  /**
+   * Objects Game.warmup adds to the scenes while a match loads (removed again afterwards): a world model of every
+   * grenade type, which also builds the special grenades' templates now, and the same models for the first-person
+   * hand in the view scene. The special grenades are otherwise created on the first throw (by anyone), and their
+   * materials had only view-scene shader programs: the first special grenade in the world compiled a new program
+   * mid-match (a 400-650 ms freeze). A beacon sprite per type warms the tinted glow materials.
+   * @returns {{world: THREE.Object3D[], view: THREE.Object3D[]}}
+   */
+  prewarmObjects() {
+    const world = [], view = [];
+    for (const t of GRENADE_ORDER) {
+      world.push(createGrenadeModel(t), new THREE.Sprite(this._glowMatFor(t)));
+      view.push(createGrenadeModel(t));
+    }
+    return { world, view };
   }
 
   /** Beacon glow material for a grenade type (cached; same soft texture, tinted). */

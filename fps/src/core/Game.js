@@ -404,6 +404,8 @@ export class Game {
 
     await this.warmup(true);
     this.hud.onMatchStart(this.match);
+    // first paint of the HUD (and the scope overlay) while the loading screen still covers it, not in the first frames
+    if (!this.spectate && !this.fixedCam && typeof this.hud.prewarm === 'function') await this.hud.prewarm();
     this.menu.hideLoading();
     this.menu.hide();
     this.hud.show(!this.spectate && !this.fixedCam);
@@ -420,27 +422,145 @@ export class Game {
    * Must run with the loading overlay up, after the map, bots and view lighting exist (lights, fog and
    * environment are part of the program key). Programs are keyed on the render target, so compile into the
    * composer target when there is one (that is what the frame draws into), otherwise the screen.
+   *
+   * With `drawView` (match start) it also: adds the objects that subsystems otherwise create lazily mid-match
+   * (`prewarmObjects()` of projectiles / bots / effects: special grenade models, spare bot weapons, hit-flash
+   * materials, gibs) so their programs exist, finishes every program's lazy setup, uploads every texture, and draws
+   * one frame with every hidden / off-screen object visible (buffers, VAOs and the driver's per-draw state), all
+   * behind the loading overlay.
    * @param {boolean} [drawView=false] also draw one composer frame that includes the viewmodel pass (match start
    *        only: the loading overlay hides it; in the menu the viewmodel would flash for a frame)
    * @returns {Promise<void>}
    */
   async warmup(drawView = false) {
     const r = this.renderer;
+    // three.js checks a program's link / compile logs on its first use with synchronous GL queries that wait for the
+    // whole GPU queue (70-160 ms mid-match at 1440p). Keep the check on for the programs made here - their first use
+    // is forced below, behind the loading overlay - and off afterwards, except for test / debug runs (?autotest,
+    // ?debug) where shader errors must surface as console errors.
+    r.debug.checkShaderErrors = true;
+    const extra = drawView ? this._addPrewarmObjects() : [];
     try {
       r.setRenderTarget(this.composer ? this.composer.renderTarget1 : null);
       const jobs = [r.compileAsync(this.scene, this.camera), r.compileAsync(this.viewScene, this.viewCamera)];
       r.setRenderTarget(null); // compile() creates the programs synchronously, only the link wait is async
       const cap = new Promise(resolve => setTimeout(resolve, 20000));
       await Promise.race([Promise.all(jobs), cap]);
+      this._prefetchPrograms();
+      if (drawView) {
+        this._initSceneTextures();
+        this._drawEverythingOnce();
+      }
+      for (const g of extra) { g.removeFromParent(); g.clear(); }
+      extra.length = 0;
       // One real composer frame: the driver finishes shadow-depth/bloom/output programs, buffers and pipeline
       // state on first draw, not on compile (the first viewmodel draw alone cost ~0.6 s).
       this._warming = drawView;
       await nextFrame();
       this._warming = false;
+      this._prefetchPrograms();
     } catch (err) {
       this._warming = false;
       r.setRenderTarget(null);
       console.warn('[game] shader warm-up failed', err);
+    } finally {
+      for (const g of extra) { g.removeFromParent(); g.clear(); }
+      if (!this.params.has('autotest') && !this.params.has('debug')) r.debug.checkShaderErrors = false;
+    }
+  }
+
+  /**
+   * Temporarily add the subsystems' `prewarmObjects()` ({world?: Object3D[], view?: Object3D[]}) to the world scene /
+   * view camera. @returns {THREE.Group[]} the holder groups (Game.warmup removes them)
+   */
+  _addPrewarmObjects() {
+    const groups = [];
+    for (const sys of [this.projectiles, this.bots, this.effects]) {
+      if (!sys || typeof sys.prewarmObjects !== 'function') continue;
+      let set = null;
+      try {
+        set = sys.prewarmObjects();
+      } catch (err) {
+        console.warn('[game] prewarmObjects failed', err);
+      }
+      if (!set) continue;
+      for (const [key, parent] of [['world', this.scene], ['view', this.viewCamera]]) {
+        const list = set[key];
+        if (!list || !list.length) continue;
+        const g = new THREE.Group();
+        g.name = 'prewarm';
+        for (const o of list) g.add(o);
+        parent.add(g);
+        groups.push(g);
+      }
+    }
+    return groups;
+  }
+
+  /**
+   * Run every compiled program's lazy first-use setup now (uniform / attribute location queries and, while
+   * checkShaderErrors is on, the log checks): mid-match these synchronous GL queries wait behind the whole GPU queue.
+   * Uses three.js r169 internals (renderer.info.programs holds WebGLProgram objects); typeof-guarded so a three.js
+   * upgrade degrades to a no-op instead of throwing.
+   */
+  _prefetchPrograms() {
+    const programs = this.renderer.info.programs;
+    if (!Array.isArray(programs)) return;
+    for (const p of programs) {
+      if (typeof p.getUniforms === 'function') p.getUniforms();
+      if (typeof p.getAttributes === 'function') p.getAttributes();
+    }
+  }
+
+  /** Upload every texture used by a material in either scene (pooled effect atlases, hidden models) now. */
+  _initSceneTextures() {
+    const r = this.renderer;
+    const seen = new Set();
+    const tex = v => {
+      if (!v || !v.isTexture || v.isRenderTargetTexture || v.image == null || seen.has(v)) return;
+      seen.add(v);
+      r.initTexture(v);
+    };
+    const visit = o => {
+      const mats = o.material ? (Array.isArray(o.material) ? o.material : [o.material]) : null;
+      if (!mats) return;
+      for (const m of mats) {
+        if (!m || seen.has(m)) continue;
+        seen.add(m);
+        for (const k in m) { const v = m[k]; if (v && v.isTexture) tex(v); }
+        if (m.uniforms) for (const k in m.uniforms) { const u = m.uniforms[k]; if (u) tex(u.value); }
+      }
+    };
+    this.scene.traverse(visit);
+    this.viewScene.traverse(visit);
+  }
+
+  /**
+   * Render one frame with every hidden or off-screen object in both scenes visible (pooled projectiles and effects,
+   * all viewmodels, the grenade hand, muzzle flashes, prewarm objects): their first draw uploads vertex buffers,
+   * creates VAOs and makes the driver build its per-draw state now, behind the loading overlay, instead of the first
+   * time each appears in play. Lights keep their visibility (the light set is part of every program key), and so
+   * does anything with a light inside it.
+   */
+  _drawEverythingOnce() {
+    const hidden = [], culled = [];
+    const hasLight = o => { let f = false; o.traverse(c => { if (c.isLight) f = true; }); return f; };
+    const reveal = o => {
+      if (!o.visible && !o.isLight && !hasLight(o)) { o.visible = true; hidden.push(o); }
+      if (o.frustumCulled && (o.isMesh || o.isPoints || o.isLine || o.isSprite)) { o.frustumCulled = false; culled.push(o); }
+    };
+    this.scene.traverse(reveal);
+    this.viewScene.traverse(reveal);
+    const warming = this._warming;
+    this._warming = true;
+    try {
+      this.render();
+    } catch (err) {
+      console.warn('[game] warm-up draw failed', err);
+    } finally {
+      this._warming = warming;
+      for (const o of hidden) o.visible = false;
+      for (const o of culled) o.frustumCulled = true;
     }
   }
 

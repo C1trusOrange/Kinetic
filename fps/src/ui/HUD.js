@@ -4,7 +4,7 @@
 // actually changed (see the _txt/_flag/_css cache helpers); transient feedback (hit markers,
 // announcements, damage numbers) uses the Web Animations API on pooled elements.
 
-import { clamp, damp, smoothstep, DEG } from '../core/utils.js';
+import { clamp, damp, smoothstep, DEG, nextFrame } from '../core/utils.js';
 import { TEAM_BLUE, TEAM_RED, TEAM_NAMES, TEAM_COLORS, WEAPON_IDS, SPAWN_PROTECTION, RESPAWN_DELAY, isTeamMode } from '../core/constants.js';
 import { weaponName, GRENADE, WEAPONS, GRENADE_TYPES, GRENADE_ORDER } from '../weapons/WeaponDefs.js';
 import { weaponIcon, ICON } from './Icons.js';
@@ -22,6 +22,8 @@ const FEED_MAX = 6;
 const TOAST_MAX = 4;
 const MULTI_WINDOW = 4.2;    // seconds between kills that still chain
 const DI_LIFE = 1.9;
+/** Readouts that change almost every frame (speedometer, grapple recharge ring) are rewritten at most ~15 times/s. */
+const READOUT_DT = 1 / 15;
 
 const MULTI_NAMES = { 2: 'DOUBLE KILL', 3: 'TRIPLE KILL', 4: 'QUAD KILL', 5: 'MULTI KILL' };
 const STREAK_NAMES = { 5: 'KILLING SPREE', 8: 'RAMPAGE', 12: 'UNSTOPPABLE', 16: 'GODLIKE' };
@@ -172,6 +174,7 @@ export class HUD {
     this._boardSig = '';
     this._boardT = 0;
     this._fpsT = 0;
+    this._readoutT = 0;
     this._matchStartRT = 0;
     this._notLockedT = 0;
     this._di = [];                      // damage indicator slots
@@ -233,7 +236,31 @@ export class HUD {
   show(visible) {
     this.visible = !!visible;
     this.root.style.display = this.visible ? '' : 'none';
-    if (this.visible) this._c = Object.create(null);
+    if (this.visible) { this._c = Object.create(null); this._readoutT = 0; }
+  }
+
+  /**
+   * Pre-raster the HUD while the loading overlay still covers the screen (Game calls it at the end of loading). The
+   * browser's first paint of the HUD layers - clip-path panels, gradient masks, blurred shadows, SVG icons, glyphs -
+   * and of the sniper scope overlay took 150-550 ms on an integrated GPU when it happened in the first playing frames
+   * or at the first scope-in. For three frames every layer is shown in its visible state above the loading screen at
+   * 1 % opacity (style.css `.hud-prewarm`), then the HUD is hidden again with display:none - flushed, so no layer
+   * fades out from its prewarm state when the HUD is shown for real.
+   * @returns {Promise<void>}
+   */
+  async prewarm() {
+    const root = this.root;
+    root.classList.add('hud-prewarm');
+    root.style.display = '';
+    try {
+      for (let i = 0; i < 3; i++) await nextFrame();
+    } finally {
+      root.style.display = 'none';
+      root.classList.remove('hud-prewarm');
+      void root.offsetWidth;   // commit display:none before the HUD is shown again (no transitions from prewarm)
+      if (this.visible) root.style.display = '';
+      this._c = Object.create(null);
+    }
   }
 
   /** Reset all per-match HUD state (called by Game.startMatch before the match begins). */
@@ -544,10 +571,14 @@ export class HUD {
     this._lastRT = g.realTime;
     if (!(rdt > 0) || rdt > 0.25) rdt = 1 / 60;
 
+    this._readoutT -= rdt;
+    const readouts = this._readoutT <= 0;
+    if (readouts) this._readoutT = Math.max(0, this._readoutT + READOUT_DT);
+
     this._updateCrosshair(rdt, p, w);
     this._updateAmmo(w);
     this._updateVitals(p, rdt);
-    this._updateMove(p);
+    this._updateMove(p, readouts);
     this._updateFx(p, rdt);
     this._updateScope(p, w);
     this._updateIndicators(p, rdt);
@@ -714,13 +745,19 @@ export class HUD {
     this._flag('hasar', e.vitals, 'noarmor', ar <= 0);
   }
 
-  _updateMove(p) {
+  /**
+   * @param {object} p player
+   * @param {boolean} readouts refresh the fast-changing readouts (speed number / bar, grapple ring) this frame (~15 Hz)
+   */
+  _updateMove(p, readouts = true) {
     const e = this.e;
     const sp = Math.max(0, p.speed || 0);
-    const kmh = Math.round(sp * 3.6);
-    this._num('spd', e.spdnum, kmh);
-    const f = Math.round(clamp(sp / 26, 0, 1) * 100) / 100;
-    if (this._c.spf !== f) { this._c.spf = f; e.spdfill.style.transform = `scaleX(${f})`; }
+    if (readouts) {
+      const kmh = Math.round(sp * 3.6);
+      this._num('spd', e.spdnum, kmh);
+      const f = Math.round(clamp(sp / 26, 0, 1) * 100) / 100;
+      if (this._c.spf !== f) { this._c.spf = f; e.spdfill.style.transform = `scaleX(${f})`; }
+    }
     this._flag('fast', e.spd, 'fast', sp >= 14);
     this._flag('blaze', e.spd, 'blaze', sp >= 19);
     const cm = e.chipMap;
@@ -730,10 +767,12 @@ export class HUD {
     this._flag('c_grapple', cm.grapple, 'on', p.isGrappling);
     this._flag('c_mantle', cm.mantle, 'on', p.isMantling);
 
-    // grapple ring
+    // grapple ring (the recharge sweep is a readout; the ready state below is not throttled)
     const ch = clamp(p.grappleCharge ?? 1, 0, 1);
-    const off = Math.round((1 - ch) * 100);
-    if (this._c.groff !== off) { this._c.groff = off; e.grarc.style.strokeDashoffset = off; }
+    if (readouts || ch >= 0.999) {
+      const off = Math.round((1 - ch) * 100);
+      if (this._c.groff !== off) { this._c.groff = off; e.grarc.style.strokeDashoffset = off; }
+    }
     this._flag('grready', e.grap, 'ready', ch >= 0.999);
     this._flag('gract', e.grap, 'active', !!p.isGrappling);
   }
