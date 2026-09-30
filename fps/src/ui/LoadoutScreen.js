@@ -382,6 +382,8 @@ export class LoadoutScreen {
       b.classList.toggle('on', i >= 0);
       b.classList.toggle('primary', id === lo.primary);
       b.classList.toggle('blocked', !allowed);
+      // outside the pool = disabled; kept clickable (not the disabled attribute) so a click can explain why
+      b.setAttribute('aria-disabled', allowed ? 'false' : 'true');
       b.classList.toggle('full', allowed && i < 0 && order.length >= cap);
       b.querySelector('.lo-badge').innerHTML = i >= 0 ? String(i + 1) : allowed ? '' : LOCK;
       b.querySelector('small').textContent = !allowed ? 'Not in pool' : id === lo.primary ? 'Spawn weapon' : cls(id);

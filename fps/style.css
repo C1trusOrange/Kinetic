@@ -874,3 +874,6 @@ kbd {
 .lo-am small { font: 600 0.8em/1 var(--k-cond); letter-spacing: 0.03em; color: var(--k-dim); }
 .lo-note { margin-top: auto; min-height: 2.5em; font-size: 0.76em; line-height: 1.4; transition: color 0.15s; }
 .lo-note.hint { color: var(--k-orange); }
+/* pause menu entry: disabled in Escalation (fixed ladder), styled like the locked setup card */
+.s-pause .k-btn[data-act="loadout"]:disabled { opacity: 0.5; cursor: default; pointer-events: none; }
+.s-pause .k-btn[data-act="loadout"]:disabled em { color: var(--k-orange); }
