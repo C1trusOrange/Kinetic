@@ -538,17 +538,20 @@ export class Input {
 
   /** Frame end: clear this frame's edges and recycle the log. */
   endFrame() {
-    this.pressed.clear();
-    this.released.clear();
-    this._virtualPressed.clear();
-    this._virtualReleased.clear();
-    this._frameN.clear();
-    this._frameT.clear();
-    this._vFrameN.clear();
-    this._vFrameT.clear();
     const log = this.log;
-    for (let i = 0; i < log.length; i++) this._pool.push(log[i]);
-    log.length = 0;
+    if (log.length) {
+      // edge state only ever comes from log entries: a frame without events has nothing to clear
+      this.pressed.clear();
+      this.released.clear();
+      this._virtualPressed.clear();
+      this._virtualReleased.clear();
+      this._frameN.clear();
+      this._frameT.clear();
+      this._vFrameN.clear();
+      this._vFrameT.clear();
+      for (let i = 0; i < log.length; i++) this._pool.push(log[i]);
+      log.length = 0;
+    }
     this._consumed = 0;
     this.wheel = 0;
     this._inFrame = false;
