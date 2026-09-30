@@ -1070,6 +1070,22 @@ class ServerTests(unittest.TestCase):
         finally:
             s.close()
 
+    def test_reserved_port_message(self):
+        """WinError 10013 (a Hyper-V / WSL reserved port range) must not be blamed on 'another program'."""
+        def forbidden(*a, **kw):
+            raise PermissionError(13, 'An attempt was made to access a socket in a way forbidden by its access permissions')
+        for name, fake in (('make_server', forbidden), ('probe_running', lambda port: None)):
+            real = getattr(serve, name)
+            setattr(serve, name, fake)
+            self.addCleanup(setattr, serve, name, real)
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            self.assertEqual(serve.main(['8000', '--quiet']), 1)
+        text = out.getvalue()
+        self.assertIn('excludedportrange', text)
+        self.assertNotIn('Another program is using that port', text)
+        self.assertIn('python tools\\serve.py 8001', text)
+
     def stub_browser(self, on_open=None):
         """Replace webbrowser.open (never open a real browser in tests); returns the list of opened URLs."""
         opened = []

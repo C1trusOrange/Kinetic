@@ -274,9 +274,14 @@ def main(argv=None):
         info = probe_running(args.port)
         url = f'http://localhost:{args.port}{open_path}'
         if info is None:
-            print(f'Could not start KINETIC on port {args.port}: {err}\n'
-                  f'Another program is using that port. Close it, or use another port: python tools\\serve.py {args.port + 1}',
-                  flush=True)
+            if isinstance(err, PermissionError):             # WinError 10013
+                why = ('Windows does not allow this port right now: another program holds it, or it lies in a range\n'
+                       'Windows reserves (Hyper-V, WSL, Docker; list them: netsh interface ipv4 show excludedportrange '
+                       'protocol=tcp).')
+            else:
+                why = 'Another program is using that port. Close it, or use another port.'
+            print(f'Could not start KINETIC on port {args.port}: {err}\n{why}\n'
+                  f'Another port: python tools\\serve.py {args.port + 1}', flush=True)
             return 1
         if args.lan and not info.get('lan'):
             print(f'KINETIC is already running on port {args.port}, but only for this PC (single player).\n'
