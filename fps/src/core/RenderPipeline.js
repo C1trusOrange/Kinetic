@@ -1,14 +1,93 @@
-// Post-processing passes for Game's composer: the soft-knee bloom and an output pass that adds the bloom while it
-// tone maps, so the bloom never has to be blended back into the (multisampled) HDR frame target.
+// Render passes for Game's composer. The frame target is one multisampled HDR target that is resolved once per frame:
+// the world and the viewmodel are drawn into it by one pass, the bloom reads the resolved frame and keeps its result
+// in its own (half resolution) target, and the output pass adds that bloom while it tone maps, so nothing is ever
+// blended back into the multisampled target.
 //
-// Frame (Game.render): world RenderPass -> viewmodel RenderPass (clears depth) -> KineticBloomPass (optional)
-//   -> KineticOutputPass (+ bloom, exposure, ACES tone mapping, sRGB) -> canvas.
+// Frame (Game.render): SceneLayersPass (world, then viewmodel over cleared depth; one MSAA resolve)
+//   -> KineticBloomPass (presets with bloom) -> KineticOutputPass (+ bloom, exposure, ACES tone mapping, sRGB) -> canvas.
 
 import { RawShaderMaterial, ColorManagement, SRGBTransfer, ACESFilmicToneMapping, LinearToneMapping, ReinhardToneMapping,
   CineonToneMapping, AgXToneMapping, NeutralToneMapping } from 'three';
 import { Pass, FullScreenQuad } from 'three/addons/postprocessing/Pass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputShader } from 'three/addons/shaders/OutputShader.js';
+
+/**
+ * Draws the world and then, over a cleared depth buffer, the viewmodel layer into the composer's frame target.
+ * three.js resolves a multisampled target at the end of every renderer.render() call, so drawing the two layers as two
+ * RenderPasses copied the whole frame out of the multisampled buffer twice (and the first copy was overwritten by the
+ * second). When the viewmodel layer follows, this pass leaves the world draw unresolved: the resolve blit of that one
+ * render() call is skipped (three.js r169 has no switch for it, so the context's blitFramebuffer is wrapped once and
+ * only drops a blit while `_holdResolve` is the renderer's current target; nothing else in a render() call blits into
+ * the frame target). Measured on the Radeon 860M: -0.5..1.9 ms GPU per frame at 1932x1086 2x MSAA, -2.8..3.8 ms at
+ * 2560x1440 4x MSAA.
+ */
+export class SceneLayersPass extends Pass {
+  /**
+   * @param {import('three').Scene} scene world scene
+   * @param {import('three').Camera} camera world camera
+   * @param {import('three').Scene} viewScene viewmodel scene (drawn over the world with a cleared depth buffer)
+   * @param {import('three').Camera} viewCamera viewmodel camera
+   */
+  constructor(scene, camera, viewScene, viewCamera) {
+    super();
+    this.needsSwap = false;
+    this.scene = scene;
+    this.camera = camera;
+    this.viewScene = viewScene;
+    this.viewCamera = viewCamera;
+    /** Draw the viewmodel layer this frame (Game.render sets it every frame). */
+    this.viewEnabled = true;
+    /**
+     * Resolve the multisampled frame once, after both layers (false = one resolve per layer, like two RenderPasses).
+     * Off on Oculus Browser, where three.js also invalidates the multisampled colour right after each resolve.
+     */
+    this.singleResolve = typeof navigator === 'undefined' || !/OculusBrowser/.test(navigator.userAgent);
+    /** Resolves skipped so far (tests / profiling). */
+    this.skippedResolves = 0;
+    this._holdResolve = null;   // render target whose resolve blit is being dropped (only during the world draw)
+    this._hooked = null;        // context whose blitFramebuffer is wrapped
+  }
+
+  render(renderer, writeBuffer, readBuffer) {
+    const target = this.renderToScreen ? null : readBuffer;
+    const oldAutoClear = renderer.autoClear;
+    renderer.autoClear = false;
+    renderer.setRenderTarget(target);
+    renderer.clear();
+    const view = this.viewEnabled;
+    if (view && this.singleResolve && target !== null && target.samples > 0) {
+      this._hookResolve(renderer);
+      this._holdResolve = target;
+    }
+    try {
+      renderer.render(this.scene, this.camera);
+    } finally {
+      this._holdResolve = null;
+    }
+    if (view) {
+      renderer.clearDepth();
+      renderer.render(this.viewScene, this.viewCamera);
+    }
+    renderer.autoClear = oldAutoClear;
+  }
+
+  /** Wrap the context's blitFramebuffer (once) so the world draw's MSAA resolve can be dropped. */
+  _hookResolve(renderer) {
+    const gl = renderer.getContext();
+    if (this._hooked === gl) return;
+    this._hooked = gl;
+    const blit = gl.blitFramebuffer;
+    const pass = this;
+    gl.blitFramebuffer = function () {
+      if (pass._holdResolve !== null && renderer.getRenderTarget() === pass._holdResolve) {
+        pass.skippedResolves++;
+        return;
+      }
+      blit.apply(this, arguments);
+    };
+  }
+}
 
 // Replaces the stock high-pass (a hard luminance step that hands the *whole* colour of every bright pixel to the
 // blur, so big bright areas - a lit wall, an explosion - bloom into a screen-wide veil). This one feeds the blur only

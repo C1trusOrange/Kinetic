@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 
 import { Events } from './Events.js';
 import { Settings } from './Settings.js';
@@ -11,7 +10,7 @@ import { AutoTest } from './AutoTest.js';
 import { RESPAWN_DELAY, TEAM_BLUE, TEAM_COLORS, PLAYER_COLOR, QUALITY_PRESETS, isTeamMode } from './constants.js';
 import { Modes } from './Modes.js';
 import { clamp, damp, nextFrame } from './utils.js';
-import { KineticBloomPass, KineticOutputPass } from './RenderPipeline.js';
+import { SceneLayersPass, KineticBloomPass, KineticOutputPass } from './RenderPipeline.js';
 import { detectGpu, resolveQuality, presetPixelRatio, presetsNeedRecompile } from './GraphicsQuality.js';
 import { FrameLimiter } from './FrameLimiter.js';
 
@@ -141,11 +140,11 @@ export class Game {
   }
 
   /**
-   * Create or reconfigure the composer for the active preset: world pass -> viewmodel pass (clears depth) -> bloom
-   * (presets with bloom) -> output pass (adds the bloom, exposure, ACES tone mapping, sRGB). Every preset renders
-   * through it, so colour and tone mapping are identical on all of them. A preset change only sets the MSAA sample
-   * count (the target is re-allocated lazily) and adds or disposes the bloom pass: nothing leaks and no material
-   * program changes.
+   * Create or reconfigure the composer for the active preset: layers pass (world, then the viewmodel over a cleared
+   * depth buffer; one MSAA resolve) -> bloom (presets with bloom) -> output pass (adds the bloom, exposure, ACES tone
+   * mapping, sRGB) to the canvas. Every preset renders through it, so colour and tone mapping are identical on all of
+   * them. A preset change only sets the MSAA sample count (the target is re-allocated lazily) and adds or disposes the
+   * bloom pass: nothing leaks and no material program changes.
    */
   _setupComposer() {
     const q = this.quality;
@@ -157,20 +156,16 @@ export class Game {
       const rt = new THREE.WebGLRenderTarget(size.x, size.y, { type: THREE.HalfFloatType, samples: q.msaa, resolveDepthBuffer: false });
       rt.texture.name = 'Kinetic.frame';
       composer = new EffectComposer(r, rt);
-      // No pass swaps buffers (the RenderPasses and the bloom pass have needsSwap false, the output pass writes to
-      // the canvas), so the frame lives in readBuffer for good. Make that renderTarget1 (the target warmup()
-      // compiles into); renderTarget2 then stays unused and is never allocated on the GPU.
+      // No pass swaps buffers (the layers and bloom passes have needsSwap false, the output pass writes to the
+      // canvas), so the frame lives in readBuffer for good. Make that renderTarget1 (the target warmup() compiles
+      // into); renderTarget2 then stays unused and is never allocated on the GPU.
       composer.swapBuffers();
-      const worldPass = new RenderPass(this.scene, this.camera);
-      const viewPass = new RenderPass(this.viewScene, this.viewCamera);
-      viewPass.clear = false;
-      viewPass.clearDepth = true;
+      /** World + viewmodel layers (Game.render toggles its viewEnabled). */
+      this.layersPass = new SceneLayersPass(this.scene, this.camera, this.viewScene, this.viewCamera);
       this.outputPass = new KineticOutputPass();
-      composer.addPass(worldPass);
-      composer.addPass(viewPass);
+      composer.addPass(this.layersPass);
       composer.addPass(this.outputPass);
       this.composer = composer;
-      this.viewPass = viewPass;
     } else if (composer.renderTarget1.samples !== q.msaa) {
       for (const rt of [composer.renderTarget1, composer.renderTarget2]) {
         rt.samples = q.msaa;
@@ -914,7 +909,7 @@ export class Game {
    */
   render() {
     if (this._holdRender) return;
-    this.viewPass.enabled = this._showViewModel();
+    this.layersPass.viewEnabled = this._showViewModel();
     const bp = this.bloomPass;
     this.outputPass.bloomTexture = bp && bp.enabled && bp.fold ? bp.outputTexture : null;
     this.composer.render();
