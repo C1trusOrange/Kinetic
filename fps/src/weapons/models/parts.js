@@ -80,7 +80,10 @@ export function holoSight(b, o) {
   // window
   const ww = w - 2 * wall, wh = h - 2 * wall;
   b.decal('lens', [ww, wh], [x, cy, z - 0.0005], { face: 'back' });
-  b.decal('reticleRing', [0.028, 0.028], [x, cy, z - 0.001], { face: 'back' });
+  // reticle: 0.028 m, shrunk to fit a small window (the tick ends reach 48/128 of the decal from its centre; the
+  // Slipstream's 17.6 mm high window used to clip the top and bottom ticks)
+  const rs = Math.min(0.028, (Math.min(ww, wh) / 2) * (128 / 48));
+  b.decal('reticleRing', [rs, rs], [x, cy, z - 0.001], { face: 'back' });
   // accent strips + label
   const acc = o.accent || 'glowCyan';
   b.cube(acc, [0.0012, 0.004, depth * 0.6], [x - w / 2 - 0.0004, cy, z]);
