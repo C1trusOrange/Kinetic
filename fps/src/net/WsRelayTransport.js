@@ -86,6 +86,7 @@ export class WsRelayTransport extends Transport {
     this._nextId = 1;
     this._pending = new Map();   // request id -> {resolve, reject, timer}
     this._connecting = null;
+    this._opening = null;        // {ws, reject} while a socket is still connecting
     this._closing = false;       // close() was called: never reconnect
     this._retry = null;          // {until, attempt, timer} while reconnecting
     this._keepalive = 0;
@@ -290,9 +291,11 @@ export class WsRelayTransport extends Transport {
       }
       ws.binaryType = 'arraybuffer';
       this.ws = ws;
+      this._opening = { ws, reject };                // _dropSocket / _abandon settle it if they discard ws
       let opened = false;
       ws.onopen = () => {
         opened = true;
+        if (this._opening && this._opening.ws === ws) this._opening = null;
         this.lastRecvAt = performance.now();
         this._pingSentAt = 0;
         this._startKeepalive();
@@ -307,6 +310,7 @@ export class WsRelayTransport extends Transport {
           this._onSocketClose(ws, ev);
           return;
         }
+        if (this._opening && this._opening.ws === ws) this._opening = null;
         if (ws === this.ws) this.ws = null;
         reject(netError('connect-failed', { code: ev.code }));
       };
@@ -400,7 +404,7 @@ export class WsRelayTransport extends Transport {
 
   _retryLater(info) {
     const r = this._retry;
-    if (!r || this._closing) return;
+    if (!r || this._closing || r.timer) return;     // r.timer: an attempt is already scheduled
     if (performance.now() >= r.until) {
       this._finish({ ...info, reason: 'reconnect-failed' });
       return;
@@ -417,8 +421,10 @@ export class WsRelayTransport extends Transport {
     if (this._retry !== r || this._closing) return;
     try {
       await this._openSocket();
-    } catch {
-      if (this._retry === r) this._retryLater(info);   // relay unreachable: try again
+    } catch (err) {
+      // relay unreachable: try again. 'closed' = the socket was discarded on purpose (leave / close / a drop
+      // while connecting), and whoever discarded it already decided what happens next.
+      if (this._retry === r && err.reason !== 'closed') this._retryLater(info);
       return;
     }
     if (this._retry !== r || this._closing) return;
@@ -458,13 +464,23 @@ export class WsRelayTransport extends Transport {
     this.ws = null;
     this._stopKeepalive();
     silence(ws);
+    this._settleOpening(ws);
     this._failPending(netError('closed'));
   }
 
   /** Treat the current socket as lost (dead link / test hook): close it and run the unexpected-close path. */
   _abandon(ws, why) {
     silence(ws);
+    this._settleOpening(ws);
     this._onSocketClose(ws, { code: 1006, reason: why, wasClean: false });
+  }
+
+  /** A still-connecting socket is being discarded: its connect() / rejoin must fail, not wait forever. */
+  _settleOpening(ws) {
+    const opening = this._opening;
+    if (!opening || opening.ws !== ws) return;
+    this._opening = null;
+    opening.reject(netError('closed'));
   }
 
   _finish(info) {

@@ -14,6 +14,7 @@ Pages can load from an insecure origin like a LAN IP does (--client-origin lan.t
 
 Examples
   # transport test: 1 host + 3 client pages through the relay (RTT, routing, rejoin, lock, kick, close)
+  # plus 1 page for transport edge cases (close while connecting, a drop during a rejoin, refused joins)
   python tools/run_mp.py --nettest
 
   # two game pages at once (each page's autotest report, merged summary at the end)
@@ -141,10 +142,13 @@ def fill(template, values):
 
 
 def nettest_pages(clients, dur):
+    """1 host page, `clients` client pages (the first rejoins after a drop, the second tries a locked room,
+    the last of 3+ is kicked) and one page for transport edge cases in private rooms of its own."""
     pages = [f'tools/nettest.html?role=host&room={{room}}&clients={clients}&dur={dur:g}&hz=30']
     for i in range(1, clients + 1):
         flags = ('&drop=1' if i == 1 else '') + ('&locktest=1' if i == 2 else '') + ('&kick=1' if i == clients and clients >= 3 else '')
         pages.append(f'tools/nettest.html?role=client&room={{room}}&clients={clients}&i={i}{flags}')
+    pages.append('tools/nettest.html?role=edge')
     return pages
 
 
@@ -175,7 +179,7 @@ def main():
     ap.add_argument('--quiet', action='store_true', help='only print warnings / errors from the pages')
     ap.add_argument('--max-log', type=int, default=400)
     ap.add_argument('--nettest', nargs='?', type=int, const=3, metavar='CLIENTS',
-                    help='preset: the transport test with 1 host + CLIENTS (default 3) client pages')
+                    help='preset: the transport test with 1 host + CLIENTS (default 3) client pages + 1 edge-case page')
     ap.add_argument('--dur', type=float, default=8, help='--nettest: seconds of traffic (default 8)')
     args = ap.parse_args()
 
@@ -349,6 +353,9 @@ def _print_nettest(results):
         print(f"[nettest]   peer {c['peer']} ({c['name']}, secure={c['secure']}): rtt p50={c['rtt'].get('p50')} "
               f"p95={c['rtt'].get('p95')} ms, snapshots {c['snaps']} (missed {c['missed']}), inputs {c['inputs']}, "
               f"unicasts {c['uni']}{', rejoined' if c.get('rejoined') else ''}")
+    for r in results:
+        if isinstance(r['result'], dict) and r['result'].get('role') == 'edge':
+            print(f"[nettest] edge cases (p{r['page']}): {json.dumps(r['result'].get('edge'))}")
     fails = [f for r in results if isinstance(r['result'], dict) for f in r['result'].get('failures', [])]
     print(f'[nettest] checks: {"all passed" if not fails else f"{len(fails)} FAILED"}')
 

@@ -1,8 +1,10 @@
 // Browser transport test (run by `python tools/run_mp.py --nettest`): one host page and N client pages
-// exchange packets through the LAN relay with src/net/WsRelayTransport.js.
+// exchange packets through the LAN relay with src/net/WsRelayTransport.js, plus one page for edge cases.
 //
 //   host:   tools/nettest.html?role=host&room=CODE&clients=3&dur=8&hz=30
 //   client: tools/nettest.html?role=client&room=CODE&i=1[&drop=1][&locktest=1][&kick=1]
+//   edge:   tools/nettest.html?role=edge   (own private rooms: close() while connecting, a drop during a
+//           rejoin, refused joins, role checks; see runEdge)
 //
 // Checks: room listing + meta, host-assigned peer ids, client -> host routing (the relay stamps the sender
 // id), unicast only reaches its target, reliable streams arrive complete and in order, a dropped client
@@ -320,7 +322,97 @@ async function runClient() {
   log('done', JSON.stringify(closeInfo));
 }
 
-(ROLE === 'host' ? runHost() : runClient()).catch(err => {
+// ------------------------------------------------------------------------------------------ edge cases
+
+/** Settles like `p`, or rejects with 'hung' after `ms` (a transport promise must never stay pending). */
+function settleWithin(p, ms) {
+  let timer = 0;
+  const hung = new Promise((resolve, reject) => {
+    timer = setTimeout(() => reject(Object.assign(new Error('promise never settled'), { reason: 'hung' })), ms);
+  });
+  return Promise.race([p, hung]).finally(() => clearTimeout(timer));
+}
+
+async function expectReject(p, reason, what) {
+  try {
+    await settleWithin(p, 5000);
+  } catch (err) {
+    if (err.reason !== reason) fail(`${what}: rejected with ${err.reason || err.message}, expected ${reason}`);
+    return err.reason;
+  }
+  fail(`${what}: resolved, expected a rejection (${reason})`);
+  return 'resolved';
+}
+
+async function runEdge() {
+  const E = R.edge = {};
+  const closes = [];
+
+  // 1) close() while the socket is still connecting: host() must reject (not hang) and the transport stays usable
+  const a = new WsRelayTransport();
+  a.onClose = info => closes.push(info);
+  const pending = a.host({ name: 'edge', public: false });
+  if (a.state !== 'connecting') fail(`state right after host(): ${a.state}`);
+  a.close();
+  E.closeWhileConnecting = await expectReject(pending, 'closed', 'host() then close() while connecting');
+  if (a.state !== 'closed' || closes.length !== 1) fail(`after close(): state ${a.state}, onClose x${closes.length}`);
+  try {
+    const again = await settleWithin(a.host({ name: 'edge', public: false }), 5000);
+    E.reusedAfterClose = isValidCode(again.code);
+    await a.leave();
+  } catch (err) {
+    fail(`host() after close() while connecting: ${err.reason || err.message}`);
+  }
+  a.close();
+
+  // 2) a refused join leaves the transport outside a room and able to try again; role checks
+  const h = new WsRelayTransport();
+  const hosted = await h.host({ name: 'edge-host', public: false });
+  const c = new WsRelayTransport();
+  E.badCode = await expectReject(c.join('ZZZZ' === hosted.code ? 'ZZZX' : 'ZZZZ', 'edge', ''), 'no-such-room', 'join a missing room');
+  if (c.role !== 'none' || c.state !== 'open') fail(`after a refused join: ${c.role} / ${c.state}`);
+  const pkt = encodeJsonPacket({ k: 'x' });
+  if (c.sendToHost(pkt) || c.broadcast(pkt) || h.sendToHost(pkt) || c.sendTo(1, pkt)) fail('a send outside the role or room was accepted');
+  const joined = await c.join(hosted.code, 'edge', '');
+  if (c.sendTo(1, pkt) || c.broadcast(pkt) || h.sendTo(0, pkt) || h.sendTo(255, pkt)) fail('a client-only / host-only send was misrouted');
+  E.clientKick = await expectReject(Promise.resolve().then(() => c.kick(0)), 'not-host', 'client kick');
+  E.doubleJoin = await expectReject(c.join(hosted.code, 'edge', ''), 'already-in-room', 'second join');
+
+  // 3) a drop while the rejoin socket is still connecting must not start a second, parallel retry
+  const open = c._openSocket.bind(c);
+  let opens = 0;
+  c._openSocket = () => {
+    const p = open();
+    if (++opens === 1) c.debugDrop();              // the first rejoin attempt dies while connecting
+    return p;
+  };
+  const statuses = [];
+  c.onStatus = s => statuses.push(s);
+  c.debugDrop();
+  await until(() => c.state === 'in-room', 10000, 'rejoin after a drop during the rejoin');
+  await sleep(1500);                               // a stray second retry would open more sockets by now
+  E.rejoinOpens = opens;
+  E.rejoinPeer = c.peerId;
+  E.reconnects = c.stats.reconnects;
+  if (opens !== 2) fail(`the rejoin opened ${opens} sockets, expected 2 (one dropped while connecting, one good)`);
+  if (c.peerId !== joined.peer || c.stats.reconnects !== 1) fail(`rejoined as peer ${c.peerId} (${c.stats.reconnects} reconnects), was ${joined.peer}`);
+  if (statuses.join() !== 'reconnecting,in-room') fail(`status sequence ${statuses.join()}`);
+
+  // 4) leave() while reconnecting ends the session without hanging, and no retry follows
+  c.debugDrop();
+  await settleWithin(c.leave(), 3000);
+  await sleep(800);                                // past the first retry delay
+  if (c.state !== 'closed' || c.role !== 'none' || c.ws) fail(`after leave() while reconnecting: ${c.state} / ${c.role} / ws ${!!c.ws}`);
+  E.leaveWhileReconnecting = c.state;
+
+  await h.leave();
+  h.close();
+  await until(() => h.state === 'closed', 5000, 'edge host close');
+  R.done = true;
+  log('edge done', JSON.stringify(E));
+}
+
+(ROLE === 'host' ? runHost() : ROLE === 'edge' ? runEdge() : runClient()).catch(err => {
   fail(err && err.stack ? err.stack : String(err));
   R.done = true;
 });
