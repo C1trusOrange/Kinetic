@@ -3,7 +3,9 @@
  * (used by the automated test harness).
  *
  * Codes: KeyboardEvent.code values ('KeyW', 'Space', 'ShiftLeft', ...) and 'Mouse0'..'Mouse4'.
- * Frame protocol (driven by Game): input.update() at frame start, input.endFrame() at frame end.
+ * Frame protocol (driven by Game): input.update() at frame start, input.endFrame() at frame end - once per
+ * simulated frame; a rAF that does not simulate (e.g. a frames-in-flight limiter) should skip both, then its events
+ * simply wait in the log for the next frame.
  *
  * Frame window. Every key / button / wheel event that arrives between two frames is appended, with its DOM
  * timestamp, to an ordered per-frame log (`log`) and resolved by update() at the start of the next frame:
