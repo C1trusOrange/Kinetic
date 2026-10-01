@@ -362,6 +362,43 @@ class HandshakeTests(RelayCase):
         self.assertEqual(status, 101)
         self.assertEqual(ws.expect('pong')['c'], 'early')
 
+    def early_ws(self, send_after):
+        status, _, sock, rest = raw_handshake(self.port, send_after=send_after)
+        ws = WS.__new__(WS)
+        ws.sock, ws.buf, ws.close_sent, ws.auto_echo = sock, bytearray(rest), False, True
+        self.clients.append(ws)
+        self.assertEqual(status, 101)
+        return ws
+
+    def test_more_than_64_kib_sent_with_the_handshake(self):
+        # the request handler's reader buffers up to io.DEFAULT_BUFFER_SIZE (128 KiB on 3.14): all of it must be handed
+        # to the relay (a 64 KiB read lost the rest, and the connection then hung)
+        for _ in range(4):
+            text = 'x' * 100000
+            payload = json.dumps({'t': 'ping', 'c': text}).encode()
+            key = os.urandom(4)
+            frame = bytes((0x81, 0x80 | 127)) + struct.pack('!Q', len(payload)) + key + netserver.unmask(payload, key)
+            self.assertEqual(self.early_ws(frame).expect('pong')['c'], text)
+
+    def test_error_in_a_frame_sent_with_the_handshake_closes_only_that_connection(self):
+        errors = []
+
+        def broken(c, m, rid):
+            raise RuntimeError('handler bug')
+        self.relay.error_log, self.relay._handlers['ping'] = errors.append, broken
+        try:
+            payload = json.dumps({'t': 'ping', 'c': 1}).encode()
+            key = os.urandom(4)
+            ws = self.early_ws(bytes((0x81, 0x80 | len(payload))) + key + netserver.unmask(payload, key))
+            self.assertEqual(ws.expect_close()[0], 1011)           # not left hanging without a reply
+        finally:
+            self.relay.error_log, self.relay._handlers['ping'] = None, self.relay._ctl_ping
+        self.errors0 += 1
+        self.assertEqual(len(errors), 1)
+        other = self.ws()
+        other.send_json({'t': 'ping', 'c': 2})
+        self.assertEqual(other.expect('pong')['c'], 2)
+
 
 # ------------------------------------------------------------------------------------------------ framing
 
@@ -455,6 +492,36 @@ class FramingTests(RelayCase):
         m = ws.expect('error')
         self.assertEqual((m['reason'], m['re'], m['id']), ('bad-message', 'dance', 'x1'))
         ws.barrier()
+
+    def test_numbers_a_browser_cannot_read_and_deep_nesting_are_bad_messages(self):
+        h = self.ws()
+        for raw in (b'{"t":"host","max":1e999}', b'{"t":"host","max":Infinity}', b'{"t":"host","meta":{"x":NaN}}',
+                    b'{"t":"ping","c":' + b'[' * 50000 + b']' * 50000 + b'}'):
+            h.send_frame(0x1, raw)
+            self.assertEqual(h.expect('error')['reason'], 'bad-message', raw[:40])
+        h.send_json({'t': 'host', 'max': 1e308})                  # finite: clamped as before
+        self.assertEqual(h.expect('hosted')['max'], netserver.DEFAULTS['max_room_peers'])
+        for raw in (b'{"t":"kick","peer":1e999}', b'{"t":"signal","to":-1e999,"data":1}', b'{"t":"meta","meta":{"x":1e999}}'):
+            h.send_frame(0x1, raw)
+            self.assertEqual(h.expect('error')['reason'], 'bad-message', raw)
+        status, body = http_get(self.port, '/api/rooms')
+        json.loads(body, parse_constant=lambda s: self.fail(f'{s} in /api/rooms'))
+
+    def test_lone_surrogate_round_trips(self):
+        # what a browser sends for {meta: {host: name.slice(0, 4)}} when the cut splits an emoji: every reply that
+        # carries it (joined, rooms, signal) must still encode, or nobody can join that room
+        h = self.ws()
+        h.send_frame(0x1, b'{"t":"host","v":1,"meta":{"host":"Sam\\ud83d"}}')
+        code = h.expect('hosted')['code']
+        a = self.ws()
+        a.send_json({'t': 'join', 'v': 1, 'code': code, 'name': 'A'})
+        self.assertEqual(a.expect('joined')['room']['meta'], {'host': 'Sam\ud83d'})
+        self.assertEqual(h.expect('peer-join')['name'], 'A')
+        lister = self.ws()
+        lister.send_json({'t': 'list'})
+        self.assertIn({'host': 'Sam\ud83d'}, [r['meta'] for r in lister.expect('rooms')['rooms']])
+        a.send_frame(0x1, b'{"t":"signal","to":0,"data":"\\udc00x"}')
+        self.assertEqual(h.expect('signal')['data'], '\udc00x')
 
     def test_client_initiated_close_is_echoed_then_tcp_closed(self):
         ws = self.ws()
@@ -869,6 +936,28 @@ class StallTests(RelayCase):
         self.assertEqual(relay.counters['idle_timeouts'], 0)
 
 
+class ConnLimitTests(RelayCase):
+    relay_options = {'max_conns': 4}
+
+    def test_connection_cap_refuses_with_503_and_keeps_serving(self):
+        """Past max_conns the upgrade is refused (Windows select() takes 512 sockets; one more stopped every room)."""
+        h, code = self.host()
+        a, ja = self.join(code, host=h)
+        extra = [self.ws(), self.ws()]
+        limit0 = self.relay.counters['conn_limit']
+        status, _, sock, _ = raw_handshake(self.port)
+        sock.close()
+        self.assertEqual(status, 503)
+        self.assertEqual(self.relay.counters['conn_limit'] - limit0, 1)
+        a.send_bin(b'\x00\x01still routed')                      # the room is unaffected
+        self.assertEqual(h.recv_bin(), bytes([ja['peer']]) + b'\x01still routed')
+        extra.pop().close()
+        self.assertTrue(wait_until(lambda: len(self.relay.conns) < 4))
+        again = self.ws()                                        # a slot is free again
+        again.send_json({'t': 'ping', 'c': 3})
+        self.assertEqual(again.expect('pong')['c'], 3)
+
+
 class ReserveTests(RelayCase):
     relay_options = {'reserve_timeout': 1.0, 'close_timeout': 0.5}
 
@@ -1165,7 +1254,10 @@ class ServerTests(unittest.TestCase):
                 self.server_address = address
         self.stub(serve, 'ExclusiveServer', NoBind)
         for kw, want in (({'lan': True}, (('0.0.0.0', 8000), True)), ({}, (('127.0.0.1', 8000), False)),
-                         ({'lan': True, 'bind': '127.0.0.1'}, (('127.0.0.1', 8000), True))):
+                         ({'lan': True, 'bind': '127.0.0.1'}, (('127.0.0.1', 8000), True)),
+                         ({'bind': '0.0.0.0'}, (('0.0.0.0', 8000), True)),            # any LAN bind: game files only
+                         ({'bind': '192.168.1.20'}, (('192.168.1.20', 8000), True)),
+                         ({'bind': 'localhost'}, (('localhost', 8000), False))):
             srv = serve.make_server(8000, **kw)
             srv.relay.stop()
             self.assertEqual(seen.pop(), want, kw)
@@ -1201,6 +1293,12 @@ class ServerTests(unittest.TestCase):
         self.assertIn('Firewall', text)
         self.assertNotIn('bound to', text)
         self.assertEqual(opened, ['http://localhost:8000/'])
+        made.clear()
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):                     # --bind <all interfaces> without --lan = LAN mode
+            self.assertEqual(serve.main(['8000', '--bind', '0.0.0.0', '--quiet']), 0)
+        self.assertEqual(made, [(8000, '0.0.0.0', True), 'closed'])
+        self.assertIn('Friends: http://192.168.1.20:8000', out.getvalue())
 
     def test_lan_start_next_to_a_running_server_never_binds(self):
         """host-lan.bat while KINETIC already answers on the port: decided by asking the port, before any bind

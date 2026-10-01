@@ -3,7 +3,8 @@
 
 tools/serve.py mounts it on the same port as the static game files:
 
-    GET /ws          WebSocket upgrade (the page's Origin must match the Host header, else 403)
+    GET /ws          WebSocket upgrade (the page's Origin must match the Host header, else 403; 503 while
+                     max_conns (500) WebSockets are open)
     GET /api/lan     {app, relay, hostname, port, lan, bind, ips, urls, hostUrl}  LAN addresses for invites
     GET /api/rooms   {rooms: [{code, name, players, max, locked, meta, v}]}       open public rooms
     GET /api/stats   relay counters, every room and queue state (no names, no tokens); this PC only
@@ -55,6 +56,7 @@ import hashlib
 import ipaddress
 import itertools
 import json
+import math
 import queue
 import secrets
 import selectors
@@ -100,6 +102,9 @@ DEFAULTS = {
     'max_backlog': 2 << 20,    # bytes queued for one receiver -> close 1013
     'max_rooms': 256,
     'max_room_peers': 255,     # host + 254 clients
+    # open WebSockets -> 503. On Windows the loop's select() takes at most 512 sockets; one more and it raises on every
+    # iteration, so every room stops (even after the extra sockets close). A page that leaks sockets could get there.
+    'max_conns': 500,
 }
 
 # peer-leave reasons that keep the slot reserved for a rejoin with the token
@@ -107,7 +112,7 @@ RESERVED_REASONS = frozenset(('closed', 'disconnected', 'timeout', 'stalled', 's
 COUNTERS = ('connections', 'connections_closed', 'handshake_rejected', 'bad_origin', 'rooms_opened', 'rooms_closed',
             'joins', 'rejoins', 'messages_in', 'fragments', 'control_in', 'packets_routed', 'packets_dropped',
             'frames_out', 'bytes_in', 'bytes_out', 'conflated', 'slow_consumers', 'stalled', 'idle_timeouts',
-            'protocol_errors', 'internal_errors', 'kicks', 'expired')
+            'protocol_errors', 'internal_errors', 'kicks', 'expired', 'conn_limit')
 
 _PING_FRAME = bytes((0x80 | OP_PING, 0))
 _SEND_BATCH = 256 * 1024
@@ -207,7 +212,29 @@ def _request_id(msg):
 
 
 def _json_frame(obj):
-    return encode_frame(OP_TEXT, json.dumps(obj, separators=(',', ':'), ensure_ascii=False).encode('utf-8'))
+    # ensure_ascii: strings from peers may hold a lone UTF-16 surrogate (a browser's JSON.stringify escapes one, e.g. a
+    # name cut in the middle of an emoji); as an escape it round-trips, as raw text it cannot be encoded to UTF-8
+    return encode_frame(OP_TEXT, json.dumps(obj, separators=(',', ':')).encode('ascii'))
+
+
+def _reject_json_constant(name):
+    raise ValueError(f'{name} is not JSON')
+
+
+def _finite_float(text):
+    value = float(text)
+    if not math.isfinite(value):                     # 1e999: would turn into inf, which int() and browsers reject
+        raise ValueError('number out of range')
+    return value
+
+
+def parse_control(text):
+    """A control message as the browser's JSON.parse would read it: NaN / Infinity / out-of-range numbers are refused
+    (a host's meta must never make /api/rooms unreadable for everyone). Raises ValueError for anything malformed."""
+    try:
+        return json.loads(text, parse_constant=_reject_json_constant, parse_float=_finite_float)
+    except RecursionError:                           # absurdly deep nesting
+        raise ValueError('nested too deeply') from None
 
 
 class ConsoleLog:
@@ -519,6 +546,9 @@ class Relay:
         if handed is None or self._stopping:
             # the server would close the socket after this request (it is not a tools/serve.py server)
             return _http_reject(h, 503)
+        if len(self.conns) + len(self._pending) >= self.max_conns:
+            self._count('conn_limit')
+            return _http_reject(h, 503)
         accept = base64.b64encode(hashlib.sha1(key.encode('ascii') + WS_GUID).digest()).decode('ascii')
         h.protocol_version = 'HTTP/1.1'              # the 101 must be an HTTP/1.1 status line
         h.send_response(101, 'Switching Protocols')
@@ -536,7 +566,9 @@ class Relay:
             pass
         sock.setblocking(False)
         try:
-            initial = h.rfile.read1(65536) or b''    # frames the HTTP parser already buffered
+            # frames the HTTP parser already buffered: read1() without a size returns ALL of them (the reader holds up
+            # to io.DEFAULT_BUFFER_SIZE, 128 KiB on Python 3.14; whatever stayed behind would be lost with it)
+            initial = h.rfile.read1() or b''
         except (OSError, ValueError):
             initial = b''
         handed.add(sock)                             # the server must not close it after the request
@@ -608,6 +640,13 @@ class Relay:
         now = time.monotonic()
         while self._pending:
             sock, addr, initial = self._pending.popleft()
+            if len(self.conns) >= self.max_conns:        # safety net behind the check in _upgrade (concurrent handshakes)
+                self._count('conn_limit')
+                try:
+                    sock.close()
+                except OSError:
+                    pass
+                continue
             c = _Conn(sock, addr, now, self.ping_interval)
             try:
                 self._sel.register(sock, selectors.EVENT_READ, c)
@@ -621,7 +660,10 @@ class Relay:
                 self.conns.add(c)
                 self.counters['connections'] += 1
             if initial:
-                self._on_data(c, initial)
+                try:
+                    self._on_data(c, initial)
+                except Exception:  # noqa: BLE001 - like a readable event in _run: drop this connection, not the rest
+                    self._internal_error(c)
 
     def _shutdown_all(self):
         while self._pending:
@@ -1040,7 +1082,7 @@ class Relay:
             raise ProtocolError(CLOSE_INVALID_DATA, 'invalid utf-8') from None
         self.counters['control_in'] += 1
         try:
-            msg = json.loads(text)
+            msg = parse_control(text)
         except ValueError:
             self._error(c, 'bad-message')
             return
@@ -1198,7 +1240,7 @@ class Relay:
             return False
         try:
             return len(json.dumps(meta)) <= 4096
-        except (TypeError, ValueError):
+        except (TypeError, ValueError, RecursionError):
             return False
 
     def _ctl_meta(self, c, m, rid):

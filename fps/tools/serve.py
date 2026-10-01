@@ -12,7 +12,8 @@ tools/netserver.py on the same port (WebSocket at /ws, JSON at /api/lan, /api/ro
     --lan        accept connections from the local network too (binds 0.0.0.0) and print the address
                  friends should open. Other machines may only load the game itself (index.html,
                  style.css, src/, vendor/) and use /api/* and /ws; this PC keeps full access.
-    --bind ADDR  bind this address instead (default 127.0.0.1, or 0.0.0.0 with --lan)
+    --bind ADDR  bind this address instead (default 127.0.0.1, or 0.0.0.0 with --lan); any address other
+                 than loopback implies --lan (other machines only get the game files)
     --quiet      do not print room / player events
 
 Only one server can own a port (SO_EXCLUSIVEADDRUSE on Windows): when KINETIC is already running
@@ -178,10 +179,11 @@ class ExclusiveServer(ThreadingServer):
 
 def make_server(port=0, root=ROOT, *, bind=None, lan=False, log=None, error_log=None, relay_options=None):
     """HTTP server + relay, not started. Binds 127.0.0.1 unless `lan` (0.0.0.0) or `bind` says otherwise;
-    `lan` also restricts what other machines may fetch. `log` / `error_log`: see netserver.Relay.
+    `lan` or any non-loopback `bind` restricts what other machines may fetch. `log` / `error_log`: see netserver.Relay.
     Raises OSError when the port is taken."""
     handler = functools.partial(Handler, directory=root)
-    srv = ExclusiveServer((bind or ('0.0.0.0' if lan else '127.0.0.1'), port), handler, restrict_remote=lan)
+    address = bind or ('0.0.0.0' if lan else '127.0.0.1')
+    srv = ExclusiveServer((address, port), handler, restrict_remote=lan or not netserver.is_loopback(address))
     srv.relay = netserver.Relay(log=log, error_log=error_log, **(relay_options or {}))
     return srv
 
@@ -277,6 +279,7 @@ def main(argv=None):
     args = ap.parse_args(argv)
     open_path = '/' + (args.open or '').lstrip('/')
     bind = args.bind or ('0.0.0.0' if args.lan else '127.0.0.1')
+    args.lan = args.lan or not netserver.is_loopback(bind)   # --bind <LAN address> = LAN mode (banner, file policy)
 
     if args.port and not netserver.is_loopback(bind):
         # Ask the port before binding: a wildcard (or LAN address) bind may succeed next to a server that holds
