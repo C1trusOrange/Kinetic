@@ -11,9 +11,11 @@ const _o = new THREE.Vector3();
 const SEPARATION_RADIUS = 0.95;
 /**
  * Path-finding milliseconds per frame, shared by all bots. Enforced inside the searches (see servicePaths), so a
- * frame's path work stays below this plus one bounded unit of work (~0.3 ms).
+ * frame's path work stays below this plus one bounded unit of work (a request's start-up lookups, one string-pulling
+ * line test or one waypoint's ledge probes: well under 1 ms). Bots need ~0.05 ms per frame on average, so the budget
+ * only spreads the rare long request (up to ~7 ms of work) over a few frames.
  */
-const PATH_BUDGET_MS = 2.0;
+const PATH_BUDGET_MS = 1.5;
 const RAY_DIRS = [];
 for (let i = 0; i < 8; i++) {
   const a = (i / 8) * Math.PI * 2;

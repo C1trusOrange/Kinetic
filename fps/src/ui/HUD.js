@@ -278,6 +278,10 @@ export class HUD {
       void root.offsetWidth;   // commit display:none before the HUD is shown again (no transitions from prewarm)
       if (this.visible) root.style.display = '';
       this._c = Object.create(null);
+      // the match-start announcement (onMatchStart) kept running during the prewarm: replay it from its start, so
+      // the first playing frames show all of it however long the prewarm took
+      const ann = this._annAnim;
+      if (ann && ann.playState !== 'idle') { ann.currentTime = 0; ann.play(); }
     }
   }
 

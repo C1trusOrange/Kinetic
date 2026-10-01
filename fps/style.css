@@ -790,9 +790,10 @@ kbd {
 
 /* ==========================================================================================
    Hitch removal (perf package): HUD pre-raster + readout layers.
-   HUD.prewarm() adds .hud-prewarm for three frames at the end of loading: the HUD sits above the loading screen at
-   1 % opacity with every layer in its visible state, so the browser rasterizes (and compiles the GPU shaders for) the
-   gradients, masks, blurs, SVG and glyphs while loading instead of in the first frames of play / at the first scope-in.
+   HUD.prewarm() adds .hud-prewarm at the end of loading until the browser has rasterized it (two short frames in a
+   row, at most 2.5 s): the HUD sits above the loading screen at 1 % opacity with every layer in its visible state, so
+   the browser rasterizes (and compiles the GPU shaders for) the gradients, masks, blurs, SVG and glyphs while loading
+   instead of in the first frames of play / at the first scope-in.
    ========================================================================================== */
 .k-hud.hud-prewarm { opacity: 0.01; z-index: 5; }
 .k-hud.hud-prewarm .hud-fx, .k-hud.hud-prewarm .hud-scope, .k-hud.hud-prewarm .di, .k-hud.hud-prewarm .hud-hit,
