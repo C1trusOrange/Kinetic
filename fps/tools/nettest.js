@@ -4,7 +4,7 @@
 //   host:   tools/nettest.html?role=host&room=CODE&clients=3&dur=8&hz=30
 //   client: tools/nettest.html?role=client&room=CODE&i=1[&drop=1][&locktest=1][&kick=1]
 //   edge:   tools/nettest.html?role=edge   (own private rooms: close() while connecting, a drop during a
-//           rejoin, refused joins, role checks; see runEdge)
+//           rejoin, refused joins, role checks, kicked while reconnecting; see runEdge)
 //
 // Checks: room listing + meta, host-assigned peer ids, client -> host routing (the relay stamps the sender
 // id), unicast only reaches its target, reliable streams arrive complete and in order, a dropped client
@@ -425,6 +425,35 @@ async function runEdge() {
   await sleep(800);                                // past the first retry delay
   if (c.state !== 'closed' || c.role !== 'none' || c.ws) fail(`after leave() while reconnecting: ${c.state} / ${c.role} / ws ${!!c.ws}`);
   E.leaveWhileReconnecting = c.state;
+
+  // 5) kicked while reconnecting: the automatic rejoin must end with 'slot-lost', not come back as a new player
+  const d = new WsRelayTransport();
+  const dCloses = [];
+  d.onClose = info => dCloses.push(info);
+  const hostSaw = [];
+  h.onPeerJoin = info => hostSaw.push(['join', info.peer, info.rejoin]);
+  h.onPeerLeave = info => hostSaw.push(['leave', info.peer, info.reason]);
+  const dj = await d.join(hosted.code, 'edge-d', '');
+  // the host's peer-join comes on another socket and may be dispatched after join() resolved
+  await until(() => hostSaw.some(e => e[0] === 'join' && e[1] === dj.peer), 3000, 'the join at the host');
+  hostSaw.length = 0;
+  let kicked = false;
+  const openD = d._openSocket.bind(d);
+  d._openSocket = async () => {                    // the retry waits for the kick (deterministic order)
+    await until(() => kicked, 5000, 'the kick');
+    return openD();
+  };
+  d.debugDrop();
+  await until(() => hostSaw.some(e => e[0] === 'leave' && e[1] === dj.peer), 3000, 'the drop at the host');
+  await h.kick(dj.peer);
+  kicked = true;
+  await until(() => dCloses.length, 5000, 'the end of the rejoin');
+  E.kickedWhileAway = dCloses[0].reason;
+  if (dCloses[0].reason !== 'slot-lost' || d.state !== 'closed' || d.role !== 'none') {
+    fail(`kicked while reconnecting: onClose ${dCloses[0].reason}, state ${d.state} / ${d.role}`);
+  }
+  if (hostSaw.some(e => e[0] === 'join')) fail(`a player kicked while away came back: ${JSON.stringify(hostSaw)}`);
+  if (sessionStorage.getItem('kinetic.net.token.' + hosted.code) !== null) fail('the lost slot\'s token was kept');
 
   await h.leave();
   h.close();

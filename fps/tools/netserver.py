@@ -19,7 +19,8 @@ Wire contract (browser side: src/net/protocol.js, src/net/WsRelayTransport.js)
   Text frames = JSON control plane between a peer and the relay. Requests may carry an `id`,
   which is echoed in the reply.
     peer -> relay: {t:'host', v, name, max, public, code?, meta?}   create a room, become peer 0
-                   {t:'join', v, code, name, token?}                join (token = reclaim your slot)
+                   {t:'join', v, code, name, token?, rejoin?}       join (token = reclaim your slot; rejoin:true =
+                                                                    only reclaim it, else error slot-lost)
                    {t:'leave'}  {t:'list'}  {t:'ping', c}
                    {t:'kick', peer, reason?}  {t:'lock', locked}  {t:'meta', meta}      (host only)
                    {t:'signal', to, data}                           opaque, for a later WebRTC transport
@@ -30,7 +31,7 @@ Wire contract (browser side: src/net/protocol.js, src/net/WsRelayTransport.js)
                    {t:'pong', c, s}  {t:'signal', from, data}  {t:'ok', re}
                    {t:'error', reason, re}  reason: no-such-room | room-full | room-locked | already-in-room |
                        not-in-room | not-host | no-such-peer | version-mismatch | bad-code | code-taken |
-                       server-full | bad-message
+                       server-full | slot-lost | bad-message
   Binary frames = data plane, routed blindly by a 2-byte header:
     byte0 = routing. A client's packet goes to the host with byte0 rewritten to the sender's peer id
             (1..254). The host addresses one client (1..254) or all clients (255); forwarded unchanged.
@@ -1160,6 +1161,10 @@ class Relay:
             slot.addr = c.addr[0]
             rejoin = True
             self.counters['rejoins'] += 1
+        elif m.get('rejoin') is True:
+            # an automatic reconnect may only reclaim its own slot: it is gone (kicked while away, or expired),
+            # so this player must not come back as a new one behind the host's back
+            return self._error(c, 'slot-lost', 'join', rid)
         else:
             if room.locked:
                 return self._error(c, 'room-locked', 'join', rid)

@@ -993,6 +993,37 @@ class ReserveTests(RelayCase):
         self.assertFalse(j4['rejoin'])
         self.assertNotEqual(j4['token'], ja['token'])
 
+    def test_automatic_rejoin_only_reclaims_its_own_slot(self):
+        """rejoin:true (WsRelayTransport's automatic reconnect) never comes back as a new player: kicked while the
+        connection was down, or the slot expired -> slot-lost (it used to get a fresh slot, undoing the kick)."""
+        h, code = self.host()
+        a, ja = self.join(code, name='A', host=h)
+        a.close()                                                # network drop: the slot is reserved
+        self.assertTrue(h.expect('peer-leave')['reserved'])
+        a2 = self.ws()
+        a2.send_json({'t': 'join', 'code': code, 'name': 'A', 'token': ja['token'], 'rejoin': True})
+        self.assertEqual((a2.expect('joined')['peer'], h.expect('peer-join')['rejoin']), (ja['peer'], True))
+        a2.close()
+        self.assertTrue(h.expect('peer-leave')['reserved'])
+        h.send_json({'t': 'kick', 'peer': ja['peer'], 'id': 1})  # the host removes the player while it is away
+        self.assertEqual(h.expect('peer-leave')['reason'], 'kicked')
+        self.assertEqual(h.expect('ok')['re'], 'kick')
+        a3 = self.ws()
+        a3.send_json({'t': 'join', 'code': code, 'name': 'A', 'token': ja['token'], 'rejoin': True, 'id': 2})
+        m = a3.expect('error')
+        self.assertEqual((m['reason'], m['re'], m['id']), ('slot-lost', 'join', 2))
+        self.assertEqual(h.barrier(), [])                        # the host never saw it come back
+        b, jb = self.join(code, name='B', host=h)
+        b.close()
+        self.assertTrue(h.expect('peer-leave')['reserved'])
+        self.assertEqual(h.expect('peer-leave', timeout=4)['reason'], 'expired')
+        b2 = self.ws()
+        b2.send_json({'t': 'join', 'code': code, 'name': 'B', 'token': jb['token'], 'rejoin': True})
+        self.assertEqual(b2.expect('error')['reason'], 'slot-lost')
+        a3.send_json({'t': 'join', 'code': code, 'name': 'A', 'token': ja['token']})   # a deliberate join still works
+        self.assertFalse(a3.expect('joined')['rejoin'])
+        self.assertFalse(h.expect('peer-join')['rejoin'])
+
 
 # ------------------------------------------------------------------------------------------------ HTTP / server
 

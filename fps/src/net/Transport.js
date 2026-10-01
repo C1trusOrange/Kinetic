@@ -20,7 +20,8 @@
  *   onStatus(state, info)  state changes (see `state`)
  *   onClose(info)          the session is over (no automatic retry follows):
  *                          {code, reason, text, wasClean}; reason is 'room-closed' (host left), 'kicked',
- *                          'replaced', 'slow', 'reconnect-failed', 'closed', ...
+ *                          'replaced', 'slow', 'reconnect-failed', 'slot-lost' (kicked while reconnecting, or
+ *                          the reserved slot expired), 'closed', ...
  *   onError(err)           relay error replies that no pending request consumed: {reason, re}
  */
 export class Transport {

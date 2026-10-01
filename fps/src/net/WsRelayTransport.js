@@ -6,8 +6,8 @@ const RETRY_DELAYS_MS = [250, 500, 1000, 2000, 3000];
 const REQUEST_TIMEOUT_MS = 15000;
 const KEEPALIVE_MS = 5000;   // nothing received for this long -> app-level ping (browsers cannot send WS pings)
 const DEAD_MS = 10000;       // that ping unanswered for this long -> the connection is dead
-// join errors after which retrying cannot help
-const FATAL_REJOIN = new Set(['no-such-room', 'room-full', 'room-locked', 'version-mismatch']);
+// join errors after which retrying cannot help ('slot-lost': kicked while away, or the reserved slot expired)
+const FATAL_REJOIN = new Set(['no-such-room', 'room-full', 'room-locked', 'version-mismatch', 'slot-lost']);
 
 function netError(reason, extra) {
   const err = new Error(`relay: ${reason}`);
@@ -430,7 +430,8 @@ export class WsRelayTransport extends Transport {
     if (this._retry !== r || this._closing) return;
     let reply;
     try {
-      reply = await this._request({ t: 'join', v: this.version, code: this.code, name: this.name, token: this.token });
+      // rejoin: only our own slot (never a new player with another peer id behind the host's back)
+      reply = await this._request({ t: 'join', v: this.version, code: this.code, name: this.name, token: this.token, rejoin: true });
     } catch (err) {
       if (this._retry !== r || this._closing || err.reason === 'closed') return;   // closed: onclose retries
       if (FATAL_REJOIN.has(err.reason)) {
