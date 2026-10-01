@@ -14,6 +14,10 @@ import * as THREE from 'three';
  * API (see ARCHITECTURE.md 6.2): nodes, nearestNode, findPath, randomNode, randomPointNear,
  * isConnected, debugObject, stats.  Extra: findPath waypoints carry `.type` ('walk'|'drop'|'jump') of the
  * link that ARRIVES at them, and `.pad = true` for jump-pad launches.
+ *
+ * Time-sliced requests (bots): createPathJob(from, to) + stepPath(job, deadline) compute exactly what findPath
+ * computes, but the A* expansion loop and the string pulling check the clock, so a request never costs a frame more
+ * than the caller's budget plus one bounded unit of work (see BotManager.servicePaths).
  */
 
 const CELL = 1.0;
@@ -25,6 +29,20 @@ const WALK_ANY = 0.35;      // step height always walkable
 const JUMP_MAX = 1.15;      // max jump-up between adjacent cells
 const DROP_MAX = 20.0;      // the game has no fall damage, so long drops are fine (bots use them to get back down)
 const MAX_HITS = 96;
+const LOOK_MAX = 16;        // string pulling probes at most this many nodes ahead of a corner (bounds the old O(L^2) scan)
+const CHECK_EVERY = 16;     // A* expansions between two deadline checks
+const CONNECT_R2 = 36;      // job.connect: both ends must have a node within 6 m (isConnected's snap radius, squared)
+const REACH_CACHE_MAX = 4096;
+
+// path job phases
+const J_START = 0, J_SEARCH = 1, J_SMOOTH = 2, J_FIRST = 3, J_DONE = 4;
+const CLEAR_HEIGHTS = [0.4, 1.0, 1.6];
+
+/** nearestNode()'s metric: squared distance with the vertical part counted double. */
+function dist2(pos, p) {
+  const dx = p.x - pos.x, dz = p.z - pos.z, dy = (p.y - pos.y) * 2;
+  return dx * dx + dz * dz + dy * dy;
+}
 
 const DIRS = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]];
 
@@ -272,6 +290,52 @@ class MinHeap {
   }
 }
 
+/** Per-node A* scratch (costs, parents, stamps) + open heap. One search owns it at a time (`owner`). */
+class SearchSpace {
+  constructor(n) {
+    this.G = new Float32Array(n);
+    this.P = new Int32Array(n);
+    this.seen = new Int32Array(n);
+    this.closed = new Int32Array(n);
+    this.stamp = 0;
+    this.heap = new MinHeap();
+    this.owner = null;
+  }
+}
+
+/**
+ * A time-sliced path request (NavGraph#createPathJob / #stepPath). Reusable: createPathJob re-initialises it.
+ * `done` / `result` are the public outputs; everything else is resumable search state.
+ */
+export class PathJob {
+  constructor() {
+    this.from = new THREE.Vector3();
+    this.to = new THREE.Vector3();
+    /** Also require what isConnected(from, to) requires (a node within 6 m of both ends, directed reachability). */
+    this.connect = false;
+    this.done = true;
+    /** Waypoints (see NavGraph#findPath) or null when unreachable; valid once `done`. */
+    this.result = null;
+    /** Nodes expanded by the search (diagnostics). */
+    this.expanded = 0;
+    this._phase = J_DONE;
+    this._s = null;
+    this._g = null;
+    this._stamp = 0;
+    this._startBlocked = false;
+    this._chain = [];
+    this._types = [];
+    this._out = null;
+    this._i = 0;
+    this._cur = -1;
+    this._runEnd = 0;
+    this._lo = -1;
+    this._hi = 0;
+    this._d = 2;
+    this._mode = 0;
+  }
+}
+
 export class NavGraph {
   constructor() {
     /** @type {{id:number, position:THREE.Vector3, links:{to:number,cost:number,type:string}[]}[]} */
@@ -281,12 +345,20 @@ export class NavGraph {
     this.minX = 0; this.minZ = 0; this.nx = 0; this.nz = 0;
     this.colStart = new Int32Array(1);
     this._main = [];
-    this._g = new Float32Array(0);
-    this._parent = new Int32Array(0);
-    this._seen = new Int32Array(0);
-    this._closed = new Int32Array(0);
-    this._search = 0;
-    this._heap = new MinHeap();
+    // flat copies of the node positions and links (A* inner loop: no object lookups, inlined heuristic)
+    this._px = new Float64Array(0);
+    this._py = new Float64Array(0);
+    this._pz = new Float64Array(0);
+    this._linkStart = new Int32Array(1);
+    this._linkTo = new Int32Array(0);
+    this._linkCost = new Float64Array(0);
+    this._jobSpace = null;       // time-sliced jobs (one after another)
+    this._syncSpace = null;      // synchronous findPath (never disturbs a suspended job)
+    this._syncJob = null;
+    this._reachSeen = new Int32Array(0);
+    this._reachStamp = 0;
+    this._reachCache = new Map();
+    this._sccCount = 0;
     this._debug = null;
   }
 
@@ -469,10 +541,7 @@ export class NavGraph {
       nodes[i] = { id: i, position: new THREE.Vector3(NX[i], NY[i], NZ[i]), links: adj[i], headroom: NH[i], comp: -1, scc: -1, main: false };
     }
     this._components();
-    this._g = new Float32Array(N);
-    this._parent = new Int32Array(N);
-    this._seen = new Int32Array(N);
-    this._closed = new Int32Array(N);
+    this._flatten();
     this.stats.nodes = N;
     this.stats.cells = nx * nz;
     this.stats.links = linkCount;
@@ -611,6 +680,8 @@ export class NavGraph {
     let main = 0;
     for (let i = 1; i < sccSize.length; i++) if (sccSize[i] > sccSize[main]) main = i;
     this._mainScc = main;
+    this._sccCount = sccCount;
+    this._reachCache.clear();
     this._main = [];
     for (let i = 0; i < N; i++) { if (nodes[i].scc === main) { nodes[i].main = true; this._main.push(nodes[i]); } }
     // reachability relative to the main area: `fromMain` = a bot can get there, `toMain` = a bot can get out
@@ -643,6 +714,27 @@ export class NavGraph {
     this.stats.largestComponent = largestWeak;
     this.stats.strongComponents = sccCount;
     this.stats.largestStrong = sccSize[main] || 0;
+  }
+
+  /** Flat typed-array copies of node positions and links for the search loops; allocates the scratch arrays. */
+  _flatten() {
+    const nodes = this.nodes, N = nodes.length;
+    let L = 0;
+    for (let i = 0; i < N; i++) L += nodes[i].links.length;
+    const px = (this._px = new Float64Array(N)), py = (this._py = new Float64Array(N)), pz = (this._pz = new Float64Array(N));
+    const ls = (this._linkStart = new Int32Array(N + 1)), lt = (this._linkTo = new Int32Array(L)), lc = (this._linkCost = new Float64Array(L));
+    let k = 0;
+    for (let i = 0; i < N; i++) {
+      const n = nodes[i];
+      px[i] = n.position.x; py[i] = n.position.y; pz[i] = n.position.z;
+      ls[i] = k;
+      for (const l of n.links) { lt[k] = l.to; lc[k] = l.cost; k++; }
+    }
+    ls[N] = k;
+    this._jobSpace = null;
+    this._syncSpace = null;
+    this._reachSeen = new Int32Array(N);
+    this._reachStamp = 0;
   }
 
   // ------------------------------------------------------------------ queries
@@ -697,7 +789,11 @@ export class NavGraph {
    * @param {number} [maxDist=6]
    */
   _nearestVisible(pos, maxDist = 6) {
-    const first = this.nearestNode(pos, maxDist);
+    return this._visibleFrom(pos, this.nearestNode(pos, maxDist), maxDist);
+  }
+
+  /** _nearestVisible() given the plain nearest node `first` (null passes through). */
+  _visibleFrom(pos, first, maxDist) {
     if (!first || this._seesNode(pos, first)) return first;
     const cand = this._cand || (this._cand = { id: new Int32Array(96), d: new Float32Array(96) });
     const R = Math.min(maxDist, 4);
@@ -744,24 +840,50 @@ export class NavGraph {
   isConnected(a, b) {
     const na = this._resolve(a), nb = this._resolve(b);
     if (!na || !nb) return false;
-    if (na === nb || na.scc === nb.scc) return true;
-    if (na.comp !== nb.comp) return false;
-    if (na.toMain && (nb.main || nb.fromMain)) return true;
-    return this._reaches(na.id, nb.id);
+    return this._reachable(na, nb);
   }
 
-  /** Exact directed reachability (BFS), used only for the rare cases the cheap tests cannot decide. */
-  _reaches(from, to) {
-    const stamp = ++this._search;
-    const seen = this._seen, nodes = this.nodes;
+  /**
+   * Exact directed reachability between two nodes. Decided from the component structure in O(1) except for the rare
+   * pairs where neither end is tied to the main area; those run a pruned BFS whose verdict is cached per pair of
+   * strong components (reachability is a property of the components, not of the nodes).
+   */
+  _reachable(na, nb) {
+    if (na === nb || na.scc === nb.scc) return true;
+    if (na.comp !== nb.comp) return false;
+    if (na.toMain && nb.fromMain) return true;       // a -> main -> b
+    if (na.fromMain && !nb.fromMain) return false;   // else main -> a -> b would make b reachable from main
+    if (!na.toMain && nb.toMain) return false;       // else a -> b -> main would let a reach main
+    const key = na.scc * this._sccCount + nb.scc;
+    let r = this._reachCache.get(key);
+    if (r === undefined) {
+      r = this._reaches(na.id, nb.id, !nb.fromMain);
+      if (this._reachCache.size >= REACH_CACHE_MAX) this._reachCache.clear();
+      this._reachCache.set(key, r);
+    }
+    return r;
+  }
+
+  /**
+   * Directed reachability BFS. `skipFromMain`: `to` is not reachable from the main area, so no path to it can pass a
+   * node that is (the main area would then reach `to`): those nodes are not expanded, which keeps the search inside
+   * the small isolated region instead of flooding the whole map.
+   */
+  _reaches(from, to, skipFromMain = false) {
+    const stamp = ++this._reachStamp;
+    const seen = this._reachSeen, nodes = this.nodes;
+    const ls = this._linkStart, lt = this._linkTo;
     const q = [from];
     seen[from] = stamp;
     for (let h = 0; h < q.length; h++) {
-      const links = nodes[q[h]].links;
-      for (let k = 0; k < links.length; k++) {
-        const v = links[k].to;
+      const u = q[h];
+      for (let k = ls[u], e = ls[u + 1]; k < e; k++) {
+        const v = lt[k];
         if (v === to) return true;
-        if (seen[v] !== stamp) { seen[v] = stamp; q.push(v); }
+        if (seen[v] === stamp) continue;
+        seen[v] = stamp;
+        if (skipFromMain && nodes[v].fromMain) continue;
+        q.push(v);
       }
     }
     return false;
@@ -817,55 +939,172 @@ export class NavGraph {
    * A* path from `from` to `to` (Vector3 feet positions). Returns waypoints AFTER the start, string-pulled
    * along walk links only, ending near `to`; null if unreachable. The array carries `startBlocked = true` when no
    * node the mover can see was found near `from` (it stands in a pocket behind a wall: the first waypoint is not
-   * walkable from where it is).
+   * walkable from where it is). Synchronous; bots use the time-sliced createPathJob / stepPath instead.
    * @returns {THREE.Vector3[]|null}
    */
   findPath(from, to) {
-    const s = this._nearestVisible(from, 8), g = this._nearestVisible(to, 8);
-    if (!s || !g || s.comp !== g.comp) return null;
-    const startBlocked = !this._seesNode(from, s);
-    if (s === g) {
-      const one = [this._endPoint(g, to)];
-      if (startBlocked) one.startBlocked = true;
-      return one;
+    const job = this._syncJob || (this._syncJob = new PathJob());
+    this.createPathJob(from, to, job);
+    this._step(job, Infinity, this._space(true));
+    const res = job.result;
+    job.result = null;
+    return res;
+  }
+
+  /**
+   * Start a time-sliced path request (the same result as findPath, computed across several stepPath calls).
+   * @param {THREE.Vector3} from feet position (copied)
+   * @param {THREE.Vector3} to goal feet position (copied)
+   * @param {PathJob} [job] a job object to reuse (no allocation)
+   * @param {{connect?: boolean}} [opts] connect: also fail when isConnected(from, to) would be false (no node within
+   *        6 m of an end, or the goal area cannot be reached by walking / dropping / jumping)
+   * @returns {PathJob}
+   */
+  createPathJob(from, to, job = new PathJob(), { connect = false } = {}) {
+    job.from.copy(from);
+    job.to.copy(to);
+    job.connect = connect;
+    job.done = false;
+    job.result = null;
+    job.expanded = 0;
+    job._phase = J_START;
+    job._s = null;
+    job._g = null;
+    job._stamp = 0;
+    job._startBlocked = false;
+    job._out = null;
+    return job;
+  }
+
+  /**
+   * Advance a path job until it is done or performance.now() reaches `deadline` (ms). The A* expansion loop checks
+   * the clock every CHECK_EVERY expansions and the string pulling before every line test, so a call overshoots the
+   * deadline by at most one small, bounded unit of work. Jobs share one search workspace: run them one after another
+   * (a job whose half-finished search was overwritten by another job simply restarts it).
+   * @param {PathJob} job
+   * @param {number} [deadline=Infinity] performance.now() time to stop at
+   * @returns {boolean} true when the job is done (result in job.result)
+   */
+  stepPath(job, deadline = Infinity) {
+    if (job.done) return true;
+    return this._step(job, deadline, this._space(false));
+  }
+
+  /** Scratch space for jobs (`sync` = the separate one of findPath). */
+  _space(sync) {
+    const N = this.nodes.length;
+    let sp = sync ? this._syncSpace : this._jobSpace;
+    if (!sp || sp.G.length !== N) {
+      sp = new SearchSpace(N);
+      if (sync) this._syncSpace = sp; else this._jobSpace = sp;
     }
-    const nodes = this.nodes, G = this._g, P = this._parent, seen = this._seen, closed = this._closed;
-    const stamp = ++this._search;
-    const heap = this._heap;
-    heap.clear();
-    const gp = g.position;
-    const H = n => {
-      const p = nodes[n].position;
-      return Math.hypot(p.x - gp.x, p.y - gp.y, p.z - gp.z) * 0.9;
-    };
-    G[s.id] = 0; P[s.id] = -1; seen[s.id] = stamp;
-    heap.push(s.id, H(s.id));
+    return sp;
+  }
+
+  _finish(job, result) {
+    if (result && job._startBlocked) result.startBlocked = true;
+    job.result = result;
+    job.done = true;
+    job._phase = J_DONE;
+    job._s = job._g = null;
+    job._out = null;
+    job._chain.length = 0;
+    job._types.length = 0;
+    return true;
+  }
+
+  _step(job, deadline, sp) {
+    if (job._phase === J_START) {
+      const from = job.from, to = job.to;
+      const ns = this.nearestNode(from, 8), ng = this.nearestNode(to, 8);
+      const s = this._visibleFrom(from, ns, 8), g = this._visibleFrom(to, ng, 8);
+      if (!s || !g || s.comp !== g.comp) return this._finish(job, null);
+      // isConnected(from, to) resolves with a 6 m snap: same nodes whenever the plain nearest one is that close
+      if (job.connect && (dist2(from, ns.position) >= CONNECT_R2 || dist2(to, ng.position) >= CONNECT_R2 || !this._reachable(s, g))) {
+        return this._finish(job, null);
+      }
+      job._startBlocked = !this._seesNode(from, s);
+      if (s === g) return this._finish(job, [this._endPoint(g, to)]);
+      job._s = s;
+      job._g = g;
+      job._phase = J_SEARCH;
+      job._stamp = 0;
+    }
+    if (job._phase === J_SEARCH) {
+      if (!this._search(job, deadline, sp)) return false;
+      if (job._phase === J_DONE) return true;   // unreachable
+    }
+    if (job._phase === J_SMOOTH) {
+      if (!this._smoothStep(job, deadline)) return false;
+      job._phase = J_FIRST;
+    }
+    if (job._phase === J_FIRST) {
+      if (performance.now() >= deadline) return false;
+      this._fixFirst(job);
+      return this._finish(job, job._out);
+    }
+    return job.done;
+  }
+
+  /** A* on the flat arrays. Returns false when the deadline suspended it (resumable), true when finished. */
+  _search(job, deadline, sp) {
+    const s = job._s.id, gId = job._g.id;
+    const G = sp.G, P = sp.P, seen = sp.seen, closed = sp.closed, heap = sp.heap;
+    const px = this._px, py = this._py, pz = this._pz;
+    const ls = this._linkStart, lt = this._linkTo, lc = this._linkCost;
+    const gx = px[gId], gy = py[gId], gz = pz[gId];
+    if (sp.owner !== job || sp.stamp !== job._stamp || job._stamp === 0) {
+      // (re)start: a fresh stamp invalidates whatever another search left in the arrays
+      const stamp = ++sp.stamp;
+      sp.owner = job;
+      job._stamp = stamp;
+      heap.clear();
+      G[s] = 0; P[s] = -1; seen[s] = stamp;
+      const dx = px[s] - gx, dy = py[s] - gy, dz = pz[s] - gz;
+      heap.push(s, Math.sqrt(dx * dx + dy * dy + dz * dz) * 0.9);
+    }
+    const stamp = job._stamp;
     let found = false;
+    let n = 0;
     while (heap.size) {
+      if (++n >= CHECK_EVERY) {
+        n = 0;
+        if (performance.now() >= deadline) return false;
+      }
       const u = heap.pop();
       if (closed[u] === stamp) continue;
       closed[u] = stamp;
-      if (u === g.id) { found = true; break; }
-      const links = nodes[u].links;
+      job.expanded++;
+      if (u === gId) { found = true; break; }
       const gu = G[u];
-      for (let k = 0; k < links.length; k++) {
-        const l = links[k];
-        const v = l.to;
+      for (let k = ls[u], e = ls[u + 1]; k < e; k++) {
+        const v = lt[k];
         if (closed[v] === stamp) continue;
-        const ng = gu + l.cost;
+        const ng = gu + lc[k];
         if (seen[v] !== stamp || ng < G[v]) {
           seen[v] = stamp; G[v] = ng; P[v] = u;
-          heap.push(v, ng + H(v));
+          const dx = px[v] - gx, dy = py[v] - gy, dz = pz[v] - gz;
+          heap.push(v, ng + Math.sqrt(dx * dx + dy * dy + dz * dz) * 0.9);
         }
       }
     }
-    if (!found) return null;
-    const chain = [];
-    for (let n = g.id; n !== -1; n = P[n]) chain.push(n);
+    sp.owner = null;
+    if (!found) { this._finish(job, null); return true; }
+    // node chain start -> goal + the type of the link arriving at each node
+    const chain = job._chain, types = job._types;
+    chain.length = 0;
+    for (let v = gId; v !== -1; v = P[v]) chain.push(v);
     chain.reverse();
-    const res = this._smooth(chain, from, to, g);
-    if (startBlocked) res.startBlocked = true;
-    return res;
+    types.length = 0;
+    for (let i = 0; i < chain.length; i++) {
+      const link = i === 0 ? null : this._linkBetween(chain[i - 1], chain[i]);
+      types.push(link ? (link.pad ? 'pad' : link.type) : 'walk');
+    }
+    job._out = [];
+    job._i = 0;
+    job._cur = -1;
+    job._phase = J_SMOOTH;
+    return true;
   }
 
   _linkBetween(a, b) {
@@ -887,47 +1126,76 @@ export class NavGraph {
     return p;
   }
 
-  /** Convert a node chain to waypoints, merging runs of walk links that are provably clear. */
-  _smooth(chain, from, to, goalNode) {
-    const nodes = this.nodes;
-    const pts = [];
-    const types = [];
-    for (let i = 0; i < chain.length; i++) {
-      const link = i === 0 ? null : this._linkBetween(chain[i - 1], chain[i]);
-      pts.push(nodes[chain[i]].position);
-      types.push(link ? (link.pad ? 'pad' : link.type) : 'walk');
-    }
-    const out = [];
-    let i = 0;
-    const n = pts.length;
-    while (i < n - 1) {
-      // end of the run of walk links starting at i
-      let runEnd = i;
-      while (runEnd + 1 < n && types[runEnd + 1] === 'walk') runEnd++;
-      if (runEnd === i) {
-        const w = pts[i + 1].clone();
-        w.type = types[i + 1] === 'pad' ? 'jump' : types[i + 1];
-        if (types[i + 1] === 'pad') w.pad = true;
-        out.push(w);
-        i++;
-        continue;
-      }
-      // greedy: farthest visible along the run
-      let cur = i;
-      while (cur < runEnd) {
-        let far = cur + 1;
-        for (let k = cur + 2; k <= runEnd; k++) {
-          if (this._clearLine(pts[cur], pts[k])) far = k; else break;
+  /**
+   * String pulling, resumable: convert the node chain to waypoints, merging runs of walk links that are provably clear.
+   * From each corner the farthest clear node of the run (at most LOOK_MAX ahead) is found by exponential probing plus a
+   * binary search: O(log L) line tests per corner instead of the old linear scan's O(L^2) work on long clear runs.
+   * Every emitted segment is a verified clear line, exactly like before. Returns false when the deadline suspended it.
+   */
+  _smoothStep(job, deadline) {
+    const nodes = this.nodes, chain = job._chain, types = job._types, out = job._out;
+    const n = chain.length;
+    for (;;) {
+      if (job._cur < 0) {
+        // at the start of a run (index job._i)
+        const i = job._i;
+        if (i >= n - 1) return true;
+        let runEnd = i;
+        while (runEnd + 1 < n && types[runEnd + 1] === 'walk') runEnd++;
+        if (runEnd === i) {
+          const w = nodes[chain[i + 1]].position.clone();
+          w.type = types[i + 1] === 'pad' ? 'jump' : types[i + 1];
+          if (types[i + 1] === 'pad') w.pad = true;
+          out.push(w);
+          job._i = i + 1;
+          continue;
         }
-        const w = pts[far].clone();
+        job._runEnd = runEnd;
+        job._cur = i;
+        job._lo = -1;
+      }
+      const cur = job._cur, runEnd = job._runEnd;
+      if (cur >= runEnd) { job._i = runEnd; job._cur = -1; continue; }
+      if (job._lo < 0) {
+        job._lo = cur + 1;                                 // the next node is always reachable (walk link)
+        job._hi = Math.min(runEnd, cur + LOOK_MAX) + 1;    // exclusive bound: first index not (known to be) clear
+        job._d = 2;
+        job._mode = 0;                                     // 0 exponential, 1 last node in range, 2 binary search
+      }
+      let k = -1;
+      if (job._mode === 0) {
+        k = cur + job._d;
+        if (k >= job._hi) { k = -1; job._mode = 1; }
+      }
+      if (k < 0 && job._mode === 1) {
+        if (job._lo < job._hi - 1) k = job._hi - 1; else job._mode = 2;
+      }
+      if (k < 0 && job._mode === 2 && job._hi - job._lo > 1) k = (job._lo + job._hi) >> 1;
+      if (k < 0) {
+        const w = nodes[chain[job._lo]].position.clone();
         w.type = 'walk';
         out.push(w);
-        cur = far;
+        job._cur = job._lo;
+        job._lo = -1;
+        continue;
       }
-      i = runEnd;
+      if (performance.now() >= deadline) return false;
+      const clear = this._clearLine(nodes[chain[cur]].position, nodes[chain[k]].position);
+      if (job._mode === 0) {
+        if (clear) { job._lo = k; job._d *= 2; } else { job._hi = k; job._mode = 2; }
+      } else {
+        if (clear) job._lo = k; else job._hi = k;
+        job._mode = 2;
+      }
     }
-    // Make sure the mover can actually reach the first waypoint from where it stands: when the
-    // straight line is blocked, or the first step is a drop/jump, walk to the start node first.
+  }
+
+  /**
+   * Make sure the mover can actually reach the first waypoint from where it stands: when the straight line is blocked,
+   * or the first step is a drop/jump, walk to the start node first. Then snap the last waypoint onto the goal.
+   */
+  _fixFirst(job) {
+    const nodes = this.nodes, chain = job._chain, out = job._out, from = job.from;
     if (out.length && from) {
       const sp = nodes[chain[0]].position;
       const first = out[0];
@@ -939,10 +1207,10 @@ export class NavGraph {
       }
     }
     const last = out[out.length - 1];
+    const goalNode = job._g;
     if (last && goalNode && last.type === 'walk' && last.distanceToSquared(goalNode.position) < 1e-6) {
-      out[out.length - 1] = this._endPoint(goalNode, to);
+      out[out.length - 1] = this._endPoint(goalNode, job.to);
     }
-    return out;
   }
 
   /** Is the straight walk A->B supported by floor and free of walls (with a 0.32 m corridor)? */
@@ -962,7 +1230,8 @@ export class NavGraph {
       if (Number.isNaN(grid.floorNear(x + nxn * 0.32, z + nzn * 0.32, y, 0.45))) return false;
       if (Number.isNaN(grid.floorNear(x - nxn * 0.32, z - nzn * 0.32, y, 0.45))) return false;
     }
-    for (const h of [0.4, 1.0, 1.6]) {
+    for (let i = 0; i < CLEAR_HEIGHTS.length; i++) {
+      const h = CLEAR_HEIGHTS[i];
       if (grid.segBlocked(a.x, a.y + h, a.z, b.x, b.y + h, b.z)) return false;
       if (grid.segBlocked(a.x + nxn * 0.32, a.y + h, a.z + nzn * 0.32, b.x + nxn * 0.32, b.y + h, b.z + nzn * 0.32)) return false;
       if (grid.segBlocked(a.x - nxn * 0.32, a.y + h, a.z - nzn * 0.32, b.x - nxn * 0.32, b.y + h, b.z - nzn * 0.32)) return false;

@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { WEAPONS, WEAPON_ORDER, GRENADE_TYPES, MELEE } from './WeaponDefs.js';
 import { newInventory, spawnLoadout, addToInventory, nextHeldType } from './GrenadeTypes.js';
+import { resolveFor, sanitizeLoadout, spawnReserve } from './Loadout.js';
 import { createWeaponModel, createGrenadeModel } from './WeaponModels.js';
 import { clamp, lerp, damp, approach, wrapAngle, randRange, randomInCone } from '../core/utils.js';
 import { GRAVITY } from '../core/constants.js';
@@ -24,6 +25,27 @@ const MELEE_HIT_AT = 0.13;
 const MELEE_TIME = 0.5;
 const PREVIEW_DOTS = 44;
 const GRENADE_RADIUS_SAFE = 0.1;
+
+// ---- input timing: REAL time on the input clock (seconds, measured from the press's own DOM timestamp, see
+//      core/Input.js), so hit-stop, the end-of-match slow motion or a long frame never stretch them: nothing a press
+//      starts can happen later than max(its window, Input's stale window) after the physical press.
+/** A click that meets a fire-rate cooldown or the sprint-out still fires if that ends within this. Nothing else. */
+const FIRE_BUFFER = 0.12;
+/** A weapon key pressed while a grenade is still in the hand / before the melee hit frame is applied then, if this fresh. */
+const KEY_MEMORY = 0.3;
+/** A pickup's auto-switch that had to wait for a grenade expires after this. */
+const QUEUED_SWITCH_TTL = 0.35;
+/**
+ * R / G / V pressed while they cannot act (switch-out / equip, grenade, melee swing or cooldown...) wait this long for
+ * it and act the moment they can; after that they are dropped (e.g. an R in the last moments of an equip reloads).
+ */
+const ACTION_LATCH = 0.15;
+/** Weapon selection keys (number keys by slot, Q) and the weapon behind each number key. */
+const SWITCH_KEYS = ['weapon1', 'weapon2', 'weapon3', 'weapon4', 'weapon5', 'weapon6', 'weapon7', 'weapon8', 'weapon9', 'lastWeapon'];
+const KEY_WEAPON = {};
+for (const id of WEAPON_ORDER) KEY_WEAPON['weapon' + WEAPONS[id].slot] = id;
+/** Weapon actions a trigger pull of the same frame window is ordered against (see _fireFirst); the wheel too. */
+const FIRE_RIVALS = ['grenade', 'melee', 'reload', ...SWITCH_KEYS];
 
 const DEFAULT_HIP = new THREE.Vector3(0.17, -0.2, -0.42);
 
@@ -216,6 +238,8 @@ export class WeaponSystem {
     this.throwing = false;
     this.meleeing = false;
 
+    /** Resolved spawn loadout of the current life (weapons/Loadout.js shape; set by onPlayerSpawn), null before the first spawn. */
+    this.loadout = null;
     /** Per-weapon inventory: { owned, ammo, reserve }. */
     this.inv = {};
     for (const id of WEAPON_ORDER) this.inv[id] = { owned: false, ammo: 0, reserve: 0 };
@@ -226,6 +250,17 @@ export class WeaponSystem {
     this.switchState = S_NONE;
     this.equipAmount = 1;
     this._queuedSwitch = null;
+    // input latches (input-clock seconds, see the timing constants above)
+    this._queuedAt = 0;          // when _queuedSwitch was queued
+    this._keyMem = null;         // weapon id of a key waiting for the grenade to leave the hand / the melee hit
+    this._keyMemT = 0;           // that key's press time
+    this._reloadLatchUntil = 0;  // an R waiting for the weapon to become ready
+    this._gLatchUntil = 0;       // a G waiting until a grenade can be pulled
+    this._vLatchUntil = 0;       // a V waiting until a melee can start
+    this._switchReqAt = 0;       // when the current switch was asked for (Javelin: a trigger held since then must be released)
+    this._meleeRate = 1;         // > 1 while a melee tail plays back under a switch-out
+    this._gRate = 1;             // > 1 while a grenade follow-through / recovery plays back under a switch-out
+    this._want = { id: null, t: 0 };
     this.nextFireAt = 0;
     this._fireBufferUntil = 0;
     this._dryClickAt = 0;
@@ -575,23 +610,33 @@ export class WeaponSystem {
     this._resetState();
   }
 
-  /** Default loadout: pistol, rifle, shotgun (full reserve) + start grenades; rifle selected. */
-  onPlayerSpawn() {
+  /**
+   * Spawn inventory. `loadout` = an explicit resolved loadout ({ weapons, primary, secondary?, ammo, grenades }, e.g.
+   * pushed by a multiplayer host); by default Modes.loadoutFor resolves it (Escalation: pistol + the tier weapon; else
+   * the match pool applied to the player's pick, see weapons/Loadout.js). The defaults reproduce the original spawn:
+   * pistol, rifle, shotgun at reserveStart + standard grenades, rifle drawn, Q -> pistol. Always sanitised (never empty).
+   * @param {object|null} [loadout]
+   */
+  onPlayerSpawn(loadout = null) {
     this._resetState();
-    const lo = this.game.modes && this.game.modes.loadoutFor(this.game.player);   // Escalation: sidearm + the weapon of the current tier
-    const start = lo ? lo.primary : 'rifle';
+    const g = this.game;
+    const p = g.player;
+    const lo = sanitizeLoadout(loadout || (g.modes && g.modes.loadoutFor(p)) || resolveFor(g, p));
+    const start = lo.primary;
     this._escWant = null;
     for (const id of WEAPON_ORDER) {
+      const def = WEAPONS[id];
       const inv = this.inv[id];
-      inv.owned = lo ? id === 'pistol' || id === lo.primary : id === 'pistol' || id === 'rifle' || id === 'shotgun';
-      inv.ammo = inv.owned ? WEAPONS[id].magSize : 0;
-      inv.reserve = inv.owned ? WEAPONS[id].reserveStart : 0;
+      inv.owned = lo.weapons.includes(id);
+      inv.ammo = inv.owned ? def.magSize : 0;
+      inv.reserve = inv.owned ? spawnReserve(def, lo.ammo) : 0;
     }
     this._rebuildOwned();
-    spawnLoadout(this.nades);
+    spawnLoadout(this.nades, lo.grenades);
     this.grenadeType = 'frag';
     this._throwType = 'frag';
-    this.lastId = 'pistol';
+    this.lastId = lo.secondary;
+    this.loadout = lo;
     this._selectVisual(start);
     this.currentId = start;
     this.current = WEAPONS[start];
@@ -600,10 +645,11 @@ export class WeaponSystem {
     this.switchState = S_IN;
     this.equipAmount = 0;
     this.switching = true;
-    const p = this.game.player;
     this._lastYaw = p.yaw;
     this._lastPitch = p.pitch;
-    this.game.events.emit('weapon:switch', { shooter: p, weapon: start });
+    // a trigger held through the respawn must be released before a drawn charge weapon (Javelin) charges / auto-fires
+    this._chargeNeedRelease = !!(WEAPONS[start].charge && g.input && g.input.action('fire'));
+    g.events.emit('weapon:switch', { shooter: p, weapon: start });
   }
 
   _resetState() {
@@ -633,7 +679,7 @@ export class WeaponSystem {
     this.switching = false;
     this.equipAmount = 1;
     this.pendingId = null;
-    this._queuedSwitch = null;
+    this._resetInputLatches();
     this.nextFireAt = 0;
     this.nextMeleeAt = 0;
     this._fireBufferUntil = 0;
@@ -847,19 +893,16 @@ export class WeaponSystem {
     const inv = this.inv[this.currentId];
     this.momentum = def.speedBonus ? momentumOf(def, p.speed) : 0;
 
-    // ---- sprint interaction: firing / aiming cancels the sprint
-    const fireHeld = input.action('fire');
-    if (p.isSprinting && (fireHeld || input.actionPressed('ads'))) p.cancelSprint();
+    // ---- sprint interaction: a trigger pull (held, or a click made and released inside this frame's window) or an
+    //      ADS press cancels the sprint, and so does ADS held while aiming is possible (e.g. a button still held after
+    //      a reload, or pressed during a hitch); otherwise a held ADS keeps the sprint off through adsAmount
+    //      (PlayerController._updateSprint). A semi-auto click then fires from the buffer once the sprint-out is done.
+    const adsIn = input.actionPressed('ads') || (input.action('ads') && this._canAct() && !this.reloading && !p.isShocked());
+    if (p.isSprinting && (input.actionActive('fire') || adsIn)) p.cancelSprint();
     this.sprintBlend = approach(this.sprintBlend, p.isSprinting ? 1 : 0, dt * (p.isSprinting ? 7 : 10));
 
     // ---- switching
     this._updateSwitch(dt);
-    if (this.gState === G_IDLE && this.meleeT < 0) this._handleSwitchInput();
-    if (this._queuedSwitch && this.gState === G_IDLE) {
-      const q = this._queuedSwitch;
-      this._queuedSwitch = null;
-      this._requestSwitch(q);
-    }
 
     if (this._escWant && this.gState === G_IDLE && this.meleeT < 0) {   // an Escalation promotion that had to wait
       const w = this._escWant;
@@ -867,12 +910,20 @@ export class WeaponSystem {
       this._requestSwitch(w);
     }
 
-    // ---- grenades, melee
+    // ---- grenade, melee, weapon selection (number keys / Q / wheel), reload key - in this order, which is the
+    //      same-frame priority rule: G / V go first and a weapon key of the same frame is then handled like a key
+    //      pressed during that action (see _handleSwitchInput), so it never drops the G / V; R comes last and an R
+    //      with a weapon key in the same frame reloads the NEW weapon once it is up. A trigger pull that came before
+    //      all of those in the frame window fires first (_fireFirst), otherwise it is resolved after them. A press that
+    //      cannot act at once is latched briefly (ACTION_LATCH / KEY_MEMORY, real time) and then dropped, never replayed.
+    const fireFirst = this._fireFirst();
+    if (fireFirst) this._updateFire(now, inv, def, dt);
     this._updateGrenadeState(dt, now);
     this._updateMelee(dt, now);
+    const switched = this._handleSwitchInput();
+    this._handleReloadInput(now, switched);
 
     // ---- reload
-    if (input.actionPressed('reload') && this._canAct() && !this.charging) this._startReload(now);
     if (this.reloading) this._updateReload(dt, now);
     else this.reloadProgress = 0;
     if (!this.reloading && inv.ammo === 0 && inv.reserve > 0 && now >= this.nextFireAt + 0.08 && this._canAct() && this.sprintBlend < 0.5) {
@@ -895,12 +946,12 @@ export class WeaponSystem {
     // ---- cycling (pump / bolt)
     this._updateCycle(dt, now);
 
-    // ---- fire
-    this._updateFire(now, inv, def, dt);
+    // ---- fire (unless it already went first, see above: once per frame)
+    if (!fireFirst) this._updateFire(now, inv, def, dt);
     this._updateBeam(now);
 
     // ---- aim down sights
-    const adsWanted = input.action('ads') && this._canAct() && !this.reloading && !p.isSprinting && !p.isShocked()
+    const adsWanted = input.actionActive('ads') && this._canAct() && !this.reloading && !p.isSprinting && !p.isShocked()
       && this.sprintBlend < 0.3 && now >= this._adsLockUntil;
     this.adsAmount = approach(this.adsAmount, adsWanted ? 1 : 0, dt / Math.max(0.04, adsWanted ? def.adsTime : def.adsTime * 0.65));
     this.scoped = !!def.scoped && this.adsAmount >= 0.9 && this._canAct();
@@ -939,37 +990,171 @@ export class WeaponSystem {
 
   // ---------------------------------------------------------------- switching
 
+  /**
+   * Weapon selection (number keys, Q, wheel). Priority rules, in one frame and across frames:
+   *  - The NEWEST selection input of the frame wins (by DOM timestamp; keys for weapons you do not own are skipped),
+   *    and the wheel applies all of its steps. Any manual selection cancels a queued pickup switch.
+   *  - G / V are resolved before this (update order), so a weapon key in the same frame never drops them: the key
+   *    is handled as if pressed during that action. R is resolved after this: see _handleReloadInput.
+   *  - While a grenade is still in the hand (pull / cook / throw swing) or a melee has not hit yet, the key is
+   *    remembered for KEY_MEMORY s of real time and applied the moment the grenade leaves the hand / the melee
+   *    hits - or dropped if it has gone stale by then.
+   *  - During the grenade follow-through / recovery and after the melee hit frame the switch starts immediately:
+   *    the rest of that animation plays back (faster) under the switch-out, so it never holds up the new weapon.
+   *  - A trigger pull made before the key in the same frame window has already fired the old weapon (_fireFirst).
+   *  - A pickup's auto-switch queued behind a grenade (_queuedSwitch) only happens within QUEUED_SWITCH_TTL.
+   * @returns {boolean} true when a switch the player asked for started this frame
+   */
   _handleSwitchInput() {
     const input = this.game.input;
-    let want = null;
-    for (let i = 0; i < WEAPON_ORDER.length; i++) {
-      if (input.actionPressed('weapon' + WEAPONS[WEAPON_ORDER[i]].slot)) want = WEAPON_ORDER[i];
+    const want = this._readSwitchInput();
+    let started = false;
+    if (want) {
+      this._queuedSwitch = null;
+      this._keyMem = null;
+      if (this._switchBlocked()) {
+        this._keyMem = want.id;
+        this._keyMemT = want.t;
+      } else {
+        started = this._requestSwitch(want.id, true, want.t);
+      }
+    } else if (this._keyMem) {
+      if (input.time - this._keyMemT > KEY_MEMORY) this._keyMem = null;
+      else if (!this._switchBlocked()) {
+        const id = this._keyMem;
+        this._keyMem = null;
+        started = this._requestSwitch(id, true, this._keyMemT);
+      }
     }
-    if (input.actionPressed('lastWeapon')) {
-      if (this.inv[this.lastId] && this.inv[this.lastId].owned && this.lastId !== this.currentId) want = this.lastId;
-      else want = this.owned.find(id => id !== this.currentId) || null;
+    if (this._queuedSwitch && this.gState === G_IDLE && this.meleeT < 0) {
+      const q = this._queuedSwitch;
+      this._queuedSwitch = null;
+      if (input.time - this._queuedAt <= QUEUED_SWITCH_TTL) this._requestSwitch(q);
     }
-    if (input.wheel !== 0) want = this._cycleOwned(input.wheel > 0 ? 1 : -1);
-    if (want) this._requestSwitch(want);
+    return started;
   }
 
-  _cycleOwned(dir) {
+  /** Newest weapon-selection input of this frame as `{id, t}` (reused object; t = press time, s), or null. */
+  _readSwitchInput() {
+    const input = this.game.input;
+    let id = null, t = -Infinity;
+    for (let i = 0; i < SWITCH_KEYS.length; i++) {
+      const key = SWITCH_KEYS[i];
+      if (!input.actionPressed(key)) continue;
+      const pt = input.pressTime(key);
+      if (pt <= t) continue;
+      const wid = key === 'lastWeapon' ? this._lastWeaponTarget() : KEY_WEAPON[key];
+      if (!wid || !this.inv[wid] || !this.inv[wid].owned) continue;
+      id = wid;
+      t = pt;
+    }
+    if (input.wheel !== 0 && input.wheelTime >= t) {
+      const wid = this._cycleOwned(input.wheel);
+      if (wid) { id = wid; t = input.wheelTime; }
+    }
+    if (!id) return null;
+    this._want.id = id;
+    this._want.t = t;
+    return this._want;
+  }
+
+  /** Q: the previous weapon, or any other owned one. */
+  _lastWeaponTarget() {
+    const last = this.inv[this.lastId];
+    if (last && last.owned && this.lastId !== this.currentId) return this.lastId;
+    for (let i = 0; i < this.owned.length; i++) if (this.owned[i] !== this.currentId) return this.owned[i];
+    return null;
+  }
+
+  /** True while a grenade is still in the hand or a melee swing has not hit yet (weapon keys are remembered). */
+  _switchBlocked() {
+    return (this.gState !== G_IDLE && this.cooking) || (this.meleeT >= 0 && !this._meleeHit);
+  }
+
+  /** Seconds (at rate 1) until the grenade sequence is back to idle, from the throw swing or the recovery. */
+  _grenadeLeft() {
+    if (this.gState === G_THROW) return Math.max(0, THROW_RELEASE + RECOVER_TIME * 0.55 - this.gT) + RECOVER_TIME;
+    if (this.gState === G_RECOVER) return Math.max(0, RECOVER_TIME - this.gT);
+    return 0;
+  }
+
+  /** Forget every input latch / remembered key (match start, spawn): nothing pressed in a previous life carries over. */
+  _resetInputLatches() {
+    this._queuedSwitch = null;
+    this._keyMem = null;
+    this._reloadLatchUntil = 0;
+    this._gLatchUntil = 0;
+    this._vLatchUntil = 0;
+    this._fireBufferUntil = 0;
+    this._meleeRate = 1;
+    this._gRate = 1;
+  }
+
+  /** The owned weapon `steps` places after (+) / before (-) the current (or incoming) one; wraps around. */
+  _cycleOwned(steps) {
     const from = this.switchState === S_OUT && this.pendingId ? this.pendingId : this.currentId;
     const list = this.owned;
-    if (list.length < 2) return null;
-    const i = list.indexOf(from);
-    return list[(i + dir + list.length * 2) % list.length];
+    const n = list.length;
+    if (n < 2) return null;
+    const i = Math.max(0, list.indexOf(from));
+    return list[(((i + steps) % n) + n) % n];
   }
 
-  _requestSwitch(id) {
+  /**
+   * R: start the reload now, or - while the weapon is busy (switch / equip / grenade / melee) - latch it for
+   * ACTION_LATCH s of real time and start it the moment the weapon can act (an R in the last moments of an equip).
+   * An R in the same frame as a weapon key that started a switch reloads the NEW weapon once it is up.
+   * Any other weapon action (fire click, switch, grenade, melee) cancels the latch.
+   * @param {number} now game time
+   * @param {boolean} switched a switch the player asked for started this frame
+   */
+  _handleReloadInput(now, switched) {
+    const input = this.game.input;
+    if (input.actionPressed('reload')) {
+      this._reloadLatchUntil = 0;
+      if (this.charging) return;
+      if (switched) this._reloadLatchUntil = input.time + SWITCH_OUT_TIME + WEAPONS[this.pendingId].equipTime + ACTION_LATCH;
+      else if (this._canAct()) this._startReload(now);
+      else this._reloadLatchUntil = input.pressTime('reload') + ACTION_LATCH;
+    } else if (this._reloadLatchUntil > 0 && this._canAct()) {
+      const ok = input.time <= this._reloadLatchUntil && !this.charging;
+      this._reloadLatchUntil = 0;
+      if (ok) this._startReload(now);
+    }
+  }
+
+  /**
+   * Switch to `id`. Programmatic requests (pickup auto-switch, empty weapon, modes) are queued while a grenade is
+   * out (see _handleSwitchInput) and refused during a melee; `manual` requests (the player's keys) are also allowed
+   * during the grenade follow-through / recovery and after the melee hit frame: the rest of that animation then
+   * plays back during the switch-out (it never holds up the incoming weapon, which never comes up in a bash pose).
+   * @param {string} id
+   * @param {boolean} [manual=false]
+   * @param {number} [t] input-clock time (s) of the key press behind a manual request
+   * @returns {boolean} true when the switch started
+   */
+  _requestSwitch(id, manual = false, t = 0) {
     const inv = this.inv[id];
     if (!inv || !inv.owned) return false;
     const target = this.switchState === S_OUT ? this.pendingId : this.currentId;
     if (id === target) return false;
-    if (this.gState !== G_IDLE) { this._queuedSwitch = id; return false; }
-    if (this.meleeT >= 0) return false;
+    const input = this.game.input;
+    if (this.gState !== G_IDLE && !(manual && !this.cooking)) {
+      if (!manual) {
+        this._queuedSwitch = id;
+        this._queuedAt = input.time;
+      }
+      return false;
+    }
+    if (this.meleeT >= 0 && !(manual && this._meleeHit)) return false;
+    const out = SWITCH_OUT_TIME * Math.max(0.25, this.equipAmount);     // what is left of the switch-out
+    if (this.gState !== G_IDLE) this._gRate = Math.max(1, this._grenadeLeft() / out);
+    if (this.meleeT >= 0) this._meleeRate = Math.max(1, (MELEE_TIME - this.meleeT) / out);
     this._cancelReload();
     cancelCharge(this);
+    this._fireBufferUntil = 0;
+    this._reloadLatchUntil = 0;
+    this._switchReqAt = manual ? t : input.now();
     this.pendingId = id;
     if (this.switchState !== S_OUT) {
       this.switchState = S_OUT;
@@ -1020,6 +1205,39 @@ export class WeaponSystem {
 
   // ---------------------------------------------------------------- firing
 
+  /**
+   * Same-window order of a trigger pull against the other weapon actions (G, V, R, a weapon key or Q, the wheel):
+   * true when this frame window holds a click AND at least one of those, and the click came first (DOM timestamps).
+   * The trigger is then resolved before them, so the click fires the weapon in hand before that action takes it away
+   * (a click and a weapon key made during one hitch: shoot, then switch) instead of being dropped by it. Without
+   * such a rival the usual order applies (the trigger is resolved after them).
+   * @returns {boolean}
+   */
+  _fireFirst() {
+    const input = this.game.input;
+    if (!input.actionPressed('fire')) return false;
+    const t = input.pressTime('fire');
+    let rival = false;
+    for (let i = 0; i < FIRE_RIVALS.length; i++) {
+      const a = FIRE_RIVALS[i];
+      if (!input.actionPressed(a)) continue;
+      if (input.pressTime(a) <= t) return false;
+      rival = true;
+    }
+    if (input.wheel !== 0) {
+      if (input.wheelTime <= t) return false;
+      rival = true;
+    }
+    return rival;
+  }
+
+  /**
+   * Trigger logic. Automatic weapons fire while held AND for a click that went down and up inside one frame (at
+   * least one shot). A click is buffered for FIRE_BUFFER s of real time counted from the click itself, but only
+   * across the fire-rate cooldown and the sprint-out; a reload, switch / equip, grenade, melee or shock drops it,
+   * so a click never fires once one of those has ended. Two clicks in one frame window are two shots (the second
+   * one from the buffer). A click older than the input stale window never reaches here (core/Input.js).
+   */
   _updateFire(now, inv, def, dt = 0) {
     if (def.charge) { updateCharge(this, dt, now, inv, def); return; }
     const game = this.game;
@@ -1027,14 +1245,16 @@ export class WeaponSystem {
     const p = game.player;
     const press = input.actionPressed('fire');
     const held = input.action('fire');
-    if (press) this._fireBufferUntil = now + 0.14;
-    const want = def.auto ? held : (press || now < this._fireBufferUntil);
+    if (press) {
+      this._fireBufferUntil = input.pressTime('fire') + FIRE_BUFFER;
+      this._reloadLatchUntil = 0;
+    }
+    const want = press || (def.auto && held) || input.time < this._fireBufferUntil;
     if (!want) return;
-    if (p.isShocked()) return;
-    if (!this._canAct()) return;
+    if (p.isShocked() || !this._canAct()) { this._fireBufferUntil = 0; return; }
     if (this.reloading) {
       if (def.reloadMode === 'shell' && inv.ammo > 0) this._cancelReload();
-      else return;
+      else { this._fireBufferUntil = 0; return; }
     }
     if (now < this.nextFireAt) return;
     if (p.isSprinting || this.sprintBlend > 0.3) return;
@@ -1051,7 +1271,8 @@ export class WeaponSystem {
       return;
     }
     this._fire(def, inv, now);
-    if (!def.auto) this._fireBufferUntil = 0;
+    // two clicks inside one frame window (a hitch) are two trigger pulls: the newer one waits in the buffer
+    this._fireBufferUntil = press && input.pressCount('fire') > 1 ? input.pressTime('fire') + FIRE_BUFFER : 0;
   }
 
   _fire(def, inv, now, opts = null) {
@@ -1246,15 +1467,28 @@ export class WeaponSystem {
     game.projectiles.spawnRocket({ owner: p, origin: _v2, direction: _v3 });
   }
 
+  /**
+   * 0..1: how firmly the viewmodel sight is held on the aim point - the crosshair's ADS 'hide' curve (smoothstep 0.2..0.75
+   * of adsAmount) when the Crosshair setting hides the HUD crosshair for this weapon, else 0. See updateViewModel.
+   */
+  _sightLock() {
+    const xhAds = this.game.settings.get('xhAds');
+    if (!xhAds || xhAds[this.currentId] !== 'hide') return 0;
+    const t = clamp((this.adsAmount - 0.2) / 0.55, 0, 1);
+    return t * t * (3 - 2 * t);
+  }
+
   /** Viewmodel kick, muzzle flash, casing eject and part recoil for one shot. */
   _viewKick(def, adsK) {
     const s = this._sp;
     const k = (def.view ? def.view.kick : 1) * lerp(1, 0.6, sm(this.adsAmount));
+    // sight held on the aim point: the gun pivots about its sight, so keep that rotation calmer (40% less)
+    const rk = k * (1 - 0.4 * this._sightLock());
     s.kz.kick(0.03 * k);
     s.ky.kick(0.006 * k);
-    s.krx.kick(0.038 * k);
-    s.krz.kick(randRange(-1, 1) * 0.022 * k);
-    s.kry.kick(randRange(-1, 1) * 0.012 * k);
+    s.krx.kick(0.038 * rk);
+    s.krz.kick(randRange(-1, 1) * 0.022 * rk);
+    s.kry.kick(randRange(-1, 1) * 0.012 * rk);
     s.kz.x = Math.min(s.kz.x, 0.1);
     s.krx.x = Math.min(s.krx.x, 0.2);
     this._slideRecoil.kick(1);
@@ -1350,6 +1584,7 @@ export class WeaponSystem {
     const inv = this.inv[this.currentId];
     if (this.reloading || inv.ammo >= def.magSize || inv.reserve <= 0 || !this._canAct()) return false;
     this.reloading = true;
+    this._fireBufferUntil = 0;   // a click from before the reload never fires when it ends
     this.reloadT = 0;
     this.reloadWasEmpty = inv.ammo === 0;
     this._reloadCommitted = false;
@@ -1454,15 +1689,22 @@ export class WeaponSystem {
     const held = input.action('grenade');
     const GT = GRENADE_TYPES[this._throwType];
     const cookMax = GT.cookable ? GT.fuse : Infinity;
+    // X selects the type of the NEXT throw at any time (a grenade already in the hand keeps its own _throwType)
+    if (input.actionPressed('grenadeNext')) this.cycleGrenadeType();
+    // G pulls the pin now or, while it cannot (switch-out, melee, the previous grenade still in its sequence, rail
+    // charge, shock), is latched for ACTION_LATCH s of real time and pulls the moment it can; later it is dropped
+    const press = input.actionPressed('grenade');
+    if (press) this._gLatchUntil = input.pressTime('grenade') + ACTION_LATCH;
     switch (this.gState) {
-      case G_IDLE:
-        if (input.actionPressed('grenadeNext') && this.meleeT < 0) this.cycleGrenadeType();
-        if (input.actionPressed('grenade') && this.grenades <= 0) this._autoSelectGrenade();
-        if (input.actionPressed('grenade') && this.grenades > 0 && this.meleeT < 0 && !this.charging
+      case G_IDLE: {
+        const want = press || (this._gLatchUntil > 0 && input.time <= this._gLatchUntil);
+        if (want && this.grenades <= 0) this._autoSelectGrenade();
+        if (want && this.grenades > 0 && this.meleeT < 0 && !this.charging
           && this.switchState !== S_OUT && !game.player.isShocked()) {
           this._pullPin();
         }
         break;
+      }
       case G_PULL:
       case G_HOLD:
         this.gT += dt;
@@ -1476,14 +1718,14 @@ export class WeaponSystem {
         if (this.gState === G_HOLD && !held) { this.gState = G_THROW; this.gT = 0; }
         break;
       case G_THROW:
-        this.gT += dt;
+        this.gT += dt * this._gRate;   // _gRate > 1 only after the release, when a weapon key interrupted the follow-through
         this.cookTime += dt;
         if (this.cookTime >= cookMax && this.cooking) { this._grenadeCookOff(); break; }
         if (this.cooking && this.gT >= THROW_RELEASE) this._throwGrenade();
         if (this.gT >= THROW_RELEASE + RECOVER_TIME * 0.55) { this.gState = G_RECOVER; this.gT = 0; }
         break;
       case G_RECOVER:
-        this.gT += dt;
+        this.gT += dt * this._gRate;
         if (this.gT >= RECOVER_TIME) { this.gState = G_IDLE; this.gT = 0; }
         break;
       default:
@@ -1495,6 +1737,10 @@ export class WeaponSystem {
 
   _pullPin() {
     this._cancelReload();
+    this._fireBufferUntil = 0;
+    this._reloadLatchUntil = 0;
+    this._gLatchUntil = 0;
+    this._gRate = 1;
     this.cycleT = -1;
     this._throwType = this.grenadeType;
     this._setArmModel(this._throwType);
@@ -1600,20 +1846,29 @@ export class WeaponSystem {
   _updateMelee(dt, now) {
     const game = this.game;
     const input = game.input;
+    // V swings now or, while it cannot (the swing and its cooldown, switch-out, grenade, rail charge), is latched for
+    // ACTION_LATCH s of real time and swings the moment it can; later it is dropped (it never swings much later)
+    const press = input.actionPressed('melee');
+    if (press) this._vLatchUntil = input.pressTime('melee') + ACTION_LATCH;
     if (this.meleeT < 0) {
-      if (input.actionPressed('melee') && now >= this.nextMeleeAt && this.gState === G_IDLE && !this.charging
+      const want = press || (this._vLatchUntil > 0 && input.time <= this._vLatchUntil);
+      if (want && now >= this.nextMeleeAt && this.gState === G_IDLE && !this.charging
         && this.switchState !== S_OUT) {
         this.meleeT = 0;
+        this._meleeRate = 1;
         this._meleeHit = false;
         this.nextMeleeAt = now + MELEE.cooldown;
         this._cancelReload();
+        this._fireBufferUntil = 0;
+        this._reloadLatchUntil = 0;
+        this._vLatchUntil = 0;
         this.cycleT = -1;
         if (game.player.isSprinting) game.player.cancelSprint();
         game.audio.play('melee_swing');
       }
       return;
     }
-    this.meleeT += dt;
+    this.meleeT += dt * this._meleeRate;
     if (!this._meleeHit && this.meleeT >= MELEE_HIT_AT) {
       this._meleeHit = true;
       this._meleeStrike();
@@ -1784,6 +2039,25 @@ export class WeaponSystem {
     rx += sp.krx.x;
     ry += sp.kry.x;
     rz += sp.krz.x;
+
+    // ---- accurate sights: when the HUD crosshair hides at ADS (Crosshair setting xhAds[id] === 'hide') the gun's sight
+    // is the only aim reference, so it is held on the true aim point (the camera axis): the aim offsets above (breathing,
+    // bob, look sway, tilts, landing and recoil kick) move the gun about its sight instead of the grip. They stay visible
+    // as rotation around the sight, the push-back along the view axis and the camera recoil. Weight = the crosshair's
+    // hide curve (_sightLock), so the sight is exact by the time the crosshair is gone. The action poses below (equip,
+    // reload, grenade, melee) are added afterwards, so they still move the whole gun.
+    const lock = this._sightLock();
+    if (lock > 0) {
+      // sight point in root space (adsPos puts it on the camera axis at adsDistance), rotated by the pose (Euler YXZ)
+      const ox = -ap.x, oy = -ap.y, oz = -ap.z - vm.adsDistance;
+      const c1 = Math.cos(rz), s1 = Math.sin(rz), c2 = Math.cos(rx), s2 = Math.sin(rx), c3 = Math.cos(ry), s3 = Math.sin(ry);
+      const x1 = c1 * ox - s1 * oy, y1 = s1 * ox + c1 * oy;
+      const y2 = c2 * y1 - s2 * oz, z2 = s2 * y1 + c2 * oz;
+      const x3 = c3 * x1 + s3 * z2;
+      // remove the sight's displacement from its unperturbed place (hip -> ADS base position + sight)
+      px -= lock * (px + x3 - lerp(hip.x, ap.x, adsE) - ox);
+      py -= lock * (py + y2 - lerp(hip.y, ap.y, adsE) - oy);
+    }
 
     // ---- equip / unequip dip
     py += -0.34 * eq * heavy;

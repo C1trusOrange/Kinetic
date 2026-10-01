@@ -68,8 +68,19 @@ export class Player extends Entity {
     this.grapple = new Grapple(this);
     this.rig = new CameraRig(this);
 
+    /**
+     * Input clock (s, performance.now() based like Input.pressTime()) of the last spawn: a press older than this
+     * belongs to the previous life (the Javelin requires a trigger held through a respawn to be released first).
+     */
+    this.spawnedAt = 0;
+
     this._acc = 0;
     this._alpha = 0;
+    // aim sync (syncCameraAim): the eye base and look the camera rig last rendered with
+    this._camBase = new THREE.Vector3();
+    this._camYaw = 0;
+    this._camPitch = 0;
+    this._camSynced = false;
     this._recoil = { pendP: 0, pendY: 0, offP: 0, offY: 0, lastKick: -99 };
     this._lastStepInt = 0;
     this._foot = false;
@@ -111,6 +122,8 @@ export class Player extends Entity {
   /** (Re)spawn at a feet position facing `yaw`. */
   spawn(position, yaw = 0) {
     super.spawn(position, yaw);
+    this.spawnedAt = this.game.input ? this.game.input.now() : 0;
+    this._camSynced = false;
     this.reset();
     this.height = HUMANOID.height;
     this.eyeHeight = HUMANOID.height - HUMANOID.eyeFromTop;
@@ -162,7 +175,10 @@ export class Player extends Entity {
       inp.wishLen = 0;
     }
     inp.jumpHeld = input.action('jump');
-    // press edges are latched until a physics step consumes them (a frame can run zero steps)
+    // press edges are latched until a physics step consumes them (a frame can run zero steps); a crouch tap whose
+    // press and release both landed in this frame's window is latched too (crouchFresh without crouchHeld: the
+    // controller holds it for a moment, so it still starts a slide). Stale presses (input stale-press policy)
+    // never show up here.
     if (input.actionPressed('jump')) inp.jumpFresh = true;
     inp.crouchHeld = input.action('crouch');
     if (input.actionPressed('crouch')) inp.crouchFresh = true;
@@ -231,9 +247,57 @@ export class Player extends Entity {
 
   /** Writes game.camera (position, rotation order YXZ, fov). Called by Game after all updates. */
   updateCamera(dt) {
-    if (this.alive) this.rig.update(dt, this._alpha);
-    else this.rig.updateDead(dt);
+    if (this.alive) {
+      this.rig.update(dt, this._alpha);
+      // remember what the rig built the view on, so syncCameraAim() can re-aim it next frame
+      this._eyeBase(this._camBase);
+      this._camYaw = this.yaw;
+      this._camPitch = this.pitch;
+      this._camSynced = true;
+    } else {
+      this.rig.updateDead(dt);
+      this._camSynced = false;
+    }
     this.grapple.updateVisuals(dt, this.game.camera);
+  }
+
+  /**
+   * Aim sync, called by Game between player.update and weapons.update: turns game.camera to THIS frame's look
+   * (yaw / pitch after this frame's mouse input and recoil) and moves it with the player, keeping the offsets the
+   * camera rig showed last frame (shake, landing dip, roll, bob). A shot, grenade throw or melee made in this frame
+   * then leaves along the view the crosshair shows - not along last frame's camera, which after a fast flick (or a
+   * hitch) pointed somewhere else. updateCamera() still builds the full camera pose at the end of the frame.
+   * Only the camera transform is written (the caller updates the matrices).
+   */
+  syncCameraAim() {
+    if (!this.alive) return;
+    const cam = this.game.camera;
+    this._eyeBase(_o);
+    if (this._camSynced) {
+      cam.position.x += _o.x - this._camBase.x;
+      cam.position.y += _o.y - this._camBase.y;
+      cam.position.z += _o.z - this._camBase.z;
+      const r = cam.rotation;
+      r.set(clamp(r.x + (this.pitch - this._camPitch), -1.57, 1.57), r.y + wrapAngle(this.yaw - this._camYaw), r.z, 'YXZ');
+    } else {
+      // first frame of a life: no rig pose to keep yet (the camera still shows the death cam)
+      cam.position.copy(_o);
+      cam.rotation.set(clamp(this.pitch, -1.57, 1.57), this.yaw, 0, 'YXZ');
+      this._camSynced = true;
+    }
+    this._camBase.copy(_o);
+    this._camYaw = this.yaw;
+    this._camPitch = this.pitch;
+  }
+
+  /** Interpolated eye point the camera rig builds on (feet lerp + step offset + eye height), without its offsets. */
+  _eyeBase(out) {
+    const a = this._alpha, prev = this.prevPosition, cur = this.position, so = this.stepOffset;
+    return out.set(
+      prev.x + (cur.x - prev.x) * a + so.x,
+      prev.y + (cur.y - prev.y) * a + so.y + this.eyeHeight,
+      prev.z + (cur.z - prev.z) * a + so.z,
+    );
   }
 
   // ================================================================== recoil
@@ -315,6 +379,7 @@ export class Player extends Entity {
     this.rig.startDeath(info ? info.attacker : null);
     if (info && info.direction) this.velocity.addScaledVector(info.direction, 2.5);
     this._acc = 0;
+    this._camSynced = false;
   }
 
   // ================================================================== events from the controller

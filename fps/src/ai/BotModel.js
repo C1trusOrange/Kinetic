@@ -1096,6 +1096,10 @@ export class BotModel {
 
     /** The held weapon model ({root, muzzle, ...}) or null. */
     this.weapon = null;
+    /** True while a BotShadowCaster draws this model's shadow (the meshes themselves then cast none). */
+    this._shadowBatched = false;
+    /** The held weapon's shadow-casting mesh (its biggest opaque mesh) or null. */
+    this._shadowWeapon = null;
     this._leftOff = new THREE.Vector3(0, -0.035, -0.22);
     this._wLen = 0.6;
 
@@ -1141,22 +1145,22 @@ export class BotModel {
   setWeapon(weaponModel) {
     if (this.weapon && this.weapon.root && this.weapon.root.parent === this.weaponSocket) this.weaponSocket.remove(this.weapon.root);
     this.weapon = weaponModel || null;
+    this._shadowWeapon = null;
     if (!weaponModel || !weaponModel.root) { this.weapon = null; this._wLen = 0.5; this._leftOff.set(0, -0.035, -0.2); return; }
     const r = weaponModel.root;
     r.position.set(0, 0, 0);
     r.rotation.set(0, 0, 0);
     this.weaponSocket.add(r);
     // only the biggest opaque mesh casts a shadow: the rest would each cost another draw call in the shadow pass
-    let big = null, bigN = -1;
+    // (inside a match the BotShadowCaster draws it instanced instead; see shadowBatched)
+    const big = weaponShadowMesh(r);
     r.traverse(o => {
       if (!o.isMesh) return;
       o.castShadow = false;
       o.receiveShadow = true;
-      if (o.material && o.material.transparent) return;
-      const n = o.geometry && o.geometry.attributes.position ? o.geometry.attributes.position.count : 0;
-      if (n > bigN) { bigN = n; big = o; }
     });
-    if (big) big.castShadow = true;
+    this._shadowWeapon = big;
+    if (big) big.castShadow = !this._shadowBatched;
     let len = 0.6;
     if (weaponModel.muzzle) {
       r.updateWorldMatrix(true, true);
@@ -1215,7 +1219,7 @@ export class BotModel {
       const c = new THREE.Mesh(e.geo, this._set.mat);
       src.matrixWorld.decompose(c.position, c.quaternion, c.scale);
       c.position.copy(e.center).applyMatrix4(src.matrixWorld);
-      c.castShadow = true;
+      c.castShadow = false;   // ~12 short-lived pieces per death: not worth a shadow draw call each
       c.receiveShadow = true;
       c.name = 'gib_' + src.name;
       out.push(c);
@@ -1232,7 +1236,7 @@ export class BotModel {
         const c = new THREE.Mesh(best.geometry, best.material);
         best.updateWorldMatrix(true, false);
         best.matrixWorld.decompose(c.position, c.quaternion, c.scale);
-        c.castShadow = true;
+        c.castShadow = false;
         c.name = 'gib_weapon';
         out.push(c);
       }
@@ -1497,6 +1501,177 @@ export class BotModel {
   _kick() {
     this._rec = Math.min(1.25, this._rec + 0.8);
     this._kickCd = 0.095;
+  }
+
+  /**
+   * Meshes for Game.warmup to draw once while loading (never kept in a scene): one per hit-flash material of this
+   * model's colour set (they are only swapped in when the bot is hit) and, with `gibs`, a set of death gibs (builds
+   * the shared centred gib geometries now instead of at the first kill).
+   * @param {boolean} [gibs=false]
+   * @returns {THREE.Mesh[]}
+   */
+  prewarmMeshes(gibs = false) {
+    const g = this.torso.geometry;
+    const out = [new THREE.Mesh(g, this._set.flash1), new THREE.Mesh(g, this._set.flash2)];
+    if (gibs) out.push(...this.breakApart());
+    return out;
+  }
+}
+
+// ====================================================================== batched shadows
+
+const SHADOW_SLOT_CAP = 32;
+const _updateMatrixWorld = THREE.Object3D.prototype.updateMatrixWorld;
+let _shadowMat = null;
+
+/** The mesh of a held weapon model that casts its shadow: its biggest opaque mesh (null when it has none). */
+function weaponShadowMesh(root) {
+  let big = null, bigN = -1;
+  root.traverse(o => {
+    if (!o.isMesh || (o.material && o.material.transparent)) return;
+    const n = o.geometry && o.geometry.attributes.position ? o.geometry.attributes.position.count : 0;
+    if (n > bigN) { bigN = n; big = o; }
+  });
+  return big;
+}
+
+/**
+ * Bot shadows for a whole match in about a dozen draw calls. Every body-part geometry (and every held-weapon
+ * geometry) gets one shadow-only InstancedMesh whose instances copy the world matrices of that part on every bot, so
+ * the shadow map draws 12 + (weapon kinds in use) meshes instead of 13 parts + a gun per bot, with exactly the same
+ * silhouettes and animation. Models added here stop casting shadows themselves; a standalone BotModel (the asset
+ * viewer) keeps casting its own.
+ *
+ * Add `root` to the scene AFTER the bot models: its matrix update copies the parts' world matrices, which the scene
+ * graph update has refreshed by then (a model added later lags one frame, nothing worse).
+ */
+export class BotShadowCaster {
+  /** @param {{renderer?: THREE.WebGLRenderer}} [opts] renderer: the copy is skipped while its shadow map is off */
+  constructor({ renderer = null } = {}) {
+    this.renderer = renderer;
+    this.root = new THREE.Group();
+    this.root.name = 'bot-shadows';
+    this.root.matrixAutoUpdate = false;
+    this._entries = [];            // { model, slots: slot per body mesh }
+    this._slots = [];              // { mesh: InstancedMesh, n, cap }
+    this._slotByGeo = new Map();   // source geometry -> slot
+    const self = this;
+    this.root.updateMatrixWorld = function (force) {
+      self._sync();
+      _updateMatrixWorld.call(this, force);
+    };
+  }
+
+  /** Draw this model's shadow from the batch (its own meshes stop casting). @param {BotModel} model */
+  add(model) {
+    if (!model || model._shadowBatched) return;
+    model._shadowBatched = true;
+    for (const m of model._meshes) m.castShadow = false;
+    if (model._shadowWeapon) model._shadowWeapon.castShadow = false;
+    this._entries.push({ model, slots: model._meshes.map(m => this._slot(m.geometry)) });
+  }
+
+  /** Stop batching a model (its meshes cast their own shadows again). @param {BotModel} model */
+  remove(model) {
+    const i = this._entries.findIndex(e => e.model === model);
+    if (i < 0) return;
+    this._entries.splice(i, 1);
+    model._shadowBatched = false;
+    for (const m of model._meshes) m.castShadow = true;
+    if (model._shadowWeapon) model._shadowWeapon.castShadow = true;
+  }
+
+  /** Forget every model (match end); the instanced meshes stay for the next match. */
+  clear() {
+    for (const e of this._entries.slice()) this.remove(e.model);
+    for (const s of this._slots) { s.n = 0; s.mesh.count = 0; s.mesh.visible = false; }
+  }
+
+  /**
+   * Make sure a (weapon) geometry has its instanced shadow mesh before play, so none is created mid-match.
+   * @param {THREE.Object3D} weaponRoot a createWeaponModel(...).root
+   */
+  prepareWeapon(weaponRoot) {
+    const m = weaponRoot && weaponShadowMesh(weaponRoot);
+    if (m) this._slot(m.geometry);
+  }
+
+  _slot(geometry) {
+    let s = this._slotByGeo.get(geometry);
+    if (!s) {
+      s = { mesh: null, n: 0, cap: 0, geometry: null };
+      // position (+ index) only, sharing the source buffers: every slot uses the same depth program
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', geometry.getAttribute('position'));
+      if (geometry.index) g.setIndex(geometry.index);
+      s.geometry = g;
+      this._grow(s, SHADOW_SLOT_CAP);
+      this._slotByGeo.set(geometry, s);
+      this._slots.push(s);
+    }
+    return s;
+  }
+
+  _grow(s, cap) {
+    if (!_shadowMat) {
+      // never drawn in the colour pass (see isLOD below); no colour / depth writes in case a future three.js does
+      _shadowMat = new THREE.MeshBasicMaterial({ colorWrite: false, depthWrite: false });
+      _shadowMat.name = 'bot_shadow_proxy';
+    }
+    const mesh = new THREE.InstancedMesh(s.geometry, _shadowMat, cap);
+    mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+    mesh.name = 'bot-shadow';
+    mesh.castShadow = true;
+    mesh.receiveShadow = false;
+    mesh.frustumCulled = false;
+    mesh.matrixAutoUpdate = false;
+    // three.js r169: WebGLRenderer.projectObject() checks isLOD before isMesh and never draws an LOD object itself,
+    // while WebGLShadowMap.renderObject() only checks isMesh - so this mesh is drawn into the shadow map only.
+    mesh.isLOD = true;
+    mesh.autoUpdate = false;
+    mesh.count = 0;
+    mesh.visible = false;
+    if (s.mesh) {
+      mesh.instanceMatrix.array.set(s.mesh.instanceMatrix.array.subarray(0, Math.min(s.cap, cap) * 16));
+      this.root.remove(s.mesh);
+      s.mesh.dispose();
+    }
+    this.root.add(mesh);
+    s.mesh = mesh;
+    s.cap = cap;
+  }
+
+  _push(s, matrix) {
+    if (s.n >= s.cap) this._grow(s, s.cap * 2);
+    matrix.toArray(s.mesh.instanceMatrix.array, s.n * 16);
+    s.n++;
+  }
+
+  /** Copy this frame's part matrices into the instances (runs inside the scene's matrix update). */
+  _sync() {
+    const slots = this._slots;
+    for (let i = 0; i < slots.length; i++) slots[i].n = 0;
+    const on = !this.renderer || this.renderer.shadowMap.enabled;
+    if (on) {
+      const entries = this._entries;
+      for (let i = 0; i < entries.length; i++) {
+        const e = entries[i];
+        const model = e.model;
+        if (!model.root.visible || !model.root.parent) continue;
+        const meshes = model._meshes;
+        for (let k = 0; k < meshes.length; k++) this._push(e.slots[k], meshes[k].matrixWorld);
+        const w = model._shadowWeapon;
+        if (w && model.weapon && model.weapon.root.visible && w.visible && w.parent) this._push(this._slot(w.geometry), w.matrixWorld);
+      }
+    }
+    for (let i = 0; i < slots.length; i++) {
+      const s = slots[i];
+      const mesh = s.mesh;
+      mesh.count = s.n;
+      mesh.visible = s.n > 0;
+      // whole-buffer upload (cap x 64 bytes, ~2 KB): an update range would allocate a range object per slot per frame
+      if (s.n > 0) mesh.instanceMatrix.needsUpdate = true;
+    }
   }
 }
 

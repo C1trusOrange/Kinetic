@@ -92,6 +92,9 @@ export const ICON = {
   bolt: ico('0 0 24 24', '<path d="M13.6 1L4.4 13.4h6L9.6 23l10-13H13z"/>'),
   crown: ico('0 0 24 24', '<path d="M2 8l5 4 5-8 5 8 5-4-2 12H4z"/>'),
   bot: ico('0 0 24 24', '<path d="M11 2h2v3h5a2 2 0 012 2v9a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h5zM8 9a1.6 1.6 0 100 3.2A1.6 1.6 0 008 9zm8 0a1.6 1.6 0 100 3.2A1.6 1.6 0 0016 9zM9 15h6v1.6H9zM10 20h4v2h-4z"/>'),
+  crosshair: ico('0 0 24 24',
+    '<path d="M11 1.5h2v7h-2zM11 15.5h2v7h-2zM1.5 11h7v2h-7zM15.5 11h7v2h-7z"/><circle cx="12" cy="12" r="1.7"/>'
+    + '<circle cx="12" cy="12" r="7.2" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".55"/>'),
 };
 
 // ------------------------------------------------------------------------------------ logo

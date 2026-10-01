@@ -202,32 +202,7 @@ kbd {
 .sc-dot { fill: #ff3b3b; }
 .sc-info { position: absolute; left: calc(50% + var(--r) * 0.36); top: calc(50% + 1.1em); font: 700 0.9em var(--k-cond); letter-spacing: 0.3em; color: var(--k-cyan); }
 
-/* crosshair (gap is written from JS in px) */
-.hud-cross { left: 50%; top: 50%; width: 0; height: 0; filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.9)); transition: opacity 0.08s; }
-.hud-cross.off { display: none; }
-.ch { position: absolute; display: block; background: #fff; }
-.ch.t, .ch.b { width: 0.17em; height: 0.66em; left: -0.085em; }
-.ch.t { top: calc(-0.66em - var(--gap)); }
-.ch.b { top: var(--gap); }
-.ch.l, .ch.r { height: 0.17em; width: 0.66em; top: -0.085em; }
-.ch.l { left: calc(-0.66em - var(--gap)); }
-.ch.r { left: var(--gap); }
-.ch.dot { width: 0.22em; height: 0.22em; left: -0.11em; top: -0.11em; border-radius: 50%; }
-.ch-ring { display: none; position: absolute; box-sizing: border-box; width: var(--ring); height: var(--ring); left: calc(var(--ring) / -2); top: calc(var(--ring) / -2); border: 0.15em solid #fff; border-radius: 50%; }
-.hud-cross[data-style="ring"] .ch.t, .hud-cross[data-style="ring"] .ch.b, .hud-cross[data-style="ring"] .ch.l, .hud-cross[data-style="ring"] .ch.r { display: none; }
-.hud-cross[data-style="ring"] .ch-ring { display: block; }
-.hud-cross[data-style="rocket"] .ch-ring { display: block; --ring: 3.4em; border-width: 0.12em; opacity: 0.85; }
-/* Javelin: a ring that converges on the dot as the charge builds (the gap shrinks with the charge-tightened spread) */
-.hud-cross[data-style="rail"] .ch.t, .hud-cross[data-style="rail"] .ch.b, .hud-cross[data-style="rail"] .ch.l, .hud-cross[data-style="rail"] .ch.r { display: none; }
-.hud-cross[data-style="rail"] .ch-ring { display: block; --ring: calc(var(--gap) * 2 + 1.1em); border-width: 0.11em; border-color: #bff2ff; opacity: 0.9; }
-/* Tempest: thin ring + flickering ticks; Gale: two fixed cone brackets (the cone does not spread) */
-.hud-cross[data-style="arc"] .ch-ring { display: block; --ring: 3em; border-width: 0.08em; border-color: #9fe8ff; opacity: 0.8; }
-.hud-cross[data-style="arc"] .ch.t, .hud-cross[data-style="arc"] .ch.b, .hud-cross[data-style="arc"] .ch.l, .hud-cross[data-style="arc"] .ch.r { background: #9fe8ff; animation: k-arcflick 0.18s steps(2) infinite; }
-@keyframes k-arcflick { 0% { opacity: 1; } 50% { opacity: 0.45; } }
-.hud-cross[data-style="cone"] .ch.t, .hud-cross[data-style="cone"] .ch.b { display: none; }
-.hud-cross[data-style="cone"] .ch.l, .hud-cross[data-style="cone"] .ch.r { width: 0.16em; height: 2em; top: -1em; background: #bfeaff; }
-.hud-cross[data-style="cone"] .ch.l { left: -4.2em; }
-.hud-cross[data-style="cone"] .ch.r { left: 4.04em; }
+/* crosshair: see the "Custom crosshair" block at the end of this file (src/ui/Crosshair.js) */
 
 .hud-hit { left: 50%; top: 50%; width: 3.2em; height: 3.2em; margin: -1.6em 0 0 -1.6em; opacity: 0; color: #fff; filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.85)); }
 .hud-hit svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; }
@@ -787,3 +762,289 @@ kbd {
 .seg button:disabled { opacity: 0.4; cursor: default; pointer-events: none; }
 .seg.locked { opacity: 0.6; }
 .hud-hill.done { display: none; }
+
+/* ==========================================================================================
+   Hitch removal (perf package): HUD pre-raster + readout layers.
+   HUD.prewarm() adds .hud-prewarm at the end of loading until the browser has rasterized it (two short frames in a
+   row, at most 2.5 s): the HUD sits above the loading screen at 1 % opacity with every layer in its visible state, so
+   the browser rasterizes (and compiles the GPU shaders for) the gradients, masks, blurs, SVG and glyphs while loading
+   instead of in the first frames of play / at the first scope-in.
+   ========================================================================================== */
+.k-hud.hud-prewarm { opacity: 0.01; z-index: 5; }
+.k-hud.hud-prewarm .hud-fx, .k-hud.hud-prewarm .hud-scope, .k-hud.hud-prewarm .di, .k-hud.hud-prewarm .hud-hit,
+.k-hud.hud-prewarm .hud-prog, .k-hud.hud-prewarm .hud-prompt, .k-hud.hud-prewarm .hud-killtext, .k-hud.hud-prewarm .hud-nums span,
+.k-hud.hud-prewarm .hud-death, .k-hud.hud-prewarm .hud-board, .k-hud.hud-prewarm .hud-hint, .k-hud.hud-prewarm .hud-shield {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: none !important;
+}
+/* the speed, spawn-shield and respawn bars are rewritten ~15 times/s (HUD READOUT_DT): ease between the steps */
+.spd-bar i, .hud-shield i, .d-prog i { transition: transform 0.07s linear; }
+/* ===== render package: Settings > Video (5-way quality selector, GPU / resolution info block) ===== */
+.set-row:has(> .set-c > .seg[data-set="quality"]) { grid-template-columns: auto minmax(0, 1fr); }
+.set-c .seg[data-set="quality"] button { padding-left: 0.2em; padding-right: 0.2em; letter-spacing: 0.1em; }
+.set-info { margin-top: 0.75em; padding: 0.55em 0.8em; display: flex; flex-direction: column; gap: 0.3em; font: 500 0.8em/1.4 var(--k-font); letter-spacing: 0.02em; color: #c7d7e6; background: rgba(255, 255, 255, 0.04); border-left: 2px solid rgba(61, 224, 255, 0.5); }
+.set-info b { display: inline-block; min-width: 4.6em; font: 700 0.92em var(--k-cond); letter-spacing: 0.14em; text-transform: uppercase; color: var(--k-cyan); }
+.set-info em { font-style: normal; color: var(--k-dim); }
+.set-info .set-tip { color: #ffd2a6; }
+.set-info .set-tip b { display: inline; min-width: 0; color: var(--k-orange); letter-spacing: 0.06em; text-transform: none; font-size: 1em; }
+
+/* ==========================================================================================
+   Custom crosshair (src/ui/Crosshair.js, src/ui/CrosshairScreen.js): the HUD crosshair, the menu previews and
+   the Crosshair screen.
+   `.xh` is the crosshair: every length is a custom property holding whole device pixels, written by
+   applyCrosshair() on the crosshair element itself, like the per-frame spread gap (--gap). Never write these on
+   .k-hud: a custom property change on the HUD root restyles every HUD node (3-4 ms per write).
+   Outlines are ::before plates behind every part (z-index -1 inside the isolated .xh), so all fills are painted
+   over all outlines (crossing / touching parts never get dark seams) - no drop-shadow filter. Parts must not get
+   their own opacity / transform (that would lift their plate above their fill): translucency is colour alpha.
+   ========================================================================================== */
+.xh {
+  --gap: 3px;
+  --xh-c: #fff;
+  --xh-oc: rgba(0, 0, 0, 0.62);
+  --xh-th: 3px; --xh-h: 1px; --xh-o: 1px; --xh-len: 12px; --xh-dot: 5px; --xh-dp: -2px; --xh-ol: 1px; --xh-cr: 6px;
+  --xh-rb: 3px; --xh-rs: 0px; --xh-rbt: 2px; --xh-rst: 0px;
+  --xh-rail: 10px; --xh-rocket: 30px; --xh-arc: 27px; --xh-gx: 72px; --xh-gh: 35px; --xh-gt: -17px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  isolation: isolate;
+  pointer-events: none;
+}
+.xh > b { position: absolute; display: none; box-sizing: border-box; background: var(--xh-tc, var(--xh-c)); }
+.xh > b::before { content: ''; position: absolute; inset: calc(-1 * var(--xh-ol)); z-index: -1; background: var(--xh-oc); border-radius: inherit; }
+/* ticks: the lines are [-h, t-h) wide on both axes, so the crosshair centre is c = (t - 2h) / 2 (0 or 0.5 px); a tick
+   starts --gap from c, like the original crosshair (the spread cone edge), rounded outward to whole pixels: --xh-o = t - 2h */
+.xh > .ch.t, .xh > .ch.b, .xh > .ch.l, .xh > .ch.r { display: block; }
+.xh > .ch.t, .xh > .ch.b { left: calc(-1 * var(--xh-h)); width: var(--xh-th); height: var(--xh-len); }
+.xh > .ch.t { top: calc(-1 * (var(--gap) + var(--xh-len))); }
+.xh > .ch.b { top: calc(var(--gap) + var(--xh-o)); }
+.xh > .ch.l, .xh > .ch.r { top: calc(-1 * var(--xh-h)); width: var(--xh-len); height: var(--xh-th); }
+.xh > .ch.l { left: calc(-1 * (var(--gap) + var(--xh-len))); }
+.xh > .ch.r { left: calc(var(--gap) + var(--xh-o)); }
+.xh > .ch.c { left: calc(-1 * var(--xh-h)); top: calc(-1 * var(--xh-h)); width: var(--xh-th); height: var(--xh-th); }
+.xh.g0 > .ch.c { display: block; }
+/* centre dot */
+.xh > .ch.dot { left: var(--xh-dp); top: var(--xh-dp); width: var(--xh-dot); height: var(--xh-dot); border-radius: 50%; }
+.xh[data-dot="1"] > .ch.dot { display: block; }
+/* rings: stroke --rb centred on radius --R around the centre square; the plate is a wider ring behind it */
+.xh > .ch-cir, .xh > .ch-ring {
+  --R: var(--gap); --rb: var(--xh-th); --rs: 0px;
+  left: calc(var(--rs) - var(--xh-h) - var(--R));
+  top: calc(var(--rs) - var(--xh-h) - var(--R));
+  width: calc(var(--rb) + 2 * var(--R));
+  height: calc(var(--rb) + 2 * var(--R));
+  background: none;
+  border: var(--rb) solid var(--xh-rc, var(--xh-c));
+  border-radius: 50%;
+}
+.xh > .ch-cir::before, .xh > .ch-ring::before { inset: calc(-1 * (var(--rb) + var(--xh-ol))); background: none; border: calc(var(--rb) + 2 * var(--xh-ol)) solid var(--xh-oc); }
+.xh > .ch-cir { --R: calc(var(--gap) + var(--xh-cr)); }
+/* shapes */
+.xh[data-shape="tee"] > .ch.t,
+.xh[data-shape="circle"] > .ch.t, .xh[data-shape="circle"] > .ch.b, .xh[data-shape="circle"] > .ch.l, .xh[data-shape="circle"] > .ch.r, .xh[data-shape="circle"] > .ch.c,
+.xh[data-shape="dot"] > .ch.t, .xh[data-shape="dot"] > .ch.b, .xh[data-shape="dot"] > .ch.l, .xh[data-shape="dot"] > .ch.r, .xh[data-shape="dot"] > .ch.c { display: none; }
+.xh[data-shape="circle"] > .ch-cir { display: block; }
+/* weapon reticles (xhWeaponStyles): the shotgun pellet ring and the Javelin charge ring replace the shape, Hammer and
+   Tempest add a ring, Gale shows two brackets; white crosshairs keep the weapons' own tints */
+.xh[data-style="ring"] > .ch.t, .xh[data-style="ring"] > .ch.b, .xh[data-style="ring"] > .ch.l, .xh[data-style="ring"] > .ch.r, .xh[data-style="ring"] > .ch.c, .xh[data-style="ring"] > .ch-cir,
+.xh[data-style="rail"] > .ch.t, .xh[data-style="rail"] > .ch.b, .xh[data-style="rail"] > .ch.l, .xh[data-style="rail"] > .ch.r, .xh[data-style="rail"] > .ch.c, .xh[data-style="rail"] > .ch-cir,
+.xh[data-style="cone"] > .ch.t, .xh[data-style="cone"] > .ch.b, .xh[data-style="cone"] > .ch.c, .xh[data-style="cone"] > .ch-cir { display: none; }
+.xh[data-style="ring"] > .ch-ring, .xh[data-style="rail"] > .ch-ring, .xh[data-style="rocket"] > .ch-ring, .xh[data-style="arc"] > .ch-ring { display: block; }
+.xh[data-style="ring"] > .ch-ring { --rb: var(--xh-rb); --rs: var(--xh-rs); }
+.xh[data-style="rail"] > .ch-ring { --R: calc(var(--gap) + var(--xh-rail)); --rb: var(--xh-rbt); --rs: var(--xh-rst); --xh-rc: color-mix(in srgb, var(--xh-c) 90%, transparent); }
+.xh[data-style="rocket"] > .ch-ring { --R: var(--xh-rocket); --rb: var(--xh-rbt); --rs: var(--xh-rst); --xh-rc: color-mix(in srgb, var(--xh-c) 85%, transparent); }
+.xh[data-style="arc"] > .ch-ring { --R: var(--xh-arc); --rb: var(--xh-rbt); --rs: var(--xh-rst); --xh-rc: color-mix(in srgb, var(--xh-c) 80%, transparent); }
+.xh[data-style="arc"] > .ch.t, .xh[data-style="arc"] > .ch.b, .xh[data-style="arc"] > .ch.l, .xh[data-style="arc"] > .ch.r { animation: xh-flick 0.18s steps(2) infinite; }
+.xh[data-style="cone"] > .ch.l, .xh[data-style="cone"] > .ch.r { display: block; width: var(--xh-th); height: var(--xh-gh); top: var(--xh-gt); }
+.xh[data-style="cone"] > .ch.l { left: calc(-1 * (var(--xh-h) + var(--xh-gx) + var(--xh-th))); }
+.xh[data-style="cone"] > .ch.r { left: calc(var(--xh-th) - var(--xh-h) + var(--xh-gx)); }
+.xh[data-tint="1"][data-style="rail"] > .ch-ring { --xh-rc: color-mix(in srgb, #bff2ff 90%, transparent); }
+.xh[data-tint="1"][data-style="arc"] > .ch-ring { --xh-rc: color-mix(in srgb, #9fe8ff 80%, transparent); }
+.xh[data-tint="1"][data-style="arc"] > .ch.t, .xh[data-tint="1"][data-style="arc"] > .ch.b, .xh[data-tint="1"][data-style="arc"] > .ch.l, .xh[data-tint="1"][data-style="arc"] > .ch.r { --xh-tc: #9fe8ff; }
+.xh[data-tint="1"][data-style="cone"] > .ch.l, .xh[data-tint="1"][data-style="cone"] > .ch.r { --xh-tc: #bfeaff; }
+@keyframes xh-flick { 50% { background-color: color-mix(in srgb, var(--xh-tc, var(--xh-c)) 45%, transparent); } }
+
+/* HUD crosshair: anchored on a whole device pixel by HUD._applyCrosshair (inline left / top) */
+.k-hud > .hud-cross { transition: opacity 0.08s; }
+.k-hud > .hud-cross.off { display: none; }
+.k-hud > .hud-cross.xh-gone { visibility: hidden; }
+.k-hud > .hud-cross.xh-gone > b { animation: none; }   /* no Tempest flicker ticking while hidden at ADS */
+/* reload / cook / charge bar, Slipstream momentum, prompts and kill text: a full-width strip at the screen centre,
+   moved down by HUD._updateCrosshair (translateY = what the crosshair draws below its centre) */
+.hud-below { left: 0; right: 0; top: 50%; height: 0; }
+.hud-below > div { position: absolute; }
+.hud-below > .hud-mom { top: 0.49em; }
+.hud-below > .hud-prompt { top: 1.94em; }
+.hud-below > .hud-prog { top: 2.14em; }
+.hud-below > .hud-killtext { top: 4.34em; }
+
+/* menu scrim for the Crosshair screen (same as Settings) */
+.k-menu[data-screen="crosshair"] .k-scrim { background: radial-gradient(ellipse at 50% 30%, rgba(6, 14, 26, 0.84), rgba(3, 7, 14, 0.94)); backdrop-filter: blur(5px); }
+
+/* Settings: Crosshair card */
+.xhs-card { gap: 0.9em; }
+.xhs-mini { position: relative; flex: none; width: 4.4em; height: 2.9em; overflow: hidden; background: radial-gradient(ellipse at 50% 40%, #1d2a39, #0a0f16 75%); box-shadow: inset 0 0 0 1px rgba(61, 224, 255, 0.25); }
+.xhs-ct { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.3em; }
+.xhs-ct b { font: 700 1.05em/1 var(--k-cond); letter-spacing: 0.1em; text-transform: uppercase; }
+.xhs-ct small { font: 600 0.68em/1.2 var(--k-font); letter-spacing: 0.12em; text-transform: uppercase; color: var(--k-dim); }
+
+/* Crosshair screen */
+.s-xh { align-items: center; }
+.s-xh .k-head, .s-xh .k-foot { align-self: stretch; }
+.xhs-hico { display: flex; width: 2.2em; height: 2.2em; margin-right: -0.5em; color: var(--k-cyan); filter: drop-shadow(0 0 0.35em rgba(61, 224, 255, 0.45)); }
+.xhs-hico .ico { width: 100%; height: 100%; }
+.xhs-panel { --cut: 1em; --fill: rgba(6, 12, 22, 0.8); width: min(86em, 100%); padding: 1.15em 1.6em 1.2em; box-sizing: border-box; display: grid; grid-template-columns: minmax(0, 20fr) minmax(0, 26fr) minmax(0, 29fr); column-gap: 1.9em; align-items: start; }
+.xhs-col { display: flex; flex-direction: column; min-width: 0; }
+.xhs-col .k-sec { margin-bottom: 0.55em; }
+.xhs-sec { margin-top: 1.1em; }
+.xhs-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0.8em; padding: 0.3em 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); font: 600 0.92em var(--k-font); letter-spacing: 0.04em; }
+.xhs-l { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.xhs-l small { margin-left: 0.6em; font-size: 0.72em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--k-dim); }
+.xhs-l small.xhs-sub { display: block; margin: 0.25em 0 0; white-space: normal; line-height: 1.25; }
+.xhs-c { display: flex; align-items: center; justify-content: flex-end; gap: 0.6em; min-width: 0; }
+.xhs-row.sl .xhs-c { width: 13.5em; }
+/* a seg in an auto-sized grid column needs a definite width, or its labels get clipped */
+.xhs-row.xhs-wide .xhs-c { width: 16.5em; }
+.xhs-c .seg { width: 100%; }
+.xhs-c output { min-width: 2.7em; text-align: right; font: 700 0.95em var(--k-cond); letter-spacing: 0.06em; color: var(--k-cyan); }
+.xhs-row.dim .xhs-c { opacity: 0.4; }
+.xhs-a .seg button, .xhs-b .seg button { letter-spacing: 0.06em; padding-left: 0.2em; padding-right: 0.2em; }
+.xhs-full { margin-top: 0.4em; }
+.xhs-full .seg button { padding-top: 0.5em; padding-bottom: 0.5em; }
+/* preview */
+.xhs-view { position: relative; height: 11.5em; overflow: hidden; margin-bottom: 0.3em; box-shadow: inset 0 0 0 1px rgba(61, 224, 255, 0.28); background: radial-gradient(ellipse at 50% 40%, #1d2a39, #0a0f16 72%); }
+.xhs-view[data-bg="light"] { background: linear-gradient(180deg, #eef3f8 0%, #cdd8e3 55%, #aebdcb 100%); }
+.xhs-view[data-bg="busy"] {
+  background:
+    radial-gradient(circle at 30% 35%, rgba(255, 196, 80, 0.55), transparent 32%),
+    radial-gradient(circle at 72% 64%, rgba(90, 220, 255, 0.45), transparent 30%),
+    repeating-linear-gradient(115deg, rgba(0, 0, 0, 0.42) 0 0.45em, rgba(0, 0, 0, 0) 0.45em 1.05em),
+    repeating-linear-gradient(22deg, #62778b 0 0.8em, #d7c39a 0.8em 1.35em, #273442 1.35em 2.3em, #9fb1c2 2.3em 2.8em);
+}
+/* colour swatches + free picker */
+.xhs-cols { gap: 0.32em; }
+.xhs-sw, .xhs-pick { position: relative; flex: none; width: 1.75em; height: 1.75em; padding: 0; border: 0; cursor: pointer; background: var(--sw); clip-path: polygon(0.35em 0, 100% 0, calc(100% - 0.35em) 100%, 0 100%); box-shadow: inset 0 0 0 0.1em rgba(0, 0, 0, 0.35); transition: transform 0.12s; }
+.xhs-sw:hover, .xhs-pick:hover { transform: translateY(-0.12em); }
+.xhs-sw.on, .xhs-pick.on { box-shadow: inset 0 0 0 0.16em #fff, inset 0 0 0 0.32em rgba(0, 0, 0, 0.55); }
+.xhs-pick { background: conic-gradient(#ff4040, #ffe23d, #4dff6a, #3de0ff, #5a6dff, #ff4dd8, #ff4040); }
+.xhs-pick i { position: absolute; inset: 0.32em; display: none; background: var(--sw); clip-path: inherit; }
+.xhs-pick.on i { display: block; }
+.xhs-pick input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; opacity: 0; cursor: pointer; }
+/* ADS table */
+.xhs-presets { margin-bottom: 0.45em; }
+.xhs-presets button { padding: 0.5em 0.25em; letter-spacing: 0.08em; }
+.xhs-presets small { font-size: 0.66em; }
+.xhs-ads { display: flex; flex-direction: column; }
+.xhs-arow { display: grid; grid-template-columns: 3.6em minmax(0, 1fr) 11.5em; align-items: center; column-gap: 0.9em; padding: 0.22em 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+.xhs-aico { color: #cfe6f6; }
+.xhs-aico .ico { width: 100%; display: block; }
+.xhs-an { display: flex; flex-direction: column; gap: 0.2em; min-width: 0; }
+.xhs-an b { font: 700 0.98em/1 var(--k-cond); letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.xhs-an small { font: 600 0.62em/1 var(--k-font); letter-spacing: 0.14em; text-transform: uppercase; color: var(--k-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.xhs-arow .seg button { padding: 0.46em 0.2em; letter-spacing: 0.08em; }
+.xhs-arow .seg[data-value="hide"] button.on { background: var(--k-green); }
+.xhs-arow .seg[data-value="fade"] button.on { background: var(--k-cyan); }
+.xhs-arow .seg[data-value="show"] button.on { background: var(--k-orange); }
+.xhs-note { margin-top: 0.7em; line-height: 1.4; }
+/* share code */
+.xhs-code { padding: 0.5em 0.5em; font: 600 0.76em Consolas, "Cascadia Mono", monospace; letter-spacing: 0; }
+.xhs-btns { display: flex; gap: 0.5em; margin-top: 0.5em; }
+.xhs-btns .k-btn { flex: 1; justify-content: center; padding: 0.6em 0.8em; font-size: 0.95em; }
+.xhs-btns .k-btn:hover, .xhs-btns .k-btn:focus-visible { transform: none; }
+.xhs-msg { min-height: 2.6em; margin-top: 0.55em; line-height: 1.35; }
+.xhs-msg[data-kind="ok"] { color: var(--k-green); }
+.xhs-msg[data-kind="bad"] { color: var(--k-red); }
+
+/* ==========================================================================================
+   Spawn loadouts (weapons/Loadout.js, ui/LoadoutScreen.js): the Bot arsenal + Loadouts card pair on Match Setup,
+   the Loadouts screen (weapon pool = match rules | your loadout) and the pause-menu entry
+   ========================================================================================== */
+/* two half-width cards: together they are shorter than the old full-width Bot arsenal card (720p fit) */
+.opt-pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0.7em; }
+.opt-pair .opt { min-width: 0; }
+.opt-pair .opt-h { gap: 0.5em; letter-spacing: 0.2em; white-space: nowrap; }
+.opt-pair .opt-h output { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.opt-pair .ars-card { height: 4.1em; padding: 0.5em 0.45em 0.45em 0.75em; gap: 0.4em; }
+.opt-pair .ars-body { gap: 0.42em; }
+.opt-pair .mix { height: 1.35em; }
+.opt-pair .mix-key { display: none; }
+.opt-pair .ars-go { font-size: 0.55em; }
+.opt-pair .ars-go span { display: none; }
+.ars-top, .lo-cardtxt { display: none; }
+.opt-pair .ars-top, .opt-pair .lo-cardtxt { display: block; font: 700 0.72em/1.1 var(--k-cond); letter-spacing: 0.05em; text-transform: uppercase; color: #9fc4dc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lo-icons { display: flex; align-items: center; gap: 0.3em; height: 1.35em; min-width: 0; }
+.lo-icons i { --wc: var(--k-cyan); flex: 0 1 2.7em; min-width: 0; height: 100%; display: flex; align-items: center; color: var(--wc); opacity: 0.6; }
+.lo-icons i .ico { width: 100%; height: 100%; }
+.lo-icons i.pri { opacity: 1; filter: drop-shadow(0 0 0.25em var(--wc)); }
+.lo-card.locked { opacity: 0.5; cursor: default; }
+.lo-card.locked .ars-go { visibility: hidden; }
+.opt-pair .lo-card.locked .lo-cardtxt { color: var(--k-orange); }
+
+/* screen */
+.k-menu[data-screen="loadout"] .k-scrim { background: radial-gradient(ellipse at 50% 30%, rgba(6, 14, 26, 0.84), rgba(3, 7, 14, 0.94)); backdrop-filter: blur(5px); }
+.s-loadout { align-items: center; }
+.s-loadout .k-head, .s-loadout .k-foot { align-self: stretch; }
+.lo-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.6em; width: min(84em, 100%); align-items: stretch; }
+.lo-panel { --cut: 1em; --fill: rgba(6, 12, 22, 0.78); min-width: 0; padding: 1.2em 1.5em 1.2em; box-sizing: border-box; display: flex; flex-direction: column; gap: 0.95em; }
+.lo-panel .k-sec { margin: 0; }
+.lo-panel .k-sec::after { order: 2; }
+.lo-panel .k-sec output { order: 3; font: 600 1.15em var(--k-font); letter-spacing: 0.06em; color: #fff; text-transform: none; white-space: nowrap; }
+.lo-panel .k-sec output.full { color: var(--k-cyan); }
+.lo-tag { order: 1; padding: 0.2em 0.6em; font: 700 0.8em/1 var(--k-font); letter-spacing: 0.2em; color: #03141f; background: var(--k-orange); clip-path: polygon(0.3em 0, 100% 0, calc(100% - 0.3em) 100%, 0 100%); }
+.lo-tag.lo-you { background: var(--k-cyan); }
+.s-loadout.ro .lo-pool .lo-tag { background: #6d7f91; color: #fff; }
+.lo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.4em; }
+.lo-tile { --wc: var(--k-cyan); appearance: none; position: relative; display: flex; align-items: center; gap: 0.55em; min-width: 0; height: 3.3em; padding: 0 1.6em 0 0.65em; border: 0; box-sizing: border-box; cursor: pointer; text-align: left; color: #e4f7ff; background: rgba(255, 255, 255, 0.05); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07); clip-path: polygon(0.5em 0, 100% 0, 100% calc(100% - 0.5em), calc(100% - 0.5em) 100%, 0 100%, 0 0.5em); transition: background 0.15s, opacity 0.15s, box-shadow 0.15s; }
+.lo-tile:hover, .lo-tile:focus-visible { background: rgba(61, 224, 255, 0.16); outline: none; }
+.lo-tile:disabled { cursor: default; }
+.lo-ico { flex: none; width: 2.6em; display: flex; color: var(--wc); }
+.lo-ico .ico { width: 100%; height: 1.1em; }
+.lo-n { display: flex; flex-direction: column; gap: 0.22em; min-width: 0; }
+.lo-n b { font: 700 0.95em/1 var(--k-cond); letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lo-n small { font: 600 0.6em/1 var(--k-font); letter-spacing: 0.14em; text-transform: uppercase; color: var(--k-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lo-tile kbd { position: absolute; right: 0.5em; bottom: 0.35em; min-width: 0; padding: 0 0.35em; font-size: 0.56em; line-height: 1.35; color: rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.06); border-width: 1px; }
+.lo-badge { position: absolute; right: 0.45em; top: 0.35em; min-width: 1.15em; height: 1.15em; display: grid; place-items: center; font: 700 0.72em/1 var(--k-cond); font-style: normal; color: #03141f; }
+.lo-badge:empty { display: none; }
+.lo-badge .ico { width: 1.15em; height: 1.15em; }
+/* pool tiles: allowed / not allowed */
+.lo-pool .lo-tile.on { background: color-mix(in srgb, var(--wc) 11%, rgba(255, 255, 255, 0.03)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wc) 55%, transparent); }
+.lo-pool .lo-tile.on .lo-badge { color: var(--wc); }
+.lo-pool .lo-tile.off { opacity: 0.42; }
+.lo-pool .lo-tile.off .lo-ico { filter: grayscale(1); }
+.lo-pool .lo-tile.off .lo-n b { text-decoration: line-through; text-decoration-thickness: 0.08em; }
+/* your tiles: picked (badge = your order), spawn weapon, not in the pool, loadout full */
+.lo-mine .lo-tile.on { background: color-mix(in srgb, var(--wc) 13%, rgba(255, 255, 255, 0.03)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--wc) 60%, transparent); }
+.lo-mine .lo-tile.on .lo-badge { background: var(--wc); clip-path: polygon(0.2em 0, 100% 0, calc(100% - 0.2em) 100%, 0 100%); }
+.lo-mine .lo-tile.primary { box-shadow: inset 0 0 0 1px var(--wc), inset 0 -0.2em 0 var(--wc); }
+.lo-mine .lo-tile.primary small { color: var(--wc); }
+.lo-mine .lo-tile.blocked { opacity: 0.32; cursor: not-allowed; }
+.lo-mine .lo-tile.blocked .lo-ico { filter: grayscale(1); }
+.lo-mine .lo-tile.blocked .lo-badge { color: #c9d6e2; }
+.lo-mine .lo-tile.full { opacity: 0.55; }
+/* options */
+.lo-row2 { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 0.9em; }
+.lo-panel .opt-h { margin-bottom: 0.45em; }
+.lo-seg2 button { display: flex; flex-direction: column; gap: 0.25em; padding: 0.55em 0.3em; text-align: center; }
+.lo-seg2 small { font: 500 0.72em/1.2 var(--k-font); letter-spacing: 0.01em; text-transform: none; opacity: 0.75; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.s-loadout .seg button:disabled { opacity: 0.35; }
+.s-loadout .seg button.on:disabled { opacity: 1; }
+.s-loadout .seg.locked { opacity: 0.85; }
+.lo-draw { flex-wrap: wrap; row-gap: 0.28em; }
+.lo-draw button { --wc: var(--k-cyan); flex: 1 1 0; }
+.lo-draw.many button { flex: 1 0 17%; }
+.lo-draw button.on { background: var(--wc); color: #03141f; }
+.lo-ammo { display: flex; flex-wrap: wrap; gap: 0.35em 0.45em; }
+.lo-am { --wc: var(--k-cyan); display: inline-flex; align-items: center; gap: 0.4em; padding: 0.3em 0.65em 0.3em 0.5em; background: rgba(255, 255, 255, 0.05); border-left: 0.18em solid var(--wc); }
+.lo-am i { width: 2.1em; display: flex; color: var(--wc); }
+.lo-am i .ico { width: 100%; height: 0.8em; }
+.lo-am b { font: 700 1em/1 var(--k-cond); letter-spacing: 0.03em; }
+.lo-am small { font: 600 0.8em/1 var(--k-cond); letter-spacing: 0.03em; color: var(--k-dim); }
+.lo-note { margin-top: auto; min-height: 2.5em; font-size: 0.76em; line-height: 1.4; transition: color 0.15s; }
+.lo-note.hint { color: var(--k-orange); }
+/* pause menu entry: disabled in Escalation (fixed ladder), styled like the locked setup card */
+.s-pause .k-btn[data-act="loadout"]:disabled { opacity: 0.5; cursor: default; pointer-events: none; }
+.s-pause .k-btn[data-act="loadout"]:disabled em { color: var(--k-orange); }
