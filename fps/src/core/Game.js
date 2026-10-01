@@ -933,6 +933,7 @@ export class Game {
     if (this.autotest) this.autotest.update(dt);
     if (!this.spectate) {
       this.player.update(dt);
+      this._syncAim();            // shots / throws / melee below use THIS frame's view
       this.weapons.update(dt);
     }
     this.bots.update(dt);
@@ -971,6 +972,24 @@ export class Game {
     this.camera.fov = this.getBaseFov();
     this.camera.updateProjectionMatrix();
     this.audio.update(dt);
+  }
+
+  /**
+   * Aim sync (frame order step 2b, between player.update and weapons.update): the world camera and the viewmodel
+   * camera take this frame's look - yaw / pitch after this frame's mouse input, with the rig offsets (shake, roll,
+   * bob, landing dip) shown last frame - so a flick and a click in the same frame fire / throw / bash along the new
+   * view instead of last frame's. _updateCamera() still builds the full camera pose after the simulation. Only the
+   * two camera nodes are updated here (cheap); viewmodel parts refresh on demand (WeaponSystem._muzzleWorld walks
+   * up its parent chain).
+   */
+  _syncAim() {
+    if (this.fixedCam) return;
+    this.player.syncCameraAim();
+    const cam = this.camera, vc = this.viewCamera;
+    cam.updateWorldMatrix(true, false);
+    vc.position.copy(cam.position);
+    vc.quaternion.copy(cam.quaternion);
+    vc.updateWorldMatrix(true, false);
   }
 
   _updateCamera(dt) {

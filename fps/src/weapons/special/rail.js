@@ -144,6 +144,13 @@ export function updateCharge(ws, dt, now, inv, def) {
   const press = input.actionPressed('fire');
   const canAct = ws._canAct() && !ws.reloading && !p.isSprinting && ws.sprintBlend < 0.3;
 
+  // A trigger still held from before the Javelin was asked for (weapon switch / pickup) or from the previous life
+  // (respawn) must be released before it can start a charge: holding fire through a switch never starts - and
+  // auto-fires - a charge by itself. A press made after that moment (e.g. during the equip) charges normally.
+  if (held && !ws.charging && !ws._chargeNeedRelease
+    && input.pressTime('fire') < Math.max(ws._switchReqAt || 0, p.spawnedAt || 0)) {
+    ws._chargeNeedRelease = true;
+  }
   if (ws._chargeNeedRelease) {
     if (held) return;
     ws._chargeNeedRelease = false;
