@@ -113,7 +113,7 @@ export class Game {
     renderer.info.autoReset = false;
     renderer.domElement.tabIndex = 0;
     this.gameRoot.appendChild(renderer.domElement);
-    /** 'Low latency mode' (settings.lowLatency): caps the frames in flight on the GPU (maxFrames, 2), see FrameLimiter. */
+    /** 'Low latency mode' (settings.lowLatency): caps the frames in flight on the GPU (2 or 3, automatic), see FrameLimiter. */
     this.frameLimiter = new FrameLimiter(renderer.getContext());
     this.frameLimiter.setEnabled(this.settings.get('lowLatency') !== false);
 

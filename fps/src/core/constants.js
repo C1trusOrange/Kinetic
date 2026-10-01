@@ -71,13 +71,14 @@ export const SPAWN_PROTECTION = 1.5;
 /**
  * Graphics quality presets (selected by settings.quality; 'auto' picks one from the GPU, see core/GraphicsQuality.js).
  * Render resolution: pixel ratio min(devicePixelRatio, maxPixelRatio), lowered so the drawing buffer holds at most
- * maxMegapixels million pixels (0 = no budget), then scaled by the 'renderScale' setting.
+ * maxMegapixels million pixels (0 = no budget), then scaled by the 'renderScale' setting. The 2.1 MP budget keeps
+ * 1920x1080 native on DPR-1 screens and caps HiDPI laptops (2560x1440 buffer at 150 % scaling -> 1932x1086 on 'high').
  * msaa = samples of the composer's HDR target (the canvas itself is never multisampled); bloom = UnrealBloom pass.
  * 'ultra' is the former 'high' (native resolution up to DPR 1.5, 4x MSAA) for strong GPUs.
  */
 export const QUALITY_PRESETS = {
   low: { name: 'low', maxPixelRatio: 0.75, maxMegapixels: 1.2, shadows: false, shadowMapSize: 1024, bloom: false, msaa: 0, maxDecals: 40, particleScale: 0.5 },
-  medium: { name: 'medium', maxPixelRatio: 1, maxMegapixels: 1.7, shadows: true, shadowMapSize: 1024, bloom: true, msaa: 0, maxDecals: 80, particleScale: 0.8 },
+  medium: { name: 'medium', maxPixelRatio: 1, maxMegapixels: 2.1, shadows: true, shadowMapSize: 1024, bloom: true, msaa: 0, maxDecals: 80, particleScale: 0.8 },
   high: { name: 'high', maxPixelRatio: 1.5, maxMegapixels: 2.1, shadows: true, shadowMapSize: 2048, bloom: true, msaa: 2, maxDecals: 150, particleScale: 1.0 },
   ultra: { name: 'ultra', maxPixelRatio: 1.5, maxMegapixels: 0, shadows: true, shadowMapSize: 2048, bloom: true, msaa: 4, maxDecals: 150, particleScale: 1.0 },
 };
