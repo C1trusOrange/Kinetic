@@ -10,13 +10,16 @@
 //
 // Game.js calls: onMatchStart(match) (after the bots exist, before anyone spawns), update(dt), onDeath(info),
 // clear(), pickWinner(match). Bots / weapons ask loadoutFor(), targetBias(), objectiveGoal(), holdPosition(),
-// suppressChase(). Events on game.events:
+// suppressChase(). loadoutFor() is the single spawn-loadout resolver (weapons/Loadout.js shape): the Escalation ladder
+// for everybody, else humans (any non-bot, local or remote) get the match pool + their own pick, bots get null (they
+// keep the Bot arsenal). Events on game.events:
 //   'esc:tier'  { entity, tier, delta, weapon, cause }   'esc:final' { entity }
 //   'hill:move' { zone, index }   'hill:preview' { next }   'hill:relocate' { next }   'hill:capture' { team, prev, zone }
 //   'hill:contested' { zone }     'hill:neutral' { prev }   'hill:score' { team, total, n, reason }
 
 import { ESCALATION_LADDER, HILL } from './constants.js';
 import { WEAPONS } from '../weapons/WeaponDefs.js';
+import { escalationLoadout, resolveFor } from '../weapons/Loadout.js';
 import { Zones, zoneContains, zonePoint } from '../world/Zones.js';
 import { clamp } from './utils.js';
 
@@ -48,9 +51,9 @@ class EscalationMode {
     return entity.tier >= this.ladder.length - 1;
   }
 
-  /** Spawn loadout for an entity: the sidearm plus the weapon of its current tier. */
+  /** Spawn loadout for an entity: the sidearm plus the weapon of its current tier (Loadout.js resolved shape + `sidearm`). */
   loadoutFor(entity) {
-    return { primary: this.weaponFor(entity.tier), sidearm: 'pistol' };
+    return escalationLoadout(this.weaponFor(entity.tier));
   }
 
   onDeath({ victim, attacker, weapon }) {
@@ -476,9 +479,18 @@ export class Modes {
   get isEscalation() { return this.mode === 'escalation'; }
   get isKoth() { return this.mode === 'koth'; }
 
-  /** Escalation: { primary, sidearm } for an entity, or null in every other mode. */
+  /**
+   * Spawn loadout of an entity, as a resolved loadout { weapons, primary, secondary, ammo, grenades } (weapons/Loadout.js):
+   * Escalation -> pistol + the weapon of the entity's tier (bots too); other modes -> humans (!isBot, so remote humans
+   * count) get the match pool (game.match.pool) applied to their pick (entity.loadoutPick, else settings.playerLoadout);
+   * bots -> null (they keep the Bot arsenal).
+   * @param {object} entity
+   * @returns {object|null}
+   */
   loadoutFor(entity) {
-    return this.mode === 'escalation' ? this.escalation.loadoutFor(entity) : null;
+    if (this.mode === 'escalation') return this.escalation.loadoutFor(entity);
+    if (!entity || entity.isBot) return null;
+    return resolveFor(this.game, entity);
   }
 
   /** Escalation: additive target-score bonus for `enemy` as seen by `bot` (0 in other modes). */

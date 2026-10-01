@@ -18,6 +18,8 @@ import { modeName, modeShort } from './ModeHUD.js';
 import { mountGraphicsInfo } from './GraphicsInfo.js';
 import { resolveQuality } from '../core/GraphicsQuality.js';
 import { CrosshairScreen } from './CrosshairScreen.js';
+import { LoadoutScreen } from './LoadoutScreen.js';
+import { sanitizePool } from '../weapons/Loadout.js';
 
 const SCORE_OPTS = [10, 25, 50, 100, 0];
 const TIME_OPTS = [3, 5, 10, 15, 20, 0];
@@ -152,13 +154,15 @@ export class Menu {
       scoreLimit: Math.max(0, Math.round(s.get('scoreLimit'))),
       timeLimit: Math.max(0, s.get('timeLimit')),
       arsenal: sanitizeArsenal(s.get('botArsenal')),
+      pool: sanitizePool(s.get('loadoutPool')),   // spawn weapon pool (match rule), edited on the Loadouts screen
     };
+    this.loadout = new LoadoutScreen(this);
 
     this.xhs = new CrosshairScreen(this);   // Settings > Crosshair (src/ui/CrosshairScreen.js)
     const root = document.createElement('div');
     root.className = 'k-menu';
     root.innerHTML = `<div class="k-scrim"></div><div class="k-grid"></div>`
-      + this._mainHTML() + this._setupHTML() + this._arsenalHTML() + this._settingsHTML() + this._controlsHTML()
+      + this._mainHTML() + this._setupHTML() + this._arsenalHTML() + this.loadout.screenHTML() + this._settingsHTML() + this._controlsHTML()
       + this.xhs.html() + this._pauseHTML() + this._endHTML();
     g.uiRoot.appendChild(root);
     this.root = root;
@@ -167,6 +171,7 @@ export class Menu {
     this.r = {};
     for (const n of root.querySelectorAll('[data-r]')) this.r[n.dataset.r] = n;
     this.xhs.bind(root);
+    this.loadout.bind(root);
     // keep the loading overlay above the menu
     g.uiRoot.appendChild(this.loading);
 
@@ -222,10 +227,12 @@ export class Menu {
             <input type="range" class="k-range" min="0" max="15" step="1" data-opt="bots"><div class="opt-note" data-r="botsnote"></div></div>
           <div class="opt"><div class="opt-h">Difficulty <output data-r="diffout"></output></div>
             ${seg('difficulty', DIFFICULTIES, v => v)}</div>
+          <div class="opt-pair">
           <div class="opt"><div class="opt-h">Bot arsenal <output data-r="arsout"></output></div>
             <button class="ars-card" data-act="arsenal" title="Choose which weapons bots spawn with">
-              <span class="ars-body"><span class="mix" data-r="arsmix"></span><span class="mix-key" data-r="arskey"></span></span>
-              <b class="ars-go"><span>Edit</span>${ICON.arrow}</b></button></div>
+              <span class="ars-body"><span class="mix" data-r="arsmix"></span><span class="mix-key" data-r="arskey"></span><span class="ars-top" data-r="arstop"></span></span>
+              <b class="ars-go"><span>Edit</span>${ICON.arrow}</b></button></div>${this.loadout.cardHTML()}
+          </div>
           <div class="opt-row">
             <div class="opt"><div class="opt-h">Score limit <output data-r="slout"></output></div>${seg('scoreLimit', SCORE_OPTS, v => (v ? v : '∞'))}</div>
             <div class="opt"><div class="opt-h">Time limit</div>${seg('timeLimit', TIME_OPTS, v => (v ? v + 'm' : '∞'))}</div>
@@ -303,6 +310,7 @@ export class Menu {
         <div class="pz-btns">
           <button class="k-btn primary" data-act="resume"><span class="lbl">Resume</span><b>${ICON.arrow}</b></button>
           <button class="k-btn" data-act="restart"><span class="lbl">Restart match</span></button>
+          <button class="k-btn" data-act="loadout"><span class="lbl">Loadout</span><em>Applies at your next respawn</em></button>
           <button class="k-btn" data-act="settings"><span class="lbl">Settings</span></button>
           <button class="k-btn" data-act="controls"><span class="lbl">Controls</span></button>
           <button class="k-btn danger" data-act="quit"><span class="lbl" data-r="quitlbl">Quit to menu</span></button>
@@ -358,6 +366,7 @@ export class Menu {
         else if (this.screen === 'crosshair') this._go('settings');
         else if (this.screen === 'setup') this._go('main');
         else if (this.screen === 'arsenal') this._go('setup');
+        else if (this.screen === 'loadout') this.loadout.back();
       } else if (e.code === 'Enter' && this.screen === 'setup' && !typing && t && !t.closest('button')) {
         this._deploy();
       }
@@ -374,6 +383,7 @@ export class Menu {
     if (!t || t.disabled) return;
     const g = this.game;
     this._sfx('ui_click', 1);
+    if (this.loadout.onClick(t)) return;   // Loadouts card / pause entry / screen controls
     if (t.dataset.map) { this._setCfg('mapId', t.dataset.map); return; }
     const seg = t.closest('.seg');
     if (seg && t.dataset.v !== undefined) {
@@ -470,7 +480,7 @@ export class Menu {
     // Must run synchronously inside the click handler (pointer lock needs the gesture).
     this.game.startMatch({
       mapId: c.mapId, mode: c.mode, botCount: c.botCount, difficulty: c.difficulty,
-      scoreLimit: c.scoreLimit, timeLimit: c.timeLimit, arsenal: c.arsenal,
+      scoreLimit: c.scoreLimit, timeLimit: c.timeLimit, arsenal: c.arsenal, pool: c.pool,
     });
     if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
   }
@@ -577,9 +587,10 @@ export class Menu {
     const c = this._cfg;
     const def = this._mapDef(c.mapId);
     const lim = c.mode === 'escalation' ? 'FINISH THE LADDER' : c.scoreLimit ? c.scoreLimit + (c.mode === 'koth' ? ' POINTS' : ' FRAGS') : 'NO SCORE LIMIT';
+    const lo = this.loadout.summary();   // spawn loadout rules ('' in Escalation)
     return `${(def.name || c.mapId).toUpperCase()} · ${modeShort(c.mode)} · ${c.botCount} BOT${c.botCount === 1 ? '' : 'S'} · ${c.difficulty.toUpperCase()}`
       + ` · ${lim} · ${c.timeLimit ? c.timeLimit + ' MIN' : 'NO TIME LIMIT'}`
-      + ` · ARSENAL: ${this._arsenalName().toUpperCase()}`;
+      + ` · ARSENAL: ${this._arsenalName().toUpperCase()}${lo ? ' · ' + lo : ''}`;
   }
 
   _fillMain() {
@@ -594,9 +605,10 @@ export class Menu {
   _setCfg(key, value) {
     const c = this._cfg;
     if (key === 'arsenal') value = sanitizeArsenal(value);
+    if (key === 'pool') value = sanitizePool(value);
     c[key] = value;
     const s = this.game.settings;
-    const map = { mapId: 'map', mode: 'mode', botCount: 'bots', difficulty: 'difficulty', scoreLimit: 'scoreLimit', timeLimit: 'timeLimit', arsenal: 'botArsenal' };
+    const map = { mapId: 'map', mode: 'mode', botCount: 'bots', difficulty: 'difficulty', scoreLimit: 'scoreLimit', timeLimit: 'timeLimit', arsenal: 'botArsenal', pool: 'loadoutPool' };
     if (map[key]) s.set(map[key], value);
     this._syncSetup();
   }
@@ -638,6 +650,7 @@ export class Menu {
       : (c.botCount === 0 ? 'Solo practice — nobody shoots back'
         : `You vs ${c.botCount} bot${c.botCount === 1 ? '' : 's'}, ` + (c.mode === 'escalation' ? 'everyone climbs the same ladder' : 'all against all'));
     this._syncArsenal();
+    this.loadout.syncCard();   // Escalation locks it: 'Fixed: the weapon ladder'
     this.r.summary.textContent = this._summary();
     if (this.screen === 'main') this._fillMain();
   }
@@ -662,7 +675,7 @@ export class Menu {
     const preset = matchArsenalPreset(a);
     const r = this.r;
     r.arsout.textContent = preset ? preset.name : 'Custom';
-    r.arsmix.innerHTML = this._mixBar(pct, 8);
+    r.arsmix.innerHTML = this._mixBar(pct, 20);   // half-width card (beside Loadouts): label only the big shares
     r.arskey.innerHTML = ARSENAL_IDS.map(id =>
       `<span class="mk${pct[id] ? '' : ' off'}" style="--wc:${arsColor(id)}"><b>${pct[id]}%</b><small>${arsShort(id)}</small></span>`).join('');
     // editor
@@ -686,6 +699,7 @@ export class Menu {
     r.arsnote.textContent = note;
     const top = ARSENAL_IDS.filter(id => pct[id] > 0).sort((x, y) => pct[y] - pct[x]).slice(0, 5);
     r.arssum.textContent = `${(preset ? preset.name : 'Custom').toUpperCase()} · ` + top.map(id => `${arsShort(id).toUpperCase()} ${pct[id]}%`).join(' · ');
+    r.arstop.textContent = top.slice(0, 2).map(id => `${arsShort(id)} ${pct[id]}%`).join(' · ');
   }
 
   _paintRange(input) {
@@ -761,6 +775,7 @@ export class Menu {
       + row('Score', score)
       + row('Time', Number.isFinite(m.timeLeft) ? fmtTime(m.timeLeft) + ' left' : fmtTime(g.time - m.startTime, false) + ' elapsed')
       + row('Bots', `${m.botCount} · ${esc(m.difficulty)}`);
+    this.loadout.syncPause();
   }
 
   _fillEnd(m) {

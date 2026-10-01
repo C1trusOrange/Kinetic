@@ -22,11 +22,25 @@ export function newInventory() {
   return inv;
 }
 
-/** Spawn loadout: frag 2 + smoke 1 + one random of vortex / static / kinetic. */
-export function spawnLoadout(inv) {
+/**
+ * Spawn grenades (a loadout pool's `grenades` option, see Loadout.js). Overwrites every count of `inv`.
+ *   'standard' (default, also any unknown mode)  frag 2 + smoke 1 + one of vortex / static / kinetic: `special` when
+ *              given (e.g. decided by a multiplayer host), else random
+ *   'frag'     the frag start count only
+ *   'none'     no grenades
+ * @param {Record<string, number>} inv per-type count table
+ * @param {string} [mode='standard']
+ * @param {string|null} [special] vortex | static | kinetic
+ * @returns {Record<string, number>} inv
+ */
+export function spawnLoadout(inv, mode = 'standard', special = null) {
+  if (mode === 'none' || mode === 'frag') {
+    for (const t of GRENADE_ORDER) inv[t] = mode === 'frag' && t === 'frag' ? GRENADE_TYPES.frag.start || 0 : 0;
+    return inv;
+  }
   for (const t of GRENADE_ORDER) inv[t] = GRENADE_TYPES[t].start || 0;
   const pool = GRENADE_SPECIALS.filter(t => t !== 'smoke');
-  const pick = pool[(Math.random() * pool.length) | 0];
+  const pick = pool.includes(special) ? special : pool[(Math.random() * pool.length) | 0];
   inv[pick] = Math.max(inv[pick], 1);
   return inv;
 }

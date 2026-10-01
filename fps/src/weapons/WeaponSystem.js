@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { WEAPONS, WEAPON_ORDER, GRENADE_TYPES, MELEE } from './WeaponDefs.js';
 import { newInventory, spawnLoadout, addToInventory, nextHeldType } from './GrenadeTypes.js';
+import { resolveFor, sanitizeLoadout, spawnReserve } from './Loadout.js';
 import { createWeaponModel, createGrenadeModel } from './WeaponModels.js';
 import { clamp, lerp, damp, approach, wrapAngle, randRange, randomInCone } from '../core/utils.js';
 import { GRAVITY } from '../core/constants.js';
@@ -237,6 +238,8 @@ export class WeaponSystem {
     this.throwing = false;
     this.meleeing = false;
 
+    /** Resolved spawn loadout of the current life (weapons/Loadout.js shape; set by onPlayerSpawn), null before the first spawn. */
+    this.loadout = null;
     /** Per-weapon inventory: { owned, ammo, reserve }. */
     this.inv = {};
     for (const id of WEAPON_ORDER) this.inv[id] = { owned: false, ammo: 0, reserve: 0 };
@@ -607,23 +610,33 @@ export class WeaponSystem {
     this._resetState();
   }
 
-  /** Default loadout: pistol, rifle, shotgun (full reserve) + start grenades; rifle selected. */
-  onPlayerSpawn() {
+  /**
+   * Spawn inventory. `loadout` = an explicit resolved loadout ({ weapons, primary, secondary?, ammo, grenades }, e.g.
+   * pushed by a multiplayer host); by default Modes.loadoutFor resolves it (Escalation: pistol + the tier weapon; else
+   * the match pool applied to the player's pick, see weapons/Loadout.js). The defaults reproduce the original spawn:
+   * pistol, rifle, shotgun at reserveStart + standard grenades, rifle drawn, Q -> pistol. Always sanitised (never empty).
+   * @param {object|null} [loadout]
+   */
+  onPlayerSpawn(loadout = null) {
     this._resetState();
-    const lo = this.game.modes && this.game.modes.loadoutFor(this.game.player);   // Escalation: sidearm + the weapon of the current tier
-    const start = lo ? lo.primary : 'rifle';
+    const g = this.game;
+    const p = g.player;
+    const lo = sanitizeLoadout(loadout || (g.modes && g.modes.loadoutFor(p)) || resolveFor(g, p));
+    const start = lo.primary;
     this._escWant = null;
     for (const id of WEAPON_ORDER) {
+      const def = WEAPONS[id];
       const inv = this.inv[id];
-      inv.owned = lo ? id === 'pistol' || id === lo.primary : id === 'pistol' || id === 'rifle' || id === 'shotgun';
-      inv.ammo = inv.owned ? WEAPONS[id].magSize : 0;
-      inv.reserve = inv.owned ? WEAPONS[id].reserveStart : 0;
+      inv.owned = lo.weapons.includes(id);
+      inv.ammo = inv.owned ? def.magSize : 0;
+      inv.reserve = inv.owned ? spawnReserve(def, lo.ammo) : 0;
     }
     this._rebuildOwned();
-    spawnLoadout(this.nades);
+    spawnLoadout(this.nades, lo.grenades);
     this.grenadeType = 'frag';
     this._throwType = 'frag';
-    this.lastId = 'pistol';
+    this.lastId = lo.secondary;
+    this.loadout = lo;
     this._selectVisual(start);
     this.currentId = start;
     this.current = WEAPONS[start];
@@ -632,10 +645,11 @@ export class WeaponSystem {
     this.switchState = S_IN;
     this.equipAmount = 0;
     this.switching = true;
-    const p = this.game.player;
     this._lastYaw = p.yaw;
     this._lastPitch = p.pitch;
-    this.game.events.emit('weapon:switch', { shooter: p, weapon: start });
+    // a trigger held through the respawn must be released before a drawn charge weapon (Javelin) charges / auto-fires
+    this._chargeNeedRelease = !!(WEAPONS[start].charge && g.input && g.input.action('fire'));
+    g.events.emit('weapon:switch', { shooter: p, weapon: start });
   }
 
   _resetState() {
