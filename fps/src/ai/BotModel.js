@@ -1669,12 +1669,8 @@ export class BotShadowCaster {
       const mesh = s.mesh;
       mesh.count = s.n;
       mesh.visible = s.n > 0;
-      if (s.n > 0) {
-        const im = mesh.instanceMatrix;
-        im.clearUpdateRanges();
-        im.addUpdateRange(0, s.n * 16);
-        im.needsUpdate = true;
-      }
+      // whole-buffer upload (cap x 64 bytes, ~2 KB): an update range would allocate a range object per slot per frame
+      if (s.n > 0) mesh.instanceMatrix.needsUpdate = true;
     }
   }
 }
