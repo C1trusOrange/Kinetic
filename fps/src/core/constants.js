@@ -65,8 +65,8 @@ export const HILL = {
 /** Respawn delay in seconds. */
 export const RESPAWN_DELAY = { player: 3.0, bot: 2.5 };
 
-/** Seconds of damage immunity after spawning (broken early by firing). */
-export const SPAWN_PROTECTION = 1.5;
+/** Seconds of damage immunity after spawning (broken early by firing, throwing a grenade or dealing damage). */
+export const SPAWN_PROTECTION = 3.0;
 
 /**
  * Graphics quality presets (selected by settings.quality; 'auto' picks one from the GPU, see core/GraphicsQuality.js).

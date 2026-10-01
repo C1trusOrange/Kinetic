@@ -8,11 +8,24 @@ import { mulberry32 } from './utils.js';
  *
  * The system degrades to a silent no-op when WebAudio is unavailable or the context has not been
  * unlocked by a user gesture yet (headless tests never log errors because of it).
+ *
+ * Music is the exception to synthesis: the tracks in music/ (MUSIC_TRACKS) are fetched, decoded and played through
+ * their own gain (music volume x master volume), bypassing the effects compressor (playMusic / stopMusic).
  */
 
 const SR = 32000;
 const MAX_VOICES = 32;
 const NOISE_LEN = SR * 2;
+
+/**
+ * Music tracks (the one exception to "every sound is synthesised"): files in music/, fetched and decoded on first use.
+ * menu loops on the main menu; victory / defeat play once at the end of a match.
+ */
+const MUSIC_TRACKS = {
+  menu: 'music/kinetic_menu.ogg',
+  victory: 'music/kinetic_victory.ogg',
+  defeat: 'music/kinetic_defeat.ogg',
+};
 
 // ================================================================== shared DSP data
 
@@ -1178,6 +1191,9 @@ export class AudioSystem {
     this.buffers = new Map();
     this.stats = { sounds: 0, buffers: 0, bytes: 0, ms: 0 };
     this.masterVolume = 0.8;
+    this.musicVolume = 0.6;
+    /** Music state: track loads (name -> Promise<AudioBuffer|null>), the playing track, a token that cancels stale requests. */
+    this._music = { loading: new Map(), current: null, token: 0 };
     this.ctx = null;
     this.voices = [];
     this.loops = new Set();
@@ -1273,6 +1289,11 @@ export class AudioSystem {
     master.connect(comp);
     comp.connect(lp);
     lp.connect(ctx.destination);
+    // music skips the effects compressor (gunfire would pump it) and the pause muffle; it follows master volume
+    const musicOut = ctx.createGain();
+    musicOut.gain.value = this._musicGain();
+    musicOut.connect(ctx.destination);
+    this.musicOut = musicOut;
     this.master = master;
     this.sfx = sfx;
     this.loopBus = loopBus;
@@ -1287,6 +1308,89 @@ export class AudioSystem {
   setMasterVolume(v) {
     this.masterVolume = Number.isFinite(v) ? v : 0.8;
     if (this.master) this.master.gain.setTargetAtTime(this._gain(this.masterVolume), this.ctx.currentTime, 0.02);
+    if (this.musicOut) this.musicOut.gain.setTargetAtTime(this._musicGain(), this.ctx.currentTime, 0.02);
+  }
+
+  /** Music volume 0..1 (on top of the master volume). */
+  setMusicVolume(v) {
+    this.musicVolume = Number.isFinite(v) ? v : 0.6;
+    if (this.musicOut) this.musicOut.gain.setTargetAtTime(this._musicGain(), this.ctx.currentTime, 0.02);
+  }
+
+  _musicGain() {
+    return this._gain(this.masterVolume) * this._gain(this.musicVolume);
+  }
+
+  // ---------------------------------------------------------------- music
+
+  /**
+   * Play a music track (MUSIC_TRACKS key), fading out whatever plays now. A looping track that is already playing
+   * keeps going. Safe before the first user gesture: the context starts suspended and the track begins once it runs.
+   * @param {string} name
+   * @param {{loop?: boolean, fadeIn?: number}} [o]
+   */
+  playMusic(name, { loop = true, fadeIn = 0.8 } = {}) {
+    if (!this.enabled || !MUSIC_TRACKS[name]) return;
+    const m = this._music;
+    if (m.current && m.current.name === name && m.current.loop && loop) return;
+    this.stopMusic(0.8);
+    const token = m.token;
+    this.unlock();
+    this._loadMusic(name).then(buf => {
+      const ctx = this.ctx;
+      if (!buf || !ctx || token !== m.token) return;
+      const src = ctx.createBufferSource();
+      src.buffer = buf;
+      src.loop = loop;
+      const g = ctx.createGain();
+      g.gain.setValueAtTime(0, ctx.currentTime);
+      g.gain.linearRampToValueAtTime(1, ctx.currentTime + fadeIn);
+      src.connect(g);
+      g.connect(this.musicOut);
+      const cur = { name, loop, src, gain: g };
+      src.onended = () => {
+        if (m.current === cur) m.current = null;
+        try { g.disconnect(); } catch { /* already gone */ }
+      };
+      src.start();
+      m.current = cur;
+    });
+  }
+
+  /** Fade the current track out; a track that is still loading will not start. @param {number} [fade] seconds */
+  stopMusic(fade = 0.8) {
+    const m = this._music;
+    m.token++;
+    const cur = m.current;
+    m.current = null;
+    if (!cur || !this.ctx) return;
+    const t = this.ctx.currentTime;
+    const gp = cur.gain.gain;
+    gp.cancelScheduledValues(t);
+    gp.setValueAtTime(gp.value, t);
+    gp.linearRampToValueAtTime(0, t + fade);
+    try { cur.src.stop(t + fade + 0.05); } catch { /* already stopped */ }
+  }
+
+  /** Fetch + decode tracks ahead of time (e.g. victory / defeat while a match loads). @param {string[]} names */
+  preloadMusic(names) {
+    if (!this.enabled) return;
+    this.unlock();
+    for (const n of names) if (MUSIC_TRACKS[n]) this._loadMusic(n);
+  }
+
+  /** @returns {Promise<AudioBuffer|null>} the decoded track (null when it is missing or cannot be decoded) */
+  _loadMusic(name) {
+    const m = this._music;
+    let p = m.loading.get(name);
+    if (!p) {
+      p = fetch(MUSIC_TRACKS[name])
+        .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.arrayBuffer(); })
+        .then(data => this.ctx.decodeAudioData(data))
+        .catch(err => { console.warn(`[audio] music '${name}' unavailable:`, err && err.message); return null; });
+      m.loading.set(name, p);
+    }
+    return p;
   }
 
   _warnUnknown(name) {

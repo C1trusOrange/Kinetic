@@ -408,6 +408,14 @@ kbd {
 .d-w { display: inline-flex; align-items: center; gap: 0.4em; font-size: 0.8em; color: #dfeaf3; text-transform: uppercase; }
 .d-w svg { width: 2.6em; height: 0.95em; }
 .d-hp { margin-top: 0.4em; font: 600 0.8em var(--k-font); letter-spacing: 0.26em; color: rgba(255, 255, 255, 0.55); }
+.d-dmg { display: grid; grid-template-columns: minmax(8em, auto) 6em 6em; column-gap: 1.2em; row-gap: 0.18em; justify-content: center; margin-top: 1.1em; font: 600 0.95em var(--k-cond); letter-spacing: 0.06em; color: #e8f1f8; }
+.d-dmg:empty { display: none; }
+.d-dmg > div { display: contents; }
+.d-dmg b { text-align: left; font-weight: 700; overflow: hidden; text-overflow: ellipsis; }
+.d-dmg span { text-align: right; }
+.d-dmg small { font-size: 0.75em; color: rgba(255, 255, 255, 0.55); }
+.d-dmg .dd-h span { font: 600 0.62em var(--k-font); letter-spacing: 0.3em; color: rgba(255, 255, 255, 0.5); }
+.d-dmg .dd-0 { color: rgba(255, 255, 255, 0.3); }
 .d-count { margin-top: 1.5em; }
 .d-count small { display: block; font: 600 0.75em var(--k-font); letter-spacing: 0.4em; opacity: 0.7; }
 .d-count b { font: 700 3.4em/1.1 var(--k-cond); }
@@ -616,6 +624,9 @@ kbd {
 .k-toggle:hover, .k-toggle:focus-visible { outline: none; filter: brightness(1.2); }
 .k-text { width: 100%; box-sizing: border-box; padding: 0.55em 0.8em; font: 600 1em var(--k-font); letter-spacing: 0.06em; color: #fff; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(61, 224, 255, 0.3); outline: none; user-select: text; -webkit-user-select: text; }
 .k-text:focus { border-color: var(--k-cyan); background: rgba(61, 224, 255, 0.1); }
+.k-color { position: relative; display: inline-block; width: 3.4em; height: 1.6em; cursor: pointer; background: var(--sw, #fff); clip-path: polygon(0.35em 0, 100% 0, calc(100% - 0.35em) 100%, 0 100%); box-shadow: inset 0 0 0 0.1em rgba(0, 0, 0, 0.35); transition: transform 0.12s; }
+.k-color:hover { transform: translateY(-0.12em); }
+.k-color input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; opacity: 0; cursor: pointer; }
 
 /* settings */
 .s-settings, .s-controls { align-items: center; }

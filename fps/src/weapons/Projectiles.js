@@ -177,6 +177,7 @@ export class Projectiles {
    *        type: 'frag' (default) | 'vortex' | 'static' | 'kinetic' | 'smoke'
    */
   spawnGrenade({ owner, origin, velocity, fuse, type = 'frag' }) {
+    if (owner && owner.breakSpawnProtection) owner.breakSpawnProtection();   // a throw is an attack
     const g = this._grenadePool.find(x => !x.active) || (this._grenadePool.push(this._makeGrenade()), this._grenadePool[this._grenadePool.length - 1]);
     g.active = true;
     g.owner = owner || null;

@@ -11,7 +11,7 @@ tools/netserver.py on the same port (WebSocket at /ws, JSON at /api/lan, /api/ro
     --open       open the browser once the server is listening (http://localhost:PORT + PATH)
     --lan        accept connections from the local network too (binds 0.0.0.0) and print the address
                  friends should open. Other machines may only load the game itself (index.html,
-                 style.css, src/, vendor/) and use /api/* and /ws; this PC keeps full access.
+                 style.css, src/, vendor/, music/) and use /api/* and /ws; this PC keeps full access.
     --bind ADDR  bind this address instead (default 127.0.0.1, or 0.0.0.0 with --lan); any address other
                  than loopback implies --lan (other machines only get the game files)
     --quiet      do not print room / player events
@@ -39,7 +39,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # what other machines may fetch in --lan mode (paths relative to ROOT; directories never list)
 PUBLIC_FILES = ('index.html', 'style.css')
-PUBLIC_DIRS = ('src', 'vendor')
+PUBLIC_DIRS = ('src', 'vendor', 'music')
 
 
 class Handler(http.server.SimpleHTTPRequestHandler):
@@ -106,7 +106,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
 def public_path_allowed(fs_path, root=ROOT):
     """True if a file (as resolved by the request handler) may be served to another machine:
-    index.html, style.css and regular files under src/ and vendor/. Directories never are."""
+    index.html, style.css and regular files under src/, vendor/ and music/. Directories never are."""
     try:
         target = os.path.normcase(os.path.realpath(fs_path))
         rel = os.path.relpath(target, os.path.normcase(os.path.realpath(root)))

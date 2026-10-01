@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { getMaterial, getMaterialInfo, MATERIAL_NAMES } from './Textures.js';
+import { BLOCK_ALL, BLOCK_MOVE, BLOCK_SHOTS } from './Collision.js';
 
 /**
  * MapBuilder: turns `def.solids` (see ARCHITECTURE.md 6.3) into
@@ -94,6 +95,8 @@ export class MapBuilder {
     this.navTris = [];
     this.navFlags = [];
     this._curNoFloor = false;
+    /** What the collision triangles emitted right now stop (Collision BLOCK_*; railings switch it). */
+    this._curBlocks = BLOCK_ALL;
     this.collisionTriCount = 0;
     this.visualTriCount = 0;
     this.geoBounds = new THREE.Box3();
@@ -257,8 +260,9 @@ export class MapBuilder {
     _e1.subVectors(b, a);
     _e2.subVectors(c, a);
     if (_e1.cross(_e2).lengthSq() < 1e-12) return;
-    this.collision.addTriangle(a, b, c, surface);
+    this.collision.addTriangle(a, b, c, surface, this._curBlocks);
     this.collisionTriCount++;
+    if (this._curBlocks === BLOCK_SHOTS) return;   // shot-only detail (railing posts): nothing a body stands on or bumps into
     this.navTris.push(a.x, a.y, a.z, b.x, b.y, b.z, c.x, c.y, c.z);
     this.navFlags.push(this._curNoFloor ? 1 : 0);
   }
@@ -736,14 +740,20 @@ export class MapBuilder {
     this._railingAt(S, a, b, height, S.collide);
   }
 
-  /** Posts + rails + kick plate along a->b (y = walking surface). Collision = thin wall. */
+  /**
+   * Posts + rails + kick plate along a->b (y = walking surface). Collision: a thin wall that only bodies collide
+   * with (BLOCK_MOVE), plus the posts and rails themselves for shots and sight (BLOCK_SHOTS) - bullets, projectiles
+   * and line of sight pass through the gaps.
+   */
   _railingAt(S, a, b, height, collide) {
     const len = a.distanceTo(b);
     const dir = b.clone().sub(a).normalize();
     const posts = Math.max(2, Math.ceil(len / 2.0) + 1);
     const mat = S.mat;
-    const rail = { mat, collide: false };
+    const rail = { mat, collide };
     const up = V(0, height, 0);
+    const blocks = this._curBlocks;
+    this._curBlocks = BLOCK_SHOTS;
     for (let k = 0; k < posts; k++) {
       const p = a.clone().lerp(b, k / (posts - 1));
       this._beam(S, p, p.clone().add(up), 0.07, 0.07, { ...rail, skip: [F_BOTTOM] });
@@ -753,12 +763,14 @@ export class MapBuilder {
     this._beam(S, a.clone().add(V(0, height * 0.52, 0)), b.clone().add(V(0, height * 0.52, 0)), 0.045, 0.04, { ...rail, skip: [0, 1] });
     this._beam(S, a.clone().add(V(0, 0.08, 0)), b.clone().add(V(0, 0.08, 0)), 0.03, 0.14, { ...rail, skip: [0, 1] });
     if (collide) {
-      // thin collision wall along the rail (also blocks the top rail height)
+      // thin movement wall along the rail (also blocks the top rail height)
+      this._curBlocks = BLOCK_MOVE;
       const mid = a.clone().add(b).multiplyScalar(0.5).add(V(0, height / 2, 0));
       const M = new THREE.Matrix4().makeRotationY(Math.atan2(-dir.z, dir.x));
       M.setPosition(mid.x, mid.y, mid.z);
       this._box(this._withMatrix(S, M), 0, 0, 0, len, height, 0.12, { visual: false, collide: true });
     }
+    this._curBlocks = blocks;
   }
 
   _sCatwalk(s, i) {

@@ -142,6 +142,7 @@ const TEMPLATE = () => `
     <div class="d-tag" data-r="dtag">ELIMINATED</div>
     <div class="d-by" data-r="dby"></div>
     <div class="d-hp" data-r="dhp"></div>
+    <div class="d-dmg" data-r="ddmg"></div>
     <div class="d-count"><small>RESPAWN IN</small><b data-r="dcount">3.0</b></div>
     <div class="d-prog"><i data-r="dprog"></i></div>
   </div>
@@ -184,6 +185,8 @@ export class HUD {
     this._tenWarned = false;
     this._scoreDirty = false;
     this._deathInfo = null;
+    /** Damage traded with each enemy during the player's current life (death screen report). See _logDamage. */
+    this._dmgLog = new Map();
     this._leaderId = -1;
     this._boardSig = '';
     this._boardT = 0;
@@ -237,6 +240,7 @@ export class HUD {
       ev.on('weapon:switch', e => this._onSwitch(e)),
       ev.on('grenade:switch', e => this._onGrenadeSwitch(e)),
       ev.on('pickup', e => this._onPickup(e)),
+      ev.on('ammo:kill', e => this._onKillAmmo(e)),
       ev.on('reflect', e => this._onReflect(e)),
       ev.on('match:end', m => this._onMatchEnd(m)),
       ev.on('player:grapple', e => this._onGrapple(e)),
@@ -325,6 +329,7 @@ export class HUD {
     this._minuteWarned = false;
     this._tenWarned = false;
     this._deathInfo = null;
+    this._dmgLog.clear();
     this._hitAcc.dirty = false;
     this._boardSig = '';
     this._leaderId = -1;
@@ -372,6 +377,7 @@ export class HUD {
   _onDamage(e) {
     const g = this.game, p = g.player;
     if (!p) return;
+    this._logDamage(e, p);
     if (e.attacker === p && e.target !== p) {
       const a = this._hitAcc;
       a.amount += e.amount || 0;
@@ -429,8 +435,40 @@ export class HUD {
     }
   }
 
+  /**
+   * Count damage between the player and another entity for the death screen ("93 in 4"). A hit is one damage event,
+   * except that events of one weapon in the same frame (shotgun pellets, a blast) count as a single hit.
+   */
+  _logDamage(e, p) {
+    let other, side;
+    if (e.attacker === p && e.target && e.target !== p) { other = e.target; side = 'g'; }
+    else if (e.target === p && e.attacker && e.attacker !== p) { other = e.attacker; side = 't'; }
+    else return;
+    let r = this._dmgLog.get(other);
+    if (!r) {
+      r = { name: other.name || '', color: hexOf(other.color), g: 0, gHits: 0, gAt: -1, gW: '', t: 0, tHits: 0, tAt: -1, tW: '' };
+      this._dmgLog.set(other, r);
+    }
+    const now = this.game.time;
+    r[side] += e.amount || 0;
+    if (r[side + 'At'] !== now || r[side + 'W'] !== e.weapon) r[side + 'Hits']++;
+    r[side + 'At'] = now;
+    r[side + 'W'] = e.weapon;
+  }
+
+  /** Death screen table: damage given to / taken from each enemy this life, the killer first. */
+  _damageReportHTML(killerName) {
+    const rows = [...this._dmgLog.values()].filter(r => r.g >= 0.5 || r.t >= 0.5);
+    if (!rows.length) return '';
+    rows.sort((a, b) => (b.name === killerName) - (a.name === killerName) || (b.t + b.g) - (a.t + a.g));
+    const cell = (dmg, hits) => (dmg >= 0.5 ? `<span>${Math.round(dmg)}<small> in ${hits}</small></span>` : '<span class="dd-0">—</span>');
+    return '<div class="dd-h"><span></span><span>GIVEN</span><span>TAKEN</span></div>'
+      + rows.slice(0, 6).map(r => `<div class="dd-r"><b style="color:${esc(r.color)}">${esc(r.name)}</b>${cell(r.g, r.gHits)}${cell(r.t, r.tHits)}</div>`).join('');
+  }
+
   _onSpawn(e) {
     if (e && e.entity === this.game.player) {
+      this._dmgLog.clear();
       this._deathInfo = null;
       this._c.deathOn = undefined;
       for (const d of this._di) { d.t = 99; d.attacker = null; }
@@ -488,6 +526,17 @@ export class HUD {
     const t = document.createElement('div');
     t.className = 'toast tt-' + cls;
     t.innerHTML = `<span class="t-ic">${icon}</span><span>${html}</span>`;
+    const box = this.e.toasts;
+    box.appendChild(t);
+    while (box.children.length > TOAST_MAX) box.firstElementChild.remove();
+  }
+
+  /** Ammo taken from a kill (WeaponSystem._killAmmo): one toast listing every weapon that got rounds. */
+  _onKillAmmo(e) {
+    if (!e || e.entity !== this.game.player || !e.grants || !e.grants.length) return;
+    const t = document.createElement('div');
+    t.className = 'toast tt-ammo';
+    t.innerHTML = `<span class="t-ic">${ICON.ammo}</span><span>${e.grants.map(g => `<b>+${g.amount}</b> ${esc(weaponName(g.weapon)).toUpperCase()}`).join(' ')}</span>`;
     const box = this.e.toasts;
     box.appendChild(t);
     while (box.children.length > TOAST_MAX) box.firstElementChild.remove();
@@ -1050,6 +1099,7 @@ export class HUD {
             + `<span class="d-w">${weaponIcon(d.weapon)}${esc(weaponName(d.weapon))}${d.headshot ? ' · HEADSHOT' : ''}</span>`;
           e.dhp.textContent = d.hp >= 0 ? `KILLER HEALTH ${d.hp}` : 'KILLER DOWN';
         }
+        e.ddmg.innerHTML = this._damageReportHTML(d && !d.self ? d.name : null);
       }
     }
     if (on) {

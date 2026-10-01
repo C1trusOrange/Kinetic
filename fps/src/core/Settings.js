@@ -1,5 +1,5 @@
 import { DEFAULT_ARSENAL, sanitizeArsenal, arsenalEquals } from '../ai/BotConfig.js';
-import { XH_DEFAULTS, sanitizeCrosshairSettings, sanitizeCrosshairValue, sanitizeAdsModes, adsModesEqual } from '../ui/Crosshair.js';
+import { XH_DEFAULTS, sanitizeCrosshairSettings, sanitizeCrosshairValue, sanitizeAdsModes, adsModesEqual, normalizeColor } from '../ui/Crosshair.js';
 import { DEFAULT_POOL, DEFAULT_PICK, sanitizePool, sanitizePick, poolEquals, pickEquals } from '../weapons/Loadout.js';
 
 const STORAGE_KEY = 'kinetic.settings.v1';
@@ -7,10 +7,13 @@ const STORAGE_KEY = 'kinetic.settings.v1';
 export const DEFAULT_SETTINGS = {
   // controls
   sensitivity: 1.0,      // multiplier on the base look speed
+  adsSensitivity: 1.0,   // extra multiplier while aiming down sights (on top of each weapon's own zoom sensitivity)
   invertY: false,
   // view
   fov: 100,              // horizontal field of view in degrees (converted to vertical per aspect)
   viewBob: true,
+  enemyOutline: true,    // coloured line around enemy bots (never through walls)
+  outlineColor: '#ff2e3a',
   showFps: false,
   glow: 0.65,            // bloom / light diffusion amount, 0..1 (x the map's bloom strength); needs 'medium' or 'high' quality
   brightness: 1.0,       // exposure multiplier, 0.7..1.3 (x the map's exposure)
@@ -19,8 +22,10 @@ export const DEFAULT_SETTINGS = {
   lowLatency: true,      // frames-in-flight limiter: skip a rAF while 2-3 earlier frames are still on the GPU (core/FrameLimiter.js)
   // audio
   masterVolume: 0.8,
+  musicVolume: 0.6,      // menu / victory / defeat music, on top of the master volume
   // match defaults (remembered from the last match)
   playerName: 'Player',
+  playerColor: '#9fe8ff', // your accent colour: first-person arm lights, and your name / marker in free-for-all modes
   map: 'foundry',
   mode: 'ffa',           // 'ffa' | 'tdm'
   bots: 7,
@@ -35,6 +40,9 @@ export const DEFAULT_SETTINGS = {
   loadoutPool: sanitizePool(DEFAULT_POOL),     // { weapons: allowed ids, slots: 1..9, ammo: 'standard'|'full', grenades: 'standard'|'frag'|'none' }
   playerLoadout: sanitizePick(DEFAULT_PICK),   // { weapons: ids in the player's order, primary: id drawn at spawn }
 };
+
+/** '#rrggbb' settings (validated on load and set). */
+const COLOR_KEYS = ['outlineColor', 'playerColor'];
 
 function clampNum(v, lo, hi, fallback) {
   return Number.isFinite(v) ? Math.min(hi, Math.max(lo, v)) : fallback;
@@ -67,6 +75,8 @@ export class Settings {
         this.data.glow = clampNum(this.data.glow, 0, 1, DEFAULT_SETTINGS.glow);
         this.data.brightness = clampNum(this.data.brightness, 0.7, 1.3, DEFAULT_SETTINGS.brightness);
         this.data.renderScale = clampNum(this.data.renderScale, 0.5, 1, DEFAULT_SETTINGS.renderScale);
+        this.data.adsSensitivity = clampNum(this.data.adsSensitivity, 0.2, 2, DEFAULT_SETTINGS.adsSensitivity);
+        for (const k of COLOR_KEYS) this.data[k] = normalizeColor(this.data[k]) || DEFAULT_SETTINGS[k];
         // crosshair: style / colour / slider ranges, and the per-weapon ADS map (an object key, like botArsenal)
         sanitizeCrosshairSettings(this.data);
       }
@@ -97,6 +107,9 @@ export class Settings {
     } else if (key === 'playerLoadout') {
       value = sanitizePick(value);
       if (pickEquals(this.data.playerLoadout, value)) return;
+    } else if (COLOR_KEYS.includes(key)) {
+      value = normalizeColor(value) || DEFAULT_SETTINGS[key];
+      if (this.data[key] === value) return;
     } else if (this.data[key] === value) return;
     this.data[key] = value;
     this.save();

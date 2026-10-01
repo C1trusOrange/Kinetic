@@ -59,9 +59,12 @@ const LOADING_TIPS = [
 const SETTINGS_SPEC = [
   { group: 'Gameplay', col: 0, items: [
     { key: 'sensitivity', label: 'Mouse sensitivity', type: 'range', min: 0.1, max: 3, step: 0.05, fmt: v => v.toFixed(2) },
+    { key: 'adsSensitivity', label: 'ADS sensitivity', hint: 'Multiplier while aiming', type: 'range', min: 0.2, max: 2, step: 0.05, fmt: v => v.toFixed(2) + '×' },
     { key: 'invertY', label: 'Invert Y axis', type: 'toggle' },
     { key: 'fov', label: 'Field of view', hint: 'Horizontal', type: 'range', min: 70, max: 120, step: 1, fmt: v => Math.round(v) + '°' },
     { key: 'viewBob', label: 'View bob', type: 'toggle' },
+    { key: 'enemyOutline', label: 'Enemy outlines', hint: 'Not through walls', type: 'toggle' },
+    { key: 'outlineColor', label: 'Outline colour', type: 'color' },
   ] },
   { group: 'Video', col: 1, items: [
     { key: 'quality', label: 'Graphics quality', type: 'seg', options: ['auto', 'low', 'medium', 'high', 'ultra'] },
@@ -73,9 +76,11 @@ const SETTINGS_SPEC = [
   ] },
   { group: 'Audio', col: 0, items: [
     { key: 'masterVolume', label: 'Master volume', type: 'range', min: 0, max: 1, step: 0.05, fmt: v => Math.round(v * 100) + '%' },
+    { key: 'musicVolume', label: 'Music volume', type: 'range', min: 0, max: 1, step: 0.05, fmt: v => Math.round(v * 100) + '%' },
   ] },
   { group: 'Profile', col: 1, items: [
     { key: 'playerName', label: 'Player name', type: 'text', maxlength: 16 },
+    { key: 'playerColor', label: 'Your colour', hint: 'Arm lights, name', type: 'color' },
   ] },
 ];
 
@@ -275,6 +280,7 @@ export class Menu {
       else if (it.type === 'toggle') ctl = `<button class="k-toggle" data-set="${it.key}" role="switch"><i></i></button>`;
       else if (it.type === 'seg') ctl = `<div class="seg" data-set="${it.key}">${it.options.map(o => `<button data-v="${o}">${o}</button>`).join('')}</div>`;
       else if (it.type === 'text') ctl = `<input type="text" class="k-text" data-set="${it.key}" maxlength="${it.maxlength}" spellcheck="false" autocomplete="off">`;
+      else if (it.type === 'color') ctl = `<span class="k-color"><input type="color" data-set="${it.key}" aria-label="${it.label}"></span>`;
       // A seg row must not be a <label>: clicking its text would click the label's first button (quality -> low).
       const tag = it.type === 'seg' ? 'div' : 'label';
       return `<${tag} class="set-row"><span class="set-l">${it.label}${it.hint ? `<small>${it.hint}</small>` : ''}</span><span class="set-c">${ctl}</span></${tag}>`;
@@ -452,6 +458,9 @@ export class Menu {
       if (out && spec) out.textContent = spec.fmt(Number(t.value));
     } else if (t.type === 'text') {
       g.settings.set(key, t.value.trim().slice(0, 16));
+    } else if (t.type === 'color') {
+      g.settings.set(key, t.value);
+      t.parentElement.style.setProperty('--sw', g.settings.get(key));
     }
   }
 
@@ -732,6 +741,9 @@ export class Menu {
           for (const b of el.children) b.classList.toggle('on', b.dataset.v === String(v));
         } else if (it.type === 'text') {
           if (document.activeElement !== el) el.value = String(v ?? '');
+        } else if (it.type === 'color') {
+          el.value = String(v);
+          el.parentElement.style.setProperty('--sw', String(v));
         }
       }
     }

@@ -4,7 +4,7 @@ import { DIFFICULTIES, isTeamMode } from '../core/constants.js';
 import { Bot } from './Bot.js';
 import { asPos } from './BotConfig.js';
 import { pullFromEdges } from './BotNav.js';
-import { BotShadowCaster } from './BotModel.js';
+import { BotShadowCaster, BotOutlines } from './BotModel.js';
 import { WEAPON_ORDER } from '../weapons/WeaponDefs.js';
 
 const _o = new THREE.Vector3();
@@ -56,6 +56,12 @@ export class BotManager {
     this._errors = new Map();
     /** Every bot's shadow drawn as ~12 instanced meshes (see BotShadowCaster); added to the scene in spawnBots. */
     this.shadows = new BotShadowCaster({ renderer: game.renderer });
+    /** Outlines around enemy bots (settings enemyOutline / outlineColor); added to the scene in spawnBots. */
+    this.outlines = new BotOutlines();
+    if (game.settings) {
+      this.outlines.setEnabled(game.settings.get('enemyOutline') !== false);
+      this.outlines.setColor(game.settings.get('outlineColor'));
+    }
   }
 
   /** Subscribe to the shared events bots react to. */
@@ -185,7 +191,11 @@ export class BotManager {
       bot.setup({ name, color, team, difficulty: diff });
       // every weapon model up front: a respawn / pickup never builds one mid-match
       bot.prebuildWeaponModels();
-      if (bot.model) this.shadows.add(bot.model);
+      if (bot.model) {
+        this.shadows.add(bot.model);
+        // enemies only: in team modes the player's own team gets no line (the team is read per frame)
+        this.outlines.add(bot.model, () => !game.player || bot.team !== game.player.team);
+      }
       this._bots.push(bot);
       out.push(bot);
     }
@@ -194,8 +204,9 @@ export class BotManager {
         const w = out[0].spareWeaponModel(id);
         if (w) this.shadows.prepareWeapon(w.root);
       }
-      // (re)added last: its matrix update copies the bots' part matrices, refreshed earlier in the same traversal
+      // (re)added last: their matrix updates copy the bots' part matrices, refreshed earlier in the same traversal
       game.scene.add(this.shadows.root);
+      game.scene.add(this.outlines.root);
     }
     return out;
   }
@@ -204,6 +215,7 @@ export class BotManager {
   clear() {
     this._pathQueue.length = 0;
     this.shadows.clear();
+    this.outlines.clear();
     for (const bot of this._bots) {
       this.game.removeEntity(bot);
       bot.dispose();

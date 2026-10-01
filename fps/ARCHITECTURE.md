@@ -21,7 +21,8 @@ anything this document summarises.
 * **three.js r169**, vendored at `vendor/three`. Import as `import * as THREE from 'three'` and
   addons as `import { X } from 'three/addons/<path>.js'` (e.g. `three/addons/utils/BufferGeometryUtils.js`,
   `three/addons/geometries/RoundedBoxGeometry.js`). No other libraries, no build step, no network,
-  **no external assets** — every model, texture and sound is generated in code.
+  **no external assets** — every model, texture and sound is generated in code. The one exception is music: the
+  menu / victory / defeat tracks in `music/` (AudioSystem.playMusic).
 * Plain ES2022 modules, classes, 2-space indent, single quotes, semicolons, JSDoc on public APIs.
   No TypeScript. Relative imports with explicit `.js` extensions.
 * **Units:** meters, seconds, radians, m/s. **Y is up.** The camera looks down **-Z**.
@@ -43,6 +44,12 @@ anything this document summarises.
 ## 2. Running & testing
 
 * Play: `play.bat` (or `python tools/serve.py 8000`) → http://localhost:8000
+* Desktop build (Electron, `desktop/main.js`; needs Node.js): `npm install` once, then `npm start` to run it
+  (F11 fullscreen, F12 DevTools) and `npm run package` for `dist/KINETIC-win32-x64.zip`, the copy to hand to
+  friends (unzip, run `KINETIC.exe`). It serves `index.html`, `style.css`, `src/`, `vendor/` and `music/` over
+  `kinetic://game/`; nothing else is packaged, and the package keeps only the vendor files the game imports.
+* Music: the game plays `music/*.ogg` (Opus 128 kbps). After replacing a `.wav` master, re-encode it with the bundled
+  ffmpeg: `node_modules/ffmpeg-static/ffmpeg.exe -i music/kinetic_menu.wav -c:a libopus -b:a 128k music/kinetic_menu.ogg`.
 * Headless harness (Chrome + GPU, stdlib-only Python):
   * Import check: `python tools/run.py --check src/world/World.js,src/world/Textures.js`
   * Static linter (imports/exports/THREE members): `python tools/lint_imports.py [paths]`
@@ -132,8 +139,11 @@ timeLeft (s, Infinity if none), teamScores:{1,2}, over, reason, winner (entity, 
   `canSee(a, b)`, `fireBullet({shooter, origin, direction, damage, weapon, range, headshotMult, falloff:{start,end,min}, tracerFrom, tracerColor}) → hit|null`
   (does damage, `effects.impact`/`effects.hitSpark`, `effects.tracer`), `applyDamage(target, {amount, attacker, weapon, headshot, point, direction, knockback})`,
   `kill(target, info)`, `radialDamage(center, {radius, damage, attacker, weapon, knockback, selfScale})` (LOS-checked, falloff, knockback — full knockback on self for rocket jumps).
-* **CollisionWorld** (`src/world/Collision.js`, instance at `world.collision`): `addTriangle(a,b,c,surface)`, `addGeometry(geometry, matrix, surface)`, `build()`,
-  `raycast(origin, dir, maxDist) → {distance, point, normal, surface, triangle}|null` (front faces only),
+* **CollisionWorld** (`src/world/Collision.js`, instance at `world.collision`): `addTriangle(a,b,c,surface,blocks)`, `addGeometry(geometry, matrix, surface, blocks)`, `build()`,
+  `raycast(origin, dir, maxDist, mask = BLOCK_MOVE) → {distance, point, normal, surface, triangle}|null` (front faces only),
+  `blocks` / `mask`: `BLOCK_MOVE` (bodies), `BLOCK_SHOTS` (bullets, projectiles, sight), `BLOCK_ALL` (default). A railing is a
+  movement-only thin wall plus shot-only posts and rails, so shots and sight pass through its gaps; capsule, inside and
+  `rayBlocked` queries see BLOCK_MOVE triangles only,
   `resolveCapsule(capsule)` (push out; returns reused contacts), `capsuleIntersect(capsule)`, `sphereIntersect(sphere)`,
   `moveCapsule(capsule, velocity, dt, {groundMinY}) → {onGround, groundNormal, hitWall, wallNormal, hitCeiling}` (sub-stepped move-and-slide; mutates capsule & velocity),
   `probeGround(capsule, maxDrop) → {distance, point, normal}|null`. Capsules are `three/addons/math/Capsule.js` with `start` = lower sphere center, `end` = upper sphere center.
@@ -151,6 +161,7 @@ timeLeft (s, Infinity if none), teamScores:{1,2}, over, reason, winner (entity, 
 | `death` | `{victim, attacker, weapon, headshot, point, direction}` | Combat |
 | `spawn` | `{entity}` | Game |
 | `pickup` | `{entity, pickup}` | Pickups |
+| `ammo:kill` | `{entity, victim, grants: [{weapon, amount}]}` — the player's kill reward: ~0.3 mag of each weapon the victim carried that the player owns | WeaponSystem |
 | `weapon:fire` | `{shooter, weapon, origin, direction}` — once per trigger pull (not per pellet), player AND bots; the Tempest beam emits it at most every 0.5 s while held | WeaponSystem, Bot |
 | `weapon:switch` | `{shooter, weapon}` | WeaponSystem |
 | `explosion` | `{position, radius, owner, weapon}` | Projectiles |
@@ -206,7 +217,7 @@ export class World {
   unload()
   update(dt)                          // pickups (bob/spin, collection, respawn), jump pads, animated props
   applyQuality(q)                     // sun.castShadow = q.shadows; shadow map size = q.shadowMapSize
-  raycast(origin, dir, maxDist)       // = collision.raycast (Combat depends on it)
+  raycast(origin, dir, maxDist)       // = collision.raycast(..., BLOCK_SHOTS): what shots and sight hit (Combat depends on it)
   // fields
   def, mapId, collision /* CollisionWorld */, bounds /* THREE.Box3 */, killY,
   spawnPoints /* [{position: Vector3 (feet), yaw}] */,
@@ -475,7 +486,9 @@ export class AudioSystem {
   play(name, { position = null, volume = 1, rate = 1 } = {})     // one-shot; position → 3D spatialised
   playLoop(name, { volume = 1, rate = 1, position = null } = {}) → { setVolume(v), setRate(r), setPosition(v3), stop() }
   update(dt)                                      // AudioListener pose from game.camera
-  setMasterVolume(v)
+  setMasterVolume(v), setMusicVolume(v)
+  playMusic(name, { loop = true, fadeIn = 0.8 })  // 'menu' | 'victory' | 'defeat' (MUSIC_TRACKS, music/*), crossfades
+  stopMusic(fade = 0.8), preloadMusic(names)
 }
 ```
 

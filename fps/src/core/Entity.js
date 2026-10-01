@@ -154,6 +154,11 @@ export class Entity {
     return this.game.time < this.spawnProtectedUntil;
   }
 
+  /** End spawn protection now (this entity attacked: fired, threw a grenade or dealt damage). */
+  breakSpawnProtection() {
+    this.spawnProtectedUntil = 0;
+  }
+
   /** (Re)spawn at a feet position facing yaw. Subclasses call super.spawn() first. */
   spawn(position, yaw = 0) {
     this.position.copy(position);
@@ -166,6 +171,8 @@ export class Entity {
     this.onGround = false;
     this.respawnAt = -1;
     this.lastAttacker = null;
+    this._shove = null;       // Gale shove tags (special/gale.js): a fresh life starts unshoved
+    this._shovedBy = null;
     this.shockedUntil = 0;
     this.spawnProtectedUntil = this.game.time + SPAWN_PROTECTION;
   }

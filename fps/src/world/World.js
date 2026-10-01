@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { Capsule } from 'three/addons/math/Capsule.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { CollisionWorld } from './Collision.js';
+import { CollisionWorld, BLOCK_SHOTS } from './Collision.js';
 import { initTextures, preloadMaterials } from './Textures.js';
 import { MapBuilder } from './MapBuilder.js';
 import { Pickups } from './Pickups.js';
@@ -684,8 +684,12 @@ export class World {
     for (const p of this.jumpPads) p.flash = 0;
   }
 
+  /**
+   * Ray against what stops bullets, projectiles and sight (BLOCK_SHOTS: e.g. railing posts and rails, not the gaps
+   * between them). Movement / navigation rays use collision.raycast directly (bodies collide with BLOCK_MOVE).
+   */
   raycast(origin, dir, maxDist) {
-    return this.collision.raycast(origin, dir, maxDist);
+    return this.collision.raycast(origin, dir, maxDist, BLOCK_SHOTS);
   }
 
   /** Remove and dispose everything map-owned (shared/cached materials are not disposed). */

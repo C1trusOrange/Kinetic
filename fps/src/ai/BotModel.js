@@ -17,6 +17,7 @@
  *     hit flash, collapse pose when dead. All states blend with exponential smoothing (no pops).
  */
 import * as THREE from 'three';
+import { mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
 import { Field, noiseField, makeCanvas, canvasTexture, hexToRgb } from '../core/procgen.js';
 import { clamp, lerp, smoothstep, mulberry32 } from '../core/utils.js';
 
@@ -1671,6 +1672,200 @@ export class BotShadowCaster {
       mesh.visible = s.n > 0;
       // whole-buffer upload (cap x 64 bytes, ~2 KB): an update range would allocate a range object per slot per frame
       if (s.n > 0) mesh.instanceMatrix.needsUpdate = true;
+    }
+  }
+}
+
+// ====================================================================== enemy outlines
+
+const OUTLINE_SLOT_CAP = 32;
+/** Outline width as a fraction of the screen height (NDC units: 0.0046 = ~2.5 px at 1080p). */
+const OUTLINE_WIDTH = 0.0046;
+/** Full width up to this view distance (m); beyond it the line thins as 1/distance down to OUTLINE_MIN_SCALE. */
+const OUTLINE_FULL_DIST = 14;
+const OUTLINE_MIN_SCALE = 0.45;
+const _hullGeos = new WeakMap();
+
+/**
+ * Inverted-hull copy of a body-part geometry: welded vertices with smooth normals, so the hull pushed out along
+ * them has no cracks at the low-poly model's hard edges (cached per source geometry, never disposed).
+ */
+function hullGeometry(src) {
+  let g = _hullGeos.get(src);
+  if (g) return g;
+  const p = new THREE.BufferGeometry();
+  p.setAttribute('position', src.getAttribute('position').clone());
+  if (src.index) p.setIndex(src.index.clone());
+  g = mergeVertices(p, 1e-4);
+  g.computeVertexNormals();
+  p.dispose();
+  _hullGeos.set(src, g);
+  return g;
+}
+
+function makeOutlineMaterial() {
+  return new THREE.ShaderMaterial({
+    name: 'bot_outline',
+    side: THREE.BackSide,
+    fog: true,
+    uniforms: THREE.UniformsUtils.merge([THREE.UniformsLib.fog, {
+      uColor: { value: new THREE.Color(0xff2e3a) },
+      uWidth: { value: OUTLINE_WIDTH },
+      uFullDist: { value: OUTLINE_FULL_DIST },
+      uMinScale: { value: OUTLINE_MIN_SCALE },
+    }]),
+    // The back faces of the model, pushed out along their normals by a fixed SCREEN width: they show only as a rim
+    // around the silhouette (the model's own front faces hide the rest) and never through walls (normal depth test).
+    vertexShader: /* glsl */ `
+      #include <common>
+      #include <fog_pars_vertex>
+      uniform float uWidth;
+      uniform float uFullDist;
+      uniform float uMinScale;
+      void main() {
+        vec4 p = vec4(position, 1.0);
+        vec3 n = normal;
+        #ifdef USE_INSTANCING
+          p = instanceMatrix * p;
+          n = mat3(instanceMatrix) * n;
+        #endif
+        vec4 mvPosition = modelViewMatrix * p;
+        vec4 clip = projectionMatrix * mvPosition;
+        vec2 dir = (normalMatrix * n).xy;   // view-space normal = its on-screen direction
+        float len = length(dir);
+        if (len > 1e-5) {
+          float aspect = projectionMatrix[1][1] / projectionMatrix[0][0];
+          float w = uWidth * clamp(uFullDist / max(clip.w, 1e-3), uMinScale, 1.0);
+          clip.xy += vec2(dir.x / aspect, dir.y) / len * w * clip.w;
+        }
+        gl_Position = clip;
+        #include <fog_vertex>
+      }`,
+    fragmentShader: /* glsl */ `
+      #include <common>
+      #include <fog_pars_fragment>
+      uniform vec3 uColor;
+      void main() {
+        gl_FragColor = vec4(uColor, 1.0);
+        #include <tonemapping_fragment>
+        #include <colorspace_fragment>
+        #include <fog_fragment>
+      }`,
+  });
+}
+
+/**
+ * Enemy outlines for a whole match in about a dozen draw calls, built like BotShadowCaster: every body-part geometry
+ * gets one InstancedMesh of its inverted hull whose instances copy that part's world matrix on every outlined bot.
+ * `include(model)` decides per frame which models get a line (enemies of the player); hidden models never do.
+ *
+ * Add `root` to the scene AFTER the bot models: its matrix update copies the parts' world matrices.
+ */
+export class BotOutlines {
+  constructor() {
+    this.root = new THREE.Group();
+    this.root.name = 'bot-outlines';
+    this.root.matrixAutoUpdate = false;
+    this.material = makeOutlineMaterial();
+    this.enabled = true;
+    this._entries = [];            // { model, include, slots: slot per body mesh }
+    this._slots = [];              // { mesh: InstancedMesh, n, cap, geometry }
+    this._slotByGeo = new Map();   // source geometry -> slot
+    const self = this;
+    this.root.updateMatrixWorld = function (force) {
+      self._sync();
+      _updateMatrixWorld.call(this, force);
+    };
+  }
+
+  /**
+   * Outline this model on the frames include(model) returns true.
+   * @param {BotModel} model
+   * @param {(model: BotModel) => boolean} [include]
+   */
+  add(model, include = () => true) {
+    if (!model || this._entries.some(e => e.model === model)) return;
+    this._entries.push({ model, include, slots: model._meshes.map(m => this._slot(m.geometry)) });
+  }
+
+  /** @param {BotModel} model */
+  remove(model) {
+    const i = this._entries.findIndex(e => e.model === model);
+    if (i >= 0) this._entries.splice(i, 1);
+  }
+
+  /** Forget every model (match end); the instanced meshes stay for the next match. */
+  clear() {
+    this._entries.length = 0;
+    for (const s of this._slots) { s.n = 0; s.mesh.count = 0; s.mesh.visible = false; }
+  }
+
+  /** @param {string|number|THREE.Color} color */
+  setColor(color) {
+    this.material.uniforms.uColor.value.set(color);
+  }
+
+  /** @param {boolean} on */
+  setEnabled(on) {
+    this.enabled = !!on;
+  }
+
+  _slot(geometry) {
+    let s = this._slotByGeo.get(geometry);
+    if (!s) {
+      s = { mesh: null, n: 0, cap: 0, geometry: hullGeometry(geometry) };
+      this._grow(s, OUTLINE_SLOT_CAP);
+      this._slotByGeo.set(geometry, s);
+      this._slots.push(s);
+    }
+    return s;
+  }
+
+  _grow(s, cap) {
+    const mesh = new THREE.InstancedMesh(s.geometry, this.material, cap);
+    mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+    mesh.name = 'bot-outline';
+    mesh.castShadow = false;
+    mesh.receiveShadow = false;
+    mesh.frustumCulled = false;   // the instances move every frame; a cached bounding sphere would cull them
+    mesh.matrixAutoUpdate = false;
+    mesh.count = 0;
+    mesh.visible = false;
+    if (s.mesh) {
+      mesh.instanceMatrix.array.set(s.mesh.instanceMatrix.array.subarray(0, Math.min(s.cap, cap) * 16));
+      this.root.remove(s.mesh);
+      s.mesh.dispose();
+    }
+    this.root.add(mesh);
+    s.mesh = mesh;
+    s.cap = cap;
+  }
+
+  /** Copy this frame's part matrices of every outlined model into the instances (runs inside the scene's matrix update). */
+  _sync() {
+    const slots = this._slots;
+    for (let i = 0; i < slots.length; i++) slots[i].n = 0;
+    if (this.enabled) {
+      const entries = this._entries;
+      for (let i = 0; i < entries.length; i++) {
+        const e = entries[i];
+        const model = e.model;
+        if (!model.root.visible || !model.root.parent || !e.include(model)) continue;
+        const meshes = model._meshes;
+        for (let k = 0; k < meshes.length; k++) {
+          const s = e.slots[k];
+          if (s.n >= s.cap) this._grow(s, s.cap * 2);
+          meshes[k].matrixWorld.toArray(s.mesh.instanceMatrix.array, s.n * 16);
+          s.n++;
+        }
+      }
+    }
+    for (let i = 0; i < slots.length; i++) {
+      const s = slots[i];
+      s.mesh.count = s.n;
+      s.mesh.visible = s.n > 0;
+      // whole-buffer upload (cap x 64 bytes, ~2 KB), as in BotShadowCaster
+      if (s.n > 0) s.mesh.instanceMatrix.needsUpdate = true;
     }
   }
 }

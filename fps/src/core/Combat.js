@@ -64,6 +64,8 @@ export class Combat {
     this._hit = { distance: 0, point: new THREE.Vector3(), normal: new THREE.Vector3(), entity: null, part: null, surface: null };
     /** Live smoke volumes `{pos, r, until}` (Smoke Screen). They block bot SIGHT (canSee with {smoke:true}), never bullets or blasts. */
     this.smokes = [];
+    // firing (player or bot, once per trigger pull) ends the shooter's spawn protection; grenades: Projectiles.spawnGrenade
+    game.events.on('weapon:fire', e => { if (e.shooter) e.shooter.breakSpawnProtection(); });
   }
 
   /**
@@ -265,7 +267,7 @@ export class Combat {
     }
     if (target.god || target.isProtected()) return 0;
     if (attacker && attacker !== target && attacker.spawnProtectedUntil > this.game.time) {
-      attacker.spawnProtectedUntil = 0; // attacking breaks your own spawn protection
+      attacker.breakSpawnProtection(); // attacking breaks your own spawn protection
     }
 
     const dealt = target.takeDamage({ ...info, attacker });
