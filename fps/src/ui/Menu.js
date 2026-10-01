@@ -15,6 +15,8 @@ import { esc, hexOf, keyLabel, fmtTime, ordinal } from './dom.js';
 import { ICON, logoSVG, mapArt, mapPalette, tipDiagram, weaponIcon } from './Icons.js';
 import { scoreboardHTML } from './Scoreboard.js';
 import { modeName, modeShort } from './ModeHUD.js';
+import { mountGraphicsInfo } from './GraphicsInfo.js';
+import { resolveQuality } from '../core/GraphicsQuality.js';
 
 const SCORE_OPTS = [10, 25, 50, 100, 0];
 const TIME_OPTS = [3, 5, 10, 15, 20, 0];
@@ -59,8 +61,10 @@ const SETTINGS_SPEC = [
     { key: 'viewBob', label: 'View bob', type: 'toggle' },
   ] },
   { group: 'Video', col: 1, items: [
-    { key: 'quality', label: 'Graphics quality', type: 'seg', options: ['low', 'medium', 'high'] },
-    { key: 'glow', label: 'Glow', hint: 'Bloom, Medium / High', type: 'range', min: 0, max: 1, step: 0.05, fmt: v => Math.round(v * 100) + '%' },
+    { key: 'quality', label: 'Graphics quality', type: 'seg', options: ['auto', 'low', 'medium', 'high', 'ultra'] },
+    { key: 'renderScale', label: 'Render scale', hint: 'Resolution', type: 'range', min: 0.5, max: 1, step: 0.05, fmt: v => Math.round(v * 100) + '%' },
+    { key: 'lowLatency', label: 'Low latency mode', type: 'toggle' },
+    { key: 'glow', label: 'Glow', hint: 'Bloom, Medium and up', type: 'range', min: 0, max: 1, step: 0.05, fmt: v => Math.round(v * 100) + '%' },
     { key: 'brightness', label: 'Brightness', hint: 'Exposure', type: 'range', min: 0.7, max: 1.3, step: 0.05, fmt: v => Math.round(v * 100) + '%' },
     { key: 'showFps', label: 'Show FPS counter', type: 'toggle' },
   ] },
@@ -164,6 +168,7 @@ export class Menu {
     g.uiRoot.appendChild(this.loading);
 
     this._bindEvents();
+    mountGraphicsInfo(root, g);   // Settings > Video: GPU, render resolution, dedicated-GPU tip
     this._syncSetup();
     this._syncSettings();
   }
@@ -686,9 +691,10 @@ export class Menu {
   _syncSettings() {
     if (!this.built) return;
     const s = this.game.settings;
-    // the Glow (bloom) slider has no effect on the Low preset, which renders without post-processing
+    // the Glow (bloom) slider has no effect on presets without bloom (Low, or what 'auto' picked)
     const glowRow = this.root.querySelector('[data-set="glow"]');
-    if (glowRow && glowRow.closest('.set-row')) glowRow.closest('.set-row').classList.toggle('dim', s.get('quality') === 'low');
+    const bloom = resolveQuality(s.get('quality'), this.game.gpu).bloom;
+    if (glowRow && glowRow.closest('.set-row')) glowRow.closest('.set-row').classList.toggle('dim', !bloom);
     for (const gr of SETTINGS_SPEC) {
       for (const it of gr.items) {
         const el = this.root.querySelector(`[data-set="${it.key}"]`);

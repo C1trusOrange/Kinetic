@@ -25,7 +25,7 @@ function parseArsenalParam(v) {
  *   score=<score limit, default 0 = none (Escalation / koth: ladder / points)>  time=<time limit in minutes, default 0 = none>
  *   arsenal=<balanced|norockets|classic|chaos | rocket:off,rifle:common,...>  (bot spawn weapons; default = saved setting)
  *   god=1 (player invulnerable)  script=full|idle  spectate=1 (chase-cam a bot, no player)
- *   cam=x,y,z,yaw,pitch (fixed camera)  quality=low|medium|high
+ *   cam=x,y,z,yaw,pitch (fixed camera)  quality=auto|low|medium|high|ultra (default high)
  *   mapfile=<path.js> (custom test map module, default export = map definition)
  *   scenario=<path.js> (module exporting drive(t, dt, game, report), optional setup(game, report) / finish(game, report);
  *                       replaces the built-in script; write custom results into report.custom)
@@ -222,6 +222,14 @@ export class AutoTest {
       geometries: info.memory.geometries,
       textures: info.memory.textures,
       programs: info.programs ? info.programs.length : null,
+      // render pipeline (quality preset, drawing buffer, composer MSAA, low latency limiter, adapter)
+      quality: g.quality ? g.quality.name : null,
+      pixelRatio: +g.renderer.getPixelRatio().toFixed(3),
+      buffer: [g.renderer.getContext().drawingBufferWidth, g.renderer.getContext().drawingBufferHeight],
+      msaa: g.composer ? g.composer.renderTarget1.samples : null,
+      lowLatency: !!(g.frameLimiter && g.frameLimiter.enabled),
+      limiter: g.frameLimiter ? { ...g.frameLimiter.stats } : null,
+      gpu: g.gpu ? g.gpu.name : null,
     };
     r.fps.avg = +(this._fpsSum / Math.max(1, this._fpsN)).toFixed(1);
     r.fps.min = +r.fps.min.toFixed(1);

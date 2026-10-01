@@ -12,7 +12,9 @@ export const DEFAULT_SETTINGS = {
   showFps: false,
   glow: 0.65,            // bloom / light diffusion amount, 0..1 (x the map's bloom strength); needs 'medium' or 'high' quality
   brightness: 1.0,       // exposure multiplier, 0.7..1.3 (x the map's exposure)
-  quality: 'high',       // 'low' | 'medium' | 'high'
+  quality: 'auto',       // 'auto' (preset picked from the GPU on every start, see core/GraphicsQuality.js) | 'low' | 'medium' | 'high' | 'ultra'
+  renderScale: 1.0,      // 0.5..1: multiplies the preset's render resolution (the canvas stays full size)
+  lowLatency: true,      // frames-in-flight limiter: skip a rAF while 2-3 earlier frames are still on the GPU (core/FrameLimiter.js)
   // audio
   masterVolume: 0.8,
   // match defaults (remembered from the last match)
@@ -51,6 +53,7 @@ export class Settings {
         // numeric sliders: keep hand-edited / stale values inside the slider ranges so UI labels and rendering agree
         this.data.glow = clampNum(this.data.glow, 0, 1, DEFAULT_SETTINGS.glow);
         this.data.brightness = clampNum(this.data.brightness, 0.7, 1.3, DEFAULT_SETTINGS.brightness);
+        this.data.renderScale = clampNum(this.data.renderScale, 0.5, 1, DEFAULT_SETTINGS.renderScale);
       }
     } catch { /* storage unavailable */ }
   }

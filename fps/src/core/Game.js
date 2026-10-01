@@ -1,8 +1,5 @@
 import * as THREE from 'three';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
 import { Events } from './Events.js';
 import { Settings } from './Settings.js';
@@ -13,6 +10,9 @@ import { AutoTest } from './AutoTest.js';
 import { RESPAWN_DELAY, TEAM_BLUE, TEAM_COLORS, PLAYER_COLOR, QUALITY_PRESETS, isTeamMode } from './constants.js';
 import { Modes } from './Modes.js';
 import { clamp, damp, nextFrame } from './utils.js';
+import { SceneLayersPass, KineticBloomPass, KineticOutputPass } from './RenderPipeline.js';
+import { detectGpu, resolveQuality, presetPixelRatio, presetsNeedRecompile } from './GraphicsQuality.js';
+import { FrameLimiter } from './FrameLimiter.js';
 
 import { World } from '../world/World.js';
 import { MAPS, getMap } from '../world/maps/index.js';
@@ -43,7 +43,9 @@ export class Game {
     this.events = new Events();
     this.settings = new Settings();
     if (params.get('quality')) this.settings.data.quality = params.get('quality');
-    this.quality = QUALITY_PRESETS[this.settings.get('quality')] || QUALITY_PRESETS.high;
+    else if (params.has('autotest')) this.settings.data.quality = 'high';   // harness runs: no GPU-dependent 'auto' pick
+    /** Active preset (a QUALITY_PRESETS entry); _initRenderer resolves the setting ('auto' too) once the GPU is known. */
+    this.quality = QUALITY_PRESETS.high;
 
     this.state = 'boot';
     /** Simulation time in seconds (advances only while the match simulates, scaled by timeScale). */
@@ -93,8 +95,14 @@ export class Game {
   // ================================================================== setup
 
   _initRenderer() {
-    const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance', stencil: false });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, this.quality.pixelRatio));
+    // The canvas is neither multisampled nor depth buffered: every frame renders into the composer's HDR target (with
+    // its own MSAA and depth) and the canvas only receives the output pass's fullscreen triangle.
+    const renderer = new THREE.WebGLRenderer({ antialias: false, depth: false, stencil: false, powerPreference: 'high-performance' });
+    this.renderer = renderer;
+    /** Graphics adapter: {renderer, vendor, name, kind: 'discrete'|'integrated'|'apple'|'software'|'unknown'}. */
+    this.gpu = detectGpu(renderer.getContext());
+    this.quality = resolveQuality(this.settings.get('quality'), this.gpu);
+    renderer.setPixelRatio(this._renderPixelRatio());
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -105,7 +113,9 @@ export class Game {
     renderer.info.autoReset = false;
     renderer.domElement.tabIndex = 0;
     this.gameRoot.appendChild(renderer.domElement);
-    this.renderer = renderer;
+    /** 'Low latency mode' (settings.lowLatency): caps the frames in flight on the GPU (2 or 3, automatic), see FrameLimiter. */
+    this.frameLimiter = new FrameLimiter(renderer.getContext());
+    this.frameLimiter.setEnabled(this.settings.get('lowLatency') !== false);
 
     const aspect = window.innerWidth / window.innerHeight;
     this.scene = new THREE.Scene();
@@ -129,114 +139,71 @@ export class Game {
     window.addEventListener('resize', () => this._onResize());
   }
 
+  /**
+   * Create or reconfigure the composer for the active preset: layers pass (world, then the viewmodel over a cleared
+   * depth buffer; one MSAA resolve) -> bloom (presets with bloom) -> output pass (adds the bloom, exposure, ACES tone
+   * mapping, sRGB) to the canvas. Every preset renders through it, so colour and tone mapping are identical on all of
+   * them. A preset change only sets the MSAA sample count (the target is re-allocated lazily) and adds or disposes the
+   * bloom pass: nothing leaks and no material program changes.
+   */
   _setupComposer() {
-    if (this.composer) {
-      this.composer.renderTarget1.dispose();
-      this.composer.renderTarget2.dispose();
-      this.composer = null;
-      this.bloomPass = null;
-      this.viewPass = null;
-    }
-    if (!this.quality.bloom) return;
-    const size = this.renderer.getDrawingBufferSize(new THREE.Vector2());
-    const rt = new THREE.WebGLRenderTarget(size.x, size.y, { type: THREE.HalfFloatType, samples: this.quality.msaa });
-    const composer = new EffectComposer(this.renderer, rt);
-    composer.setPixelRatio(this.renderer.getPixelRatio());
-    composer.setSize(window.innerWidth, window.innerHeight);
-    const worldPass = new RenderPass(this.scene, this.camera);
-    const viewPass = new RenderPass(this.viewScene, this.viewCamera);
-    viewPass.clear = false;
-    viewPass.clearDepth = true;
-    const bloom = new UnrealBloomPass(new THREE.Vector2(size.x, size.y), 0.45, 0.85, 0.7);
-    // Replace the stock high-pass (a hard luminance step that hands the *whole* colour of every bright pixel to
-    // the blur, so big bright areas - a lit wall, an explosion - bloom into a screen-wide veil). This one feeds the
-    // blur only the energy ABOVE the threshold (soft quadratic knee, width = smoothWidth), measures brightness by the
-    // strongest channel as well as luminance (saturated neon has a low luminance) and caps a single pixel at 1.8 so
-    // a sun disc / muzzle flash / fireball (HDR 5+) cannot spray a screen-sized halo.
-    const hp = bloom.materialHighPassFilter;
-    hp.fragmentShader = `
-      uniform sampler2D tDiffuse;
-      uniform vec3 defaultColor;
-      uniform float defaultOpacity;
-      uniform float luminosityThreshold;
-      uniform float smoothWidth;
-      varying vec2 vUv;
-      void main() {
-        vec3 c = min( texture2D( tDiffuse, vUv ).rgb, vec3( 1.8 ) );
-        float v = max( dot( c, vec3( 0.2126, 0.7152, 0.0722 ) ), 0.7 * max( c.r, max( c.g, c.b ) ) );
-        float knee = max( smoothWidth, 0.001 );
-        float soft = clamp( v - luminosityThreshold + knee, 0.0, 2.0 * knee );
-        soft = soft * soft / ( 4.0 * knee );
-        float w = max( soft, v - luminosityThreshold ) / max( v, 0.0001 );
-        gl_FragColor = vec4( c * w, 1.0 );
-      }`;
-    hp.needsUpdate = true;
-    // Composite: the stock one adds the five blur levels with weights summing to ~3 and then multiplies the result by
-    // its own alpha again (so bloom energy grows with strength^2 and a uniformly bright frame is amplified several
-    // times over - the whiteout when an explosion lights the whole screen). Here strength is linear, the mip weights
-    // are normalised (strength 1 = the bloom input is added back once) and a veiling-glare limiter backs the bloom
-    // off when a large part of the frame is feeding it. That frame average (9 taps of the smallest blur level) is the
-    // same for every pixel, so the vertex shader computes it once per quad corner instead of the fragment shader per pixel.
-    bloom.compositeMaterial.vertexShader = `
-      varying vec2 vUv;
-      varying float vAvg;
-      uniform sampler2D blurTexture5;
-      void main() {
-        vUv = uv;
-        vec3 v = vec3( 0.0 );
-        for ( int i = 0; i < 3; i ++ ) {
-          for ( int j = 0; j < 3; j ++ ) v += texture2D( blurTexture5, ( vec2( float( i ), float( j ) ) + 0.5 ) / 3.0 ).rgb;
-        }
-        vAvg = dot( v / 9.0, vec3( 0.2126, 0.7152, 0.0722 ) );
-        gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-      }`;
-    bloom.compositeMaterial.fragmentShader = `
-      varying vec2 vUv;
-      varying float vAvg;
-      uniform sampler2D blurTexture1;
-      uniform sampler2D blurTexture2;
-      uniform sampler2D blurTexture3;
-      uniform sampler2D blurTexture4;
-      uniform sampler2D blurTexture5;
-      uniform float bloomStrength;
-      uniform float bloomRadius;
-      uniform float bloomFactors[NUM_MIPS];
-      uniform vec3 bloomTintColors[NUM_MIPS];
-      float lerpBloomFactor( const in float factor ) {
-        return mix( factor, 1.2 - factor, bloomRadius );
+    const q = this.quality;
+    const r = this.renderer;
+    let composer = this.composer;
+    if (!composer) {
+      const size = r.getDrawingBufferSize(new THREE.Vector2());
+      // resolveDepthBuffer false: nothing samples the resolved depth, so each MSAA resolve copies colour only
+      const rt = new THREE.WebGLRenderTarget(size.x, size.y, { type: THREE.HalfFloatType, samples: q.msaa, resolveDepthBuffer: false });
+      rt.texture.name = 'Kinetic.frame';
+      composer = new EffectComposer(r, rt);
+      // No pass swaps buffers (the layers and bloom passes have needsSwap false, the output pass writes to the
+      // canvas), so the frame lives in readBuffer for good. Make that renderTarget1 (the target warmup() compiles
+      // into); renderTarget2 then stays unused and is never allocated on the GPU.
+      composer.swapBuffers();
+      /** World + viewmodel layers (Game.render toggles its viewEnabled). */
+      this.layersPass = new SceneLayersPass(this.scene, this.camera, this.viewScene, this.viewCamera);
+      this.outputPass = new KineticOutputPass();
+      composer.addPass(this.layersPass);
+      composer.addPass(this.outputPass);
+      this.composer = composer;
+    } else if (composer.renderTarget1.samples !== q.msaa) {
+      for (const rt of [composer.renderTarget1, composer.renderTarget2]) {
+        rt.samples = q.msaa;
+        rt.dispose();   // frees the GPU buffers; three re-creates them with the new sample count on next use
       }
-      void main() {
-        float w0 = lerpBloomFactor( bloomFactors[0] );
-        float w1 = lerpBloomFactor( bloomFactors[1] );
-        float w2 = lerpBloomFactor( bloomFactors[2] );
-        float w3 = lerpBloomFactor( bloomFactors[3] );
-        float w4 = lerpBloomFactor( bloomFactors[4] );
-        vec3 b = w0 * texture2D( blurTexture1, vUv ).rgb + w1 * texture2D( blurTexture2, vUv ).rgb
-               + w2 * texture2D( blurTexture3, vUv ).rgb + w3 * texture2D( blurTexture4, vUv ).rgb
-               + w4 * texture2D( blurTexture5, vUv ).rgb;
-        b *= bloomStrength / ( w0 + w1 + w2 + w3 + w4 );
-        gl_FragColor = vec4( b / ( 1.0 + 3.0 * vAvg ), 1.0 );
-      }`;
-    bloom.compositeMaterial.needsUpdate = true;
-    composer.addPass(worldPass);
-    composer.addPass(viewPass);
-    composer.addPass(bloom);
-    composer.addPass(new OutputPass());
-    this.composer = composer;
-    this.viewPass = viewPass;
-    this.bloomPass = bloom;
+    }
+    if (q.bloom && !this.bloomPass) {
+      const size = r.getDrawingBufferSize(new THREE.Vector2());
+      this.bloomPass = new KineticBloomPass(size.x, size.y);
+      composer.insertPass(this.bloomPass, composer.passes.indexOf(this.outputPass));
+    } else if (!q.bloom && this.bloomPass) {
+      composer.removePass(this.bloomPass);
+      this.bloomPass.dispose();
+      this.bloomPass = null;
+    }
+    composer.setSize(window.innerWidth, window.innerHeight);
+    composer.setPixelRatio(r.getPixelRatio());
     this._applyBloomSettings();
+  }
+
+  /** Drawing-buffer pixel ratio for the active preset, the window size and the Render scale setting. */
+  _renderPixelRatio() {
+    return presetPixelRatio(this.quality, window.devicePixelRatio || 1, window.innerWidth, window.innerHeight,
+      this._numSetting('renderScale', 0.5, 1, 1));
   }
 
   _onResize() {
     const w = window.innerWidth, h = window.innerHeight;
-    this.renderer.setSize(w, h);
+    const r = this.renderer;
+    const pr = this._renderPixelRatio();
+    if (r.getPixelRatio() !== pr) r.setPixelRatio(pr);
+    r.setSize(w, h);
     this.camera.aspect = w / h;
     this.viewCamera.aspect = w / h;
     this.camera.updateProjectionMatrix();
     this.viewCamera.updateProjectionMatrix();
     if (this.composer) {
-      this.composer.setPixelRatio(this.renderer.getPixelRatio());
+      this.composer.setPixelRatio(pr);
       this.composer.setSize(w, h);
     }
     this.events.emit('resize', { width: w, height: h });
@@ -262,7 +229,9 @@ export class Game {
     });
 
     this.settings.onChange((key, value) => {
-      if (key === 'quality') { this.setQuality(value); this.warmup(); }
+      if (key === 'quality') this._applyQualitySetting();
+      else if (key === 'renderScale') this._onResize();
+      else if (key === 'lowLatency') this.frameLimiter.setEnabled(value !== false);
       else if (key === 'masterVolume') this.audio.setMasterVolume(value);
       else if (key === 'glow') this._applyBloomSettings();
       else if (key === 'brightness') this._applyExposure();
@@ -777,19 +746,85 @@ export class Game {
     return THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(h / 2) / this.camera.aspect));
   }
 
+  /**
+   * Switch to a quality preset. Resolution, MSAA, bloom, shadow-map size and the decal / particle budgets apply at
+   * once and need no shader work (no material is touched); turning shadows on or off changes the program of every
+   * lit material (see presetsNeedRecompile), so those switches mark the scene's materials for a rebuild.
+   * @param {string} name a QUALITY_PRESETS key, or 'auto' (preset picked from the GPU)
+   * @returns {boolean} true when material programs must be rebuilt (see _applyQualitySetting)
+   */
   setQuality(name) {
-    const q = QUALITY_PRESETS[name] || QUALITY_PRESETS.high;
+    const prev = this.quality;
+    const q = resolveQuality(name, this.gpu);
     this.quality = q;
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, q.pixelRatio));
+    const recompile = presetsNeedRecompile(prev, q);
     this.renderer.shadowMap.enabled = q.shadows;
-    this.scene.traverse(o => {
-      if (!o.material) return;
-      for (const m of Array.isArray(o.material) ? o.material : [o.material]) m.needsUpdate = true;
-    });
+    if (recompile) {
+      this.scene.traverse(o => {
+        if (!o.material) return;
+        for (const m of Array.isArray(o.material) ? o.material : [o.material]) m.needsUpdate = true;
+      });
+    }
     if (typeof this.world.applyQuality === 'function') this.world.applyQuality(q);
+    this._onResize();        // pixel ratio of the new preset first, so the composer is sized once
     this._setupComposer();
-    this._onResize();
     this.events.emit('quality', q);
+    return recompile;
+  }
+
+  /**
+   * Settings listener for 'quality'. Resolution / MSAA / bloom switches are instant. A switch that rebuilds shaders
+   * (shadows on/off) runs behind the loading overlay like a map load: the new programs compile in parallel while no
+   * frame is drawn (a frame would block on them), then warmup() finishes them.
+   * @returns {Promise<void>}
+   */
+  async _applyQualitySetting() {
+    const name = this.settings.get('quality');
+    if (!presetsNeedRecompile(this.quality, resolveQuality(name, this.gpu))) {
+      this.setQuality(name);
+      return;
+    }
+    const overlay = this.state !== 'loading' && this.state !== 'boot';
+    if (overlay) {
+      this._qualityJobs = (this._qualityJobs || 0) + 1;
+      this.menu.showLoading('Applying graphics settings', null);
+      await nextFrame();   // let the overlay paint before the shader work starts
+    }
+    try {
+      this.setQuality(this.settings.get('quality'));
+      const r = this.renderer;
+      this._holdRender = true;
+      try {
+        r.setRenderTarget(this.composer.renderTarget1);   // programs are keyed on the target type (see warmup)
+        const jobs = [r.compileAsync(this.scene, this.camera), r.compileAsync(this.viewScene, this.viewCamera)];
+        r.setRenderTarget(null);
+        await Promise.race([Promise.all(jobs), new Promise(resolve => setTimeout(resolve, 20000))]);
+      } finally {
+        this._holdRender = false;
+      }
+      await this.warmup();
+    } catch (err) {
+      console.error('[game] applying the graphics quality failed', err);
+    } finally {
+      if (overlay && --this._qualityJobs === 0) this.menu.hideLoading();
+    }
+  }
+
+  /**
+   * What the Settings screen shows about rendering.
+   * @returns {{gpu: string, gpuKind: string, renderer: string, quality: string, auto: boolean, width: number,
+   *   height: number, nativeWidth: number, nativeHeight: number, msaa: number, lowLatency: boolean}}
+   */
+  getGraphicsInfo() {
+    const gl = this.renderer.getContext();
+    const dpr = window.devicePixelRatio || 1;
+    return {
+      gpu: this.gpu.name, gpuKind: this.gpu.kind, renderer: this.gpu.renderer,
+      quality: this.quality.name, auto: !QUALITY_PRESETS[this.settings.get('quality')],
+      width: gl.drawingBufferWidth, height: gl.drawingBufferHeight,
+      nativeWidth: Math.floor(window.innerWidth * dpr), nativeHeight: Math.floor(window.innerHeight * dpr),   // like the canvas
+      msaa: this.quality.msaa, lowLatency: this.frameLimiter.enabled,
+    };
   }
 
   _syncViewLighting() {
@@ -842,6 +877,10 @@ export class Game {
 
   _loop(nowMs) {
     requestAnimationFrame(this._loop);
+    // Low latency mode (while playing): if frameLimiter.maxFrames earlier frames are still unfinished on the GPU, this
+    // rAF does nothing at all (no input edges consumed, no time advanced); the next frame that runs simulates the
+    // skipped time with fresh input. Menus, loading and pause never skip (warmup() relies on the next rAF drawing).
+    if (this.state === 'playing' && this.frameLimiter.shouldSkip()) return;
     const now = nowMs / 1000;
     let raw = this._lastFrameTime ? now - this._lastFrameTime : 1 / 60;
     this._lastFrameTime = now;
@@ -878,6 +917,7 @@ export class Game {
           break;
       }
       this.render();
+      if (this.state === 'playing') this.frameLimiter.frameSubmitted();
     } catch (err) {
       this._reportFrameError(err);
     }
@@ -986,21 +1026,16 @@ export class Game {
       && !this.spectate && !this.fixedCam && this.player.alive;
   }
 
+  /**
+   * Draw the frame: world -> viewmodel (depth cleared) -> bloom (when on) -> output pass (bloom added, exposure,
+   * tone mapping, sRGB) to the canvas. Skipped while a quality switch compiles new programs behind the overlay.
+   */
   render() {
-    const showView = this._showViewModel();
-    if (this.composer) {
-      this.viewPass.enabled = showView;
-      this.composer.render();
-      return;
-    }
-    const r = this.renderer;
-    r.setRenderTarget(null);
-    r.clear();
-    r.render(this.scene, this.camera);
-    if (showView) {
-      r.clearDepth();
-      r.render(this.viewScene, this.viewCamera);
-    }
+    if (this._holdRender) return;
+    this.layersPass.viewEnabled = this._showViewModel();
+    const bp = this.bloomPass;
+    this.outputPass.bloomTexture = bp && bp.enabled && bp.fold ? bp.outputTexture : null;
+    this.composer.render();
   }
 
   _reportFrameError(err) {
