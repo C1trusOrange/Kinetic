@@ -450,7 +450,7 @@ export class Effects {
   hitSpark(point, normal, entity) {
     if (entity && entity.model && typeof entity.model.flashHit === 'function') entity.model.flashHit();
     if (!this._ready) return;
-    if (entity && entity.isPlayer) return; // the HUD handles feedback for the local player
+    if (entity && entity === this.game.player) return; // the HUD handles feedback for the local player
     const n = normal && normal.lengthSq() > 0.25 ? normal : UP;
     this._basis(n);
     const x = point.x + n.x * 0.04, y = point.y + n.y * 0.04, z = point.z + n.z * 0.04;

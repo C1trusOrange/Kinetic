@@ -82,7 +82,7 @@ class EscalationMode {
     const id = this.ladder[tier];
     if (entity.alive) {
       // the dead get their loadout from loadoutFor() when they respawn
-      if (entity.isPlayer) this.game.weapons.setEscalationWeapon(id);
+      if (entity.isLocal) this.game.weapons.setEscalationWeapon(id);
       else if (typeof entity.setEscalationWeapon === 'function') entity.setEscalationWeapon(id);
       if (delta > 0) {
         entity.health = Math.min(entity.maxHealth, entity.health + TIER_HEAL);

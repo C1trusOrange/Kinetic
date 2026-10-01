@@ -5,7 +5,7 @@
 // the pointer-lock request keeps its user gesture.
 
 import { clamp } from '../core/utils.js';
-import { DIFFICULTIES, MODES, TEAM_BLUE, TEAM_COLORS, TEAM_NAMES, isTeamMode } from '../core/constants.js';
+import { DIFFICULTIES, MODES, TEAM_COLORS, TEAM_NAMES, isTeamMode } from '../core/constants.js';
 import { DEFAULT_SETTINGS } from '../core/Settings.js';
 import {
   ARSENAL_IDS, ARSENAL_LEVELS, ARSENAL_PRESETS, DEFAULT_ARSENAL, sanitizeArsenal, arsenalPercents, matchArsenalPreset,
@@ -19,6 +19,7 @@ import { mountGraphicsInfo } from './GraphicsInfo.js';
 import { resolveQuality } from '../core/GraphicsQuality.js';
 import { CrosshairScreen } from './CrosshairScreen.js';
 import { LoadoutScreen } from './LoadoutScreen.js';
+import { NetMenu } from './NetMenu.js';
 import { sanitizePool } from '../weapons/Loadout.js';
 
 const SCORE_OPTS = [10, 25, 50, 100, 0];
@@ -164,11 +165,12 @@ export class Menu {
     this.loadout = new LoadoutScreen(this);
 
     this.xhs = new CrosshairScreen(this);   // Settings > Crosshair (src/ui/CrosshairScreen.js)
+    this.net = new NetMenu(this);           // Multiplayer hub / lobby and the online pause / end variants (src/ui/NetMenu.js)
     const root = document.createElement('div');
     root.className = 'k-menu';
     root.innerHTML = `<div class="k-scrim"></div><div class="k-grid"></div>`
       + this._mainHTML() + this._setupHTML() + this._arsenalHTML() + this.loadout.screenHTML() + this._settingsHTML() + this._controlsHTML()
-      + this.xhs.html() + this._pauseHTML() + this._endHTML();
+      + this.xhs.html() + this._pauseHTML() + this._endHTML() + this.net.html();
     g.uiRoot.appendChild(root);
     this.root = root;
     this.screens = {};
@@ -177,6 +179,7 @@ export class Menu {
     for (const n of root.querySelectorAll('[data-r]')) this.r[n.dataset.r] = n;
     this.xhs.bind(root);
     this.loadout.bind(root);
+    this.net.bind();
     // keep the loading overlay above the menu
     g.uiRoot.appendChild(this.loading);
 
@@ -194,6 +197,7 @@ export class Menu {
         <div class="tagline"><span>Arena shooter</span><i></i><span>Move fast. Stay alive.</span></div>
         <nav class="main-nav">
           <button class="k-btn primary" data-act="play"><span class="lbl">Play</span><em>Set up a match</em><b>${ICON.arrow}</b></button>
+          <button class="k-btn" data-act="mp-hub"><span class="lbl">Multiplayer</span><em>Host or join a game</em></button>
           <button class="k-btn" data-act="quick"><span class="lbl">Quick play</span><em data-r="quicksum"></em><b>${ICON.bolt}</b></button>
           <button class="k-btn" data-act="settings"><span class="lbl">Settings</span><em>Controls, video, audio</em></button>
           <button class="k-btn" data-act="controls"><span class="lbl">Controls</span><em>Keys &amp; movement tech</em></button>
@@ -246,7 +250,7 @@ export class Menu {
       </div>
       <footer class="k-foot"><div class="summary" data-r="summary"></div>
         <button class="k-btn ghost" data-act="back">Back</button>
-        <button class="k-btn primary big" data-act="deploy"><span class="lbl">Deploy</span><b>${ICON.arrow}</b></button></footer>
+        <button class="k-btn primary big" data-act="deploy"><span class="lbl" data-r="deploylbl">Deploy</span><b>${ICON.arrow}</b></button></footer>
     </section>`;
   }
 
@@ -311,11 +315,13 @@ export class Menu {
     return `
     <section class="k-screen s-pause" data-screen="pause">
       <div class="pause-panel k-cut">
-        <div class="pz-head"><small>Match in progress</small><h2>Paused</h2></div>
+        <div class="pz-head"><small data-r="pzkicker">Match in progress</small><h2 data-r="pztitle">Paused</h2></div>
         <div class="pz-info" data-r="pzinfo"></div>
         <div class="pz-btns">
           <button class="k-btn primary" data-act="resume"><span class="lbl">Resume</span><b>${ICON.arrow}</b></button>
-          <button class="k-btn" data-act="restart"><span class="lbl">Restart match</span></button>
+          <button class="k-btn" data-act="restart" data-r="pzrestart"><span class="lbl">Restart match</span></button>
+          <button class="k-btn" data-act="mp-endall" data-r="pzendall" style="display:none"><span class="lbl">End match for all</span></button>
+          <button class="k-btn" data-act="mp-tolobby" data-r="pztolobby" style="display:none"><span class="lbl">Back to lobby</span></button>
           <button class="k-btn" data-act="loadout"><span class="lbl">Loadout</span><em>Applies at your next respawn</em></button>
           <button class="k-btn" data-act="settings"><span class="lbl">Settings</span></button>
           <button class="k-btn" data-act="controls"><span class="lbl">Controls</span></button>
@@ -334,8 +340,10 @@ export class Menu {
         <div class="end-side">
           <div class="end-stats k-cut" data-r="endstats"></div>
           <div class="end-btns">
-            <button class="k-btn primary big" data-act="again"><span class="lbl">Play again</span><b>${ICON.arrow}</b></button>
-            <button class="k-btn" data-act="menu"><span class="lbl">Main menu</span></button>
+            <div class="end-wait" data-r="endwait" style="display:none">Waiting for the host…</div>
+            <button class="k-btn primary big" data-act="again" data-r="endagain"><span class="lbl">Play again</span><b>${ICON.arrow}</b></button>
+            <button class="k-btn" data-act="mp-tolobby" data-r="endtolobby" style="display:none"><span class="lbl">Back to lobby</span></button>
+            <button class="k-btn" data-act="menu" data-r="endmenu"><span class="lbl">Main menu</span></button>
           </div>
         </div>
       </div>
@@ -366,8 +374,9 @@ export class Menu {
       if (performance.now() - this._shownAt < 400) return;   // ignore the Esc that opened the pause menu
       const t = e.target;
       const typing = t && t.tagName === 'INPUT' && t.type === 'text';
+      if (this.net.onKey(e)) return;
       if (e.code === 'Escape' || (e.code === 'KeyP' && !typing)) {
-        if (this.screen === 'pause') { if (g.state === 'paused') { g.resume(); } }
+        if (this.screen === 'pause') { if (g.state === 'paused') g.resume(); else if (g._matchMenu) g.closeMatchMenu(); }
         else if (this.screen === 'settings' || this.screen === 'controls') this._go(this._origin);
         else if (this.screen === 'crosshair') this._go('settings');
         else if (this.screen === 'setup') this._go('main');
@@ -420,8 +429,11 @@ export class Menu {
     const act = t.dataset.act;
     if (!act) return;
     if (act !== 'quit') this._disarmQuit();
+    if (act === 'mp-room') { this.net.onRoomClick(t); return; }
+    if (act.startsWith('mp-') && this.net.onClick(act, t)) { if (t.blur) t.blur(); return; }
+    if (act === 'back' && this.screen === 'setup' && this.net.backFromSetup()) return;
     switch (act) {
-      case 'play': this._go('setup'); break;
+      case 'play': this.net.setupMode = 'solo'; this._go('setup'); break;
       case 'quick': this._deploy(); break;
       case 'deploy': this._deploy(); break;
       case 'settings': this._go('settings'); break;
@@ -480,12 +492,17 @@ export class Menu {
 
   _disarmQuit() {
     this._quitArmed = 0;
-    if (this.r && this.r.quitlbl) this.r.quitlbl.textContent = 'Quit to menu';
+    const net = this.game.net;
+    if (this.r && this.r.quitlbl) this.r.quitlbl.textContent = net && net.online ? (net.isHost ? 'End the game for everyone' : 'Leave match') : 'Quit to menu';
   }
 
   _deploy() {
     const c = this._cfg;
     if (!c || !c.mapId) return;
+    if (this.net.setupMode !== 'solo') {   // multiplayer: create the room / change its rules (no match starts here)
+      this.net.createOrApply({ ...c });
+      return;
+    }
     // Must run synchronously inside the click handler (pointer lock needs the gesture).
     this.game.startMatch({
       mapId: c.mapId, mode: c.mode, botCount: c.botCount, difficulty: c.difficulty,
@@ -509,6 +526,7 @@ export class Menu {
     else if (name === 'settings') this._syncSettings();
     else if (name === 'controls') this._fillControls();
     else if (name === 'crosshair') this.xhs.show();
+    this.net.onShow(name);
     this._disarmQuit();
     if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
   }
@@ -525,14 +543,16 @@ export class Menu {
     if (!this.built) this.init();
     this._origin = 'pause';
     this._fillPause();
+    this.net.fillPause();
     this._go('pause');
   }
 
   /** End-of-match screen with banner, scoreboard, Play again / Main menu. */
   showEnd(match) {
     if (!this.built) this.init();
-    this._origin = 'main';
+    this._origin = this.game.net.online ? 'lobby' : 'main';
     this._fillEnd(match || this.game.match);
+    this.net.fillEnd(match || this.game.match);
     this._go('end');
   }
 
@@ -806,13 +826,13 @@ export class Menu {
       kind = modeName(m.mode);
     } else {
       const w = m.winner;
-      title = m.playerWon ? 'Victory' : 'Match over';
-      sub = w ? (m.playerWon ? `You won with ${w.kills} kills` : `${w.name} wins with ${w.kills} kills`) : '';
+      title = m.playerWon ? 'Victory' : m.draw ? 'Draw' : 'Match over';
+      sub = w ? (m.playerWon ? `You won with ${w.kills} kills` : `${w.name} wins with ${w.kills} kills`) : m.draw ? 'Tied for first place' : '';
       if (w && m.mode === 'escalation') {
         const L = m.ladder ? m.ladder.length : 0;
         sub = m.reason === 'ladder' ? (m.playerWon ? 'You finished the ladder' : `${w.name} finished the ladder`) : (m.playerWon ? `You led on tier ${(w.tier | 0) + 1} / ${L}` : `${w.name} led on tier ${(w.tier | 0) + 1} / ${L}`);
       }
-      tone = m.playerWon ? 'win' : 'lose';
+      tone = m.playerWon ? 'win' : m.draw ? 'draw' : 'lose';
       kind = modeName(m.mode);
     }
     const reason = m.reason === 'time' ? 'Time expired' : m.reason === 'score' ? 'Score limit reached' : m.reason === 'ladder' ? 'Last weapon kill' : '';
@@ -825,7 +845,7 @@ export class Menu {
     this.r.endinfo.textContent = `${(m.mapName || '').toUpperCase()} · ${m.botCount} BOTS · ${String(m.difficulty || '').toUpperCase()}`;
     this.r.endboard.innerHTML = scoreboardHTML(rows, m, {});
 
-    const me = rows.find(r => r.isPlayer);
+    const me = rows.find(r => r.isLocal);
     let stats = '';
     if (me) {
       const rank = rows.indexOf(me) + 1;
@@ -835,7 +855,7 @@ export class Menu {
         + tile('Kills', me.kills, 'c') + tile('Deaths', me.deaths)
         + (m.mode === 'escalation' ? tile('Tier', (me.tier | 0) + 1 + ' <em>of ' + (m.ladder ? m.ladder.length : 0) + '</em>')
           : m.mode === 'koth' ? tile('Zone time', Math.round(me.zoneTime || 0) + 's') : tile('K/D', kd))
-        + tile(tdm ? 'Team' : 'Placement', tdm ? esc(TEAM_NAMES[TEAM_BLUE] || 'Blue') : ordinal(rank) + ' <em>of ' + rows.length + '</em>', tdm ? '' : 'o')
+        + tile(tdm ? 'Team' : 'Placement', tdm ? esc(TEAM_NAMES[me.team] || 'Blue') : ordinal(rank) + ' <em>of ' + rows.length + '</em>', tdm ? '' : 'o')
         + '</div>';
     }
     this.r.endstats.innerHTML = stats;

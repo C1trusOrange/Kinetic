@@ -171,6 +171,8 @@ export class Combat {
 
   /** Per-frame combat bookkeeping (Gale wall-splat detection). Called by Game.update right after bots.update. */
   update(dt) {
+    const net = this.game.net;
+    if (net && !net.authority) return;   // online clients: the host detects wall splats
     updateShoves(this.game, dt);
   }
 
@@ -185,6 +187,8 @@ export class Combat {
    * @returns {{hits:number, reflected:number}}
    */
   blast(shooter, origin, dir, b, ads = false) {
+    const net = this.game.net;
+    if (net && net.isClient) return net.client.hooks.blast(shooter, origin, dir, b, ads);   // the host runs it (mp-arsenal)
     return galeBlast(this.game, shooter, origin, dir, b, ads);
   }
 
@@ -253,16 +257,20 @@ export class Combat {
    *          point?:THREE.Vector3, direction?:THREE.Vector3, knockback?:THREE.Vector3}} info
    */
   applyDamage(target, info) {
+    // online clients never apply damage: their own hits become claims the host validates (favor the shooter)
+    const net = this.game.net;
+    if (net && !net.authority) return net.client.claimDamage ? net.client.claimDamage(target, info) : 0;
     if (!target || !target.alive) return 0;
     const match = this.game.match;
     if (match && match.over) return 0;
+    if (match && match.phase === 'countdown') return 0;   // online countdown: nobody takes damage
     const attacker = info.attacker ?? null;
     const friendly = attacker && attacker !== target && attacker.team === target.team;
     if (friendly) return 0;
     // spawn-protected entities ignore knockback from anyone else (nobody can be shoved off a void map or rocket-launched
     // around while immune); self knockback (rocket jumps, Gale self push) is unaffected
     if (info.knockback && (attacker === target || !target.isProtected())) {
-      target.applyImpulse(info.knockback);
+      target.applyImpulse(info.knockback, info);   // a RemotePlayer forwards it to its client
       if (info.shove) tagShove(this.game, target, info);
     }
     if (target.god || target.isProtected()) return 0;
@@ -282,6 +290,8 @@ export class Combat {
 
   /** Kill an entity immediately (also used for the kill plane). Emits 'death'. */
   kill(target, info = {}) {
+    const net = this.game.net;
+    if (net && !net.authority) return;   // deaths come from the host
     if (!target.alive) return;
     target.health = 0;
     target.alive = false;
@@ -293,10 +303,14 @@ export class Combat {
       point: info.point ?? null,
       direction: info.direction ?? null,
     };
+    const fx = net && net.fx;   // online: gibs and death sounds are made by every machine itself
+    if (fx) fx.suspend();
     try {
       target.onDeath(payload);
     } catch (err) {
       console.error('[combat] onDeath threw', err);
+    } finally {
+      if (fx) fx.resume();
     }
     this.game.events.emit('death', payload);
   }
@@ -309,6 +323,8 @@ export class Combat {
    *          knockback?:number, selfScale?:number, selfKnock?:number}} o  selfKnock = multiplier on the attacker's own knockback
    */
   radialDamage(center, o) {
+    const net = this.game.net;
+    if (net && !net.authority) return;   // explosions damage on the host only
     const radius = o.radius;
     const knock = o.knockback ?? 12;
     const selfScale = o.selfScale ?? 0.4;

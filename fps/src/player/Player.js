@@ -32,6 +32,8 @@ export class Player extends Entity {
   constructor(game) {
     super(game);
     this.isPlayer = true;
+    this.isLocal = true;
+    this.isHuman = true;
     this.name = 'Player';
 
     // ---- state read by weapons / HUD / tests (updated every frame)
@@ -155,10 +157,13 @@ export class Player extends Entity {
 
     if (this.shockedUntil > game.time) this._shockEffects(dt);
 
+    // online match countdown: free look, no movement input (the physics steps still run: gravity, landing)
+    const frozen = !!(game.match && game.match.phase === 'countdown');
+
     // ---- input snapshot
-    const f = (input.action('forward') ? 1 : 0) - (input.action('back') ? 1 : 0);
-    const s = (input.action('right') ? 1 : 0) - (input.action('left') ? 1 : 0);
-    inp.forwardHeld = input.action('forward');
+    const f = frozen ? 0 : (input.action('forward') ? 1 : 0) - (input.action('back') ? 1 : 0);
+    const s = frozen ? 0 : (input.action('right') ? 1 : 0) - (input.action('left') ? 1 : 0);
+    inp.forwardHeld = !frozen && input.action('forward');
     inp.fwd = f;
     inp.strafe = s;
     if (f !== 0 || s !== 0) {
@@ -174,18 +179,18 @@ export class Player extends Entity {
       inp.wishX = inp.wishZ = 0;
       inp.wishLen = 0;
     }
-    inp.jumpHeld = input.action('jump');
+    inp.jumpHeld = !frozen && input.action('jump');
     // press edges are latched until a physics step consumes them (a frame can run zero steps); a crouch tap whose
     // press and release both landed in this frame's window is latched too (crouchFresh without crouchHeld: the
     // controller holds it for a moment, so it still starts a slide). Stale presses (input stale-press policy)
     // never show up here.
-    if (input.actionPressed('jump')) inp.jumpFresh = true;
-    inp.crouchHeld = input.action('crouch');
-    if (input.actionPressed('crouch')) inp.crouchFresh = true;
-    inp.sprintHeld = input.action('sprint');
+    if (!frozen && input.actionPressed('jump')) inp.jumpFresh = true;
+    inp.crouchHeld = !frozen && input.action('crouch');
+    if (!frozen && input.actionPressed('crouch')) inp.crouchFresh = true;
+    inp.sprintHeld = !frozen && input.action('sprint');
 
     // ---- grapple (frame rate: input, flight, release rules)
-    if (input.actionPressed('grapple')) this.grapple.toggle();
+    if (!frozen && input.actionPressed('grapple')) this.grapple.toggle();
     this.grapple.update(dt);
 
     // ---- fixed-step physics

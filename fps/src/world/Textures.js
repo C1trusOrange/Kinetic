@@ -13,7 +13,7 @@
  */
 import * as THREE from 'three';
 import { Field, getNoise, noiseField, makeCanvas, canvasTexture, setMaxAnisotropy } from '../core/procgen.js';
-import { mulberry32 } from '../core/utils.js';
+import { mulberry32, yieldHiddenSafe } from '../core/utils.js';
 
 // ------------------------------------------------------------------ math / colour helpers
 
@@ -2661,12 +2661,12 @@ function uploadTextures(mat) {
   }
 }
 
-const yieldFrame = () => new Promise(res => {
+const yieldFrame = () => yieldHiddenSafe(() => new Promise(res => {
   let done = false;
   const f = () => { if (!done) { done = true; res(); } };
   if (typeof requestAnimationFrame === 'function') requestAnimationFrame(f);
   setTimeout(f, 40);
-});
+}));
 
 /**
  * Generate materials ahead of time, yielding to the browser between materials so a loading

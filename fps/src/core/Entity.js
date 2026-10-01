@@ -16,8 +16,29 @@ export class Entity {
     this.name = 'Entity';
     /** In FFA team === id. In TDM 1 (blue) or 2 (red). */
     this.team = 0;
+    /** Legacy alias of isLocal (true only for the Player instance). New code uses isLocal / isHuman / isBot. */
     this.isPlayer = false;
     this.isBot = false;
+    /** The player of this machine (the Player instance). */
+    this.isLocal = false;
+    /** A human fighter: the local player, a RemotePlayer (host) or a human NetAvatar (client). */
+    this.isHuman = false;
+    /** Host only: a joined human (net/RemotePlayer.js). */
+    this.isRemote = false;
+    /** Client only: the stand-in for another machine's entity (net/NetAvatar.js). */
+    this.isProxy = false;
+    /** This machine integrates the entity's movement (false for RemotePlayer / NetAvatar). */
+    this.simLocal = true;
+    /** Relay peer id of the controlling human (0 = the host), -1 for bots and offline. */
+    this.netPeer = -1;
+    /** The host's own player (online). */
+    this.netHost = false;
+    /** Round trip to the host in ms (online humans). */
+    this.ping = 0;
+    /** False while a joined human's connection is lost (online). */
+    this.connected = true;
+    /** Online: held by a connection or deploy gate (no respawn, not targetable). */
+    this.netHold = false;
     /** Accent color (scoreboard, kill feed, bot paint). */
     this.color = new THREE.Color(0xffffff);
 
@@ -30,6 +51,11 @@ export class Entity {
     this.god = false;
 
     this.position = new THREE.Vector3();
+    /**
+     * Position the match rules use (pickups, kill plane, zones). The same object as `position` (never reassigned)
+     * except on a RemotePlayer, where it is the last position its client reported.
+     */
+    this.authPos = this.position;
     this.velocity = new THREE.Vector3();
     this.yaw = 0;
     this.pitch = 0;

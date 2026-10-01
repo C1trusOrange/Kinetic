@@ -1068,3 +1068,59 @@ kbd {
 /* pause menu entry: disabled in Escalation (fixed ladder), styled like the locked setup card */
 .s-pause .k-btn[data-act="loadout"]:disabled { opacity: 0.5; cursor: default; pointer-events: none; }
 .s-pause .k-btn[data-act="loadout"]:disabled em { color: var(--k-orange); }
+
+/* ==========================================================================================
+   multiplayer: hub and lobby (src/ui/NetMenu.js)
+   ========================================================================================== */
+.k-menu[data-screen="mp"] .k-scrim, .k-menu[data-screen="lobby"] .k-scrim { background: radial-gradient(ellipse at 50% 30%, rgba(6, 14, 26, 0.84), rgba(3, 7, 14, 0.94)); backdrop-filter: blur(5px); }
+.main-nav .k-btn:nth-child(5) { animation-delay: 0.53s; }
+.mp-body { display: flex; flex-direction: column; gap: 1.2em; flex: 1; min-height: 0; max-width: 58em; width: 100%; margin: 0 auto; }
+.mp-name { width: 22em; }
+.mp-cards { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.4em; min-height: 0; }
+.mp-card { --fill: rgba(7, 13, 24, 0.78); padding: 1.3em 1.5em 1.5em; display: flex; flex-direction: column; gap: 0.75em; min-height: 0; }
+.mp-card .k-sec { margin-bottom: 0.1em; }
+.mp-p { margin: 0; font: 500 0.85em/1.5 var(--k-font); letter-spacing: 0.03em; color: #b9d0e0; }
+.mp-note { font: 500 0.74em/1.4 var(--k-font); letter-spacing: 0.05em; color: var(--k-dim); }
+.mp-card > .k-btn { margin-top: auto; }
+.mp-join { display: flex; align-items: flex-end; gap: 0.8em; }
+.mp-join .mp-field { flex: 1; }
+.mp-join .k-btn { width: auto; min-width: 8em; }
+.mp-code { font: 800 1.5em var(--k-cond); letter-spacing: 0.4em; text-transform: uppercase; }
+.mp-err { min-height: 1.2em; font: 600 0.78em/1.4 var(--k-font); letter-spacing: 0.04em; color: #ff8a8a; }
+.mp-err.info { color: var(--k-cyan); }
+.mp-rooms-h { margin-top: 0.4em; }
+.mp-rooms { display: flex; flex-direction: column; gap: 0.4em; max-height: 13em; overflow-y: auto; }
+.mp-room { display: flex; align-items: center; gap: 0.8em; padding: 0.35em 0.4em 0.35em 0.8em; background: rgba(255, 255, 255, 0.05); font: 500 0.8em var(--k-font); letter-spacing: 0.04em; color: #cfe3f1; }
+.mp-room span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mp-room .k-btn { width: auto; min-width: 0; padding: 0.45em 1em; font-size: 0.95em; }
+.mp-empty { font: 500 0.78em var(--k-font); letter-spacing: 0.05em; color: var(--k-dim); }
+.mp-msg { padding: 0.8em 1.1em; font: 600 0.9em var(--k-font); letter-spacing: 0.05em; color: #ffd38a; background: rgba(255, 190, 80, 0.1); border-left: 3px solid #ffb74a; }
+.lb-body { display: grid; grid-template-columns: 22em minmax(0, 1fr); gap: 1.6em; flex: 1; min-height: 0; max-height: 31em; }
+.lb-left, .lb-right { --fill: rgba(7, 13, 24, 0.78); padding: 1.2em 1.4em; display: flex; flex-direction: column; min-height: 0; }
+.lb-code { font: 800 4.2em/1 var(--k-cond); letter-spacing: 0.22em; color: #fff; margin: 0.05em 0 0.3em; user-select: text; -webkit-user-select: text; }
+.lb-addr { font: 500 0.82em/1.5 var(--k-font); letter-spacing: 0.03em; color: #b9d0e0; margin-bottom: 1.1em; user-select: text; -webkit-user-select: text; }
+.lb-addr b { color: #fff; }
+.lb-rules { display: flex; flex-direction: column; gap: 0.2em; margin-bottom: 1em; font: 600 0.82em var(--k-font); letter-spacing: 0.06em; color: #d6e8f4; }
+.lb-left .k-btn { margin-top: auto; }
+.lb-right .k-sec output { margin-left: 0.4em; color: #fff; }
+.lb-rows { display: flex; flex-direction: column; gap: 0.35em; overflow-y: auto; }
+.lb-row { display: grid; grid-template-columns: 0.9em minmax(0, 1fr) auto 7.5em 4em; align-items: center; gap: 0.8em; padding: 0.5em 0.8em; background: rgba(255, 255, 255, 0.05); font: 600 0.9em var(--k-font); letter-spacing: 0.04em; }
+.lb-row.me { background: rgba(61, 224, 255, 0.12); }
+.lb-row.off { opacity: 0.5; }
+.lb-chip { width: 0.9em; height: 0.9em; display: block; clip-path: polygon(0.2em 0, 100% 0, calc(100% - 0.2em) 100%, 0 100%); }
+.lb-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #fff; }
+.lb-name em { font: 700 0.7em var(--k-font); font-style: normal; letter-spacing: 0.14em; color: var(--k-cyan); margin-left: 0.4em; }
+.lb-team { font: 600 0.75em var(--k-font); letter-spacing: 0.1em; text-transform: uppercase; color: var(--k-dim); }
+.lb-st { font: 600 0.75em var(--k-font); letter-spacing: 0.1em; text-transform: uppercase; color: var(--k-dim); text-align: right; }
+.lb-st.ok { color: #7dffb3; }
+.lb-ping { font: 500 0.75em var(--k-font); color: var(--k-dim); text-align: right; }
+.end-wait { font: 600 0.85em var(--k-font); letter-spacing: 0.12em; text-transform: uppercase; color: var(--k-cyan); padding: 0.5em 0; }
+
+/* multiplayer: name tags over other humans (src/ui/Nameplates.js), system lines in the kill feed */
+.hud-names { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hud-names .nm { position: absolute; left: 0; top: 0; display: none; padding: 0.12em 0.55em; white-space: nowrap; transform-origin: 50% 100%;
+  font: 700 0.86em var(--k-cond); letter-spacing: 0.08em; color: #fff; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  background: rgba(6, 10, 18, 0.55); border-bottom: 2px solid var(--nc, #9fe8ff); }
+.hud-names .nm.friend { background: rgba(10, 40, 70, 0.6); }
+.kf-row.sys { font-style: italic; border-right-color: rgba(61, 224, 255, 0.55); }
+.kf-row.sys em { font-style: italic; color: #9fdcf0; }

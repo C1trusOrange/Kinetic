@@ -17,12 +17,12 @@ function extraCell(r, mode) {
 
 function rowHTML(r, rank, opts, index) {
   const cls = ['sb-row'];
-  if (r.isPlayer) cls.push('me');
+  if (r.isLocal) cls.push('me');
   if (opts.dim && r.alive === false) cls.push('dead');
   return `<div class="${cls.join(' ')}" style="--i:${index}">`
     + `<span class="sb-rank">${rank}</span>`
     + `<span class="sb-chip" style="background:${esc(r.color)}"></span>`
-    + `<span class="sb-name">${esc(r.name)}${r.isPlayer ? '' : `<em class="sb-ai">${ICON.bot}</em>`}</span>`
+    + `<span class="sb-name">${esc(r.name)}${r.isBot ? `<em class="sb-ai">${ICON.bot}</em>` : ''}</span>`
     + extraCell(r, opts.mode)
     + `<span class="sb-k">${r.kills}</span><span class="sb-d">${r.deaths}</span><span class="sb-kd">${kd(r.kills, r.deaths)}</span>`
     + '</div>';

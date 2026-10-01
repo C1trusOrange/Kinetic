@@ -183,8 +183,11 @@ export class Storm {
       }
     }
 
+    // online clients never pick strikes: the host's 'storm' message starts each one (beginStrike), with its warning
+    const net = this.game.net;
+    const local = !net || net.authority;
     if (this._strike) this._updateStrike(dt);
-    else {
+    else if (local) {
       this._nextStrike -= dt;
       if (this._nextStrike <= 0) this._beginStrike();
     }
@@ -247,12 +250,23 @@ export class Storm {
 
   // ------------------------------------------------------------------ strikes
 
-  _beginStrike() {
-    const i = this._pickRod();
+  /**
+   * Start the strike on rod `index` with `warn` seconds of warning (online clients: from the host's message).
+   * @param {number} index @param {number} warn
+   */
+  beginStrike(index, warn) {
+    if (!this.cfg || !this.rods[index]) return;
+    if (this._strike) this._strike = null;   // a late message: the new strike wins
+    this._beginStrike(index, Math.max(0, Number(warn) || 0));
+  }
+
+  _beginStrike(forced = -1, forcedWarn = -1) {
+    const i = forced >= 0 ? forced : this._pickRod();
     this._lastRod = i;
     const rod = this.rods[i];
     const playing = this.game.state === 'playing';
-    const warn = rod.hazard && playing ? this.cfg.warn : 0;
+    const warn = forcedWarn >= 0 ? forcedWarn : rod.hazard && playing ? this.cfg.warn : 0;
+    if (forced < 0 && this.game.events) this.game.events.emit('storm:strike', { rod: i, warn });
     this._strike = { rod, t: -warn, warn, fired: false, stroke: -1 };
     if (warn > 0) {
       const a = this.game.audio;

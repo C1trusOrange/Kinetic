@@ -11,6 +11,7 @@ import { weaponIcon, ICON } from './Icons.js';
 import { esc, hexOf, fmtTime, ordinal } from './dom.js';
 import { scoreboardHTML, scoreboardSignature } from './Scoreboard.js';
 import { ModeHUD, modeLabel } from './ModeHUD.js';
+import { Nameplates } from './Nameplates.js';
 import {
   XH_KEYS, XH_REF_EM, WEAPON_XH_STYLE, readCrosshair, applyCrosshair, adsVisibility, adsModeOf, crosshairMarkup, crosshairReach, snapAnchor,
 } from './Crosshair.js';
@@ -172,7 +173,7 @@ export class HUD {
     this._offs = [];
 
     // transient state
-    this._hitAcc = { amount: 0, count: 0, head: false, kill: false, dirty: false };
+    this._hitAcc = { amount: 0, count: 0, head: false, kill: false, dirty: false, echo: false };
     this._numIndex = 0;
     this._feedCount = 0;
     this._streak = 0;
@@ -212,6 +213,8 @@ export class HUD {
     root.innerHTML = TEMPLATE();
     this.game.uiRoot.appendChild(root);
     this.root = root;
+    /** Online: name tags over the other humans. */
+    this.names = new Nameplates(this);
     this.e = Object.create(null);
     for (const n of root.querySelectorAll('[data-r]')) this.e[n.dataset.r] = n;
     const dis = this.e.di.children;
@@ -235,6 +238,7 @@ export class HUD {
     const ev = this.game.events;
     this._offs.push(
       ev.on('damage', e => this._onDamage(e)),
+      ev.on('hit:predicted', e => this._onPredictedHit(e)),
       ev.on('death', e => this._onDeath(e)),
       ev.on('spawn', e => this._onSpawn(e)),
       ev.on('weapon:switch', e => this._onSwitch(e)),
@@ -242,6 +246,7 @@ export class HUD {
       ev.on('pickup', e => this._onPickup(e)),
       ev.on('ammo:kill', e => this._onKillAmmo(e)),
       ev.on('reflect', e => this._onReflect(e)),
+      ev.on('net:sys', e => this._addSys(e)),
       ev.on('match:end', m => this._onMatchEnd(m)),
       ev.on('player:grapple', e => this._onGrapple(e)),
       ev.on('resize', e => { this._h = (e && e.height) || window.innerHeight || 720; this._applyCrosshair(); }),
@@ -381,7 +386,10 @@ export class HUD {
     if (e.attacker === p && e.target !== p) {
       const a = this._hitAcc;
       a.amount += e.amount || 0;
-      a.count++;
+      // online: the host's confirmation of a hit already marked when it was fired adds only its damage number
+      const c = g.net && g.net.client;
+      if (e.ci !== undefined && c && c.predicted.has(e.ci)) a.echo = true;
+      else a.count++;
       if (e.headshot) a.head = true;
       a.dirty = true;
     }
@@ -391,6 +399,15 @@ export class HUD {
       el.animate([{ opacity: clamp(0.25 + amt / 60, 0.25, 0.85) }, { opacity: 0 }], { duration: 420, easing: 'ease-out' });
       if (e.weapon !== 'fall' && e.attacker !== p) this._addIndicator(e);
     }
+  }
+
+  /** Online client: its own hit, shown in the frame of the shot (the host confirms it a round trip later). */
+  _onPredictedHit(e) {
+    if (!e) return;
+    const a = this._hitAcc;
+    a.count++;
+    if (e.headshot) a.head = true;
+    a.dirty = true;
   }
 
   _onDeath(e) {
@@ -622,6 +639,20 @@ export class HUD {
     while (feed.children.length > FEED_MAX) { feed.firstElementChild.remove(); this._feedCount--; }
   }
 
+  /** Kill-feed line for a multiplayer event: someone joined, left, lost connection or was removed. */
+  _addSys(e) {
+    if (!e || !e.name || !this.game.match) return;
+    const verb = { join: 'joined', leave: 'left', drop: 'lost connection', rejoin: 'is back', kick: 'was removed', team: 'switched team' }[e.kind];
+    if (!verb) return;
+    const row = document.createElement('div');
+    row.className = 'kf-row sys';
+    row.innerHTML = `<span class="kf-name" style="color:${esc(hexOf(e.color))}">${esc(e.name)}</span><em>${esc(verb)}</em>`;
+    const feed = this.e.feed;
+    feed.appendChild(row);
+    this._feedCount++;
+    while (feed.children.length > FEED_MAX) { feed.firstElementChild.remove(); this._feedCount--; }
+  }
+
   _addIndicator(e) {
     const g = this.game, p = g.player;
     let x, z, attacker = e.attacker || null;
@@ -647,9 +678,14 @@ export class HUD {
     a.dirty = false;
     const g = this.game;
     const el = this.e.hit;
-    el.className = 'hud-hit' + (a.kill ? ' kill' : a.head ? ' head' : '');
-    if (this._hitAnim) this._hitAnim.cancel();
-    this._hitAnim = el.animate(KF_HIT, { duration: a.kill ? 520 : 340, easing: 'ease-out' });
+    // only a confirmation of hits marked earlier: the number, no second marker / sound
+    const numberOnly = a.echo && a.count === 0 && !a.kill;
+    a.echo = false;
+    if (!numberOnly) {
+      el.className = 'hud-hit' + (a.kill ? ' kill' : a.head ? ' head' : '');
+      if (this._hitAnim) this._hitAnim.cancel();
+      this._hitAnim = el.animate(KF_HIT, { duration: a.kill ? 520 : 340, easing: 'ease-out' });
+    }
 
     if (a.amount > 0.5) {
       const n = this.e.numList[this._numIndex++ % NUM_COUNT];
@@ -659,7 +695,7 @@ export class HUD {
       n.style.left = (Math.random() * 26 - 6).toFixed(0) + 'px';
       n.animate(KF_NUM, { duration: 720, easing: 'ease-out' });
     }
-    if (g.audio && g.audio.play) g.audio.play(a.head ? 'headshot' : 'hitmarker', { volume: a.head ? 0.85 : 0.7 });
+    if (!numberOnly && g.audio && g.audio.play) g.audio.play(a.head ? 'headshot' : 'hitmarker', { volume: a.head ? 0.85 : 0.7 });
     a.amount = 0;
     a.count = 0;
     a.head = false;
@@ -690,6 +726,7 @@ export class HUD {
     this._updateIndicators(p, rdt);
     this._flushHits(rdt);
     if (m) {
+      this.names.update(rdt);
       this._updateTop(m, p);
       this.modeHud.update(rdt, m, p);
       this._updateDeath(p, m, readouts);

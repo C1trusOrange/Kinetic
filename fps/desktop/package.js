@@ -7,7 +7,8 @@
  * because the exe is not code-signed: "More info" > "Run anyway".
  *
  * Only the game itself goes into the build, trimmed to what it uses:
- *   - index.html, style.css, src/, fonts/, music/*.ogg (the .wav masters stay behind) and the desktop shell,
+ *   - index.html, style.css, src/, fonts/, music/*.ogg (the .wav masters stay behind) and the desktop shell (main.js,
+ *     preload.js and relay.js, the built-in multiplayer server; not selftest.js),
  *   - from vendor/three only the files the game imports (three.module.js + the addons reached from src/) + LICENSE,
  *   - of Chromium's ~55 UI locales only en-US (the game has no browser UI that would use them).
  */
@@ -22,6 +23,8 @@ const NAME = 'KINETIC';
 
 /** Top-level entries copied into the app (everything else is left out). */
 const APP_FILES = new Set(['package.json', 'desktop', 'index.html', 'style.css', 'src', 'vendor', 'music', 'fonts']);
+/** Files of desktop/ that stay out of the build: development tools (main.js only loads selftest.js when unpackaged). */
+const DEV_ONLY = new Set(['desktop/selftest.js']);
 const THREE_MAIN = 'vendor/three/build/three.module.js';
 const THREE_ADDONS = 'vendor/three/examples/jsm/';
 const KEEP_LOCALES = new Set(['en-US.pak']);
@@ -77,7 +80,7 @@ async function main() {
     if (p === '') return false;
     const r = p.slice(1);
     const top = r.split('/')[0];
-    if (!APP_FILES.has(top)) return true;
+    if (!APP_FILES.has(top) || DEV_ONLY.has(r)) return true;
     if (top === 'vendor') return !(vendor.has(r) || vendorDirs.has(r));
     if (top === 'music') return r !== 'music' && !r.endsWith('.ogg');
     return false;

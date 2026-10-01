@@ -9,7 +9,7 @@ import { NavGraph } from './NavGraph.js';
 import { createSky, createEnvironment, normalizeSky } from './Sky.js';
 import { Storm } from './Storm.js';
 import { GRAVITY } from '../core/constants.js';
-import { toColor, yawFromDirection } from '../core/utils.js';
+import { toColor, yawFromDirection, yieldHiddenSafe } from '../core/utils.js';
 
 /**
  * World: owns everything map related. load(def) builds the merged render meshes + collision
@@ -54,12 +54,12 @@ const _down = new THREE.Vector3(0, -1, 0);
 const _dirv = new THREE.Vector3();
 const _padColor = new THREE.Color();
 
-const yieldFrame = () => new Promise(resolve => {
+const yieldFrame = () => yieldHiddenSafe(() => new Promise(resolve => {
   let done = false;
   const go = () => { if (!done) { done = true; resolve(); } };
   if (typeof requestAnimationFrame === 'function') requestAnimationFrame(go);
   setTimeout(go, 40);
-});
+}));
 
 let PAD_ASSETS = null;
 function padAssets() {
@@ -607,11 +607,15 @@ export class World {
     if (!pads.length) return;
     const game = this.game;
     const ents = game.entities || [];
+    // online: each machine launches only the bodies it simulates (a joined human rides pads on its own client), and
+    // nobody launches during the match countdown
+    const counting = !!(game.match && game.match.phase === 'countdown');
     for (const pad of pads) {
       pad.flash = Math.max(0, pad.flash - dt * 2.5);
+      if (counting) continue;
       for (let i = 0; i < ents.length; i++) {
         const e = ents[i];
-        if (!e.alive) continue;
+        if (!e.alive || e.simLocal === false) continue;
         const dx = e.position.x - pad.position.x, dz = e.position.z - pad.position.z;
         if (dx * dx + dz * dz > pad.radius * pad.radius) continue;
         if (Math.abs(e.position.y - pad.position.y) > PAD_VERTICAL) continue;
@@ -671,7 +675,12 @@ export class World {
     if (!this.def) return;
     this._time += dt;
     if (this.sky) this.sky.update(dt);
-    if (this.storm) this.storm.update(dt);
+    if (this.storm) {
+      // online: every machine draws the strikes itself (clients start them from the host's 'storm' message)
+      const fx = this.game.net && this.game.net.fx;
+      if (fx) fx.suspend();
+      try { this.storm.update(dt); } finally { if (fx) fx.resume(); }
+    }
     this.pickups.update(dt);
     this._updatePads(dt);
   }

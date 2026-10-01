@@ -123,5 +123,55 @@ export class Pool {
   release(obj) { if (this.reset) this.reset(obj); this.free.push(obj); }
 }
 
-/** Resolves on the next animation frame (lets the browser paint loading screens). */
-export const nextFrame = () => new Promise(r => requestAnimationFrame(() => r()));
+/**
+ * Hidden-tab tick for loading yields (online only: net/NetSession registers its HostTicker Worker tick). A hidden tab
+ * runs no requestAnimationFrame and throttles timers to 1 Hz, so a host or client that loads a map in the background
+ * would stall the match for everyone; the Worker keeps ticking at ~60 Hz there.
+ */
+let hiddenTick = null;
+
+/** Register (or clear with null) the hidden-tab tick: a function returning a Promise that resolves on the next tick. */
+export function setHiddenTick(fn) {
+  hiddenTick = typeof fn === 'function' ? fn : null;
+}
+
+const isHidden = () => typeof document !== 'undefined' && document.hidden;
+
+/**
+ * `fallbackFactory()` (the caller's usual yield) - or, while the tab is hidden and a hidden tick is registered, the
+ * next hidden tick. Offline (no tick registered) this is exactly the fallback.
+ * @param {() => Promise<void>} fallbackFactory
+ * @returns {Promise<void>}
+ */
+export function yieldHiddenSafe(fallbackFactory) {
+  if (hiddenTick && isHidden()) return Promise.resolve(hiddenTick());
+  return fallbackFactory();
+}
+
+/**
+ * Resolves on the next animation frame (lets the browser paint loading screens). With a hidden tick registered
+ * (online) it also resolves while the tab is hidden: on the next tick, then - if the tab became visible meanwhile -
+ * on the next frame (warmup relies on that frame being drawn). Offline it is a plain requestAnimationFrame.
+ * @returns {Promise<void>}
+ */
+export function nextFrame() {
+  if (!hiddenTick) return new Promise(r => requestAnimationFrame(() => r()));
+  return new Promise(resolve => {
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      document.removeEventListener('visibilitychange', onVisibility);
+      resolve();
+    };
+    const viaTick = () => {
+      const tick = hiddenTick;
+      const next = tick ? Promise.resolve(tick()) : new Promise(r => setTimeout(r, 100));
+      next.then(() => { if (isHidden()) finish(); else requestAnimationFrame(finish); });
+    };
+    const onVisibility = () => { if (isHidden() && !done) viaTick(); };
+    if (isHidden()) { viaTick(); return; }
+    document.addEventListener('visibilitychange', onVisibility);   // hidden before the frame came: tick instead
+    requestAnimationFrame(finish);
+  });
+}
