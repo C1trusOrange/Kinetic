@@ -820,6 +820,7 @@ export class Effects {
         mesh.matrixAutoUpdate = true;
       }
       mesh.visible = true;
+      mesh.castShadow = false;   // ~12 short-lived pieces per death: a shadow draw call each is not worth it
       const geo = mesh.geometry;
       if (geo && !geo.boundingSphere) geo.computeBoundingSphere();
       const sc = Math.max(mesh.scale.x, mesh.scale.y, mesh.scale.z);

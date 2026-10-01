@@ -3,7 +3,7 @@ import { Capsule } from 'three/addons/math/Capsule.js';
 import { Entity } from '../core/Entity.js';
 import { GRAVITY, HUMANOID } from '../core/constants.js';
 import { clamp, lerp, wrapAngle, randomInCone, randRange, yawFromDirection } from '../core/utils.js';
-import { WEAPONS, GRENADE } from '../weapons/WeaponDefs.js';
+import { WEAPONS, WEAPON_ORDER, GRENADE } from '../weapons/WeaponDefs.js';
 import { newInventory, spawnLoadout, addToInventory } from '../weapons/GrenadeTypes.js';
 import { createWeaponModel } from '../weapons/WeaponModels.js';
 import { fireArc, beamCadence } from '../weapons/special/arc.js';
@@ -224,6 +224,21 @@ export class Bot extends Entity {
     this.inv[id] = { mag: def.magSize, reserve: def.reserveStart };
     this.owned.push(id);
     return true;
+  }
+
+  /**
+   * Build this bot's (batched) weapon model for every weapon up front, while the match loads: the first model of a
+   * weapon kind also builds its shared template, which cost a ~50 ms frame when it happened at a respawn.
+   * @param {string[]} [ids] weapon ids (default: all)
+   */
+  prebuildWeaponModels(ids = WEAPON_ORDER) {
+    for (const id of ids) this._getWeaponModel(id);
+  }
+
+  /** The prebuilt weapon model of `id` when it is not in the bot's hands (Game.warmup draws it once), else null. */
+  spareWeaponModel(id) {
+    const w = this._weaponModels[id];
+    return w && w.root && !w.root.parent ? w : null;
   }
 
   _getWeaponModel(id) {

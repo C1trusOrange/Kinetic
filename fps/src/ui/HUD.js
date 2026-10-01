@@ -22,6 +22,16 @@ const FEED_MAX = 6;
 const TOAST_MAX = 4;
 const MULTI_WINDOW = 4.2;    // seconds between kills that still chain
 const DI_LIFE = 1.9;
+/**
+ * Readouts that change almost every frame (speedometer, grapple recharge ring, spawn-shield and respawn timer bars)
+ * are rewritten at most ~15 times/s (the bars ease between the steps with a short CSS transition).
+ */
+const READOUT_DT = 1 / 15;
+/** HUD.prewarm(): done after two consecutive frames shorter than this (ms), or after PREWARM_MAX_MS. */
+const PREWARM_CALM_MS = 100;
+const PREWARM_MAX_MS = 2500;
+/** Resolves with the next requestAnimationFrame timestamp (ms). */
+const rafTime = () => new Promise(resolve => requestAnimationFrame(resolve));
 
 const MULTI_NAMES = { 2: 'DOUBLE KILL', 3: 'TRIPLE KILL', 4: 'QUAD KILL', 5: 'MULTI KILL' };
 const STREAK_NAMES = { 5: 'KILLING SPREE', 8: 'RAMPAGE', 12: 'UNSTOPPABLE', 16: 'GODLIKE' };
@@ -172,6 +182,7 @@ export class HUD {
     this._boardSig = '';
     this._boardT = 0;
     this._fpsT = 0;
+    this._readoutT = 0;
     this._matchStartRT = 0;
     this._notLockedT = 0;
     this._di = [];                      // damage indicator slots
@@ -233,7 +244,45 @@ export class HUD {
   show(visible) {
     this.visible = !!visible;
     this.root.style.display = this.visible ? '' : 'none';
-    if (this.visible) this._c = Object.create(null);
+    if (this.visible) { this._c = Object.create(null); this._readoutT = 0; }
+  }
+
+  /**
+   * Pre-raster the HUD while the loading overlay still covers the screen (Game calls it at the end of loading). The
+   * browser's first paint of the HUD layers - clip-path panels, gradient masks, blurred shadows, SVG icons, glyphs -
+   * and of the sniper scope overlay took 150-550 ms on an integrated GPU when it happened in the first playing frames
+   * or at the first scope-in. Every layer is shown in its visible state above the loading screen at 1 % opacity
+   * (style.css `.hud-prewarm`) until the browser has really rasterized it, then the HUD is hidden again with
+   * display:none - flushed, so no layer fades out from its prewarm state when the HUD is shown for real.
+   * "Really rasterized": rAF keeps firing while the compositor is still rasterizing the frame that first showed the
+   * layers, so a fixed frame count let that raster (~0.6 s on the user's iGPU) land on the first playing frame
+   * instead. The prewarm lasts until two consecutive frame intervals are short again (at most PREWARM_MAX_MS).
+   * @returns {Promise<void>}
+   */
+  async prewarm() {
+    const root = this.root;
+    root.classList.add('hud-prewarm');
+    root.style.display = '';
+    try {
+      const t0 = performance.now();
+      let last = await rafTime();
+      let calm = 0;
+      for (let i = 0; calm < 2 && performance.now() - t0 < PREWARM_MAX_MS; i++) {
+        const t = await rafTime();
+        calm = i >= 1 && t - last < PREWARM_CALM_MS ? calm + 1 : 0;
+        last = t;
+      }
+    } finally {
+      root.style.display = 'none';
+      root.classList.remove('hud-prewarm');
+      void root.offsetWidth;   // commit display:none before the HUD is shown again (no transitions from prewarm)
+      if (this.visible) root.style.display = '';
+      this._c = Object.create(null);
+      // the match-start announcement (onMatchStart) kept running during the prewarm: replay it from its start, so
+      // the first playing frames show all of it however long the prewarm took
+      const ann = this._annAnim;
+      if (ann && ann.playState !== 'idle') { ann.currentTime = 0; ann.play(); }
+    }
   }
 
   /** Reset all per-match HUD state (called by Game.startMatch before the match begins). */
@@ -544,18 +593,22 @@ export class HUD {
     this._lastRT = g.realTime;
     if (!(rdt > 0) || rdt > 0.25) rdt = 1 / 60;
 
+    this._readoutT -= rdt;
+    const readouts = this._readoutT <= 0;
+    if (readouts) this._readoutT = Math.max(0, this._readoutT + READOUT_DT);
+
     this._updateCrosshair(rdt, p, w);
     this._updateAmmo(w);
     this._updateVitals(p, rdt);
-    this._updateMove(p);
-    this._updateFx(p, rdt);
+    this._updateMove(p, readouts);
+    this._updateFx(p, rdt, readouts);
     this._updateScope(p, w);
     this._updateIndicators(p, rdt);
     this._flushHits(rdt);
     if (m) {
       this._updateTop(m, p);
       this.modeHud.update(rdt, m, p);
-      this._updateDeath(p, m);
+      this._updateDeath(p, m, readouts);
       this._updateBoard(rdt, m);
     }
     this._updateHints(rdt, p);
@@ -714,13 +767,19 @@ export class HUD {
     this._flag('hasar', e.vitals, 'noarmor', ar <= 0);
   }
 
-  _updateMove(p) {
+  /**
+   * @param {object} p player
+   * @param {boolean} readouts refresh the fast-changing readouts (speed number / bar, grapple ring) this frame (~15 Hz)
+   */
+  _updateMove(p, readouts = true) {
     const e = this.e;
     const sp = Math.max(0, p.speed || 0);
-    const kmh = Math.round(sp * 3.6);
-    this._num('spd', e.spdnum, kmh);
-    const f = Math.round(clamp(sp / 26, 0, 1) * 100) / 100;
-    if (this._c.spf !== f) { this._c.spf = f; e.spdfill.style.transform = `scaleX(${f})`; }
+    if (readouts) {
+      const kmh = Math.round(sp * 3.6);
+      this._num('spd', e.spdnum, kmh);
+      const f = Math.round(clamp(sp / 26, 0, 1) * 100) / 100;
+      if (this._c.spf !== f) { this._c.spf = f; e.spdfill.style.transform = `scaleX(${f})`; }
+    }
     this._flag('fast', e.spd, 'fast', sp >= 14);
     this._flag('blaze', e.spd, 'blaze', sp >= 19);
     const cm = e.chipMap;
@@ -730,15 +789,22 @@ export class HUD {
     this._flag('c_grapple', cm.grapple, 'on', p.isGrappling);
     this._flag('c_mantle', cm.mantle, 'on', p.isMantling);
 
-    // grapple ring
+    // grapple ring (the recharge sweep is a readout; the ready state below is not throttled)
     const ch = clamp(p.grappleCharge ?? 1, 0, 1);
-    const off = Math.round((1 - ch) * 100);
-    if (this._c.groff !== off) { this._c.groff = off; e.grarc.style.strokeDashoffset = off; }
+    if (readouts || ch >= 0.999) {
+      const off = Math.round((1 - ch) * 100);
+      if (this._c.groff !== off) { this._c.groff = off; e.grarc.style.strokeDashoffset = off; }
+    }
     this._flag('grready', e.grap, 'ready', ch >= 0.999);
     this._flag('gract', e.grap, 'active', !!p.isGrappling);
   }
 
-  _updateFx(p, rdt) {
+  /**
+   * @param {object} p player
+   * @param {number} rdt real seconds since the last HUD frame
+   * @param {boolean} [readouts=true] refresh the spawn-shield timer bar this frame (~15 Hz; always when it appears)
+   */
+  _updateFx(p, rdt, readouts = true) {
     const e = this.e, g = this.game;
     // speed lines
     let s = p.alive ? smoothstep(12.5, 24, p.speed || 0) : 0;
@@ -760,9 +826,10 @@ export class HUD {
     this._flag('lvpulse', e.lowhp, 'pulse', hp < 0.25 && p.alive);
     // spawn protection
     const prot = p.alive && typeof p.isProtected === 'function' && p.isProtected();
+    const fresh = prot && this._c.protw !== true;
     this._flag('prot', e.shieldfx, 'on', prot);
     this._flag('protw', e.shield, 'on', prot);
-    if (prot) {
+    if (prot && (readouts || fresh)) {
       const k = clamp((p.spawnProtectedUntil - g.time) / SPAWN_PROTECTION, 0, 1);
       const q = Math.round(k * 50) / 50;
       if (this._c.pk !== q) { this._c.pk = q; e.shieldbar.style.transform = `scaleX(${q})`; }
@@ -899,11 +966,18 @@ export class HUD {
     }
   }
 
-  _updateDeath(p, m) {
+  /**
+   * @param {object} p player
+   * @param {object} m match
+   * @param {boolean} [readouts=true] refresh the respawn progress bar this frame (~15 Hz; always when the overlay opens)
+   */
+  _updateDeath(p, m, readouts = true) {
     const e = this.e, g = this.game;
     const on = !p.alive && !m.over && this.game.state === 'playing';
+    let opened = false;
     if (this._c.deathOn !== on) {
       this._c.deathOn = on;
+      opened = on;
       e.death.classList.toggle('on', on);
       if (on) {
         const d = this._deathInfo;
@@ -927,7 +1001,7 @@ export class HUD {
       const left = p.respawnAt >= 0 ? Math.max(0, p.respawnAt - g.time) : -1;
       const tenths = left < 0 ? -1 : Math.round(left * 10);
       if (this._c.dcount !== tenths) { this._c.dcount = tenths; e.dcount.textContent = tenths < 0 ? '--' : (tenths / 10).toFixed(1); }
-      if (left >= 0) {
+      if (left >= 0 && (readouts || opened)) {
         const q = Math.round(clamp(1 - left / (RESPAWN_DELAY.player || 3), 0, 1) * 100) / 100;
         if (this._c.dprog !== q) { this._c.dprog = q; e.dprog.style.transform = `scaleX(${q})`; }
       }

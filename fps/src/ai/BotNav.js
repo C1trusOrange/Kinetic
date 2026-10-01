@@ -82,34 +82,45 @@ for (let k = 0; k < 8; k++) EDGE_DIRS.push([Math.cos((k * Math.PI) / 4), Math.si
  * @param {number} [margin=0.6] wanted distance to an unsupported edge
  */
 export function pullFromEdges(collision, path, margin = 0.6) {
-  for (let i = 0; i < path.length - 1; i++) {
-    const w = path[i];
-    if (w.type === 'drop' || w.type === 'jump' || w.pad) continue;
-    let px = w.x, pz = w.z, py = w.y, moved = false;
-    for (let iter = 0; iter < 3; iter++) {
-      let ax = 0, az = 0, hit = false;
-      // the four axis directions first; the diagonals only when an edge is near (most waypoints are in the open)
-      for (let pass = 0; pass < 2 && (pass === 0 || hit); pass++) {
-        for (let k = pass; k < 8; k += 2) {
-          const d = EDGE_DIRS[k];
-          const gy = groundY(collision, px + d[0] * margin, py, pz + d[1] * margin);
-          if (gy !== gy || gy < py - 0.9) { ax -= d[0]; az -= d[1]; hit = true; }
-        }
-      }
-      const l = Math.hypot(ax, az);
-      if (l < 0.01) break;
-      const nx = px + (ax / l) * 0.2, nz = pz + (az / l) * 0.2;
-      const gy = groundY(collision, nx, py, nz);
-      if (gy !== gy || Math.abs(gy - py) > 0.5) break;
-      px = nx; pz = nz; py = gy; moved = true;
-    }
-    if (moved) {
-      const c = new THREE.Vector3(px, py, pz);
-      c.type = w.type;
-      path[i] = c;
-    }
-  }
+  for (let i = 0; i < path.length - 1; i++) pullWaypointFromEdges(collision, path, i, margin);
   return path;
+}
+
+/**
+ * pullFromEdges() for the single waypoint `path[i]` (a bounded unit of work: at most 27 downward rays), so a
+ * time-sliced path request can spread the edge pulling over frames.
+ * @param {object} collision CollisionWorld
+ * @param {THREE.Vector3[]} path waypoints (path[i] may be replaced by a moved clone)
+ * @param {number} i waypoint index (the last waypoint is never moved)
+ * @param {number} [margin=0.6]
+ */
+export function pullWaypointFromEdges(collision, path, i, margin = 0.6) {
+  if (i >= path.length - 1) return;
+  const w = path[i];
+  if (w.type === 'drop' || w.type === 'jump' || w.pad) return;
+  let px = w.x, pz = w.z, py = w.y, moved = false;
+  for (let iter = 0; iter < 3; iter++) {
+    let ax = 0, az = 0, hit = false;
+    // the four axis directions first; the diagonals only when an edge is near (most waypoints are in the open)
+    for (let pass = 0; pass < 2 && (pass === 0 || hit); pass++) {
+      for (let k = pass; k < 8; k += 2) {
+        const d = EDGE_DIRS[k];
+        const gy = groundY(collision, px + d[0] * margin, py, pz + d[1] * margin);
+        if (gy !== gy || gy < py - 0.9) { ax -= d[0]; az -= d[1]; hit = true; }
+      }
+    }
+    const l = Math.hypot(ax, az);
+    if (l < 0.01) break;
+    const nx = px + (ax / l) * 0.2, nz = pz + (az / l) * 0.2;
+    const gy = groundY(collision, nx, py, nz);
+    if (gy !== gy || Math.abs(gy - py) > 0.5) break;
+    px = nx; pz = nz; py = gy; moved = true;
+  }
+  if (moved) {
+    const c = new THREE.Vector3(px, py, pz);
+    c.type = w.type;
+    path[i] = c;
+  }
 }
 
 const RIDE_MAX = 5;        // s: longest jump-pad ride that is still followed as a ride
@@ -121,6 +132,11 @@ const STEER_ANGLES = [0, 0.55, -0.55, 1.1, -1.1, 1.7, -1.7, 2.4, -2.4, Math.PI];
  * Per-bot navigation helper: follows nav-graph paths (waypoint reaching, smooth cornering, jump links,
  * repathing under a shared per-frame budget) and falls back to direct steering with obstacle probing
  * when there is no path.
+ *
+ * Path requests are time-sliced: `_requestPath` queues a NavGraph path job with the BotManager, which advances it
+ * (search, string pulling, then pulling the waypoints away from ledges) inside its per-frame path budget
+ * (`stepPath`). A cheap request still completes in the frame it was made; a long one keeps the bot on its current
+ * path / direct steering for a frame or two until the result is applied.
  */
 export class BotNav {
   /** @param {object} bot the owning Bot */
@@ -159,10 +175,21 @@ export class BotNav {
     this._ride = false;
     this._rideSeen = -999;
     this._airSince = -1;
+    // time-sliced path request state
+    this._req = false;          // queued with the BotManager / in progress
+    this._reqNav = null;        // NavGraph the job runs on
+    this._job = null;           // reusable NavGraph PathJob
+    this._edgeI = -1;           // pullWaypointFromEdges progress once the search is done
+    this._goalSerial = 0;       // bumped when the goal jumps: a result computed for an older goal is dropped
+    this._reqSerial = 0;
+    /** Milliseconds of work spent on the pending request so far (BotManager statistics). */
+    this.reqWorkMs = 0;
   }
 
   /** Forget the goal and path. */
   clear() {
+    this._cancelRequest();
+    this._goalSerial++;
     this.hasGoal = false;
     this.path = null;
     this.index = 0;
@@ -189,6 +216,7 @@ export class BotNav {
       this.unreachable = false;
       this.goal.copy(pos);
       this.dirty = true;
+      this._goalSerial++;
       this.path = null;
       this.mode = 'idle';
       this.nextPathAt = Math.min(this.nextPathAt, this.game.time);
@@ -196,6 +224,7 @@ export class BotNav {
     }
     if (this.goal.distanceToSquared(pos) > repathDist * repathDist) {
       this.dirty = true;
+      this._goalSerial++;
       // the last request's verdict belonged to the previous goal: do not let callers act on it for the new one
       this.unreachable = false;
     }
@@ -242,7 +271,7 @@ export class BotNav {
     else if (this._airSince < 0) this._airSince = t;
     const flying = this._airSince >= 0 && t - this._airSince < AIR_REPLAN_AFTER;
 
-    if (!flying && (this.dirty || (this.mode === 'direct' && (gd > 3.5 || Math.abs(this.goal.y - pos.y) > 2.4)) || this.mode === 'idle') && t >= this.nextPathAt) {
+    if (!flying && !this._req && (this.dirty || (this.mode === 'direct' && (gd > 3.5 || Math.abs(this.goal.y - pos.y) > 2.4)) || this.mode === 'idle') && t >= this.nextPathAt) {
       this._requestPath();
     }
 
@@ -253,31 +282,72 @@ export class BotNav {
     this._direct(pos, gx, gz, gd);
   }
 
+  /**
+   * Queue a path request for the current goal with the BotManager, which runs it inside the shared per-frame path
+   * budget (right away while this frame still has budget, else over the next frames). The job also performs the
+   * old isConnected() pre-check (an A* that cannot succeed would exhaust the whole reachable area).
+   */
   _requestPath() {
     const game = this.game;
-    const t = game.time;
-    if (!game.bots.consumePathBudget()) return; // try again next frame
     const nav = game.world.nav;
-    const t0 = performance.now();
-    let p = null;
-    let connected = true;
-    if (nav && typeof nav.isConnected === 'function') {
-      // cheap strong-component test: an A* that cannot succeed would exhaust the whole reachable area
-      try {
-        connected = nav.isConnected(this.bot.position, this.goal);
-      } catch (err) {
-        connected = true;
-      }
-    }
-    if (connected && nav && typeof nav.findPath === 'function') {
-      try {
-        p = nav.findPath(this.bot.position, this.goal);
-      } catch (err) {
-        console.error('[bot] nav.findPath threw', err);
-        p = null;
-      }
-    }
     this.dirty = false;
+    if (!nav || typeof nav.createPathJob !== 'function') {
+      this._applyPath(null);
+      return;
+    }
+    this._job = nav.createPathJob(this.bot.position, this.goal, this._job || undefined, { connect: true });
+    this._reqNav = nav;
+    this._reqSerial = this._goalSerial;
+    this._edgeI = -1;
+    this.reqWorkMs = 0;
+    this._req = true;
+    game.bots.queuePath(this);
+  }
+
+  /**
+   * Advance the pending path request (called by BotManager.servicePaths inside the frame's path budget): the
+   * nav-graph search and string pulling, then pulling the waypoints away from ledges one waypoint at a time. Applies
+   * the result when finished.
+   * @param {number} deadline performance.now() time to stop at
+   * @returns {boolean} true when the request is finished (applied or dropped)
+   */
+  stepPath(deadline) {
+    if (!this._req) return true;
+    const game = this.game;
+    const nav = this._reqNav;
+    if (nav !== game.world.nav) { this._dropRequest(); return true; }   // the map changed under the request
+    const job = this._job;
+    let p = null;
+    try {
+      if (!job.done && !nav.stepPath(job, deadline)) return false;
+      p = job.result;
+      if (p && p.length > 0) {
+        const col = game.world.collision;
+        if (this._edgeI < 0) this._edgeI = 0;
+        while (this._edgeI < p.length - 1) {
+          if (performance.now() >= deadline) return false;
+          pullWaypointFromEdges(col, p, this._edgeI);
+          this._edgeI++;
+        }
+      }
+    } catch (err) {
+      console.error('[bot] path request failed', err);
+      p = null;
+    }
+    this._req = false;
+    this._reqNav = null;
+    if (this._reqSerial !== this._goalSerial) {
+      // computed for a goal that has since jumped elsewhere (or was cleared): ask again for the current one
+      if (this.hasGoal) this.dirty = true;
+      return true;
+    }
+    this._applyPath(p);
+    return true;
+  }
+
+  /** Adopt a finished request's waypoints (null = unreachable) exactly like the old synchronous request did. */
+  _applyPath(p) {
+    const t = this.game.time;
     let ends = false;
     if (p && p.length > 0) {
       const last = p[p.length - 1];
@@ -287,7 +357,6 @@ export class BotNav {
     this.unreachable = !ends;
     this.startBlocked = !!(p && p.startBlocked);
     if (p && p.length > 0) {
-      pullFromEdges(game.world.collision, p);
       this.path = p;
       this.index = 0;
       this._ride = false;
@@ -298,7 +367,21 @@ export class BotNav {
       this.mode = 'direct';
       this.nextPathAt = t + (p ? 0.6 : 1.4);
     }
-    game.bots.reportPathTime(performance.now() - t0);
+  }
+
+  /** Forget a queued / running request without applying it. */
+  _cancelRequest() {
+    if (!this._req) return;
+    this.game.bots.cancelPath(this);
+    this._req = false;
+    this._reqNav = null;
+  }
+
+  /** The request cannot finish (map changed): forget it and ask again later. */
+  _dropRequest() {
+    this._req = false;
+    this._reqNav = null;
+    if (this.hasGoal) this.dirty = true;
   }
 
   /** @returns {boolean} true when it produced a direction */
