@@ -29,7 +29,7 @@ import { BLOCK_ALL, BLOCK_MOVE, BLOCK_SHOTS } from './Collision.js';
  * Extras beyond the documented format (all optional, safe to ignore):
  *   any solid: nav:false (bots never treat its top as floor) . surface (override collision surface)
  *   box/wall: bevel (chamfer size in metres) . cylinder: axis 'x'|'y'|'z' (lay pipes down), flat (facet shading)
- *   catwalk: railMat, railHeight . railing: mat, height
+ *   catwalk: railMat, railHeight . railing: mat, height . panel: fit (material spans the face once: signs)
  */
 
 const UP = new THREE.Vector3(0, 1, 0);
@@ -205,18 +205,20 @@ export class MapBuilder {
     _cen.multiplyScalar(1 / cnt);
     if (o.centroid) _hint.copy(o.centroid).applyMatrix4(S.M); else _hint.setFromMatrixPosition(S.M);
     _hint.subVectors(_cen, _hint);
+    let uvs = o.uvs || null;   // explicit per-corner UVs (panel `fit`), else world-projected
     if (_n.dot(_hint) < 0) {
       _n.negate();
       if (cnt === 4) { const t = W[1]; W[1] = W[3]; W[3] = t; } else { const t = W[1]; W[1] = W[2]; W[2] = t; }
+      if (uvs) uvs = cnt === 4 ? [uvs[0], uvs[3], uvs[2], uvs[1]] : [uvs[0], uvs[2], uvs[1]];
     }
 
     const matName = o.mat ?? S.mat;
     const info = this._info(matName);
-    if (visual) this._emitVisual(matName, info, cnt);
+    if (visual) this._emitVisual(matName, info, cnt, uvs);
     if (collide) this._emitCollision(o.surface ?? S.surface ?? info.surface, cnt);
   }
 
-  _emitVisual(matName, info, cnt) {
+  _emitVisual(matName, info, cnt, uvs = null) {
     const bucket = this._bucket(matName, this._castFlag(info));
     const scale = info.scale;
     this._basis(_n);
@@ -225,7 +227,8 @@ export class MapBuilder {
       const p = W[i];
       bucket.pos.push(p.x, p.y, p.z);
       bucket.nor.push(_n.x, _n.y, _n.z);
-      bucket.uv.push(p.dot(_t) / scale, p.dot(_b) / scale);
+      if (uvs) bucket.uv.push(uvs[i][0], uvs[i][1]);
+      else bucket.uv.push(p.dot(_t) / scale, p.dot(_b) / scale);
       this.geoBounds.expandByPoint(p);
     }
     if (cnt === 4) bucket.idx.push(base, base + 1, base + 2, base, base + 2, base + 3);
@@ -837,7 +840,9 @@ export class MapBuilder {
       mat: 'metal_dark', collide: S.collide, skip: [4],
     });
     const hw = z[0] / 2, hh = z[1] / 2;
-    this._face(S, [V(-hw, -hh, t / 2), V(hw, -hh, t / 2), V(hw, hh, t / 2), V(-hw, hh, t / 2)], { mat: S.mat, centroid: V(0, 0, 0), collide: S.collide });
+    // fit: the material spans the face exactly once (signs); otherwise it tiles in world space like every face
+    const uvs = s.fit ? [[0, 0], [1, 0], [1, 1], [0, 1]] : null;
+    this._face(S, [V(-hw, -hh, t / 2), V(hw, -hh, t / 2), V(hw, hh, t / 2), V(-hw, hh, t / 2)], { mat: S.mat, centroid: V(0, 0, 0), collide: S.collide, uvs });
   }
 
   // ------------------------------------------------------------------ phase 2: meshes

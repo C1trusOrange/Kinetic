@@ -21,8 +21,9 @@ anything this document summarises.
 * **three.js r169**, vendored at `vendor/three`. Import as `import * as THREE from 'three'` and
   addons as `import { X } from 'three/addons/<path>.js'` (e.g. `three/addons/utils/BufferGeometryUtils.js`,
   `three/addons/geometries/RoundedBoxGeometry.js`). No other libraries, no build step, no network,
-  **no external assets** — every model, texture and sound is generated in code. The one exception is music: the
-  menu / victory / defeat tracks in `music/` (AudioSystem.playMusic).
+  **no external assets** — every model, texture and sound is generated in code. The exceptions: music (the
+  menu / victory / defeat tracks in `music/`, AudioSystem.playMusic) and the UI typefaces in `fonts/` (Barlow / Barlow
+  Condensed woff2, OFL, declared in style.css).
 * Plain ES2022 modules, classes, 2-space indent, single quotes, semicolons, JSDoc on public APIs.
   No TypeScript. Relative imports with explicit `.js` extensions.
 * **Units:** meters, seconds, radians, m/s. **Y is up.** The camera looks down **-Z**.
@@ -31,8 +32,9 @@ anything this document summarises.
   Camera/objects use Euler order `'YXZ'`: `rotation.set(pitch, yaw, roll)`. Helpers in `src/core/utils.js`.
 * **Positions of entities are FEET positions** (bottom of the collision capsule).
 * **Gravity** `GRAVITY = 24` m/s² (constants.js). Humanoid capsule radius 0.4, height 1.8 (crouch 1.15).
-* **Colors:** hex numbers or `'#rrggbb'` strings. Renderer uses sRGB output + ACES tone mapping,
-  so albedo colors are sRGB and lights are physically based (point light intensity in candela,
+* **Colors:** hex numbers or `'#rrggbb'` strings. Renderer uses sRGB output + AgX tone mapping (Game.js: exposure x
+  TONE_EXPOSURE 1.45 on top of the map's, then a light saturation grade in KineticOutputPass), so albedo colors are sRGB
+  and lights are physically based (point light intensity in candela,
   decay 2 — typical 20–80 for a lamp; directional 1.5–3.5).
 * **No per-frame allocations in hot paths** — reuse module-level scratch `Vector3`s, pools.
 * **Never change the number of lights at runtime** (it recompiles every shader → stutter). Use
@@ -46,7 +48,7 @@ anything this document summarises.
 * Play: `play.bat` (or `python tools/serve.py 8000`) → http://localhost:8000
 * Desktop build (Electron, `desktop/main.js`; needs Node.js): `npm install` once, then `npm start` to run it
   (F11 fullscreen, F12 DevTools) and `npm run package` for `dist/KINETIC-win32-x64.zip`, the copy to hand to
-  friends (unzip, run `KINETIC.exe`). It serves `index.html`, `style.css`, `src/`, `vendor/` and `music/` over
+  friends (unzip, run `KINETIC.exe`). It serves `index.html`, `style.css`, `src/`, `vendor/`, `music/` and `fonts/` over
   `kinetic://game/`; nothing else is packaged, and the package keeps only the vendor files the game imports.
 * Music: the game plays `music/*.ogg` (Opus 128 kbps). After replacing a `.wav` master, re-encode it with the bundled
   ffmpeg: `node_modules/ffmpeg-static/ffmpeg.exe -i music/kinetic_menu.wav -c:a libopus -b:a 128k music/kinetic_menu.ogg`.
@@ -201,8 +203,15 @@ Required names (surface in brackets):
 `crate` (wooden crate: planks + frame), `wood_planks` [wood];
 `sand`, `dirt`, `grass`, `roof_gravel` [sand/dirt/grass];
 `glass_window` (building facade grid of windows, some lit via emissiveMap — warm/cool, looks great at dusk) [glass], `water` (dark, low roughness, ripple normal) [glass];
-`neon_blue`, `neon_pink`, `neon_orange`, `neon_green`, `light_panel` (white) [energy] — emissive, soft diffused glow (players found the original values blinding): keep `emissiveIntensity` ≈ 1.0–1.6 and let the wide, low-strength bloom create the halo;
-`dev_grid` (fallback: orange/gray 1 m grid) [concrete].
+`neon_blue`, `neon_pink`, `neon_orange`, `neon_green`, `neon_amber`, `neon_warm`, `neon_steel`, `light_panel` (white) [energy] — emissive, soft diffused glow (players found the original values blinding): keep `emissiveIntensity` ≈ 1.0–1.6 and let the wide, low-strength bloom create the halo;
+`dev_grid` (fallback: orange/gray 1 m grid) [concrete];
+`sign_*` [energy] — Skyline signage typeset on canvas in the UI fonts (`sign_hotel`, `sign_lounge`, `sign_noodle`,
+`sign_meridian`, `sign_crown`, `sign_market`, `sign_parking`, ads `sign_ad_halcyon|nova|vanta` + `_wide`); use them on
+a `panel` with `fit: true`.
+
+Detail softening: every non-emissive albedo is pulled 30 % toward its mean colour after generation (`SOFTEN_DEFAULT`,
+per-material `SOFTEN_OVERRIDE`) and normal maps are flattened to `NORMAL_SCALE` 0.72, so surfaces read calm instead of
+noisy; glare control raises every roughness to at least 0.36 and caps metalness at 0.66 (no mirror-like sheets).
 
 Requirements: seamless tiling (use `Field`/`TileNoise` which wrap); map + normalMap + roughnessMap for all non-emissive materials (metalnessMap where useful); `scale` chosen so features read at real size (bricks ≈ 0.25×0.07 m, panels ≈ 1–2 m, containers ≈ 2.5 m); 512² for large surfaces, 256² for small/simple; ≈ ≤ 120 ms average generation per material (share cached noise fields via `noiseField`). Rich detail: grime at the bottom of panels/bricks is not possible in tiling textures — use varied noise, edge wear on bevels, cracks, stains, subtle hue variation per brick/tile/plank, specular variation. Look at `tools/viewer.html?kind=materials` screenshots and iterate.
 
@@ -284,7 +293,7 @@ export default {
 | `crate` | `pos` (center), `size` (number or `[w,h,d]`, default 1.2) | |
 | `railing` | `from:[x,y,z]`, `to:[x,y,z]` (y = walking surface), `height` (1.05) | posts + rails; collision = thin wall |
 | `catwalk` | `from:[x,y,z]`, `to:[x,y,z]` (axis-aligned, y = walking surface), `width` (2.5), `railings:'both'\|'left'\|'right'\|'none'`, `thickness` (0.2) | grate deck + railings + support details |
-| `panel` | `pos` (center), `size:[w,h]`, `rot` (faces +Z before rotation) | thin sign / neon / light panel; `collide:false`, `shadow:false` by default |
+| `panel` | `pos` (center), `size:[w,h]`, `rot` (faces +Z before rotation), `fit` | thin sign / neon / light panel; `collide:false`, `shadow:false` by default; `fit:true` maps the material onto the face exactly once (the `sign_*` materials) |
 
 **Map design rules.** Player: radius 0.4, height 1.8, jump ≈ 1.3 m (+ double jump ≈ 2.4 m), sprint 9.5 m/s, slide, wall-run ≈ 1.7 s along walls ≥ 3 m tall, grapple range 45 m, rocket jumps. Bots walk, jump ≤ 1.1 m, drop down, **cannot grapple or wall-run** — every area bots should reach needs ramps/stairs.
 Doorways ≥ 1.8 m wide × 2.6 m tall; corridors ≥ 2.5 m; ramps/stairs ≤ 32°, ≥ 2.5 m wide; floors ≥ 0.4 m thick, walls ≥ 0.3 m.
@@ -519,7 +528,7 @@ export class Menu {
 
 * Start matches by calling `game.startMatch({mapId, mode, botCount, difficulty, scoreLimit, timeLimit})` **directly inside the click handler** (pointer lock needs the user gesture). Settings write `game.settings.set(k, v)` (sensitivity, invertY, fov, viewBob, showFps, quality, masterVolume, playerName). Play `ui_hover`/`ui_click` sounds (call `game.audio.unlock()` on first click).
 * HUD: dynamic crosshair (gap from `weapons.spreadAngle`: px = tan(spread)/tan(vfov/2) × innerHeight/2; hidden when scoped), hit markers (white; red on kill; headshot variant) from `damage`/`death` events where `attacker === game.player`, health & armor bars (low-health vignette/pulse), ammo `mag / reserve` (∞ for pistol), weapon name + slot strip (up to 9 slots generated from `WEAPON_IDS`, key label = `slot`, owned/selected; Slipstream momentum meter, Javelin charge ring), grenade count, grapple charge ring, reload progress, speedometer, match timer, score / leader (FFA) or team scores (TDM), kill feed (top-right, names in entity colors, weapon names via `weaponName`), directional damage indicators, sniper scope overlay when `weapons.scoped`, death overlay ("Eliminated by X", respawn countdown from `player.respawnAt - game.time`), announcements (Double Kill, Multi Kill, Killing Spree, Headshot, First Blood, "Match point"), scoreboard (Tab), pickup toasts, subtle speed-lines vignette at high speed, spawn-protection indicator, FPS counter when `settings.showFps`, pointer-lock hint when `input.lockUnavailable`.
-* Style: sleek sci-fi — dark translucent panels, cyan accent `#3de0ff`, warm secondary `#ff9a3c`, angled corners (clip-path), uppercase condensed headings (`Bahnschrift`, `"Segoe UI"`, system-ui — no web fonts). Menus over the live 3D backdrop. Responsive down to 1280×720. All interactive elements `pointer-events: auto`.
+* Style: sleek sci-fi — dark translucent panels, cyan accent `#3de0ff`, warm secondary `#ff9a3c`, angled corners (clip-path), uppercase condensed headings (bundled `Barlow` / `Barlow Condensed` from `fonts/`, system fonts as fallback). Menus over the live 3D backdrop. Responsive down to 1280×720. All interactive elements `pointer-events: auto`.
 
 ---
 

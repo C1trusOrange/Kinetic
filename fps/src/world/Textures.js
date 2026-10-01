@@ -250,7 +250,7 @@ const _c = new Float32Array(12);
  * Per-material overrides below (glass, water, gold keep a little more shine; the near-white marble / tile floors, which
  * cover a lot of screen, are also a touch darker: pure white under a lamp is what reads as a glaring sheet).
  */
-const GLARE_DEFAULT = { rough: 0.26, metal: 0.82, albedo: 1 };
+const GLARE_DEFAULT = { rough: 0.36, metal: 0.66, albedo: 1 };
 const GLARE_OVERRIDE = {
   water: { rough: 0.14, metal: 1, albedo: 1 },
   glass_window: { rough: 0.22, metal: 0.85, albedo: 1 },
@@ -259,6 +259,17 @@ const GLARE_OVERRIDE = {
   tiles_white: { rough: 0.34, metal: 1, albedo: 0.86 },
 };
 let _glare = GLARE_DEFAULT;
+
+/**
+ * Detail softening: after a material's albedo is generated, every pixel is pulled toward the texture's mean colour by
+ * this fraction, so grime, blotches, speckle and grout read as calm surface variation instead of busy noise (the
+ * structure stays, only its contrast drops). Emissive materials (signs, neon, lamps) are exempt automatically.
+ * Normal maps are flattened by NORMAL_SCALE for the same reason (softer bumps, less shimmering highlights).
+ */
+const SOFTEN_DEFAULT = 0.3;
+const SOFTEN_OVERRIDE = { hazard: 0, dev_grid: 0, gold: 0.1, crate: 0.2, cloud: 0, snow: 0.2 };
+const NORMAL_SCALE = 0.72;
+let _soften = SOFTEN_DEFAULT;
 
 /**
  * Runs fn(x, y, i, c) for every pixel. c[0..2] albedo, c[3] roughness, c[4] metalness,
@@ -286,11 +297,25 @@ function runPass(S, fn, { emissive = false, alpha = false } = {}) {
       if (al) { al[j] = al[j + 1] = al[j + 2] = c[8] * 255; al[j + 3] = 255; }
     }
   }
+  if (_soften > 0 && !emissive) softenAlbedo(a, S * S, _soften);
   A.ctx.putImageData(ia, 0, 0);
   R.ctx.putImageData(ir, 0, 0);
   if (E) E.ctx.putImageData(ie, 0, 0);
   if (L) L.ctx.putImageData(il, 0, 0);
   return { albedo: A.canvas, rm: R.canvas, emissive: E ? E.canvas : null, alpha: L ? L.canvas : null };
+}
+
+/** Pull every albedo pixel (RGBA bytes, n pixels) toward the mean colour by fraction k (see SOFTEN_DEFAULT). */
+function softenAlbedo(a, n, k) {
+  let r = 0, g = 0, b = 0;
+  for (let j = 0, e = n << 2; j < e; j += 4) { r += a[j]; g += a[j + 1]; b += a[j + 2]; }
+  r /= n; g /= n; b /= n;
+  const f = 1 - k;
+  for (let j = 0, e = n << 2; j < e; j += 4) {
+    a[j] = r + (a[j] - r) * f;
+    a[j + 1] = g + (a[j + 1] - g) * f;
+    a[j + 2] = b + (a[j + 2] - b) * f;
+  }
 }
 
 /** Canvas textures for a finished pass. */
@@ -2220,48 +2245,321 @@ def('ice', 'glass', 2, 512, S => {
   return finish(H, px, { ns: 2.2 });
 });
 
-// ---- glacier_rock: dark voronoi rock like 'rock' but blue-grey, with frost lodged in the ledges and cracks
-function glacierGen(S) {
+// ---- cliff rock: calm horizontal strata in cool granite tones with frost on the ledge lips. Replaced glacierGen's
+// voronoi cells on Aerie's cliffs and peaks, which read as giant cobblestones and made the map look busy.
+function cliffGen(S, o = {}) {
   const B = bank(S), q = S / 512;
-  const { mid, fine, grain, blot, ridge } = B;
-  const W = B.worley(6, 21), W2 = B.worley(15, 33);
-  const g = sampler(S, 141, 233);
+  const { blot, mid, fine, grain, ridge } = B;
+  const g = sampler(S, o.ox ?? 37, o.oy ?? 91);
+  const layers = o.layers ?? 6;   // strata per texture repeat (an integer, so it tiles vertically)
   const H = new Field(S), hd = H.data;
-  const crev = new Float32Array(S * S);
+  const lip = new Float32Array(S * S), lid = new Float32Array(S * S);
   for (let y = 0, i = 0; y < S; y++) {
     for (let x = 0; x < S; x++, i++) {
-      const id = W.id[i];
-      const cr = 1 - sstep(0.0, 0.11, W.edge[i]);
-      const cr2 = 1 - sstep(0.0, 0.08, W2.edge[i]);
-      crev[i] = Math.max(cr, cr2 * 0.6);
-      let h = 0.55 + 0.32 * (hash((id * 255) | 0, 13) - 0.5) - 0.3 * W.f1[i] + 0.16 * (0.5 - W2.f1[i]) * 0.6;
-      h += 0.16 * (g(mid, x, y) - 0.5) + 0.1 * (g(fine, x, y) - 0.5) + 0.14 * (g(ridge, x, y) - 0.5) + 0.03 * (grain[i] - 0.5);
-      h -= 0.45 * cr + 0.22 * cr2;
-      hd[i] = h;
+      const warp = (g(mid, x, y) - 0.5) * 0.8 + (g(blot, x, y) - 0.5) * 1.2;
+      const v = (y / S) * layers + warp;
+      const f = v - Math.floor(v);
+      const ledge = sstep(0.0, 0.16, f) * (1 - sstep(0.7, 1.0, f));
+      lip[i] = sstep(0.0, 0.1, f) * (1 - sstep(0.1, 0.28, f));
+      lid[i] = hash(((Math.floor(v) % layers) + layers) % layers, 31);
+      hd[i] = 0.42 + 0.24 * ledge + 0.08 * (g(mid, x, y) - 0.5) + 0.05 * (g(fine, x, y) - 0.5) + 0.06 * (g(ridge, x, y) - 0.5) + 0.03 * (grain[i] - 0.5);
     }
   }
-  const cav = cavity(H, Math.max(2, Math.round(4 * q)));
-  const pal = ramp([[0, '#1f2731'], [0.35, '#37424e'], [0.65, '#56656f'], [1, '#7d8d99']]);
+  const cav = cavity(H, Math.max(2, Math.round(3 * q)));
+  const pal = ramp([[0, '#262c34'], [0.5, '#48525c'], [1, '#76818b']]);
   const px = runPass(S, (x, y, i, c) => {
-    const idn = W.id[i], idi = (idn * 255) | 0;
-    const v = 0.8 + 0.34 * hash(idi, 15) + (g(mid, x, y) - 0.5) * 0.5 + (g(fine, x, y) - 0.5) * 0.35 + (grain[i] - 0.5) * 0.1;
-    pal(hash(idi, 16), c, v);
-    if (hash(idi, 18) < 0.3) { c[0] *= 0.94; c[2] *= 1.08; }
-    const rg = sstep(0.6, 0.85, g(ridge, x, y));
-    scaleC(c, 1 - 0.16 * rg);
-    // frost / rime on the raised faces and in the fine cracks
-    const fr = sstep(0.6, 0.78, hd[i]) * sstep(0.45, 0.7, g(blot, x, y, 20, 150)) + crev[i] * 0.35 * sstep(0.5, 0.75, g(blot, x, y, 200, 40));
-    if (fr > 0) toward(c, 0.72, 0.8, 0.9, Math.min(1, fr) * 0.6);
-    scaleC(c, 1 - 0.5 * crev[i] * (1 - Math.min(1, fr)));
-    scaleC(c, Math.min(1.35, Math.max(0.45, 1 + cav[i] * 1.6)));
-    c[3] = 0.86 + 0.1 * (g(fine, x, y) - 0.5) - 0.3 * Math.min(1, fr);
+    const v = 0.88 + 0.16 * (g(mid, x, y) - 0.5) + 0.12 * (g(fine, x, y) - 0.5) + 0.06 * (grain[i] - 0.5);
+    pal(0.3 + 0.45 * lid[i] + 0.15 * (g(blot, x, y) - 0.5), c, v);
+    scaleC(c, Math.min(1.2, Math.max(0.7, 1 + cav[i] * 1.1)));
+    // frost lodged on the ledge lips, patchy
+    const fr = lip[i] * sstep(0.4, 0.65, g(blot, x, y, 120, 60)) * (o.frost ?? 1);
+    if (fr > 0) toward(c, 0.78, 0.83, 0.88, fr * 0.55);
+    c[3] = 0.84 + 0.08 * (g(fine, x, y) - 0.5) - 0.2 * fr;
   });
-  return finish(H, px, { ns: 4.2 });
+  return finish(H, px, { ns: 3 });
 }
-def('glacier_rock', 'stone', 3, 512, glacierGen);
-// same rock at mountain scale (16 m per repeat, 256 px) for the distant peaks, so they read as masses instead of pebbles
-def('peak_rock', 'stone', 16, 256, glacierGen);
+def('glacier_rock', 'stone', 3, 512, S => cliffGen(S));
+// the same rock at mountain scale (16 m per repeat, 256 px) for the distant peaks: a few broad strata
+def('peak_rock', 'stone', 16, 256, S => cliffGen(S, { layers: 4, ox: 140, oy: 20, frost: 1.4 }));
 // ==================================================================== AERIE materials (end)
+
+// ==================================================================== SKYLINE light strips + signage
+// Warmer, calmer light strips than the stock neon (Skyline maps its neon_* names onto these, see skyline.js).
+const NEON_SKYLINE = { neon_amber: [1.0, 0.52, 0.12], neon_warm: [1.0, 0.8, 0.56], neon_steel: [0.32, 0.55, 1.0] };
+const NEON_SKYLINE_I = { neon_amber: 1.15, neon_warm: 1.0, neon_steel: 1.25 };
+Object.keys(NEON_SKYLINE).forEach((name, k) => def(name, 'energy', 1, 256, S => neonGen(S, NEON_SKYLINE[name], { ox: 400 + k * 61, oy: 170 + k * 29, intensity: NEON_SKYLINE_I[name] }), { emissive: true }));
+
+// Signs are typeset on canvas in the UI's bundled faces (style.css @font-face; preloadMaterials waits for them) and
+// mapped 1:1 onto `panel` solids with `fit: true`. Letter signs glow from an emissive layer of their own; lightboxes
+// (ads, the market, parking) use the picture itself as the emissive map, as if lit from behind.
+const SF_COND = '"Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif';
+const SF_TEXT = '"Barlow", "Segoe UI", sans-serif';
+const SIGN_FONT_LOADS = ['400 80px "Barlow Condensed"', '600 80px "Barlow Condensed"', '700 80px "Barlow Condensed"',
+  '800 80px "Barlow Condensed"', '600 40px "Barlow"', '700 40px "Barlow"'];
+let _signFonts = null;
+
+/** Resolves once the sign faces are loaded (at most 4 s; without a FontFaceSet the fallback faces are used). */
+function signFontsReady() {
+  if (!_signFonts) {
+    const fonts = typeof document !== 'undefined' ? document.fonts : null;
+    _signFonts = fonts && fonts.load
+      ? Promise.race([Promise.all(SIGN_FONT_LOADS.map(f => fonts.load(f))), new Promise(r => setTimeout(r, 4000))]).catch(() => {})
+      : Promise.resolve();
+  }
+  return _signFonts;
+}
+
+/** Text centred (or aligned) at (x, y), middle baseline, shrunk to fit maxW. Tracking in em. Returns the width. */
+function signText(ctx, text, x, y, { size, weight = 700, face = SF_COND, track = 0, maxW = Infinity, align = 'center' }) {
+  let px = size;
+  const set = () => {
+    ctx.font = `${weight} ${px.toFixed(1)}px ${face}`;
+    ctx.letterSpacing = `${(track * px).toFixed(1)}px`;
+  };
+  set();
+  let w = ctx.measureText(text).width;
+  if (w > maxW) { px = Math.max(8, px * maxW / w); set(); w = ctx.measureText(text).width; }
+  ctx.textAlign = align;
+  ctx.textBaseline = 'middle';
+  // letter spacing also trails the last glyph: centred text shifts back by half of it
+  ctx.fillText(text, x + (align === 'center' ? (track * px) / 2 : 0), y);
+  return w;
+}
+
+/** The same text on the albedo (dim) and emissive (bright + halo) layers of a letter sign. */
+function litText(a, e, text, x, y, o, dim, bright, halo = 0.3) {
+  a.fillStyle = dim;
+  signText(a, text, x, y, o);
+  e.save();
+  e.fillStyle = bright;
+  e.shadowColor = bright;
+  e.shadowBlur = o.size * halo;
+  signText(e, text, x, y, o);
+  e.shadowBlur = 0;
+  signText(e, text, x, y, o);
+  e.restore();
+}
+
+function signGen(spec) {
+  const { w, h } = spec;
+  const A = makeCanvas(w, h);
+  const E = spec.lightbox ? null : makeCanvas(w, h);
+  if (E) { E.ctx.fillStyle = '#000'; E.ctx.fillRect(0, 0, w, h); }
+  spec.draw(A.ctx, E ? E.ctx : null, w, h);
+  const R = makeCanvas(4);
+  R.ctx.fillStyle = 'rgb(255, 150, 0)';   // roughness ~0.6, metalness 0
+  R.ctx.fillRect(0, 0, 4, 4);
+  const N = makeCanvas(4);
+  N.ctx.fillStyle = 'rgb(128, 128, 255)';   // flat
+  N.ctx.fillRect(0, 0, 4, 4);
+  const map = canvasTexture(A.canvas, { srgb: true, repeat: false });
+  return {
+    map,
+    normalMap: canvasTexture(N.canvas, { srgb: false }),
+    rm: canvasTexture(R.canvas, { srgb: false }),
+    emissiveMap: E ? canvasTexture(E.canvas, { srgb: true, repeat: false }) : map,
+    metalMap: false,
+    metalness: 0,
+    // a lightbox's face is its emission: keep its diffuse dim so lamps do not wash the picture out
+    props: { emissiveIntensity: spec.intensity ?? 1, ...(spec.lightbox ? { color: new THREE.Color(0.3, 0.3, 0.3) } : {}) },
+  };
+}
+
+const WARM = '#fff0da', AMBER = '#ffad48', DIM = '#7d7466', PLATE = '#121418';
+
+/** Plain dark plate with a thin inset frame (frame colour on the albedo, glowing on the emissive layer). */
+function plate(a, e, w, h, frame = null, inset = 14, lw = 4) {
+  a.fillStyle = PLATE;
+  a.fillRect(0, 0, w, h);
+  if (!frame) return;
+  a.strokeStyle = '#5c4a32';
+  a.lineWidth = lw;
+  a.strokeRect(inset, inset, w - inset * 2, h - inset * 2);
+  e.save();
+  e.strokeStyle = frame;
+  e.lineWidth = lw;
+  e.shadowColor = frame;
+  e.shadowBlur = lw * 3;
+  e.strokeRect(inset, inset, w - inset * 2, h - inset * 2);
+  e.restore();
+}
+
+const SIGNS = {
+  // vertical blade sign, letters stacked
+  sign_hotel: {
+    w: 256, h: 1024, intensity: 1.35,
+    draw(a, e, w, h) {
+      plate(a, e, w, h, AMBER, 16, 6);
+      [...'HOTEL'].forEach((ch, i) => litText(a, e, ch, w / 2, h * (0.13 + i * 0.185), { size: 176, weight: 700 }, '#cfc6b6', WARM, 0.22));
+    },
+  },
+  sign_lounge: {
+    w: 1024, h: 320, intensity: 1.4,
+    draw(a, e, w, h) {
+      plate(a, e, w, h);
+      litText(a, e, 'LOUNGE', w / 2, h * 0.43, { size: 168, weight: 600, track: 0.14, maxW: w * 0.86 }, '#a8773a', AMBER, 0.28);
+      litText(a, e, 'COCKTAILS  ·  UPSTAIRS', w / 2, h * 0.82, { size: 36, weight: 600, face: SF_TEXT, track: 0.2, maxW: w * 0.8 }, DIM, WARM, 0.2);
+    },
+  },
+  sign_noodle: {
+    w: 1024, h: 320, intensity: 1.35,
+    draw(a, e, w, h) {
+      plate(a, e, w, h);
+      litText(a, e, 'NOODLE HOUSE', w / 2, h * 0.42, { size: 150, weight: 700, track: 0.04, maxW: w * 0.9 }, '#bfb3a0', WARM, 0.24);
+      litText(a, e, 'RAMEN  ·  DUMPLINGS  ·  OPEN LATE', w / 2, h * 0.8, { size: 34, weight: 600, face: SF_TEXT, track: 0.16, maxW: w * 0.84 }, '#8a6534', AMBER, 0.2);
+    },
+  },
+  sign_meridian: {
+    w: 1024, h: 188, intensity: 1.3,
+    draw(a, e, w, h) {
+      plate(a, e, w, h);
+      litText(a, e, 'MERIDIAN', w / 2, h * 0.53, { size: 128, weight: 400, track: 0.32, maxW: w * 0.9 }, '#b9b1a4', WARM, 0.2);
+    },
+  },
+  sign_crown: {
+    w: 1024, h: 410, intensity: 1.25,
+    draw(a, e, w, h) {
+      plate(a, e, w, h, AMBER, 18, 3);
+      litText(a, e, 'SKYLINE', w / 2, h * 0.45, { size: 200, weight: 600, track: 0.16, maxW: w * 0.84 }, '#d7cfc2', WARM, 0.18);
+      litText(a, e, 'CENTRAL  PLAZA', w / 2, h * 0.79, { size: 42, weight: 600, face: SF_TEXT, track: 0.34, maxW: w * 0.7 }, '#8a6534', AMBER, 0.2);
+    },
+  },
+  // lightboxes
+  sign_market: {
+    w: 1024, h: 340, intensity: 0.7, lightbox: true,
+    draw(a, e, w, h) {
+      a.fillStyle = '#efe9de';
+      a.fillRect(0, 0, w, h);
+      const bw = w * 0.26;
+      a.fillStyle = '#c3352b';
+      a.fillRect(0, 0, bw, h);
+      a.fillStyle = '#fff6ea';
+      signText(a, '24', bw / 2, h * 0.43, { size: 200, weight: 800 });
+      signText(a, 'HOURS', bw / 2, h * 0.82, { size: 44, weight: 700, track: 0.12, maxW: bw * 0.8 });
+      a.fillStyle = '#1b1e24';
+      signText(a, 'CORNER MARKET', bw + (w - bw) / 2, h * 0.42, { size: 118, weight: 700, track: 0.02, maxW: (w - bw) * 0.88 });
+      a.fillStyle = '#6b6f78';
+      signText(a, 'GROCERIES  ·  COFFEE  ·  NEWS', bw + (w - bw) / 2, h * 0.76, { size: 34, weight: 600, face: SF_TEXT, track: 0.14, maxW: (w - bw) * 0.8 });
+    },
+  },
+  sign_parking: {
+    w: 512, h: 640, intensity: 0.75, lightbox: true,
+    draw(a, e, w, h) {
+      a.fillStyle = '#1c55b8';
+      a.fillRect(0, 0, w, h);
+      a.strokeStyle = '#eef3fb';
+      a.lineWidth = 10;
+      a.strokeRect(22, 22, w - 44, h - 44);
+      a.fillStyle = '#f4f7fc';
+      signText(a, 'P', w / 2, h * 0.42, { size: 400, weight: 800 });
+      signText(a, 'PARKING', w / 2, h * 0.84, { size: 78, weight: 700, track: 0.08, maxW: w * 0.78 });
+    },
+  },
+};
+
+/** Billboard ad as two lightbox materials: `name` (2.56 : 1, roofs and the crown) and `name_wide` (3.5 : 1, perimeter). */
+function ad(name, draw, intensity = 0.65) {
+  SIGNS[name] = { w: 1024, h: 400, intensity, lightbox: true, draw };
+  SIGNS[name + '_wide'] = { w: 1024, h: 292, intensity, lightbox: true, draw };
+}
+ad('sign_ad_halcyon', (a, e, w, h) => {
+  const sky = a.createLinearGradient(0, 0, 0, h);
+  sky.addColorStop(0, '#13213d');
+  sky.addColorStop(0.62, '#3c4c72');
+  sky.addColorStop(1, '#c98a5c');
+  a.fillStyle = sky;
+  a.fillRect(0, 0, w, h);
+  const cx = w - h * 0.78, cy = h * 0.66, r = h * 0.36;
+  const sun = a.createRadialGradient(cx, cy, r * 0.1, cx, cy, r);
+  sun.addColorStop(0, '#ffe2b0');
+  sun.addColorStop(1, '#ff9a55');
+  a.fillStyle = sun;
+  a.beginPath();
+  a.arc(cx, cy, r, 0, Math.PI * 2);
+  a.fill();
+  // skyline silhouette along the bottom
+  const rnd = mulberry32(77);
+  a.fillStyle = '#0d1424';
+  for (let x = w * 0.45; x < w; x += h * 0.09) {
+    const bh = h * (0.12 + 0.22 * rnd());
+    a.fillRect(x, h - bh, h * 0.085, bh);
+  }
+  a.fillRect(0, h * 0.94, w, h * 0.06);
+  a.fillStyle = '#ffffff';
+  signText(a, 'HALCYON', h * 0.16, h * 0.42, { size: h * 0.3, weight: 800, track: 0.05, align: 'left', maxW: w * 0.5 });
+  a.fillStyle = '#ffd8ad';
+  signText(a, 'RESIDENCES  —  NOW LEASING', h * 0.17, h * 0.66, { size: h * 0.075, weight: 600, face: SF_TEXT, track: 0.16, align: 'left', maxW: w * 0.5 });
+});
+ad('sign_ad_nova', (a, e, w, h) => {
+  const bg = a.createLinearGradient(0, 0, w, h);
+  bg.addColorStop(0, '#071420');
+  bg.addColorStop(1, '#15485e');
+  a.fillStyle = bg;
+  a.fillRect(0, 0, w, h);
+  // flight path: a thin arc with a small aircraft at its head
+  a.strokeStyle = 'rgba(255, 255, 255, 0.55)';
+  a.lineWidth = Math.max(2, h * 0.008);
+  a.setLineDash([h * 0.03, h * 0.025]);
+  a.beginPath();
+  a.moveTo(w * 0.52, h * 0.86);
+  a.quadraticCurveTo(w * 0.74, h * 0.06, w - h * 0.22, h * 0.3);
+  a.stroke();
+  a.setLineDash([]);
+  a.fillStyle = '#ffffff';
+  a.save();
+  a.translate(w - h * 0.2, h * 0.31);
+  a.rotate(0.35);
+  a.beginPath();
+  a.moveTo(h * 0.07, 0);
+  a.lineTo(-h * 0.05, -h * 0.045);
+  a.lineTo(-h * 0.02, 0);
+  a.lineTo(-h * 0.05, h * 0.045);
+  a.closePath();
+  a.fill();
+  a.restore();
+  signText(a, 'NOVA AIR', h * 0.16, h * 0.44, { size: h * 0.3, weight: 800, track: 0.04, align: 'left', maxW: w * 0.5 });
+  a.fillStyle = '#9fd6f0';
+  signText(a, 'THE CITY, FROM ABOVE', h * 0.17, h * 0.68, { size: h * 0.075, weight: 600, face: SF_TEXT, track: 0.16, align: 'left', maxW: w * 0.5 });
+});
+ad('sign_ad_vanta', (a, e, w, h) => {
+  a.fillStyle = '#0b0b0d';
+  a.fillRect(0, 0, w, h);
+  const cx = w - h * 0.62, cy = h * 0.5, r = h * 0.3;
+  const spot = a.createRadialGradient(cx, cy, 0, cx, cy, h * 0.75);
+  spot.addColorStop(0, '#3d2c18');
+  spot.addColorStop(1, '#0b0b0d');
+  a.fillStyle = spot;
+  a.fillRect(0, 0, w, h);
+  // watch face: ring, twelve ticks, two hands
+  a.strokeStyle = '#d8b16a';
+  a.lineWidth = h * 0.02;
+  a.beginPath();
+  a.arc(cx, cy, r, 0, Math.PI * 2);
+  a.stroke();
+  for (let k = 0; k < 12; k++) {
+    const t = (k / 12) * Math.PI * 2, r0 = r * (k % 3 ? 0.84 : 0.76);
+    a.lineWidth = h * (k % 3 ? 0.008 : 0.014);
+    a.beginPath();
+    a.moveTo(cx + Math.sin(t) * r0, cy - Math.cos(t) * r0);
+    a.lineTo(cx + Math.sin(t) * r * 0.92, cy - Math.cos(t) * r * 0.92);
+    a.stroke();
+  }
+  a.lineCap = 'round';
+  for (const [t, len, lw] of [[-0.9, 0.5, 0.018], [1.95, 0.72, 0.011]]) {
+    a.lineWidth = h * lw;
+    a.beginPath();
+    a.moveTo(cx, cy);
+    a.lineTo(cx + Math.sin(t) * r * len, cy - Math.cos(t) * r * len);
+    a.stroke();
+  }
+  a.fillStyle = '#f2e6d0';
+  signText(a, 'VANTA', h * 0.16, h * 0.44, { size: h * 0.3, weight: 600, track: 0.28, align: 'left', maxW: w * 0.5 });
+  a.fillStyle = '#c9a46a';
+  signText(a, 'TIME, WELL KEPT', h * 0.17, h * 0.68, { size: h * 0.075, weight: 600, face: SF_TEXT, track: 0.2, align: 'left', maxW: w * 0.5 });
+});
+
+for (const [name, spec] of Object.entries(SIGNS)) def(name, 'energy', 1, spec.w, () => signGen(spec), { emissive: true });
+// ==================================================================== SKYLINE materials (end)
 
 // ------------------------------------------------------------------ public API
 
@@ -2291,11 +2589,14 @@ function resolveName(name) {
 function buildMaterial(name) {
   const d = DEFS[name];
   _glare = GLARE_OVERRIDE[name] || GLARE_DEFAULT;
+  _soften = d.emissive ? 0 : (SOFTEN_OVERRIDE[name] ?? SOFTEN_DEFAULT);
   const g = d.gen(d.size, name);
   _glare = GLARE_DEFAULT;
+  _soften = SOFTEN_DEFAULT;
   const params = {
     map: g.map,
     normalMap: g.normalMap,
+    normalScale: new THREE.Vector2(NORMAL_SCALE, NORMAL_SCALE),
     roughnessMap: g.rm,
     roughness: 1,
     metalness: g.metalMap ? 1 : g.metalness,
@@ -2377,6 +2678,7 @@ export async function preloadMaterials(names = MATERIAL_NAMES, onProgress) {
   const list = [...new Set(names)];
   const n = list.length;
   if (!n) { if (onProgress) onProgress(1); return; }
+  if (list.some(m => m.startsWith('sign_'))) await signFontsReady();   // signs are typeset in the UI faces
   let last = performance.now();
   for (let i = 0; i < n; i++) {
     uploadTextures(getMaterial(list[i]));

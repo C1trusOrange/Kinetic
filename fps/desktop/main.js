@@ -5,7 +5,7 @@
  * mouse buttons navigate back / forward), and a folder with KINETIC.exe is easier to hand to friends than
  * "install Python, run play.bat".
  *
- * The game files are served from the app folder over a private `kinetic://game/` scheme (no HTTP server, no port,
+ * The game files (index.html, style.css, src/, vendor/, music/, fonts/) are served from the app folder over a private `kinetic://game/` scheme (no HTTP server, no port,
  * no firewall prompt). It is registered as a secure, standard origin, so ES modules, fetch and pointer lock behave
  * as on http://localhost, and the origin never changes between runs (localStorage settings persist).
  *
@@ -23,7 +23,7 @@ const ORIGIN = `${SCHEME}://${HOST}`;
 
 /** Only these may be served (the rest of the folder holds tools, docs and test output). */
 const PUBLIC_FILES = new Set(['index.html', 'style.css']);
-const PUBLIC_DIRS = new Set(['src', 'vendor', 'music']);
+const PUBLIC_DIRS = new Set(['src', 'vendor', 'music', 'fonts']);
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',

@@ -27,6 +27,10 @@ import { Menu } from '../ui/Menu.js';
 
 
 const VIEW_FOV = 50; // vertical fov of the viewmodel camera (weapons are authored for this)
+/** Exposure factor on top of the map's exposure: AgX has no ACES-style 1/0.6 pre-gain, so the maps' values need it. */
+const TONE_EXPOSURE = 1.45;
+/** Saturation grade after tone mapping (KineticOutputPass): gives back some of the colour AgX rolls off. */
+const TONE_SATURATION = 1.06;
 const _v1 = new THREE.Vector3();
 const _v2 = new THREE.Vector3();
 const _up = new THREE.Vector3(0, 1, 0);
@@ -106,8 +110,10 @@ export class Game {
     renderer.setPixelRatio(this._renderPixelRatio());
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1;
+    // AgX: smooth highlight roll-off and no hue skew in saturated light (ACES pushed reds to magenta and clipped hard);
+    // TONE_EXPOSURE / TONE_SATURATION keep the maps' tuned brightness and colour (see _applyExposure, _setupComposer)
+    renderer.toneMapping = THREE.AgXToneMapping;
+    renderer.toneMappingExposure = TONE_EXPOSURE;
     renderer.shadowMap.enabled = this.quality.shadows;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.autoClear = false;
@@ -164,6 +170,7 @@ export class Game {
       /** World + viewmodel layers (Game.render toggles its viewEnabled). */
       this.layersPass = new SceneLayersPass(this.scene, this.camera, this.viewScene, this.viewCamera);
       this.outputPass = new KineticOutputPass();
+      this.outputPass.uniforms.saturation.value = TONE_SATURATION;
       composer.addPass(this.layersPass);
       composer.addPass(this.outputPass);
       this.composer = composer;
@@ -868,7 +875,7 @@ export class Game {
   /** Tone-mapping exposure = the map's exposure x the player's Brightness setting (applies live). */
   _applyExposure() {
     const L = this.world && this.world.lighting;
-    this.renderer.toneMappingExposure = ((L && L.exposure) ?? 1) * this._numSetting('brightness', 0.7, 1.3, 1);
+    this.renderer.toneMappingExposure = ((L && L.exposure) ?? 1) * this._numSetting('brightness', 0.7, 1.3, 1) * TONE_EXPOSURE;
   }
 
   /**
