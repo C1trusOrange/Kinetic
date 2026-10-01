@@ -399,6 +399,7 @@ export class GrenadeSystem {
       if (_chest.distanceTo(_center) > def.radius) continue;
       if (e !== owner && owner && owner.team === e.team) continue;
       if (!game.combat.canSee(_center, _chest)) continue;
+      if (owner && e !== owner) e._shovedBy = { attacker: owner, at: now };   // launched off the map = ring-out (Game kill plane)
       const hs = Math.hypot(e.velocity.x, e.velocity.z);
       const rec = this.splats.find(s => s.e === e);
       if (rec) { rec.until = now + 1.8; rec.prevH = hs; rec.peakH = hs; rec.owner = owner; rec.since = now; }

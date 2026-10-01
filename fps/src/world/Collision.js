@@ -6,6 +6,16 @@ const _ray = new THREE.Ray();
 const _triHit = new THREE.Vector3();
 
 /**
+ * What a collision triangle stops (addTriangle's `blocks`). Most geometry stops both. A railing is a thin
+ * movement-only wall (nobody walks through it) plus its posts and rails as shot-only geometry (bullets, projectiles
+ * and sight pass through the gaps). Movement queries (capsules, inside tests, rayBlocked, raycast by default) see
+ * BLOCK_MOVE triangles; raycast(..., BLOCK_SHOTS) - World.raycast - sees BLOCK_SHOTS ones.
+ */
+export const BLOCK_MOVE = 1;
+export const BLOCK_SHOTS = 2;
+export const BLOCK_ALL = BLOCK_MOVE | BLOCK_SHOTS;
+
+/**
  * Slab test: distance along the ray (ox,oy,oz + t*(dx,dy,dz)) at which it enters `box` (0 if the origin
  * is inside the box), or -1 if the ray misses. (ix,iy,iz) are the precomputed reciprocals of the direction
  * (one division per ray instead of six per node). (THREE.Ray.intersectBox returns the EXIT point when the
@@ -242,12 +252,13 @@ export class CollisionWorld {
     this.built = false;
   }
 
-  /** Add one triangle (copied). */
-  addTriangle(a, b, c, surface = 'concrete') {
+  /** Add one triangle (copied). @param {number} [blocks] BLOCK_MOVE | BLOCK_SHOTS | BLOCK_ALL */
+  addTriangle(a, b, c, surface = 'concrete', blocks = BLOCK_ALL) {
     const t = new THREE.Triangle(a.clone(), b.clone(), c.clone());
     // skip degenerate triangles (they produce NaN normals)
     if (t.getArea() < 1e-7) return;
     t.surface = surface;
+    t.blocks = blocks;
     // cached plane for capsuleTri()
     const e1x = b.x - a.x, e1y = b.y - a.y, e1z = b.z - a.z, e2x = c.x - a.x, e2y = c.y - a.y, e2z = c.z - a.z;
     let nx = e1y * e2z - e1z * e2y, ny = e1z * e2x - e1x * e2z, nz = e1x * e2y - e1y * e2x;
@@ -262,7 +273,7 @@ export class CollisionWorld {
   /**
    * Add all triangles of a BufferGeometry (indexed or not), transformed by `matrix` (optional).
    */
-  addGeometry(geometry, matrix = null, surface = 'concrete') {
+  addGeometry(geometry, matrix = null, surface = 'concrete', blocks = BLOCK_ALL) {
     const pos = geometry.getAttribute('position');
     const index = geometry.getIndex();
     const count = index ? index.count : pos.count;
@@ -274,7 +285,7 @@ export class CollisionWorld {
       _b.fromBufferAttribute(pos, ib);
       _c.fromBufferAttribute(pos, ic);
       if (matrix) { _a.applyMatrix4(matrix); _b.applyMatrix4(matrix); _c.applyMatrix4(matrix); }
-      this.addTriangle(_a, _b, _c, surface);
+      this.addTriangle(_a, _b, _c, surface, blocks);
     }
   }
 
@@ -318,10 +329,12 @@ export class CollisionWorld {
 
   /**
    * Nearest front-face hit along a ray within maxDist.
+   * @param {number} [mask] which triangles count: BLOCK_MOVE (default: what bodies collide with) or BLOCK_SHOTS
+   *        (what bullets, projectiles and sight collide with; World.raycast)
    * @returns {{distance:number, point:THREE.Vector3, normal:THREE.Vector3, surface:string,
    *            triangle:THREE.Triangle}|null} NEW object (safe to keep)
    */
-  raycast(origin, dir, maxDist = 1000) {
+  raycast(origin, dir, maxDist = 1000, mask = BLOCK_MOVE) {
     if (!this.built) return null;
     _ray.set(origin, dir);
     let best = maxDist;
@@ -340,6 +353,7 @@ export class CollisionWorld {
       const tris = node.triangles;
       for (let i = 0; i < tris.length; i++) {
         const t = tris[i];
+        if (!(t.blocks & mask)) continue;
         const p = _ray.intersectTriangle(t.a, t.b, t.c, true, _triHit);
         if (p) {
           const d = p.distanceTo(origin);
@@ -380,6 +394,7 @@ export class CollisionWorld {
       }
       const tris = node.triangles;
       for (let i = 0; i < tris.length; i++) {
+        if (!(tris[i].blocks & BLOCK_MOVE)) continue;
         const t = triHit(tris[i], ox, oy, oz, dx, dy, dz);
         if (t >= 0 && t <= maxDist && _det > 0) return true;
       }
@@ -411,6 +426,7 @@ export class CollisionWorld {
       }
       const tris = node.triangles;
       for (let i = 0; i < tris.length; i++) {
+        if (!(tris[i].blocks & BLOCK_MOVE)) continue;
         const t = triHit(tris[i], ox, oy, oz, dx, dy, dz);
         if (t < 0 || t > best + HIT_TIE) continue;
         if (!found || t < best - HIT_TIE) {
@@ -499,6 +515,7 @@ export class CollisionWorld {
     for (let pass = 0; pass < 2; pass++) {
       let any = false;
       for (let i = 0; i < tris.length; i++) {
+        if (!(tris[i].blocks & BLOCK_MOVE)) continue;
         if (!capsuleTri(cs.x, cs.y, cs.z, ce.x, ce.y, ce.z, r, tris[i]) || !(_ct.depth > 1e-7)) continue;
         if (!Number.isFinite(_ct.nx)) continue;
         const k = _ct.depth;
@@ -530,6 +547,7 @@ export class CollisionWorld {
     const cs = cap.start, ce = cap.end, r = cap.radius;
     const ox = (cs.x + ce.x) * 0.5, oy = (cs.y + ce.y) * 0.5, oz = (cs.z + ce.z) * 0.5;
     for (let i = 0; i < tris.length; i++) {
+      if (!(tris[i].blocks & BLOCK_MOVE)) continue;
       if (!capsuleTri(cs.x, cs.y, cs.z, ce.x, ce.y, ce.z, r, tris[i])) continue;
       hit = true;
       const k = _ct.depth;
@@ -542,7 +560,7 @@ export class CollisionWorld {
     return { normal: v.normalize(), depth };
   }
 
-  /** Combined push-out for a sphere (does not mutate): {normal, depth} | false. */
+  /** Combined push-out for a sphere (does not mutate): {normal, depth} | false. Note: every triangle, shot-only ones too. */
   sphereIntersect(sphere) {
     if (!this.built) return false;
     return this.octree.sphereIntersect(sphere);

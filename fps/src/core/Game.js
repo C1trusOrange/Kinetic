@@ -234,8 +234,12 @@ export class Game {
       else if (key === 'renderScale') this._onResize();
       else if (key === 'lowLatency') this.frameLimiter.setEnabled(value !== false);
       else if (key === 'masterVolume') this.audio.setMasterVolume(value);
+      else if (key === 'musicVolume') this.audio.setMusicVolume(value);
       else if (key === 'glow') this._applyBloomSettings();
       else if (key === 'brightness') this._applyExposure();
+      else if (key === 'enemyOutline') this.bots.outlines.setEnabled(value !== false);
+      else if (key === 'outlineColor') this.bots.outlines.setColor(value);
+      else if (key === 'playerColor' && this.match && !isTeamMode(this.match.mode)) this.player.color.set(value);
     });
 
     document.addEventListener('visibilitychange', () => {
@@ -253,6 +257,7 @@ export class Game {
       if (typeof sys.init === 'function') await sys.init();
     }
     this.audio.setMasterVolume(this.settings.get('masterVolume'));
+    this.audio.setMusicVolume(this.settings.get('musicVolume'));
     requestAnimationFrame(this._loop);
 
     if (this.autotest) {
@@ -260,6 +265,8 @@ export class Game {
       await this.autotest.start();
       return;
     }
+
+    this.audio.playMusic('menu');   // over the backdrop load (in a browser it starts with the first click or key)
 
     // Load the last played map as an animated backdrop behind the main menu.
     const def = getMap(this.settings.get('map')) || MAPS[0];
@@ -312,7 +319,11 @@ export class Game {
     this.lastMatchConfig = { ...cfg };
 
     this.audio.unlock();
-    if (!this.autotest) this.input.requestLock();
+    if (!this.autotest) {
+      this.input.requestLock();
+      this.audio.stopMusic(1.2);
+      this.audio.preloadMusic(['victory', 'defeat']);   // decoded while the map loads: the end sting starts on time
+    }
     this.state = 'loading';
     this.input.enabled = false;
     this.hud.show(false);
@@ -353,7 +364,8 @@ export class Game {
     this.player.name = s.get('playerName') || 'Player';
     if (!this.spectate) this.addEntity(this.player);
     this.player.team = isTeamMode(cfg.mode) ? TEAM_BLUE : this.player.id;
-    this.player.color.set(isTeamMode(cfg.mode) ? TEAM_COLORS[TEAM_BLUE] : PLAYER_COLOR);
+    // team modes keep the team colour (sides stay readable); otherwise the player's own colour (settings.playerColor)
+    this.player.color.set(isTeamMode(cfg.mode) ? TEAM_COLORS[TEAM_BLUE] : (s.get('playerColor') || PLAYER_COLOR));
 
     this.bots.spawnBots(cfg.botCount, cfg.difficulty, cfg.mode);
     this.weapons.onMatchStart();
@@ -569,6 +581,7 @@ export class Game {
   _showEndScreen() {
     this.timeScale = 1;
     this.audio.stopAllLoops(); // the sim is frozen from here on: nothing would ever silence a slide / grapple-reel loop
+    if (!this.autotest) this.audio.playMusic(this.match && this.match.playerWon ? 'victory' : 'defeat', { loop: false, fadeIn: 0.05 });
     this.input.capture = false;
     this.input.exitLock();
     this.hud.show(false);
@@ -604,6 +617,7 @@ export class Game {
     this.input.exitLock();
     this.hud.show(false);
     this.menu.showMain();
+    if (!this.autotest) this.audio.playMusic('menu');
     this.events.emit('game:menu');
   }
 
@@ -729,11 +743,12 @@ export class Game {
     for (const e of this.entities) {
       if (e.alive) {
         if (e.position.y < killY) {
-          const recent = e.lastAttacker && this.time - e.lastDamageTime < 6 ? e.lastAttacker : null;
-          // shoved off the map by Gale within 5 s: a ring-out credited to the shover
+          // shoved off the map (Gale, Kinetic Charge) within 8 s: a ring-out credited to the shover, even when someone
+          // else hit the victim in mid-air; otherwise the last attacker of the last 6 s gets the fall
           const sb = e._shovedBy;
-          const ring = recent && sb && sb.attacker === recent && this.time - sb.at < 5;
-          this.combat.kill(e, { attacker: recent, weapon: ring ? 'ringout' : 'fall' });
+          const shover = sb && sb.attacker && sb.attacker !== e && this.time - sb.at < 8 ? sb.attacker : null;
+          const recent = e.lastAttacker && this.time - e.lastDamageTime < 6 ? e.lastAttacker : null;
+          this.combat.kill(e, { attacker: shover || recent, weapon: shover ? 'ringout' : 'fall' });
         }
       } else if (!m.over && e.respawnAt >= 0 && this.time >= e.respawnAt) {
         this.respawnEntity(e);

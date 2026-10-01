@@ -553,3 +553,11 @@ export function getMaterials() {
   if (!cache) cache = build();
   return cache;
 }
+
+/**
+ * Colour of the light strips on the first-person arms (cuff ring, sleeve line, knuckles): the player's own colour.
+ * @param {string|number|THREE.Color} color
+ */
+export function setArmAccent(color) {
+  getMaterials().glowArm.emissive.set(color);
+}

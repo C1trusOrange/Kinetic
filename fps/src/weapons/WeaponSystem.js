@@ -3,6 +3,7 @@ import { WEAPONS, WEAPON_ORDER, GRENADE_TYPES, MELEE } from './WeaponDefs.js';
 import { newInventory, spawnLoadout, addToInventory, nextHeldType } from './GrenadeTypes.js';
 import { resolveFor, sanitizeLoadout, spawnReserve } from './Loadout.js';
 import { createWeaponModel, createGrenadeModel } from './WeaponModels.js';
+import { setArmAccent } from './models/WeaponMaterials.js';
 import { clamp, lerp, damp, approach, wrapAngle, randRange, randomInCone } from '../core/utils.js';
 import { GRAVITY } from '../core/constants.js';
 import { momentumOf, damageScale, rateScale, spreadScale, tracerFor, soundRate, updateGauge } from './special/smg.js';
@@ -23,6 +24,8 @@ const THROW_RELEASE = 0.16;     // seconds into the throw swing when the grenade
 const RECOVER_TIME = 0.34;
 const MELEE_HIT_AT = 0.13;
 const MELEE_TIME = 0.5;
+/** Kill reward per weapon the victim carried, as a fraction of that weapon's magazine (see _killAmmo). */
+const KILL_AMMO_MAG = 0.3;
 const PREVIEW_DOTS = 44;
 const GRENADE_RADIUS_SAFE = 0.1;
 
@@ -371,6 +374,12 @@ export class WeaponSystem {
 
   /** Build the first-person models for every weapon plus the grenade-throwing hand. */
   async init() {
+    // the arms' light strips wear the player's own colour (settings.playerColor)
+    const settings = this.game.settings;
+    if (settings) {
+      setArmAccent(settings.get('playerColor'));
+      settings.onChange((key, value) => { if (key === 'playerColor') setArmAccent(value); });
+    }
     for (const id of WEAPON_ORDER) {
       let model;
       try {
@@ -788,6 +797,28 @@ export class WeaponSystem {
   }
 
   /**
+   * Kill reward: about a third of a magazine (KILL_AMMO_MAG) into the reserve of each weapon the victim carried that
+   * the player also owns. Only the victim's own weapons count, so rockets only come from rocket carriers; the pistol's
+   * reserve is endless and is skipped. Emits 'ammo:kill' {entity, victim, grants: [{weapon, amount}]} when anything was added.
+   * @param {object} victim
+   */
+  _killAmmo(victim) {
+    const ids = victim && victim.owned;
+    if (!ids || !ids.length) return;
+    const grants = [];
+    for (const id of new Set(ids)) {
+      const def = WEAPONS[id];
+      const inv = this.inv[id];
+      if (!def || !inv || !inv.owned || !Number.isFinite(def.reserveMax) || inv.reserve >= def.reserveMax) continue;
+      const amount = Math.min(def.reserveMax - inv.reserve, Math.max(1, Math.round(def.magSize * KILL_AMMO_MAG)));
+      inv.reserve += amount;
+      if (id === this.currentId) this.reserve = inv.reserve;
+      grants.push({ weapon: id, amount });
+    }
+    if (grants.length) this.game.events.emit('ammo:kill', { entity: this.game.player, victim, grants });
+  }
+
+  /**
    * Add reserve ammo.
    * @param {string|null} id  weapon id, or null for all owned weapons
    * @param {number} fraction fraction of reserveMax
@@ -963,7 +994,8 @@ export class WeaponSystem {
     const e = sm(this.adsAmount);
     this._fovKick.step(dt);
     p.fovMultiplier = lerp(1, def.adsZoom, e) * (def.charge ? 1 - def.charge.fovSqueeze * this.chargeAmount : 1) * (1 + this._fovKick.x);
-    p.lookScale = lerp(1, def.adsSensitivity, e);
+    // the weapon's own zoom sensitivity x the player's ADS multiplier (settings.adsSensitivity)
+    p.lookScale = lerp(1, def.adsSensitivity * (game.settings.get('adsSensitivity') ?? 1), e);
 
     this.cookProgress = this.cooking ? this._cookFrac() : 0;
     this.throwing = this.gState !== G_IDLE;
@@ -1799,6 +1831,7 @@ export class WeaponSystem {
     const game = this.game;
     if (e.weapon === 'rail' && e.attacker === game.player && e.victim !== game.player) this._hitStop(0.3, 0.12);
     if (e.weapon === 'ringout' && e.attacker === game.player) game.audio.play('ringout');
+    if (e.attacker === game.player && e.victim !== game.player) this._killAmmo(e.victim);
     if (e.victim !== game.player) return;
     cancelCharge(this);
     if (this.cooking) {

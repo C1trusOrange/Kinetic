@@ -62,7 +62,7 @@ export const WEAPONS = {
     slot: 2,
     kind: 'hitscan',
     auto: true,
-    damage: 16,
+    damage: 20,                // 5 body shots up close; ~17.8 at 20 m, ~8.8 (the old floor) at 60 m+
     headshotMult: 2,
     pellets: 1,
     fireRate: 11,
@@ -74,7 +74,7 @@ export const WEAPONS = {
     reloadMode: 'mag',
     spread: { hip: 0.0125, ads: 0.0022, moving: 0.022, air: 0.038, perShot: 0.0034, max: 0.055, recovery: 0.02 },
     recoil: { pitch: 0.0095, yaw: 0.0034, adsScale: 0.62 },
-    falloff: { start: 20, end: 60, min: 0.55 },
+    falloff: { start: 10, end: 60, min: 0.44 },
     range: 250,
     adsZoom: 0.78,
     adsSensitivity: 0.78,
@@ -359,7 +359,7 @@ export const GRENADE_TYPES = {
   },
   kinetic: {
     id: 'kinetic', name: 'Kinetic Charge', short: 'KINETIC', color: 0x62ff9a,
-    fuse: 2.0, cookable: true, throwSpeed: 19, maxCarry: 2, start: 0, radius: 7.5, damage: 14, knockback: 20,
+    fuse: 2.0, cookable: true, throwSpeed: 19, maxCarry: 2, start: 0, radius: 7.5, damage: 14, knockback: 28,
     selfKnock: 0.7, selfScale: 0.2, splat: true, splatMax: 40, danger: 5, pinSound: 'charge_arm',
   },
   smoke: {

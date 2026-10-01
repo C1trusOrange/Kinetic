@@ -391,7 +391,9 @@ export class Bot extends Entity {
 
   applyImpulse(v) {
     super.applyImpulse(v);
-    if (v.y > 1.5) {
+    // a knock-up, or a hard shove of any direction (> 5 m/s, the player's rule in PlayerController.impulse): airborne
+    // for a moment, so ground braking does not eat a Gale / blast shove within a metre and enemies can be pushed off ledges
+    if (v.y > 1.5 || v.lengthSq() > 25) {
       this.onGround = false;
       this._noSnapUntil = this.game.time + 0.3;
     }
