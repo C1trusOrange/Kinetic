@@ -5,7 +5,7 @@
  * Codes: KeyboardEvent.code values ('KeyW', 'Space', 'ShiftLeft', ...) and 'Mouse0'..'Mouse4'.
  * Frame protocol (driven by Game): input.update() at frame start, input.endFrame() at frame end - once per
  * simulated frame; a rAF that does not simulate (e.g. a frames-in-flight limiter) should skip both, then its events
- * simply wait in the log for the next frame.
+ * simply wait in the log for the next frame (an endFrame() without its update() is a no-op, so nothing is lost).
  *
  * Frame window. Every key / button / wheel event that arrives between two frames is appended, with its DOM
  * timestamp, to an ordered per-frame log (`log`) and resolved by update() at the start of the next frame:
@@ -540,6 +540,8 @@ export class Input {
 
   /** Frame end: clear this frame's edges and recycle the log. */
   endFrame() {
+    // no update() this rAF (a frame that did not simulate): the pending events are unconsumed - keep them
+    if (!this._inFrame) return;
     const log = this.log;
     if (log.length) {
       // edge state only ever comes from log entries: a frame without events has nothing to clear
