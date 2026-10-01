@@ -14,7 +14,7 @@ export const DEFAULT_SETTINGS = {
   brightness: 1.0,       // exposure multiplier, 0.7..1.3 (x the map's exposure)
   quality: 'auto',       // 'auto' (preset picked from the GPU on every start, see core/GraphicsQuality.js) | 'low' | 'medium' | 'high' | 'ultra'
   renderScale: 1.0,      // 0.5..1: multiplies the preset's render resolution (the canvas stays full size)
-  lowLatency: true,      // frames-in-flight limiter: skip a frame while the previous one is still on the GPU (core/FrameLimiter.js)
+  lowLatency: true,      // frames-in-flight limiter: skip a rAF while 2-3 earlier frames are still on the GPU (core/FrameLimiter.js)
   // audio
   masterVolume: 0.8,
   // match defaults (remembered from the last match)
