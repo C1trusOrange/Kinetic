@@ -26,7 +26,8 @@ const PREVIEW_DOTS = 44;
 const GRENADE_RADIUS_SAFE = 0.1;
 
 // ---- input timing: REAL time on the input clock (seconds, measured from the press's own DOM timestamp, see
-//      core/Input.js), so hit-stop, the end-of-match slow motion or a long frame never stretch them.
+//      core/Input.js), so hit-stop, the end-of-match slow motion or a long frame never stretch them: nothing a press
+//      starts can happen later than max(its window, Input's stale window) after the physical press.
 /** A click that meets a fire-rate cooldown or the sprint-out still fires if that ends within this. Nothing else. */
 const FIRE_BUFFER = 0.12;
 /** A weapon key pressed while a grenade is still in the hand / before the melee hit frame is applied then, if this fresh. */
@@ -42,6 +43,8 @@ const ACTION_LATCH = 0.15;
 const SWITCH_KEYS = ['weapon1', 'weapon2', 'weapon3', 'weapon4', 'weapon5', 'weapon6', 'weapon7', 'weapon8', 'weapon9', 'lastWeapon'];
 const KEY_WEAPON = {};
 for (const id of WEAPON_ORDER) KEY_WEAPON['weapon' + WEAPONS[id].slot] = id;
+/** Weapon actions a trigger pull of the same frame window is ordered against (see _fireFirst); the wheel too. */
+const FIRE_RIVALS = ['grenade', 'melee', 'reload', ...SWITCH_KEYS];
 
 const DEFAULT_HIP = new THREE.Vector3(0.17, -0.2, -0.42);
 
@@ -247,7 +250,7 @@ export class WeaponSystem {
     // input latches (input-clock seconds, see the timing constants above)
     this._queuedAt = 0;          // when _queuedSwitch was queued
     this._keyMem = null;         // weapon id of a key waiting for the grenade to leave the hand / the melee hit
-    this._keyMemT = 0;
+    this._keyMemT = 0;           // that key's press time
     this._reloadLatchUntil = 0;  // an R waiting for the weapon to become ready
     this._gLatchUntil = 0;       // a G waiting until a grenade can be pulled
     this._vLatchUntil = 0;       // a V waiting until a melee can start
@@ -896,8 +899,11 @@ export class WeaponSystem {
     // ---- grenade, melee, weapon selection (number keys / Q / wheel), reload key - in this order, which is the
     //      same-frame priority rule: G / V go first and a weapon key of the same frame is then handled like a key
     //      pressed during that action (see _handleSwitchInput), so it never drops the G / V; R comes last and an R
-    //      with a weapon key in the same frame reloads the NEW weapon once it is up. A press that cannot act at once
-    //      is latched briefly (ACTION_LATCH / KEY_MEMORY, real time from the press) and then dropped, never replayed.
+    //      with a weapon key in the same frame reloads the NEW weapon once it is up. A trigger pull that came before
+    //      all of those in the frame window fires first (_fireFirst), otherwise it is resolved after them. A press that
+    //      cannot act at once is latched briefly (ACTION_LATCH / KEY_MEMORY, real time) and then dropped, never replayed.
+    const fireFirst = this._fireFirst();
+    if (fireFirst) this._updateFire(now, inv, def, dt);
     this._updateGrenadeState(dt, now);
     this._updateMelee(dt, now);
     const switched = this._handleSwitchInput();
@@ -926,8 +932,8 @@ export class WeaponSystem {
     // ---- cycling (pump / bolt)
     this._updateCycle(dt, now);
 
-    // ---- fire
-    this._updateFire(now, inv, def, dt);
+    // ---- fire (unless it already went first, see above: once per frame)
+    if (!fireFirst) this._updateFire(now, inv, def, dt);
     this._updateBeam(now);
 
     // ---- aim down sights
@@ -981,6 +987,7 @@ export class WeaponSystem {
    *    hits - or dropped if it has gone stale by then.
    *  - During the grenade follow-through / recovery and after the melee hit frame the switch starts immediately:
    *    the rest of that animation plays back (faster) under the switch-out, so it never holds up the new weapon.
+   *  - A trigger pull made before the key in the same frame window has already fired the old weapon (_fireFirst).
    *  - A pickup's auto-switch queued behind a grenade (_queuedSwitch) only happens within QUEUED_SWITCH_TTL.
    * @returns {boolean} true when a switch the player asked for started this frame
    */
@@ -1183,6 +1190,32 @@ export class WeaponSystem {
   }
 
   // ---------------------------------------------------------------- firing
+
+  /**
+   * Same-window order of a trigger pull against the other weapon actions (G, V, R, a weapon key or Q, the wheel):
+   * true when this frame window holds a click AND at least one of those, and the click came first (DOM timestamps).
+   * The trigger is then resolved before them, so the click fires the weapon in hand before that action takes it away
+   * (a click and a weapon key made during one hitch: shoot, then switch) instead of being dropped by it. Without
+   * such a rival the usual order applies (the trigger is resolved after them).
+   * @returns {boolean}
+   */
+  _fireFirst() {
+    const input = this.game.input;
+    if (!input.actionPressed('fire')) return false;
+    const t = input.pressTime('fire');
+    let rival = false;
+    for (let i = 0; i < FIRE_RIVALS.length; i++) {
+      const a = FIRE_RIVALS[i];
+      if (!input.actionPressed(a)) continue;
+      if (input.pressTime(a) <= t) return false;
+      rival = true;
+    }
+    if (input.wheel !== 0) {
+      if (input.wheelTime <= t) return false;
+      rival = true;
+    }
+    return rival;
+  }
 
   /**
    * Trigger logic. Automatic weapons fire while held AND for a click that went down and up inside one frame (at
