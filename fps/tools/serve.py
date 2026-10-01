@@ -200,6 +200,12 @@ def serve_in_background(port=0, root=ROOT, **kw):
 
 def probe_running(port):
     """What already listens on 127.0.0.1:port: /api/lan info for a KINETIC server, {} for an older KINETIC, None otherwise."""
+    try:
+        # Windows takes ~2 s to refuse a connection (it retries the SYN), and the HTTP probes below would try twice
+        # before every --lan start. Anything listening on loopback accepts within a millisecond.
+        socket.create_connection(('127.0.0.1', port), timeout=1.0).close()
+    except OSError:
+        return None
     opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))   # never ask a system proxy about loopback
     try:
         with opener.open(f'http://127.0.0.1:{port}/api/lan', timeout=2) as r:

@@ -1192,6 +1192,24 @@ class ServerTests(unittest.TestCase):
         finally:
             s.close()
 
+    def test_probe_of_a_free_port_is_quick(self):
+        """Every --lan start probes the port before binding. Windows takes ~2 s to refuse a loopback connection, and
+        the two HTTP probes made host-lan.bat sit silent for 4 s before printing anything."""
+        s = socket.socket()
+        s.bind(('127.0.0.1', 0))
+        port = s.getsockname()[1]
+        s.close()
+        t0 = time.monotonic()
+        self.assertIsNone(serve.probe_running(port))
+        self.assertLess(time.monotonic() - t0, 2.5)                  # was 4 s (2 refused connects)
+        srv, port = serve.serve_in_background(0)
+        try:
+            info = serve.probe_running(port)
+            self.assertEqual((info['app'], info['port']), ('kinetic', port))
+        finally:
+            srv.shutdown()
+            srv.server_close()
+
     def test_reserved_port_message(self):
         """WinError 10013 (a Hyper-V / WSL reserved port range) must not be blamed on 'another program'."""
         def forbidden(*a, **kw):
