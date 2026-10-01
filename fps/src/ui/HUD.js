@@ -11,6 +11,9 @@ import { weaponIcon, ICON } from './Icons.js';
 import { esc, hexOf, fmtTime, ordinal } from './dom.js';
 import { scoreboardHTML, scoreboardSignature } from './Scoreboard.js';
 import { ModeHUD, modeLabel } from './ModeHUD.js';
+import {
+  XH_KEYS, XH_REF_EM, WEAPON_XH_STYLE, readCrosshair, applyCrosshair, adsVisibility, adsModeOf, crosshairMarkup, crosshairReach, snapAnchor,
+} from './Crosshair.js';
 
 const DI_COUNT = 8;          // damage-direction indicator pool
 /** Grenade chip: glyph + colour per type, pips for the selected type's max carry. */
@@ -87,14 +90,14 @@ const TEMPLATE = () => `
   <div class="sc-info"><span data-r="zoom">3.6x</span></div>
 </div>
 
-<div class="hud-cross" data-r="cross" data-style="ticks">
-  <b class="ch t"></b><b class="ch b"></b><b class="ch l"></b><b class="ch r"></b><b class="ch dot"></b><b class="ch-ring"></b>
-</div>
+<div class="hud-cross xh" data-r="cross" data-style="ticks">${crosshairMarkup()}</div>
 <div class="hud-hit" data-r="hit"><svg viewBox="-20 -20 40 40"><path d="M-14 -14L-6 -6M14 -14L6 -6M-14 14L-6 6M14 14L6 6"/></svg></div>
-<div class="hud-prog" data-r="ring"><div class="pg-bar"><i data-r="ringarc"></i></div><span data-r="ringtxt"></span></div>
-<div class="hud-mom" data-r="mom"><i></i><i></i><i></i><i></i><i></i></div>
-<div class="hud-prompt" data-r="prompt"></div>
-<div class="hud-killtext" data-r="killtext"></div>
+<div class="hud-below" data-r="below">
+  <div class="hud-prog" data-r="ring"><div class="pg-bar"><i data-r="ringarc"></i></div><span data-r="ringtxt"></span></div>
+  <div class="hud-mom" data-r="mom"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="hud-prompt" data-r="prompt"></div>
+  <div class="hud-killtext" data-r="killtext"></div>
+</div>
 <div class="hud-nums" data-r="nums">${'<span></span>'.repeat(NUM_COUNT)}</div>
 
 <div class="hud-top" data-r="top">
@@ -159,7 +162,10 @@ export class HUD {
     this.game = game;
     this.visible = false;
     this._c = Object.create(null);      // last written values (write-if-changed cache)
-    this._gap = 6;
+    this._gap = 6;                      // smoothed spread gap (CSS px)
+    this._xh = null;                    // crosshair config (Crosshair.readCrosshair), rebuilt on xh* setting changes
+    this._xhm = null;                   // its device-pixel metrics
+    this._xhDpr = 1;
     this._h = window.innerHeight || 720;
     this._lastRT = 0;
     this._offs = [];
@@ -234,10 +240,32 @@ export class HUD {
       ev.on('reflect', e => this._onReflect(e)),
       ev.on('match:end', m => this._onMatchEnd(m)),
       ev.on('player:grapple', e => this._onGrapple(e)),
-      ev.on('resize', e => { this._h = (e && e.height) || window.innerHeight || 720; }),
+      ev.on('resize', e => { this._h = (e && e.height) || window.innerHeight || 720; this._applyCrosshair(); }),
+      this.game.settings.onChange(key => { if (XH_KEYS.includes(key)) this._applyCrosshair(); }),
     );
     this._h = window.innerHeight || 720;
+    this._applyCrosshair();
     this.modeHud.init();
+  }
+
+  /**
+   * Rebuild the crosshair from the xh* settings (on change, resize / zoom): colour, shape and whole-device-pixel geometry
+   * as custom properties on the crosshair element itself (never on the HUD root, which would restyle every HUD node).
+   * Works while paused, so the Crosshair screen applies live.
+   */
+  _applyCrosshair() {
+    const e = this.e;
+    const cfg = this._xh = readCrosshair(this.game.settings);
+    const dpr = this._xhDpr = window.devicePixelRatio > 0 ? window.devicePixelRatio : 1;
+    const emPx = parseFloat(getComputedStyle(this.root).fontSize) || XH_REF_EM;
+    this._xhm = applyCrosshair(e.cross, cfg, { emPx, dpr });
+    snapAnchor(e.cross, window.innerWidth, window.innerHeight, dpr);
+    // force the per-frame writes (gap, opacity, reach); refresh them now too (the game may be paused)
+    this._c.xgap = undefined;
+    this._c.xop = undefined;
+    this._c.xreach = undefined;
+    const g = this.game;
+    if (this.visible && g.player && g.weapons) this._updateCrosshair(0, g.player, g.weapons);
   }
 
   /** Show / hide the whole HUD. */
@@ -615,27 +643,47 @@ export class HUD {
     this._updateFps(rdt);
   }
 
+  /**
+   * Crosshair per frame: weapon reticle variant, spread gap (whole device pixels, written on the crosshair element
+   * only when it changes), per-weapon ADS visibility and the offset of the reload bar / momentum / prompts under it.
+   */
   _updateCrosshair(rdt, p, w) {
-    const g = this.game, e = this.e;
+    const g = this.game, e = this.e, cfg = this._xh, m = this._xhm;
     const scoped = !!w.scoped;
     const alive = p.alive;
     this._flag('xhide', e.cross, 'off', scoped || !alive);
-    if (scoped || !alive) return;
-    const tanHalf = Math.tan(g.camera.fov * DEG * 0.5) || 1;
-    let target = Math.tan(w.spreadAngle || 0) / tanHalf * this._h * 0.5;
-    target = clamp(target, 0, 220);
-    this._gap += (target - this._gap) * damp(32, rdt);
-    const gap = Math.max(3, this._gap);
-    if (Math.abs(gap - (this._c.gap || 0)) > 0.25) {
-      this._c.gap = gap;
-      this.root.style.setProperty('--gap', gap.toFixed(1) + 'px');
-      this.root.style.setProperty('--ring', (gap * 2).toFixed(1) + 'px');
-    }
+    if (scoped || !alive || !cfg) return;
     const id = w.currentId;
-    this._attr('xstyle', e.cross, 'data-style', id === 'shotgun' ? 'ring' : id === 'rocket' ? 'rocket' : id === 'rail' ? 'rail' : id === 'arc' ? 'arc' : id === 'gale' ? 'cone' : 'ticks');
-    const ads = clamp(w.adsAmount || 0, 0, 1);
-    const opq = Math.round((1 - ads * 0.7) * 50) / 50;
-    if (this._c.xop !== opq) { this._c.xop = opq; e.cross.style.opacity = opq; }
+    const wstyle = cfg.weaponStyles ? (WEAPON_XH_STYLE[id] || 'ticks') : 'ticks';
+    this._attr('xstyle', e.cross, 'data-style', wstyle);
+    // spread cone edge projected with the live world FOV (ADS zoom, sprint / slide kicks), smoothed, in CSS px
+    const tanHalf = Math.tan(g.camera.fov * DEG * 0.5) || 1;
+    const target = clamp(Math.tan(w.spreadAngle || 0) / tanHalf * this._h * 0.5, 0, 220);
+    this._gap += (target - this._gap) * damp(32, rdt);
+    // functional rings (shotgun pellet cone, Javelin charge) always show the real spread, even with a fixed crosshair
+    const dpr = this._xhDpr;
+    const functional = wstyle === 'ring' || wstyle === 'rail';
+    const minGap = functional ? Math.round(3 * dpr) : m.gap;
+    const gap = functional || cfg.dynamic ? Math.max(minGap, Math.round(this._gap * dpr)) : minGap;
+    if (this._c.xgap !== gap) {
+      this._c.xgap = gap;
+      e.cross.style.setProperty('--gap', gap / dpr + 'px');
+      this._flag('xg0', e.cross, 'g0', gap === 0);
+    }
+    // aiming down sights: per-weapon hide / fade / show (Crosshair screen), times the crosshair opacity
+    const op = Math.round(adsVisibility(adsModeOf(cfg.ads, id), w.adsAmount || 0) * cfg.opacity * 50) / 50;
+    if (this._c.xop !== op) {
+      this._c.xop = op;
+      e.cross.style.opacity = op;
+      this._flag('xgone', e.cross, 'xh-gone', op <= 0);
+    }
+    // reload / cook / charge bar, momentum meter, prompts and kill text sit just under what is drawn (a transform on
+    // their wrapper: no descendant restyle)
+    const reach = crosshairReach(m, cfg.style, wstyle, gap);
+    if (this._c.xreach !== reach) {
+      this._c.xreach = reach;
+      e.below.style.transform = 'translateY(' + reach / dpr + 'px)';
+    }
   }
 
   _updateAmmo(w) {

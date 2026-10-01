@@ -17,8 +17,10 @@ const along = (t, x = 0, v = 0) => [x + GRIP_V[0] * v + GRIP_T[0] * t + AX[0], G
 export const PISTOL = {
   id: 'pistol',
   hip: [0.095, -0.1, -0.3],
-  adsDistance: 0.2,
-  sight: [0, 0.0835, 0.056],
+  // Aim point = the green front dot (three-dot sight picture: the rear dots line up on either side of it), not the
+  // post tops 5 mm above it. The marker sits on the front dot, 0.371 m from the eye at ADS (rear notch at 0.2 m).
+  adsDistance: 0.3709,
+  sight: [0, 0.0785, -0.1149],
   muzzle: [0, 0.052, -0.162],
   ejectPort: [0.016, 0.062, -0.004],
 };
@@ -69,11 +71,12 @@ export function buildPistol(b, view) {
   b.cube('glowGreen', [0.0012, 0.0017, 0.078], [-0.0152, 0.0585, -0.065]);
   b.cube('glowGreen', [0.0012, 0.0017, 0.078], [0.0152, 0.0585, -0.065]);
   b.decal(labelMaterial('pistol-name', 'P-9  VIPER', { w: 256, h: 48, size: 34, color: '#d5dde4', weight: '800', spacing: 3 }), [0.052, 0.0098], [-0.0154, 0.0455, -0.02]);
-  // sights: rear posts + front post (tops at y = 0.0835 on the sight line)
+  // sights: rear posts + front post (tops at y = 0.0835), three green dots on the sight line (y = 0.0785)
   b.cube('steelBlack', [0.0072, 0.0125, 0.008], [-0.0066, 0.0772, 0.056]);
   b.cube('steelBlack', [0.0072, 0.0125, 0.008], [0.0066, 0.0772, 0.056]);
-  b.cube('glowGreen', [0.0032, 0.0032, 0.0004], [-0.0066, 0.0785, 0.0517]);
-  b.cube('glowGreen', [0.0032, 0.0032, 0.0004], [0.0066, 0.0785, 0.0517]);
+  // rear dots on the posts' rear faces (z = 0.060), where the shooter sees them either side of the front dot
+  b.cube('glowGreen', [0.0032, 0.0032, 0.0004], [-0.0066, 0.0785, 0.0602]);
+  b.cube('glowGreen', [0.0032, 0.0032, 0.0004], [0.0066, 0.0785, 0.0602]);
   b.cube('steelBlack', [0.0036, 0.0125, 0.0062], [0, 0.0772, -0.118]);
   b.cube('glowGreen', [0.003, 0.003, 0.0004], [0, 0.0785, -0.1149]);
   if (hi) {

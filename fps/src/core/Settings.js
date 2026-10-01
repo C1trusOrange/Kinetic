@@ -1,4 +1,5 @@
 import { DEFAULT_ARSENAL, sanitizeArsenal, arsenalEquals } from '../ai/BotConfig.js';
+import { XH_DEFAULTS, sanitizeCrosshairSettings, sanitizeCrosshairValue, sanitizeAdsModes, adsModesEqual } from '../ui/Crosshair.js';
 
 const STORAGE_KEY = 'kinetic.settings.v1';
 
@@ -26,6 +27,9 @@ export const DEFAULT_SETTINGS = {
   scoreLimit: 25,
   timeLimit: 10,         // minutes, 0 = none
   botArsenal: { ...DEFAULT_ARSENAL }, // bot spawn weapons: { pistol|rifle|shotgun|sniper|rocket: 'off'|'rare'|'normal'|'common' }
+  // crosshair (src/ui/Crosshair.js): xhStyle, xhColor, xhSize, xhThickness, xhGap, xhDot, xhDotSize, xhOutline, xhOpacity,
+  // xhDynamic, xhWeaponStyles, xhAds ({ weaponId: 'hide'|'fade'|'show' } while aiming down sights; frozen default)
+  ...XH_DEFAULTS,
 };
 
 function clampNum(v, lo, hi, fallback) {
@@ -35,7 +39,7 @@ function clampNum(v, lo, hi, fallback) {
 /** Persistent user settings (localStorage, failures ignored). */
 export class Settings {
   constructor() {
-    this.data = { ...DEFAULT_SETTINGS, botArsenal: { ...DEFAULT_ARSENAL } };
+    this.data = { ...DEFAULT_SETTINGS, botArsenal: { ...DEFAULT_ARSENAL }, xhAds: { ...DEFAULT_SETTINGS.xhAds } };
     this._listeners = [];
     this.load();
   }
@@ -54,6 +58,8 @@ export class Settings {
         this.data.glow = clampNum(this.data.glow, 0, 1, DEFAULT_SETTINGS.glow);
         this.data.brightness = clampNum(this.data.brightness, 0.7, 1.3, DEFAULT_SETTINGS.brightness);
         this.data.renderScale = clampNum(this.data.renderScale, 0.5, 1, DEFAULT_SETTINGS.renderScale);
+        // crosshair: style / colour / slider ranges, and the per-weapon ADS map (an object key, like botArsenal)
+        sanitizeCrosshairSettings(this.data);
       }
     } catch { /* storage unavailable */ }
   }
@@ -70,6 +76,12 @@ export class Settings {
     if (key === 'botArsenal') {
       value = sanitizeArsenal(value);
       if (arsenalEquals(this.data.botArsenal, value)) return;
+    } else if (key === 'xhAds') {
+      value = sanitizeAdsModes(value);
+      if (adsModesEqual(this.data.xhAds, value)) return;
+    } else if (Object.hasOwn(XH_DEFAULTS, key)) {
+      value = sanitizeCrosshairValue(key, value);   // crosshair: enums / colour / clamped slider ranges
+      if (this.data[key] === value) return;
     } else if (this.data[key] === value) return;
     this.data[key] = value;
     this.save();

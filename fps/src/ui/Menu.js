@@ -17,6 +17,7 @@ import { scoreboardHTML } from './Scoreboard.js';
 import { modeName, modeShort } from './ModeHUD.js';
 import { mountGraphicsInfo } from './GraphicsInfo.js';
 import { resolveQuality } from '../core/GraphicsQuality.js';
+import { CrosshairScreen } from './CrosshairScreen.js';
 
 const SCORE_OPTS = [10, 25, 50, 100, 0];
 const TIME_OPTS = [3, 5, 10, 15, 20, 0];
@@ -153,17 +154,19 @@ export class Menu {
       arsenal: sanitizeArsenal(s.get('botArsenal')),
     };
 
+    this.xhs = new CrosshairScreen(this);   // Settings > Crosshair (src/ui/CrosshairScreen.js)
     const root = document.createElement('div');
     root.className = 'k-menu';
     root.innerHTML = `<div class="k-scrim"></div><div class="k-grid"></div>`
       + this._mainHTML() + this._setupHTML() + this._arsenalHTML() + this._settingsHTML() + this._controlsHTML()
-      + this._pauseHTML() + this._endHTML();
+      + this.xhs.html() + this._pauseHTML() + this._endHTML();
     g.uiRoot.appendChild(root);
     this.root = root;
     this.screens = {};
     for (const sc of root.querySelectorAll('[data-screen]')) this.screens[sc.dataset.screen] = sc;
     this.r = {};
     for (const n of root.querySelectorAll('[data-r]')) this.r[n.dataset.r] = n;
+    this.xhs.bind(root);
     // keep the loading overlay above the menu
     g.uiRoot.appendChild(this.loading);
 
@@ -269,7 +272,7 @@ export class Menu {
       const tag = it.type === 'seg' ? 'div' : 'label';
       return `<${tag} class="set-row"><span class="set-l">${it.label}${it.hint ? `<small>${it.hint}</small>` : ''}</span><span class="set-c">${ctl}</span></${tag}>`;
     }).join('')}</div>`;
-    const col = c => `<div class="set-col">${SETTINGS_SPEC.filter(gr => gr.col === c).map(group).join('')}</div>`;
+    const col = c => `<div class="set-col">${SETTINGS_SPEC.filter(gr => gr.col === c).map(group).join('')}${c === 1 ? this.xhs.cardHTML() : ''}</div>`;
     return `
     <section class="k-screen s-settings" data-screen="settings">
       <header class="k-head"><button class="k-back" data-act="back">${ICON.back}<span>Back</span></button><div><h2>Settings</h2><small>Changes apply instantly</small></div></header>
@@ -352,6 +355,7 @@ export class Menu {
       if (e.code === 'Escape' || (e.code === 'KeyP' && !typing)) {
         if (this.screen === 'pause') { if (g.state === 'paused') { g.resume(); } }
         else if (this.screen === 'settings' || this.screen === 'controls') this._go(this._origin);
+        else if (this.screen === 'crosshair') this._go('settings');
         else if (this.screen === 'setup') this._go('main');
         else if (this.screen === 'arsenal') this._go('setup');
       } else if (e.code === 'Enter' && this.screen === 'setup' && !typing && t && !t.closest('button')) {
@@ -407,8 +411,9 @@ export class Menu {
       case 'settings': this._go('settings'); break;
       case 'controls': this._go('controls'); break;
       case 'arsenal': this._go('arsenal'); break;
+      case 'crosshair': this._go('crosshair'); break;
       case 'reset-arsenal': this._setCfg('arsenal', DEFAULT_ARSENAL); break;
-      case 'back': this._go(this.screen === 'setup' ? 'main' : this.screen === 'arsenal' ? 'setup' : this._origin); break;
+      case 'back': this._go(this.screen === 'setup' ? 'main' : this.screen === 'arsenal' ? 'setup' : this.screen === 'crosshair' ? 'settings' : this._origin); break;
       case 'resume': g.resume(); break;
       case 'restart': g.restartMatch(); break;
       case 'again': g.restartMatch(); break;
@@ -484,6 +489,7 @@ export class Menu {
     else if (name === 'arsenal') this._syncArsenal();
     else if (name === 'settings') this._syncSettings();
     else if (name === 'controls') this._fillControls();
+    else if (name === 'crosshair') this.xhs.show();
     this._disarmQuit();
     if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
   }
