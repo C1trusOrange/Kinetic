@@ -147,7 +147,7 @@ export class Input {
     this._inFrame = false;      // between update() and endFrame()
     this._frameN = new Map();   // code -> accepted presses this frame
     this._frameT = new Map();   // code -> newest accepted press this frame (ms)
-    this._lastT = new Map();    // code -> newest accepted press ever (ms)
+    this._lastT = new Map();    // code -> newest physical press ever, stale ones included (ms; pressTime())
 
     this.virtual = new Map();         // action -> bool (test harness)
     this._virtualPressed = new Set();

@@ -579,10 +579,19 @@ export class PlayerController {
       && Math.abs(s.d - this.lockD) < 0.7;
   }
 
-  /** True when the ground is very close below while falling (a jump press then buffers a ground jump). */
+  /**
+   * True when a fresh air jump should wait for the landing (falling onto ground close below): it stays buffered and
+   * becomes a ground jump instead of spending the double jump. The ground must be reached before the buffer runs out:
+   * within the fall distance of JUMP_BUFFER minus one step (the ground jump happens on the step after the landing) at
+   * the current vertical speed, and at most 0.55 m. Anything farther (e.g. the apex of a hop 0.3-0.5 m above a floor or
+   * a ledge, ~0.2 s from landing) would let the buffer expire in the air and eat the press, so the press acts now.
+   */
   _groundClose() {
-    if (this.p.velocity.y > 0.5) return false;
-    return !!this.game.world.collision.probeGround(this.capsule, 0.55, M.GROUND_MIN_Y);
+    const vy = this.p.velocity.y;
+    if (vy > 0.5) return false;
+    const t = M.JUMP_BUFFER - M.STEP;
+    const reach = Math.min(0.55, -vy * t + 0.5 * M.GRAVITY * t * t);
+    return reach > 0 && !!this.game.world.collision.probeGround(this.capsule, reach, M.GROUND_MIN_Y);
   }
 
   _groundJump() {
