@@ -246,10 +246,16 @@ export class LoadoutScreen {
     const lo = resolveLoadout(pool, this._pick());
     const cap = Math.min(pool.slots, pool.weapons.length);
     if (lo.weapons.includes(id)) {
-      if (lo.weapons.length <= 1) { this._hint('mine', 'Keep at least one weapon.'); return; }
+      if (lo.weapons.length <= 1) {
+        this._hint('mine', cap === 1 && pool.weapons.length > 1 ? 'One weapon each: click another weapon to swap to it.' : 'Keep at least one weapon.');
+        return;
+      }
       this._setPick(lo.weapons.filter(w => w !== id), lo.primary === id ? null : lo.primary);
     } else if (!pool.weapons.includes(id)) {
       this._hint('mine', `The ${weaponName(id)} is not in the weapon pool${this.readOnly ? ' of this match' : ': allow it on the left first'}.`);
+    } else if (cap === 1) {
+      // one weapon per player: the only weapon cannot be removed, so a click swaps it (else the pick is stuck)
+      this._setPick([id], id);
     } else if (lo.weapons.length >= cap) {
       this._hint('mine', `Your loadout is full (${lo.weapons.length}/${cap}). Remove a weapon first.`);
     } else {
@@ -384,7 +390,7 @@ export class LoadoutScreen {
       b.classList.toggle('blocked', !allowed);
       // outside the pool = disabled; kept clickable (not the disabled attribute) so a click can explain why
       b.setAttribute('aria-disabled', allowed ? 'false' : 'true');
-      b.classList.toggle('full', allowed && i < 0 && order.length >= cap);
+      b.classList.toggle('full', allowed && i < 0 && cap > 1 && order.length >= cap);   // cap 1: a click swaps
       b.querySelector('.lo-badge').innerHTML = i >= 0 ? String(i + 1) : allowed ? '' : LOCK;
       b.querySelector('small').textContent = !allowed ? 'Not in pool' : id === lo.primary ? 'Spawn weapon' : cls(id);
     }
@@ -403,7 +409,8 @@ export class LoadoutScreen {
       const q = lo.secondary !== lo.primary ? ` Q swaps to the ${weaponName(lo.secondary)}.` : '';
       const trimmed = pick.weapons.filter(id => !order.includes(id));
       const drop = trimmed.length ? ` Not used with these rules: ${trimmed.map(weaponName).join(', ')}.` : '';
-      r.minenote.textContent = (ro ? 'Changes apply at your next respawn.' : 'Click a weapon to add or remove it.') + q + drop;
+      const how = cap === 1 && pool.weapons.length > 1 ? 'Click another weapon to swap to it.' : ro ? '' : 'Click a weapon to add or remove it.';
+      r.minenote.textContent = (ro ? 'Changes apply at your next respawn.' : '') + (ro && how ? ' ' : '') + how + q + drop;
     }
     r.sum.textContent = `YOU SPAWN WITH ${order.map(id => short(id).toUpperCase()).join(' · ')}  —  HOLDING THE ${weaponName(lo.primary).toUpperCase()}`;
   }
