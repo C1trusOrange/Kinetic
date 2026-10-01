@@ -73,7 +73,7 @@ function edgeRail(x0, z0, x1, z1, gaps = [], y = 0) {
 }
 
 // ------------------------------------------------------------------------------------------------ materials of the set
-const DECK_C = 'stone_tiles';        // centre plateau (pale blue-grey tiles)
+const DECK_C = 'concrete_floor';     // centre plateau
 const DECK_S = 'concrete_floor';     // shelf yards
 const CLIFF = 'glacier_rock';
 
@@ -186,7 +186,7 @@ for (const z of [-10.31, 10.31]) {
 }
 for (const x of [-10.32, 10.32]) deco([x - 0.04, 2.9, -6], [x + 0.04, 3.05, 6], { mat: 'neon_blue' });    // status lines on the E/W faces
 // plateau cover
-for (const [x, z] of [[-14, 6.5], [14, -6.5], [-6.5, 14.5], [6.5, -14.5]]) add({ type: 'box', pos: [x, 0.65, z], size: [2.4, 1.3, 2.4], top: 'snow', mat: 'stone_blocks', bevel: 0.08 });
+for (const [x, z] of [[-14, 6.5], [14, -6.5], [-6.5, 14.5], [6.5, -14.5]]) add({ type: 'box', pos: [x, 0.65, z], size: [2.4, 1.3, 2.4], top: 'snow', mat: 'concrete', bevel: 0.08 });
 
 // ------------------------------------------------------------------------------------------------ shelves (built for N, rotated by quarter turns: N, E, S, W)
 const SHELF = [
@@ -240,7 +240,7 @@ function shelf(q) {
   rl(-12, -56, -12, -46, [[-48.2, -46]], 5);
   rl(12, -56, 12, -46, [[-48.2, -46]], 5);
   // yard cover
-  const cov = (x, z, o = {}) => { const p = R(x, z); return add({ type: 'box', pos: [p[0], 0.65, p[1]], size: [2.4, 1.3, 2.4], rot: q * PI / 2, mat: 'stone_blocks', top: 'snow', bevel: 0.08, ...o }); };
+  const cov = (x, z, o = {}) => { const p = R(x, z); return add({ type: 'box', pos: [p[0], 0.65, p[1]], size: [2.4, 1.3, 2.4], rot: q * PI / 2, mat: 'concrete', top: 'snow', bevel: 0.08, ...o }); };
   cov(-9, -36); cov(9, -36); cov(-5, -33); cov(5, -33);
   // open sill on the outer edge (8 m): hazard strip, orange lip light, flanking recovery masts
   rd([-4, 0, -57.55], [4, 0.03, -56.75], { mat: 'hazard' });
@@ -308,7 +308,7 @@ function net(x0, z0, x1, z1) {
 }
 net(3, -30, 18, -18); net(18, -30, 30, -3);
 net(-18, 18, -3, 30); net(-30, 3, -18, 30);
-for (const [x, z] of [[9, -26], [24, -22], [24, -9], [-9, 26], [-24, 22], [-24, 9]]) add({ type: 'box', pos: [x, -7 + 0.65, z], size: [2.4, 1.3, 2.4], mat: 'stone_blocks', bevel: 0.08 });
+for (const [x, z] of [[9, -26], [24, -22], [24, -9], [-9, 26], [-24, 22], [-24, 9]]) add({ type: 'box', pos: [x, -7 + 0.65, z], size: [2.4, 1.3, 2.4], mat: 'concrete', bevel: 0.08 });
 // a rock spur under each net keeps the pits from looking like empty boxes
 for (const [x, z] of [[14, -22], [-14, 22]]) add({ type: 'cylinder', pos: [x, -15, z], radius: 1.4, radiusTop: 6.5, height: 15, sides: 9, mat: CLIFF });
 
@@ -353,9 +353,9 @@ function rng(seed) {
   // distant snow peaks: a tall main cone with two lower shoulders each, snow on the upper 45 %
   const peak = (x, z, R0, top) => {
     const y0 = -33, H = top - y0, rt = 0.9, f = 0.55;
-    add({ type: 'cylinder', pos: [x, y0 + H / 2, z], radius: R0, radiusTop: rt, height: H, sides: 8, mat: 'peak_rock', collide: false, shadow: false });
+    add({ type: 'cylinder', pos: [x, y0 + H / 2, z], radius: R0, radiusTop: rt, height: H, sides: 12, mat: 'peak_rock', collide: false, shadow: false });
     const yc = y0 + H * f, rc0 = R0 + (rt - R0) * f;
-    add({ type: 'cylinder', pos: [x, yc + (H * (1 - f)) / 2, z], radius: rc0 + 0.9, radiusTop: rt + 0.9, height: H * (1 - f), sides: 8, mat: 'snow', collide: false, shadow: false });
+    add({ type: 'cylinder', pos: [x, yc + (H * (1 - f)) / 2, z], radius: rc0 + 0.35, radiusTop: rt + 0.35, height: H * (1 - f), sides: 12, mat: 'snow', collide: false, shadow: false });
   };
   for (let i = 0; i < 11; i++) {
     const a = (i / 11) * PI * 2 + (r() - 0.5) * 0.4, d = 150 + r() * 90;
@@ -443,12 +443,14 @@ export default {
   killY: -38,
   previewCamera: { pos: [70, 40, 70], lookAt: [0, 2, 0] },
   theme: {
-    sky: { top: '#2a6fd0', horizon: '#cfe6ff', bottom: '#e8f2ff', sunColor: '#fff3d0', sunSize: 1.3, stars: false, clouds: 0.55 },
-    sun: { dir: [0.45, 0.72, 0.30], color: '#fff1d8', intensity: 3.0 },
-    hemi: { sky: '#a9cdf5', ground: '#e6eef5', intensity: 1.15 },
-    fog: { color: '#cfe3f5', near: 80, far: 320 },
-    exposure: 1.0,
-    envIntensity: 0.75,
+    // clear high-altitude day: a deeper blue overhead and a soft blue haze; the ambient from below is a muted grey
+    // instead of near-white, so surfaces keep their shading (it used to flatten everything to white)
+    sky: { top: '#2463c4', horizon: '#b9d2ec', bottom: '#dfe9f4', sunColor: '#fff0d6', sunSize: 1.3, stars: false, clouds: 0.5 },
+    sun: { dir: [0.45, 0.72, 0.30], color: '#ffecd2', intensity: 2.7 },
+    hemi: { sky: '#a7c4e6', ground: '#8d98a4', intensity: 0.85 },
+    fog: { color: '#c3d6ea', near: 90, far: 380 },
+    exposure: 0.95,
+    envIntensity: 0.55,
     bloom: { strength: 0.3, radius: 0.5, threshold: 0.9 },
   },
   solids,

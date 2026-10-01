@@ -255,6 +255,7 @@ const OUTPUT_FRAG = `
   #endif
   #include <tonemapping_pars_fragment>
   #include <colorspace_pars_fragment>
+  uniform float saturation;
   varying vec2 vUv;
   void main() {
     gl_FragColor = texture2D( tDiffuse, vUv );
@@ -274,6 +275,9 @@ const OUTPUT_FRAG = `
     #elif defined( NEUTRAL_TONE_MAPPING )
     gl_FragColor.rgb = NeutralToneMapping( gl_FragColor.rgb );
     #endif
+    // grade: saturation around the luminance (AgX's highlight desaturation is smooth but a little grey on its own)
+    float luma = dot( gl_FragColor.rgb, vec3( 0.2126, 0.7152, 0.0722 ) );
+    gl_FragColor.rgb = max( vec3( luma ) + ( gl_FragColor.rgb - vec3( luma ) ) * saturation, vec3( 0.0 ) );
     #ifdef SRGB_TRANSFER
     gl_FragColor = sRGBTransferOETF( gl_FragColor );
     #endif
@@ -287,7 +291,7 @@ const TONE_DEFINES = new Map([
 
 /**
  * three's OutputPass (exposure, the renderer's tone mapping and output colour space) that also adds a bloom texture
- * before tone mapping. Set `bloomTexture` every frame (null = no bloom). With and without bloom are two materials
+ * before tone mapping and applies a saturation grade after it (`uniforms.saturation`, 1 = none). Set `bloomTexture` every frame (null = no bloom). With and without bloom are two materials
  * (two programs that both stay compiled), so switching bloom on or off never rebuilds a shader.
  * It never swaps the composer's buffers (it is always the last pass and writes to the canvas), so the frame stays in
  * the composer's readBuffer and the composer's second HDR target is never allocated.
@@ -296,7 +300,7 @@ export class KineticOutputPass extends Pass {
   constructor() {
     super();
     this.needsSwap = false;
-    this.uniforms = { tDiffuse: { value: null }, tBloom: { value: null }, toneMappingExposure: { value: 1 } };
+    this.uniforms = { tDiffuse: { value: null }, tBloom: { value: null }, toneMappingExposure: { value: 1 }, saturation: { value: 1 } };
     const make = name => new RawShaderMaterial({
       name, uniforms: this.uniforms, vertexShader: OutputShader.vertexShader, fragmentShader: OUTPUT_FRAG,
     });

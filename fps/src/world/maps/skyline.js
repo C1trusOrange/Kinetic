@@ -2,7 +2,7 @@
 //
 //   x: west(-) .. east(+)   z: north(-) .. south(+)   y: up.   Arena is 88 x 88 m inside a 6 m ring alley.
 //
-//   Street level (y 0)   central plaza with a fountain and the 22 m Spire (giant neon billboard crown), a # of 8 m
+//   Street level (y 0)   central plaza with a fountain and the 22 m Spire (lit crown), a # of 8 m
 //                        streets around eight 20 x 20 m buildings, and a 6 m ring alley along the perimeter walls.
 //   Rooftops             low 6.4 (N, S) . mid 9.6 (NE, E, SW) . high 12.8 (W, SE) . top 16 (NW: the sniper roost).
 //   Access for bots      two external fire escapes (N and S) lead onto the low roofs, and six neon skybridges chain the
@@ -14,7 +14,13 @@
 //   Rocket launcher on the flat skybridge NE-E, sniper on the NW roost, armor in the fountain.
 
 const solids = [];
-const add = s => { solids.push(s); return s; };
+// Light strips: the stock candy neon is mapped onto warmer, calmer colours (Textures.js SKYLINE light strips).
+const NEON_SWAP = { neon_pink: 'neon_amber', neon_orange: 'neon_amber', neon_green: 'neon_warm', neon_blue: 'neon_steel' };
+const add = s => {
+  for (const k of ['mat', 'top', 'bottom', 'railMat']) if (NEON_SWAP[s[k]]) s[k] = NEON_SWAP[s[k]];
+  solids.push(s);
+  return s;
+};
 const lo = Math.min;
 const hi = Math.max;
 const PI = Math.PI;
@@ -45,66 +51,15 @@ function rng(seed) {
   };
 }
 
-// ------------------------------------------------------------------------------------------------ neon lettering
-// 3x5 pixel font; every glyph is merged into a few rectangles so a word costs about 4 panels per letter.
-const FONT = {
-  A: ['.#.', '#.#', '###', '#.#', '#.#'], B: ['##.', '#.#', '##.', '#.#', '##.'], C: ['.##', '#..', '#..', '#..', '.##'],
-  D: ['##.', '#.#', '#.#', '#.#', '##.'], E: ['###', '#..', '##.', '#..', '###'], F: ['###', '#..', '##.', '#..', '#..'],
-  G: ['.##', '#..', '#.#', '#.#', '.##'], H: ['#.#', '#.#', '###', '#.#', '#.#'], I: ['###', '.#.', '.#.', '.#.', '###'],
-  K: ['#.#', '#.#', '##.', '#.#', '#.#'], L: ['#..', '#..', '#..', '#..', '###'],
-  M: ['#...#', '##.##', '#.#.#', '#...#', '#...#'], N: ['#..#', '##.#', '#.##', '#..#', '#..#'],
-  O: ['.#.', '#.#', '#.#', '#.#', '.#.'], P: ['##.', '#.#', '##.', '#..', '#..'], R: ['##.', '#.#', '##.', '#.#', '#.#'],
-  S: ['.##', '#..', '.#.', '..#', '##.'], T: ['###', '.#.', '.#.', '.#.', '.#.'], U: ['#.#', '#.#', '#.#', '#.#', '###'],
-  V: ['#.#', '#.#', '#.#', '#.#', '.#.'], X: ['#.#', '#.#', '.#.', '#.#', '#.#'], Y: ['#.#', '#.#', '.#.', '.#.', '.#.'],
-  W: ['#...#', '#...#', '#.#.#', '##.##', '#...#'],
-  0: ['###', '#.#', '#.#', '#.#', '###'], 1: ['.#.', '##.', '.#.', '.#.', '###'], 2: ['##.', '..#', '.#.', '#..', '###'],
-  4: ['#.#', '#.#', '###', '..#', '..#'], '-': ['...', '...', '###', '...', '...'],
+// ------------------------------------------------------------------------------------------------ signage
+// Typeset sign materials (Textures.js `sign_*`), each mapped once onto a panel: [material, width, height] in metres.
+const SIGN = {
+  hotel: ['sign_hotel', 1.25, 4.9], lounge: ['sign_lounge', 4.2, 1.31], noodle: ['sign_noodle', 4.2, 1.31],
+  market: ['sign_market', 3.9, 1.3], parking: ['sign_parking', 1.4, 1.75], meridian: ['sign_meridian', 6.4, 1.18],
 };
-
-function glyphRects(g) {
-  const rects = [];
-  let open = {};
-  for (let y = 0; y <= g.length; y++) {
-    const runs = {};
-    if (y < g.length) {
-      const row = g[y];
-      for (let x = 0; x < row.length; x++) {
-        if (row[x] !== '#') continue;
-        let x1 = x;
-        while (x1 + 1 < row.length && row[x1 + 1] === '#') x1++;
-        runs[x + '-' + x1] = [x, x1];
-        x = x1;
-      }
-    }
-    const next = {};
-    for (const k of Object.keys(open)) {
-      if (runs[k]) { open[k].h++; next[k] = open[k]; delete runs[k]; } else rects.push(open[k]);
-    }
-    for (const k of Object.keys(runs)) next[k] = { x: runs[k][0], y, w: runs[k][1] - runs[k][0] + 1, h: 1 };
-    open = next;
-  }
-  return rects;
-}
-
-/** Neon word made of emissive panels, centred on (x, y, z), facing the direction of yaw `rot`. Returns its width. */
-function neonText(str, x, y, z, rot, unit, mat) {
-  const c = Math.cos(rot), s = Math.sin(rot);
-  const rects = [];
-  let cursor = 0;
-  for (const ch of str) {
-    if (ch === ' ') { cursor += 3; continue; }
-    const g = FONT[ch];
-    if (!g) continue;
-    for (const r of glyphRects(g)) rects.push({ x: cursor + r.x, y: r.y, w: r.w, h: r.h });
-    cursor += g[0].length + 1;
-  }
-  const total = cursor - 1;
-  for (const r of rects) {
-    const u = (r.x + r.w / 2 - total / 2) * unit;
-    const v = (2.5 - (r.y + r.h / 2)) * unit;
-    panel(x + c * u + s * 0.03, y + v, z - s * u + c * 0.03, r.w * unit, r.h * unit, rot, mat);
-  }
-  return total * unit;
+/** Sign panel centred on (x, y, z), facing the direction of yaw `rot`. */
+function sign(x, y, z, rot, w, h, mat) {
+  panel(x, y, z, w, h, rot, mat, { fit: true });
 }
 
 // ------------------------------------------------------------------------------------------------ layout data
@@ -171,7 +126,7 @@ for (const [sx, sz] of [[-1, -1], [1, -1], [1, 1], [-1, 1]]) {
 box(-2.2, 1.1, -2.2, 2.2, 1.9, 2.2, { mat: 'concrete_dark', top: 'metal_dark', bevel: 0.05 });
 box(-1.8, 1.9, -1.8, 1.8, 22.0, 1.8, { mat: 'concrete_dark' });
 box(-2.15, 21.4, -2.15, 2.15, 22.4, 2.15, { mat: 'metal_dark', top: 'metal_panel', bevel: 0.05 });
-[[3.4, 'neon_blue'], [6.6, 'neon_pink'], [9.8, 'neon_blue'], [12.2, 'neon_pink']].forEach(([y, m]) => {
+[[3.4, 'neon_warm'], [6.6, 'neon_warm'], [9.8, 'neon_warm'], [12.2, 'neon_warm']].forEach(([y, m]) => {
   deco(-1.92, y, -1.92, 1.92, y + 0.22, 1.92, { mat: m });
 });
 for (const sx of [-1, 1]) for (const sz of [-1, 1]) deco(sx * 1.83 - 0.06, 1.9, sz * 1.83 - 0.06, sx * 1.83 + 0.06, 13.4, sz * 1.83 + 0.06, { mat: 'neon_blue' });
@@ -181,7 +136,8 @@ for (const y of [24.6, 26.8, 29.2]) cyl(0, y, 0, 0.26, 0.22, { mat: 'neon_orange
 const CY0 = 13.5, CY1 = 20.1, CYM = (CY0 + CY1) / 2;
 box(-7.5, CY0, -0.45, 7.5, CY1, 0.45, { mat: 'metal_dark', top: 'metal_painted_yellow', bottom: 'metal_dark' });
 box(-0.45, CY0, -7.5, 0.45, CY1, 7.5, { mat: 'metal_dark', top: 'metal_painted_yellow', bottom: 'metal_dark' });
-// crown faces: S = KINETIC, N = SKYLINE, E = target rings, W = bars
+// crown faces: a warm light frame on every face (the slabs cross, so a face-wide sign would be cut in half by the
+// other slab)
 function crownFrame(rot, off, m1, m2) {
   const c = Math.cos(rot), s = Math.sin(rot);
   const P = (u, v, w, h, m) => panel(c * u + s * off, v, -s * u + c * off, w, h, rot, m);
@@ -192,21 +148,10 @@ function crownFrame(rot, off, m1, m2) {
   P(0, CY0 + 1.15, 9.5, 0.14, m2);
   P(0, CY1 - 1.15, 9.5, 0.14, m2);
 }
-crownFrame(0, 0.46, 'neon_pink', 'neon_blue');
-crownFrame(PI, 0.46, 'neon_blue', 'neon_pink');
-neonText('KINETIC', 0, CYM, 0.46, 0, 0.44, 'neon_pink');
-neonText('SKYLINE', 0, CYM, -0.46, PI, 0.44, 'neon_blue');
-// east face: concentric rings; west face: bars
-for (const sx of [1]) {
-  const fx = 0.46 * sx;
-  const ring = (r, m, d) => add({ type: 'cylinder', pos: [fx + sx * d, CYM, 0], radius: r, height: 0.06, sides: 28, axis: 'x', mat: m, collide: false, shadow: false });
-  ring(2.7, 'neon_blue', 0.03);
-  ring(2.4, 'metal_dark', 0.05);
-  ring(1.7, 'neon_pink', 0.07);
-  ring(1.4, 'metal_dark', 0.09);
-  ring(0.7, 'neon_blue', 0.11);
-}
-for (let k = -5; k <= 5; k++) panel(-0.46, CYM, k * 1.15, 0.55, CY1 - CY0 - 1.0, -PI / 2, k % 2 ? 'neon_pink' : 'neon_blue');
+crownFrame(0, 0.46, 'neon_warm', 'neon_amber');
+crownFrame(PI, 0.46, 'neon_warm', 'neon_amber');
+crownFrame(PI / 2, 0.46, 'neon_warm', 'neon_amber');
+crownFrame(-PI / 2, 0.46, 'neon_warm', 'neon_amber');
 
 // ------------------------------------------------------------------------------------------------ perimeter
 const PW = [
@@ -244,20 +189,21 @@ deco(-PERIM - 0.4, PERIM_H - 0.5, -PERIM - 1.4, PERIM + 0.4, PERIM_H, -PERIM + 0
 deco(-PERIM - 0.4, PERIM_H - 0.5, PERIM - 0.2, PERIM + 0.4, PERIM_H, PERIM + 1.4, { mat: 'concrete' });
 deco(-PERIM - 1.4, PERIM_H - 0.5, -PERIM, -PERIM + 0.2, PERIM_H, PERIM, { mat: 'concrete' });
 deco(PERIM - 0.2, PERIM_H - 0.5, -PERIM, PERIM + 1.4, PERIM_H, PERIM, { mat: 'concrete' });
-// hanging billboards on the perimeter, facing the arena
-function perimeterSign(side, t, str, m, y = 9.6) {
-  const u = 0.36;
-  if (side === 'n') { panel(t, y, -PERIM + 0.08, 12, 3.4, 0, 'metal_dark'); neonText(str, t, y, -PERIM + 0.1, 0, u, m); }
-  if (side === 's') { panel(t, y, PERIM - 0.08, 12, 3.4, PI, 'metal_dark'); neonText(str, t, y, PERIM - 0.1, PI, u, m); }
-  if (side === 'w') { panel(-PERIM + 0.08, y, t, 12, 3.4, PI / 2, 'metal_dark'); neonText(str, -PERIM + 0.1, y, t, PI / 2, u, m); }
-  if (side === 'e') { panel(PERIM - 0.08, y, t, 12, 3.4, -PI / 2, 'metal_dark'); neonText(str, PERIM - 0.1, y, t, -PI / 2, u, m); }
+// lightbox billboards on the perimeter walls, facing the arena (the ads' wide 3.5 : 1 variant), centred between
+// the wall's pilasters (every 12.5 m), which leave 11.5 m clear
+function perimeterAd(side, t, ad, y = 9.6) {
+  const w = 10.5, h = w / 3.5, m = ad + '_wide';
+  if (side === 'n') sign(t, y, -PERIM + 0.08, 0, w, h, m);
+  if (side === 's') sign(t, y, PERIM - 0.08, PI, w, h, m);
+  if (side === 'w') sign(-PERIM + 0.08, y, t, PI / 2, w, h, m);
+  if (side === 'e') sign(PERIM - 0.08, y, t, -PI / 2, w, h, m);
 }
-perimeterSign('n', -25, 'OPEN', 'neon_green');
-perimeterSign('n', 25, 'BAR', 'neon_pink');
-perimeterSign('s', -25, 'HOTEL', 'neon_blue');
-perimeterSign('s', 25, '24', 'neon_orange');
-perimeterSign('e', -20, 'CLUB', 'neon_pink');
-perimeterSign('w', 20, 'MAX', 'neon_blue');
+perimeterAd('n', -18.75, 'sign_ad_nova');
+perimeterAd('n', 18.75, 'sign_ad_vanta');
+perimeterAd('s', -18.75, 'sign_ad_halcyon');
+perimeterAd('s', 18.75, 'sign_ad_nova');
+perimeterAd('e', -18.75, 'sign_ad_vanta');
+perimeterAd('w', 18.75, 'sign_ad_halcyon');
 
 // ------------------------------------------------------------------------------------------------ building helpers
 /**
@@ -340,14 +286,14 @@ function awning(b, side, t0, t1, y, depth, mat = 'metal_dark', glow = 'neon_pink
   if (side === 'w') { box(b.x0 - d, y, t0, b.x0, y + 0.22, t1, { mat, top: 'metal_grate' }); deco(b.x0 - d, y - 0.1, t0, b.x0 - d + 0.06, y, t1, { mat: glow }); }
 }
 
-/** Sign on a facade: dark backing + neon text. side n/s/e/w of building b, t = lateral centre, y = centre height. */
-function facadeSign(b, side, t, y, str, mat, unit = 0.3) {
-  const w = (str.length * 4) * unit + 0.8, hh = 5 * unit + 0.7;
+/** Sign on a facade (a SIGN kind): side n/s/e/w of building b, t = lateral centre, y = centre height. */
+function facadeSign(b, side, t, y, kind) {
+  const [mat, w, h] = SIGN[kind];
   const off = 0.06;
-  if (side === 's') { panel(t, y, b.z1 + off, w, hh, 0, 'metal_dark'); neonText(str, t, y, b.z1 + off, 0, unit, mat); }
-  if (side === 'n') { panel(t, y, b.z0 - off, w, hh, PI, 'metal_dark'); neonText(str, t, y, b.z0 - off, PI, unit, mat); }
-  if (side === 'e') { panel(b.x1 + off, y, t, w, hh, PI / 2, 'metal_dark'); neonText(str, b.x1 + off, y, t, PI / 2, unit, mat); }
-  if (side === 'w') { panel(b.x0 - off, y, t, w, hh, -PI / 2, 'metal_dark'); neonText(str, b.x0 - off, y, t, -PI / 2, unit, mat); }
+  if (side === 's') sign(t, y, b.z1 + off, 0, w, h, mat);
+  if (side === 'n') sign(t, y, b.z0 - off, PI, w, h, mat);
+  if (side === 'e') sign(b.x1 + off, y, t, PI / 2, w, h, mat);
+  if (side === 'w') sign(b.x0 - off, y, t, -PI / 2, w, h, mat);
 }
 
 // ---- rooftop props
@@ -392,20 +338,19 @@ function antenna(x, y, z, h = 6, lit = true) {
   if (lit) cyl(x, y + h + 0.5, z, 0.16, 0.3, { mat: 'neon_orange', sides: 6, collide: false });
 }
 /** Freestanding rooftop billboard facing yaw `rot` (0 faces +Z). */
-function billboard(x, y, z, rot, w, h, str, textMat, frameMat = 'neon_blue') {
+/** Rooftop billboard: legs, a box and an ad lightbox (2.56 : 1, so `h` follows from `w`), lit by a lamp bar. */
+function billboard(x, y, z, rot, w, h, ad) {
   const c = Math.cos(rot), s = Math.sin(rot);
   const legH = 1.4;
+  const fw = w - 0.3, fh = fw / 2.56;
+  h = fh + 0.3;
   for (const u of [-w * 0.32, w * 0.32]) {
     const [lx, lz] = rel(x, z, rot, u, -0.2);
     add({ type: 'box', pos: [lx, y + legH / 2, lz], size: [0.3, legH, 0.3], rot, mat: 'metal_dark' });
   }
   add({ type: 'box', pos: [x, y + legH + h / 2, z], size: [w, h, 0.4], rot, mat: 'metal_dark', top: 'metal_panel' });
-  const P = (u, v, pw, ph, m, d = 0.23) => panel(x + c * u + s * d, y + legH + v, z - s * u + c * d, pw, ph, rot, m);
-  P(0, h - 0.25, w - 0.5, 0.14, frameMat);
-  P(0, 0.25, w - 0.5, 0.14, frameMat);
-  P(-w / 2 + 0.25, h / 2, 0.14, h - 0.3, frameMat);
-  P(w / 2 - 0.25, h / 2, 0.14, h - 0.3, frameMat);
-  if (str) neonText(str, x + s * 0.2, y + legH + h / 2, z + c * 0.2, rot, Math.min(0.42, (w - 1.6) / (str.length * 4 + 1)), textMat);
+  sign(x + s * 0.21, y + legH + h / 2, z + c * 0.21, rot, fw, fh, ad);
+  panel(x + s * 0.45, y + legH + h + 0.08, z + c * 0.45, w * 0.8, 0.1, rot, 'neon_warm');
   // back braces
   for (const u of [-w * 0.32, w * 0.32]) {
     const [lx, lz] = rel(x, z, rot, u, -0.9);
@@ -568,8 +513,8 @@ const gapC = (c, half = 1.6) => [[c - half, c + half]];   // gap for a 3 m skybr
   cornerStrip(b, 'se', 'neon_blue');
   cornerStrip(b, 'ne', 'neon_pink');
   cornerStrip(b, 'sw', 'neon_pink');
-  facadeSign(b, 'e', -28, 5.4, 'MAX', 'neon_blue', 0.36);
-  billboard(-22, 16, -36.4, 0, 8, 3.4, 'SKY', 'neon_pink', 'neon_pink');
+  facadeSign(b, 'e', -28, 5.4, 'parking');
+  billboard(-22, 16, -36.4, 0, 8, 3.4, 'sign_ad_halcyon');
   helipad(-27, 16, -27, 4.4);
   bulkhead(-37.2, -22.6, -33.9, -19.4, 16, 3.1, 's');
   antenna(-19.6, 16, -19.6, 9);
@@ -591,9 +536,9 @@ const gapC = (c, half = 1.6) => [[c - half, c + half]];   // gap for a 3 m skybr
   trim(b, 'concrete', 'concrete_dark');
   bands(b, [1]);
   parapet(b, { s: [[-3.5, 3.5]], w: [[-32.7, -29.7]], e: gapC(-28) }, { mat: 'brick_dark', cap: 'concrete' });
-  facadeSign(b, 's', -4.5, 4.9, 'BAR', 'neon_pink', 0.34);
+  facadeSign(b, 's', -4.5, 4.9, 'lounge');
   awning(b, 's', 2, 8.5, 3.2, 2.0);
-  facadeSign(b, 'w', -24, 4.8, 'LOFT', 'neon_blue', 0.24);
+  facadeSign(b, 'w', -24, 4.8, 'meridian');
   cornerStrip(b, 'se', 'neon_pink', 0.5, 6.0);
   // roof garden
   box(-5.5, 6.4, -34.5, 5.5, 6.62, -29.5, { mat: 'wood_planks', top: 'wood_planks' });
@@ -609,7 +554,7 @@ const gapC = (c, half = 1.6) => [[c - half, c + half]];   // gap for a 3 m skybr
   deco(-5.4, 9.05, -34.6, 5.4, 9.2, -34.5, { mat: 'neon_orange' });
   ac(-2.5, 6.4, -20.8, 0);
   vent(3.5, 6.4, -20.9, 1.3);
-  billboard(0, 6.4, -37.1, 0, 7, 2.6, 'LOFT', 'neon_orange', 'neon_orange');
+  billboard(0, 6.4, -37.1, 0, 7, 2.6, 'sign_ad_vanta');
 }
 
 // NE: "Exchange" plaster block, 9.6 m; rocket bridge leaves its south face
@@ -619,11 +564,9 @@ const gapC = (c, half = 1.6) => [[c - half, c + half]];   // gap for a 3 m skybr
   trim(b, 'concrete_dark', 'concrete_dark');
   bands(b, [1, 2]);
   parapet(b, { w: gapC(-28), s: gapC(28), e: [[-30, -26]] }, { mat: 'concrete_dark', cap: 'concrete' });
-  facadeSign(b, 'w', -33, 5.4, 'CLUB', 'neon_pink', 0.34);
-  facadeSign(b, 's', 34.8, 8.6, '24', 'neon_blue', 0.28);
   cornerStrip(b, 'sw', 'neon_orange', 0.5, 9.0);
   tank(33, 9.6, -33);
-  billboard(26, 9.6, -36.6, 0, 7.4, 3.0, 'BAR', 'neon_green', 'neon_green');
+  billboard(26, 9.6, -36.6, 0, 7.4, 3.0, 'sign_ad_nova');
   ac(22, 9.6, -33, 0);
   ac(22, 9.6, -30.4, 0);
   ac(36, 9.6, -24, PI / 2);
@@ -639,7 +582,7 @@ const gapC = (c, half = 1.6) => [[c - half, c + half]];   // gap for a 3 m skybr
   trim(b, 'concrete_dark', 'concrete_dark');
   bands(b, [1, 2, 3]);
   parapet(b, { s: gapC(-28), n: gapC(-28), e: [[-7.4, -0.6]] }, { mat: 'brick', cap: 'concrete_dark' });
-  facadeSign(b, 'e', 5.5, 5.2, 'GAME', 'neon_green', 0.3);
+  facadeSign(b, 'e', 5.5, 5.2, 'noodle');
   cornerStrip(b, 'ne', 'neon_blue', 0.5, 12.2);
   cornerStrip(b, 'se', 'neon_pink', 0.5, 12.2);
   // central penthouse the two bridges walk around
@@ -662,7 +605,7 @@ const gapC = (c, half = 1.6) => [[c - half, c + half]];   // gap for a 3 m skybr
   parapet(b, { n: gapC(28), s: gapC(28), w: [[0.6, 7.4]] }, { mat: 'metal_dark', cap: 'metal_panel' });
   cornerStrip(b, 'nw', 'neon_blue', 0.5, 9.0);
   cornerStrip(b, 'sw', 'neon_pink', 0.5, 9.0);
-  facadeSign(b, 'w', 0, 3.9, 'BAR', 'neon_blue', 0.3);
+  facadeSign(b, 'w', 0, 3.9, 'market');
   // pavilion: four posts, glowing roof
   for (const [px, pz] of [[31, -5], [37, -5], [31, 5], [37, 5]]) box(px - 0.2, 9.6, pz - 0.2, px + 0.2, 13.0, pz + 0.2, { mat: 'metal_dark' });
   box(30.4, 13.0, -5.6, 37.6, 13.3, 5.6, { mat: 'metal_dark', top: 'metal_panel', bottom: 'light_panel' });
@@ -683,8 +626,7 @@ const gapC = (c, half = 1.6) => [[c - half, c + half]];   // gap for a 3 m skybr
   trim(b, 'metal_dark', 'metal_dark');
   bands(b, [1, 2]);
   parapet(b, { e: gapC(28), n: gapC(-28), s: [[-33, -29]] }, { mat: 'concrete_dark', cap: 'metal_dark' });
-  facadeSign(b, 'e', 34, 5.6, 'HOTEL', 'neon_orange', 0.26);
-  facadeSign(b, 'n', -33, 8.0, '24', 'neon_pink', 0.3);
+  facadeSign(b, 'e', 34, 5.6, 'hotel');
   cornerStrip(b, 'ne', 'neon_orange', 0.5, 9.0);
   skylight(-36, 30, -31, 33, 9.6);
   skylight(-36, 22, -31, 24.5, 9.6);
@@ -693,7 +635,7 @@ const gapC = (c, half = 1.6) => [[c - half, c + half]];   // gap for a 3 m skybr
   ac(-24, 9.6, 22.6, PI / 2);
   vent(-33, 9.6, 27.5, 1.6, 0.4);
   vent(-35, 9.6, 27.5, 1.2, 0.34);
-  billboard(-28, 9.6, 36.6, PI, 7.4, 2.8, 'HOTEL', 'neon_blue', 'neon_blue');
+  billboard(-28, 9.6, 36.6, PI, 7.4, 2.8, 'sign_ad_halcyon');
   crateStack(-36, 9.6, 20.5, 0.3);
   tank(-22.5, 9.6, 34.2);
 }
@@ -705,9 +647,8 @@ const gapC = (c, half = 1.6) => [[c - half, c + half]];   // gap for a 3 m skybr
   trim(b, 'concrete', 'concrete_dark');
   bands(b, [1]);
   parapet(b, { n: [[-3.5, 3.5]], e: [[29.7, 32.7]], w: gapC(28) }, { mat: 'concrete', cap: 'concrete_dark' });
-  facadeSign(b, 'n', 4.5, 4.9, 'BAR', 'neon_blue', 0.34);
+  facadeSign(b, 'n', 4.5, 4.9, 'lounge');
   awning(b, 'n', -8.5, -2, 3.2, 2.0, 'metal_dark', 'neon_blue');
-  facadeSign(b, 'w', 22, 4.6, 'OPEN', 'neon_green', 0.22);
   cornerStrip(b, 'nw', 'neon_blue', 0.5, 6.0);
   // beer garden: containers, tables, planters
   add({ type: 'container', pos: [-3.2, 7.7, 25], rot: PI / 2, color: 'orange' });
@@ -719,7 +660,7 @@ const gapC = (c, half = 1.6) => [[c - half, c + half]];   // gap for a 3 m skybr
   planter(-8.2, 6.4, 35.4, 1.8, 1.4);
   ac(-3.5, 6.4, 35.4, 0);
   vent(2.5, 6.4, 27.6, 1.3);
-  billboard(0, 6.4, 37.1, PI, 7, 2.6, 'OPEN', 'neon_green', 'neon_green');
+  billboard(0, 6.4, 37.1, PI, 7, 2.6, 'sign_ad_vanta');
 }
 
 // SE: "Halcyon" glass tower, 12.8 m
@@ -731,8 +672,7 @@ const gapC = (c, half = 1.6) => [[c - half, c + half]];   // gap for a 3 m skybr
   cornerStrip(b, 'nw', 'neon_pink');
   cornerStrip(b, 'ne', 'neon_blue');
   cornerStrip(b, 'sw', 'neon_blue');
-  facadeSign(b, 'n', 33, 6.0, 'CLUB', 'neon_pink', 0.32);
-  facadeSign(b, 'w', 33, 8.6, '24', 'neon_orange', 0.3);
+  facadeSign(b, 'n', 33, 6.0, 'hotel');
   // lounge: sunken-look bar with a glowing counter, planters, mast
   box(30.5, 12.8, 31, 36.5, 13.9, 33, { mat: 'metal_dark', top: 'wood_planks' });
   deco(30.5, 13.9, 31, 36.5, 14.0, 31.1, { mat: 'neon_pink' });
@@ -746,7 +686,7 @@ const gapC = (c, half = 1.6) => [[c - half, c + half]];   // gap for a 3 m skybr
   ac(27.5, 12.8, 36, 0);
   vent(24, 12.8, 25.5, 1.4);
   skylight(23, 28.6, 27, 32, 12.8, 'light_panel');
-  billboard(28, 12.8, 37.1, PI, 8.4, 3.2, 'SKY', 'neon_blue', 'neon_blue');
+  billboard(28, 12.8, 37.1, PI, 8.4, 3.2, 'sign_ad_nova');
 }
 
 // ------------------------------------------------------------------------------------------------ escapes + skybridges
@@ -848,21 +788,23 @@ export default {
   killY: -20,
   previewCamera: { pos: [-62, 34, 64], lookAt: [2, 5, -2] },
   theme: {
-    sky: { top: '#0b0d33', horizon: '#ff6a6a', bottom: '#2a1240', sunColor: '#ffb070', sunSize: 1.7, stars: 0.5, clouds: 0.45 },
-    sun: { dir: [-0.78, 0.3, 0.42], color: '#ff9c5e', intensity: 2.7 },
-    hemi: { sky: '#8a72e0', ground: '#3b2148', intensity: 0.78 },
-    fog: { color: '#8a4680', near: 60, far: 270 },
-    exposure: 1.08,
-    envIntensity: 0.65,
+    // blue hour: deep navy overhead, a warm amber band on the horizon, cool steel haze; the warm signage and windows
+    // carry the colour (it used to be a hot pink sky, magenta fog and a lavender ambient that tinted every surface)
+    sky: { top: '#070d1f', horizon: '#56638a', bottom: '#151826', sunColor: '#ffb27a', sunSize: 1.5, stars: 0.35, clouds: 0.35 },
+    sun: { dir: [-0.78, 0.24, 0.42], color: '#ffc49c', intensity: 2.0 },
+    hemi: { sky: '#5669a0', ground: '#2c2724', intensity: 0.66 },
+    fog: { color: '#3d4962', near: 70, far: 300 },
+    exposure: 1.0,
+    envIntensity: 0.45,
     // bloom (see Game._setupComposer): strength = the value at 100 % Glow (default setting 65 %); wide radius = diffuse halos, not hard flares
-    bloom: { strength: 2.8, radius: 0.9, threshold: 0.4, knee: 0.3 },
+    bloom: { strength: 1.5, radius: 0.75, threshold: 0.72, knee: 0.3 },
   },
   solids,
   lights: [
-    { pos: [0, 4.5, 4], color: '#4fdcff', intensity: 70, distance: 30 },
-    { pos: [-26, 7, -14], color: '#ff3d95', intensity: 58, distance: 28 },
-    { pos: [26, 11, -14], color: '#ff9a3c', intensity: 62, distance: 26 },
-    { pos: [0, 8, 24], color: '#9a6bff', intensity: 50, distance: 28 },
+    { pos: [0, 4.5, 4], color: '#ffdcae', intensity: 62, distance: 30 },
+    { pos: [-26, 7, -14], color: '#ffb46e', intensity: 52, distance: 28 },
+    { pos: [26, 11, -14], color: '#ffa65e', intensity: 56, distance: 26 },
+    { pos: [0, 8, 24], color: '#8fb2ff', intensity: 44, distance: 28 },
   ],
   spawns: [
     // street level

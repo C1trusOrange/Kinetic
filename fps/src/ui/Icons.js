@@ -98,36 +98,20 @@ export const ICON = {
 };
 
 // ------------------------------------------------------------------------------------ logo
-const LOGO_LETTERS = [
-  { x: 0, d: 'M5 3V57 M35 3L8 31 M17 24L36 57' },                       // K
-  { x: 52, d: 'M5 3V57' },                                              // I
-  { x: 76, d: 'M5 57V3L35 57V3' },                                      // N
-  { x: 130, d: 'M34 4H12L5 11V56H34 M5 30H28' },                        // E
-  { x: 180, d: 'M2 4H38 M20 4V57' },                                    // T
-  { x: 234, d: 'M5 3V57' },                                             // I
-  { x: 258, d: 'M34 4H12L5 11V49L12 56H34' },                           // C
-];
-
 /**
- * The KINETIC wordmark as an angular monoline SVG.
+ * The KINETIC wordmark: set in the UI's condensed face (Barlow Condensed ExtraBold Italic, style.css) with a slim
+ * accent rule.
  * @param {string} [cls] extra css class
  */
 let logoUid = 0;
 export function logoSVG(cls = '') {
   const uid = 'lg' + (++logoUid);   // unique ids: url(#id) fails inside a display:none twin
-  const paths = LOGO_LETTERS.map((l, i) =>
-    `<path class="lg-p" pathLength="1" style="--i:${i}" transform="translate(${l.x} 0)" d="${l.d}"/>`).join('');
   return `<svg class="k-logo ${cls}" viewBox="0 0 330 84" aria-label="KINETIC">
     <defs>
-      <linearGradient id="${uid}-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="60"><stop offset="0" stop-color="#c8faff"/><stop offset=".55" stop-color="#3de0ff"/><stop offset="1" stop-color="#1b8fe8"/></linearGradient>
       <linearGradient id="${uid}-trail" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff9a3c" stop-opacity="0"/><stop offset="1" stop-color="#ff9a3c"/></linearGradient>
     </defs>
-    <g transform="translate(20 5) skewX(-14)">
-      <g class="lg-glow">${paths}</g>
-      <g class="lg-main" stroke="url(#${uid}-grad)">${paths}</g>
-    </g>
-    <path class="lg-trail" style="stroke:url(#${uid}-trail)" d="M0 76H150L158 70H330" />
-    <path class="lg-trail2" d="M40 81H120" />
+    <text class="lg-word" x="4" y="68">KINETIC</text>
+    <path class="lg-trail" style="stroke:url(#${uid}-trail)" d="M0 76H150L158 71H330" />
   </svg>`;
 }
 

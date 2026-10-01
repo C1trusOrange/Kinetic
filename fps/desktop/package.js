@@ -7,7 +7,7 @@
  * because the exe is not code-signed: "More info" > "Run anyway".
  *
  * Only the game itself goes into the build, trimmed to what it uses:
- *   - index.html, style.css, src/, music/*.ogg (the .wav masters stay behind) and the desktop shell,
+ *   - index.html, style.css, src/, fonts/, music/*.ogg (the .wav masters stay behind) and the desktop shell,
  *   - from vendor/three only the files the game imports (three.module.js + the addons reached from src/) + LICENSE,
  *   - of Chromium's ~55 UI locales only en-US (the game has no browser UI that would use them).
  */
@@ -21,7 +21,7 @@ const OUT = path.join(ROOT, 'dist');
 const NAME = 'KINETIC';
 
 /** Top-level entries copied into the app (everything else is left out). */
-const APP_FILES = new Set(['package.json', 'desktop', 'index.html', 'style.css', 'src', 'vendor', 'music']);
+const APP_FILES = new Set(['package.json', 'desktop', 'index.html', 'style.css', 'src', 'vendor', 'music', 'fonts']);
 const THREE_MAIN = 'vendor/three/build/three.module.js';
 const THREE_ADDONS = 'vendor/three/examples/jsm/';
 const KEEP_LOCALES = new Set(['en-US.pak']);

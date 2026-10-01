@@ -1,7 +1,7 @@
 {
   "name": "kinetic",
   "productName": "KINETIC",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "KINETIC desktop build (Electron shell around the browser game)",
   "main": "desktop/main.js",
