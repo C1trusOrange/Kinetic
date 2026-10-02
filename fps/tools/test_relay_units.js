@@ -133,7 +133,16 @@ test('encodeClose never cuts a character in half and keeps the frame within 125 
 });
 
 test('parseArgs', () => {
-  assert.deepEqual(relay.parseArgs([]), { port: 27500, host: '0.0.0.0', quiet: false, testHooks: false, options: {} });
+  assert.deepEqual(relay.parseArgs([]), { port: 27500, host: '0.0.0.0', quiet: false, testHooks: false, hostKeyFile: '', options: {} });
+  const o = relay.parseArgs(['--trust-proxy', '--no-room-list', '--no-lan-info', '--allow-host', 'play.example.com',
+    '--allow-host=b.example', '--host-key-file', '/etc/kinetic-relay/host-key']);
+  assert.equal(o.hostKeyFile, '/etc/kinetic-relay/host-key');
+  assert.deepEqual(o.options, { trustProxy: 1, listRooms: 0, lanInfo: 0, allowedHosts: ['play.example.com', 'b.example'] });
+  // the key never comes from the command line (any user of the machine can read it there); the switches take no value
+  for (const bad of [['--host-key', 'x'], ['--host-key=x'], ['--trust-proxy=1'], ['--list-rooms', '0'], ['--lan-info', '0'],
+    ['--allowed-hosts', 'x'], ['--host-key-file']]) {
+    assert.ok(relay.parseArgs(bad).error, bad.join(' '));
+  }
   const a = relay.parseArgs(['--loopback', '--port', '0', '--idle-timeout', '2', '--max-conns-per-ip=3', '--quiet',
     '--allow-origin', 'https://a.example', '--allow-origin=https://b.example', '--join-rate', '0']);
   assert.equal(a.host, '127.0.0.1');
@@ -161,6 +170,47 @@ test('createRelay validates its options', () => {
   assert.equal(relay.DEFAULTS.maxBacklog, 2 << 20);
   assert.equal(relay.DEFAULTS.maxConnsPerIp, 8);
   assert.equal(relay.DEFAULTS.handshakeTimeout, 5);
+  // an online server's options: off by default (the desktop app's built-in server behaves as before)
+  assert.deepEqual([relay.DEFAULTS.hostKey, relay.DEFAULTS.trustProxy, relay.DEFAULTS.listRooms, relay.DEFAULTS.lanInfo],
+    ['', 0, 1, 1]);
+  assert.throws(() => relay.createRelay({ hostKey: 42 }), TypeError);
+  assert.throws(() => relay.createRelay({ hostKey: 'k'.repeat(257) }), TypeError);
+  assert.throws(() => relay.createRelay({ allowedHosts: 'a.example' }), TypeError);
+  assert.doesNotThrow(() => relay.createRelay({ hostKey: 'secret', trustProxy: 1, listRooms: 0, lanInfo: 0, allowedHosts: ['a.example'] }));
+});
+
+test('forwardedFor takes the address the proxy appended', () => {
+  const f = relay.forwardedFor;
+  assert.equal(f('203.0.113.9'), '203.0.113.9');
+  assert.equal(f('198.51.100.1, 203.0.113.9'), '203.0.113.9');        // the client may prepend anything it likes
+  assert.equal(f(' 1.2.3.4 ,  203.0.113.9 '), '203.0.113.9');
+  assert.equal(f(['198.51.100.1', '203.0.113.9']), '203.0.113.9');    // repeated headers
+  assert.equal(f('2001:db8::1'), '2001:db8::1');
+  assert.equal(f('[2001:db8::1]:443'), '2001:db8::1');
+  assert.equal(f('::ffff:10.0.0.2'), '10.0.0.2');
+  assert.equal(f('10.0.0.3:5555'), '10.0.0.3');
+  for (const bad of [undefined, '', 'unknown', '203.0.113.9, nope', '999.1.1.1', 'x'.repeat(5000), 42]) assert.equal(f(bad), null, String(bad).slice(0, 20));
+});
+
+test('readHostKey: the file wins over the environment, whitespace is trimmed', () => {
+  const fs = require('node:fs');
+  const os = require('node:os');
+  const path = require('node:path');
+  assert.equal(relay.readHostKey('', {}), '');
+  assert.equal(relay.readHostKey('', { KINETIC_HOST_KEY: '  env-key \n' }), 'env-key');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'kinetic-key-'));
+  try {
+    const file = path.join(dir, 'host-key');
+    fs.writeFileSync(file, 'file-key\r\nsecond line ignored\n');
+    assert.equal(relay.readHostKey(file, { KINETIC_HOST_KEY: 'env-key' }), 'file-key');
+    fs.writeFileSync(file, '\n');
+    assert.throws(() => relay.readHostKey(file, {}), /empty/);
+    fs.writeFileSync(file, 'k'.repeat(300));
+    assert.throws(() => relay.readHostKey(file, {}), /longer/);
+    assert.throws(() => relay.readHostKey(path.join(dir, 'missing'), {}), /cannot read/);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
 });
 
 // ---------------------------------------------------------------------------------------- lifecycle

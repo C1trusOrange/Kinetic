@@ -26,11 +26,12 @@ import * as NetModes from './NetModes.js';
 import { BotModel } from '../ai/BotModel.js';
 import { createWeaponModel } from '../weapons/WeaponModels.js';
 import { WEAPON_ORDER } from '../weapons/WeaponDefs.js';
+import { DEFAULT_PORT, normalizeServer } from './ServerAddress.js';
+
+export { DEFAULT_PORT, normalizeServer };
 
 const SID_KEY = 'kinetic.mp.sid';
 const REJOIN_KEY = 'kinetic.mp.rejoin';
-/** Port of the desktop app's built-in server (desktop/relay.js) when an address has none. */
-export const DEFAULT_PORT = 27500;
 const WELCOME_TIMEOUT_MS = 15000;
 const CLOSED_FOR_GOOD = new Set(['kicked', 'replaced', 'host-left', 'left', 'build', 'reconnect-failed']);
 
@@ -62,24 +63,6 @@ function randomHex(bytes = 8) {
 export function pageServer() {
   if (typeof location === 'undefined') return '';
   return location.protocol === 'http:' || location.protocol === 'https:' ? location.origin : '';
-}
-
-/**
- * A server address as typed ('192.168.1.23', '192.168.1.23:27500', 'http://host:8000/...') -> 'http://host:port', or ''
- * if it is not an address. Bare hosts get `defaultPort`.
- */
-export function normalizeServer(text, defaultPort = DEFAULT_PORT) {
-  let s = String(text ?? '').trim();
-  if (!s) return '';
-  if (!/^[a-z]+:\/\//i.test(s)) s = 'http://' + s;
-  let u;
-  try { u = new URL(s); } catch { return ''; }
-  if (u.protocol === 'ws:') u.protocol = 'http:';
-  else if (u.protocol === 'wss:') u.protocol = 'https:';
-  if (u.protocol !== 'http:' && u.protocol !== 'https:') return '';
-  if (!u.hostname) return '';
-  const port = u.port || (u.protocol === 'https:' ? '' : String(defaultPort));
-  return `${u.protocol}//${u.hostname.includes(':') && !u.hostname.startsWith('[') ? `[${u.hostname}]` : u.hostname}${port ? ':' + port : ''}`;
 }
 
 function wsUrl(server) {
@@ -224,26 +207,30 @@ export class NetSession {
   // ------------------------------------------------------------------ actions (UI)
 
   /**
-   * Open public rooms on a server (no socket needed).
+   * Open public rooms on a server (no socket needed). `listed` is false for a server that keeps its rooms unlisted
+   * (an online server: rooms are found by their code).
    * @param {string} [server] base URL (default: the page's server)
-   * @returns {Promise<object[]>} [{code, name, players, max, locked, meta, v}]
+   * @returns {Promise<{rooms: object[], listed: boolean}>} rooms: [{code, name, players, max, locked, meta, v}]
    */
   async listRooms(server) {
     const base = server ? normalizeServer(server) : pageServer();
-    if (!base) return [];
+    if (!base) return { rooms: [], listed: true };
     const r = await fetch(base + '/api/rooms', { cache: 'no-store' });
     if (!r.ok) throw netError('cannot-connect', `HTTP ${r.status}`);
     const j = await r.json();
-    return Array.isArray(j && j.rooms) ? j.rooms : [];
+    return { rooms: Array.isArray(j && j.rooms) ? j.rooms : [], listed: !(j && j.listed === false) };
   }
 
   /**
-   * Create a room and become its host.
+   * Create a room and become its host. `online`: the server is an online one (server/install.sh), not this PC or the
+   * page's server: it has no LAN addresses to hand out, and `hostKey` is what lets this player open rooms there.
+   * Rejects with err.code 'host-key' when the server wants another key.
    * @param {object} cfg match config (Menu setup: mapId, mode, botCount, difficulty, scoreLimit, timeLimit, arsenal, pool)
-   * @param {{name?: string, public?: boolean, maxPlayers?: number, code?: string|null, server?: string}} [opts]
+   * @param {{name?: string, public?: boolean, maxPlayers?: number, code?: string|null, server?: string,
+   *   hostKey?: string, online?: boolean}} [opts]
    * @returns {Promise<string>} the room code
    */
-  async hostRoom(cfg, { name, public: pub = true, maxPlayers = 8, code = null, server } = {}) {
+  async hostRoom(cfg, { name, public: pub = true, maxPlayers = 8, code = null, server, hostKey = '', online = false } = {}) {
     if (this.transport) throw netError('busy', 'already in a session');
     const base = server ? normalizeServer(server) : pageServer();
     if (!base) throw netError('no-server', 'no server to host on');
@@ -257,12 +244,13 @@ export class NetSession {
     await this._ensureBuild();
     if (gen !== this.sessionGen) throw netError('cancelled');
     const meta = this._meta(cfg, hostName, 1, max);
+    const key = String(hostKey || '').trim() || undefined;
     let reply;
     try {
       try {
-        reply = await t.host({ name: hostName, max, public: pub, code: code || undefined, meta });
+        reply = await t.host({ name: hostName, max, public: pub, code: code || undefined, meta, key });
       } catch (err) {
-        if (code && err.reason === 'code-taken') reply = await t.host({ name: hostName, max, public: pub, meta });
+        if (code && err.reason === 'code-taken') reply = await t.host({ name: hostName, max, public: pub, meta, key });
         else throw err;
       }
     } catch (err) {
@@ -276,13 +264,14 @@ export class NetSession {
     this.host = new NetHost(this);
     this.room = {
       code: reply.code, urls: [], hostName, cfg: { ...cfg }, players: [], phase: 'lobby', locked: false, lan: null,
-      epoch: this.epoch, public: pub, max, server: base,
+      epoch: this.epoch, public: pub, max, server: base, online: !!online,
     };
     this.host.hostName = hostName;
     if (!this.game.autotest) s.set('mpLastCode', reply.code);
     this._goOnline();
     this._setPhase('lobby');
     this.host.broadcastLobby();
+    if (online) return reply.code;
     fetch(base + '/api/lan', { cache: 'no-store' })
       .then(r => (r.ok ? r.json() : null))
       .then(lan => {

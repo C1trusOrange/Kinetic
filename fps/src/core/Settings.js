@@ -50,6 +50,9 @@ export const DEFAULT_SETTINGS = {
   mpLastCode: '',
   mpPort: 27500,         // port of the desktop app's built-in server when hosting
   mpLastServer: '',      // the last host address typed in Join (desktop app)
+  mpHostOn: 'pc',        // 'pc' (the built-in server on this PC) | 'online' (an online server, server/install.sh)
+  mpServer: '',          // the online server's address ('' = the one built into this copy of the game, if any)
+  mpHostKey: '',         // the online server's host key (printed by server/install.sh); joining needs none
 };
 
 /** '#rrggbb' settings (validated on load and set). */
@@ -91,6 +94,9 @@ export class Settings {
         this.data.mpMaxPlayers = Math.round(clampNum(this.data.mpMaxPlayers, 2, 8, DEFAULT_SETTINGS.mpMaxPlayers));
         if (this.data.mpTeams !== 'pick') this.data.mpTeams = 'auto';
         this.data.mpPort = Math.round(clampNum(this.data.mpPort, 1024, 65535, DEFAULT_SETTINGS.mpPort));
+        if (this.data.mpHostOn !== 'online') this.data.mpHostOn = 'pc';
+        this.data.mpServer = this.data.mpServer.trim().slice(0, 200);
+        this.data.mpHostKey = this.data.mpHostKey.trim().slice(0, 256);
         for (const k of COLOR_KEYS) this.data[k] = normalizeColor(this.data[k]) || DEFAULT_SETTINGS[k];
         // crosshair: style / colour / slider ranges, and the per-weapon ADS map (an object key, like botArsenal)
         sanitizeCrosshairSettings(this.data);

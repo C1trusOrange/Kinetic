@@ -14,15 +14,22 @@
  *                                                stack: a `code` property set here would not arrive, so there is none.
  *   kineticDesktop.stopServer()               -> Promise<void>
  *   kineticDesktop.serverStatus()             -> Promise<{running, port, ips, urls}>
+ *   kineticDesktop.defaultServer              the online server built into this copy (desktop/server.json), or ''
  *
  * The window is sandboxed, so this file may require 'electron' only (contextBridge, ipcRenderer): it stays
- * self-contained, and the version arrives as a command-line argument added by main.js (additionalArguments).
+ * self-contained, and the version and server arrive as command-line arguments added by main.js (additionalArguments).
  */
 const { contextBridge, ipcRenderer } = require('electron');
 
-const VERSION_ARG = '--kinetic-version=';
-const versionArg = process.argv.find(a => a.startsWith(VERSION_ARG));
-const version = versionArg ? versionArg.slice(VERSION_ARG.length) : '';
+/** The value of a `--name=value` argument main.js added, or ''. */
+function arg(name) {
+  const prefix = `--${name}=`;
+  const found = process.argv.find(a => a.startsWith(prefix));
+  return found ? found.slice(prefix.length) : '';
+}
+
+const version = arg('kinetic-version');
+const defaultServer = arg('kinetic-server');
 
 /**
  * Invoke a main-process handler. Handlers answer {ok: true, ...data} or {ok: false, code, message}: a failure
@@ -41,6 +48,7 @@ async function call(channel, arg) {
 contextBridge.exposeInMainWorld('kineticDesktop', {
   isDesktop: true,
   version,
+  defaultServer,
   startServer(opts) {
     const port = opts && opts.port !== undefined && opts.port !== null ? Number(opts.port) : undefined;
     return call('relay:start', { port });

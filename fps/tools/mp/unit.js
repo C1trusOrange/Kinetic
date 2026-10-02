@@ -8,6 +8,7 @@ import {
   makeEntityRecord, makeSnapshotHeader, EF, EF2, Q, SNAP_HEADER_BYTES, ENTITY_BYTES,
 } from '/src/net/NetCodec.js';
 import { NetClock, InterpBuffer, DelayEstimator, makeBodySample, RollingP95 } from '/src/net/NetClock.js';
+import { normalizeServer, displayServer, DEFAULT_PORT } from '/src/net/ServerAddress.js';
 
 const results = { done: false, ok: false, passed: 0, failed: 0, failures: [] };
 window.__UNIT__ = results;
@@ -209,6 +210,52 @@ await test('delay', () => {
   const p = new RollingP95(1000, 64, 0);
   for (let i = 0; i < 100; i++) p.add(i * 10, i);
   check(p.p95(990) >= 94 && p.p95(990) <= 99, `rolling p95 ${p.p95(990)}`);
+});
+
+await test('server addresses', () => {
+  const cases = [
+    // a PC on the network / port-forwarded: plain, the relay's port when none is typed
+    ['192.168.1.23', 'http://192.168.1.23:27500'],
+    ['192.168.1.23:27600', 'http://192.168.1.23:27600'],
+    [' 203.0.113.7 ', 'http://203.0.113.7:27500'],
+    ['DESKTOP-ABC', 'http://desktop-abc:27500'],
+    ['game_pc', 'http://game_pc:27500'],
+    ['desktop-abc.local', 'http://desktop-abc.local:27500'],
+    ['nas.home.arpa', 'http://nas.home.arpa:27500'],
+    ['router.lan', 'http://router.lan:27500'],
+    ['localhost', 'http://localhost:27500'],
+    ['[::1]', 'http://[::1]:27500'],
+    ['[2001:db8::1]:27500', 'http://[2001:db8::1]:27500'],
+    // an online server behind HTTPS (server/install.sh --domain): a bare domain is wss on 443
+    ['play.example.com', 'https://play.example.com'],
+    ['Play.Example.COM', 'https://play.example.com'],
+    ['kinetic.example.co.uk', 'https://kinetic.example.co.uk'],
+    // ... unless a port says otherwise (the relay without a proxy in front)
+    ['play.example.com:27500', 'http://play.example.com:27500'],
+    // a scheme is taken as typed, with its own default port
+    ['https://play.example.com/', 'https://play.example.com'],
+    ['https://play.example.com:8443', 'https://play.example.com:8443'],
+    ['wss://play.example.com/ws', 'https://play.example.com'],
+    ['ws://10.0.0.5:27500/ws', 'http://10.0.0.5:27500'],
+    ['http://127.0.0.1:8000', 'http://127.0.0.1:8000'],
+    ['http://example.com', 'http://example.com'],
+    // not addresses
+    ['', ''], ['   ', ''], ['ftp://x', ''], ['http://', ''], [null, ''], ['not an address!', ''],
+  ];
+  for (const [text, want] of cases) check(normalizeServer(text) === want, `${JSON.stringify(text)} -> ${normalizeServer(text)} (want ${want})`);
+  check(DEFAULT_PORT === 27500, 'default port');
+  const shown = [
+    ['https://play.example.com', 'play.example.com'],
+    ['http://203.0.113.7:27500', '203.0.113.7:27500'],
+    ['http://[2001:db8::1]:27500', '[2001:db8::1]:27500'],
+    ['https://play.example.com:8443', 'https://play.example.com:8443'],
+    ['https://203.0.113.7', 'https://203.0.113.7'],
+    ['http://example.com', 'http://example.com'],
+    ['', ''],
+  ];
+  for (const [base, want] of shown) check(displayServer(base) === want, `display ${base} -> ${displayServer(base)} (want ${want})`);
+  // what is shown leads back to the same server when typed
+  for (const [base] of shown.slice(0, 6)) check(normalizeServer(displayServer(base)) === base, `round trip ${base}`);
 });
 
 results.ok = results.failed === 0;

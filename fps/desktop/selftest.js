@@ -16,11 +16,14 @@
 const fs = require('node:fs');
 const net = require('node:net');
 
-/** Runs in the page. Takes a plain object, returns plain data. */
-const PAGE_SCRIPT = `(async (blockedPort) => {
+/** Host key of the stand-in online server (a relay started here as server/install.sh configures one). */
+const ONLINE_KEY = 'selftest-host-key';
+
+/** Runs in the page. Takes plain values, returns plain data. */
+const PAGE_SCRIPT = `(async (blockedPort, onlinePort, onlineKey) => {
   const out = { errors: [] };
   const api = window.kineticDesktop;
-  out.api = api ? { isDesktop: api.isDesktop, version: api.version, keys: Object.keys(api).sort() } : null;
+  out.api = api ? { isDesktop: api.isDesktop, version: api.version, keys: Object.keys(api).sort(), defaultServer: api.defaultServer } : null;
   out.origin = location.origin;
   out.secureContext = window.isSecureContext;
   if (!api) return out;
@@ -97,6 +100,31 @@ const PAGE_SCRIPT = `(async (blockedPort) => {
   } catch (e) { tr.error = String((e && e.message) || e); }
   out.transport = tr;
 
+  // an online server (server/install.sh: host key, rooms unlisted, no LAN info), from this origin as a player's app
+  const on = {};
+  try {
+    const { WsRelayTransport } = await import('/src/net/WsRelayTransport.js');
+    const base = 'http://127.0.0.1:' + onlinePort;
+    const url = 'ws://127.0.0.1:' + onlinePort + '/ws';
+    const stranger = new WsRelayTransport({ url });
+    try { await stranger.host({ name: 'nokey', max: 2 }); on.noKey = 'hosted'; } catch (e) { on.noKey = e.reason; }
+    try { await stranger.host({ name: 'wrong', max: 2, key: 'guess' }); on.wrongKey = 'hosted'; } catch (e) { on.wrongKey = e.reason; }
+    stranger.close();
+    const host = new WsRelayTransport({ url });
+    const client = new WsRelayTransport({ url });
+    const hosted = await host.host({ name: 'online', max: 4, key: onlineKey });
+    on.code = hosted.code;
+    const joined = await client.join(hosted.code, 'Friend', '');
+    on.peer = joined.peer;
+    const rooms = await (await fetch(base + '/api/rooms', { cache: 'no-store' })).json();
+    on.rooms = { n: rooms.rooms.length, listed: rooms.listed };
+    on.lan = (await fetch(base + '/api/lan', { cache: 'no-store' })).status;
+    await host.leave();
+    host.close();
+    client.close();
+  } catch (e) { on.error = String((e && e.message) || e); }
+  out.online = on;
+
   await api.stopServer();
   out.statusStopped = await api.serverStatus();
 
@@ -108,6 +136,33 @@ const PAGE_SCRIPT = `(async (blockedPort) => {
   await api.stopServer();
   return out;
 })`;
+
+/** readDefaultServer against server.json files in a temporary folder; true when every case reads as it should. */
+function serverConfigCases(readDefaultServer) {
+  const os = require('node:os');
+  const path = require('node:path');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'kinetic-servercfg-'));
+  const cases = [
+    [null, ''],                                                   // no file
+    ['{"server": "play.example.com"}', 'play.example.com'],
+    ['{"server": "  203.0.113.7:27500 "}', '203.0.113.7:27500'],
+    ['{"server": "https://play.example.com"}', 'https://play.example.com'],
+    ['not json', ''],
+    ['{"server": 42}', ''],
+    ['{"server": "evil\\" onload=\\"x"}', ''],
+    [`{"server": "${'a'.repeat(201)}"}`, ''],
+  ];
+  try {
+    return cases.every(([text, want]) => {
+      const file = path.join(dir, 'server.json');
+      if (text === null) fs.rmSync(file, { force: true });
+      else fs.writeFileSync(file, text);
+      return readDefaultServer(dir) === want;
+    });
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+}
 
 function line(ok, label, detail = '') {
   console.log(`  ${ok ? 'ok  ' : 'FAIL'} ${label}${detail ? '  ' + detail : ''}`);
@@ -127,11 +182,15 @@ async function run(win) {
   const blocker = net.createServer();
   await new Promise(resolve => blocker.listen(0, '0.0.0.0', resolve));
   const blockedPort = blocker.address().port;
+  // a stand-in for an online server (loopback only)
+  const online = require('./relay').createRelay({ hostKey: ONLINE_KEY, listRooms: 0, lanInfo: 0 });
+  const onlinePort = (await online.listen({ host: '127.0.0.1', port: 0 })).port;
   let out;
   try {
-    out = await win.webContents.executeJavaScript(`${PAGE_SCRIPT}(${JSON.stringify(blockedPort)})`, true);
+    out = await win.webContents.executeJavaScript(`${PAGE_SCRIPT}(${blockedPort}, ${onlinePort}, ${JSON.stringify(ONLINE_KEY)})`, true);
   } finally {
     blocker.close();
+    await online.close();
   }
 
   console.log('KINETIC selftest');
@@ -164,6 +223,17 @@ async function run(win) {
   check(tr.rejoined === true && tr.peerAfterRejoin === tr.peer && JSON.stringify(tr.joins) === `[[${tr.peer},false],[${tr.peer},true]]` &&
     JSON.stringify(tr.leaves) === `[[${tr.peer},true]]`, 'WsRelayTransport: dropped client rejoins with its token and peer id', JSON.stringify([tr.joins, tr.leaves]));
   check(tr.kicked === true, 'WsRelayTransport: a kick reaches the client as "kicked"');
+  const on = out.online;
+  const { readDefaultServer } = require('./serverConfig');
+  check(out.api.defaultServer === readDefaultServer(), 'preload passes the built-in online server (desktop/server.json)',
+    JSON.stringify(out.api.defaultServer) || '(none)');
+  check(serverConfigCases(readDefaultServer), 'server.json: valid, missing, broken and unsafe files');
+  check(!on.error && on.noKey === 'host-key' && on.wrongKey === 'host-key', 'online server: hosting without the right host key is refused',
+    on.error || JSON.stringify([on.noKey, on.wrongKey]));
+  check(/^[BCDFGHJKLMNPQRSTVWXZ]{4}$/.test(on.code || '') && on.peer >= 1, 'online server: the key opens a room, a friend joins by code',
+    JSON.stringify([on.code, on.peer]));
+  check(on.rooms && on.rooms.n === 0 && on.rooms.listed === false && on.lan === 404, 'online server: rooms unlisted, no LAN info (CORS ok)',
+    JSON.stringify([on.rooms, on.lan]));
   check(out.statusStopped.running === false, 'stop server', JSON.stringify(out.statusStopped));
   // contextBridge carries only an Error's message and stack (not `code`): the message is the contract (the UI matches /in use/i)
   check(out.inUse.rejected === true && /^Port \d+ is already in use/.test(out.inUse.message) && out.inUse.isError === true,

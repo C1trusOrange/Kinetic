@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Runs every multiplayer suite and checks each one (from fps/; ~10 minutes; exit code = number of failed suites).
+# Suites: move smoke hostloop session duel latejoin arsenal menu (menu always uses the Node relay).
 #   bash tools/mp/run_all.sh                 the Python relay (tools/serve.py, as in the browser version)
 #   bash tools/mp/run_all.sh --node-relay    the desktop app's Node relay (desktop/relay.js)
 #   bash tools/mp/run_all.sh --node-relay move duel   only these suites
@@ -44,5 +45,12 @@ run latejoin \
 run arsenal \
   --page "index.html?$C/arsenal.js&net=host&room={room}&players=2&map=sandbox&bots=0&mode=ffa&duration=27" \
   --page "index.html?$C/arsenal.js&net=join&room={room}&name=C1&duration=27"
+# hosting on an online server through the menus (tools/mp/menu_online.js): always on the Node relay, set up as
+# server/install.sh sets one up (host key, rooms unlisted, no LAN info)
+MENU_WAIT="window.__GAME__ && (window.__MENU_RUN__ || (window.__MENU_RUN__ = import('/tools/mp/menu_online.js').then(m => m.run())\
+.then(r => { window.__MENU__ = r; }, e => { window.__MENU__ = { ok: false, error: String(e) }; }))) && window.__MENU__"
+run menu --node-relay --node-relay-env KINETIC_HOST_KEY=menu-key --node-relay-arg=--no-room-list --node-relay-arg=--no-lan-info \
+  --wait "$MENU_WAIT" --eval "window.__MENU__" \
+  --page "index.html?quality=low&srv={server}&key=menu-key"
 echo "[run_all] failed suites: $fails$failed"
 exit $fails

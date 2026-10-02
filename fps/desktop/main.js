@@ -15,7 +15,9 @@
  * Multiplayer is a listen server: when a player hosts, the game asks this process (window.kineticDesktop, see
  * preload.js) to start the relay (relay.js: room codes + packet routing) on a TCP port of every network interface,
  * and friends connect to <this PC's address>:<port> with the room code. The relay runs until the game stops it
- * or the app quits. The page reaches it over plain ws:// and http:// (to 127.0.0.1 and to LAN or internet addresses)
+ * or the app quits. A room can also open on an online server (server/README.md): then nothing runs here, and the
+ * server's address can be built into the app (desktop/server.json, read by serverConfig.js) so friends only type
+ * the code. The page reaches a relay over plain ws:// and http:// (to 127.0.0.1 and to LAN or internet addresses)
  * with no webPreferences relaxed: Chromium does not treat those as mixed content for this secure custom scheme
  * (checked by desktop/selftest.js), and the relay answers CORS for the origin kinetic://game and accepts it on /ws.
  */
@@ -197,7 +199,8 @@ function createWindow({ hidden = false, page = '/index.html' } = {}) {
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      additionalArguments: [`--kinetic-version=${app.getVersion()}`],   // the sandboxed preload cannot read package.json
+      // the sandboxed preload cannot read files (package.json, server.json): it gets their values as arguments
+      additionalArguments: [`--kinetic-version=${app.getVersion()}`, `--kinetic-server=${require('./serverConfig').readDefaultServer()}`],
       contextIsolation: true,
       nodeIntegration: false,
       sandbox: true,

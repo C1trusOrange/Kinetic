@@ -538,7 +538,7 @@ export class Menu {
 * HUD: dynamic crosshair (gap from `weapons.spreadAngle`: px = tan(spread)/tan(vfov/2) × innerHeight/2; hidden when scoped), hit markers (white; red on kill; headshot variant) from `damage`/`death` events where `attacker === game.player`, health & armor bars (low-health vignette/pulse), ammo `mag / reserve` (∞ for pistol), weapon name + slot strip (up to 9 slots generated from `WEAPON_IDS`, key label = `slot`, owned/selected; Slipstream momentum meter, Javelin charge ring), grenade count, grapple charge ring, reload progress, speedometer, match timer, score / leader (FFA) or team scores (TDM), kill feed (top-right, names in entity colors, weapon names via `weaponName`), directional damage indicators, sniper scope overlay when `weapons.scoped`, death overlay ("Eliminated by X", respawn countdown from `player.respawnAt - game.time`), announcements (Double Kill, Multi Kill, Killing Spree, Headshot, First Blood, "Match point"), scoreboard (Tab), pickup toasts, subtle speed-lines vignette at high speed, spawn-protection indicator, FPS counter when `settings.showFps`, pointer-lock hint when `input.lockUnavailable`.
 * Style: sleek sci-fi — dark translucent panels, cyan accent `#3de0ff`, warm secondary `#ff9a3c`, angled corners (clip-path), uppercase condensed headings (bundled `Barlow` / `Barlow Condensed` from `fonts/`, system fonts as fallback). Menus over the live 3D backdrop. Responsive down to 1280×720. All interactive elements `pointer-events: auto`.
 
-### 6.12 Multiplayer — `src/net/`, `src/ui/NetMenu.js`, `desktop/relay.js`
+### 6.12 Multiplayer — `src/net/`, `src/ui/NetMenu.js`, `desktop/relay.js`, `server/`
 
 Listen server: the host's game is the authority (bots, combat, health, scores, pickups, projectiles, modes); every
 human simulates its own movement exactly as in single player (no input latency) and streams it; a relay only allocates
@@ -549,6 +549,21 @@ hosts, on TCP 27500 of every interface; the page reaches it through `window.kine
 serverStatus` (`desktop/preload.js`). It serves no files: `/ws`, `/api/rooms`, `/api/lan`; accepts Origin
 `kinetic://game`; per-IP connection cap, host/join rate limit, handshake timeout. Browser version: `tools/netserver.py`
 mounted by `tools/serve.py` (`host-lan.bat`), plus `/api/build`. Same wire protocol (`src/net/protocol.js`).
+
+**Online server.** The same `relay.js` as a service on a Debian / Ubuntu VPS (`server/README.md`): `server/deploy.js`
+(on the PC: scp + ssh) runs `server/install.sh` (Node.js, `/opt/kinetic-relay`, systemd unit `kinetic-relay.service`
+with `DynamicUser` and no disk access, ufw / firewalld rule, options remembered in `/etc/kinetic-relay/install.conf`),
+optionally behind Caddy for HTTPS on 443 (`--domain`). Relay options for it: `hostKey` (`KINETIC_HOST_KEY` /
+`--host-key-file`: only a `host` request with `key` opens a room, error `host-key`; a wrong key costs a join-rate token),
+`trustProxy` (a loopback peer is the right-most `X-Forwarded-For` address: per-IP cap counted per forwarded address in
+`onUpgrade`, join rate, logs, `peer-join.addr`), `listRooms 0` (`/api/rooms` and `list` answer `rooms: [], listed: false`),
+`lanInfo 0` (`/api/lan` 404), `allowedHosts` (the domain passes the `/api/*` Host check). `server/check.js` tests a
+server from the PC (name, HTTPS, relay, WebSocket RTT, `--key`). Game side: hub *Host a game* > This PC | Online server
+(desktop app only; settings `mpHostOn`, `mpServer`, `mpHostKey`), `hostRoom(cfg, {server, hostKey, online})` (an online
+room skips `/api/lan`); addresses as typed go through `src/net/ServerAddress.js` (a bare domain name = HTTPS / wss on
+443, anything else plain on 27500 unless a port or scheme is given). A build can carry a default server:
+`desktop/server.json` (`npm run package -- --server ADDR`; read by `desktop/serverConfig.js`) -> `--kinetic-server`
+-> `kineticDesktop.defaultServer`, which pre-fills Join. The lobby's *Lock room* (host) refuses new players there.
 
 **Modules.** `NetSession` = `game.net` (role `'offline'|'host'|'client'`, phase, the transport, per-frame JSON batches,
 clock, `on/send/sendNow/registerSection/onEnd`); `NetHost` (lobby, load barrier, match build, RemotePlayers, CSTATE
@@ -587,20 +602,25 @@ view. Hitscan / melee / beam hits are decided by the shooter on what it saw (fav
 against snapshot history (position, range, rate, amount, weapon).
 
 **Flow.** Main menu → Multiplayer hub (name; host; join by address + code or the room list) → host setup (Match setup,
-Create room) → lobby (code, address for friends, players, ready, Start) → everyone loads (barrier, 45 s timeout) → begin
-(countdown 3 s, CLICK TO PLAY for pointer lock) → match → end (host: Rematch / Back to lobby / Close room; clients follow).
+Create room) → lobby (code, address for friends, players, ready, host: Lock room, Start) → everyone loads (barrier,
+45 s timeout) → begin (countdown 3 s, CLICK TO PLAY for pointer lock) → match → end (host: Rematch / Back to lobby / Close room; clients follow).
 Late joiners load, see an overview, and spawn with 3 s protection on their first click (deploy gate, ≤ 10 s). A client
 whose link goes silent for 2.5 s is held out of play (no death) until it reports again. Host leaving closes the room.
 
 **Tests.** `python tools/run_mp.py ... --report --json <out>` (one headless window per page; `--node-relay` uses
 desktop/relay.js; `--hide P:T:D` minimizes a window, `--close P:T`, `--relay k=v`), `python tools/mp_check.py <out>
 --expect <suite>`, all suites: `bash tools/mp/run_all.sh [--node-relay]` (move, smoke, hostloop, session, duel,
-latejoin, arsenal). Unit tests: `python tools/run.py tools/mp/unit.html --wait "window.__UNIT__ && window.__UNIT__.done"
---eval window.__UNIT__`. Relay: `python tools/test_relay_node.py`, `python tools/test_netserver.py`.
+latejoin, arsenal, menu = hosting on an online server through the menus, `tools/mp/menu_online.js`, always on the
+Node relay). Unit tests: `python tools/run.py tools/mp/unit.html --wait "window.__UNIT__ && window.__UNIT__.done"
+--eval window.__UNIT__`. Relay: `python tools/test_relay_node.py`, `python tools/test_netserver.py`. Online server
+installer: `python tools/test_install.py` (install.sh against a stand-in root with stub system commands). Desktop
+shell, incl. an online relay from `kinetic://game`: `KINETIC_SELFTEST=1 npx electron .`.
 
 #### 6.12.5 Deviations from the contract (so far)
 
 * Desktop hosting (not in the contract): the Node relay in the app, joining by host address + room code.
+* Online server (not in the contract): the Node relay on a VPS with a host key, unlisted rooms and optional HTTPS
+  (`server/`). The host's own link to it is not resumable: if it drops, the room closes (clients still rejoin).
 * Snapshot jitter = spread (p95 − p5) of one-way lag, not inter-arrival jitter (the host's own frame timing is not network
   jitter); the 30 Hz fallback needs two reports in a row; local stalls (a long frame of this page) never raise the
   interpolation delay or count as lag.

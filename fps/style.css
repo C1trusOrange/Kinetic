@@ -1082,6 +1082,9 @@ kbd {
 .mp-p { margin: 0; font: 500 0.85em/1.5 var(--k-font); letter-spacing: 0.03em; color: #b9d0e0; }
 .mp-note { font: 500 0.74em/1.4 var(--k-font); letter-spacing: 0.05em; color: var(--k-dim); }
 .mp-card > .k-btn { margin-top: auto; }
+.mp-where button { padding-top: 0.55em; padding-bottom: 0.55em; }
+.mp-online { display: flex; flex-direction: column; gap: 0.6em; }
+.mp-card > .mp-err:empty { display: none; }
 .mp-join { display: flex; align-items: flex-end; gap: 0.8em; }
 .mp-join .mp-field { flex: 1; }
 .mp-join .k-btn { width: auto; min-width: 8em; }

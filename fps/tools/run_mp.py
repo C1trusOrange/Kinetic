@@ -34,6 +34,8 @@ Examples
   #                     WHEN may be 'load': when page 0 first reports window.__NET__.phase === 'loading'
   #   --close 0:30      close page 0 at t = 30 s (the host leaving)
   #   --relay idle_timeout=3,stall_timeout=3   relay option overrides (netserver DEFAULTS keys)
+  #   --node-relay --node-relay-env KINETIC_HOST_KEY=k --node-relay-arg=--no-room-list   the Node relay set up as an
+  #                     online server (host key, unlisted rooms); {server} in a URL is its address
 """
 import argparse
 import base64
@@ -195,6 +197,10 @@ def main():
     ap.add_argument('--node-relay', action='store_true',
                     help="multiplayer pages use the desktop app's Node relay (desktop/relay.js, started on a free loopback "
                          "port) instead of the Python one: game pages with net= get &server=127.0.0.1:<port>")
+    ap.add_argument('--node-relay-arg', action='append', default=[], metavar='ARG',
+                    help="extra command-line argument for the Node relay, written with = (--node-relay-arg=--no-room-list; repeat)")
+    ap.add_argument('--node-relay-env', action='append', default=[], metavar='KEY=VALUE',
+                    help='environment variable for the Node relay, e.g. KINETIC_HOST_KEY=secret (repeat)')
     args = ap.parse_args()
     relay_options = {}
     for spec in args.relay:
@@ -249,7 +255,13 @@ def main():
     server, port = serve_in_background(0, lan=args.remote, bind='127.0.0.1', relay_options=relay_options)   # never 0.0.0.0
     node_relay = node_port = None
     if args.node_relay:
-        node_relay, node_port = start_node_relay(port, origins, relay_options)
+        env = {}
+        for spec in args.node_relay_env:
+            k, sep, v = spec.partition('=')
+            if not sep or not k:
+                ap.error(f'--node-relay-env {spec!r}: expected KEY=VALUE')
+            env[k] = v
+        node_relay, node_port = start_node_relay(port, origins, relay_options, args.node_relay_arg, env)
         print(f'[run_mp] node relay on 127.0.0.1:{node_port}')
     if args.remote:
         server.is_trusted = lambda ip: False                 # treat the loopback pages as other machines
@@ -418,7 +430,7 @@ def main():
     sys.exit(code)
 
 
-def start_node_relay(serve_port, origins, relay_options):
+def start_node_relay(serve_port, origins, relay_options, extra_args=(), env=None):
     """Start desktop/relay.js on a free loopback port for the pages at http://<origin>:<serve_port>; returns (proc, port)."""
     cmd = ['node', os.path.join(ROOT, 'desktop', 'relay.js'), '--loopback', '--port', '0', '--quiet',
            '--max-conns-per-ip', '0', '--join-rate', '0', '--control-rate', '0']
@@ -426,7 +438,10 @@ def start_node_relay(serve_port, origins, relay_options):
         cmd += ['--allow-origin', f'http://{o}:{serve_port}']
     for k, v in relay_options.items():
         cmd += ['--' + k.replace('_', '-'), str(v)]
-    proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
+    cmd += list(extra_args)
+    environ = {k: v for k, v in os.environ.items() if k != 'KINETIC_HOST_KEY'}
+    environ.update(env or {})
+    proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, env=environ,
                             cwd=ROOT)
     deadline = time.time() + 15
     while time.time() < deadline:

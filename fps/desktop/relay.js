@@ -34,6 +34,12 @@
  * an internal error closes only the connection it happened on (1011) and is logged. The wire is plain ws://: nothing
  * is encrypted, and room codes / reconnect tokens are only as private as the network between the players.
  *
+ * As an online server (server/install.sh runs it as a systemd service on a VPS): a host key (KINETIC_HOST_KEY or
+ * --host-key-file; only a `host` request carrying it as `key` opens a room, else error 'host-key'; joining needs just
+ * the code), unlisted rooms (--no-room-list), no /api/lan (--no-lan-info), and optionally Caddy in front for HTTPS:
+ * --trust-proxy makes a connection from this machine the player in its right-most X-Forwarded-For entry (per-IP
+ * limits, logs), --allow-host lets /api/* answer requests addressed to the server's domain.
+ *
  *   const relay = createRelay({ log: console.log });
  *   const { host, port } = await relay.listen({ host: '0.0.0.0', port: 27500 });
  *   relay.lanInfo(); relay.rooms(); relay.stats();
@@ -100,6 +106,12 @@ const DEFAULTS = Object.freeze({
   controlRate: 50,        // control messages (text frames, pings) per second per connection; excess ones are dropped
   controlBurst: 100,      // ... with this much burst allowance
   allowedOrigins: Object.freeze([APP_ORIGIN]),
+  // an online server (server/install.sh) also sets these:
+  hostKey: '',            // non-empty: only a host request carrying this key opens a room (joining needs just the code)
+  trustProxy: 0,          // 1: a connection from this machine (a reverse proxy) is the client named in X-Forwarded-For
+  listRooms: 1,           // 0: /api/rooms and `list` answer an empty list (rooms are found by their code only)
+  lanInfo: 1,             // 0: /api/lan answers 404 (a server on the internet has no LAN addresses to hand out)
+  allowedHosts: Object.freeze([]),   // Host names besides addresses / localhost / this PC that /api/* answers (its domain)
 });
 
 /** peer-leave reasons that keep the slot reserved for a rejoin with the token. */
@@ -108,7 +120,7 @@ const COUNTERS = ['connections', 'connections_closed', 'handshake_rejected', 'ba
   'joins', 'rejoins', 'messages_in', 'fragments', 'control_in', 'packets_routed', 'packets_dropped', 'frames_out',
   'bytes_in', 'bytes_out', 'conflated', 'slow_consumers', 'stalled', 'idle_timeouts', 'protocol_errors',
   'internal_errors', 'kicks', 'expired', 'conn_limit', 'ip_limit', 'handshake_timeouts', 'rate_limited',
-  'control_dropped'];
+  'control_dropped', 'host_key_rejected'];
 
 const PING_FRAME = Buffer.from([0x80 | OP_PING, 0]);
 /** Most bytes handed to the socket per write: small enough that a slow reader still completes writes (= progress). */
@@ -116,6 +128,7 @@ const WRITE_CHUNK = 32 * 1024;
 const TIMER_STEP_MS = 50;
 const MAX_JSON_DEPTH = 64;
 const META_LIMIT = 4096;
+const MAX_HOST_KEY = 256;
 
 /** A peer violated RFC 6455 or a relay limit; the connection is closed with `code`. */
 class ProtocolError {
@@ -144,9 +157,13 @@ function resolveOptions(options) {
       continue;
     }
     if (v === undefined) continue;
-    if (key === 'allowedOrigins') {
-      if (!Array.isArray(v)) throw new TypeError('allowedOrigins must be an array');
+    if (key === 'allowedOrigins' || key === 'allowedHosts') {
+      if (!Array.isArray(v)) throw new TypeError(`${key} must be an array`);
       out[key] = v.map(s => String(s).trim().toLowerCase()).filter(Boolean);
+    } else if (key === 'hostKey') {
+      if (v !== null && typeof v !== 'string') throw new TypeError('hostKey must be a string');
+      out[key] = (v || '').trim();
+      if (out[key].length > MAX_HOST_KEY) throw new TypeError(`hostKey is longer than ${MAX_HOST_KEY} characters`);
     } else {
       const n = Number(v);
       if (!Number.isFinite(n) || n < 0) throw new TypeError(`relay option ${k} must be a number >= 0`);
@@ -402,6 +419,25 @@ function cleanAddress(addr) {
   if (pct >= 0) a = a.slice(0, pct);
   if (a.slice(0, 7).toLowerCase() === '::ffff:' && ipv4Parts(a.slice(7))) a = a.slice(7);
   return a || '?';
+}
+
+/**
+ * The client address a reverse proxy on this machine (Caddy) reports: the right-most X-Forwarded-For entry, the one
+ * the proxy itself appended (anything left of it came from the client and proves nothing). null if it is no address.
+ * @param {string|string[]|undefined} header
+ * @returns {string|null}
+ */
+function forwardedFor(header) {
+  const raw = Array.isArray(header) ? header.join(',') : header;
+  if (typeof raw !== 'string' || raw.length > 4096) return null;
+  let a = raw.slice(raw.lastIndexOf(',') + 1).trim();
+  const bracketed = /^\[([^\]]+)\](?::\d{1,5})?$/.exec(a);
+  if (bracketed) a = bracketed[1];
+  else {
+    const v4port = /^(\d{1,3}(?:\.\d{1,3}){3}):\d{1,5}$/.exec(a);
+    if (v4port) a = v4port[1];
+  }
+  return net.isIP(a.split('%')[0]) ? cleanAddress(a) : null;
 }
 
 /** The key per-IP limits count by: the address itself, or the /64 for IPv6 (one subscriber owns a whole /64). */
@@ -674,7 +710,14 @@ class Relay {
     this.controlRate = o.controlRate;
     this.controlBurst = Math.max(1, o.controlBurst);
     this.allowedOrigins = new Set(o.allowedOrigins);
+    this.allowedHosts = new Set(o.allowedHosts);
     this.joinLimiter = new RateLimiter(o.joinRate, o.joinWindow);
+    // compared as SHA-256 digests with timingSafeEqual: equal lengths, and the time taken says nothing about the key
+    this.hostKeyHash = o.hostKey ? crypto.createHash('sha256').update(o.hostKey, 'utf8').digest() : null;
+    this.trustProxy = !!o.trustProxy;
+    this.listRooms = !!o.listRooms;
+    this.lanInfoOn = !!o.lanInfo;
+    this.proxyConns = new Map();     // forwarded ip key -> open WebSockets that came through the proxy
 
     this.rooms = new Map();          // code -> Room
     this.conns = new Set();          // upgraded WebSockets
@@ -782,9 +825,10 @@ class Relay {
     return this.closing;
   }
 
-  /** Open public rooms (what GET /api/rooms and the `list` request return). */
+  /** Open public rooms (what GET /api/rooms and the `list` request return); none when the list is off (listRooms 0). */
   publicRooms() {
     const out = [];
+    if (!this.listRooms) return out;
     for (const r of this.rooms.values()) if (r.public && !r.locked) out.push(r.info());
     return out;
   }
@@ -854,18 +898,20 @@ class Relay {
     socket.on('error', noop);   // a reset is an ordinary event here; the 'close' handler cleans up
     const key = ipKey(socket.remoteAddress);
     const open = this.ipConns.get(key) || 0;
+    // through the reverse proxy every player arrives from this machine: the per-IP cap waits for X-Forwarded-For (onUpgrade)
+    const proxied = this.trustProxy && isLoopbackHost(cleanAddress(socket.remoteAddress));
     if (this.stopping) {
       this.rejectSocket(socket, 503);
       return;
     }
-    if (this.maxConnsPerIp && open >= this.maxConnsPerIp) {
+    if (this.maxConnsPerIp && !proxied && open >= this.maxConnsPerIp) {
       this.counters.ip_limit++;
       this.rejectSocket(socket, 429);
       return;
     }
     this.ipConns.set(key, open + 1);
     this.sockets.add(socket);
-    const st = { ip: key, timer: null, ws: false };
+    const st = { ip: key, timer: null, ws: false, proxied };
     socket[kState] = st;
     socket.once('close', () => {
       clearTimeout(st.timer);
@@ -959,10 +1005,13 @@ class Relay {
     return stripDefaultPort(m[2], m[1]) === stripDefaultPort(host.trim().toLowerCase(), m[1]) && this.hostIsPlain(host);
   }
 
-  /** True if a Host header names an address, localhost or this PC: what a person or tool uses (a rebinding page uses its own domain). */
+  /**
+   * True if a Host header names an address, localhost, this PC or a configured name (an online server's own domain):
+   * what a person or tool uses (a rebinding page uses its own domain).
+   */
   hostIsPlain(header) {
     const host = hostOnly(header);
-    if (net.isIP(host) || host === 'localhost') return true;
+    if (net.isIP(host) || host === 'localhost' || this.allowedHosts.has(host)) return true;
     const own = os.hostname().toLowerCase();
     return host === own || host === `${own}.local`;
   }
@@ -987,19 +1036,38 @@ class Relay {
     if (!this.originAllowed(h.origin, host)) return reject(403, '', 'bad_origin');
     if (this.stopping) return reject(503);
     if (this.conns.size >= this.maxConns) return reject(503, '', 'conn_limit');
+    const st = socket[kState];
+    let addr = cleanAddress(socket.remoteAddress);
+    let ip = st ? st.ip : ipKey(socket.remoteAddress);
+    const fwd = st && st.proxied ? forwardedFor(h['x-forwarded-for']) : null;
+    if (fwd !== null) {
+      // the player behind the proxy: limits, logs and the host's peer-join see its own address
+      addr = fwd;
+      ip = ipKey(fwd);
+      const open = this.proxyConns.get(ip) || 0;
+      if (this.maxConnsPerIp && open >= this.maxConnsPerIp) return reject(429, '', 'ip_limit');
+      this.proxyConns.set(ip, open + 1);
+      socket.once('close', () => {
+        const left = (this.proxyConns.get(ip) || 1) - 1;
+        if (left > 0) this.proxyConns.set(ip, left);
+        else this.proxyConns.delete(ip);
+      });
+    }
     const accept = crypto.createHash('sha1').update(key + WS_GUID).digest('base64');
     // no Sec-WebSocket-Extensions: permessage-deflate is declined, so RSV bits must stay 0
     socket.write(`HTTP/1.1 101 Switching Protocols\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Accept: ${accept}\r\n\r\n`);
-    this.adopt(socket, head);
+    this.adopt(socket, head, addr, ip);
   }
 
-  /** Take over an upgraded socket; `head` holds the bytes the HTTP parser had already buffered (a client may not wait for the 101). */
-  adopt(socket, head) {
+  /**
+   * Take over an upgraded socket; `head` holds the bytes the HTTP parser had already buffered (a client may not wait
+   * for the 101). `addr` / `ip`: the player's address and per-IP limit key.
+   */
+  adopt(socket, head, addr, ip) {
     const st = socket[kState];
     if (st) st.ws = true;
     const now = performance.now();
-    const c = new Conn(socket, cleanAddress(socket.remoteAddress), st ? st.ip : ipKey(socket.remoteAddress), now,
-      { pingMs: this.pingMs, controlBurst: this.controlBurst });
+    const c = new Conn(socket, addr, ip, now, { pingMs: this.pingMs, controlBurst: this.controlBurst });
     c.onWritten = () => {
       c.inflight--;
       c.lastProgress = performance.now();
@@ -1103,14 +1171,14 @@ class Relay {
       }
       return this.sendJson(req, res, 405, { error: 'method-not-allowed' }, { Allow: 'GET' });
     }
-    if (path !== '/api/lan' && path !== '/api/rooms') return this.sendJson(req, res, 404, { error: 'not-found' });
+    if (path !== '/api/rooms' && (path !== '/api/lan' || !this.lanInfoOn)) return this.sendJson(req, res, 404, { error: 'not-found' });
     if (method === 'OPTIONS') return this.sendPreflight(req, res);
     if (method !== 'GET' && method !== 'HEAD') {
       return this.sendJson(req, res, 405, { error: 'method-not-allowed' }, { Allow: 'GET, HEAD, OPTIONS' });
     }
     if (this.apiForbidden(req)) return this.sendJson(req, res, 403, { error: 'forbidden' });
     if (path === '/api/lan') return this.sendJson(req, res, 200, this.lanInfo());
-    return this.sendJson(req, res, 200, { relay: RELAY_VERSION, rooms: this.publicRooms() });
+    return this.sendJson(req, res, 200, { relay: RELAY_VERSION, rooms: this.publicRooms(), listed: this.listRooms });
   }
 
   /** CORS preflight: answered for the desktop app's origin only (no CORS headers = the browser refuses the request). */
@@ -1658,11 +1726,24 @@ class Relay {
     handler.call(this, c, msg, requestId(msg));
   }
 
+  /** True if `given` is the host key (or none is configured). */
+  hostKeyOk(given) {
+    if (this.hostKeyHash === null) return true;
+    if (typeof given !== 'string' || !given || given.length > MAX_HOST_KEY) return false;
+    return crypto.timingSafeEqual(crypto.createHash('sha256').update(given.trim(), 'utf8').digest(), this.hostKeyHash);
+  }
+
   ctlHost(c, m, rid) {
     if (c.room !== null) return this.error(c, 'already-in-room', 'host', rid);
     if (!this.joinLimiter.take(c.ip, performance.now())) {
       this.counters.rate_limited++;
       return this.error(c, 'rate-limited', 'host', rid);
+    }
+    // a guess costs a rate-limit token (above), so the key cannot be brute-forced
+    if (!this.hostKeyOk(m.key)) {
+      this.counters.host_key_rejected++;
+      this.logEvent(`host request from ${c.addr} refused: ${m.key ? 'wrong' : 'no'} host key`);
+      return this.error(c, 'host-key', 'host', rid);
     }
     const name = cleanText(m.name, 'KINETIC', 32);
     const maxPeers = Math.max(2, Math.min(this.maxRoomPeers, toInt(m.max, 8)));
@@ -1752,7 +1833,7 @@ class Relay {
   }
 
   ctlList(c, m, rid) {
-    this.reply(c, { t: 'rooms', rooms: this.publicRooms() }, rid);
+    this.reply(c, { t: 'rooms', rooms: this.publicRooms(), listed: this.listRooms }, rid);
   }
 
   ctlPing(c, m, rid) {
@@ -1924,6 +2005,14 @@ const USAGE = `KINETIC relay (headless dedicated server)
   --quiet              do not print room / player events
   --allow-origin O     also accept browser pages from origin O (repeatable; default: kinetic://game)
 
+  online server (server/install.sh sets these up):
+  --host-key-file F    only players who give the key in file F may host (or set KINETIC_HOST_KEY); joining needs no key
+  --trust-proxy        connections from this machine come from a reverse proxy (Caddy): the player is the right-most
+                       X-Forwarded-For address (per-IP limits, logs)
+  --allow-host NAME    /api/* also answers requests addressed to NAME, the server's domain (repeatable)
+  --no-room-list       do not list rooms (/api/rooms and 'list' answer an empty list): players join by room code
+  --no-lan-info        /api/lan answers 404
+
   options in seconds: --ping-interval ${DEFAULTS.pingInterval}  --idle-timeout ${DEFAULTS.idleTimeout}  --stall-timeout ${DEFAULTS.stallTimeout}  --close-timeout ${DEFAULTS.closeTimeout}  --reserve-timeout ${DEFAULTS.reserveTimeout}
                       --handshake-timeout ${DEFAULTS.handshakeTimeout}  --join-window ${DEFAULTS.joinWindow}
   options in bytes:   --max-message ${DEFAULTS.maxMessage}  --max-backlog ${DEFAULTS.maxBacklog}  --max-header-bytes ${DEFAULTS.maxHeaderBytes}
@@ -1932,22 +2021,34 @@ const USAGE = `KINETIC relay (headless dedicated server)
   0 switches a hardening limit off.  --test-hooks reads the stdin commands "stats", "fault <type>" and "shutdown" (for tests; EOF on stdin stops the relay).
 `;
 
-/** Parse argv (without node and the script); returns {port, host, quiet, testHooks, options} or {help} / {error}. */
+/** DEFAULTS keys that are not plain numbers on the command line (they have flags of their own). */
+const SPECIAL_KEYS = new Set(['allowedOrigins', 'allowedHosts', 'hostKey', 'trustProxy', 'listRooms', 'lanInfo']);
+const VALUE_FLAGS = new Set(['port', 'host', 'allow-origin', 'allow-host', 'host-key-file']);
+
+/**
+ * Parse argv (without node and the script); returns {port, host, quiet, testHooks, hostKeyFile, options} or {help} /
+ * {error}. The host key itself is read by main() (from the file, or KINETIC_HOST_KEY): never from the command line,
+ * where every user of the machine could read it.
+ */
 function parseArgs(argv) {
-  const out = { port: DEFAULT_PORT, host: '0.0.0.0', quiet: false, testHooks: false, options: {} };
+  const out = { port: DEFAULT_PORT, host: '0.0.0.0', quiet: false, testHooks: false, hostKeyFile: '', options: {} };
   const origins = [];
+  const hosts = [];
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
     if (arg === '--help' || arg === '-h') return { help: true };
     if (arg === '--loopback') out.host = '127.0.0.1';
     else if (arg === '--quiet') out.quiet = true;
     else if (arg === '--test-hooks') out.testHooks = true;
+    else if (arg === '--trust-proxy') out.options.trustProxy = 1;
+    else if (arg === '--no-room-list') out.options.listRooms = 0;
+    else if (arg === '--no-lan-info') out.options.lanInfo = 0;
     else if (arg.startsWith('--')) {
       const eq = arg.indexOf('=');
       const name = eq < 0 ? arg.slice(2) : arg.slice(2, eq);
       const key = camel(name.replace(/-/g, '_'));
-      const isOption = Object.prototype.hasOwnProperty.call(DEFAULTS, key) && key !== 'allowedOrigins';
-      if (name !== 'port' && name !== 'host' && name !== 'allow-origin' && !isOption) return { error: `unknown option ${arg}` };
+      const isOption = Object.prototype.hasOwnProperty.call(DEFAULTS, key) && !SPECIAL_KEYS.has(key);
+      if (!VALUE_FLAGS.has(name) && !isOption) return { error: `unknown option ${arg}` };
       let value;
       if (eq >= 0) value = arg.slice(eq + 1);
       else if (i + 1 < argv.length) value = argv[++i];
@@ -1957,6 +2058,8 @@ function parseArgs(argv) {
         if (!Number.isInteger(out.port) || out.port < 0 || out.port > 65535) return { error: `bad port: ${value}` };
       } else if (name === 'host') out.host = value;
       else if (name === 'allow-origin') origins.push(value);
+      else if (name === 'allow-host') hosts.push(value);
+      else if (name === 'host-key-file') out.hostKeyFile = value;
       else {
         const n = Number(value);
         if (!Number.isFinite(n) || n < 0) return { error: `${arg} needs a number >= 0` };
@@ -1965,7 +2068,30 @@ function parseArgs(argv) {
     } else return { error: `unexpected argument ${arg}` };
   }
   if (origins.length) out.options.allowedOrigins = DEFAULTS.allowedOrigins.concat(origins);
+  if (hosts.length) out.options.allowedHosts = hosts;
   return out;
+}
+
+/**
+ * The host key: the first line of `file` (when given), else the environment's KINETIC_HOST_KEY; '' for none.
+ * Throws a message for the operator if the file cannot be read or the key is unusable.
+ */
+function readHostKey(file, env = process.env) {
+  let key = '';
+  if (file) {
+    let text;
+    try {
+      text = require('node:fs').readFileSync(file, 'utf8');
+    } catch (err) {
+      throw new Error(`cannot read the host key file ${file}: ${err && err.code ? err.code : err}`);
+    }
+    key = text.split(/\r?\n/)[0].trim();
+    if (!key) throw new Error(`the host key file ${file} is empty`);
+  } else {
+    key = String(env.KINETIC_HOST_KEY || '').trim();
+  }
+  if (key.length > MAX_HOST_KEY) throw new Error(`the host key is longer than ${MAX_HOST_KEY} characters`);
+  return key;
 }
 
 function stamp() {
@@ -2016,8 +2142,16 @@ async function main(argv) {
     console.error(`${args.error}\n\n${USAGE}`);
     return 2;
   }
+  let hostKey;
+  try {
+    hostKey = readHostKey(args.hostKeyFile);
+  } catch (err) {
+    console.error(err.message);
+    return 2;
+  }
   const relay = createRelay({
     ...args.options,
+    hostKey,
     testHooks: args.testHooks,
     log: args.quiet ? null : threadedLogger(1),
     errorLog: threadedLogger(2),
@@ -2030,6 +2164,7 @@ async function main(argv) {
     return 1;
   }
   const info = relay.lanInfo();
+  const proxy = !!args.options.trustProxy;
   console.log(`KINETIC relay ${RELAY_VERSION} on port ${bound.port}  (Ctrl+C to stop)`);
   if (info.lan) {
     if (info.ips.length) {
@@ -2038,11 +2173,17 @@ async function main(argv) {
     } else {
       console.log('  No network address found - is this PC on Wi-Fi or Ethernet?');
     }
-    console.log(`  Over the internet: forward TCP port ${bound.port} on your router to this PC.`);
-    console.log('  Windows Firewall may ask once whether to allow it: tick "Private networks" and click "Allow access".');
+    console.log(`  Over the internet: TCP port ${bound.port} must reach this machine (at home: forward it on your router).`);
+    if (process.platform === 'win32') {
+      console.log('  Windows Firewall may ask once whether to allow it: tick "Private networks" and click "Allow access".');
+    }
+  } else if (proxy) {
+    console.log(`  Listening on ${bound.host} only: players arrive through the reverse proxy on this machine.`);
   } else {
     console.log(`  Listening on ${bound.host} only: other machines cannot connect.`);
   }
+  if (hostKey) console.log('  Hosting needs the host key; players join with just the room code.');
+  if (args.options.listRooms === 0) console.log('  Rooms are not listed: players join by room code.');
   console.log(`KINETIC relay ready on ${bound.host} port ${bound.port}`);
 
   for (const stream of [process.stdout, process.stderr]) stream.on('error', noop);   // a closed pipe (EPIPE) is not a reason to die
@@ -2075,7 +2216,7 @@ module.exports = {
   createRelay, DEFAULTS, DEFAULT_PORT, RELAY_VERSION, APP_ORIGIN, CODE_ALPHABET,
   // helpers, exported for the unit tests
   rankIpv4s, lanIpv4s, interfaceIpv4s, isLoopbackHost, ipKey, normalizeCode, validCode, newCode, cleanText, parseControl, metaOk,
-  encodeClose, parseArgs, listenErrorText,
+  encodeClose, parseArgs, listenErrorText, forwardedFor, readHostKey,
 };
 
 if (require.main === module) {

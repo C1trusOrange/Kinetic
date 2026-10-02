@@ -11,6 +11,13 @@
  *     preload.js and relay.js, the built-in multiplayer server; not selftest.js),
  *   - from vendor/three only the files the game imports (three.module.js + the addons reached from src/) + LICENSE,
  *   - of Chromium's ~55 UI locales only en-US (the game has no browser UI that would use them).
+ *
+ * An online server (server/README.md) can be built in, so friends only type the room code in Join:
+ *
+ *   npm run package -- --server play.example.com      (or set KINETIC_SERVER; or keep a desktop/server.json)
+ *
+ * It lands in the build as desktop/server.json ({"server": "..."}), which main.js reads. Without --server a
+ * desktop/server.json next to this file goes in as it is (git ignores that file); without either, none.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -30,6 +37,24 @@ const THREE_ADDONS = 'vendor/three/examples/jsm/';
 const KEEP_LOCALES = new Set(['en-US.pak']);
 
 const IMPORT_RE = /(?:\bimport|\bexport)\s*(?:[\w*{}\s,$]*\s*from\s*)?['"]([^'"]+)['"]|\bimport\s*\(\s*['"]([^'"]+)['"]\s*\)/g;
+const { SERVER_RE, readDefaultServer } = require('./serverConfig');
+
+/** The --server ADDR / --server=ADDR argument, else KINETIC_SERVER; null when neither is given. Exits on a bad value. */
+function serverOption(argv = process.argv.slice(2), env = process.env) {
+  let value = null;
+  for (let i = 0; i < argv.length; i++) {
+    if (argv[i] === '--server') value = argv[i + 1] ?? '';
+    else if (argv[i].startsWith('--server=')) value = argv[i].slice('--server='.length);
+  }
+  if (value === null && env.KINETIC_SERVER) value = env.KINETIC_SERVER;
+  if (value === null) return null;
+  value = value.trim();
+  if (!SERVER_RE.test(value)) {
+    console.error(`--server: "${value}" is not a server address (example: --server play.example.com or --server 203.0.113.7:27500)`);
+    process.exit(2);
+  }
+  return value;
+}
 
 function walk(dir, out = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -71,6 +96,7 @@ function usedVendorFiles() {
 
 async function main() {
   const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+  const server = serverOption();
   const vendor = usedVendorFiles();
   const vendorDirs = new Set();
   for (const f of vendor) for (let d = path.posix.dirname(f); d !== '.'; d = path.posix.dirname(d)) vendorDirs.add(d);
@@ -99,6 +125,10 @@ async function main() {
     appVersion: pkg.version,
     win32metadata: { ProductName: NAME, FileDescription: NAME, CompanyName: NAME },
     ignore,
+    // the app folder before it is packed into app.asar: --server writes (or replaces) desktop/server.json there
+    afterCopy: server === null ? [] : [({ buildPath }) => {
+      fs.writeFileSync(path.join(buildPath, 'desktop', 'server.json'), JSON.stringify({ server }, null, 2) + '\n');
+    }],
   });
 
   const locales = path.join(appDir, 'locales');
@@ -113,6 +143,8 @@ async function main() {
   const mb = n => `${(n / 1048576).toFixed(1)} MB`;
   console.log(`\nBuilt ${path.relative(ROOT, appDir)}\\${NAME}.exe (${vendor.size} vendor files)`);
   console.log(`Zip for friends: ${path.relative(ROOT, zip)} (${mb(fs.statSync(zip).size)})`);
+  const builtIn = server !== null ? server : readDefaultServer(path.join(ROOT, 'desktop'));
+  console.log(builtIn ? `Online server built in: ${builtIn} (friends only type the room code)` : 'No online server built in (see --server).');
 }
 
 main().catch(err => {

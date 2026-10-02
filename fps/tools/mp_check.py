@@ -18,6 +18,12 @@ TOOLS = os.path.dirname(os.path.abspath(__file__))
 MIN_FPS = 20
 
 
+def say(text):
+    """print() that survives a console that cannot show every character (Windows: cp1252)."""
+    enc = sys.stdout.encoding or 'utf-8'
+    print(str(text).encode(enc, 'replace').decode(enc))
+
+
 class Ctx:
     """Helpers handed to suite checks."""
 
@@ -28,7 +34,7 @@ class Ctx:
 
     def log(self, text):
         self.lines.append(text)
-        print('  ' + text)
+        say('  ' + text)
 
     @staticmethod
     def report(page):
@@ -92,12 +98,12 @@ def main(argv=None):
     if low and fails:
         print(f'[mp_check] INCONCLUSIVE: insufficient fps ({", ".join(low)}); failures: {len(fails)}')
         for f_ in fails:
-            print('  - ' + f_)
+            say('  - ' + f_)
         return 2
     if fails:
         print(f'[mp_check] FAIL ({len(fails)}):')
         for f_ in fails:
-            print('  - ' + f_)
+            say('  - ' + f_)
         return 1
     print('[mp_check] OK')
     return 0

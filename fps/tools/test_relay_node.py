@@ -53,10 +53,12 @@ READY_RE = re.compile(r'ready on (\S+) port (\d+)')
 class RelayProc:
     """`node desktop/relay.js --loopback --port 0 --test-hooks ...` with its output collected by reader threads."""
 
-    def __init__(self, *flags, quiet=True):
+    def __init__(self, *flags, quiet=True, env=None):
         cmd = [NODE, RELAY_JS, '--loopback', '--port', '0', *(['--quiet'] if quiet else []), '--test-hooks', *flags]
+        environ = {k: v for k, v in os.environ.items() if k != 'KINETIC_HOST_KEY'}
+        environ.update(env or {})
         self.proc = subprocess.Popen(cmd, cwd=ROOT, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                                     text=True, encoding='utf-8', errors='replace', bufsize=1,
+                                     text=True, encoding='utf-8', errors='replace', bufsize=1, env=environ,
                                      creationflags=getattr(subprocess, 'CREATE_NEW_PROCESS_GROUP', 0))
         self.out, self.err, self._stats = [], [], []
         self.port = None
@@ -153,6 +155,7 @@ class NodeMixin:
     # the old cases open dozens of connections and requests from 127.0.0.1: the per-IP hardening is off for them
     base_flags = ('--max-conns-per-ip', '0', '--join-rate', '0', '--control-rate', '0')
     extra_flags = ()
+    relay_env = {}
 
     @classmethod
     def flags(cls):
@@ -165,7 +168,7 @@ class NodeMixin:
     def setUpClass(cls):
         if NODE is None:
             raise unittest.SkipTest('node is not on PATH')
-        cls.proc = RelayProc(*cls.flags())
+        cls.proc = RelayProc(*cls.flags(), env=cls.relay_env)
         cls.port = cls.proc.port
         cls.relay = RelayView(cls.proc)
 
@@ -858,6 +861,202 @@ class FramingStressTests(NodeMixin, T.RelayCase):
         a.sock.sendall(bytes(wire))
         self.assertEqual(h.recv_bin(), bytes([ja['peer']]) + body[1:])
         self.assertEqual(a.recv_frame()[1:], (0xA, b'mid'))
+
+
+# ------------------------------------------------------------------------------------------------ online server
+
+def handshake_status(port, **kw):
+    status, _, sock, _ = T.raw_handshake(port, **kw)
+    sock.close()
+    return status
+
+
+class HostKeyTests(NodeMixin, T.RelayCase):
+    """--host-key-file: only a host request with the key opens a room; joining needs the room code only."""
+    KEY = 'Kq7-test-host-key-9Zr'
+
+    @classmethod
+    def setUpClass(cls):
+        import tempfile
+        cls._dir = tempfile.mkdtemp(prefix='kinetic-relay-key-')
+        cls.key_file = os.path.join(cls._dir, 'host-key')
+        with open(cls.key_file, 'w', encoding='utf-8') as f:
+            f.write(cls.KEY + '\n')
+        cls.extra_flags = ('--host-key-file', cls.key_file)
+        cls.relay_env = {'KINETIC_HOST_KEY': 'from-env'}
+        super().setUpClass()
+
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+        shutil.rmtree(cls._dir, ignore_errors=True)
+
+    def test_hosting_needs_the_key_and_joining_does_not(self):
+        rejected0 = self.relay.counters['host_key_rejected']
+        h = self.ws()
+        h.send_json({'t': 'host', 'name': 'NoKey', 'id': 1})
+        m = h.expect('error')
+        self.assertEqual((m['reason'], m['re'], m['id']), ('host-key', 'host', 1))
+        for wrong in ('nope', self.KEY + 'x', self.KEY[:-1], '', 42, None, ['x'], {'k': 1}, 'k' * 300):
+            h.send_json({'t': 'host', 'key': wrong, 'id': 2})
+            m = h.expect('error')
+            self.assertEqual((m['reason'], m['id']), ('host-key', 2), repr(wrong)[:30])
+        self.assertEqual(self.relay.counters['host_key_rejected'] - rejected0, 10)
+        self.assertEqual(self.relay.rooms, {})                       # nothing was opened
+        h.send_json({'t': 'host', 'key': '  ' + self.KEY + ' ', 'name': 'Keyed', 'id': 3})   # pasted with spaces
+        hosted = h.expect('hosted')
+        self.assertEqual(hosted['id'], 3)
+        code = hosted['code']
+        c, j = self.join(code, name='Friend', host=h)                 # no key needed to join
+        self.assertEqual(j['code'], code)
+        c.send_bin(bytes([0, 0x82, 1, 2]))
+        self.assertEqual(h.recv_bin()[0], j['peer'])                 # and the room routes as usual
+
+    def test_the_env_key_is_ignored_when_a_file_is_given(self):
+        h = self.ws()
+        h.send_json({'t': 'host', 'key': 'from-env'})
+        self.assertEqual(h.expect('error')['reason'], 'host-key')
+
+
+class HostKeyEnvTests(NodeMixin, T.RelayCase):
+    relay_env = {'KINETIC_HOST_KEY': 'env-secret'}
+
+    def test_key_from_the_environment(self):
+        h = self.ws()
+        h.send_json({'t': 'host'})
+        self.assertEqual(h.expect('error')['reason'], 'host-key')
+        h.send_json({'t': 'host', 'key': 'env-secret'})
+        h.expect('hosted')
+
+
+class HostKeyRateTests(NodeMixin, T.RelayCase):
+    """A wrong key costs a host/join token: the key cannot be brute-forced."""
+    relay_env = {'KINETIC_HOST_KEY': 'right'}
+    extra_flags = ('--join-rate', '3', '--join-window', '60')
+
+    def test_guesses_are_rate_limited(self):
+        h = self.ws()
+        for _ in range(3):
+            h.send_json({'t': 'host', 'key': 'guess'})
+            self.assertEqual(h.expect('error')['reason'], 'host-key')
+        h.send_json({'t': 'host', 'key': 'right'})                  # even the right key waits now
+        self.assertEqual(h.expect('error')['reason'], 'rate-limited')
+
+
+class NoKeyTests(NodeMixin, T.RelayCase):
+    """Without a host key (the desktop app's own server) a key in the request changes nothing."""
+
+    def test_hosting_is_open(self):
+        h = self.ws()
+        h.send_json({'t': 'host', 'key': 'anything'})
+        h.expect('hosted')
+
+
+class ProxyTests(NodeMixin, T.RelayCase):
+    """--trust-proxy: a connection from this machine is the player named in X-Forwarded-For (Caddy on the server)."""
+    extra_flags = ('--trust-proxy', '--max-conns-per-ip', '2', '--join-rate', '3', '--join-window', '60')
+
+    @staticmethod
+    def fwd(ip):
+        return [f'X-Forwarded-For: {ip}']
+
+    def test_per_ip_cap_counts_forwarded_addresses(self):
+        a = [self.ws(extra=self.fwd('203.0.113.5')) for _ in range(2)]
+        limit0 = self.relay.counters['ip_limit']
+        self.assertEqual(handshake_status(self.port, extra=self.fwd('203.0.113.5')), 429)
+        self.assertEqual(handshake_status(self.port, extra=self.fwd('198.51.100.1, 203.0.113.5')), 429)   # spoofed prefix
+        self.assertEqual(self.relay.counters['ip_limit'] - limit0, 2)
+        b = [self.ws(extra=self.fwd('203.0.113.6')) for _ in range(2)]       # another player behind the same proxy
+        self.assertEqual(handshake_status(self.port, extra=self.fwd('203.0.113.6')), 429)
+        self.assertEqual(len(b), 2)
+        a.pop().close()                                                    # a closed one frees its place
+        status = 0
+        for _ in range(100):
+            status = handshake_status(self.port, extra=self.fwd('203.0.113.5'))
+            if status == 101:
+                break
+            time.sleep(0.05)
+        self.assertEqual(status, 101)
+
+    def test_the_host_sees_the_forwarded_address(self):
+        h = self.ws(extra=self.fwd('203.0.113.20'))
+        h.send_json({'t': 'host'})
+        code = h.expect('hosted')['code']
+        c = self.ws(extra=self.fwd('198.51.100.7, [2001:db8::42]:51000'))
+        c.send_json({'t': 'join', 'code': code, 'name': 'Far'})
+        c.expect('joined')
+        self.assertEqual(h.expect('peer-join')['addr'], '2001:db8::42')
+
+    def test_join_rate_is_per_forwarded_address(self):
+        h = self.ws(extra=self.fwd('203.0.113.30'))
+        h.send_json({'t': 'host'})
+        code = h.expect('hosted')['code']
+        wrong = 'ZZZZ' if code != 'ZZZZ' else 'ZZZX'
+        g = self.ws(extra=self.fwd('203.0.113.31'))
+        for _ in range(3):
+            g.send_json({'t': 'join', 'code': wrong, 'name': 'x'})
+            self.assertEqual(g.expect('error')['reason'], 'no-such-room')
+        g.send_json({'t': 'join', 'code': code, 'name': 'x'})
+        self.assertEqual(g.expect('error')['reason'], 'rate-limited')
+        other = self.ws(extra=self.fwd('203.0.113.32'))                   # someone else is not affected
+        other.send_json({'t': 'join', 'code': code, 'name': 'y'})
+        other.expect('joined')
+
+    def test_without_a_forwarded_address_the_socket_address_counts(self):
+        # a tool on the server itself (no proxy in between) is 127.0.0.1 and not capped as the proxy is
+        socks = [self.ws() for _ in range(3)]
+        self.assertEqual(len(socks), 3)
+
+
+class NoProxyTests(NodeMixin, T.RelayCase):
+    """Without --trust-proxy a forged X-Forwarded-For is ignored."""
+    extra_flags = ('--max-conns-per-ip', '2')
+
+    def test_forwarded_header_is_ignored(self):
+        h = self.ws(extra=['X-Forwarded-For: 203.0.113.50'])
+        h.send_json({'t': 'host'})
+        code = h.expect('hosted')['code']
+        c = self.ws(extra=['X-Forwarded-For: 203.0.113.51'])
+        c.send_json({'t': 'join', 'code': code, 'name': 'x'})
+        c.expect('joined')
+        self.assertEqual(h.expect('peer-join')['addr'], '127.0.0.1')
+        self.assertEqual(handshake_status(self.port, extra=['X-Forwarded-For: 203.0.113.52']), 429)   # same TCP address
+
+
+class OnlineListTests(NodeMixin, T.RelayCase):
+    """--no-room-list / --no-lan-info / --allow-host: what a server on the internet hands out."""
+    extra_flags = ('--no-room-list', '--no-lan-info', '--allow-host', 'play.example.com')
+
+    def test_rooms_are_not_listed_but_can_be_joined(self):
+        h, code = self.host(name='Hidden', public=True)
+        status, body = T.http_get(self.port, '/api/rooms')
+        self.assertEqual(status, 200)
+        data = json.loads(body)
+        self.assertEqual((data['rooms'], data['listed']), ([], False))
+        c = self.ws()
+        c.send_json({'t': 'list'})
+        m = c.expect('rooms')
+        self.assertEqual((m['rooms'], m['listed']), ([], False))
+        c.send_json({'t': 'join', 'code': code, 'name': 'ByCode'})
+        c.expect('joined')
+        h.expect('peer-join')
+
+    def test_no_lan_info(self):
+        self.assertEqual(T.http_get(self.port, '/api/lan')[0], 404)
+
+    def test_the_servers_domain_may_read_the_api(self):
+        status, _, body = http_request(self.port, '/api/rooms', headers={'Host': 'play.example.com'})
+        self.assertEqual(status, 200)
+        self.assertEqual(json.loads(body)['listed'], False)
+        self.assertEqual(http_request(self.port, '/api/rooms', headers={'Host': 'evil.example'})[0], 403)
+
+
+class ListedTests(NodeMixin, T.RelayCase):
+    def test_listed_flag(self):
+        self.host(name='Open', public=True)
+        data = json.loads(T.http_get(self.port, '/api/rooms')[1])
+        self.assertEqual(data['listed'], True)
+        self.assertEqual(len(data['rooms']), 1)
 
 
 class ShutdownTests(unittest.TestCase):

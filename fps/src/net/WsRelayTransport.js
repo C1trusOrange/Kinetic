@@ -129,6 +129,7 @@ export class WsRelayTransport extends Transport {
       const msg = { t: 'host', v: this.version, name: opts.name ?? 'KINETIC', max: opts.max ?? 8, public: opts.public !== false };
       if (opts.code) msg.code = normalizeCode(opts.code);
       if (opts.meta) msg.meta = opts.meta;
+      if (opts.key) msg.key = String(opts.key);   // an online server's host key (desktop/relay.js --host-key-file)
       const reply = await this._request(msg);
       this.role = 'host';
       this.peerId = HOST_PEER;
