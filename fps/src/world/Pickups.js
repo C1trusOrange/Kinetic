@@ -602,18 +602,24 @@ export class Pickups {
     const game = this.game;
     const now = game.time;
     const ents = game.entities || [];
+    // respawns and collection are host-authoritative online (clients get availability from the host), and nobody
+    // collects during the online countdown; collection uses the rules position (a RemotePlayer's latest report)
+    const auth = !game.net || game.net.authority;
+    const live = auth && !(game.match && game.match.phase === 'countdown');
     for (const p of this.list) {
+      if (!auth) continue;
       if (!p.available && now >= p.nextRespawn) {
         p.available = true;
         p.pop = 0;
       }
-      if (p.available && ents.length) {
+      if (p.available && live && ents.length) {
         for (let k = 0; k < ents.length; k++) {
           const e = ents[k];
           if (!e.alive) continue;
-          const dx = e.position.x - p.position.x, dz = e.position.z - p.position.z;
+          const ep = e.authPos;
+          const dx = ep.x - p.position.x, dz = ep.z - p.position.z;
           if (dx * dx + dz * dz > COLLECT_H * COLLECT_H) continue;
-          const dy = e.position.y - p.position.y;
+          const dy = ep.y - p.position.y;
           if (dy > COLLECT_V_UP || dy < -COLLECT_V_DOWN) continue;
           if (this._apply(p, e)) {
             p.available = false;
@@ -626,6 +632,37 @@ export class Pickups {
       }
     }
     this._animate(dt);
+  }
+
+  /**
+   * Online client: a pickup event from the host. `nextRespawnNet` is host net ms (NET.NEVER = none), `atMs` the event's
+   * host time (older snapshot availability bits never override it).
+   */
+  applyEvent(id, available, nextRespawnNet, atMs) {
+    const p = this.list[id];
+    if (!p) return;
+    const net = this.game.net;
+    p.eventAt = atMs;
+    if (!!available !== p.available && available) p.pop = 0;
+    p.available = !!available;
+    p.nextRespawn = typeof nextRespawnNet === 'number' && nextRespawnNet >= 0 && net
+      ? net.clock.netToLocalGame(this.game, nextRespawnNet) : available ? 0 : Infinity;
+  }
+
+  /**
+   * Online client: snapshot availability bits (bit j of byte i = pickup i * 8 + j) of host time tHostMs; a pickup
+   * whose last event is newer keeps the event's state.
+   */
+  applyNet(bits, count, tHostMs) {
+    const n = Math.min(count, this.list.length);
+    for (let i = 0; i < n; i++) {
+      const p = this.list[i];
+      if (tHostMs <= (p.eventAt || 0)) continue;
+      const av = ((bits[i >> 3] >> (i & 7)) & 1) === 1;
+      if (av === p.available) continue;
+      if (av) { p.pop = 0; p.nextRespawn = 0; }
+      p.available = av;
+    }
   }
 
   _apply(p, e) {

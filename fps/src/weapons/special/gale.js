@@ -32,9 +32,11 @@ const _n = new THREE.Vector3();
  * @param {THREE.Vector3} dir unit aim direction
  * @param {object} b WEAPONS.gale.blast
  * @param {boolean} [ads=false] focus mode: tighter cone, longer range
+ * @param {{selfPush?: boolean}} [opts] selfPush false: no push on the shooter (online, a client predicts its own push
+ *   with galeSelfPush and the host runs the rest of the blast)
  * @returns {{hits:number, reflected:number}}
  */
-export function galeBlast(game, shooter, origin, dir, b, ads = false) {
+export function galeBlast(game, shooter, origin, dir, b, ads = false, opts = {}) {
   const combat = game.combat;
   const fx = game.effects;
   const range = ads ? (b.adsRange ?? b.range) : b.range;
@@ -80,20 +82,26 @@ export function galeBlast(game, shooter, origin, dir, b, ads = false) {
     });
   }
 
-  // ---- self push off the nearest surface along the aim
-  if (shooter && shooter.alive) {
-    const sp = game.world.raycast(origin, dir, b.selfRange);
-    if (sp) {
-      const push = b.selfPush * (1 - sp.distance / b.selfRange);
-      _kv.copy(dir).multiplyScalar(-push);
-      // walls give a little extra lift; a floor blast already points straight up
-      _kv.y += push * b.selfLift * (1 - clamp(_kv.y / Math.max(push, 1e-3), 0, 1));
-      shooter.applyImpulse(_kv);
-    } else {
-      shooter.applyImpulse(_kv.copy(dir).multiplyScalar(-b.noSurfacePush));
-    }
-  }
+  if (opts.selfPush !== false) galeSelfPush(game, shooter, origin, dir, b);
   return { hits, reflected };
+}
+
+/**
+ * The blast's push on the shooter itself: off the nearest surface along the aim (walls add a little lift), or a
+ * small recoil push when nothing is in range.
+ */
+export function galeSelfPush(game, shooter, origin, dir, b) {
+  if (!shooter || !shooter.alive) return;
+  const sp = game.world.raycast(origin, dir, b.selfRange);
+  if (sp) {
+    const push = b.selfPush * (1 - sp.distance / b.selfRange);
+    _kv.copy(dir).multiplyScalar(-push);
+    // walls give a little extra lift; a floor blast already points straight up
+    _kv.y += push * b.selfLift * (1 - clamp(_kv.y / Math.max(push, 1e-3), 0, 1));
+    shooter.applyImpulse(_kv);
+  } else {
+    shooter.applyImpulse(_kv.copy(dir).multiplyScalar(-b.noSurfacePush));
+  }
 }
 
 // ------------------------------------------------------------------ reflection

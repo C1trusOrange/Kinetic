@@ -75,7 +75,7 @@ export function totalGrenades(inv) {
 /** The per-type table of any entity (the player's lives in WeaponSystem). */
 export function inventoryOf(entity) {
   if (!entity) return null;
-  if (entity.isPlayer) return entity.game.weapons ? entity.game.weapons.nades : null;
+  if (entity.isLocal) return entity.game.weapons ? entity.game.weapons.nades : null;
   return entity.nades || null;
 }
 
@@ -237,9 +237,19 @@ export class GrenadeSystem {
       const k = Math.pow(1 - d / R, 0.8);
       const accel = def.pull * k;
       const v = e.velocity;
+      if (e.simLocal === false) {
+        // online: a body this machine does not simulate (its own client pulls it from the replicated well)
+        if (doCrush && d <= def.crush.radius) {
+          game.combat.applyDamage(e, {
+            amount: def.crush.dps * 0.25 * (e === owner ? def.selfScale : 1), attacker: owner, weapon: 'vortex',
+            point: _chest.clone(), direction: _d.clone(),
+          });
+        }
+        continue;
+      }
       const vt = v.x * _d.x + v.y * _d.y + v.z * _d.z;
       // grounded players fight ground friction (7 /s), so the pull is boosted there; bots use the wish-velocity nudge below
-      const boost = e.isPlayer && e.onGround ? 3 : 1;
+      const boost = e.isHuman && e.onGround ? 3 : 1;
       const add = Math.min(accel * boost * dt, Math.max(0, def.maxPullSpeed - vt));
       if (e.onGround) {
         // direct velocity add (ground friction of applyImpulse is bypassed); bots also get a wish-velocity nudge

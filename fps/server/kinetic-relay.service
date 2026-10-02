@@ -1,0 +1,44 @@
+# KINETIC multiplayer relay as a service (server/install.sh installs this as /etc/systemd/system/kinetic-relay.service).
+# Its options and the host key live in /etc/kinetic-relay/relay.env (root only), written by install.sh.
+#   systemctl status kinetic-relay      journalctl -u kinetic-relay -f      systemctl restart kinetic-relay
+[Unit]
+Description=KINETIC multiplayer relay (online server)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/kinetic-relay/relay.env
+ExecStart=/usr/bin/node /opt/kinetic-relay/relay.js $KINETIC_RELAY_ARGS
+Restart=always
+RestartSec=3
+
+# A throwaway user made for this service, and as little of the machine as a relay needs: it reads nothing but
+# relay.js, writes nothing to disk (its log goes to the journal) and cannot gain privileges.
+DynamicUser=yes
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+ProtectProc=invisible
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX AF_NETLINK
+SystemCallArchitectures=native
+UMask=0077
+LimitNOFILE=8192
+MemoryMax=512M
+TasksMax=64
+
+[Install]
+WantedBy=multi-user.target

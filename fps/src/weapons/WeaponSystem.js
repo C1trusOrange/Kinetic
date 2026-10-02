@@ -310,6 +310,8 @@ export class WeaponSystem {
 
     // ---- Tempest beam / Gale viewmodel FX state
     this._beamOn = false;        // beam loop running
+    /** World end point of the Tempest beam while it is on (online: other machines draw the beam to it). */
+    this.beamEnd = new THREE.Vector3();
     this._beamLoop = null;       // playLoop handle
     this._beamLast = -10;        // game time of the last beam tick
     this._beamDist = 0;          // hit distance of the last tick (keeps the per-frame beam glued to the muzzle)
@@ -914,7 +916,7 @@ export class WeaponSystem {
     const game = this.game;
     const p = game.player;
     this._updateHitStop();
-    if (game.state !== 'playing' || !p.alive) {
+    if (game.state !== 'playing' || !p.alive || (game.match && game.match.phase === 'countdown')) {
       this._idle(dt);
       return;
     }
@@ -1412,6 +1414,7 @@ export class WeaponSystem {
     randomInCone(_fwd, spread, _dir);
     const res = fireArc(game, p, { origin: _eye, dir: _dir, muzzle: _muzzleW, def, dmgScale: ticks });
     this._beamDist = res.dist;
+    this.beamEnd.copy(_eye).addScaledVector(_dir, res.dist);
     this._beamChained = res.chained;
     this._beamLast = now;
     if (!this._beamOn) {
@@ -1454,6 +1457,11 @@ export class WeaponSystem {
     if (inv.ammo === 0) this._slideLock = true;
   }
 
+  /** True while the Tempest beam is on (online state packets / snapshots carry it). */
+  get beamActive() {
+    return this._beamOn;
+  }
+
   /** Stop the Tempest loop (`fizz` plays the closing sound). */
   _stopBeam(fizz = true) {
     if (!this._beamOn) return;
@@ -1472,6 +1480,7 @@ export class WeaponSystem {
       this._muzzleWorld(_muzzleW);
       _fwd.set(0, 0, -1).applyQuaternion(game.camera.quaternion);
       _v1.copy(game.camera.position).addScaledVector(_fwd, this._beamDist);
+      this.beamEnd.copy(_v1);
       updateBeamVisual(game, game.player, _muzzleW, _v1, def);
     }
   }
@@ -1496,7 +1505,9 @@ export class WeaponSystem {
     }
     _v3.subVectors(_v1, _v2);
     if (_v3.lengthSq() < 1.2 * 1.2) _v3.copy(_dir); else _v3.normalize();
-    game.projectiles.spawnRocket({ owner: p, origin: _v2, direction: _v3 });
+    // online client: the host fires it (it does the damage); this machine shows a predicted copy at once
+    if (game.net && game.net.isClient) game.net.client.act.rocket(_v2, _v3);
+    else game.projectiles.spawnRocket({ owner: p, origin: _v2, direction: _v3 });
   }
 
   /**
@@ -1808,7 +1819,8 @@ export class WeaponSystem {
     const game = this.game;
     this.cooking = false;
     this._grenadeLaunch(_v1, _v2);
-    game.projectiles.spawnGrenade({ owner: game.player, origin: _v1, velocity: _v2, fuse: this._throwFuse(0.1), type: this._throwType });
+    if (game.net && game.net.isClient) game.net.client.act.nade(_v1, _v2, this._throwFuse(0.1), this._throwType, false);
+    else game.projectiles.spawnGrenade({ owner: game.player, origin: _v1, velocity: _v2, fuse: this._throwFuse(0.1), type: this._throwType });
     game.audio.play('grenade_throw');
     this._sp.kz.kick(-0.01);
     this.cookTime = 0;
@@ -1824,7 +1836,8 @@ export class WeaponSystem {
     this.cookTime = 0;
     this.gState = G_RECOVER;
     this.gT = 0;
-    game.projectiles.detonate(this._throwType, _v1, _Y, game.player);
+    if (game.net && game.net.isClient) game.net.client.act.cook(_v1, this._throwType);
+    else game.projectiles.detonate(this._throwType, _v1, _Y, game.player);
   }
 
   _onDeath(e) {
@@ -1840,7 +1853,8 @@ export class WeaponSystem {
       _v1.copy(game.camera.position);
       _v2.copy(p.velocity).multiplyScalar(0.5);
       _v2.y += 1.5;
-      game.projectiles.spawnGrenade({ owner: p, origin: _v1, velocity: _v2, fuse: this._throwFuse(0.15), type: this._throwType });
+      if (game.net && game.net.isClient) game.net.client.act.nade(_v1, _v2, this._throwFuse(0.15), this._throwType, true);
+      else game.projectiles.spawnGrenade({ owner: p, origin: _v1, velocity: _v2, fuse: this._throwFuse(0.15), type: this._throwType });
       this.cooking = false;
     }
     this.gState = G_IDLE;

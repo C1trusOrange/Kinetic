@@ -104,6 +104,8 @@ export class Bot extends Entity {
     this._lodDt = 0;
     // Tempest beam bookkeeping (throttled sound / events / flash)
     this._beamLastT = -10;
+    /** End point of the last Tempest beam tick (online: clients draw this bot's beam to it). */
+    this.beamEnd = new THREE.Vector3();
     this._arcEventAt = -10;
     this._arcFlashAt = -10;
   }
@@ -799,6 +801,7 @@ export class Bot extends Entity {
     const cad = beamCadence(t, this.nextFireAt, this._beamLastT, 1 / def.fireRate);
     randomInCone(dir, spread, _pdir);
     const res = fireArc(game, this, { origin: eye, dir: _pdir, muzzle, def, dmgScale: scale * cad.n });
+    this.beamEnd.copy(eye).addScaledVector(_pdir, res.dist);
     if (res.hit && res.hit.entity) this.stats.pelletHits++;
     if (t - this._beamLastT > 0.2) game.audio.play('arc_burst', { position: muzzle });      // a new burst (cd 0.3 s in the sound)
     this._beamLastT = t;

@@ -24,6 +24,8 @@ import { BotManager } from '../ai/BotManager.js';
 import { Effects } from '../fx/Effects.js';
 import { HUD } from '../ui/HUD.js';
 import { Menu } from '../ui/Menu.js';
+import { NetSession } from '../net/NetSession.js';
+import { NET, fromWireTime } from '../net/GameProtocol.js';
 
 
 const VIEW_FOV = 50; // vertical fov of the viewmodel camera (weapons are authored for this)
@@ -62,6 +64,8 @@ export class Game {
     /** All damageable entities (player + bots) in the current match. */
     this.entities = [];
     this._nextEntityId = 1;
+    /** id -> entity of `entities` (getEntityById). */
+    this._byId = new Map();
     /** Current match state (see startMatch) or null. */
     this.match = null;
     this.lastMatchConfig = null;
@@ -87,7 +91,19 @@ export class Game {
     this.modes = new Modes(this);
     this.hud = new HUD(this);
     this.menu = new Menu(this);
+    /** Multiplayer session (offline until the player hosts or joins; see net/NetSession.js). */
+    this.net = new NetSession(this);
     this.autotest = params.has('autotest') ? new AutoTest(this, params) : null;
+
+    // online frame pacing: rAF interval (render rate) vs simulation frames driven by the HostTicker Worker
+    this._lastRafMs = 0;
+    this._lastFrameEndMs = 0;
+    this._rafIntervalEma = 16.7;
+    /** Simulation frames per second (online the host keeps >= 60 even when it renders slower). */
+    this.simHz = 60;
+    /** Online: the non-pausing match menu is open. */
+    this._matchMenu = false;
+    this._deferredQuality = false;
 
     this._frameErrors = new Map();
     this._menuT = 0;
@@ -220,13 +236,17 @@ export class Game {
   _bindGlobalEvents() {
     this.events.on('death', e => this._onDeath(e));
 
+    // Online there is no pause: losing the pointer lock, Esc / P and hiding the tab open the match menu while the match
+    // keeps running (pause() / resume() map to openMatchMenu() / closeMatchMenu()).
     this.input.onLockChange(locked => {
-      if (!locked && this.state === 'playing' && !this.autotest && !this.input.lockUnavailable) this.pause();
+      if (locked && this.net.client && this.net.client.awaitingDeploy) this.net.client.sendDeploy();
+      if (!locked && this.state === 'playing' && !this.autotest && !this.input.lockUnavailable && !this._matchMenu) this.pause();
     });
 
     window.addEventListener('keydown', e => {
-      if ((e.code === 'Escape' || e.code === 'KeyP') && this.state === 'playing' && !this.input.locked) this.pause();
-      else if (e.code === 'KeyP' && this.state === 'playing') { this.input.exitLock(); this.pause(); }
+      if (this.state !== 'playing' || (this.net.online && this._matchMenu)) return;   // the menu's own Esc closes it
+      if ((e.code === 'Escape' || e.code === 'KeyP') && !this.input.locked) this.pause();
+      else if (e.code === 'KeyP') { this.input.exitLock(); this.pause(); }
     });
 
     this.renderer.domElement.addEventListener('click', () => {
@@ -234,10 +254,13 @@ export class Game {
       if (this.state === 'playing' && !this.input.locked && !this.autotest) {
         this.input.requestLock();
       }
+      this.net.onCanvasClick();
     });
 
     this.settings.onChange((key, value) => {
-      if (key === 'quality') this._applyQualitySetting();
+      // a preset switch can stall the tab for most of a second: the host waits for the end of the match
+      if (key === 'quality' && this.net.isHost && this.match && !this.match.over) this._deferredQuality = true;
+      else if (key === 'quality') this._applyQualitySetting();
       else if (key === 'renderScale') this._onResize();
       else if (key === 'lowLatency') this.frameLimiter.setEnabled(value !== false);
       else if (key === 'masterVolume') this.audio.setMasterVolume(value);
@@ -252,7 +275,7 @@ export class Game {
     document.addEventListener('visibilitychange', () => {
       if (document.hidden && this.state === 'playing' && !this.autotest) {
         this.input.exitLock();
-        this.pause();
+        this.pause();   // online: the match menu (the HostTicker keeps the hidden tab simulating)
       }
     });
   }
@@ -263,6 +286,7 @@ export class Game {
     for (const sys of [this.audio, this.effects, this.world, this.projectiles, this.player, this.weapons, this.bots, this.hud, this.menu]) {
       if (typeof sys.init === 'function') await sys.init();
     }
+    this.net.init();
     this.audio.setMasterVolume(this.settings.get('masterVolume'));
     this.audio.setMusicVolume(this.settings.get('musicVolume'));
     requestAnimationFrame(this._loop);
@@ -290,6 +314,7 @@ export class Game {
     this.state = 'menu';
     this.hud.show(false);
     this.menu.showMain();
+    if (this.net.pendingJoin && this.menu.net) this.menu.net.showHub({ join: this.net.pendingJoin });
   }
 
   // ================================================================== match flow
@@ -468,7 +493,7 @@ export class Game {
    */
   _addPrewarmObjects() {
     const groups = [];
-    for (const sys of [this.projectiles, this.bots, this.effects]) {
+    for (const sys of [this.projectiles, this.bots, this.effects, this.net]) {
       if (!sys || typeof sys.prewarmObjects !== 'function') continue;
       let set = null;
       try {
@@ -559,6 +584,8 @@ export class Game {
   }
 
   restartMatch() {
+    if (this.net.isHost) { this.net.rematch(); return; }
+    if (this.net.isClient) return;   // only the host restarts an online match
     if (this.lastMatchConfig) this.startMatch({ ...this.lastMatchConfig });
   }
 
@@ -572,14 +599,23 @@ export class Game {
     if (isTeamMode(m.mode)) {
       const b = m.teamScores[1] || 0, r = m.teamScores[2] || 0;
       m.winnerTeam = b === r ? 0 : b > r ? 1 : 2;
+      m.winnerId = 0;
       m.playerWon = m.winnerTeam === this.player.team;
     } else {
-      m.winner = this.modes.pickWinner(m) || this.entities.slice().sort((a, b) => b.kills - a.kills || a.deaths - b.deaths)[0] || null;
+      const ladder = this.modes.pickWinner(m);
+      const order = this.entities.slice().sort((a, b) => b.kills - a.kills || a.deaths - b.deaths);
+      m.winner = ladder || order[0] || null;
+      // online free-for-all: a tie for first place is a draw (every machine works out "did I win" from winnerId)
+      if (this.net.online && !ladder && order[1] && order[0].kills === order[1].kills && order[0].deaths === order[1].deaths) {
+        m.winner = null;
+        m.draw = true;
+      }
+      m.winnerId = m.winner ? m.winner.id : 0;
       m.playerWon = m.winner === this.player;
     }
     this.state = 'ended';
-    this.timeScale = 0.25;
-    this._endTimer = 2.2;
+    if (!this.net.online) this.timeScale = 0.25;   // the slow-motion outro is single player only (no global time online)
+    this._endTimer = this.net.online ? NET.OUTRO_S : 2.2;
     this.input.enabled = false;
     this.audio.play('match_end');
     this.events.emit('match:end', m);
@@ -587,6 +623,8 @@ export class Game {
 
   _showEndScreen() {
     this.timeScale = 1;
+    this._matchMenu = false;
+    if (this._deferredQuality) { this._deferredQuality = false; this._applyQualitySetting(); }
     this.audio.stopAllLoops(); // the sim is frozen from here on: nothing would ever silence a slide / grapple-reel loop
     if (!this.autotest) this.audio.playMusic(this.match && this.match.playerWon ? 'victory' : 'defeat', { loop: false, fadeIn: 0.05 });
     this.input.capture = false;
@@ -596,6 +634,7 @@ export class Game {
   }
 
   pause() {
+    if (this.net.online) { this.openMatchMenu(); return; }
     if (this.state !== 'playing') return;
     this.state = 'paused';
     this.input.enabled = false;
@@ -606,6 +645,7 @@ export class Game {
   }
 
   resume() {
+    if (this.net.online) { this.closeMatchMenu(); return; }
     if (this.state !== 'paused') return;
     this.input.requestLock();
     this.state = 'playing';
@@ -615,9 +655,40 @@ export class Game {
     this.events.emit('game:resume');
   }
 
+  /**
+   * Online: the non-pausing match menu (Esc, lost pointer lock, hidden tab). The match keeps running; input is off
+   * until it closes. Idempotent.
+   */
+  openMatchMenu() {
+    if (this._matchMenu || this.state !== 'playing') return;
+    this._matchMenu = true;
+    this.input.enabled = false;
+    this.input.capture = false;
+    this.input.clearAll();
+    this.menu.showPause();
+  }
+
+  /** Close the match menu (Resume / Esc). A click is a gesture and relocks the pointer; after Esc CLICK TO PLAY shows. */
+  closeMatchMenu() {
+    if (!this._matchMenu) return;
+    this._matchMenu = false;
+    this.input.requestLock();
+    this.input.enabled = this.net.status !== 'reconnecting';
+    this.input.capture = true;
+    this.menu.hide();
+  }
+
   quitToMenu() {
+    if (this.net.online && !this.net.ending) {
+      this.net.leave('left');   // ends the session, which calls back here
+      return;
+    }
     this._clearMatch();
+    this.player.reset();
     this.player.alive = false;
+    this.weapons._resetState();
+    this.audio.stopAllLoops();
+    this._matchMenu = false;
     this.state = 'menu';
     this.input.enabled = false;
     this.input.capture = false;
@@ -629,33 +700,262 @@ export class Game {
   }
 
   _clearMatch() {
+    this.net.onClearMatch();   // remote players / proxies go first (their models sit in the shared bot batches)
     this.modes.clear();
     this.bots.clear();
     this.projectiles.clear();
     this.effects.clear();
     this.entities.length = 0;
+    this._byId.clear();
     this.match = null;
     this.timeScale = 1;
     this._endTimer = 0;
     this._spectateTarget = null;
   }
 
+  // ================================================================== online match lifecycle (net/)
+
+  /**
+   * Online: load the match's map (the host from net.start() inside the Start click, so the pointer lock request
+   * works; clients on 'load'). Never writes settings. After every await it stops if the session or the match epoch
+   * changed meanwhile (left, kicked, host gone, a rematch started).
+   * @param {object} cfg frozen match config from the host
+   * @returns {Promise<boolean>} true when loaded and still wanted
+   */
+  async netLoadMatch(cfg) {
+    const net = this.net;
+    const epoch = net.epoch, gen = net.sessionGen;
+    const stale = () => epoch !== net.epoch || gen !== net.sessionGen;
+    const def = getMap(cfg && cfg.mapId) || MAPS[0];
+    this.audio.unlock();
+    if (!this.autotest) {
+      if (net.isHost) this.input.requestLock();
+      this.audio.stopMusic(1.2);
+      this.audio.preloadMusic(['victory', 'defeat']);
+    }
+    this._matchMenu = false;
+    this.state = 'loading';
+    this.input.enabled = false;
+    this.hud.show(false);
+    this.menu.showLoading(`Loading ${def.name}`, 0);
+    this._clearMatch();
+    this.player.reset();
+    this.player.alive = false;
+    this.weapons._resetState();
+    this.audio.stopAllLoops();
+    await nextFrame();
+    if (stale()) return false;
+    let lastProg = 0;
+    const onProgress = (pr, label) => {
+      this.menu.showLoading(label || `Loading ${def.name}`, pr);
+      const now = performance.now();
+      if (net.isClient && now - lastProg > 1000 / NET.PROGRESS_HZ) {
+        lastProg = now;
+        net.send({ k: 'prog', p: Math.round(pr * 100) / 100, vis: document.hidden ? 'hidden' : 'visible' });
+      }
+    };
+    try {
+      if (this.world.mapId !== def.id) await this.world.load(def, { onProgress });
+      else this.world.reset();
+      if (stale()) return false;
+      this._syncViewLighting();
+      if (net.authority) await this.bots.prepare(this.world);
+      if (stale()) return false;
+      await this.warmup(true);
+      if (stale()) return false;
+      if (!this.spectate && !this.fixedCam && typeof this.hud.prewarm === 'function') await this.hud.prewarm();
+      if (stale()) return false;
+    } catch (err) {
+      console.error('[game] failed to load the match map', err);
+      if (!stale()) net.leave('failed');
+      return false;
+    }
+    this.menu.showLoading('Waiting for players', 1);
+    return true;
+  }
+
+  /**
+   * Online match start. Clients build the match from the host's 'begin' message `b` (roster, scores, pickups, the own
+   * spawn); the host built it already (NetHost.beginMatch) and passes null. Both then run the common tail.
+   * @param {object|null} b
+   */
+  netBeginMatch(b) {
+    const net = this.net;
+    if (b) {
+      const c = net.client;
+      const clock = net.clock;
+      net.onClearMatch();
+      this.entities.length = 0;
+      this._byId.clear();
+      this.projectiles.clear();
+      this.combat.smokes.length = 0;
+      this.player.reset();
+      c.resetMatchState(b);
+      const cfg = b.cfg && typeof b.cfg === 'object' ? b.cfg : {};
+      const mm = b.match;
+      const ts = mm.teamScores || {};
+      this.match = {
+        ...cfg,
+        mapName: mm.mapName || (getMap(cfg.mapId) || MAPS[0]).name,
+        botCount: mm.botCount ?? cfg.botCount ?? 0,
+        scoreLimit: mm.scoreLimit ?? cfg.scoreLimit ?? 0,
+        timeLeft: typeof mm.timeLeft === 'number' && mm.timeLeft >= 0 ? mm.timeLeft : Infinity,
+        teamScores: { 1: ts[1] | 0, 2: ts[2] | 0 },
+        over: false, reason: null, winner: null, winnerId: 0, winnerTeam: 0, playerWon: false, results: null, draw: false,
+        startTime: clock.netToLocalGame(this, mm.startT),
+        phase: mm.phase === 'live' ? 'live' : 'countdown',
+        liveAtNet: Number(mm.liveAt) || 0,
+        liveAt: clock.netToLocalGame(this, Number(mm.liveAt) || 0),
+        online: true,
+        epoch: net.epoch,
+        ladder: Array.isArray(mm.ladder) ? mm.ladder : undefined,
+        departed: [],
+      };
+      if (!Number.isFinite(this.match.startTime)) this.match.startTime = this.time;
+      const p = this.player;
+      const mine = b.roster.find(r => r && r.id === b.you);
+      if (mine) {
+        p.name = String(mine.name || p.name);
+        p.team = mine.team | 0;
+        p.color.set(mine.color | 0);
+      }
+      p.netPeer = net.me.peer;
+      p.netHost = false;
+      p.isProxy = false;
+      this.addEntity(p, b.you | 0);
+      net.me.entityId = p.id;
+      const ents = new Map();
+      for (const e of b.ents || []) if (e && typeof e.id === 'number') ents.set(e.id, e);
+      for (const row of b.roster) if (row && row.id !== b.you) c.addAvatar(row, ents.get(row.id));
+      this.weapons.onMatchStart();
+      const own = ents.get(b.you);
+      p.kills = own ? own.kills | 0 : 0;
+      p.deaths = own ? own.deaths | 0 : 0;
+      p.streak = own ? own.streak | 0 : 0;
+      p.tier = own ? own.tier | 0 : 0;
+      p.zoneTime = own ? own.zoneTime || 0 : 0;
+      const pk = this.world.pickups && this.world.pickups.list;
+      if (pk && Array.isArray(b.pickups)) {
+        for (const q of b.pickups) {
+          const item = q && pk[q.id];
+          if (!item) continue;
+          item.available = !!q.available;
+          item.nextRespawn = q.available ? 0 : clock.netToLocalGame(this, fromWireTime(q.nr));
+        }
+      }
+      if (b.spawn) c.applyLocalSpawn(b.spawn, b.at);
+      else {
+        p.alive = false;
+        c.awaitingDeploy = !!b.deploy;
+        if (c.awaitingDeploy) {
+          this.hud.announce('CLICK TO DEPLOY', 'The match is running', 'info', 5000);
+          if (this.autotest) setTimeout(() => c.sendDeploy(), 500);
+          else if (this.input.locked) c.sendDeploy();
+        }
+      }
+      c.inMatchEpoch = b.e & 255;
+      net._publishTest();
+    }
+    // tail (both roles)
+    this._matchMenu = false;
+    this.hud.onMatchStart(this.match);
+    this.menu.hideLoading();
+    this.menu.hide();
+    this.hud.show(!this.spectate && !this.fixedCam);
+    this.state = 'playing';
+    this.input.enabled = true;
+    this.input.capture = true;
+    this.audio.play('match_start');
+    this.events.emit('match:start', this.match);
+  }
+
+  /** Client: the host ended the match ('end'): results with ids, winner per this machine, the outro. */
+  netApplyMatchEnd(msg) {
+    const m = this.match;
+    const c = this.net.client;
+    if (!m || m.over || !c) return;
+    const me = this.player.id;
+    const mark = r => ({ ...r, isLocal: r.id === me, isPlayer: r.id === me });
+    m.over = true;
+    m.reason = msg.reason || null;
+    m.winnerId = msg.winnerId | 0;
+    m.winnerTeam = msg.winnerTeam | 0;
+    const ts = msg.teamScores || {};
+    m.teamScores = { 1: ts[1] | 0, 2: ts[2] | 0 };
+    c.scoreAt = Math.max(c.scoreAt, Number(msg.at) || 0);
+    m.results = Array.isArray(msg.results) ? msg.results.map(mark) : this.getScoreboard();
+    m.departed = Array.isArray(msg.departed) ? msg.departed.map(mark) : [];
+    for (const r of m.results) {
+      const e = this.getEntityById(r.id);
+      if (e) { e.kills = r.kills | 0; e.deaths = r.deaths | 0; e.tier = r.tier | 0; e.zoneTime = r.zoneTime || 0; }
+    }
+    m.winner = c.refOf(m.winnerId);
+    m.draw = !isTeamMode(m.mode) && !m.winnerId;
+    m.playerWon = isTeamMode(m.mode) ? m.winnerTeam !== 0 && m.winnerTeam === this.player.team : !!m.winnerId && m.winnerId === me;
+    this.state = 'ended';
+    this._endTimer = NET.OUTRO_S;
+    this.input.enabled = false;
+    this.audio.play('match_end');
+    this.events.emit('match:end', m);
+  }
+
+  /** Online: everyone back to the lobby (the host's BACK TO LOBBY). The map stays loaded as the backdrop. */
+  netReturnToLobby() {
+    this._clearMatch();
+    this.player.reset();
+    this.player.alive = false;
+    this.weapons._resetState();
+    this.audio.stopAllLoops();
+    if (this.net.client) this.net.client.inMatchEpoch = -1;
+    this._matchMenu = false;
+    this.state = 'menu';
+    this.input.enabled = false;
+    this.input.capture = false;
+    this.input.exitLock();
+    this.hud.show(false);
+    this.menu.hideLoading();
+    if (this.menu.net) this.menu.net.showLobby();
+    if (this._deferredQuality) { this._deferredQuality = false; this._applyQualitySetting(); }
+    if (!this.autotest) this.audio.playMusic('menu');
+  }
+
+  /**
+   * NetSession._end: the session is over (left, closed, kicked, failed). Leaves the match, then the menu shows why.
+   * @param {string} reason @param {boolean} quiet a failed attempt to host / join (the caller reports it)
+   */
+  netSessionEnded(reason, quiet) {
+    if (this.match || (this.state !== 'menu' && this.state !== 'boot')) this.quitToMenu();
+    if (this.menu.net) this.menu.net.onSessionEnded(reason, quiet);
+  }
+
   // ================================================================== entities
 
-  /** Register an entity (assigns entity.id). */
-  addEntity(e) {
-    e.id = this._nextEntityId++;
+  /**
+   * Register an entity and assign entity.id: the next free id, or `id` when given (online: ids come from the host;
+   * the counter moves past it).
+   * @param {object} e
+   * @param {number} [id=0]
+   */
+  addEntity(e, id = 0) {
+    if (id > 0) {
+      e.id = id;
+      if (this._nextEntityId <= id) this._nextEntityId = id + 1;
+    } else {
+      e.id = this._nextEntityId++;
+    }
     if (!this.entities.includes(e)) this.entities.push(e);
+    this._byId.set(e.id, e);
     return e;
   }
 
   removeEntity(e) {
     const i = this.entities.indexOf(e);
     if (i >= 0) this.entities.splice(i, 1);
+    if (this._byId.get(e.id) === e) this._byId.delete(e.id);
   }
 
   getEntityById(id) {
-    return this.entities.find(e => e.id === id) || null;
+    return this._byId.get(id) || null;
   }
 
   /** Alive entities hostile to `e`. */
@@ -698,7 +998,7 @@ export class Game {
 
   _onDeath({ victim, attacker, weapon }) {
     const m = this.match;
-    if (!m) return;
+    if (!m || !this.net.authority) return;   // clients never score: the host's messages carry the results
     victim.deaths++;
     victim.streak = 0;
     if (attacker && attacker !== victim) {
@@ -710,8 +1010,12 @@ export class Game {
     } else if (weapon !== 'lightning') {
       victim.kills = Math.max(0, victim.kills - 1); // suicide penalty (not for storm strikes)
     }
-    this.modes.onDeath({ victim, attacker, weapon });   // Escalation promotion / King of the Hill kill bonus
-    victim.respawnAt = this.time + (victim.isPlayer ? RESPAWN_DELAY.player : RESPAWN_DELAY.bot);
+    try {
+      this.modes.onDeath({ victim, attacker, weapon });   // Escalation promotion / King of the Hill kill bonus
+    } catch (err) {
+      console.error('[game] mode death handling failed', err);   // never block the respawn and the score limit
+    }
+    victim.respawnAt = this.time + (victim.isBot ? RESPAWN_DELAY.bot : RESPAWN_DELAY.player);
     this._checkScoreLimit();
   }
 
@@ -730,8 +1034,10 @@ export class Game {
     return this.entities
       .map(e => ({
         id: e.id, name: e.name, kills: e.kills, deaths: e.deaths, team: e.team,
-        isPlayer: !!e.isPlayer, alive: e.alive, color: '#' + e.color.getHexString(),
+        isPlayer: !!e.isLocal, isLocal: e === this.player, isBot: !!e.isBot, isHuman: !!e.isHuman,
+        alive: e.alive, color: '#' + e.color.getHexString(),
         tier: e.tier | 0, zoneTime: e.zoneTime || 0,
+        ping: e.ping | 0, host: !!e.netHost, connected: e.connected !== false, hold: !!e.netHold,
       }))
       .sort((a, b) => b.tier - a.tier || b.kills - a.kills || a.deaths - b.deaths);
   }
@@ -739,6 +1045,8 @@ export class Game {
   _updateMatch(dt) {
     const m = this.match;
     if (!m) return;
+    if (!this.net.authority) { this.net.client.updateMatchClock(dt); return; }
+    if (m.phase === 'countdown') return;   // online countdown: no timer, no respawns
     if (!m.over && Number.isFinite(m.timeLeft)) {
       m.timeLeft -= dt;
       if (m.timeLeft <= 0) {
@@ -749,7 +1057,7 @@ export class Game {
     const killY = this.world.killY ?? -50;
     for (const e of this.entities) {
       if (e.alive) {
-        if (e.position.y < killY) {
+        if (e.authPos.y < killY) {
           // shoved off the map (Gale, Kinetic Charge) within 8 s: a ring-out credited to the shover, even when someone
           // else hit the victim in mid-air; otherwise the last attacker of the last 6 s gets the fall
           const sb = e._shovedBy;
@@ -757,7 +1065,7 @@ export class Game {
           const recent = e.lastAttacker && this.time - e.lastDamageTime < 6 ? e.lastAttacker : null;
           this.combat.kill(e, { attacker: shover || recent, weapon: shover ? 'ringout' : 'fall' });
         }
-      } else if (!m.over && e.respawnAt >= 0 && this.time >= e.respawnAt) {
+      } else if (!m.over && e.respawnAt >= 0 && this.time >= e.respawnAt && !e.netHold) {
         this.respawnEntity(e);
       }
     }
@@ -906,18 +1214,64 @@ export class Game {
     // rAF does nothing at all (no input edges consumed, no time advanced); the next frame that runs simulates the
     // skipped time with fresh input. Menus, loading and pause never skip (warmup() relies on the next rAF drawing).
     if (this.state === 'playing' && this.frameLimiter.shouldSkip()) return;
+    const t = performance.now();
+    // a single long frame (a hitch) must not switch the host to Worker-boosted frames for the next dozen frames
+    if (this._lastRafMs) this._rafIntervalEma = this._rafIntervalEma * 0.9 + Math.min(t - this._lastRafMs, 100) * 0.1;
+    this._lastRafMs = t;
+    // online: one clock for rAF and Worker frames; offline: the rAF timestamp exactly as before
+    this._frame(this.net.online ? t : nowMs, true);
+  }
+
+  /**
+   * HostTicker message (online only, ~60 Hz, also while the tab is hidden): run a simulation + network frame without
+   * rendering when rAF frames are missing (hidden tab, stall) or - on the host - slower than ~55 Hz, so snapshots and
+   * the other players' view of this machine never depend on its render rate.
+   */
+  _hostTick() {
+    if (!this.net.online) return;
+    const now = performance.now();
+    const since = now - this._lastFrameEndMs;
+    if (since < NET.TICK_COALESCE_MS) return;   // ticks queued behind a stall collapse into one frame
+    const stalled = document.hidden || now - this._lastRafMs > NET.RAF_STALL_MS;
+    const boost = this.net.isHost && this._rafIntervalEma > NET.HOST_BOOST_RAF_MS && since >= NET.HOST_TICK_MS - 1.5;
+    if (stalled || boost) this._frame(now, false);
+  }
+
+  /** Run fn, reporting (not throwing) its error: one failing stage never skips the rest of the frame. */
+  _guard(fn) {
+    try {
+      fn();
+    } catch (err) {
+      this._reportFrameError(err);
+    }
+  }
+
+  /**
+   * One frame: input, network in, simulation (by state), network out, render (rAF frames only), autotest, input end.
+   * Offline it is exactly the old loop: rAF timestamp clock, dt <= 50 ms x timeScale, no network work. Online the
+   * clock is performance.now(), dt <= 250 ms in <= 50 ms sub-steps (real time for everyone), and the packets of this
+   * frame leave before the (possibly slow) render.
+   * @param {number} nowMs @param {boolean} render
+   */
+  _frame(nowMs, render) {
+    const net = this.net;
+    const online = net.online;
     const now = nowMs / 1000;
     let raw = this._lastFrameTime ? now - this._lastFrameTime : 1 / 60;
     this._lastFrameTime = now;
-    if (!(raw > 0)) raw = 1 / 60;
+    if (online) { if (!(raw >= 0)) raw = 0; } else if (!(raw > 0)) raw = 1 / 60;   // online never invents 16.7 ms
     if (raw > 0.25) raw = 0.25;
     this.realTime += raw;
-    this.fps = this.fps * 0.93 + (1 / raw) * 0.07;
-    this.renderer.info.reset();
+    this.simHz = this.simHz * 0.93 + (1 / Math.max(raw, 1e-3)) * 0.07;
+    if (render) {
+      this.fps = online ? 1000 / Math.max(1, this._rafIntervalEma) : this.fps * 0.93 + (1 / raw) * 0.07;
+      this.renderer.info.reset();
+    }
     this.input.update();
+    if (online) this._guard(() => net.beginFrame(raw));
 
     try {
-      const dt = Math.min(raw, 0.05) * this.timeScale;
+      const dt = online ? Math.min(raw, NET.DT_MAX) : Math.min(raw, 0.05) * this.timeScale;
       switch (this.state) {
         case 'playing':
           this.update(dt);
@@ -941,33 +1295,60 @@ export class Game {
         default:
           break;
       }
-      this.render();
-      if (this.state === 'playing') this.frameLimiter.frameSubmitted();
     } catch (err) {
       this._reportFrameError(err);
     }
-
-    if (this.autotest) this.autotest.frame(raw);
-    this.input.endFrame();
+    if (online) this._guard(() => net.endFrame(raw));   // snapshots / state / messages leave BEFORE the render
+    if (render) {
+      this._guard(() => {
+        this.render();
+        if (this.state === 'playing') this.frameLimiter.frameSubmitted();
+      });
+    }
+    if (this.autotest) this._guard(() => this.autotest.frame(raw, render));
+    this.input.endFrame();   // always: a stale press edge never leaks into the next frame
     this.frame++;
+    this._lastFrameEndMs = performance.now();
   }
 
-  /** One simulation step. Order matters - see ARCHITECTURE.md "Frame order". */
+  /**
+   * One simulation frame. Order matters - see ARCHITECTURE.md "Frame order". Online, frames longer than 50 ms run the
+   * world in up to 5 equal sub-steps (the player and weapons once, with <= 100 ms); offline it is a single step in the
+   * same order as always.
+   */
   update(dt) {
-    this.time += dt;
-    if (this.autotest) this.autotest.update(dt);
-    if (!this.spectate) {
-      this.player.update(dt);
-      this._syncAim();            // shots / throws / melee below use THIS frame's view
-      this.weapons.update(dt);
+    const net = this.net;
+    const online = net.online;
+    const n = online && dt > NET.SUB_STEP_MAX ? Math.min(NET.SUBSTEPS_MAX, Math.ceil(dt / NET.SUB_STEP_MAX - 1e-9)) : 1;
+    const h = dt / n;
+    const dp = online ? Math.min(dt, NET.PLAYER_DT_MAX) : dt;
+    const counting = !!(this.match && this.match.phase === 'countdown');   // online only (offline: no phase)
+    for (let i = 0; i < n; i++) {
+      this.time += h;
+      if (i === 0) {
+        if (this.autotest) this.autotest.update(dt);
+        if (net.client) net.client.refreshTimes();
+        if (!this.spectate) {
+          this.player.update(dp);
+          this._syncAim();            // shots / throws / melee below use THIS frame's view
+          net.fxBegin('weapons');
+          this.weapons.update(dp);
+          net.fxEnd();
+        }
+        net.updateRemotes(dt);
+      }
+      net.simBegin();
+      if (net.authority) {
+        this.bots.update(h);
+        this.combat.update(h);
+      }
+      this.projectiles.update(h);
+      this.world.update(h);
+      if (!counting) this.modes.update(h);
+      net.simEnd();
+      if (i === n - 1) this.effects.update(dt);
+      this._updateMatch(h);
     }
-    this.bots.update(dt);
-    this.combat.update(dt);
-    this.projectiles.update(dt);
-    this.world.update(dt);
-    this.modes.update(dt);
-    this.effects.update(dt);
-    this._updateMatch(dt);
     this._updateCamera(dt);
     this.weapons.updateViewModel(dt);
     this.audio.update(dt);
@@ -978,6 +1359,13 @@ export class Game {
     this._menuT += dt;
     this.world.update(dt);
     this.effects.update(dt);
+    this._updateOverviewCamera(0);
+    this.audio.update(dt);
+  }
+
+  /** Slow orbit over the map (menu backdrop; online: a late joiner before deploying). */
+  _updateOverviewCamera(dt) {
+    if (dt) this._menuT += dt;
     const def = this.world.def;
     const pc = def && def.previewCamera;
     if (pc) {
@@ -996,7 +1384,6 @@ export class Game {
     }
     this.camera.fov = this.getBaseFov();
     this.camera.updateProjectionMatrix();
-    this.audio.update(dt);
   }
 
   /**
@@ -1018,6 +1405,11 @@ export class Game {
   }
 
   _updateCamera(dt) {
+    if (this.net.client && this.net.client.awaitingDeploy && !this.player.alive) {
+      this._updateOverviewCamera(dt);
+      this._syncViewCamera();
+      return;
+    }
     if (this.fixedCam) {
       const [x, y, z, yaw = 0, pitch = 0] = this.fixedCam;
       this.camera.position.set(x, y, z);

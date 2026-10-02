@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { ARSENAL_PRESETS, resolveArsenal } from '../ai/BotConfig.js';
 import { sanitizePick } from '../weapons/Loadout.js';
+import { normalizeCode } from '../net/protocol.js';
 
 /** ?arsenal= value: a preset id (balanced|norockets|classic|chaos) or `weapon:level,...` (missing weapons keep the default). */
 function parseArsenalParam(v) {
@@ -34,6 +35,15 @@ function parseArsenalParam(v) {
  *   mapfile=<path.js> (custom test map module, default export = map definition)
  *   scenario=<path.js> (module exporting drive(t, dt, game, report), optional setup(game, report) / finish(game, report);
  *                       replaces the built-in script; write custom results into report.custom)
+ *
+ * Multiplayer (tools/run_mp.py runs one page per human):
+ *   net=host|join  room=<CODE>  name=<display name>  players=<N: the host starts once N humans incl. itself are in the
+ *   lobby>  server=<address> (default: the page's server)  snaphz=30|60  godall=1 (host: every human ignores damage)
+ *   netem=lan|wifi|bad|<spec> (test network impairment, net/NetEm.js)  buildOverride=<id>  latejoin=<s> (join that much later)
+ *   duration counts real seconds from the match start; a run also finishes 5 s after the match ends. A scenario may
+ *   export frame(game, report, nowMs), called every frame in any state: 'done' finishes the run, 'wait' holds the
+ *   default end.
+ *   report.net = game.net.report().
  */
 export class AutoTest {
   constructor(game, params) {
@@ -67,6 +77,7 @@ export class AutoTest {
 
   async start() {
     const g = this.game, p = this.params, r = this.report;
+    this.online = p.has('net');
     g.events.on('damage', e => {
       r.events.damage++;
       if (e.attacker === g.player && e.target !== g.player) r.player.damageDealt += e.amount;
@@ -97,6 +108,10 @@ export class AutoTest {
     }
 
     if (p.get('loadout')) g.player.loadoutPick = sanitizePick(p.get('loadout'));
+    if (this.online) {
+      await this._startNet(mapId);
+      return;
+    }
     await g.startMatch({
       mapId,
       mode: p.get('mode') || 'ffa',
@@ -115,6 +130,74 @@ export class AutoTest {
     if (this.scenario && this.scenario.setup) await this.scenario.setup(g, r);
     r.started = true;
     this._lastPlayerPos.copy(g.player.position);
+  }
+
+  /**
+   * Multiplayer run: host a room (and start once `players` humans are in) or join one (retrying until the host's room
+   * exists), then let the session drive the match. The report starts at the first match start.
+   */
+  async _startNet(mapId) {
+    const g = this.game, p = this.params, r = this.report;
+    const net = g.net;
+    const role = p.get('net');
+    const code = normalizeCode(p.get('room') || '');
+    const name = p.get('name') || (role === 'host' ? 'Host' : 'Player');
+    const server = p.get('server') || undefined;
+    if (p.get('snaphz')) g.settings.data.mpSnapHz = parseInt(p.get('snaphz'), 10) === 30 ? 30 : 60;
+    g.settings.data.playerName = name;
+    const godall = p.has('godall') || p.has('god');
+    g.events.on('spawn', e => {
+      if (!e || !e.entity) return;
+      if ((p.has('godall') && e.entity.isHuman) || (p.has('god') && e.entity === g.player)) e.entity.god = true;
+    });
+    g.events.on('match:start', () => {
+      if (!r.started) {
+        r.started = true;
+        r.map = g.world.mapId;
+        this._netStartedAt = performance.now();
+        this._lastPlayerPos.copy(g.player.position);
+        if (this.scenario && this.scenario.setup) {
+          Promise.resolve(this.scenario.setup(g, r)).catch(err => console.error('[autotest] scenario.setup threw', err));
+        }
+      }
+      if (godall && p.has('god')) g.player.god = true;
+    });
+    g.events.on('match:end', () => { this._netEndedAt = performance.now(); });
+    g.events.on('net:closed', e => { this._closedReason = e && e.reason; this._closedAt = performance.now(); });
+    r.net = { role };
+    if (role === 'host') {
+      await net.hostRoom({
+        mapId, mode: p.get('mode') || 'ffa', botCount: parseInt(p.get('bots') ?? '2', 10), difficulty: p.get('diff') || 'normal',
+        scoreLimit: parseInt(p.get('score') ?? '0', 10) || 0, timeLimit: parseFloat(p.get('time') ?? '0') || 0,
+        arsenal: parseArsenalParam(p.get('arsenal')), pool: p.get('pool') || undefined,
+      }, { name, code: code || null, maxPlayers: 8, public: true, server });
+      this._waitPlayers = Math.max(1, parseInt(p.get('players') || '1', 10));
+    } else {
+      // latejoin=S: join S seconds after the host's match began (the host page reports its phase in window.__NET__)
+      if (p.get('latejoin')) await new Promise(res => setTimeout(res, parseFloat(p.get('latejoin')) * 1000));
+      let lastErr = null;
+      for (let i = 0; i < 120; i++) {
+        try {
+          await net.joinRoom(code, { name, server });
+          lastErr = null;
+          break;
+        } catch (err) {
+          lastErr = err;
+          if (err.code !== 'no-such-room' && err.code !== 'cannot-connect' && err.code !== 'timeout') break;
+          await new Promise(res => setTimeout(res, 500));
+        }
+      }
+      if (lastErr) {
+        // a refusal can be the point of the test (buildOverride, kicked): report it and finish this page
+        const expected = p.has('buildOverride') || p.has('expectRefusal');
+        (expected ? console.warn : console.error)('[autotest] could not join room', code, lastErr.code || lastErr.message);
+        r.net = { role: 'offline', joinError: lastErr.code || String(lastErr.message), closed: this._closedReason || null };
+        r.started = true;
+        this.finish();
+        return;
+      }
+      net.setReady(true);
+    }
   }
 
   /** Called by Game.update before the player updates. */
@@ -151,12 +234,14 @@ export class AutoTest {
       rec.pos.copy(b.position);
     }
 
-    if (this.t >= this.duration && !r.done) this.finish();
+    if (!this.online && this.t >= this.duration && !r.done) this.finish();
   }
 
-  /** Called every rendered frame (even when not simulating). */
-  frame(rawDt) {
+  /** Called every frame (even when not simulating); `render` false = an online simulation-only frame. */
+  frame(rawDt, render = true) {
     const r = this.report;
+    if (this.online) this._netFrame();
+    if (!render) return;
     r.frames++;
     const info = this.game.renderer.info;
     this._renderStats = { calls: info.render.calls, triangles: info.render.triangles };
@@ -168,6 +253,25 @@ export class AutoTest {
       r.fps.min = Math.min(r.fps.min, fps);
       r.fps.max = Math.max(r.fps.max, fps);
     }
+  }
+
+  _netFrame() {
+    const g = this.game, r = this.report, net = g.net;
+    if (this._waitPlayers && net.isHost && net.phase === 'lobby' && net.room && (net.room.players || []).length >= this._waitPlayers) {
+      this._waitPlayers = 0;
+      net.start();
+    }
+    // a scenario's frame() runs every frame in any state (menus, end screen, lobby): 'done' finishes the run, 'wait'
+    // holds the default end (duration / 5 s after the match end) while it drives a longer flow
+    if (this.scenario && this.scenario.frame && !r.done) {
+      let res;
+      try { res = this.scenario.frame(g, r, performance.now()); } catch (err) { console.error('[autotest] scenario.frame threw', err); }
+      if (res === 'done') { this.finish(); return; }
+      if (res === 'wait') return;
+    }
+    if (r.done || !r.started) return;
+    const now = performance.now();
+    if (now - this._netStartedAt >= this.duration * 1000 || (this._netEndedAt && now - this._netEndedAt > 5000)) this.finish();
   }
 
   _drive(t, dt) {
@@ -245,6 +349,14 @@ export class AutoTest {
     r.fps.max = +r.fps.max.toFixed(1);
     r.player.distance = +r.player.distance.toFixed(1);
     r.player.maxSpeed = +r.player.maxSpeed.toFixed(2);
+    if (g.net && g.net.role !== 'offline') {
+      r.net = { ...g.net.report(), closed: this._closedReason || null };
+      r.entities = g.entities.map(e => ({
+        id: e.id, name: e.name, isBot: !!e.isBot, isHuman: !!e.isHuman, team: e.team, kills: e.kills, deaths: e.deaths, alive: !!e.alive,
+      }));
+      r.state = g.state;
+      r.match = g.match ? { phase: g.match.phase, over: !!g.match.over, winnerId: g.match.winnerId | 0, timeLeft: g.match.timeLeft } : null;
+    }
     if (this.scenario && this.scenario.finish) {
       try { this.scenario.finish(g, r); } catch (err) { console.error('[autotest] scenario.finish threw', err); }
     }

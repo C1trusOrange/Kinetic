@@ -21,6 +21,7 @@ there this prints 'KINETIC is already running' and, with --open, just opens the 
 """
 import argparse
 import functools
+import hashlib
 import http.server
 import json
 import os
@@ -29,6 +30,7 @@ import socketserver
 import subprocess
 import sys
 import threading
+import time
 import urllib.request
 import webbrowser
 from urllib.parse import urlsplit
@@ -83,6 +85,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def _relay_request(self):
         """Hand /ws and /api/* to the multiplayer relay. True if it answered the request."""
         path = urlsplit(self.path).path
+        if path == '/api/build':
+            # the game files' version: a host refuses players whose page came from other files (a stale tab)
+            netserver._http_json(self, {'build': build_id(self.directory)})
+            return True
         relay = getattr(self.server, 'relay', None)
         if relay is None or not (path == netserver.WS_PATH or path.startswith('/api/')):
             return False
@@ -102,6 +108,38 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             # '/' serves index.html; without one it would be a directory listing
             return public_path_allowed(os.path.join(self.directory, 'index.html'), self.directory)
         return public_path_allowed(self.translate_path(self.path), self.directory)
+
+
+_build_cache = {'at': 0.0, 'root': None, 'id': ''}
+
+
+def build_id(root=ROOT):
+    """Short hash of the names, sizes and modification times of the game files (index.html, style.css, src/, vendor/),
+    cached for 2 s: two pages with the same id run the same code."""
+    now = time.monotonic()
+    c = _build_cache
+    if c['root'] == root and now - c['at'] < 2.0:
+        return c['id']
+    h = hashlib.sha1()
+    for name in ('index.html', 'style.css'):
+        try:
+            st = os.stat(os.path.join(root, name))
+            h.update(f'{name}:{st.st_size}:{st.st_mtime_ns};'.encode())
+        except OSError:
+            pass
+    for top in ('src', 'vendor'):
+        base = os.path.join(root, top)
+        for dirpath, dirnames, filenames in os.walk(base):
+            dirnames.sort()
+            for fn in sorted(filenames):
+                fp = os.path.join(dirpath, fn)
+                try:
+                    st = os.stat(fp)
+                except OSError:
+                    continue
+                h.update(f'{os.path.relpath(fp, root)}:{st.st_size}:{st.st_mtime_ns};'.encode())
+    c.update(at=now, root=root, id=h.hexdigest()[:12])
+    return c['id']
 
 
 def public_path_allowed(fs_path, root=ROOT):

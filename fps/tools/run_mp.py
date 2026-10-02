@@ -28,6 +28,14 @@ Examples
   python tools/run_mp.py --page "tools/nettest.html?role=host&room={room}&clients=1" \\
       --page "tools/nettest.html?role=client&room={room}&i=1" --host-wait "window.__NETTEST__.ready" \\
       --wait "window.__NETTEST__.done" --eval "window.__NETTEST__"
+
+  # multiplayer suites (tools/mp/scenarios/*.js, checked by tools/mp_check.py):
+  #   --hide 0:10:5     minimize page 0's window from t = 10 s for 5 s (document.hidden, no rAF, throttled timers);
+  #                     WHEN may be 'load': when page 0 first reports window.__NET__.phase === 'loading'
+  #   --close 0:30      close page 0 at t = 30 s (the host leaving)
+  #   --relay idle_timeout=3,stall_timeout=3   relay option overrides (netserver DEFAULTS keys)
+  #   --node-relay --node-relay-env KINETIC_HOST_KEY=k --node-relay-arg=--no-room-list   the Node relay set up as an
+  #                     online server (host key, unlisted rooms); {server} in a URL is its address
 """
 import argparse
 import base64
@@ -181,7 +189,43 @@ def main():
     ap.add_argument('--nettest', nargs='?', type=int, const=3, metavar='CLIENTS',
                     help='preset: the transport test with 1 host + CLIENTS (default 3) client pages + 1 edge-case page')
     ap.add_argument('--dur', type=float, default=8, help='--nettest: seconds of traffic (default 8)')
+    ap.add_argument('--hide', action='append', default=[], metavar='PAGE:WHEN:DUR',
+                    help="minimize a page's window at WHEN (seconds after the first navigation, or 'load') for DUR s (repeat)")
+    ap.add_argument('--close', action='append', default=[], metavar='PAGE:T', help='close a page at T seconds (repeat)')
+    ap.add_argument('--relay', action='append', default=[], metavar='KEY=VALUE[,KEY=VALUE]',
+                    help='relay option overrides (netserver DEFAULTS), e.g. idle_timeout=3')
+    ap.add_argument('--node-relay', action='store_true',
+                    help="multiplayer pages use the desktop app's Node relay (desktop/relay.js, started on a free loopback "
+                         "port) instead of the Python one: game pages with net= get &server=127.0.0.1:<port>")
+    ap.add_argument('--node-relay-arg', action='append', default=[], metavar='ARG',
+                    help="extra command-line argument for the Node relay, written with = (--node-relay-arg=--no-room-list; repeat)")
+    ap.add_argument('--node-relay-env', action='append', default=[], metavar='KEY=VALUE',
+                    help='environment variable for the Node relay, e.g. KINETIC_HOST_KEY=secret (repeat)')
     args = ap.parse_args()
+    relay_options = {}
+    for spec in args.relay:
+        for part in spec.split(','):
+            if not part.strip():
+                continue
+            k, _, v = part.partition('=')
+            k = k.strip()
+            if k not in netserver.DEFAULTS:
+                ap.error(f'--relay: unknown option {k!r} (known: {", ".join(netserver.DEFAULTS)})')
+            relay_options[k] = type(netserver.DEFAULTS[k])(float(v)) if isinstance(netserver.DEFAULTS[k], (int, float)) else v
+    hides = []
+    for spec in args.hide:
+        try:
+            pg, when, dur = spec.split(':')
+            hides.append({'page': int(pg), 'when': when, 'dur': float(dur), 'at': None, 'until': None, 'done': False})
+        except ValueError:
+            ap.error(f'--hide {spec!r}: expected PAGE:WHEN:DUR')
+    closes = []
+    for spec in args.close:
+        try:
+            pg, t = spec.split(':')
+            closes.append({'page': int(pg), 't': float(t), 'done': False})
+        except ValueError:
+            ap.error(f'--close {spec!r}: expected PAGE:T')
 
     templates = list(args.page)
     if args.nettest:
@@ -208,7 +252,17 @@ def main():
     names = sorted({o for o in origins if o not in ('localhost',) and not _is_ip(o)})
     extra = [f'--host-resolver-rules={",".join(f"MAP {o} 127.0.0.1" for o in names)}'] if names else []
 
-    server, port = serve_in_background(0, lan=args.remote, bind='127.0.0.1')   # never 0.0.0.0
+    server, port = serve_in_background(0, lan=args.remote, bind='127.0.0.1', relay_options=relay_options)   # never 0.0.0.0
+    node_relay = node_port = None
+    if args.node_relay:
+        env = {}
+        for spec in args.node_relay_env:
+            k, sep, v = spec.partition('=')
+            if not sep or not k:
+                ap.error(f'--node-relay-env {spec!r}: expected KEY=VALUE')
+            env[k] = v
+        node_relay, node_port = start_node_relay(port, origins, relay_options, args.node_relay_arg, env)
+        print(f'[run_mp] node relay on 127.0.0.1:{node_port}')
     if args.remote:
         server.is_trusted = lambda ip: False                 # treat the loopback pages as other machines
     proc = profile = None
@@ -221,25 +275,70 @@ def main():
         browser = CDP(browser_ws)
         urls = []
         for i, tpl in enumerate(templates):
-            rel = fill(tpl, {'i': i, 'n': n, 'role': 'host' if i == 0 else 'client', 'room': room, 'port': port})
+            rel = fill(tpl, {'i': i, 'n': n, 'role': 'host' if i == 0 else 'client', 'room': room, 'port': port,
+                             'server': f'127.0.0.1:{node_port}' if node_port else ''})
+            if node_port and 'net=' in rel and 'server=' not in rel:
+                rel += ('&' if '?' in rel else '?') + f'server=127.0.0.1:{node_port}'
             urls.append(f'http://{origins[i]}:{port}/{rel.lstrip("/")}')
         t0 = time.time()
         deadline = t0 + args.timeout
         shots = sorted(float(s) for s in args.shots.split(',')) if args.shots else []
 
+        def window_state(page, state):
+            try:
+                w = browser.call('Browser.getWindowForTarget', {'targetId': page.target})
+                browser.call('Browser.setWindowBounds', {'windowId': w['windowId'], 'bounds': {'windowState': state}})
+                print(f'[run_mp] p{page.index} window {state} at {time.time() - t0:.1f} s')
+            except Exception as err:  # noqa: BLE001
+                page.log.out('error', f'[run_mp] could not set window state {state}: {err}')
+
+        def schedule():
+            el = time.time() - t0
+            for h in hides:
+                if h['done'] or h['page'] >= len(pages):
+                    continue
+                pg = pages[h['page']]
+                if h['at'] is None:
+                    if h['when'] == 'load':
+                        if pages and pages[0].check("window.__NET__ && window.__NET__.phase === 'loading'"):
+                            h['at'] = el
+                    else:
+                        h['at'] = float(h['when'])
+                if h['at'] is not None and h['until'] is None and el >= h['at']:
+                    window_state(pg, 'minimized')
+                    h['until'] = el + h['dur']
+                elif h['until'] is not None and el >= h['until']:
+                    window_state(pg, 'normal')
+                    h['done'] = True
+            for c in closes:
+                if not c['done'] and c['page'] < len(pages) and el >= c['t']:
+                    c['done'] = True
+                    pg = pages[c['page']]
+                    try:
+                        browser.call('Target.closeTarget', {'targetId': pg.target})
+                        pg.closed = True
+                        ok_wait[pg.index] = True
+                        print(f'[run_mp] p{pg.index} closed at {el:.1f} s')
+                    except Exception as err:  # noqa: BLE001
+                        pg.log.out('error', f'[run_mp] could not close p{pg.index}: {err}')
+
         def pump():
             for p in pages:
-                p.drain()
+                if not getattr(p, 'closed', False):
+                    p.drain()
+            schedule()
             el = time.time() - t0
             while shots and el >= shots[0]:
                 s = shots.pop(0)
                 for p in pages:
-                    p.screenshot(f'{args.out}_p{p.index}_{s:g}s.png')
+                    if not getattr(p, 'closed', False):
+                        p.screenshot(f'{args.out}_p{p.index}_{s:g}s.png')
 
         for i, url in enumerate(urls):
             target = first if i == 0 else browser.call('Target.createTarget', {
                 'url': 'about:blank', 'newWindow': True, 'width': width, 'height': height})['targetId']
             page = Page(i, url, CDP(f'ws://127.0.0.1:{dbg}/devtools/page/{target}'), PageLog(i, args.quiet, args.max_log))
+            page.target = target
             page.setup(width, height)
             print(f'[run_mp] p{i} {url}')
             page.cdp.call('Page.navigate', {'url': url})
@@ -260,6 +359,8 @@ def main():
             if time.time() - last_poll > 0.25:
                 last_poll = time.time()
                 for p in pages:
+                    if getattr(p, 'closed', False):
+                        continue
                     if not ok_wait[p.index] and p.check(wait):
                         ok_wait[p.index] = True
                         p.done_at = round(time.time() - t0, 2)
@@ -272,14 +373,22 @@ def main():
             pump()
             time.sleep(0.05)
         pump()
+        for h in hides:                                  # never leave a window minimized
+            if h['until'] is not None and not h['done'] and h['page'] < len(pages):
+                window_state(pages[h['page']], 'normal')
+        live = [p for p in pages if not getattr(p, 'closed', False)]
         for s in shots:                                  # shots scheduled past the end
-            for p in pages:
+            for p in live:
                 p.screenshot(f'{args.out}_p{p.index}_{s:g}s.png')
         if args.shot:
             root, ext = os.path.splitext(args.shot)
-            for p in pages:
+            for p in live:
                 p.screenshot(f'{root}_p{p.index}{ext or ".png"}')
         for p in pages:
+            if getattr(p, 'closed', False):
+                results.append({'page': p.index, 'url': p.url, 'waitOk': True, 'doneAt': None, 'closed': True,
+                                'consoleErrors': list(p.log.errors), 'warnings': p.log.warnings, 'result': None})
+                continue
             val = None
             if eval_expr:
                 val = p.value(eval_expr)
@@ -308,11 +417,42 @@ def main():
             shutil.rmtree(profile, ignore_errors=True)
         server.shutdown()
         server.server_close()
+        if node_relay is not None:
+            try:
+                node_relay.stdin.close()   # EOF stops the relay
+                node_relay.wait(timeout=5)
+            except Exception:  # noqa: BLE001
+                node_relay.kill()
     if args.json_out:
         os.makedirs(os.path.dirname(os.path.abspath(args.json_out)), exist_ok=True)
         with open(args.json_out, 'w', encoding='utf-8') as f:
             json.dump({'ok': code == 0, 'room': room, 'pages': results}, f, indent=1)
     sys.exit(code)
+
+
+def start_node_relay(serve_port, origins, relay_options, extra_args=(), env=None):
+    """Start desktop/relay.js on a free loopback port for the pages at http://<origin>:<serve_port>; returns (proc, port)."""
+    cmd = ['node', os.path.join(ROOT, 'desktop', 'relay.js'), '--loopback', '--port', '0', '--quiet',
+           '--max-conns-per-ip', '0', '--join-rate', '0', '--control-rate', '0']
+    for o in sorted(set(origins)):
+        cmd += ['--allow-origin', f'http://{o}:{serve_port}']
+    for k, v in relay_options.items():
+        cmd += ['--' + k.replace('_', '-'), str(v)]
+    cmd += list(extra_args)
+    environ = {k: v for k, v in os.environ.items() if k != 'KINETIC_HOST_KEY'}
+    environ.update(env or {})
+    proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, env=environ,
+                            cwd=ROOT)
+    deadline = time.time() + 15
+    while time.time() < deadline:
+        line = proc.stdout.readline()
+        if not line:
+            break
+        if 'ready on' in line and 'port' in line:
+            port = int(line.rsplit('port', 1)[1].split()[0])
+            return proc, port
+    proc.kill()
+    raise SystemExit('[run_mp] the Node relay did not start')
 
 
 def _is_ip(host):

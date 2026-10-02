@@ -6,6 +6,7 @@ import { asPos } from './BotConfig.js';
 import { pullFromEdges } from './BotNav.js';
 import { BotShadowCaster, BotOutlines } from './BotModel.js';
 import { WEAPON_ORDER } from '../weapons/WeaponDefs.js';
+import { yieldHiddenSafe } from '../core/utils.js';
 
 const _o = new THREE.Vector3();
 const SEPARATION_RADIUS = 0.95;
@@ -121,7 +122,7 @@ export class BotManager {
       if (near >= 2 && near <= 5) spots.cover.push({ pos: p.clone(), near });
       if (far >= 3) scored.push({ pos: p.clone(), score: sum + p.y * 4 });
       if (performance.now() - lastYield > 40) {
-        await new Promise(r => setTimeout(r, 0));
+        await yieldHiddenSafe(() => new Promise(r => setTimeout(r, 0)));
         lastYield = performance.now();
       }
     }
@@ -165,12 +166,16 @@ export class BotManager {
    * @param {number} count
    * @param {string} difficulty 'easy' | 'normal' | 'hard' | 'insane'
    * @param {string} mode 'ffa' | 'tdm' | 'escalation' | 'koth' (team modes alternate red / blue, the others are free-for-all)
+   * @param {{teams?: number[], reservedNames?: string[]}} [opts] online host: `teams[i]` = team of bot i in a team mode
+   *   (instead of the alternation), `reservedNames` = names the bots must not take (the humans')
    * @returns {Bot[]}
    */
-  spawnBots(count, difficulty = 'normal', mode = 'ffa') {
+  spawnBots(count, difficulty = 'normal', mode = 'ffa', opts = {}) {
     const game = this.game;
     const diff = DIFFICULTIES.includes(difficulty) ? difficulty : 'normal';
-    const names = BOT_NAMES.slice();
+    const reserved = new Set((opts.reservedNames || []).map(n => String(n).toLowerCase()));
+    const names = reserved.size ? BOT_NAMES.filter(n => !reserved.has(n.toLowerCase())) : BOT_NAMES.slice();
+    if (!names.length) names.push(...BOT_NAMES);
     for (let i = names.length - 1; i > 0; i--) {
       const j = (Math.random() * (i + 1)) | 0;
       [names[i], names[j]] = [names[j], names[i]];
@@ -181,7 +186,8 @@ export class BotManager {
       game.addEntity(bot);
       let team, color;
       if (isTeamMode(mode)) {
-        team = i % 2 === 0 ? TEAM_RED : TEAM_BLUE;
+        const planned = opts.teams && opts.teams[i];
+        team = planned === TEAM_BLUE || planned === TEAM_RED ? planned : i % 2 === 0 ? TEAM_RED : TEAM_BLUE;
         color = TEAM_COLORS[team];
       } else {
         team = bot.id;
@@ -332,12 +338,19 @@ export class BotManager {
       this.camPos.copy(cam.position);
       cam.getWorldDirection(this.camFwd);
     }
+    const counting = !!(this.game.match && this.game.match.phase === 'countdown');
     const start = this._rot++ % n;
     for (let k = 0; k < n; k++) {
       const bot = bots[(start + k) % n];
       if (!bot.alive) continue;
       try {
-        bot.update(dt);
+        if (counting) bot._updateModel(dt);   // online match countdown: idle pose, no AI and no movement
+        else {
+          const fx = this.game.net && this.game.net.fx;
+          if (fx) fx.anchor = bot.id;          // online host: this bot's muzzle effects replay from its avatar's gun
+          bot.update(dt);
+          if (fx) fx.anchor = 0;
+        }
       } catch (err) {
         const key = String(err && err.message);
         const c = (this._errors.get(key) || 0) + 1;
@@ -348,10 +361,11 @@ export class BotManager {
     this._separate();
   }
 
-  /** Soft push so bots (and bots vs. the player) do not stand inside each other. */
+  /** Soft push so bots (and bots vs. the humans) do not stand inside each other. */
   _separate() {
     const bots = this._bots;
-    const player = this.game.player;
+    const game = this.game;
+    const ents = game.entities;
     const R = SEPARATION_RADIUS;
     for (let i = 0; i < bots.length; i++) {
       const a = bots[i];
@@ -376,11 +390,14 @@ export class BotManager {
         a._pushX -= nx * push; a._pushZ -= nz * push;
         b._pushX += nx * push; b._pushZ += nz * push;
       }
-      if (player && player.alive && !this.game.spectate) {
-        const dx = a.position.x - player.position.x;
-        const dz = a.position.z - player.position.z;
+      if (game.spectate) continue;
+      for (let j = 0; j < ents.length; j++) {
+        const h = ents[j];
+        if (!h.isHuman || !h.alive) continue;
+        const dx = a.position.x - h.position.x;
+        const dz = a.position.z - h.position.z;
         const d2 = dx * dx + dz * dz;
-        if (d2 < R * R && Math.abs(a.position.y - player.position.y) < 1.6) {
+        if (d2 < R * R && Math.abs(a.position.y - h.position.y) < 1.6) {
           const d = Math.sqrt(d2) || 0.01;
           const push = (R - d) / R * 2.5;
           a._pushX += (dx / d) * push;
@@ -415,6 +432,7 @@ export class BotManager {
     if (!e) return;
     const { target, attacker } = e;
     if (target && target.isBot && target.alive && target.brain) target.brain.onDamaged(attacker);
-    if (attacker && attacker.isBot && target !== attacker) attacker.stats.damage += e.amount || 0;
+    // NetAvatar bots (clients) have no stats: shared listeners only rely on Entity fields
+    if (attacker && attacker.isBot && attacker.stats && target !== attacker) attacker.stats.damage += e.amount || 0;
   }
 }

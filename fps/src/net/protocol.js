@@ -35,6 +35,7 @@ export const PKT = Object.freeze({
   JSON: 0x10,      // reliable UTF-8 JSON body (lobby, roster, match config, chat): low rate only
   EVENT: 0x11,     // reliable binary game events (fire, damage, death, ...)
   SNAPSHOT: 0x81,  // host -> client world state (latest-wins)
+  CSTATE: 0x82,    // client -> host: the client's full body state (latest-wins; every packet is complete)
 });
 
 /** WebSocket close codes used by the relay. */
